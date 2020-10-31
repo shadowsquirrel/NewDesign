@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="css/frame.css">
+    <link rel="stylesheet" href="css/sexplain.css">
+    <link rel="stylesheet" href="css/payoffs4CB.css">
+    <link rel="stylesheet" href="css/calculator4CB.css">
+    <link rel="stylesheet" href="css/slider4CB.css">
+
+
+    <script src='js/Winwheel.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+    <title>Page Title</title>
+</head>
+<body>
+    <div id=start></div>
+
+    <div class = 'wrap  noselect'>
+
+        <div class = 'all'>
+
+        
+
+
+
+
+            <div class=payoffWrap>
+
+                <div class=tableLeft>
+                    <p class=resultLeft><span id=resultLeft></span></p>
+                    <div class='pTextLeft'>
+                        <div class=topText>
+                            <p class='titleRow pLeft'>
+                                <span style='font-weight:400; padding-right:10px;'>Received</span>
+                                <span id=prizeLeft class=p1></span>
+                            </p>
+                            <p class='titleRow cLeft'>
+                                <span style='font-weight:400; padding-right:10px;'>Invested</span>
+                                <span id=costLeft class=c1></span>
+                                <span id=tokenTag1 class=tokenTag></span>
+                            </p>
+                        </div>
+                        <div class=bottomText>
+                            <div class=sideColumn>
+                                <p class='titleRow npLeft'>Net Payoff</p>
+                                <p class='titleRow rLeft'>Role</p>
+                            </div>
+                            <div class=mainColumnLeft>
+                                <div class='resultRow npLeft'>
+                                    <p><span id=netPayoffLeft class='np1'></span></p>
+                                </div>
+                                <div class='resultRow rLeft'>
+                                    <p><span id=roleLeft></span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class=tableRight>
+                    <p class=resultRight><span id=resultRight></span></p>
+                    <div class='pTextRight'>
+                        <div class=topText>
+                            <p class='titleRow pRight'>
+                                <span style='font-weight:400; padding-right:10px;'>Received</span>
+                                <span id=prizeRight class=p2></span>
+                            </p>
+                            <p class='titleRow cRight'>
+                                <span style='font-weight:400; padding-right:10px;'>Invested</span>
+                                <span id=costRight class=c2></span>
+                                <span id=tokenTag2 class=tokenTag></span>
+                            </p>
+                        </div>
+                        <div class='bottomText'>
+                            <div class=sideColumn>
+                                <p class='titleRow npRight'>Net Payoff</p>
+                                <p class='titleRow rRight'>Role</p>
+                            </div>
+                            <div class=mainColumnRight>
+                                <div class='resultRow npRight'>
+                                    <p><span id=netPayoffRight class='np2'></span></p>
+                                </div>
+                                <div class='resultRow rRight'>
+                                    <p><span id=roleRight></span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+            <div class = 'calculator  noselect' id='calculator'>
+
+
+                <div class = 'mainSection'>
+
+                    <div class = 'playerLeft'>
+                        <div class='bsWrap bswLeft'>
+                            <h6 class='playerTitle'><span id=player1></span></h6>
+                            <div class = 'sliderBar sbLeft'>
+                                <input type='range' min = '0' max = '800' class = 'pSlider' value = '0' id = 'lSlider1' />
+                                <div id = 'bar1' class = 'pbar'></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class='wpWrap'>
+
+                        <div class='imageWrap'>
+                            <img id="spinImage" class='spinImage' src="images/spin.png" alt="V" />
+                        </div>
+
+                        <div class=ctWrap>
+                            <p class=contestTitle>
+                                <span id=contestName></span>
+                            </p>
+                        </div>
+
+                        <img id="arrow" class='wheelArrow' src="images/oarrow.png" alt="V" />
+                        <div class='wp'>
+                            <canvas id='mywheel' class='mywheel' width='250' height='250'>
+                                Canvas not supported, use another browser.
+                            </canvas>
+                            <div class = 'pw'>
+                                <div class = 'pie' id = 'pie'></div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class = 'playerRight'>
+                        <div class='bsWrap bswRight'>
+                            <h6 class='playerTitle'><span id=player2></span></h6>
+                            <div class = 'sliderBar sbRight'>
+                                <input type='range' min = '0' max = '800' class = 'pSlider' value = '0' id = 'olSlider1' />
+                                <div id = 'bar2' class = 'pbar'></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class=pWrap>
+                    <div id = 'powerRatio' class = 'powerRatio'></div>
+                    <p class=pTitle>POWER RATIO</p>
+                </div>
+
+
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+    <div id=end></div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="js/CB(V2).js"></script>
+
+</body>
+</html>

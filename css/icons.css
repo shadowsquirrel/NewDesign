@@ -1,0 +1,367 @@
+/**IMAGES**/
+img.p0
+{
+    height:75px;
+    width:45px;
+    position:absolute;
+}
+img.pf1
+{
+    height:75px;
+    width:45px;
+    position:absolute;
+}
+img.pl1
+{
+    height:75px;
+    width:45px;
+    position:absolute;
+}
+/*icons for og*/
+img.spf1
+{
+    height:75px;
+    width:45px;
+}
+img.spl1
+{
+    height:75px;
+    width:45px;
+}
+img.spf1L11
+{
+    transition:0.7s;
+    height:75px;
+    width:45px;
+    position:absolute;
+    opacity:0;
+}
+img.spf1L12
+{
+    transition:0.7s;
+    height:75px;
+    width:45px;
+    position:absolute;
+    opacity:0;
+}
+img.spf1L21
+{
+    transition:0.7s;
+    height:75px;
+    width:45px;
+    position:absolute;
+    opacity:0;
+}
+img.spf1L22
+{
+    transition:0.7s;
+    height:75px;
+    width:45px;
+    position:absolute;
+    opacity:0;
+}
+img.splc2
+{
+    transition:0.5s;
+    height:85px;
+    width:65px;
+    /* margin-top:-36px;. */
+}
+img.splc1
+{
+    transition:0.5s;
+    height:85px;
+    width:65px;
+    /* margin-top:-36px; */
+}
+img.crown
+{
+    height:30px;
+    width:34px;
+    position:absolute;
+    margin-left:6px;
+    margin-top:-23px;
+    z-index:2;
+    opacity:0;
+}
+img.fightIcon
+{
+    height:50px;
+    width:50px;
+}
+.hidder
+{
+    position:absolute;
+    height:200px;
+    width:400px;
+    z-index:1;
+
+}
+img.replayButton
+{
+    transition:0.2s;
+    opacity:0;
+    z-index:-2;
+    margin-top:50px;
+    margin-bottom:-60px;
+    transition:0.15s;
+    height:80px;
+    width:80px;
+    border:1px solid;
+    border-radius: 57px;
+    padding:4px;
+    box-shadow:0px 7px 0px 0px black;
+    cursor:pointer;
+}
+.replayButton:active
+{
+  box-shadow: 0px 2px 0px 0px black;
+  transform: translateY(5px);
+}
+/**STAGE 1**/
+.s1Icon
+{
+    display:none;
+    flex-direction:column;
+}
+.wrap1
+{
+    display:flex;
+    flex-direction:row;
+    justify-content: center;
+}
+.imgwrap1
+{
+    display:flex;
+    flex-direction:column;
+    width:45px;
+    transition:0.3s;
+}
+.imgbottomtext
+{
+    margin-right:0px;
+    font-size:33px;
+    font-weight:800;
+    margin-top:62px;
+}
+.transitionWrap
+{
+    display:flex;
+    flex-direction:row;
+    justify-content: center;
+    z-index:1;
+}
+.transitionWrapWrap
+{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+}
+img.playerBracketImage
+{
+    height:45px;
+    width:266px;
+    margin-top:-36px;
+}
+.playerRandomSortImageWrap
+{
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+}
+img.playerRandomSortImage
+{
+    transition:0.15s;
+    height:80px;
+    width:80px;
+    border:1px solid;
+    border-radius: 57px;
+    padding:4px;
+    box-shadow:0px 7px 0px 0px black;
+    cursor:pointer;
+}
+.playerRandomSortImage:active
+{
+  box-shadow: 0px 2px 0px 0px black;
+  transform: translateY(5px);
+}
+/*---*/
+.wrap2
+{
+    display:flex;
+    flex-direction:row;
+    justify-content: center;
+    margin-top:-50px;
+}
+.grouptitleA
+{
+    margin-top:-50px;
+    padding-bottom:35px;
+    color:#323232;
+    font-size:30px;
+    font-weight:800;
+}
+
+.groupAwrap
+{
+    padding:30px;
+    display:flex;
+    flex-direction:row;
+    justify-content:center;
+    border:2px solid black;
+    border-radius: 150px;
+    margin-top:-55px;
+}
+.grouptitleB
+{
+    margin-top:-50px;
+    padding-bottom:35px;
+    color:#b4b4b4;
+    font-size:30px;
+    font-weight:800;
+    margin-left:300px;
+}
+.groupBwrap
+{
+    padding:30px;
+    margin-left:300px;
+    display:flex;
+    flex-direction:row;
+    justify-content:center;
+    border:2px solid black;
+    border-radius: 150px;
+    margin-top:-55px;
+}
+.imgwrap2
+{
+    display:flex;
+    flex-direction:column;
+    width:45px;
+    margin-top:20px;
+}
+/*OGC*/
+.OGCIcon
+{
+    display:flex;
+    flex-direction:row;
+    justify-content: center;
+    /* margin-left:27px; */
+    margin-top:-15px;
+}
+.wrapLeft
+{
+    margin-top:20px;
+    display:flex;
+    flex-direction:column;
+}
+.wrapMid
+{
+    display:flex;
+    flex-direction:row;
+}
+.wrapRight
+{
+    margin-top:20px;
+    display:flex;
+    flex-direction:column;
+}
+.imgwrap3
+{
+    display:flex;
+    flex-direction:row;
+    justify-content: center;
+    width:100px;
+    height:200px
+}
+.imgwrapwrap3
+{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+}
+.imgwrapwrapwrap31
+{
+    display:flex;
+    flex-direction:row;
+    justify-content: center;
+    border:dashed 2px purple;
+    border-radius: 150px;
+    padding:5px;
+}
+.imgwrapwrapwrap32
+{
+    display:flex;
+    flex-direction:row;
+    justify-content: center;
+    border:dashed 2px purple;
+    border-radius: 150px;
+    padding:5px;
+}
+.imgwrapfight
+{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    width:50px;
+    height:200px;
+}
+.arrowIconBoxLeft
+{
+    height:160px;
+    width:60px;
+    margin-top:10px;
+    margin-right:-10px;
+}
+.arrowIconBoxRight
+{
+    height:160px;
+    width:60px;
+    margin-top:10px;
+    margin-left:-10px;
+}
+.arrowTip11
+{
+    fill:rgb(60,60,60);
+}
+.arrowTip12
+{
+    fill:rgb(60,60,60);
+}
+.arrowTip21
+{
+    fill:rgb(60,60,60);
+}
+.arrowTip22
+{
+    fill:rgb(60,60,60);
+}
+.iconarrowdynamic
+{
+    fill:transparent;
+
+    stroke-width:2;
+    stroke-dasharray:5,5;
+
+    opacity: 1;
+    transition: 0.35s;
+}
+.iaf1
+{
+    stroke:rgb(60,60,60);
+    marker-end:url(#markerArrowDynamic11);
+}
+.iaf2
+{
+    stroke:rgb(60,60,60, 0.4);
+    marker-end:url(#markerArrowDynamic12);
+}
+.iaof1
+{
+    stroke:rgb(60,60,60, 0.4);
+    marker-end:url(#markerArrowDynamic21);
+}
+.iaof2
+{
+    stroke:rgb(60,60,60, 0.4);
+    marker-end:url(#markerArrowDynamic22);
+}

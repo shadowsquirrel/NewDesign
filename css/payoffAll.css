@@ -1,0 +1,112 @@
+.payoffWrap
+{
+    z-index:-1;
+    opacity:0;
+    transition:1s;
+    margin-bottom:-23px;
+    margin-top:2px;
+    display:flex;
+    flex-direction:row;
+    justify-content: start;
+}
+/*COMMON TO BOTH SIDES*/
+.topText
+{
+    display:flex;
+    flex-direction:row;
+    justify-content: space-between;
+    border-bottom:dashed 1px black;
+    padding-bottom:5px;
+}
+.bottomText
+{
+    margin-top:5px;
+    display:flex;
+    flex-direction:row;
+}
+.sideColumn
+{
+    font-weight:400;
+    padding-top: 0px;
+    padding-right: 5px;
+    /* padding-left: 13px; */
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+}
+.titleRow
+{
+    margin-bottom:0px;
+}
+.resultRow
+{
+    margin-bottom:-16px;
+    display: flex;
+    flex-direction: row;
+}
+/*LEFT COLUMN*/
+.tableLeft
+{
+    margin-left:45px;
+    font-size:20px;
+    display: flex;
+    flex-direction: column;
+}
+.resultLeft
+{
+    margin-left:17px;
+    margin-right:-2px;
+    margin-bottom:2px;
+    box-shadow:0px 1px 4px 0px black;
+    background-color:rgb(50, 50, 50);
+    color:white;
+    font-weight:100;
+    font-size:24px;
+}
+.pTextLeft
+{
+    display:flex;
+    flex-direction:column;
+    padding-left:21px;
+    font-weight:100;
+    font-size:20px;
+}
+.mainColumnLeft
+{
+    padding-left: 45px;
+    display:flex;
+    flex-direction: column;
+}
+/*RIGHT COLUMN*/
+.tableRight
+{
+    margin-left:237px;
+    font-size:20px;
+    display: flex;
+    flex-direction: column;
+}
+.pTextRight
+{
+    display:flex;
+    flex-direction:column;
+    padding-left:28px;
+    font-weight:100;
+    font-size:20px;
+}
+.mainColumnRight
+{
+    padding-left: 45px;
+    display:flex;
+    flex-direction: column;
+}
+.resultRight
+{
+    margin-left:29px;
+    margin-right:3px;
+    margin-bottom:2px;
+    box-shadow:0px 1px 4px 0px black;
+    background-color:rgb(210, 210, 210);
+    color:white;
+    font-weight:100;
+    font-size:24px;
+}

@@ -1,0 +1,272 @@
+.sexplain
+{
+    /* height:0px; */
+    position: static;
+    opacity:1;
+    z-index:0;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* transition: 0.35.1s ease-in-out; */
+}
+.stagetextwrap
+{
+    padding-top:20px;
+    padding-bottom:20px;
+}
+.ontop
+{
+    z-index:1;
+}
+.allboxwrap
+{
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.sboxwrap
+{
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: white;
+}
+.aboxwrap
+{
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.aboxdoublewrap
+{
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+}
+.sbox
+{
+    height: 50px;
+    width: 79px;
+    background-color: white;
+    border: 5px solid black;
+    opacity: 0;
+    transition: 0s;
+}
+
+.stageboxtext
+{
+    margin-top:-1px;
+    font-size: 14px;
+    text-align: center;
+    color: black;
+    font-weight:800;
+}
+.modifications
+{
+    font-size:20px;
+    margin-top:-18px;
+}
+.stageboxtextlong
+{
+    /* padding-top: 13px; */
+    font-size: 14px;
+    text-align: center;
+    color: black;
+    font-weight:800;
+}
+.abox
+{
+    height: 50px;
+    width: 50px;
+    background-color: white;
+    opacity: 1;
+}
+.aboxdouble
+{
+    height: 120px;
+    width: 50px;
+    background-color: white;
+    opacity: 1;
+}
+.arrow
+{
+    stroke:black;
+    stroke-width:1;
+    marker-end:url(#markerArrow);
+    opacity: 1;
+    transition: 0.35s;
+}
+.arrowdashed
+{
+    stroke:black;
+    stroke-width:1;
+    stroke-dasharray:5,5;
+    marker-end:url(#markerArrow);
+    opacity: 1;
+    transition: 0.35s;
+}
+.boldarrow
+{
+    stroke:black;
+    stroke-width:3;
+    marker-end:url(#markerArrow);
+    opacity: 0;
+    transition: 0.35s;
+}
+.boldorangearrow
+{
+    stroke:orange;
+    stroke-width:3;
+    marker-end:url(#markerArroworange);
+    opacity: 0;
+    transition: 0.35s;
+}
+.boldorangearrow2
+{
+    stroke:orange;
+    stroke-width:3;
+    marker-end:url(#markerArrowlime);
+    opacity: 0;
+    transition: 0.35s;
+}
+.limearrow
+{
+    stroke:lime;
+    stroke-width:1;
+    marker-end:url(#markerArrowlime);
+    opacity:0;
+    transition: 0.35s;
+}
+.limearrow2
+{
+    stroke:lime;
+    stroke-width:2;
+    marker-end:url(#markerArrowlime);
+    opacity:0;
+    transition: 0.35s;
+}
+.redarrow
+{
+    stroke:red;
+    stroke-width:1;
+    marker-end:url(#markerArrowred);
+    opacity: 0;
+    transition: 0.35s;
+}
+.redboldarrow
+{
+    stroke:orange;
+    stroke-width:3;
+    marker-end:url(#markerArroworange);
+    opacity: 0;
+    transition: 0.35s;
+}
+.orangearrow
+{
+    stroke:orange;
+    stroke-width:1;
+    marker-end:url(#markerArroworange);
+    opacity: 0;
+    transition: 0.35s;
+}
+.orangearrow2
+{
+    stroke:orange;
+    stroke-width:2;
+    marker-end:url(#markerArroworange);
+    opacity: 0;
+    transition: 0.35s;
+}
+.curvyarrow1
+{
+    fill:transparent;
+    stroke:orange;
+    stroke-width:1;
+    stroke-dasharray:5,5;
+    marker-end:url(#markerArroworange);
+    opacity: 0;
+    transition: 0.35s;
+}
+.curvyarrow4
+{
+    fill:transparent;
+    stroke:orange;
+    stroke-width:2;
+    stroke-dasharray:5,5;
+    marker-end:url(#markerArroworange);
+    opacity: 0;
+    transition: 0.35s;
+}
+.curvyarrowred
+{
+    fill:transparent;
+    stroke:red;
+    stroke-width:1;
+    stroke-dasharray:5,5;
+    marker-end:url(#markerArrowred);
+    opacity: 0;
+    transition: 0.35s;
+}
+.curvyarrow2
+{
+    fill:transparent;
+    stroke:purple;
+    stroke-width:1;
+    stroke-dasharray:5,5;
+    marker-end:url(#markerArrowblue);
+    opacity: 0;
+    transition: 0.35s;
+}
+.curvyarrow3
+{
+    fill:transparent;
+    stroke:purple;
+    stroke-width:1;
+    stroke-dasharray:5,5;
+    marker-end:url(#markerArrowblue);
+    opacity: 0;
+    transition: 0.35s;
+}
+.curvyarrow5
+{
+    fill:transparent;
+    stroke:purple;
+    stroke-width:2;
+    stroke-dasharray:5,5;
+    marker-end:url(#markerArrowblue);
+    opacity: 0;
+    transition: 0.35s;
+}
+.curvyarrow6
+{
+    fill:transparent;
+    stroke:url(#grad2);
+    stroke-width:3;
+    /* stroke-dasharray:5,5; */
+    marker-end:url(#markerArrowblue);
+    opacity: 0;
+    transition: 0.35s;
+}
+.somespacedown
+{
+    border-width:4px;
+    border-style:double;
+    border-radius:27px;
+    margin-bottom:10px;
+}
+.somespacedowndown
+{
+    margin-bottom:70px;
+}
+.somespaceup
+{
+    border-width:4px;
+    border-style:double;
+    border-radius:27px;
+    margin-top:10px;
+}

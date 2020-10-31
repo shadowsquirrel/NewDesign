@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="css/frame.css">
+    <link rel="stylesheet" href="css/slider4followers.css">
+    <link rel="stylesheet" href="css/calculator4followers.css">
+    <link rel="stylesheet" href="css/follower_layout.css">
+
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <title>Page Title</title>
+</head>
+<body>
+    <div id=start></div>
+
+    <div class = 'wrap'>
+
+        <div class = 'all'>
+
+            <div class = dinfo>
+                <div class=mytablewrap style='margin-top:-50px;'>
+
+                    <div  class=ltw>
+                        <p class=bw2>If Your Leader Loses</p>
+                        <div class=mytableright>
+                            <div class=sidecolumn>
+                                <p class=columnclass>You Receive</p>
+                                <p class=columnclass>Net Payoff</p>
+                                <p class=columnclass>Your Role</p>
+                            </div>
+                            <div class=maincolumnright>
+                                <div class=row>
+                                    <p><strong>0</strong> token</p>
+                                </div>
+                                <div class=row>
+                                    <p><span id=losenetpayoff class='outcomes'></span></p>
+                                </div>
+                                <div class=row style='width:175px;'>
+                                    <p style='text-align:left;'><strong>Chance to become <br /> the new Leader</strong></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div  class=rtw>
+                        <p class=bw>If Your Leader Wins</p>
+                        <div class=mytableleft>
+                            <div class=sidecolumn>
+                                <p class=columnclass>You Receive</p>
+                                <p class=columnclass>Net Payoff</p>
+                                <p class=columnclass>Your Role</p>
+                            </div>
+                            <div class=maincolumnleft>
+                                <div class=row>
+                                    <p><strong>0</strong> token</p>
+                                </div>
+                                <div class=row>
+                                    <p><span id=winnetpayoff class='outcomes'></span></p>
+                                </div>
+                                <div class=row style='width:125px;'>
+                                    <p style='text-align:left;'><strong>Continue <br /> as a follower</strong></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+            <div class = decision>
+                <div class = input>
+                    <h6 class='yourdecisiontext closertotop'>YOUR DECISION</h6>
+                    <div class = 'sliderbard'>
+                        <input type='range' min = '-100' max = '100' class = 'dslider' value = '0' id = 'dSlider' />
+                        <div id = 'bard' class = 'dbar'></div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class ='explanationtext b1'>
+                <p>
+                    The section <strong>above</strong> is your main decision slider where you will make your help/sabotage decision during the game.
+                </p>
+                <p>
+                    Drag the slider <strong>left</strong> to <span class=redtext>sabotage</span> or <strong>right</strong> to <span class=bluetext>help</span> <strong>your</strong> leader.
+                </p>
+                <p>
+                    Please chose a value inside the slider.
+                </p>
+
+                <div class=bwrap>
+                    <button class='cb bb1' id=bb1>OK</button>
+                </div>
+
+            </div>
+
+            <div class ='explanationtext b2'>
+
+                <p>
+                    You will have <strong>limited time</strong> to make your decision.
+                </p>
+
+                <p>
+                    <strong>Time left</strong> will be displayed on the <strong>right corner of your screen</strong>
+                </p>
+
+                <p>
+                    If you are done before the time expires, you can click the <strong>Done</strong> button.
+                </p>
+                <p>
+                    <span class=redunderline>
+                        If you <strong>fail to submit</strong> within the time limit, your <strong>current entry</strong>
+                        will be considered as your <strong>final decision</strong>.
+                    </span>
+                </p>
+
+                <div class=bwrap>
+                    <button class='cb bb2' id=bb2>OK</button>
+                </div>
+
+            </div>
+
+            <!-- <div class ='explanationtext b3'>
+
+                <p style='text-align:center;'>
+                    <strong><strong><strong>You have 3 minutes left.</strong></strong></strong>
+                </p>
+                <p>
+                    Please <strong>do not rush</strong> through the information boxes.
+                </p>
+                <p>
+                    Please <strong>do not spend too much time</strong> in one information box.
+                </p>
+
+                <div class=bwrap>
+                    <button class='cb bb3' id=bb3>OK</button>
+                </div>
+
+            </div> -->
+
+            <div class ='explanationtext b4'>
+
+                <p>
+                    To make your decision, you need to consider what the <strong>others</strong> will <strong>possibly</strong> play.
+                </p>
+                <p>
+                    But, while you make your decision, you will <strong>not</strong> know <strong>other players' decisions</strong>.
+                </p>
+
+                <div class=bwrap>
+                    <button class='cb bb4' id=bb4>OK</button>
+                </div>
+
+            </div>
+
+            <div class ='explanationtext b5'>
+
+                <p>
+                    We provide you with a <strong>calculator</strong> to <strong>consider</strong> other players' <strong>potential</strong> decisions.
+                </p>
+                <p>
+                    Click <strong>Show Calculator</strong> button <strong>below</strong>.
+                </p>
+
+            </div>
+
+            <div class ='explanationtext b61'>
+
+                <p style='font-size:26px;'>
+                    On the <strong>Calculator below</strong>, the green-boxed slider (<span class=yourdecisionbox></span>) represents <strong>your decision</strong>.
+                </p>
+
+                <div class=bwrap>
+                    <button class='cb bb61' id=bb61>OK</button>
+                </div>
+
+            </div>
+
+            <div class ='explanationtext b62'>
+
+                <p>
+                    <span class=f2decisionbox></span> represents <strong>hypothetical</strong> decision of the <strong>other follower</strong> in <strong>your</strong> group.
+                </p>
+
+                <div class=bwrap>
+                    <button class='cb bb62' id=bb62>OK</button>
+                </div>
+
+            </div>
+
+            <div class ='explanationtext b63'>
+
+                <p>
+                    <span class=opponentsdecisionbox></span> represents <strong>hypothetical</strong> decisions of the <strong>followers</strong> in the <strong>opposing group</strong>.
+                </p>
+
+                <div class=bwrap>
+                    <button class='cb bb63' id=bb63>OK</button>
+                </div>
+
+            </div>
+
+            <div class ='explanationtext b81'>
+
+                <p style='text-align:center;' >
+                    You can close the calculator by clicking on the <strong>Close Calculator</strong> button.
+                </p>
+
+                <p style='text-align:center; font-weight:400; font-size:38px;'>
+                    Please close the calculator.
+                </p>
+
+            </div>
+
+            <div class ='explanationtext b82'>
+
+                <p  style='text-align:center;font-size:35px'>
+                    Please chose  <span class='redc'>100</span> <strong>sabotage</strong> in your decision slider.
+                </p>
+
+            </div>
+
+            <div class ='explanationtext b83'>
+
+                <p style='text-align:center;font-size:35px;'>
+                    Please open the calculator again.
+                </p>
+
+            </div>
+
+            <div class ='explanationtext b84'>
+
+                <p style='text-align:center; font-weight:400; margin-bottom:-15px; margin-top:-20px; font-size:40px;'>
+                    NOTICE
+                </p>
+                <p style='margin-bottom:20px;text-align:center;'>
+                    All the followers'</strong> sliders are set to <span class='redc'>100</span> <strong>sabotage</strong>.
+                </p>
+                <p style='margin-bottom:10px;'>
+                    When you turn on the calculator,
+                </p>
+                <p style='margin-bottom:13px; margin-left:74px; width:725px;'>
+                    All the other followers' <strong>hypothetical</strong> decisions will be set to
+                </p>
+                <p style='margin-bottom:40px; margin-left:74px; width:725px;'>
+                    <strong>the current value on your <spanclass=greenbox style='padding:5px;border:5px solid rgb(35,76,30); background-color:white;'>decision slider</span></strong>.
+                </p>
+                <p style='margin-bottom:30px;margin-left:74px;'>
+                    Leaders' <strong>hypothetical</strong> decisions will <strong>always</strong> be set to <strong>200</strong>.
+                </p>
+
+                <div class=bwrap>
+                    <button class='cb bb84' id=bb84>OK</button>
+                </div>
+
+            </div>
+
+            <div class ='explanationtext b85'>
+
+                <p style='text-align:center;marign-bottom:22px;font-size:40px'>
+                    Don't forget
+                </p>
+
+                <p style='margin-bottom:31px;'>
+                    The <strong>calculator</strong> is provided <strong>only</strong> to <strong>facilitate your decision making</strong>.
+                </p>
+
+                <p>
+                    <strong>Only</strong> the decision you make in <strong>either</strong> <strong><span class=greenbox style='background-color:white;'>decision sliders</span></strong> will have an <strong>effect on the game</strong>.
+                </p>
+
+                <div class=bwrap>
+                    <button class='cb bb85' id=bb85>OK</button>
+                </div>
+
+            </div>
+
+            <div class ='explanationtext b9'>
+
+                <p style='text-align:center;font-size:35px;'>
+                    Get familiar with the calculator.
+                </p>
+                <p style='text-align:center;font-size:35px;'>
+                    Click the done button when you are ready.
+                </p>
+                <div class=bwrap>
+                    <button class='cb bb9' id=bb9>OK</button>
+                </div>
+
+            </div>
+
+
+
+            <div class = 'calculator  noselect' id='calculator'>
+
+                <div class='calctitlewrap'>
+                    <p class='calculatortitle' id=calculatortitle>
+                        <span id=calctitle></span>
+                    </p>
+                </div>
+
+                <div class=calcwrap>
+                    <div class = 'titlesection'>
+                        <h5 class = leftmaintitle>YOUR GROUP</h5>
+                        <h5 class = 'rightmaintitle'>OPPOSING GROUP</h5>
+                    </div>
+
+                    <div class = 'bottomsection'>
+
+                        <div class = 'followergroupleft'>
+                            <div class='titlewrap'>
+                                <h6 class = 'left_title ftitle'>Followers</h6>
+                            </div>
+                            <div class='yourdecisiontext2wrap'>
+                                <h12 class='yourdecisiontext21'>YOUR DECISION</h12>
+                                <h12 class='yourdecisiontext22'>HYPOTHETICAL</h12>
+                            </div>
+
+                            <div class = 'slidebargroup left'>
+                                <div class = 'sliderbar'>
+                                    <input type='range' min = '-100' max = '100' class = 'vertical slider' id = 'vSlider1' />
+                                    <div id = 'bar1' class = 'bar l f1'></div>
+                                </div>
+                                <div class = 'sliderbar'>
+                                    <input type='range' min = '-100' max = '100' class = 'vertical slider' id = 'vSlider2' />
+                                    <div id = 'bar2' class = 'bar l f2'></div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class = 'followergraphics'>
+                            <div class = 'graphics'>
+                                <div class = 'helpsabobars'>
+                                    <h6>Total</h6>
+                                    <!-- <h6>Total Help </h6> -->
+                                    <div id = 'helpBar' class = 'helpbar'></div>
+                                    <div id = 'saboBar' class = 'sabobar'></div>
+                                    <!-- <h6>Total Sabotage </h6> -->
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class = 'followergroupright'>
+                            <div class='titlewrap'>
+                                <h6 class = 'right_title ftitle'>Followers</h6>
+                                <div class='switchwrap'>
+                                    <div class='switchwrap2'>
+                                        <label class="switch">
+                                            <input type="checkbox" id='mycheck2' checked>
+                                            <span class="checkslider round"></span>
+                                        </label>
+                                        <img id="locked" class='locked' src="images/locked.png" alt="V" />
+                                        <img id="unlocked" class='unlocked' src="images/unlocked.png" alt="V" />
+                                    </div>
+                                </div>
+                                <div class='yourdecisiontext4wrap'>
+                                    <h12 class='yourdecisiontext41'>HYPOTHETICAL</h12>
+                                    <h12 class='yourdecisiontext42'>HYPOTHETICAL</h12>
+                                </div>
+                            </div>
+                            <div class = 'slidebargroup right'>
+                                <div class = 'sliderbar'>
+                                    <input type='range' min = '-100' max = '100' class = 'vertical slider' id = 'ovSlider1' />
+                                    <div id = 'obar1' class = 'bar l of1'></div>
+                                </div>
+                                <div class = 'sliderbar'>
+                                    <input type='range' min = '-100' max = '100' class = 'vertical slider' id = 'ovSlider2' />
+                                    <div id = 'obar2' class = 'bar l of2'></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                    <div class=s2sep>
+                        <p class=s2side>
+                            STAGE 2 <br />
+                            FOLLOWERS' HELP / SABOTAGE
+                        </p>
+                    </div>
+
+                    <div class = 'middlesection'>
+                        <h6 class='powertext'>Power Ratio</h6>
+                        <div class = 'efficiencyBarWrap'>
+                            <div id = 'efficiencyBar' class = 'efficiencyBar'></div>
+                        </div>
+                    </div>
+
+                    <div class = 'topsection' style='z-index:102;'>
+
+                        <div class = 'leadergroupleft'>
+
+                            <h6 class = 'left_ltitle'>Your Leader</h6>
+                            <h6 class='ldecisiontext1'>HYPOTHETICAL</h6>
+
+                            <div class = 'sliderbarleader left'>
+                                <input type='range' min = '0' max = '800' class = 'lslider' value = '1' id = 'lSlider1' />
+                                <div id = 'barl' class = 'lbar barl'></div>
+                            </div>
+                        </div>
+
+
+                        <div class = 'leadergraphics'>
+                            <div class = 'piewrap'>
+                                <div class = 'pie' id = 'pie'></div>
+                                <h6 class='pwintext'>Probability to Win</h6>
+                            </div>
+                        </div>
+
+
+
+                        <div class = 'leadergroupright'>
+
+                            <h6  class = 'right_ltitle'>Opposing Leader</h6>
+                            <h6 class='ldecisiontext2'>HYPOTHETICAL</h6>
+
+                            <div class = 'sliderbarleader lright'>
+                                <input type='range' min = '0' max = '800' class = 'lslider' value = '1' id = 'olSlider1' />
+                                <div id = 'obarl' class = 'lbar obarl'></div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class=s3sep>
+                        <p class=s3side>
+                            STAGE 3 <BR /> LEADERS' CONTEST
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class ='explanationtext b7'>
+
+                <p style='font-size:28px;margin-left:163px;margin-bottom:20px;'>
+                    <span class=leaderdecisionbox></span> represents <strong>hypothetical</strong> decision of <strong>your leader</strong>.
+                </p>
+                <p style='font-size:28px;text-align:center;'>
+                    <span class=oleaderdecisionbox></span> represents <strong>hypothetical</strong> decision of the <strong>opposing leader</strong>.
+                </p>
+
+                <div class=bwrap>
+                    <button class='cb bb7' id=bb7>OK</button>
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+        </div>
+        <div id=end></div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script src="js/introLayoutF.js"></script>
+
+    </body>
+    </html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="css/frame.css">
+    <link rel="stylesheet" href="css/tipbox.css">
+    <link rel="stylesheet" href="css/sexplain.css">
+    <link rel="stylesheet" href="css/sinfo.css">
+
+    <script src='js/Winwheel.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+
+    <title>Page Title</title>
+</head>
+<body>
+    <div id=start></div>
+
+    <div class = 'wrap'>
+
+        <div class = 'all'>
+
+
+
+
+
+
+            <div class = 'calculator' id='calculator'>
+
+                <div class = 'topsection'>
+
+                    <div class = 'leadergroupleft'>
+
+                        <p class = 'left_ltitle'>Tokens Invested by You</p>
+                        <div class = 'sliderbarleader left'>
+                            <input type='range' min = '0' max = '800' class = 'lslider2' value = '250' id = 'lSlider1' />
+                            <div id = 'barl' class = 'lbar1'></div>
+                        </div>
+
+                    </div>
+
+                    <div class = 'leadergraphics'>
+
+                        <div class = 'arrowwrap'>
+                            <div class='wheelpiewrap'>
+                                <img id="arrow" class='arrow' src="images/arrow.png" alt="V" />
+                                <div id='wheelpie' class='wheelpie'>
+                                    <canvas id='mywheel' class='mywheel' width='250' height='250'>
+                                        Canvas not supported, use another browser.
+                                    </canvas>
+                                    <div class='piewrap'>
+                                        <div class='s3pie' id='pie'></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class = 'leadergroupright'>
+
+                        <p  class = 'right_title'>Tokens Invested by Opponent <strong>HYPOTHETICAL</strong></p>
+                        <div class = 'sliderbarleader lright'>
+                            <input type='range' min = '0' max = '800' class = 'lslider2' value = '250' id = 'olSlider1' />
+                            <div id = 'obarl' class = 'lbar2'></div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+
+
+
+
+
+
+        </div>
+
+    </div>
+
+    <div id=end></div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="js/S3.js"></script>
+
+</body>
+</html>

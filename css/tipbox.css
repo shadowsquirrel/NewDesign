@@ -1,0 +1,136 @@
+
+.greenbox
+{
+    transition:0.35s;
+    margin-left: 5px;
+    margin-right: 5px;
+    padding:5px;
+    border: 8px solid rgb(35,79,30);
+}
+
+.redbox
+{
+    transition:0.35s;
+    margin-left: 5px;
+    margin-right: 5px;
+    padding-right:20px;
+    padding-left:5px;
+    border: 6px solid red;
+}
+.bluetext
+{
+    font-weight:500;
+    color:blue;
+}
+.redtext
+{
+    font-weight:500;
+    color:red;
+}
+.redunerline
+{
+    border-bottom:2px solid red;
+}
+.explanationtext
+{
+    margin-bottom:10px;
+    margin-top:-15px;
+    font-size: 28px;
+    font-weight:100;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    padding:25px;
+    background-color: lavender;
+    box-shadow: 0px 8px 8px 8px black;
+
+}
+.bwrap
+{
+    display:flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-right: -25px;
+    margin-bottom: -25px;
+    /* margin-top: -50px; */
+    padding-bottom:20px;
+    padding-right:20px;
+}
+.cb
+{
+    background-color: black;
+    color: white;
+    width:85px;
+    height:40px;
+    font-size:25px;
+    font-weight:800;
+    opacity: 0.7;
+    padding-bottom:40px;
+}
+.cb:hover
+{
+    opacity:1;
+}
+.box1
+{
+    transition:0.35s;
+}
+.bb1
+{
+    transition:0.35s;
+    z-index:-100;
+}
+.box2
+{
+    position:absolute;
+    opacity: 0;
+    /* height:100%; */
+    transition:0.35s;
+    transition-delay:0.35s;
+}
+.bb2
+{
+    transition:1s;
+    transition-delay:5s;
+    z-index:-100;
+    opacity:0;
+}
+.limited
+{
+    width:1050px;
+    /* max-width:1100px; */
+}
+.rest{
+    display:none;
+    flex-direction:column;
+}
+.tip{
+    margin-top:60px;
+    display:none;
+    flex-direction:column;
+}
+.mytip1
+{
+    display:none;
+}
+.mytip2
+{
+    display:none;
+}
+.mytip3
+{
+    display:none;
+}
+.mytip4
+{
+    display:none;
+}
+.mytip5
+{
+    display:none;
+}
+.rest
+{
+    display:none;
+    flex-direction:column;
+}
