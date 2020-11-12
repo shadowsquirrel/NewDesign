@@ -101,15 +101,6 @@
     opacity: 1;
     transition: 0.35s;
 }
-.arrowdashed
-{
-    stroke:black;
-    stroke-width:1;
-    stroke-dasharray:5,5;
-    marker-end:url(#markerArrow);
-    opacity: 1;
-    transition: 0.35s;
-}
 .boldarrow
 {
     stroke:black;

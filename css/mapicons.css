@@ -126,7 +126,7 @@ img.mapfightIconLime2
     display: flex;
     height: 112px;
     opacity: 1;
-    border-color: rgb(68, 68, 60);
+    border-color: black;
     flex-direction: column;
 }
 .mapimgwrap1
@@ -398,6 +398,15 @@ img.leaderarrow
     color:red;
     opacity:0.7;
 }
+
+
+
+
+
+
+
+
+
 img.winnerleaderarrow
 {
     height:24px;

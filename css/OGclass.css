@@ -1,0 +1,293 @@
+/*ICONS*/
+img.OG1ficon
+{
+    height:50px;
+    width:30px;
+    z-index:1;
+}
+img.OG1ficonLime
+{
+    height:50px;
+    width:30px;
+    position:absolute;
+    opacity:0;
+    z-index:1;
+}
+img.leaderKingLeft
+{
+    height:60px;
+    width:48px;
+    z-index:1;
+}
+img.leaderKingRight
+{
+    height:60px;
+    width:48px;
+    z-index:1;
+}
+img.OG1FightIcon
+{
+    height:25px;
+    width:25px;
+}
+img.OG1DescriptionFightIcon
+{
+    height:50px;
+    width:50px;
+}
+img.OG1FightIconLime
+{
+    height:25px;
+    width:25px;
+    position:absolute;
+    opacity:0;
+}
+/*--------map divs--------*/
+.newRound
+{
+    border-radius: 80px;
+    opacity:0;
+    transition:0.3s;
+    z-index:4;
+    position:absolute;
+    height:241px;
+    width:919px;
+    background-color:white;
+    margin-left: -22px;
+    padding-left:10px;
+    padding-right:10px;
+    /* border:10px solid black; */
+}
+.newRoundText
+{
+    color:black;
+    position:absolute;
+    transition:0.3s;
+    color:black;
+    font-size:93px;
+    padding-top:35px;
+    font-weight:100;
+    margin-left:240px;
+}
+.newRoundText2
+{
+    color:black;
+    position:absolute;
+    transition:0.3s;
+    color:black;
+    font-size:93px;
+    padding-top:35px;
+    font-weight:100;
+    margin-left:240px;
+    opacity:0;
+}
+
+/*OG1*/
+.OG1
+{
+    box-shadow:0 0 8px 3px black;
+
+    padding-left:11px;
+    padding-right:5px;
+
+    border:4px double black;
+    border-radius:15px;
+
+    height:139px;
+
+    margin-top:33px;
+    margin-left:-11px;
+}
+.section1
+{
+    position:absolute;
+    background-color:white;
+    height:130px;
+    width:281px;
+    z-index:1;
+}
+.section1Text
+{
+    color:red;
+    font-weight:700;
+    font-size:140px;
+    margin-top:-51px;
+    margin-left:-13px;
+}
+.OG1Title
+{
+    font-size:22px;
+    font-weight:400;
+    margin-top:-41px;
+    margin-bottom:19px;
+    text-align:center;
+    color:black;
+}
+.OG1IconsWrap
+{
+    display:flex;
+    flex-direction:row;
+    justify-content: center;
+    margin-top:-15px;
+    margin-right:-8px;
+}
+/*OG1 DESCRIPTIONS*/
+.IG1Description
+{
+    margin-left:6px;
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    position:absolute;
+    opacity:0;
+}
+.IG2Description
+{
+    margin-top:12px;
+    margin-left:6px;
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    position:absolute;
+    opacity:0;
+}
+.groupADescription
+{
+    width:90px;
+    font-size:22px;
+    font-weight:100;
+    background-color:rgb(60,60,60);
+    color:white;
+    border-radius:30px;
+    box-shadow:0px 3px 3px 3px black;
+    padding:10px;
+    padding-top:20px;
+    padding-bottom:0px;
+}
+.groupBDescription
+{
+    width:90px;
+    font-size:22px;
+    font-weight:100;
+    background-color:rgb(180,180,180);
+    color:black;
+    border-radius:30px;
+    box-shadow:0px 3px 3px 3px black;
+    padding:10px;
+    padding-top:20px;
+    padding-bottom:0px;
+}
+.fightDescription
+{
+    margin-top:31px;
+    margin-left:20px;
+    margin-right:20px;
+}
+/*OG1 FOLLOWERS*/
+
+.OG1FollowersWrapLeft
+{
+    margin-top:20px;
+    display:flex;
+    flex-direction:column;
+}
+.OG1FollowersWrapRight
+{
+    margin-top:20px;
+    display:flex;
+    flex-direction:column;
+}
+.OG1FollowerImgWrap
+{
+    display:flex;
+    flex-direction:column;
+    width:45px;
+    transition:0s;
+}
+.OG1TopFollower
+{
+    margin-top:-5px;
+    margin-bottom:5px;
+}
+
+.OG1FollowerArrowsLeft
+{
+    height:160px;
+    width:60px;
+    margin-top:-16px;
+    margin-right:-12px;
+    margin-left:-37px;
+}
+.OG1FollowerArrowsRight
+{
+    height:160px;
+    width:60px;
+    margin-top:-16px;
+    margin-right:-22px;
+    margin-left:-32px;
+}
+/*OG1 LEADERS*/
+.OG1LeadersIcon
+{
+    display:flex;
+    flex-direction:row;
+    height:75px;
+    margin-top:-2px;
+    margin-left:-1px;
+}
+.OG1LeaderLeft
+{
+    display:flex;
+    flex-direction:row;
+    justify-content: center;
+    width:100px;
+    height:200px
+}
+.OG1LeaderRight
+{
+    display:flex;
+    flex-direction:row;
+    justify-content: center;
+    width:100px;
+    height:200px
+}
+.subOG1L
+{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+}
+.subsubOG1L
+{
+    display:flex;
+    flex-direction:row;
+    justify-content: center;
+    border:dashed 2px gray;
+
+    border-radius: 150px;
+    padding:5px;
+    margin-top:-64px;
+    margin-left:-21px;
+    background-color: #d3d3d378;
+}
+.OG1FightIconWrap
+{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    width:50px;
+    height:200px;
+    margin-left:-28px;
+    margin-right:-31px;
+    margin-top:-32px;
+}
+.OG1GroupSeparator
+{
+    height:126px;
+    margin-left:11px;
+    margin-top:5px;
+    border-left:2px solid transparent;
+    box-shadow: 0 0 2px 1px black;
+    position:absolute;
+    opacity:0;
+}

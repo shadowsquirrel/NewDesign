@@ -1,0 +1,25 @@
+.debug
+{
+    margin-top:50px;
+    display:flex;
+    justify-content: center;
+    flex-direction: row;
+}
+.debug2
+{
+    height: 40px;
+    width: 60px;
+    background-color:red;
+    cursor:pointer;
+    opacity:0.7;
+    box-shadow: 0 6px black;
+}
+.debug2:hover
+{
+    opacity:1;
+}
+.debug2:active
+{
+    box-shadow: 0 2px black;
+    transform: translateY(2px);
+}

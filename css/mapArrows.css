@@ -1,0 +1,30 @@
+/*--------map arrows--------*/
+/*og1 arrows*/
+.arrowDashed
+{
+    stroke:black;
+    stroke-width:1;
+    stroke-dasharray:5,5;
+    marker-end:url(#markerArrow);
+    opacity: 1;
+    transition: 0.35s;
+}
+.arrowDashedLime1
+{
+    stroke:rgb(14, 209, 69);
+    stroke-width:1;
+    stroke-dasharray:5,5;
+    marker-end:url(#markerArrowLime);
+    opacity:0;
+}
+/*og1tooutcomesarrows*/
+.boldArrow
+{
+    stroke:black;
+    stroke-width:2.2;
+    marker-end:url(#markerArrow);
+}
+.boldArrowTip
+{
+    fill:black;
+}

@@ -1,0 +1,133 @@
+
+img.redArrowImage1
+{
+    height:109px;
+    width:80px;
+}
+.sliderArrowImageWrap_l1
+{
+    position:absolute;
+    transform:rotate(321deg);
+    transition:1s;
+    margin-left:48px;
+    margin-top:-8px;
+}
+.sliderArrowImageWrap_l2
+{
+    position:absolute;
+    transform:rotate(321deg);
+    transition:1s;
+    margin-left:48px;
+    margin-top:-8px;
+}
+.sliderArrowImageWrap_f1
+{
+    position:absolute;
+    transform:rotate(321deg);
+    transition:1s;
+    margin-left:-1px;
+    margin-top:-107px;
+}
+.sliderArrowImageWrap_f2
+{
+    position:absolute;
+    transform:rotate(321deg);
+    transition:1s;
+    margin-left:-1px;
+    margin-top:-107px;
+}
+.sliderArrowImageWrap_of1
+{
+    position:absolute;
+    transform:rotate(321deg);
+    transition:1s;
+    margin-left:-1px;
+    margin-top:-107px;
+}
+.sliderArrowImageWrap_of2
+{
+    position:absolute;
+    transform:rotate(321deg);
+    transition:1s;
+    margin-left:-1px;
+    margin-top:-107px;
+}
+/*qUESTION MARKS*/
+.sliderQuestion_l1
+{
+    position:absolute;
+    transition:8s;
+    font-size:40px;
+    color:black;
+    margin-left:270px;
+    margin-top:-15px;
+    transition:8s;
+    transform:rotateY(90deg);
+    font-weight:100;
+    font-size:56px;
+}
+.sliderQuestion_l2
+{
+    position:absolute;
+    transition:8s;
+    font-size:40px;
+    color:black;
+    margin-left:270px;
+    margin-top:-15px;
+    transition:8s;
+    transform:rotateY(90deg);
+    font-weight:100;
+    font-size:56px;
+}
+.sliderQuestion_f1
+{
+    position:absolute;
+    transition:8s;
+    font-size:40px;
+    color:black;
+    margin-left:11px;
+    margin-top:-95px;
+    transition:8s;
+    transform:rotateY(90deg);
+    font-weight:100;
+    font-size:56px;
+}
+.sliderQuestion_f2
+{
+    position:absolute;
+    transition:8s;
+    font-size:40px;
+    color:black;
+    margin-left:11px;
+    margin-top:-95px;
+    transition:8s;
+    transform:rotateY(90deg);
+    font-weight:100;
+    font-size:56px;
+}
+.sliderQuestion_of1
+{
+    position:absolute;
+    transition:8s;
+    font-size:40px;
+    color:black;
+    margin-left:11px;
+    margin-top:-95px;
+    transition:8s;
+    transform:rotateY(90deg);
+    font-weight:100;
+    font-size:56px;
+}
+.sliderQuestion_of2
+{
+    position:absolute;
+    transition:8s;
+    font-size:40px;
+    color:black;
+    margin-left:11px;
+    margin-top:-95px;
+    transition:8s;
+    transform:rotateY(90deg);
+    font-weight:100;
+    font-size:56px;
+}

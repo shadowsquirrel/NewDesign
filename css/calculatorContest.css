@@ -1,0 +1,176 @@
+/**CALCULATOR**/
+.calculator
+{
+    transition:1s;
+    border:0px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    flex-grow:5;
+    margin-top:0px;
+}
+.contestSection
+{
+    transition:0.7s;
+    display:flex;
+    height:188px;
+    margin-top: -5px;
+    flex-direction: row;
+    justify-content: space-around;
+}
+/**LEFT AND RIGHT SLIDERBAR COMMON**/
+.bsWrap
+{
+    transition:0.7s;
+    display:flex;
+    flex-direction: column;
+    box-shadow: 0px 1px 1px 0px black;
+    height:122px;
+    transition-delay:0.15s;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+}
+.bsWrap:hover
+{
+    box-shadow: 0px 6px 6px 2px black;
+}
+.playerTitle
+{
+    font-weight: 100;
+    font-size: 28px;
+    margin-bottom:0px;
+    padding-top:10px;
+    padding-bottom:5px;
+}
+/**LEFT SECTION**/
+.playerLeft
+{
+    display: flex;
+    flex-direction: column;
+    margin-top:28px;
+    margin-right:-70px;
+}
+.bswLeft
+{
+    color:white;
+    background-color:rgb(60, 60, 60);
+}
+/**RIGHT SECTION**/
+.playerRight
+{
+    display: flex;
+    flex-direction: column;
+    margin-top:28px;
+    margin-left:-70px;
+}
+.bswRight
+{
+    background-color:rgb(210, 210, 210);
+}
+/**PIE SECTION**/
+.ctWrap
+{
+    display:flex;
+    flex-direction:row;
+    justify-content: center;
+    margin-bottom:-35px;
+    margin-top:-53px;
+}
+.contestTitle
+{
+    width:150px;
+    font-size:25px;
+    font-weight:100;
+    text-align:center;
+}
+.arrowwrap
+{
+    margin-top: 6px;
+    display: flex;
+    justify-content: center;
+}
+.wpWrap
+{
+    text-align: center;
+}
+.wheelArrow
+{
+    z-index:2;
+    opacity:1;
+    width:40px;
+    height:40px;
+    position: absolute;
+    transform:rotate(180deg);
+    margin-left:-19.75px;
+    margin-top:20px;
+}
+.wp
+{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 250px;
+    height: 250px;
+}
+.mywheel
+{
+    margin-bottom:59px;
+    margin-left:2px;
+    z-index:0;
+    opacity:0;
+    transition:0.15s;
+    display: flex;
+    position: relative;
+}
+.pw
+{
+    z-index: 1;
+    opacity: 1;
+    transition:0.15s;
+    position:absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 68px;
+    margin-bottom:58px;
+}
+.pie
+{
+    display: flex;
+    justify-content: center;
+}
+/*SPIN THE WHEEL BUTTON*/
+.imageWrap
+{
+    opacity: 1;
+    z-index:1;
+    margin-top:-21px;
+}
+.spinImage
+{
+    transition:0.35s;
+    opacity :0;
+}
+
+img.spinImage
+{
+    padding: 5px;
+    border-collapse: separate;
+    border-spacing: 15px;
+    opacity: 0;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    outline: none;
+    background-color: lime;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 6px black;
+    transition: 0.15s;
+}
+
+.spinImage:active
+{
+  box-shadow: 0 2px black;
+  transform: translateY(2px);
+}

@@ -1,0 +1,272 @@
+/*ICONS*/
+img.prizeCrownBlackTop
+{
+    margin-top:-18px;
+    position:absolute;
+    z-index:2;
+    opacity:0;
+    height:21px;
+    width:25px;
+    opacity:1;
+    margin-left:0px;
+}
+img.prizeCrownBlackBottom
+{
+    margin-top:-18px;
+    position:absolute;
+    z-index:2;
+    opacity:0;
+    height:21px;
+    width:25px;
+    opacity:1;
+    margin-left:0px;
+}
+img.prizeCrownLimeTop
+{
+    margin-top:-18px;
+    position:absolute;
+    z-index:2;
+    opacity:0;
+    height:21px;
+    width:25px;
+    opacity:0;
+    margin-left:0px;
+}
+img.prizeCrownLimeBottom
+{
+    margin-top:-18px;
+    position:absolute;
+    z-index:2;
+    opacity:0;
+    height:21px;
+    width:25px;
+    opacity:0;
+    margin-left:0px;
+}
+img.IGFightIcon
+{
+    height:25px;
+    width:25px;
+    margin-bottom:-11px;
+}
+img.IGCoverFightIcon
+{
+    height:20px;
+    width:20px;
+    margin-bottom:-11px;
+}
+img.IGFightIconLimeTop
+{
+    margin-top:6px;
+    height:25px;
+    width:25px;
+    position:absolute;
+    opacity:0;
+}
+img.IGFightIconLimeBottom
+{
+    margin-top:6px;
+    height:25px;
+    width:25px;
+    position:absolute;
+    opacity:0;
+}
+img.IGNewLeaderCircle
+{
+    height:71px;
+    width:80px;
+    position:absolute;
+    z-index:1;
+    margin-top:-11px;
+    margin-left:-34px;
+    opacity:0;
+}
+/*IG*/
+.IG
+{
+    display:flex;
+    flex-direction:row;
+    padding:5px;
+}
+.section2
+{
+    position:absolute;
+    background-color:white;
+    height:60px;
+    width:130px;
+    z-index:1;
+    margin-top:2px;
+    margin-left:5px;
+}
+.section2Text
+{
+    color:red;
+    font-weight:700;
+    font-size:75px;
+    margin-top:-29px;
+}
+.IGContests
+{
+    margin-right:-44px;
+}
+.IGCoverTop
+{
+    position:absolute;
+    background-color: rgb(60,60,60);
+    opacity:0;
+    padding-right:10px;
+    padding-left:10px;
+    color:white;
+    border-radius:45px;
+    font-size:17px;
+    margin-top:-54px;
+    margin-left:16px;
+    font-weight:100;
+    box-shadow:0px 3px 3px 3px black;
+    height:57px;
+    width:120px;
+}
+
+.IGCoverBottom
+{
+    position:absolute;
+    background-color: rgb(180,180,180);
+    opacity:0;
+    padding-right:10px;
+    padding-left:10px;
+    color:black;
+    border-radius:45px;
+    font-size:17px;
+    margin-top:231px;
+    margin-left:16px;
+    font-weight:100;
+    box-shadow:0px 3px 3px 3px black;
+    height:57px;
+    width:120px;
+}
+.IGCoverText
+{
+    margin-top:6px;
+    margin-bottom:-8px;
+}
+.IGTopContestWrap
+{
+    box-shadow:0 0 8px 3px black;
+    border:4px double black;
+    border-radius:15px;
+    width:147px;
+    margin-left:3px;
+    height:74px;
+    z-index:2;
+}
+.IGTitleTop
+{
+    font-size:20px;
+    font-weight:400;
+    width:218px;
+    margin-top:-37px;
+    margin-bottom:20px;
+    margin-left:-39px;
+}
+.IGBottomContestWrap
+{
+    box-shadow:0 0 8px 3px black;
+    border:4px double black;
+    border-radius:15px;
+    width:147px;
+    margin-left:3px;
+    height:74px;
+    z-index:2;
+    margin-bottom:-92px;
+    margin-top:67px;
+}
+.IGTitleBottom
+{
+    width:220px;
+    font-size:20px;
+    font-weight:400;
+    margin-top:-38px;
+    margin-bottom:21px;
+    margin-left:-39px;
+}
+.IGFollowersTagTop
+{
+    font-size:16px;
+    font-weight:100;
+    margin-top:-62px;
+}
+.IGFollowersTagBottom
+{
+    font-size:16px;
+    font-weight:100;
+    margin-top:-62px;
+}
+.IGIconWrap1
+{
+    display:flex;
+    flex-direction:row;
+    margin-top:-75px;
+    margin-left:12px;
+}
+.IGIconWrap2
+{
+    display:flex;
+}
+.IGIconWrap3
+{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+}
+.IGIconWrap4
+{
+    padding:5px;
+}
+.IGPrizeIconWrap
+{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    height:200px;
+    margin-top:-7px;
+    margin-left:5px;
+    margin-right:5px;
+}
+
+.mapdiscardedXTop
+{
+    position:absolute;
+    height:100px;
+    width:50px;
+    background-color:transparent;
+    margin-left:31px;
+    margin-top:-197px;
+    z-index:2;
+    opacity:0;
+}
+.mapdiscardedXBottom
+{
+    position:absolute;
+    height:100px;
+    width:50px;
+    background-color:transparent;
+    margin-left:31px;
+    margin-top:93px;
+    z-index:2;
+    opacity:0;
+}
+.xfontclass
+{
+    font-weight:400;
+    font-size:150px;
+    color:red;
+    opacity:0.7;
+}
+.arrowToptoOG2
+{
+    opacity:0;
+}
+.arrowBottomtoOG2
+{
+    opacity:0;
+}

@@ -1,0 +1,112 @@
+/*ICONS*/
+img.lostLeaderIcon
+{
+    height:50px;
+    width:30px;
+    z-index:1;
+}
+img.lostCrown
+{
+    z-index:2;
+    opacity:0;
+    height:21px;
+    width:25px;
+    opacity:1;
+    margin-left:1px;
+    margin-top:32px;
+    margin-right:-14px;
+}
+img.wonLeaderIcon
+{
+    height:60px;
+    width:48px;
+    z-index:1;
+}
+/*ARROW FOR SHELLS*/
+ .arrowOG1toIG
+ {
+     opacity:0;
+ }
+/*OG1 TO OUTCOMES*/
+.arrowsToOG1IconResults
+{
+    margin-top:38px;
+    margin-right:-120px;
+    z-index:3;
+}
+/*OUTCOMES*/
+.wonLostBoxes
+{
+    height:210px;
+}
+.topBoxLeaderResult
+{
+    margin-top: 5px;
+    display: flex;
+    height: 112px;
+    opacity: 1;
+    flex-direction: column;
+}
+.bottomBoxLeaderResult
+{
+    margin-top:10px;
+    display: flex;
+    height: 123px;
+    opacity: 1;
+    flex-direction: column;
+}
+.topLeaderLost
+{
+    position: absolute;
+    opacity:1;
+    margin-left:10px;
+    margin-top:-20px;
+}
+.topLeaderWon
+{
+    position: absolute;
+    opacity:0;
+    margin-left:8px;
+    margin-top:-27px;
+}
+.bottomLeaderLost
+{
+    position: absolute;
+    opacity:0;
+    margin-left:12px;
+    margin-top:13px;
+}
+.bottomLeaderWon
+{
+    position: absolute;
+    opacity:1;
+    margin-left:5px;
+    margin-top:3px;
+}
+.lostLeaderIconWrap
+{
+    display:flex;
+    flex-direction:row;
+    justify-content: center;
+    border-radius: 150px;
+    padding:5px;
+    margin-top:-18px;
+    margin-left:-4px;
+    margin-bottom:0px;
+}
+.wonLeaderIconWrap
+{
+    display:flex;
+    flex-direction:row;
+    justify-content: center;
+    border-radius: 150px;
+    padding:5px;
+    margin-top:-16px;
+    margin-left:-2px;
+}
+/*OUTCOMES TO IG*/
+.closerToRight
+{
+    margin-left:-5px;
+    margin-right:-9px;
+}

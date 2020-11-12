@@ -1,0 +1,176 @@
+.og1NetPayoff
+{
+    position:absolute;
+    width:329px;
+    z-index:2;
+}
+.og1NetPayoffText1
+{
+    position:absolute;
+    color:red;
+    margin-left:16px;
+    font-size:50px;
+    margin-top:21px;
+    opacity:0;
+}
+.og1NetPayoffText2
+{
+    position:absolute;
+    color:red;
+    font-size:50px;
+    margin-top:21px;
+    margin-left:11px;
+    opacity:0;
+}
+.og1NetPayoffText4
+{
+    position:absolute;
+    color:green;
+    font-size:50px;
+    margin-top:21px;
+    margin-left:11px;
+    opacity:0;
+}
+.igNetPayoff
+{
+    position:absolute;
+    z-index:2;
+    width:140px;
+}
+.igNetPayoffText1
+{
+    position:absolute;
+    color:red;
+    font-size:24px;
+    margin-left:5px;
+    margin-top:12px;
+    opacity:0;
+}
+.igNetPayoffText2
+{
+    position:absolute;
+    color:black;
+    font-size:24px;
+    margin-top:12px;
+    margin-left:30px;
+    opacity:0;
+}
+.igNetPayoffText4
+{
+    position:absolute;
+    color:black;
+    font-size:24px;
+    margin-top:12px;
+    margin-left:30px;
+    opacity:0;
+}
+.og2NetPayoff
+{
+    position:absolute;
+    width:277px;
+    z-index:2;
+    margin-left:17px;
+    margin-top:27px;
+}
+.og2NetPayoffText1
+{
+    position:absolute;
+    color:green;
+    font-size:44px;
+    opacity:0;
+}
+.og2NetPayoffText2
+{
+    position:absolute;
+    color:green;
+    font-size:44px;
+    margin-left:12px;
+    opacity:0;
+}
+.og2NetPayoffText4
+{
+    position:absolute;
+    color:green;
+    font-size:44px;
+    opacity:0;
+}
+/*NET PAYOFF RESULTS*/
+.netPayoffResultsTutorial
+{
+    position:absolute;
+    text-align:left;
+    display:flex;
+    flex-direction:column;
+    font-size:24px;
+    margin-top:575px;
+    font-weight:100;
+    transitino:0.3s;
+}
+.netPayoffResultsTutorialText1
+{
+
+}
+.netPayoffResultsTutorialText2
+{
+
+}
+.netPayoffResultsTutorialText3
+{
+
+}
+.netPayoffResultsTutorialText4
+{
+
+}
+.netPayoffPart10
+{
+    opacity:0;
+}
+.netPayoffPart11
+{
+    opacity:0;
+}
+.netPayoffPart12
+{
+    opacity:0;
+}
+.netPayoffPart13
+{
+    opacity:0;
+}
+.netPayoffPart20
+{
+    opacity:0;
+}
+.netPayoffPart21
+{
+    opacity:0;
+}
+.netPayoffPart22
+{
+    opacity:0;
+}
+.netPayoffPart23
+{
+    opacity:0;
+}
+.netPayoffPart30
+{
+    opacity:0;
+}
+.netPayoffPart40
+{
+    opacity:0;
+}
+.netPayoffPart41
+{
+    opacity:0;
+}
+.netPayoffPart42
+{
+    opacity:0;
+}
+.netPayoffPart43
+{
+    opacity:0;
+}

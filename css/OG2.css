@@ -1,0 +1,395 @@
+/*ICONS*/
+img.OG2ficon
+{
+    height:50px;
+    width:30px;
+    z-index:1;
+    position:absolute;
+}
+img.OG2ficonLime
+{
+    height:50px;
+    width:30px;
+    position:absolute;
+    opacity:0;
+    z-index:1;
+}
+img.OG2OldLeaderTop
+{
+    transition:0s;
+    height:50px;
+    width:30px;
+    position:absolute;
+    opacity:0;
+    z-index:1;
+}
+img.OG2OldLeaderTopLime
+{
+    transition:0s;
+    height:50px;
+    width:30px;
+    position:absolute;
+    opacity:0;
+    z-index:1;
+}
+img.OG2OldLeaderBottom
+{
+    transition:0s;
+    height:50px;
+    width:30px;
+    position:absolute;
+    opacity:1;
+    z-index:1;
+}
+img.OG2OldLeaderBottomLime
+{
+    transition:0s;
+    height:50px;
+    width:30px;
+    position:absolute;
+    opacity:0;
+    z-index:1;
+}
+img.OG2LeaderKingLeft
+{
+    height:60px;
+    width:48px;
+    z-index:1;
+    opacity:0;
+    /* position:absolute; */
+}
+img.newLeaderKingLeft
+{
+    height:60px;
+    width:48px;
+    z-index:1;
+    position:absolute;
+}
+img.OG2LeaderKingRight
+{
+    height:60px;
+    width:48px;
+    z-index:1;
+    /* position:absolute; */
+}
+img.newLeaderKingRight
+{
+    height:60px;
+    width:48px;
+    z-index:1;
+    opacity:0;
+    position:absolute;
+}
+img.OG2FightIcon
+{
+    height:25px;
+    width:25px;
+}
+img.OG2FightIconLime
+{
+    height:25px;
+    width:25px;
+    position:absolute;
+    opacity:0;
+}
+/*CIRCLES AND ARROWS AND TEXTS*/
+img.OG2f2Circle
+{
+    opacity:0;
+    height:71px;
+    width:80px;
+    position:absolute;
+    z-index:1;
+    margin-top:-60px;
+    margin-left:-24px;
+}
+img.OG2f2CircleArrow
+{
+    opacity:0;
+    height:24px;
+    width:25px;
+    position:absolute;
+    z-index:1;
+    margin-left:30px;
+    margin-top:-17px;
+}
+.OG2f2CircleArrowText
+{
+    opacity:0;
+    position:absolute;
+    z-index:1;
+    margin-left:30px;
+    margin-top:-17px;
+}
+img.newLeaderTextArrow
+{
+    opacity:0;
+    height:24px;
+    width:25px;
+    position:absolute;
+    z-index:1;
+    margin-left:112px;
+    margin-top:-38px;
+}
+.newLeaderText
+{
+    opacity:0;
+    margin-top:-96px;
+    margin-left:79px;
+}
+img.newLeaderCircleLeft
+{
+    opacity:0;
+    height:71px;
+    width:80px;
+    position:absolute;
+    z-index:1;
+    margin-top:-60px;
+    margin-left:-24px;
+}
+img.newLeaderCircleRight
+{
+    opacity:0;
+    height:71px;
+    width:80px;
+    position:absolute;
+    z-index:1;
+    margin-top:-60px;
+    margin-left:-24px;
+}
+img.winnerLeaderArrowRight
+{
+    opacity:0;
+    height:24px;
+    width:25px;
+    position:absolute;
+    z-index:1;
+    margin-left:-26px;
+    margin-top:-17px;
+}
+.winnerLeaderTextRight
+{
+    opacity:0;
+    position: absolute;
+    margin-top:-74px;
+    margin-left:-91px;
+}
+img.OG2BothFollowersCircle
+{
+    opacity:0;
+    height:143px;
+    width:86px;
+    position:absolute;
+    z-index:1;
+    margin-top:-119px;
+    margin-left:-27px;
+    margin-right:-20px;
+}
+img.OG2BothFollowersCircleArrow
+{
+    opacity:0;
+    height:24px;
+    width:25px;
+    position:absolute;
+    z-index:1;
+    margin-left:-26px;
+    margin-top:84px;
+}
+.OG2BothFollowersCircleText
+{
+    opacity:0;
+    position:absolute;
+    margin-top:38px;
+    margin-left:-196px;
+}
+
+.section3
+{
+    position:absolute;
+    background-color:white;
+    height:130px;
+    width:281px;
+    z-index:1;
+}
+.section3Text
+{
+    color:red;
+    font-weight:700;
+    font-size:140px;
+    margin-top:-47px;
+}
+
+.OG2
+{
+    display:flex;
+    flex-direction:column;
+
+    box-shadow:0 0 8px 3px black;
+
+    padding-left:11px;
+    padding-right:5px;
+
+    border:4px double black;
+    border-radius:15px;
+
+    height:139px;
+
+    margin-top:41px;
+}
+.OG2Title
+{
+    font-size:22px;
+    font-weight:400;
+    margin-top:-41px;
+    margin-bottom:6px;
+    text-align:center;
+    color:black;
+}
+.OG2IconsWrap
+{
+    display:flex;
+    flex-direction:row;
+    justify-content: center;
+    margin-top:-15px;
+    margin-right:-8px;
+}
+/*OG1 FOLLOWERS*/
+
+.OG2FollowersWrapLeft
+{
+    margin-top:20px;
+    display:flex;
+    flex-direction:column;
+}
+.OG2FollowersWrapRight
+{
+    margin-top:20px;
+    display:flex;
+    flex-direction:column;
+}
+.OG2FollowerImgWrap
+{
+    display:flex;
+    flex-direction:column;
+    width:45px;
+    transition:0s;
+}
+.OG2TopFollower
+{
+    margin-top:-5px;
+    margin-bottom:55px;
+}
+
+.OG2FollowerArrowsLeft
+{
+    height:160px;
+    width:60px;
+    margin-top:-16px;
+    margin-right:-12px;
+    margin-left:-37px;
+}
+.OG2FollowerArrowsRight
+{
+    height:160px;
+    width:60px;
+    margin-top:-16px;
+    margin-right:-22px;
+    margin-left:-32px;
+}
+.arrowDashedlime2
+{
+    stroke:lime;
+    stroke-width:1;
+    stroke-dasharray:5,5;
+    marker-end:url(#markerArrowMapLime);
+    opacity: 0;
+    transition: 0s;
+}
+/*OG2 LEADERS*/
+.OG2LeadersIcon
+{
+    display:flex;
+    flex-direction:row;
+    height:75px;
+    margin-top:-2px;
+    margin-left:-1px;
+}
+.OG2LeaderLeft
+{
+    display:flex;
+    flex-direction:row;
+    justify-content: center;
+    width:100px;
+    height:200px
+}
+.OG2LeaderRight
+{
+    display:flex;
+    flex-direction:row;
+    justify-content: center;
+    width:100px;
+    height:200px
+}
+.subOG2L
+{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+}
+.subsubOG2L
+{
+    display:flex;
+    flex-direction:row;
+    justify-content: center;
+    border:dashed 2px gray;
+
+    border-radius: 150px;
+    padding:5px;
+    margin-top:-64px;
+    margin-left:-21px;
+    background-color: #d3d3d378;
+}
+.OG2FightIconWrap
+{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    width:50px;
+    height:200px;
+    margin-left:-28px;
+    margin-right:-31px;
+    margin-top:-32px;
+}
+.OG2GroupSeparator
+{
+    height:136px;
+    margin-left:11px;
+    margin-top:5px;
+    border-left:2px solid white;
+    box-shadow: 0 0 3px 1px black;
+    position:absolute;
+    opacity:0;
+}
+
+
+/*opacity initiations*/
+.og2f1Leader
+{
+    opacity:0;
+}
+.og2f1LeaderLime
+{
+    opacity:0;
+}
+.og2f2
+{
+    opacity:0;
+}
+.og2f2Lime
+{
+    opacity:0;
+}
+.og2f2Leader
+{
+    opacity:1;
+}

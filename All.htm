@@ -4,12 +4,28 @@
     <link rel="stylesheet" href="css/frame.css">
     <link rel="stylesheet" href="css/sexplain.css">
     <link rel="stylesheet" href="css/sexplainREVIEWmods.css">
+
+
     <link rel="stylesheet" href="css/payoffAll.css">
-    <link rel="stylesheet" href="css/calculatorAll.css">
-    <link rel="stylesheet" href="css/sliderAll.css">
-    <link rel="stylesheet" href="css/icons.css">
+
+    <link rel="stylesheet" href="css/calculatorContest.css">
+    <link rel="stylesheet" href="css/calculatorIcons.css">
+    <link rel="stylesheet" href="css/calculatorPowerBar.css">
+    <link rel="stylesheet" href="css/calculatorHelpSabo.css">
+
+    <link rel="stylesheet" href="css/sliderContest.css">
+    <link rel="stylesheet" href="css/sliderHelpSabo.css">
+    <!-- <link rel="stylesheet" href="css/sliderDecision.css"> -->
+    <link rel="stylesheet" href="css/sliderIndicators.css">
+
+
+
     <link rel="stylesheet" href="css/mapicons.css">
+
+
     <link rel="stylesheet" href="css/explanationBox.css">
+
+
 
     <script src='js/Winwheel.js'></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
@@ -984,154 +1000,35 @@
                 </div>
             </div>
 
-            <div class=payoffWrap>
 
-                <div class=tableLeft>
-                    <p class=resultLeft><span id=resultLeft></span></p>
-                    <div class='pTextLeft'>
-                        <div class=topText>
-                            <p class='titleRow pLeft'>
-                                <span style='font-weight:400; padding-right:10px;'>Received</span>
-                                <span id=prizeLeft class=p1></span>
-                            </p>
-                            <p class='titleRow cLeft'>
-                                <span style='font-weight:400; padding-right:10px;'>Invested</span>
-                                <span id=costLeft class=c1></span>
-                                <span id=tokenTag1 class=tokenTag></span>
-                            </p>
-                        </div>
-                        <div class=bottomText>
-                            <div class=sideColumn>
-                                <p class='titleRow npLeft'>Net Payoff</p>
-                                <p class='titleRow rLeft'>Role</p>
-                            </div>
-                            <div class=mainColumnLeft>
-                                <div class='resultRow npLeft'>
-                                    <p><span id=netPayoffLeft class='np1'></span></p>
-                                </div>
-                                <div class='resultRow rLeft'>
-                                    <p><span id=roleLeft></span></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class=tableRight>
-                    <p class=resultRight><span id=resultRight></span></p>
-                    <div class='pTextRight'>
-                        <div class=topText>
-                            <p class='titleRow pRight'>
-                                <span style='font-weight:400; padding-right:10px;'>Received</span>
-                                <span id=prizeRight class=p2></span>
-                            </p>
-                            <p class='titleRow cRight'>
-                                <span style='font-weight:400; padding-right:10px;'>Invested</span>
-                                <span id=costRight class=c2></span>
-                                <span id=tokenTag2 class=tokenTag></span>
-                            </p>
-                        </div>
-                        <div class='bottomText'>
-                            <div class=sideColumn>
-                                <p class='titleRow npRight'>Net Payoff</p>
-                                <p class='titleRow rRight'>Role</p>
-                            </div>
-                            <div class=mainColumnRight>
-                                <div class='resultRow npRight'>
-                                    <p><span id=netPayoffRight class='np2'></span></p>
-                                </div>
-                                <div class='resultRow rRight'>
-                                    <p><span id=roleRight></span></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
 
 
             <div class = 'calculator  noselect' id='calculator'>
-
-
-                <div class = 'contestSection'>
-
-                    <div class = 'playerLeft'>
-                        <div class='bsWrap bswLeft'>
-                            <h6 class='playerTitle'><span id=player1></span></h6>
-                            <div class = 'sliderBarL sbLeft'>
-                                <input type='range' min = '0' max = '800' class = 'pSlider' value = '0' id = 'lSlider1' />
-                                <div id = 'barl1' class = 'pbar'></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class='wpWrap'>
-
-                        <div class='imageWrap'>
-                            <img id="spinImage" class='spinImage' src="images/spin.png" alt="V" />
-                        </div>
-
-                        <div class=ctWrap>
-                            <p class=contestTitle>
-                                <span id=contestName></span>
-                            </p>
-                        </div>
-
-                        <img id="arrow" class='wheelArrow' src="images/limearrow.png" alt="V" />
-                        <div class='wp'>
-                            <canvas id='mywheel' class='mywheel' width='250' height='250'>
-                                Canvas not supported, use another browser.
-                            </canvas>
-                            <div class = 'pw'>
-                                <div class = 'pie' id = 'pie'></div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class = 'playerRight'>
-                        <div class='bsWrap bswRight'>
-                            <h6 class='playerTitle'><span id=player2></span></h6>
-                            <div class = 'sliderBarL sbRight'>
-                                <input type='range' min = '0' max = '800' class = 'pSlider' value = '0' id = 'olSlider1' />
-                                <div id = 'barl2' class = 'pbar'></div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-
-                <div class=pWrap>
-
-                    <div class='legendwrapwrap'>
-                        <div class='legendwrap'>
-                            <div class='boxText'>
-                                <div class='leader1Box'></div>
-                                <p style='font-size:20px;'>Leader A's Power</p>
-                            </div>
-                            <div class='boxText'>
-                                <p style='font-size:20px;'>Leader B's Power</p>
-                                <div class='leader2Box'></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <p class=pTitleTop>POWER RATIO</p>
-                    <div id = 'powerRatio' class = 'powerRatio'></div>
-                    <p class=pTitleBottom>POWER RATIO</p>
-
-                </div>
 
 
                 <div class = 'hsWrap'>
 
                         <div class = 'followersLeft'>
 
+                            <div class=fNetPayoffText>
+                                <p>
+                                    Followers' Net Payoffs
+                                </p>
+                            </div>
+
                             <div class = 'sliderBarWrap'>
 
                                 <div class = 'sliderBarF lbf1' >
+
+                                    <div class='lockedCover_f1'>
+                                        <img class='lockedImageRed f1vibrate' src="images/rlocked.png" alt="V" />
+                                    </div>
+
+                                    <div class=f1NetPayoff>
+                                        <p>
+                                            <span id='f1netPayoff' class='fResults'></span>
+                                        </p>
+                                    </div>
 
                                     <input type='range' min = '-40' max = '40' class = 'vertical slider' id = 'vSlider1' />
                                     <div id = 'barf1' class = 'bar bf1'></div>
@@ -1139,9 +1036,15 @@
                                         <text x="5" y="30" fill="white" transform="rotate(0)" class='fSideText'>A1</text>
                                         <text x="-290" y="25" fill="white" transform="rotate(270)" class='fSideText'>FOLLOWER</text>
                                     </svg>
-                                    <div class=f1NetPayoff>
-                                        <p>
-                                            <span id='f1netPayoff' class='fResults'></span>
+
+
+                                    <div class='sliderArrowImageWrap_f1' style='opacity:0;'>
+                                        <img class='redArrowImage1' src="images/rarrow.png" alt="V" />
+                                    </div>
+
+                                    <div class='sliderQuestion_f1' style='opacity:0;'>
+                                        <p style='color:red;'>
+                                            ?
                                         </p>
                                     </div>
 
@@ -1149,15 +1052,31 @@
 
                                 <div class = 'sliderBarF lbf2'>
 
+                                    <div class='lockedCover_f2'>
+                                        <img class='lockedImageRed f2vibrate' src="images/rlocked.png" alt="V" />
+                                    </div>
+
+                                    <div class=f2NetPayoff>
+                                        <p>
+                                            <span id='f2netPayoff' class='fResults'></span>
+                                        </p>
+                                    </div>
+
                                     <input type='range' min = '-40' max = '40' class = 'vertical slider' id = 'vSlider2' />
                                     <div id = 'barf2' class = 'bar bf2'></div>
                                     <svg height="300" width="35" class=fSideTextWrap>
                                         <text x="5" y="30" fill="white" transform="rotate(0)" class='fSideText'>A2</text>
                                         <text x="-290" y="25" fill="white" transform="rotate(270)" class='fSideText'>FOLLOWER</text>
                                     </svg>
-                                    <div class=f2NetPayoff>
-                                        <p>
-                                            <span id='f2netPayoff' class='fResults'></span>
+
+
+                                    <div class='sliderArrowImageWrap_f2' style='opacity:0;'>
+                                        <img class='redArrowImage1' src="images/rarrow.png" alt="V" />
+                                    </div>
+
+                                    <div class='sliderQuestion_f2' style='opacity:0;'>
+                                        <p style='color:red;'>
+                                            ?
                                         </p>
                                     </div>
 
@@ -1166,8 +1085,11 @@
                             </div>
 
                             <div class=leftSideRole>
+                                <p class='closeTheGap'>
+                                    <span id='leftSidePrize' class='fResults leftSidePrize'></span>
+                                </p>
                                 <p>
-                                    <span id='leftSideRole' class='fResults'></span>
+                                    <span id='leftSideRole' class='fResults leftSideRole'></span>
                                 </p>
                             </div>
 
@@ -1180,6 +1102,23 @@
                         </div>
 
                         <div class=middleSection>
+
+                            <div class=ctWrapOG>
+                                <p class=contestTitleOG>
+                                    <span id=contestNameOG></span>
+                                </p>
+                            </div>
+
+                            <div class = 'followersTotalHS'>
+                                <div class = 'hsbWrap'>
+                                    <p class='totalhstitletext' style='padding-right:8px;'>GROUP A TOTAL</p>
+                                    <div class = 'helpSaboBars'>
+                                        <div id = 'helpBar' class = 'hsBar'></div>
+                                        <div id = 'saboBar' class = 'hsBar'></div>
+                                    </div>
+                                    <p class='totalhstitletext' style='padding-left:8px;'>GROUP B TOTAL</p>
+                                </div>
+                            </div>
 
                             <div class=OGCIcon>
                                 <div class='wrapLeft'>
@@ -1249,16 +1188,8 @@
                                 </div>
                             </div>
 
-                            <div class = 'followersTotalHS'>
-                                <p class='totalhstitletext'>GROUP A TOTAL vs GROUP B TOTAL</p>
-                                <div class = 'hsbWrap'>
-                                    <div class = 'helpSaboBars'>
-                                        <div id = 'helpBar' class = 'hsBar'></div>
-                                        <div id = 'saboBar' class = 'hsBar'></div>
-                                    </div>
-                                </div>
-
-
+                            <div class='imageWrap'>
+                                <img id="spinImage" class='spinImage' src="images/spin.png" alt="V" />
                             </div>
 
                         </div>
@@ -1269,19 +1200,42 @@
 
                         <div class = 'followersRight'>
 
+                            <div class=fNetPayoffText>
+                                <p>
+                                    Followers' Net Payoffs
+                                </p>
+                            </div>
+
                             <div class = 'sliderBarWrap'>
 
                                 <div class = 'sliderBarF rbf1'>
 
+                                    <div class='lockedCover_of1'>
+                                        <img class='lockedImageRed of1vibrate' src="images/rlocked.png" alt="V" />
+                                    </div>
+
+                                    <div class=of1NetPayoff>
+                                        <p>
+                                            <span id='of1netPayoff' class='fResults'></span>
+                                        </p>
+                                    </div>
+
                                     <input type='range' min = '-40' max = '40' class = 'vertical slider' id = 'ovSlider1' />
                                     <div id = 'obarf1' class = 'bar bof1'></div>
+
                                     <svg height="300" width="35" class=fSideTextWrap>
                                         <text x="5" y="30" fill="black" transform="rotate(0)" class='fSideText'>B1</text>
                                         <text x="-290" y="25" fill="black" transform="rotate(270)" class='fSideText'>FOLLOWER</text>
                                     </svg>
-                                    <div class=of1NetPayoff>
-                                        <p>
-                                            <span id='of1netPayoff' class='fResults'></span>
+
+
+                                    <div class='sliderArrowImageWrap_of1' style='opacity:0;'>
+                                        <img class='redArrowImage1' src="images/rarrow.png" alt="V" />
+                                    </div>
+
+                                    <div class='sliderQuestion_of1' style='opacity:0;'>
+                                        <p style='color:red;'>
+                                            ?
                                         </p>
                                     </div>
 
@@ -1289,15 +1243,32 @@
 
                                 <div class = 'sliderBarF rbf2'>
 
+                                    <div class='lockedCover_of2'>
+                                        <img class='lockedImageRed of2vibrate' src="images/rlocked.png" alt="V" />
+                                    </div>
+
+                                    <div class=of2NetPayoff>
+                                        <p>
+                                            <span id='of2netPayoff' class='fResults'></span>
+                                        </p>
+                                    </div>
+
                                     <input type='range' min = '-40' max = '40' class = 'vertical slider' id = 'ovSlider2' />
                                     <div id = 'obarf2' class = 'bar bof2'></div>
+
                                     <svg height="300" width="35" class=fSideTextWrap>
                                         <text x="5" y="30" fill="black" transform="rotate(0)" class='fSideText'>B2</text>
                                         <text x="-290" y="25" fill="black" transform="rotate(270)" class='fSideText'>FOLLOWER</text>
                                     </svg>
-                                    <div class=of2NetPayoff>
-                                        <p>
-                                            <span id='of2netPayoff' class='fResults'></span>
+
+
+                                    <div class='sliderArrowImageWrap_of2' style='opacity:0;'>
+                                        <img class='redArrowImage1' src="images/rarrow.png" alt="V" />
+                                    </div>
+
+                                    <div class='sliderQuestion_of2' style='opacity:0;'>
+                                        <p style='color:red;'>
+                                            ?
                                         </p>
                                     </div>
 
@@ -1306,8 +1277,11 @@
                             </div>
 
                             <div class=rightSideRole>
+                                <p class='closeTheGap'>
+                                    <span id='rightSidePrize' class='fResults rightSidePrize'></span>
+                                </p>
                                 <p>
-                                    <span id='rightSideRole' class='fResults'></span>
+                                    <span id='rightSideRole' class='fResults rightSideRole'></span>
                                 </p>
                             </div>
 
@@ -1323,17 +1297,194 @@
 
                 </div>
 
+
+                <div class=pWrap>
+
+                    <div class='legendwrapwrap'>
+                        <div class='legendwrap'>
+                            <div class='boxText'>
+                                <div class='leader1Box'></div>
+                                <p style='font-size:20px;'>Leader A</p>
+                            </div>
+                            <div class='boxText'>
+                                <p style='font-size:20px;'>Leader B</p>
+                                <div class='leader2Box'></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class=pTitleTop>POWER RATIO</p>
+
+                    <div class=pTitleDynamic>
+                        <div class=pTitleDynamicLeft>
+                            <p>
+                                POWER
+                            </p>
+                        </div>
+                        <div class=pTitleDynamicMiddle>
+                            <p>
+
+                            </p>
+                        </div>
+                        <div class=pTitleDynamicRight>
+                            <p>
+                                RATIO
+                            </p>
+                        </div>
+                    </div>
+
+                    <div id = 'powerRatio' class = 'powerRatio'></div>
+
+                    <p class=pTitleBottom>POWER RATIO</p>
+
+                </div>
+
+
+                <div class = 'contestSection'>
+
+                    <div class = 'playerLeft'>
+                        <div class='bsWrap bswLeft'>
+
+                            <div class='lockedCover_l1'>
+                                <img class='lockedImageRed2 l1vibrate' src="images/rlocked.png" alt="V" />
+                            </div>
+
+                            <h6 class='playerTitle'><span id=player1></span></h6>
+                            <div class = 'sliderBarL sbLeft'>
+                                <input type='range' min = '0' max = '800' class = 'pSlider' value = '0' id = 'lSlider1' />
+                                <div id = 'barl1' class = 'pbar'></div>
+                            </div>
+                            <div class='sliderArrowImageWrap_l1' style='opacity:0;'>
+                                <img class='redArrowImage1' src="images/rarrow.png" alt="V" />
+                            </div>
+
+                            <div class='sliderQuestion_l1'>
+                                <p style='color:red; opacity:0;'>
+                                    ?
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class='wpWrap'>
+
+                        <!-- <div class='imageWrap'>
+                            <img id="spinImage" class='spinImage' src="images/spin.png" alt="V" />
+                        </div> -->
+
+                        <!-- <div class=ctWrap>
+                            <p class=contestTitle>
+                                <span id=contestName></span>
+                            </p>
+                        </div> -->
+
+                        <img id="arrow" class='wheelArrow' src="images/limearrow.png" alt="V" />
+                        <div class='wp'>
+                            <canvas id='mywheel' class='mywheel' width='250' height='250'>
+                                Canvas not supported, use another browser.
+                            </canvas>
+                            <div class = 'pw'>
+                                <div class = 'pie' id = 'pie'></div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class = 'playerRight'>
+                        <div class='bsWrap bswRight'>
+
+                            <div class='lockedCover_l2'>
+                                <img class='lockedImageRed2 l2vibrate' src="images/rlocked.png" alt="V" />
+                            </div>
+
+                            <h6 class='playerTitle'><span id=player2></span></h6>
+                            <div class = 'sliderBarL sbRight'>
+                                <input type='range' min = '0' max = '800' class = 'pSlider' value = '0' id = 'olSlider1' />
+                                <div id = 'barl2' class = 'pbar'></div>
+                            </div>
+                            <div class='sliderArrowImageWrap_l2' style='opacity:0;'>
+                                <img class='redArrowImage1' src="images/rarrow.png" alt="V" />
+                            </div>
+
+                            <div class='sliderQuestion_l2'>
+                                <p style='color:red; opacity:0;'>
+                                    ?
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
             </div>
 
+            <div class=payoffWrap>
 
+                <div class=tableLeft>
+                    <div class='pTextLeft'>
+                        <div class=topText>
+                            <p class='titleRow pLeft'>
+                                <span style='font-weight:400; padding-right:10px;'>Received</span>
+                                <span id=prizeLeft class=p1></span>
+                            </p>
+                            <p class='titleRow cLeft'>
+                                <span style='font-weight:400; padding-right:10px;'>Invested</span>
+                                <span id=costLeft class=c1></span>
+                                <span id=tokenTag1 class=tokenTag></span>
+                            </p>
+                        </div>
+                        <div class=bottomText>
+                            <div class=sideColumn>
+                                <p class='titleRow npLeft'>Net Payoff</p>
+                                <p class='titleRow rLeft'>Role</p>
+                            </div>
+                            <div class=mainColumnLeft>
+                                <div class='resultRow npLeft'>
+                                    <p><span id=netPayoffLeft class='np1'></span></p>
+                                </div>
+                                <div class='resultRow rLeft'>
+                                    <p><span id=roleLeft></span></p>
+                                </div>
+                            </div>
+                        </div>
 
+                    </div>
+                    <p class=resultLeft><span id=resultLeft></span></p>
+                </div>
 
+                <div class=tableRight>
+                    <div class='pTextRight'>
+                        <div class=topText>
+                            <p class='titleRow pRight'>
+                                <span style='font-weight:400; padding-right:10px;'>Received</span>
+                                <span id=prizeRight class=p2></span>
+                            </p>
+                            <p class='titleRow cRight'>
+                                <span style='font-weight:400; padding-right:10px;'>Invested</span>
+                                <span id=costRight class=c2></span>
+                                <span id=tokenTag2 class=tokenTag></span>
+                            </p>
+                        </div>
+                        <div class='bottomText'>
+                            <div class=sideColumn>
+                                <p class='titleRow npRight'>Net Payoff</p>
+                                <p class='titleRow rRight'>Role</p>
+                            </div>
+                            <div class=mainColumnRight>
+                                <div class='resultRow npRight'>
+                                    <p><span id=netPayoffRight class='np2'></span></p>
+                                </div>
+                                <div class='resultRow rRight'>
+                                    <p><span id=roleRight></span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class=resultRight><span id=resultRight></span></p>
+                </div>
 
-
-
-
-
-
+            </div>
 
         </div>
 

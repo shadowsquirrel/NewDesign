@@ -1,0 +1,75 @@
+/*--------older classes-------*/
+.sexplain
+{
+    /* height:0px; */
+    position: static;
+    opacity:0;
+    z-index:0;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.ontop
+{
+    z-index:1;
+}
+.allboxwrap
+{
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.sboxwrap
+{
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: transparent;
+}
+.aboxdoublewrap
+{
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+}
+.sbox
+{
+    height: 50px;
+    width: 79px;
+    background-color: transparent;
+    opacity: 1;
+}
+.stageboxtextlong
+{
+    /* padding-top: 13px; */
+    font-size: 14px;
+    text-align: center;
+    color: black;
+    font-weight:800;
+}
+.aboxdouble
+{
+    height: 120px;
+    width: 50px;
+    background-color: transparent;
+    opacity: 1;
+}
+.somespacedown
+{
+    border-width:4px;
+    border-style:double;
+    border-radius:27px;
+    margin-bottom:10px;
+    border-color:transparent;
+}
+.somespaceup
+{
+    border-width:4px;
+    border-style:double;
+    border-radius:27px;
+    margin-top:10px;
+    border-color:transparent;
+}

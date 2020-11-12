@@ -22,6 +22,9 @@ var icon = {
 
 };
 
+var wiggle = {};
+
+var vibrate = {};
 
 //------wheel object-----//
 
@@ -358,14 +361,14 @@ calculator.update.totalHelpBar = function(a,b) {
             color: ['rgb(140, 140, 255)', 'rgb(200,200,255)'],
         },
         text: [nzt(x), nzt(y)],
-        textposition: 'outside',
+        textposition: 'auto',
         cliponaxis: false,
     }];
 
     var layout = {
         barmode: 'group',
-        height: 60,
-        width: 150,
+        height: 100,//60
+        width: 250,//150
         // title: 'Total Help',
         margin: {"t": 20, "b": 0, "l": 0, "r": 0},
         yaxis: {
@@ -381,7 +384,7 @@ calculator.update.totalHelpBar = function(a,b) {
             ticks: '',
             showticklabels: false,
         },
-        bargap: 0.1,
+        bargap: 0.3,//0.1
     };
 
     Plotly.react('helpBar', data, layout, {displayModeBar: false});
@@ -405,14 +408,14 @@ calculator.update.totalSaboBar = function(a, b) {
             color: ['rgb(255,140,140)', 'rgb(255,200,200)'],
         },
         text: [nzt(-x), nzt(-y)],
-        textposition: 'outside',
+        textposition: 'auto',
         cliponaxis: false,
     }];
 
     var layout = {
         barmode: 'group',
-        height: 60,
-        width: 150,
+        height: 100,//60
+        width: 250,//150
         margin: {"t": 0, "b": 20, "l": 0, "r": 0},
         yaxis: {
             fixedrange: true,
@@ -427,13 +430,47 @@ calculator.update.totalSaboBar = function(a, b) {
             ticks: '',
             showticklabels: false,
         },
-        bargap: 0.1,
+        bargap: 0.3,//0.1
     };
 
     Plotly.react('saboBar', data, layout, {displayModeBar: false});
 }
 
-calculator.update.efficiencyBar = function() {
+calculator.update.powerBarDynamicText = function(place) {
+
+    if(place === 'middle') {
+
+        $('.pTitleDynamicLeft').css({'transition':'3s', 'margin-left':'353px', 'margin-right':'5px'});
+        $('.pTitleDynamicMiddle').css({'transition':'3s', 'margin-left':'103px', 'margin-right':'-21px'});
+        $('.pTitleDynamicRight').css({'transition':'3s', 'marign-left':'5px'});
+
+    }
+
+    if(place === 'left') {
+
+        $('.pTitleDynamicLeft').css({'transition':'3s', 'margin-left':'15px', 'margin-right':'5px'});
+        $('.pTitleDynamicMiddle').css({'transition':'3s', 'margin-left':'29px', 'margin-right':'-21px'});
+
+    }
+
+    if(place === 'right') {
+
+        $('.pTitleDynamicLeft').css({'transition':'3s', 'margin-left':'758px', 'margin-right':'41px'});
+        $('.pTitleDynamicMiddle').css({'transition':'3s', 'margin-left':'0px', 'margin-right':'-21px'});
+
+    }
+
+    if(place === 'none') {
+
+        $('.pTitleDynamicLeft').css({'transition':'0s', 'opacity':'0'});
+        $('.pTitleDynamicMiddle').css({'transition':'0s', 'opacity':'0'});
+        $('.pTitleDynamicRight').css({'transition':'0s', 'opacity':'0'});
+
+    }
+
+}
+
+calculator.update.efficiencyBar = function(showText) {
 
     var efi1, efi2;
     efi1 = efi;
@@ -442,17 +479,36 @@ calculator.update.efficiencyBar = function() {
     var val1 = efi1 / (efi1 + efi2);
     var val2 = efi2 / (efi1 + efi2);
 
+    if(!showText) {
+
+        calculator.update.powerBarDynamicText('none');
+
+    }
+
+    if(efi1 === efi2 && showText) {
+
+        calculator.update.powerBarDynamicText('middle');
+
+    }
+
     if((efi1 / efi2) > 1){
         var myText = (val1 >= 0.99) ? '100+' : (efi1 / efi2).toFixed(2);
+        if(showText) {
+            calculator.update.powerBarDynamicText('left');
+        }
     } else {
         myText = 1;
     }
 
     if((efi1 / efi2) < 1){
         var myText2 = (val2 >= 0.99) ? '100+' : (efi2 / efi1).toFixed(2);
+        if(showText) {
+            calculator.update.powerBarDynamicText('right');
+        }
     } else {
         myText2 = 1;
     }
+
 
     val1 = logistic2(val1, 5);
     val2 = 1 - val1;
@@ -487,7 +543,6 @@ calculator.update.efficiencyBar = function() {
         },
     };
 
-
     var gap = {
         y: ['group 1'],
         x: [gapSize],
@@ -512,8 +567,6 @@ calculator.update.efficiencyBar = function() {
             size: '18'
         },
     };
-
-
 
     var player2 = {
         y: ['group 1'],
@@ -540,9 +593,7 @@ calculator.update.efficiencyBar = function() {
         },
     };
 
-
     var data = [player1, gap, player2];
-
 
     var layout = {
         barmode: 'stack',
@@ -596,6 +647,7 @@ calculator.update.barGridY = function(barId, show) {
         };
     Plotly.relayout(barId, update);
 }
+
 
 
 //------calculator methods------//
@@ -658,7 +710,7 @@ calculator.update.efficiencies = function() {
     efi = (1 + th) / (1 + ts);
     oefi = (1 + toh) / (1 + tos);
 
-    calculator.update.efficiencyBar();
+    calculator.update.efficiencyBar(false);
 
 }
 
@@ -673,7 +725,7 @@ calculator.update.probability = function() {
 }
 
 var lastWinner, winnerRole, loserRole, winnerPrize, showTokenTag, resultTextsTag;
-var fwinnerRole, floserRole;
+var fwinnerRole, floserRole, fwinnerPrize, floserPrize;
 showTokenTag = true;
 calculator.update.resultTexts = function(w) {
 
@@ -766,21 +818,28 @@ calculator.update.resultTexts = function(w) {
 
     var f1NetPayoff = document.getElementById('f1netPayoff');
     var f2NetPayoff = document.getElementById('f2netPayoff');
+    var leftSidePrize = document.getElementById('leftSidePrize')
     var leftSideRole = document.getElementById('leftSideRole');
     var leftSideResult = document.getElementById('leftSideResult');
     var of1NetPayoff = document.getElementById('of1netPayoff');
     var of2NetPayoff = document.getElementById('of2netPayoff');
+    var rightSidePrize = document.getElementById('rightSidePrize')
     var rightSideRole = document.getElementById('rightSideRole');
     var rightSideResult = document.getElementById('rightSideResult');
 
-    fwinnerRole = 'Continue as Followers';
-    floserRole = 'Chance to be the new Leader';
 
+    fwinnerRole = 'Each continues as Follower';
+    fwinnerPrize = 'Each receives 100 tokens'
+    floserRole = 'Chance to be the new Leader';
+    floserPrize = 'Each receives 0 tokens'
+
+    leftSidePrize.innerHTML = w === 1 ? fwinnerPrize : floserPrize;
     leftSideRole.innerHTML = w === 1 ? fwinnerRole : floserRole;
     leftSideResult.innerHTML = w === 1 ? 'LEADER WON' : 'LEADER LOST';
     f1NetPayoff.innerHTML = -(h1 + s1) + ((w === 1) ? 100 : 0);
     f2NetPayoff.innerHTML = -(h2 + s2) + ((w === 1) ? 100 : 0);
 
+    rightSidePrize.innerHTML = w === 2 ? fwinnerPrize : floserPrize;
     rightSideRole.innerHTML = w === 2 ? fwinnerRole : floserRole;
     rightSideResult.innerHTML = w === 2 ? 'LEADER WON' : 'LEADER LOST';
     of1NetPayoff.innerHTML = -(oh1 + os1) + ((w === 2) ? 100 : 0);
@@ -909,6 +968,16 @@ calculator.update.contestName = function(name) {
 
 }
 
+calculator.update.contestNameOG = function(name, show) {
+
+    if(show) {
+        var contestName = document.getElementById('contestNameOG');
+        contestName.innerHTML = name;
+    }
+
+
+}
+
 
 //-----sliders-----//
 
@@ -933,6 +1002,8 @@ calculator.slider.l1.oninput = function() {
 
     calculator.update.probability();
 
+    wiggle.activeWiggles[0] = false;
+
 }
 
 //Player 2
@@ -953,6 +1024,8 @@ calculator.slider.l2.oninput = function() {
     calculator.update.probability();
 
     calculator.update.barLabelX('barl2', true);
+
+    wiggle.activeWiggles[1] = false;
 
 }
 
@@ -983,6 +1056,8 @@ calculator.slider.f1.oninput = function() {
     calculator.update.helpSaboBar(hsValue, 'barf1', !theirSide, showAxis);
     calculator.update.resultTexts();
 
+    wiggle.activeWiggles[2] = false;
+
 }
 
 // Follower 2
@@ -1006,6 +1081,8 @@ calculator.slider.f2.oninput = function() {
 
     calculator.update.helpSaboBar(hsValue, 'barf2', !theirSide, showAxis);
     calculator.update.resultTexts();
+
+    wiggle.activeWiggles[3] = false;
 
 }
 
@@ -1033,6 +1110,8 @@ calculator.slider.of1.oninput = function() {
     calculator.update.helpSaboBar(hsValue, 'obarf1', theirSide, showAxis);
     calculator.update.resultTexts();
 
+    wiggle.activeWiggles[4] = false;
+
 }
 
 // Follower 2
@@ -1057,26 +1136,436 @@ calculator.slider.of2.oninput = function() {
     calculator.update.helpSaboBar(hsValue, 'obarf2', theirSide, showAxis);
     calculator.update.resultTexts();
 
+    wiggle.activeWiggles[5] = false;
+
+}
+
+//-------------vibrating locks-----------//
+
+vibrate.sliderLocked = Array(6);
+
+calculator.display.lockedSliders = function(array) {
+
+    vibrate.sliderLocked = array;
+
+    var l1, l2, f1, f2, of1, of2;
+    l1 = array[0] ? '2' : '-1';
+    l2 = array[1] ? '2' : '-1';
+    f1 = array[2] ? '2' : '-1';
+    f2 = array[3] ? '2' : '-1';
+    of1 = array[4] ? '2' : '-1';
+    of2 = array[5] ? '2' : '-1';
+
+    $('.lockedCover_l1').css({'z-index' : l1});
+    $('.lockedCover_l2').css({'z-index' : l2});
+    $('.lockedCover_f1').css({'z-index' : f1});
+    $('.lockedCover_f2').css({'z-index' : f2});
+    $('.lockedCover_of1').css({'z-index' : of1});
+    $('.lockedCover_of2').css({'z-index' : of2});
+
+}
+
+
+
+vibrate.l1Switch = true;
+vibrate.l1 = function(state) {
+
+    if(vibrate.l1Switch) {
+
+        $('.l1vibrate').css({'height':'80px', 'width':'80px', 'opacity':'0.7', 'margin-right':'4px'})
+
+
+        if(state === 1) {
+
+            $('.l1vibrate').css({'margin-left':'10px'});
+            setTimeout(()=>vibrate.l1(2),100);
+
+        }
+
+        if(state === 2) {
+
+            $('.l1vibrate').css({'margin-left':'0px'});
+            setTimeout(()=>vibrate.l1(1),100);
+
+        }
+
+    } else {
+
+        vibrate.l1Switch = false;
+        $('.l1vibrate').css({'height':'20px', 'width':'20px', 'margin-left':'0px', 'opacity':'1', 'margin-right':'341px'})
+
+    }
+
+}
+
+vibrate.l2Switch = true;
+vibrate.l2 = function(state) {
+
+    if(vibrate.l2Switch) {
+
+        $('.l2vibrate').css({'height':'80px', 'width':'80px', 'opacity':'0.7', 'margin-right':'4px'})
+
+
+        if(state === 1) {
+
+            $('.l2vibrate').css({'margin-left':'10px'});
+            setTimeout(()=>vibrate.l2(2),100);
+
+        }
+
+        if(state === 2) {
+
+            $('.l2vibrate').css({'margin-left':'0px'});
+            setTimeout(()=>vibrate.l2(1),100);
+
+        }
+
+    } else {
+
+        vibrate.l2Switch = false;
+        $('.l2vibrate').css({'height':'20px', 'width':'20px', 'margin-left':'0px', 'opacity':'1', 'margin-right':'341px'})
+
+    }
+
+}
+
+vibrate.f1Switch = true;
+vibrate.f1 = function(state) {
+
+    if(vibrate.f1Switch) {
+
+        $('.f1vibrate').css({'height':'80px', 'width':'80px', 'opacity':'0.7', 'margin-right':'-19px', 'margin-top':'78px'})
+
+
+        if(state === 1) {
+
+            $('.f1vibrate').css({'margin-left':'10px'});
+            setTimeout(()=>vibrate.f1(2),100);
+
+        }
+
+        if(state === 2) {
+
+            $('.f1vibrate').css({'margin-left':'0px'});
+            setTimeout(()=>vibrate.f1(1),100);
+
+        }
+
+    } else {
+
+        vibrate.f1Switch = false;
+        $('.f1vibrate').css({'height':'20px', 'width':'20px', 'margin-left':'0px', 'opacity':'1', 'margin-right':'61px', 'margin-top':'38px'})
+
+    }
+
+}
+
+vibrate.f2Switch = true;
+vibrate.f2 = function(state) {
+
+    if(vibrate.f2Switch) {
+
+        $('.f2vibrate').css({'height':'80px', 'width':'80px', 'opacity':'0.7', 'margin-right':'-19px', 'margin-top':'78px'})
+
+
+        if(state === 1) {
+
+            $('.f2vibrate').css({'margin-left':'10px'});
+            setTimeout(()=>vibrate.f2(2),100);
+
+        }
+
+        if(state === 2) {
+
+            $('.f2vibrate').css({'margin-left':'0px'});
+            setTimeout(()=>vibrate.f2(1),100);
+
+        }
+
+    } else {
+
+        vibrate.f2Switch = false;
+        $('.f2vibrate').css({'height':'20px', 'width':'20px', 'margin-left':'0px', 'opacity':'1', 'margin-right':'61px', 'margin-top':'38px'})
+
+    }
+
+}
+
+vibrate.of1Switch = true;
+vibrate.of1 = function(state) {
+
+    if(vibrate.of1Switch) {
+
+        $('.of1vibrate').css({'height':'80px', 'width':'80px', 'opacity':'0.7', 'margin-right':'-19px', 'margin-top':'78px'})
+
+
+        if(state === 1) {
+
+            $('.of1vibrate').css({'margin-left':'10px'});
+            setTimeout(()=>vibrate.of1(2),100);
+
+        }
+
+        if(state === 2) {
+
+            $('.of1vibrate').css({'margin-left':'0px'});
+            setTimeout(()=>vibrate.of1(1),100);
+
+        }
+
+    } else {
+
+        vibrate.of1Switch = false;
+        $('.of1vibrate').css({'height':'20px', 'width':'20px', 'margin-left':'0px', 'opacity':'1', 'margin-right':'61px', 'margin-top':'38px'})
+
+    }
+
+}
+
+vibrate.of2Switch = true;
+vibrate.of2 = function(state) {
+
+    if(vibrate.of2Switch) {
+
+        $('.of2vibrate').css({'height':'80px', 'width':'80px', 'opacity':'0.7', 'margin-right':'-19px', 'margin-top':'78px'})
+
+
+        if(state === 1) {
+
+            $('.of2vibrate').css({'margin-left':'10px'});
+            setTimeout(()=>vibrate.of2(2),100);
+
+        }
+
+        if(state === 2) {
+
+            $('.of2vibrate').css({'margin-left':'0px'});
+            setTimeout(()=>vibrate.of2(1),100);
+
+        }
+
+    } else {
+
+        vibrate.of2Switch = false;
+        $('.of2vibrate').css({'height':'20px', 'width':'20px', 'margin-left':'0px', 'opacity':'1', 'margin-right':'61px', 'margin-top':'38px'})
+
+    }
+
+}
+
+//------wiggling arrows------//
+
+wiggle.activeWiggles = Array(6);
+
+wiggle.activeWiggles[0] = true;
+wiggle.l1= function(state) {
+
+    if(wiggle.activeWiggles[0]) {
+
+        if(state === 1) {
+
+            $('.sliderArrowImageWrap_l1').css({'margin-left':'28px', 'margin-top':'-28px', 'opacity':'1'});
+            setTimeout(()=>wiggle.l1(0), 750);
+
+        }
+
+        if(state === 0) {
+
+            $('.sliderArrowImageWrap_l1').css({'margin-left':'48px', 'margin-top':'-8px'});
+            setTimeout(()=>wiggle.l1(1), 750);
+
+        }
+
+    } else {
+
+        $('.sliderArrowImageWrap_l1').css({'opacity':'0'});
+
+    }
+
+}
+
+wiggle.activeWiggles[1] = true;
+wiggle.l2= function(state) {
+
+    if(wiggle.activeWiggles[1]) {
+
+        if(state === 1) {
+
+            $('.sliderArrowImageWrap_l2').css({'margin-left':'28px', 'margin-top':'-28px', 'opacity':'1'});
+            setTimeout(()=>wiggle.l2(0), 750);
+
+        }
+
+        if(state === 0) {
+
+            $('.sliderArrowImageWrap_l2').css({'margin-left':'48px', 'margin-top':'-8px'});
+            setTimeout(()=>wiggle.l2(1), 750);
+
+        }
+
+    } else {
+
+        $('.sliderArrowImageWrap_l2').css({'opacity':'0'});
+
+    }
+
+}
+
+wiggle.activeWiggles[2] = true;
+wiggle.f1= function(state) {
+
+    if(wiggle.activeWiggles[2]) {
+
+        if(state === 1) {
+
+            $('.sliderArrowImageWrap_f1').css({'margin-left':'-20px', 'margin-top':'-140px', 'opacity':'1'});
+            setTimeout(()=>wiggle.f1(0), 750);
+
+        }
+
+        if(state === 0) {
+
+            $('.sliderArrowImageWrap_f1').css({'margin-left':'-1px', 'margin-top':'-107px'});
+            setTimeout(()=>wiggle.f1(1), 750);
+
+        }
+
+    } else {
+
+        $('.sliderArrowImageWrap_f1').css({'opacity':'0'});
+
+    }
+
+}
+
+wiggle.activeWiggles[3] = true;
+wiggle.f2 = function(state) {
+
+    if(wiggle.activeWiggles[3]) {
+
+        if(state === 1) {
+
+            $('.sliderArrowImageWrap_f2').css({'margin-left':'-20px', 'margin-top':'-140px', 'opacity':'1'});
+            setTimeout(()=>wiggle.f2(0), 750);
+
+        }
+
+        if(state === 0) {
+
+            $('.sliderArrowImageWrap_f2').css({'margin-left':'-1px', 'margin-top':'-107px'});
+            setTimeout(()=>wiggle.f2(1), 750);
+
+        }
+
+    } else {
+
+        $('.sliderArrowImageWrap_f2').css({'opacity':'0'});
+
+    }
+
+}
+
+wiggle.activeWiggles[4] = true;
+wiggle.of1 = function(state) {
+
+    if(wiggle.activeWiggles[4]) {
+
+        if(state === 1) {
+
+            $('.sliderArrowImageWrap_of1').css({'margin-left':'-20px', 'margin-top':'-140px', 'opacity':'1'});
+            setTimeout(()=>wiggle.of1(0), 750);
+
+        }
+
+        if(state === 0) {
+
+            $('.sliderArrowImageWrap_of1').css({'margin-left':'-1px', 'margin-top':'-107px'});
+            setTimeout(()=>wiggle.of1(1), 750);
+
+        }
+
+    } else {
+
+        $('.sliderArrowImageWrap_of1').css({'opacity':'0'});
+
+    }
+
+}
+
+wiggle.activeWiggles[5] = true;
+wiggle.of2 = function(state) {
+
+    if(wiggle.activeWiggles[5]) {
+
+        if(state === 1) {
+
+            $('.sliderArrowImageWrap_of2').css({'margin-left':'-20px', 'margin-top':'-140px', 'opacity':'1'});
+            setTimeout(()=>wiggle.of2(0), 750);
+
+        }
+
+        if(state === 0) {
+
+            $('.sliderArrowImageWrap_of2').css({'margin-left':'-1px', 'margin-top':'-107px'});
+            setTimeout(()=>wiggle.of2(1), 750);
+
+        }
+
+    } else {
+
+        $('.sliderArrowImageWrap_of2').css({'opacity':'0'});
+
+    }
+
 }
 
 // slider minor hover effects
+
 $('#lSlider1').hover(
     function() {
         setTimeout(()=>calculator.update.barLabelX('barl1', true), 150);
+        $('.sliderQuestion_l1').css({'transition':'all 5s cubic-bezier(0.02, 0.96, 0.63, 0.88)', 'transform':'rotateY(1530deg)'});
         },
     function() {
         setTimeout(()=>calculator.update.barLabelX('barl1', false), 400);
         calculator.update.barGridX('barl1', false);
+        $('.sliderQuestion_l1').css({'transition':'all 5s cubic-bezier(0.02, 0.96, 0.63, 0.88)',  'transform':'rotateY(-90deg)'});
+    }
+);
+
+$('.bswLeft').hover(
+    function() {
+        if(vibrate.sliderLocked[0]) {
+            vibrate.l1Switch = true;
+            vibrate.l1(1);
+        }
+    },
+    function() {
+        vibrate.l1Switch = false;
     }
 );
 
 $('#olSlider1').hover(
     function() {
         setTimeout(()=>calculator.update.barLabelX('barl2', true), 150);
+        $('.sliderQuestion_l2').css({'transition':'all 5s cubic-bezier(0.02, 0.96, 0.63, 0.88)',  'transform':'rotateY(1530deg)'});
     },
     function() {
         setTimeout(()=>calculator.update.barLabelX('barl2', false), 400);
         calculator.update.barGridX('barl2', false);
+        $('.sliderQuestion_l2').css({'transition':'all 5s cubic-bezier(0.02, 0.96, 0.63, 0.88)',  'transform':'rotateY(-90deg)'});
+    }
+);
+
+$('.bswRight').hover(
+    function() {
+        if(vibrate.sliderLocked[1]) {
+            vibrate.l2Switch = true;
+            vibrate.l2(1);
+        }
+    },
+    function() {
+        vibrate.l2Switch = false;
     }
 );
 
@@ -1084,50 +1573,108 @@ $('#vSlider1').hover(
     function() {
         setTimeout(()=>calculator.update.barLabelY('barf1', true), 150);
         calculator.display.activeFollowerIcon('spf1L11', true)
+        // $('.sliderQuestion_f1').css({'transition':'all 5s cubic-bezier(0.02, 0.96, 0.63, 0.88)', 'transform':'rotateY(1530deg)'});
         },
     function() {
         setTimeout(()=>calculator.update.barLabelY('barf1', false), 400);
         calculator.display.activeFollowerIcon('spf1L11', false)
         calculator.update.barGridY('barf1', false);
+        // $('.sliderQuestion_f1').css({'transition':'all 5s cubic-bezier(0.02, 0.96, 0.63, 0.88)',  'transform':'rotateY(-90deg)'});
+    }
+);
+
+$('.lbf1').hover(
+    function() {
+        if(vibrate.sliderLocked[2]) {
+            vibrate.f1Switch = true;
+            vibrate.f1(1);
+        }
+    },
+    function() {
+        vibrate.f1Switch = false;
     }
 );
 
 $('#vSlider2').hover(
     function() {
         setTimeout(()=>calculator.update.barLabelY('barf2', true), 150);
-        calculator.display.activeFollowerIcon('spf1L12', true)
+        calculator.display.activeFollowerIcon('spf1L12', true);
+        $('.sliderQuestion_f2').css({'transition':'all 5s cubic-bezier(0.02, 0.96, 0.63, 0.88)', 'transform':'rotateY(1530deg)'});
     },
     function() {
         setTimeout(()=>calculator.update.barLabelY('barf2', false), 400);
         calculator.update.barGridY('barf2', false);
-        calculator.display.activeFollowerIcon('spf1L12', false)
+        calculator.display.activeFollowerIcon('spf1L12', false);
+        $('.sliderQuestion_f2').css({'transition':'all 5s cubic-bezier(0.02, 0.96, 0.63, 0.88)',  'transform':'rotateY(-90deg)'});
+    }
+);
+
+$('.lbf2').hover(
+    function() {
+        if(vibrate.sliderLocked[3]) {
+            vibrate.f2Switch = true;
+            vibrate.f2(1);
+        }
+    },
+    function() {
+        vibrate.f2Switch = false;
     }
 );
 
 $('#ovSlider1').hover(
     function() {
         setTimeout(()=>calculator.update.barLabelY('obarf1', true), 150);
-        calculator.display.activeFollowerIcon('spf1L21', true)
+        calculator.display.activeFollowerIcon('spf1L21', true);
+        $('.sliderQuestion_of1').css({'transition':'all 5s cubic-bezier(0.02, 0.96, 0.63, 0.88)', 'transform':'rotateY(1530deg)'});
+        vibrate.of1Switch = true;
+        vibrate.of1(1);
         },
     function() {
         setTimeout(()=>calculator.update.barLabelY('obarf1', false), 400);
         calculator.update.barGridY('obarf1', false);
         calculator.display.activeFollowerIcon('spf1L21', false)
+        $('.sliderQuestion_of1').css({'transition':'all 5s cubic-bezier(0.02, 0.96, 0.63, 0.88)',  'transform':'rotateY(-90deg)'});
+        vibrate.of1Switch = false;
+    }
+);
+
+$('.rbf1').hover(
+    function() {
+        if(vibrate.sliderLocked[4]) {
+            vibrate.of1Switch = true;
+            vibrate.of1(1);
+        }
+    },
+    function() {
+        vibrate.of1Switch = false;
     }
 );
 
 $('#ovSlider2').hover(
     function() {
         setTimeout(()=>calculator.update.barLabelY('obarf2', true), 150);
-        calculator.display.activeFollowerIcon('spf1L22', true)
+        calculator.display.activeFollowerIcon('spf1L22', true);
+        $('.sliderQuestion_of2').css({'transition':'all 5s cubic-bezier(0.02, 0.96, 0.63, 0.88)', 'transform':'rotateY(1530deg)'});
     },
     function() {
         setTimeout(()=>calculator.update.barLabelY('obarf2', false), 400);
         calculator.update.barGridY('obarf2', false);
-        calculator.display.activeFollowerIcon('spf1L22', false)
+        calculator.display.activeFollowerIcon('spf1L22', false);
+        $('.sliderQuestion_of2').css({'transition':'all 5s cubic-bezier(0.02, 0.96, 0.63, 0.88)',  'transform':'rotateY(-90deg)'});
     }
 );
 
+$('.rbf2').hover(
+    function() {
+        if(vibrate.sliderLocked[5]) {
+            vibrate.of2Switch = true;
+            vibrate.of2(1);
+        }
+    },
+    function() {
+        vibrate.of2Switch = false;
+    }
+);
 
 //-----wheel methods------//
 
@@ -1142,8 +1689,12 @@ calculator.wheel.hide = function() {
 calculator.wheel.spin = function() {
 
     $('.payoffWrap, .fResults').css({'opacity':'0'});
+    $('.payoffWrap').css({'margin-top':'-152px'});
     $('.pw').css({'opacity':'0', 'zIndex':'-1'});
     $('.mywheel').css({'opacity':'1', 'zIndex':'0'});
+    $('.fNetPayoffText').css({'opacity':'0'});
+    $('.pWrap').css({'margin-top':'-75px'});
+
 
     calculator.wheel.create(pwin);
     calculator.wheel.myWheelObj.stopAnimation(false);
@@ -1161,6 +1712,10 @@ calculator.wheel.spin = function() {
 calculator.wheel.showResults = function(w) {
 
         $('.payoffWrap, .fResults').css({'opacity':'1'});
+        $('.pWrap').css({'margin-top':'2px'});
+        $('.fNetPayoffText').css({'opacity':'1'});
+
+        calculator.update.payoffHeights(calculator.display.displayed)
 
         if(w === 1) {
             $('.resultLeft, .leftSideResult').css({'background-color':'indigo'});
@@ -1177,6 +1732,46 @@ calculator.wheel.showResults = function(w) {
 
 
 calculator.display.displayed = Array(4);
+calculator.display.displayed = [false, false, false];
+
+calculator.update.payoffHeights = function(array) {
+
+    var sum = array.reduce((a,b) => a + b, 0)
+
+    if(sum === 0) {
+
+        $('.payoffWrap').css({'margin-top':'-109px'});
+        $('.c1, .c2').css({'opacity':'1'});
+        $('.bottomText').css({'display':'none'});
+
+    }
+
+    if(sum === 1 || sum === 2) {
+
+        $('.payoffWrap').css({'margin-top':'-38px'});
+        $('.c1, .c2').css({'opacity':'1'});
+        $('.bottomText').css({'display':'none'});
+
+    }
+
+    if(sum === 3) {
+
+        $('.payoffWrap').css({'margin-top':'-38px'});
+        $('.c1, .c2').css({'opacity':'1'});
+        $('.bottomText').css({'display':'flex', 'margin-bottom':'-25px'});
+
+    }
+
+    if(sum === 4) {
+
+        $('.payoffWrap').css({'margin-top':'-38px'});
+        $('.c1, .c2').css({'opacity':'1'});
+        $('.bottomText').css({'display':'flex', 'margin-bottom':'0px'});
+
+    }
+
+
+}
 
 calculator.display.spinButton = function(show) {
 
@@ -1187,37 +1782,6 @@ calculator.display.spinButton = function(show) {
 
 }
 
-calculator.display.setHeights = function() {
-
-    var sum = calculator.display.displayed.reduce((a,b) => a + b, 0)
-    if( sum === 0) {
-        $('.payoffWrap').css({'margin-top':'90px'});
-    } else if (sum <= 2) {
-        $('.payoffWrap').css({'margin-top':'60px'});
-    } else if(sum === 3) {
-        $('.payoffWrap').css({'margin-top':'23px'});
-    } else if(sum === 4) {
-        $('.payoffWrap').css({'margin-top':'0px'});
-    }
-
-    if(!calculator.display.displayed[0] && !calculator.display.displayed[1]) {
-        $('.topText').css({'height':'0px'});
-    } else {
-        $('.topText').css({'height':'auto'});
-    }
-
-    if(!calculator.display.displayed[2] && !calculator.display.displayed[3]) {
-        $('.topText').css({'border-bottom':'0px'});
-        $('.bottomText').css({'height':'0px'});
-    } else if(calculator.display.displayed[2] && !calculator.display.displayed[3]){
-        $('.topText').css({'border-bottom':'dashed 1px black'});
-        $('.bottomText').css({'height':'35px'});
-    } else {
-        $('.topText').css({'border-bottom':'dashed 1px black'});
-        $('.bottomText').css({'height':'auto'});
-    }
-
-}
 
 calculator.display.investment = function(show) {
 
@@ -1226,8 +1790,9 @@ calculator.display.investment = function(show) {
     $('.pRight, .pLeft').css({'display':'none'});
     $('.topText').css({'justify-content':'center'});
 
+
     calculator.display.displayed[0] = show;
-    calculator.display.setHeights();
+    calculator.update.payoffHeights(calculator.display.displayed);
 
     showTokenTag = true;
 
@@ -1239,12 +1804,14 @@ calculator.display.prize = function(show) {
     $('.pLeft, .pRight').css({'opacity': opacity});
 
     calculator.display.displayed[1] = show;
-    calculator.display.setHeights();
+    calculator.update.payoffHeights(calculator.display.displayed);
 
     if(show) {
+
         $('.pRight, .pLeft').css({'display':'flex'});
         $('.topText').css({'justify-content':'space-between'});
         showTokenTag = false;
+
     }
 
 }
@@ -1253,8 +1820,8 @@ calculator.display.netPayoff = function(show) {
 
     var opacity = show ? '1' : '0';
     $('.npLeft, .npRight').css({'opacity': opacity});
-    calculator.display.displayed[2]  = show;
-    calculator.display.setHeights();
+    calculator.display.displayed[2] = show;
+    calculator.update.payoffHeights(calculator.display.displayed);
 
 }
 
@@ -1263,9 +1830,10 @@ calculator.display.role = function(show) {
     var opacity = show ? '1' : '0';
     $('.rLeft, .rRight').css({'opacity': opacity});
     calculator.display.displayed[3] = show;
-    calculator.display.setHeights();
+        calculator.update.payoffHeights(calculator.display.displayed);
 
 }
+
 
 calculator.display.helpSaboSection = function(show) {
 
@@ -1312,18 +1880,20 @@ calculator.display.powerBarText = function(tag) {
         $('.pTitleTop').css({'opacity' : '1'});
         $('.pTitleBottom').css({'opacity' : '0'});
         $('.powerRatio').css({'margin-top':'0px', 'margin-bottom':'-10px'});
+        calculator.display.powerBarLegend(false);
     }
 
     if(tag === 'bottom') {
         $('.pTitleTop').css({'opacity' : '0'});
         $('.pTitleBottom').css({'opacity' : '1'});
-        $('.powerRatio').css({'margin-top':'-45px', 'margin-bottom':'-4px'});
+        calculator.display.powerBarLegend(true);
     }
 
     if(tag === 'none') {
         $('.pTitleTop').css({'opacity' : '0'});
         $('.pTitleBottom').css({'opacity' : '0'});
-        $('.powerRatio').css({'margin-top':'-45px', 'margin-bottom':'-10px'});
+        $('.powerRatio').css({'margin-top':'0px', 'margin-bottom':'-4px'});
+        calculator.display.powerBarLegend(false);
     }
 
 }
@@ -1331,9 +1901,8 @@ calculator.display.powerBarText = function(tag) {
 calculator.display.powerBarLegend = function(show) {
 
     var opacity = show ? '1' : '0';
-    var mb = show ? '-46px' : '-46px';
 
-    $('.legendwrapwrap').css({'opacity' : opacity, 'margin-bottom' : mb});
+    $('.legendwrapwrap').css({'opacity' : opacity});
 
 }
 
@@ -1341,13 +1910,13 @@ calculator.display.totalHelpSabo = function(show) {
 
     if(!show) {
 
-        $('.OGCIcon').css({'margin-top' : '62px'});
-        $('.followersTotalHS').css({'display':'none'});
+        $('.OGCIcon').css({'transition':'0.7s', 'margin-top' : '-42px'});
+        $('.followersTotalHS').css({'opacity':'0'});
 
     } else {
 
         $('.OGCIcon').css({'margin-top' : '0px'});
-        $('.followersTotalHS').css({'display':'flex'});
+        $('.followersTotalHS').css({'opacity':'1'});
 
     }
 
@@ -1392,6 +1961,27 @@ calculator.display.grayOGC = function() {
     $('.arrowTip21').css({'fill':black});
     $('.iaof2').css({'stroke':black});
     $('.arrowTip22').css({'fill':black});
+
+}
+
+calculator.display.questionMarks = function(show) {
+
+    var opt = show ? '1' : '0';
+
+    $('.sliderQuestion_l1, .sliderQuestion_l2, .sliderQuestion_f2, .sliderQuestion_of1, .sliderQuestion_of2').css({'opacity':opt});
+
+}
+
+calculator.display.wiggleArrow = function(array) {
+
+    wiggle.activeWiggles = array;
+
+    wiggle.l1(1);
+    wiggle.l2(1);
+    wiggle.f1(1);
+    wiggle.f2(1);
+    wiggle.of1(1);
+    wiggle.of2(1);
 
 }
 
@@ -1534,9 +2124,6 @@ icon.stage1.generateSortedArray = function() {
 
 }
 
-
-
-
 icon.set.stage1 = function() {
 
     var mySort, myRole1, myRole2, roles;
@@ -1631,7 +2218,7 @@ icon.tool.updateSize = function(h, s) {
 
     var hRatio = h / 80;
     var sRatio = s / 80;
-    var k = 0.2;
+    var k = 0.1//0.2
 
     var m = (1 + Math.pow(hRatio, k)) / (1 + Math.pow(sRatio, k));
 
@@ -2462,8 +3049,13 @@ map.update('full');
 
 var initiate  = function() {
 
-    calculator.update.contestName('WHEEL OF FORTUNE');
-    // calculator.update.contestName('OUT-GROUP CONTEST');
+    calculator.display.wiggleArrow([0, 0, 0, 0, 0, 0]);
+    calculator.display.questionMarks(false);
+
+
+    // calculator.update.contestName('WHEEL OF FORTUNE');
+    calculator.update.contestNameOG('OUT-GROUP CONTEST I', true);
+    // calculator.update.contestNameOG('OUT-GROUP CONTEST II', true);
     // calculator.update.contestName('IN-GROUP CONTEST');
     calculator.update.playerTitles('LEADER');
 
@@ -2485,7 +3077,7 @@ initiate();
 calculator.display.spinButton(true);
 calculator.display.investment(true);
 calculator.display.prize(true);
-calculator.display.netPayoff(true);
+calculator.display.netPayoff(false);
 calculator.display.role(false);
 
 // // calculator.display.contestSection(false);
@@ -2510,14 +3102,15 @@ calculator.display.role(false);
 icon.set.stage1();
 icon.display.stage1(true);
 
-calculator.display.contestSection(false);
+calculator.display.contestSection(true);
 calculator.display.helpSaboSection(true);
-calculator.display.powerBar(false);
+calculator.display.powerBar(true);
 calculator.display.powerBarText('top');
 calculator.display.powerBarLegend(true);
-calculator.display.totalHelpSabo(false);
+calculator.display.totalHelpSabo(true);
 calculator.display.fightIcon(false);
 calculator.display.helpSaboIcons(true);
+calculator.display.powerBarText('none');
 
 
 
