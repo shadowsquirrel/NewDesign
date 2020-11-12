@@ -174,3 +174,12 @@ img.spinImage
   box-shadow: 0 2px black;
   transform: translateY(2px);
 }
+.OGCIcon2
+{
+    display:none;
+    opacity:0;
+    position:absolute;
+    flex-direction:row;
+    justify-content: center;
+    margin-top:-193px;
+}

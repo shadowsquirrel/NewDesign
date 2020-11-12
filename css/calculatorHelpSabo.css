@@ -36,12 +36,14 @@
 {
     display: flex;
     flex-direction: column;
-    margin-left:6px;
+    margin-left:9px;
+    margin-right:-43px;
 }
 .followersRight
 {
     display: flex;
     flex-direction: column;
+    margin-left:-16px;
     margin-right:6px;
 }
 .sliderBarWrap
@@ -94,7 +96,7 @@
     color:white;
     font-size:20px;
     font-weight:100;
-    margin-top:-18px;
+    margin-top:-13px;
     margin-left:5px;
     margin-right:0px;
     margin-bottom:0px;
@@ -107,7 +109,7 @@
     color:white;
     font-size:20px;
     font-weight:100;
-    margin-top:-17px;
+    margin-top:-13px;
     margin-left:0px;
     margin-right:6px;
     margin-bottom:0px;
@@ -115,14 +117,14 @@
 }
 .lockedCover_l1
 {
-    z-index:2;
+    z-index:-1;
     position: absolute;
     height:123px;
     width:405px;
 }
 .lockedCover_l2
 {
-    z-index:2;
+    z-index:-1;
     position: absolute;
     height:123px;
     width:405px;
@@ -137,7 +139,7 @@
 }
 .lockedCover_f1
 {
-    z-index:2;
+    z-index:-1;
     position: absolute;
     height:296px;
     width:96px;
@@ -145,7 +147,7 @@
 }
 .lockedCover_f2
 {
-    z-index:2;
+    z-index:-1;
     position: absolute;
     height:296px;
     width:96px;
@@ -153,7 +155,7 @@
 }
 .lockedCover_of1
 {
-    z-index:2;
+    z-index:-1;
     position: absolute;
     height:296px;
     width:96px;
@@ -161,7 +163,7 @@
 }
 .lockedCover_of2
 {
-    z-index:2;
+    z-index:-1;
     position: absolute;
     height:296px;
     width:96px;
@@ -232,20 +234,27 @@
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
 }
-.closeTheGap
+.followerPrizeText
 {
-    margin-bottom:0px;
+    margin-bottom:20px;
+    font-size: 22px;
+}
+.followerRoleText
+{
+    margin-top:-22px;
+    font-size: 22px;
+    width:275px;
 }
 .leftSideRole
 {
     font-weight:100;
-    font-size:19px;
+    /* font-size:19px; */
     transition:0.5s;
 }
 .rightSideRole
 {
     font-weight:100;
-    font-size:19px;
+    /* font-size:19px; */
     transition:0.5s;
 }
 /****/
@@ -269,6 +278,7 @@
 {
     display:flex;
     flex-direction:column;
+    margin-right:-20px;
 }
 .ctWrapOG
 {
@@ -301,7 +311,8 @@
     font-weight:100;
     font-size:17px;
     margin-bottom:-3px;
-    margin-top:88px;
+    margin-top:71px;
+    width:112px;
 }
 .hsbWrap
 {
@@ -313,7 +324,7 @@
 .helpSaboBars
 {
     font-weight:700;
-    /* margin-top:-28px; */
+    margin-left:-15px;
 }
 .hsBbar
 {

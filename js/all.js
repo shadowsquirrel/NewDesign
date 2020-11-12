@@ -1,6 +1,7 @@
 
 var calculator = {
 
+    hide: {},
     wheel: {},
     update: {},
     slider : {},
@@ -32,13 +33,30 @@ var vibrate = {};
 calculator.wheel.spinDuration = 1;
 calculator.wheel.spinNumber = 10;
 
-calculator.wheel.create = function(probability) {
+calculator.wheel.create = function(probability, id, state) {
 
     var a = 100*probability;
     var b = 100-a;
 
+    var leaderColorArray = ['rgb(60,60,60)', 'rgb(210,210,210)'];
+    var followerAColorArray = ['rgb(18,103,48)', 'rgb(60,60,60)'];
+    var followerBColorArray = ['rgb(18,103,48)', 'rgb(210,210,210)'];
+    var colors;
+
+    if(state === 'l') {
+        colors = leaderColorArray;
+    }
+
+    if(state === 'f') {
+        colors = followerAColorArray;
+    }
+
+    if(state === 'of') {
+        colors = followerBColorArray;
+    }
+
     calculator.wheel.myWheelObj = new Winwheel({
-        'canvasId': 'mywheel',
+        'canvasId': id,
         'numSegments': 2,
         'lineWidth' : 0,
         'outerRadius': 58, // controls the size of the theWheel
@@ -49,14 +67,14 @@ calculator.wheel.create = function(probability) {
         'segments':
         [
             {
-                'fillStyle' : 'rgb(60, 60, 60)',
+                'fillStyle' : colors[0],
                 'strokeStyle':'transparent',
                 'textFillStyle': 'white',
                 'text'      : '',
                 'size'      : winwheelPercentToDegrees(a),
             },
             {
-                'fillStyle' : 'rgb(210, 210, 210)',
+                'fillStyle' : colors[1],
                 'strokeStyle':'transparent',
                 'textFillStyle': 'rgb(60, 60, 60)',
                 'text'      : '',
@@ -138,22 +156,51 @@ calculator.update.pie = function() {
     Plotly.react('pie', data, layout, {displayModeBar: false});
 }
 
-calculator.update.effortBar = function(e, barId, ourSide, axisOn) {
-    // var val1 = efi / (efi + oefi);
-    // var val2 = oefi / (efi + oefi);
+calculator.update.effortBar = function(e, barId, ourSide, axisOn, state) {
+
     var y = e;
     if(typeof(x) === 'undefined') x = 0;
 
-    var mColor = ourSide ? 'rgb(60, 60, 60)' : 'rgb(210, 210, 210)';
+    var upperBound, myTickVal, myTickText, myRange;
+
+    var colorArrays = Array(2);
+
+    if(state === 'l') {
+        colorArrays = ['rgb(60, 60, 60)', 'rgb(210, 210, 210)'];
+        upperBound = 742;
+        myTickVal = [0, 50, 100, 150, 250, 350, 500, 650, 800];
+        myTickText = [0, 50, 100, 150, 250, 350, 500, 650, 800];
+        myRange = [0, 800];
+    }
+
+    if(state === 'f') {
+        colorArrays = ['rgb(18,103,48)', 'rgb(60, 60, 60)'];
+        upperBound = 128;
+        myTickVal = [0, 5, 10, 20, 30, 50, 75, 100, 140];
+        myTickText = [0, 5, 10, 20, 30, 50, 75, 100, 140];
+        myRange = [0, 140];
+    }
+
+    if(state === 'of') {
+        colorArrays = ['rgb(18,103,48)', 'rgb(210, 210, 210)'];
+        upperBound = 128;
+        myTickVal = [0, 5, 10, 20, 30, 50, 75, 100, 140];
+        myTickText = [0, 5, 10, 20, 30, 50, 75, 100, 140];
+        myRange = [0, 140];
+    }
+
+
+    var mColor = ourSide ? colorArrays[0] : colorArrays[1];
 
     var mytextpos = 'outside';
 
     var somecolor = 'black';
 
-    if(y>742) {
+    if(y > upperBound) {
+
         mytextpos = 'inside';
 
-        if(barId==='bar1') {
+        if(barId === 'bar1') { //NEED THE SAME FOR FOLLOWER BAR ID
             somecolor = 'white';
         }
 
@@ -185,21 +232,53 @@ calculator.update.effortBar = function(e, barId, ourSide, axisOn) {
     var ticktextcolors = ['black', 'white'];
     var tindex = 1;
 
-    // var papercolors = ['white', 'rgb(35,79,30)', 'black', 'rgb(41, 0, 87)', 'rgb(210, 210, 210)'];
-    var papercolors = ['white', 'rgb(60, 60, 60)', 'black', 'rgb(41, 0, 87)', 'rgb(210, 210, 210)'];
+    var papercolors = ['rgb(60, 60, 60)', 'rgb(210, 210, 210)', 'rgb(18,103,48)'];
     var pindex = 1;
 
+    if(state === 'l') {
 
-    if(barId==='barl1'){//darkgreen white
-        tindex=1;
-        pindex=1;
-    }
-    if(barId==='barl2'){
-        //lightgray black
-        tindex=0;
-        pindex=4;
+        if(barId === 'barl1'){//darkgray white //NEED TO DO FOR 4 OTHER IDS
+            pindex=0;
+            tindex=1;
+        }
+
+        if(barId === 'barl2'){
+            //lightgray black
+            pindex=1;
+            tindex=0;
+        }
+
     }
 
+    if(state === 'f') {
+
+        if(barId === 'barl1'){//darkgreen white
+            pindex=2;
+            tindex=1;
+        }
+
+        if(barId === 'barl2'){
+            //darkgray white
+            pindex=0;
+            tindex=1;
+        }
+
+    }
+
+    if(state === 'of') {
+
+        if(barId === 'barl1'){//darkgreen white
+            pindex=2;
+            tindex=1;
+        }
+
+        if(barId === 'barl2'){
+            //lighgray black
+            pindex=1;
+            tindex=0;
+        }
+
+    }
 
     var layout = {
         paper_bgcolor: papercolors[pindex],
@@ -211,15 +290,15 @@ calculator.update.effortBar = function(e, barId, ourSide, axisOn) {
             side: 'top',
             fixedrange: true,
             autorange: false,
-            range: [0,800],
+            range: myRange,
             layer: 'below traces',
             tickfont: {
                 size: 10,
                 color:ticktextcolors[tindex],
             },
             tickmode: 'array',
-            tickvals: [0, 50, 100, 150, 250, 350, 500, 650, 800],
-            ticktext: [0, 50, 100, 150, 250, 350, 500, 650, 800],
+            tickvals: myTickVal,
+            ticktext: myTickText,
             tickangle: -30,
             ticks:'',
             showline: false,
@@ -238,6 +317,24 @@ calculator.update.effortBar = function(e, barId, ourSide, axisOn) {
     }
 
     Plotly.react(barId, data, layout, {displayModeBar: false});
+}
+
+calculator.update.effortSliderRange = function(state) {
+
+    var myMax;
+
+    if(state === 'l') {
+        myMax = 800;
+    }
+    if(state === 'f' || state === 'of') {
+        myMax = 140;
+    }
+
+    $("#lSlider1, #olSlider1").attr({
+        "max" : myMax,
+        "min" : 0
+    });
+
 }
 
 calculator.update.helpSaboBar = function(a, barId, lighter, axisOn) {
@@ -470,7 +567,7 @@ calculator.update.powerBarDynamicText = function(place) {
 
 }
 
-calculator.update.efficiencyBar = function(showText) {
+calculator.update.efficiencyBar = function(showText, state) {
 
     var efi1, efi2;
     efi1 = efi;
@@ -517,6 +614,21 @@ calculator.update.efficiencyBar = function(showText) {
     val1 = val1 - gapSize/2;
     val2 = val2 - gapSize/2;
 
+    var lcolors = ['rgb(60,60,60)', 'rgb(210,210,210)'];
+    var fcolors = ['rgb(18,103,48)', 'rgb(60,60,60)'];
+    var ofcolors = ['rgb(18,103,48)', 'rgb(210,210,210)'];
+    var cA = Array(2);
+
+    if(state === 'l') {
+        cA = lcolors;
+    }
+    if(state === 'f') {
+        cA = fcolors;
+    }
+    if(state === 'of') {
+        cA = ofcolors;
+    }
+
     var player1 = {
         y: ['group 1'],
         x: [val1],
@@ -527,8 +639,7 @@ calculator.update.efficiencyBar = function(showText) {
         automargin: true,
         showlegend: false,
         marker: {
-            // color: 'rgb(35,79,30)',
-            color: 'rgb(60, 60, 60)',
+            color: cA[0],
             line: {
                 color: 'black',
                 width: 0,
@@ -579,7 +690,7 @@ calculator.update.efficiencyBar = function(showText) {
         showlegend: false,
         fixedrange: true,
         marker: {
-            color: 'rgb(210, 210, 210)',
+            color: cA[1],
             line: {
                 color: 'black',
                 width: 0,
@@ -710,7 +821,7 @@ calculator.update.efficiencies = function() {
     efi = (1 + th) / (1 + ts);
     oefi = (1 + toh) / (1 + tos);
 
-    calculator.update.efficiencyBar(false);
+    calculator.update.efficiencyBar(false, 'l');
 
 }
 
@@ -831,7 +942,7 @@ calculator.update.resultTexts = function(w) {
     fwinnerRole = 'Each continues as Follower';
     fwinnerPrize = 'Each receives 100 tokens'
     floserRole = 'Chance to be the new Leader';
-    floserPrize = 'Each receives 0 tokens'
+    floserPrize = 'Each receives 0 token'
 
     leftSidePrize.innerHTML = w === 1 ? fwinnerPrize : floserPrize;
     leftSideRole.innerHTML = w === 1 ? fwinnerRole : floserRole;
@@ -995,7 +1106,7 @@ calculator.slider.l1.oninput = function() {
     ourSide = true;
     showAxis = true;
 
-    calculator.update.effortBar(efo, 'barl1', ourSide, !showAxis);
+    calculator.update.effortBar(efo, 'barl1', ourSide, !showAxis, 'l');
     calculator.update.resultTexts();
 
     calculator.update.barLabelX('barl1', true);
@@ -1018,7 +1129,7 @@ calculator.slider.l2.oninput = function() {
     ourSide = true;
     showAxis = true;
 
-    calculator.update.effortBar(oefo, 'barl2', !ourSide, !showAxis);
+    calculator.update.effortBar(oefo, 'barl2', !ourSide, !showAxis, 'l');
     calculator.update.resultTexts();
 
     calculator.update.probability();
@@ -1143,29 +1254,6 @@ calculator.slider.of2.oninput = function() {
 //-------------vibrating locks-----------//
 
 vibrate.sliderLocked = Array(6);
-
-calculator.display.lockedSliders = function(array) {
-
-    vibrate.sliderLocked = array;
-
-    var l1, l2, f1, f2, of1, of2;
-    l1 = array[0] ? '2' : '-1';
-    l2 = array[1] ? '2' : '-1';
-    f1 = array[2] ? '2' : '-1';
-    f2 = array[3] ? '2' : '-1';
-    of1 = array[4] ? '2' : '-1';
-    of2 = array[5] ? '2' : '-1';
-
-    $('.lockedCover_l1').css({'z-index' : l1});
-    $('.lockedCover_l2').css({'z-index' : l2});
-    $('.lockedCover_f1').css({'z-index' : f1});
-    $('.lockedCover_f2').css({'z-index' : f2});
-    $('.lockedCover_of1').css({'z-index' : of1});
-    $('.lockedCover_of2').css({'z-index' : of2});
-
-}
-
-
 
 vibrate.l1Switch = true;
 vibrate.l1 = function(state) {
@@ -1686,34 +1774,50 @@ calculator.wheel.hide = function() {
 
 }
 
-calculator.wheel.spin = function() {
+calculator.wheel.show = function() {
 
-    $('.payoffWrap, .fResults').css({'opacity':'0'});
-    $('.payoffWrap').css({'margin-top':'-152px'});
     $('.pw').css({'opacity':'0', 'zIndex':'-1'});
     $('.mywheel').css({'opacity':'1', 'zIndex':'0'});
-    $('.fNetPayoffText').css({'opacity':'0'});
-    $('.pWrap').css({'margin-top':'-75px'});
+
+}
+
+calculator.hide.contestResults = function() {
+
+        $('.payoffWrap, .fResults, .fNetPayoffText').css({'opacity':'0'});
+        $('.payoffWrap').css({'margin-top':'-152px'});
+        $('.pWrap').css({'margin-top':'-75px'});
+
+}
+
+calculator.wheel.spin = function(showFollowerRole) {
+
+    calculator.hide.contestResults();
+
+    calculator.wheel.show();
 
 
-    calculator.wheel.create(pwin);
+    calculator.wheel.create(pwin, 'leaderWheel', 'l');
     calculator.wheel.myWheelObj.stopAnimation(false);
     calculator.wheel.myWheelObj.rotationAngle = 0;
+
     var winner = (pwin > Math.random()) ? 1 : 2;
     var stopAt = calculator.wheel.myWheelObj.getRandomForSegment(winner);
     calculator.wheel.myWheelObj.animation.stopAngle = stopAt;
     calculator.wheel.myWheelObj.startAnimation();
 
     setTimeout(()=>calculator.update.resultTexts(winner), 1000);
-    setTimeout(()=>calculator.wheel.showResults(winner), calculator.wheel.spinDuration*1000);
+    setTimeout(()=>calculator.wheel.showResults(winner, showFollowerRole), calculator.wheel.spinDuration*1000);
 
 }
 
-calculator.wheel.showResults = function(w) {
+calculator.wheel.showResults = function(w, showFollowerRole) {
 
         $('.payoffWrap, .fResults').css({'opacity':'1'});
-        $('.pWrap').css({'margin-top':'2px'});
+        $('.pWrap').css({'margin-top':'20px'});
         $('.fNetPayoffText').css({'opacity':'1'});
+
+
+        calculator.display.followerRole(showFollowerRole);
 
         calculator.update.payoffHeights(calculator.display.displayed)
 
@@ -1783,6 +1887,9 @@ calculator.display.spinButton = function(show) {
 }
 
 
+
+
+
 calculator.display.investment = function(show) {
 
     var opacity = show ? '1' : '0';
@@ -1834,6 +1941,25 @@ calculator.display.role = function(show) {
 
 }
 
+calculator.display.followerRole = function(show) {
+
+    if(!show) {
+
+        $('.followerRoleText').css({'margin-top':'-55px', 'opacity':'0'});
+        $('.pWrap').css({'margin-top':'-10px'});
+
+    } else {
+
+        $('.followerRoleText').css({'margin-top':'-22px', 'opacity':'1'});
+        $('.pWrap').css({'margin-top':'20px'});
+
+    }
+
+}
+
+
+
+
 
 calculator.display.helpSaboSection = function(show) {
 
@@ -1851,58 +1977,6 @@ calculator.display.helpSaboBars = function(show) {
     var opacity = show ? '1' : '0';
     $('.sliderBarWrap').css({'opacity':opacity, 'z-index':zindex});
 
-
-}
-
-calculator.display.contestSection = function(show) {
-
-    var opacity = show ? '1' : '0';
-    var height = show ? '188px' : '0px';
-    var zindex = show ? '0' : '-1';
-    var display = show ? 'flex' : 'none';
-
-    $('.contestSection').css({'opacity': opacity, 'height' : height, 'z-index' : zindex});
-    $('.payoffWrap').css({'display': display});
-
-}
-
-calculator.display.powerBar = function(show) {
-
-    var opacity = show ? '1' : '0';
-    $('.pWrap').css({'opacity' : opacity});
-
-
-}
-
-calculator.display.powerBarText = function(tag) {
-
-    if(tag === 'top') {
-        $('.pTitleTop').css({'opacity' : '1'});
-        $('.pTitleBottom').css({'opacity' : '0'});
-        $('.powerRatio').css({'margin-top':'0px', 'margin-bottom':'-10px'});
-        calculator.display.powerBarLegend(false);
-    }
-
-    if(tag === 'bottom') {
-        $('.pTitleTop').css({'opacity' : '0'});
-        $('.pTitleBottom').css({'opacity' : '1'});
-        calculator.display.powerBarLegend(true);
-    }
-
-    if(tag === 'none') {
-        $('.pTitleTop').css({'opacity' : '0'});
-        $('.pTitleBottom').css({'opacity' : '0'});
-        $('.powerRatio').css({'margin-top':'0px', 'margin-bottom':'-4px'});
-        calculator.display.powerBarLegend(false);
-    }
-
-}
-
-calculator.display.powerBarLegend = function(show) {
-
-    var opacity = show ? '1' : '0';
-
-    $('.legendwrapwrap').css({'opacity' : opacity});
 
 }
 
@@ -1964,6 +2038,78 @@ calculator.display.grayOGC = function() {
 
 }
 
+
+
+
+
+calculator.display.contestSection = function(show) {
+
+    var opacity = show ? '1' : '0';
+    var height = show ? '188px' : '0px';
+    var zindex = show ? '0' : '-1';
+    var display = show ? 'flex' : 'none';
+
+    $('.contestSection').css({'opacity': opacity, 'height' : height, 'z-index' : zindex});
+    $('.payoffWrap').css({'display': display});
+
+}
+
+calculator.display.contestSectionIcons = function(show) {
+
+    var opt = show ? '1' : '0';
+    var display = show ? 'flex' : 'none'
+    $('.OGCIcon2').css({'opacity':opt, 'display':display});
+
+}
+
+
+
+
+
+calculator.display.powerBar = function(show) {
+
+    var opacity = show ? '1' : '0';
+    $('.pWrap').css({'opacity' : opacity});
+
+
+}
+
+calculator.display.powerBarText = function(tag) {
+
+    if(tag === 'top') {
+        $('.pTitleTop').css({'opacity' : '1'});
+        $('.pTitleBottom').css({'opacity' : '0'});
+        $('.powerRatio').css({'margin-top':'0px', 'margin-bottom':'-10px'});
+        calculator.display.powerBarLegend(false);
+    }
+
+    if(tag === 'bottom') {
+        $('.pTitleTop').css({'opacity' : '0'});
+        $('.pTitleBottom').css({'opacity' : '1'});
+        calculator.display.powerBarLegend(true);
+    }
+
+    if(tag === 'none') {
+        $('.pTitleTop').css({'opacity' : '0'});
+        $('.pTitleBottom').css({'opacity' : '0'});
+        $('.powerRatio').css({'margin-top':'0px', 'margin-bottom':'-4px'});
+        calculator.display.powerBarLegend(false);
+    }
+
+}
+
+calculator.display.powerBarLegend = function(show) {
+
+    var opacity = show ? '1' : '0';
+
+    $('.legendwrapwrap').css({'opacity' : opacity});
+
+}
+
+
+
+
+
 calculator.display.questionMarks = function(show) {
 
     var opt = show ? '1' : '0';
@@ -1982,6 +2128,27 @@ calculator.display.wiggleArrow = function(array) {
     wiggle.f2(1);
     wiggle.of1(1);
     wiggle.of2(1);
+
+}
+
+calculator.display.lockedSliders = function(array) {
+
+    vibrate.sliderLocked = array;
+
+    var l1, l2, f1, f2, of1, of2;
+    l1 = array[0] ? '2' : '-1';
+    l2 = array[1] ? '2' : '-1';
+    f1 = array[2] ? '2' : '-1';
+    f2 = array[3] ? '2' : '-1';
+    of1 = array[4] ? '2' : '-1';
+    of2 = array[5] ? '2' : '-1';
+
+    $('.lockedCover_l1').css({'z-index' : l1});
+    $('.lockedCover_l2').css({'z-index' : l2});
+    $('.lockedCover_f1').css({'z-index' : f1});
+    $('.lockedCover_f2').css({'z-index' : f2});
+    $('.lockedCover_of1').css({'z-index' : of1});
+    $('.lockedCover_of2').css({'z-index' : of2});
 
 }
 
@@ -2030,8 +2197,8 @@ calculator.set.sliders = function() {
     $('#olSlider1').prop('value', oefo);
     $('#olSlider1').change();
 
-    calculator.update.effortBar(oefo, 'barl1', ourSide, !showAxis);
-    calculator.update.effortBar(oefo, 'barl2', !ourSide, !showAxis);
+    calculator.update.effortBar(efo, 'barl1', ourSide, !showAxis, 'l');
+    calculator.update.effortBar(oefo, 'barl2', !ourSide, !showAxis, 'l');
 
 
     f1 = s1 > 0 ? -s1 : h1;
@@ -3068,7 +3235,7 @@ var initiate  = function() {
     // resultTextsTag = 'generic';
     calculator.update.resultTexts(1);
 
-    calculator.wheel.create(0.99);
+    calculator.wheel.create(0.99, 'leaderWheel', 'l');
 
 }
 
@@ -3116,11 +3283,23 @@ calculator.display.powerBarText('none');
 
 var spin = document.getElementById('spinImage');
 var spinButtonEnabled = true;
+var buttonFunction = 0;
 spin.onclick = function() {
     if(spinButtonEnabled) {
-        calculator.wheel.spin();
-        calculator.display.contestSection(true);
-        // calculator.display.helpSaboSection(false);
+        if(buttonFunction === 0) {
+            $('.spinImage').css({'transition':'0.2s', 'background-color':'lightgray', 'opacity':'0'});
+            setTimeout(()=>{$('.spinImage').css({'transition':'0s', 'transform':'rotate(360deg)'});},200);
+            setTimeout(()=>{$('.spinImage').css({'transition':'0.5s','opacity':'1'});},2000);
+            var showFollowerRole = true;
+            calculator.wheel.spin(showFollowerRole);
+            calculator.display.contestSection(true);
+            // calculator.display.helpSaboSection(false);
+        }
+        if(buttonFunction === 1) {
+            $('.spinImage').css({'transition':'0.5s','background-color':'lime', 'transform':'rotate(0deg)'});
+            calculator.hide.contestResults();
+        }
+        buttonFunction = 1 - buttonFunction;
     }
 }
 
