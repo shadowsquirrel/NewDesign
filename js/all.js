@@ -6,7 +6,11 @@ var calculator = {
     update: {},
     slider : {},
     display: {},
-    set: {}
+    set: {},
+    setup: {},
+    disable: {},
+    enable: {},
+    roll: {}
 
 };
 
@@ -27,13 +31,18 @@ var wiggle = {};
 
 var vibrate = {};
 
+calculator.typeOfPlayer;
+calculator.showFollowerRole;
+calculator.dynamicPowerBarText;
+calculator.display.onlyLC;
+calculator.display.resultSpaceOpen;
 //------wheel object-----//
 
 
 calculator.wheel.spinDuration = 1;
 calculator.wheel.spinNumber = 10;
 
-calculator.wheel.create = function(probability, id, state) {
+calculator.wheel.create = function(probability, id) {
 
     var a = 100*probability;
     var b = 100-a;
@@ -43,15 +52,15 @@ calculator.wheel.create = function(probability, id, state) {
     var followerBColorArray = ['rgb(18,103,48)', 'rgb(210,210,210)'];
     var colors;
 
-    if(state === 'l') {
+    if(calculator.typeOfPlayer === 'l') {
         colors = leaderColorArray;
     }
 
-    if(state === 'f') {
+    if(calculator.typeOfPlayer === 'f') {
         colors = followerAColorArray;
     }
 
-    if(state === 'of') {
+    if(calculator.typeOfPlayer === 'of') {
         colors = followerBColorArray;
     }
 
@@ -95,8 +104,9 @@ calculator.wheel.create = function(probability, id, state) {
 
 //-----calculator global variables initiation-----//
 
-var efo, oefo, efi, oefi, pwin, efefo, oefefo, myTag;
+var efo, oefo, efi, oefi, pwin, efefo, oefefo;
 var s1, h1, s2, h2, ts, th, os1, oh1, os2, oh2, tos, toh;
+
 
 
 //------calculator graphical methods-----//
@@ -114,7 +124,7 @@ var nzt = function(val) {
     return (val != 0) ? val : '';
 }
 
-var playerLabels;
+calculator.update.playerLabels;
 calculator.update.pie = function() {
 
     var x = pwin;
@@ -126,9 +136,26 @@ calculator.update.pie = function() {
         y = 1;
     }
 
+    var pieColors;
+    var lcolors = ['rgb(210, 210, 210)', 'rgb(60, 60, 60)'];
+    var fcolors = ['rgb(60, 60, 60)', 'rgb(18,103,48)'];
+    var ofcolors = ['rgb(210, 210, 210)', 'rgb(18,103,48)'];
+
+    if(calculator.typeOfPlayer === 'l') {
+        pieColors = lcolors;
+    }
+
+    if(calculator.typeOfPlayer === 'f') {
+        pieColors = fcolors;
+    }
+
+    if(calculator.typeOfPlayer === 'of') {
+        pieColors = ofcolors;
+    }
+
     var data = [{
         values: [y, x],
-        labels: playerLabels,
+        labels: calculator.update.playerLabels,
         textinfo:'none',
         textfont: {
             // color: ['black', 'white'],
@@ -139,7 +166,7 @@ calculator.update.pie = function() {
         hoverinfo: 'percent+label',
         automargin: true,
         marker:{
-            colors: ['rgb(210, 210, 210)', 'rgb(60, 60, 60)']
+            colors: pieColors,
         }
     }];
 
@@ -156,7 +183,67 @@ calculator.update.pie = function() {
     Plotly.react('pie', data, layout, {displayModeBar: false});
 }
 
-calculator.update.effortBar = function(e, barId, ourSide, axisOn, state) {
+/*
+// calculator.update.pie2 = function() {
+//
+//     var x = pwin;
+//     var y = 1-pwin;
+//     if(typeof(x) === 'undefined') x = 0;
+//     if(typeof(y) === 'undefined') y = 0;
+//     if((x + y) === 0) {
+//         x = 1;
+//         y = 1;
+//     }
+//
+//     var pieColors;
+//     var lcolors = ['rgb(210, 210, 210)', 'rgb(60, 60, 60)'];
+//     var fcolors = ['rgb(60, 60, 60)', 'rgb(18,103,48)'];
+//     var ofcolors = ['rgb(210, 210, 210)', 'rgb(18,103,48)'];
+//
+//     if(calculator.typeOfPlayer === 'l') {
+//         pieColors = lcolors;
+//     }
+//
+//     if(calculator.typeOfPlayer === 'f') {
+//         pieColors = fcolors;
+//     }
+//
+//     if(calculator.typeOfPlayer === 'of') {
+//         pieColors = ofcolors;
+//     }
+//
+//     var data = [{
+//         values: [y, x],
+//         labels: calculator.update.playerLabels,
+//         textinfo:'none',
+//         textfont: {
+//             // color: ['black', 'white'],
+//             color: ['transparent', 'transparent']
+//         },
+//         type: 'pie',
+//         sort: false,
+//         hoverinfo: 'percent+label',
+//         automargin: true,
+//         marker:{
+//             colors: pieColors,
+//         }
+//     }];
+//
+//     var layout = {
+//         height: 40,
+//         width: 40,
+//         font:{
+//             size: 0
+//         },
+//         margin: {"t": 0, "b": 0, "l": 0, "r": 0},
+//         showlegend: false,
+//     };
+//
+//     Plotly.react('pie2', data, layout, {displayModeBar: false});
+// }
+*/
+
+calculator.update.effortBar = function(e, barId, ourSide, axisOn) {
 
     var y = e;
     if(typeof(x) === 'undefined') x = 0;
@@ -164,29 +251,33 @@ calculator.update.effortBar = function(e, barId, ourSide, axisOn, state) {
     var upperBound, myTickVal, myTickText, myRange;
 
     var colorArrays = Array(2);
+    var insideTextColor = Array(2);
 
-    if(state === 'l') {
+    if(calculator.typeOfPlayer === 'l') {
         colorArrays = ['rgb(60, 60, 60)', 'rgb(210, 210, 210)'];
         upperBound = 742;
         myTickVal = [0, 50, 100, 150, 250, 350, 500, 650, 800];
         myTickText = [0, 50, 100, 150, 250, 350, 500, 650, 800];
         myRange = [0, 800];
+        insideTextColor = ['white', 'black'];
     }
 
-    if(state === 'f') {
+    if(calculator.typeOfPlayer === 'f') {
         colorArrays = ['rgb(18,103,48)', 'rgb(60, 60, 60)'];
         upperBound = 128;
         myTickVal = [0, 5, 10, 20, 30, 50, 75, 100, 140];
         myTickText = [0, 5, 10, 20, 30, 50, 75, 100, 140];
         myRange = [0, 140];
+        insideTextColor = ['white', 'white'];
     }
 
-    if(state === 'of') {
+    if(calculator.typeOfPlayer === 'of') {
         colorArrays = ['rgb(18,103,48)', 'rgb(210, 210, 210)'];
         upperBound = 128;
         myTickVal = [0, 5, 10, 20, 30, 50, 75, 100, 140];
         myTickText = [0, 5, 10, 20, 30, 50, 75, 100, 140];
         myRange = [0, 140];
+        insideTextColor = ['white', 'black'];
     }
 
 
@@ -200,8 +291,13 @@ calculator.update.effortBar = function(e, barId, ourSide, axisOn, state) {
 
         mytextpos = 'inside';
 
-        if(barId === 'bar1') { //NEED THE SAME FOR FOLLOWER BAR ID
-            somecolor = 'white';
+
+        if(barId === 'barl1') {
+            somecolor = insideTextColor[0];
+        }
+
+        if(barId === 'barl2') {
+            somecolor = insideTextColor[1];
         }
 
     }
@@ -235,7 +331,7 @@ calculator.update.effortBar = function(e, barId, ourSide, axisOn, state) {
     var papercolors = ['rgb(60, 60, 60)', 'rgb(210, 210, 210)', 'rgb(18,103,48)'];
     var pindex = 1;
 
-    if(state === 'l') {
+    if(calculator.typeOfPlayer === 'l') {
 
         if(barId === 'barl1'){//darkgray white //NEED TO DO FOR 4 OTHER IDS
             pindex=0;
@@ -250,7 +346,7 @@ calculator.update.effortBar = function(e, barId, ourSide, axisOn, state) {
 
     }
 
-    if(state === 'f') {
+    if(calculator.typeOfPlayer === 'f') {
 
         if(barId === 'barl1'){//darkgreen white
             pindex=2;
@@ -265,7 +361,7 @@ calculator.update.effortBar = function(e, barId, ourSide, axisOn, state) {
 
     }
 
-    if(state === 'of') {
+    if(calculator.typeOfPlayer === 'of') {
 
         if(barId === 'barl1'){//darkgreen white
             pindex=2;
@@ -319,14 +415,14 @@ calculator.update.effortBar = function(e, barId, ourSide, axisOn, state) {
     Plotly.react(barId, data, layout, {displayModeBar: false});
 }
 
-calculator.update.effortSliderRange = function(state) {
+calculator.update.effortSliderRange = function() {
 
     var myMax;
 
-    if(state === 'l') {
+    if(calculator.typeOfPlayer === 'l') {
         myMax = 800;
     }
-    if(state === 'f' || state === 'of') {
+    if(calculator.typeOfPlayer === 'f' || calculator.typeOfPlayer === 'of') {
         myMax = 140;
     }
 
@@ -535,39 +631,48 @@ calculator.update.totalSaboBar = function(a, b) {
 
 calculator.update.powerBarDynamicText = function(place) {
 
+    $('.pTitleDynamicLeft').css({'transition':'0s', 'opacity':'0'});
+    $('.pTitleDynamicMiddle').css({'transition':'0s', 'opacity':'0'});
+    $('.pTitleDynamicRight').css({'transition':'0s', 'opacity':'0'});
+
     if(place === 'middle') {
 
-        $('.pTitleDynamicLeft').css({'transition':'3s', 'margin-left':'353px', 'margin-right':'5px'});
-        $('.pTitleDynamicMiddle').css({'transition':'3s', 'margin-left':'103px', 'margin-right':'-21px'});
-        $('.pTitleDynamicRight').css({'transition':'3s', 'marign-left':'5px'});
+        $('.pTitleDynamicLeft').css({'transition':'0s', 'opacity':'1'});
+        $('.pTitleDynamicMiddle').css({'transition':'0s', 'opacity':'1'});
+        $('.pTitleDynamicRight').css({'transition':'0s', 'opacity':'1'});
+
+        $('.pTitleDynamicLeft').css({'transition':'0s', 'margin-left':'353px', 'margin-right':'5px'});
+        $('.pTitleDynamicMiddle').css({'transition':'0s', 'margin-left':'103px', 'margin-right':'-21px'});
+        $('.pTitleDynamicRight').css({'transition':'0s', 'marign-left':'5px'});
 
     }
 
     if(place === 'left') {
 
-        $('.pTitleDynamicLeft').css({'transition':'3s', 'margin-left':'15px', 'margin-right':'5px'});
-        $('.pTitleDynamicMiddle').css({'transition':'3s', 'margin-left':'29px', 'margin-right':'-21px'});
+        $('.pTitleDynamicLeft').css({'transition':'0s', 'opacity':'1'});
+        $('.pTitleDynamicMiddle').css({'transition':'0s', 'opacity':'1'});
+        $('.pTitleDynamicRight').css({'transition':'0s', 'opacity':'1'});
+
+        $('.pTitleDynamicLeft').css({'transition':'0s', 'margin-left':'15px', 'margin-right':'5px'});
+        $('.pTitleDynamicMiddle').css({'transition':'0s', 'margin-left':'29px', 'margin-right':'-21px'});
 
     }
 
     if(place === 'right') {
 
-        $('.pTitleDynamicLeft').css({'transition':'3s', 'margin-left':'758px', 'margin-right':'41px'});
-        $('.pTitleDynamicMiddle').css({'transition':'3s', 'margin-left':'0px', 'margin-right':'-21px'});
+        $('.pTitleDynamicLeft').css({'transition':'0s', 'opacity':'1'});
+        $('.pTitleDynamicMiddle').css({'transition':'0s', 'opacity':'1'});
+        $('.pTitleDynamicRight').css({'transition':'0s', 'opacity':'1'});
+
+        $('.pTitleDynamicLeft').css({'transition':'0s', 'margin-left':'758px', 'margin-right':'41px'});
+        $('.pTitleDynamicMiddle').css({'transition':'0s', 'margin-left':'0px', 'margin-right':'-21px'});
 
     }
 
-    if(place === 'none') {
-
-        $('.pTitleDynamicLeft').css({'transition':'0s', 'opacity':'0'});
-        $('.pTitleDynamicMiddle').css({'transition':'0s', 'opacity':'0'});
-        $('.pTitleDynamicRight').css({'transition':'0s', 'opacity':'0'});
-
-    }
 
 }
 
-calculator.update.efficiencyBar = function(showText, state) {
+calculator.update.efficiencyBar = function() {
 
     var efi1, efi2;
     efi1 = efi;
@@ -576,13 +681,13 @@ calculator.update.efficiencyBar = function(showText, state) {
     var val1 = efi1 / (efi1 + efi2);
     var val2 = efi2 / (efi1 + efi2);
 
-    if(!showText) {
+    if(!calculator.dynamicPowerBarText) {
 
-        calculator.update.powerBarDynamicText('none');
+        calculator.update.powerBarDynamicText();
 
     }
 
-    if(efi1 === efi2 && showText) {
+    if(efi1 === efi2 && calculator.dynamicPowerBarText) {
 
         calculator.update.powerBarDynamicText('middle');
 
@@ -590,7 +695,7 @@ calculator.update.efficiencyBar = function(showText, state) {
 
     if((efi1 / efi2) > 1){
         var myText = (val1 >= 0.99) ? '100+' : (efi1 / efi2).toFixed(2);
-        if(showText) {
+        if(calculator.dynamicPowerBarText) {
             calculator.update.powerBarDynamicText('left');
         }
     } else {
@@ -599,7 +704,7 @@ calculator.update.efficiencyBar = function(showText, state) {
 
     if((efi1 / efi2) < 1){
         var myText2 = (val2 >= 0.99) ? '100+' : (efi2 / efi1).toFixed(2);
-        if(showText) {
+        if(calculator.dynamicPowerBarText) {
             calculator.update.powerBarDynamicText('right');
         }
     } else {
@@ -619,13 +724,13 @@ calculator.update.efficiencyBar = function(showText, state) {
     var ofcolors = ['rgb(18,103,48)', 'rgb(210,210,210)'];
     var cA = Array(2);
 
-    if(state === 'l') {
+    if(calculator.typeOfPlayer === 'l') {
         cA = lcolors;
     }
-    if(state === 'f') {
+    if(calculator.typeOfPlayer === 'f') {
         cA = fcolors;
     }
-    if(state === 'of') {
+    if(calculator.typeOfPlayer === 'of') {
         cA = ofcolors;
     }
 
@@ -821,7 +926,7 @@ calculator.update.efficiencies = function() {
     efi = (1 + th) / (1 + ts);
     oefi = (1 + toh) / (1 + tos);
 
-    calculator.update.efficiencyBar(false, 'l');
+    calculator.update.efficiencyBar(false);
 
 }
 
@@ -832,6 +937,7 @@ calculator.update.probability = function() {
     pwin = ((efo + oefo) === 0) ? 0.5 : (efefo / (efefo + oefefo));
 
     calculator.update.pie();
+    // calculator.update.pie2();
 
 }
 
@@ -859,12 +965,18 @@ calculator.update.resultTexts = function(w) {
     if(resultTextsTag === 'leader') {
         winnerRole = 'Continue as Leader';
         loserRole = 'Became a Follower';
-        winnerPrize = 1200;
+        winnerPrize = 1000;
     }
-    if(resultTextsTag === 'follower' || resultTextsTag === 'generic') {
+    if(resultTextsTag === 'follower') {
         winnerRole = 'Became the Leader';
         loserRole = 'Continue as Follower';
         winnerPrize = 0;
+    }
+    if(resultTextsTag === 'generic') {
+        winnerRole = 'Upgrade in role';
+        loserRole = 'Downgrade in role';
+
+        winnerPrize = 'PRIZE';
     }
 
     var tokenTag1, tokenTag2;
@@ -892,9 +1004,6 @@ calculator.update.resultTexts = function(w) {
     roleRight.innerHTML = w === 2 ? winnerRole : loserRole;
 
     if(resultTextsTag === 'generic') {
-
-        winnerPrize = 'PRIZE';
-
 
         prizeLeft.innerHTML = w === 1 ? winnerPrize : 0;
         prizeRight.innerHTML = w === 2 ? winnerPrize : 0;
@@ -963,26 +1072,26 @@ calculator.update.resultTexts = function(w) {
 calculator.update.resultTextColors = function(w) {
 
     if(w === 1) {
-        $('.p1, .np1, .f1NetPayoff, .f2NetPayoff').css({'color':'indigo'});
+        $('.p1, .np1, .f1NetPayoff, .f2NetPayoff').css({'color':'blue'});
         $('.p2').css({'color':'black'});
-        $('.np2, .of1NetPayoff, .of2NetPayoff').css({'color':'darkorange'});
+        $('.np2, .of1NetPayoff, .of2NetPayoff').css({'color':'red'});
     }
 
     if(w === 2) {
-        $('.p2, .np2, .of1NetPayoff, .of2NetPayoff').css({'color':'indigo'});
+        $('.p2, .np2, .of1NetPayoff, .of2NetPayoff').css({'color':'blue'});
         $('.p1').css({'color':'black'});
-        $('.np1, .f1NetPayoff, .f2NetPayoff').css({'color':'darkorange'});
+        $('.np1, .f1NetPayoff, .f2NetPayoff').css({'color':'red'});
     }
 
     if(oefo > 0 && w === 1) {
-        $('.np2').css({'color':'darkorange'});
+        $('.np2').css({'color':'red'});
     }
 
     if(efo > 0 && w === 2) {
-        $('.np1').css({'color':'darkorange'});
+        $('.np1').css({'color':'red'});
     }
 
-    $('.c1, .c2').css({'color':'darkorange'});
+    $('.c1, .c2').css({'color':'red'});
 
     if(efo === 0 && w === 2) {
         $('.np1').css({'color':'black'});
@@ -1008,13 +1117,13 @@ calculator.update.resultTextColors = function(w) {
             $('.np1').css({'color':'black'});
         }
         if(efo > 0) {
-            $('.np1').css({'color':'darkorange'});
+            $('.np1').css({'color':'red'});
         }
         if(oefo === 0) {
             $('.np2').css({'color':'black'});
         }
         if(oefo > 0) {
-            $('.np2').css({'color':'darkorange'});
+            $('.np2').css({'color':'red'});
         }
     }
 
@@ -1042,53 +1151,160 @@ calculator.update.resultTextColors = function(w) {
 
 }
 
-calculator.update.playerTitles = function(tag) {
+calculator.update.playerTitles = function() {
 
     var p1Text = document.getElementById('player1');
     var p2Text = document.getElementById('player2');
 
-    if(tag === 'LEADER') {
+    var p1, p2;
 
-        p1Text.innerHTML = tag + ' A';
-        p2Text.innerHTML = tag + ' B';
+    if(calculator.typeOfPlayer === 'l') {
 
-        playerLabels = [(tag + ' B'), (tag + ' A')];
-
-    } else if(tag === 'FOLLOWER') {
-
-        p1Text.innerHTML = tag + ' A1';
-        p2Text.innerHTML = tag + ' A2';
-
-        playerLabels = [(tag + ' A2'), (tag + ' A1')];
-
-    } else {
-
-        p1Text.innerHTML = tag + ' 1';
-        p2Text.innerHTML = tag + ' 2';
-
-        playerLabels = [(tag + ' 2'), (tag + ' 1')];
+        p1 = 'LEADER A';
+        p2 = 'LEADER B';
 
     }
 
+    if(calculator.typeOfPlayer === 'f') {
+
+        p1 = 'FOLLOWER A1';
+        p2 = 'FOLLOWER A2';
+
+    }
+
+    if(calculator.typeOfPlayer === 'of') {
+
+        p1 = 'FOLLOWER B1';
+        p2 = 'FOLLOWER B2';
+
+    }
+
+    p1Text.innerHTML = p1;
+    p2Text.innerHTML = p2;
+    calculator.update.playerLabels = [p2, p1];
+
 }
 
-calculator.update.contestName = function(name) {
+calculator.update.contestName = function(stateOfDisplay) {
 
-    var contestName = document.getElementById('contestName');
-    contestName.innerHTML = name;
+    var contestName1, contestName2, contestName21, contestName22;
+    contestName1 = document.getElementById('contestName1');
+    contestName2 = document.getElementById('contestName2');
+    contestName21 = document.getElementById('contestName21');
+    contestName22 = document.getElementById('contestName22');
 
-}
 
-calculator.update.contestNameOG = function(name, show) {
 
-    if(show) {
-        var contestName = document.getElementById('contestNameOG');
-        contestName.innerHTML = name;
+    if(stateOfDisplay === 'hs_and_l_og1') {
+
+        contestName1.innerHTML = 'OUT-GROUP CONTEST I';
+        contestName2.innerHTML = '';
+        $('.ctWrap').css({'margin-bottom':'-67px', 'margin-top':'0px'});
+
+    }
+
+    if(stateOfDisplay === 'hs_og1') {
+
+        $('.ctTop').css({'margin-bottom':'-51px', 'margin-top':'40px'});
+
+        contestName1.innerHTML = 'OUT-GROUP CONTEST I';
+        contestName2.innerHTML = 'FOLLOWERS\' HELP & SABOTAGE';
+
+        $('.contestTitle1').css({'color':'white', 'font-size':'25px',
+        'background':'linear-gradient(90deg, rgb(60,60,60), rgb(210,210,210))',
+        'width':'308px', 'margin-left':'90px', 'margin-top':'-4px',
+        'border-radius':'40px'});
+        $('.contestTitle2').css({'font-size':'22px'});
+
+    }
+
+    if(stateOfDisplay === 'l_og1') {
+
+        $('.ctTop').css({'margin-top':'-45px'});
+        $('.ctBottom').css({'margin-bottom':'-151px', 'margin-top':'7px'});
+
+        contestName21.innerHTML = 'LEADERS\' COMPETITION';
+        contestName22.innerHTML = 'OUT-GROUP CONTEST I';
+
+        $('.contestTitle22').css({'color':'white',
+        'background':'linear-gradient(90deg, rgb(60,60,60), rgb(210,210,210))'});
+
+
+    }
+
+    if(stateOfDisplay === 'iga') {
+
+        contestName2.innerHTML = 'FOLLOWERS\' COMPETITION';
+        contestName1.innerHTML = 'IN-GROUP CONTEST A';
+        $('.ctWrap').css({'margin-bottom':'-97px', 'margin-top':'0px'});
+
+        $('.contestTitle22').css({'color':'white',
+        'background':'linear-gradient(90deg, rgb(18,103,48), rgb(60,60,60))'});
+    }
+
+    if(stateOfDisplay === 'igb') {
+
+        contestName1.innerHTML = 'IN-GROUP CONTEST A';
+        contestName2.innerHTML = '';
+        $('.ctWrap').css({'margin-bottom':'-97px', 'margin-top':'0px'});
+
+        $('.contestTitle22').css({'color':'white',
+        'background':'linear-gradient(90deg, rgb(18,103,48), rgb(210,210,210))'});
+    }
+
+    if(stateOfDisplay === 'hs_and_l_og2') {
+
+        contestName1.innerHTML = 'OUT-GROUP CONTEST II';
+        contestName2.innerHTML = '';
+        $('.ctWrap').css({'margin-bottom':'-67px', 'margin-top':'0px'});
+
+    }
+
+    if(stateOfDisplay === 'hs_og2') {
+
+        contestName1.innerHTML = 'OUT-GROUP CONTEST II';
+        contestName2.innerHTML = 'FOLLOWERS\' HELP & SABOTAGE';
+        $('.ctWrap').css({'margin-bottom':'-51px', 'margin-top':'0px'});
+
+    }
+
+    if(stateOfDisplay === 'l_og2') {
+
+        contestName1.innerHTML = 'OUT-GROUP CONTEST II';
+        contestName2.innerHTML = 'LEADERS\' COMPETITION';
+        $('.ctWrap').css({'margin-bottom':'-97px', 'margin-top':'0px'});
+
     }
 
 
 }
 
+calculator.update.contestSetup = function(state) {
+
+    calculator.typeOfPlayer = state;
+
+    if(calculator.typeOfPlayer === 'l') {
+        resultTextsTag = 'leader';
+        $('.bswLeft').css({'background-color':'rgb(60,60,60)', 'color':'white'});
+        $('.bswRight').css({'background-color':'rgb(210,210,210)', 'color':'black'});
+    }
+    if(calculator.typeOfPlayer === 'f') {
+        resultTextsTag = 'follower';
+        $('.bswLeft').css({'background-color':'rgb(18,103,48)', 'color':'white'});
+        $('.bswRight').css({'background-color':'rgb(60,60,60)', 'color':'white'});
+    }
+    if(calculator.typeOfPlayer === 'of') {
+        resultTextsTag = 'follower';
+        $('.bswLeft').css({'background-color':'rgb(18,103,48)', 'color':'white'});
+        $('.bswRight').css({'background-color':'rgb(210,210,210)', 'color':'black'});
+    }
+
+    calculator.update.effortSliderRange();
+    calculator.setup.refresh();
+
+    calculator.update.playerTitles();
+
+}
 
 //-----sliders-----//
 
@@ -1106,7 +1322,7 @@ calculator.slider.l1.oninput = function() {
     ourSide = true;
     showAxis = true;
 
-    calculator.update.effortBar(efo, 'barl1', ourSide, !showAxis, 'l');
+    calculator.update.effortBar(efo, 'barl1', ourSide, !showAxis);
     calculator.update.resultTexts();
 
     calculator.update.barLabelX('barl1', true);
@@ -1129,7 +1345,7 @@ calculator.slider.l2.oninput = function() {
     ourSide = true;
     showAxis = true;
 
-    calculator.update.effortBar(oefo, 'barl2', !ourSide, !showAxis, 'l');
+    calculator.update.effortBar(oefo, 'barl2', !ourSide, !showAxis);
     calculator.update.resultTexts();
 
     calculator.update.probability();
@@ -1611,158 +1827,729 @@ wiggle.of2 = function(state) {
 
 $('#lSlider1').hover(
     function() {
+
+        $('.activeLeaderLeft').css({'opacity':'1'});
+        $('.passiveLeaderLeft').css({'opacity':'0'});
         setTimeout(()=>calculator.update.barLabelX('barl1', true), 150);
         $('.sliderQuestion_l1').css({'transition':'all 5s cubic-bezier(0.02, 0.96, 0.63, 0.88)', 'transform':'rotateY(1530deg)'});
+
         },
     function() {
+
+        $('.activeLeaderLeft').css({'opacity':'0'});
+        $('.passiveLeaderLeft').css({'opacity':'1'});
         setTimeout(()=>calculator.update.barLabelX('barl1', false), 400);
         calculator.update.barGridX('barl1', false);
         $('.sliderQuestion_l1').css({'transition':'all 5s cubic-bezier(0.02, 0.96, 0.63, 0.88)',  'transform':'rotateY(-90deg)'});
+
     }
 );
 
 $('.bswLeft').hover(
     function() {
+
+        if(allDivHoversActive) {
+            calculator.display.spinButton(false);
+            calculator.display.spinButton2(false);
+        }
+
         if(vibrate.sliderLocked[0]) {
             vibrate.l1Switch = true;
             vibrate.l1(1);
         }
+
     },
     function() {
+
         vibrate.l1Switch = false;
+
+        if(allDivHoversActive) {
+            calculator.display.spinButton2(true);
+        }
+
     }
 );
 
 $('#olSlider1').hover(
     function() {
+
+        $('.activeLeaderRight').css({'opacity':'1'});
+        $('.passiveLeaderRight').css({'opacity':'0'});
         setTimeout(()=>calculator.update.barLabelX('barl2', true), 150);
         $('.sliderQuestion_l2').css({'transition':'all 5s cubic-bezier(0.02, 0.96, 0.63, 0.88)',  'transform':'rotateY(1530deg)'});
+
     },
     function() {
+
+        calculator.display.spinButton2(true);
+        $('.activeLeaderRight').css({'opacity':'0'});
+        $('.passiveLeaderRight').css({'opacity':'1'});
         setTimeout(()=>calculator.update.barLabelX('barl2', false), 400);
         calculator.update.barGridX('barl2', false);
         $('.sliderQuestion_l2').css({'transition':'all 5s cubic-bezier(0.02, 0.96, 0.63, 0.88)',  'transform':'rotateY(-90deg)'});
+
     }
 );
 
 $('.bswRight').hover(
     function() {
+        if(allDivHoversActive) {
+            calculator.display.spinButton(false);
+            calculator.display.spinButton2(false);
+        }
+
         if(vibrate.sliderLocked[1]) {
             vibrate.l2Switch = true;
             vibrate.l2(1);
         }
     },
     function() {
-        vibrate.l2Switch = false;
+        if(allDivHoversActive) {
+            vibrate.l2Switch = false;
+            calculator.display.spinButton2(true);
+        }
     }
 );
 
+
+/************/
+
 $('#vSlider1').hover(
     function() {
+
         setTimeout(()=>calculator.update.barLabelY('barf1', true), 150);
         calculator.display.activeFollowerIcon('spf1L11', true)
-        // $('.sliderQuestion_f1').css({'transition':'all 5s cubic-bezier(0.02, 0.96, 0.63, 0.88)', 'transform':'rotateY(1530deg)'});
+
         },
+
     function() {
+
         setTimeout(()=>calculator.update.barLabelY('barf1', false), 400);
         calculator.display.activeFollowerIcon('spf1L11', false)
         calculator.update.barGridY('barf1', false);
-        // $('.sliderQuestion_f1').css({'transition':'all 5s cubic-bezier(0.02, 0.96, 0.63, 0.88)',  'transform':'rotateY(-90deg)'});
+
     }
 );
 
 $('.lbf1').hover(
     function() {
+        if(mainDivHoverActive && allDivHoversActive) {
+            $('.generalMarginBox').css({'transition':'0.3s', 'height':'575px'});
+            $('.imageWrap23, .payoffWrap').css({'transition':'0.3s', 'opacity':'0'});
+            calculator.hide.followerResults(1);
+
+            calculator.display.spinButton(false);
+        }
         if(vibrate.sliderLocked[2]) {
             vibrate.f1Switch = true;
             vibrate.f1(1);
         }
+
     },
     function() {
+        if(mainDivHoverActive && allDivHoversActive) {
+            if(calculator.display.resultSpaceOpen) {
+
+                calculator.hide.followerResults(0);
+                $('.generalMarginBox').css({'transition':'0.3s', 'height':'670px'});
+
+            } else {
+
+                $('.generalMarginBox').css({'transition':'0.3s', 'height':'575px'});
+                $('.imageWrap23').css({'transition':'0.3s', 'opacity':'1'});
+
+            }
+
+            calculator.display.spinButton(true);
+        }
         vibrate.f1Switch = false;
     }
 );
 
 $('#vSlider2').hover(
     function() {
+
         setTimeout(()=>calculator.update.barLabelY('barf2', true), 150);
         calculator.display.activeFollowerIcon('spf1L12', true);
         $('.sliderQuestion_f2').css({'transition':'all 5s cubic-bezier(0.02, 0.96, 0.63, 0.88)', 'transform':'rotateY(1530deg)'});
+
     },
     function() {
+
         setTimeout(()=>calculator.update.barLabelY('barf2', false), 400);
         calculator.update.barGridY('barf2', false);
         calculator.display.activeFollowerIcon('spf1L12', false);
         $('.sliderQuestion_f2').css({'transition':'all 5s cubic-bezier(0.02, 0.96, 0.63, 0.88)',  'transform':'rotateY(-90deg)'});
+
     }
 );
 
 $('.lbf2').hover(
     function() {
+        if(mainDivHoverActive && allDivHoversActive) {
+            $('.generalMarginBox').css({'transition':'0.3s', 'height':'575px'});
+            $('.imageWrap23, .payoffWrap').css({'transition':'0.3s', 'opacity':'0'});
+
+            if(calculator.display.resultSpaceOpen) {
+
+                calculator.hide.followerResults(1);
+
+            }
+
+            calculator.display.spinButton(false);
+            $('.OGCIcon').css({'margin-top':'-29px'});
+        }
         if(vibrate.sliderLocked[3]) {
             vibrate.f2Switch = true;
             vibrate.f2(1);
         }
     },
     function() {
+        if(mainDivHoverActive && allDivHoversActive) {
+            if(calculator.display.resultSpaceOpen) {
+
+                calculator.hide.followerResults(0);
+                $('.generalMarginBox').css({'transition':'0.3s', 'height':'670px'});
+
+            } else {
+
+            $('.generalMarginBox').css({'transition':'0.3s', 'height':'575px'});
+            $('.imageWrap23').css({'transition':'0.3s', 'opacity':'1'});
+
+        }
+
+        calculator.display.spinButton(true);
+    }
         vibrate.f2Switch = false;
     }
 );
 
 $('#ovSlider1').hover(
     function() {
+
         setTimeout(()=>calculator.update.barLabelY('obarf1', true), 150);
         calculator.display.activeFollowerIcon('spf1L21', true);
         $('.sliderQuestion_of1').css({'transition':'all 5s cubic-bezier(0.02, 0.96, 0.63, 0.88)', 'transform':'rotateY(1530deg)'});
         vibrate.of1Switch = true;
         vibrate.of1(1);
+
         },
     function() {
+
         setTimeout(()=>calculator.update.barLabelY('obarf1', false), 400);
         calculator.update.barGridY('obarf1', false);
         calculator.display.activeFollowerIcon('spf1L21', false)
         $('.sliderQuestion_of1').css({'transition':'all 5s cubic-bezier(0.02, 0.96, 0.63, 0.88)',  'transform':'rotateY(-90deg)'});
         vibrate.of1Switch = false;
+
     }
 );
 
 $('.rbf1').hover(
     function() {
+        if(mainDivHoverActive && allDivHoversActive) {
+            $('.generalMarginBox').css({'transition':'0.3s', 'height':'575px'});
+            $('.imageWrap23, .payoffWrap').css({'transition':'0.3s', 'opacity':'0'});
+
+            if(calculator.display.resultSpaceOpen) {
+
+                calculator.hide.followerResults(1);
+
+            }
+            calculator.display.spinButton(false);
+            $('.OGCIcon').css({'margin-top':'-29px'});
+        }
         if(vibrate.sliderLocked[4]) {
             vibrate.of1Switch = true;
             vibrate.of1(1);
         }
     },
     function() {
+        if(mainDivHoverActive && allDivHoversActive) {
+            if(calculator.display.resultSpaceOpen) {
+
+                calculator.hide.followerResults(0);
+                $('.generalMarginBox').css({'transition':'0.3s', 'height':'670px'});
+
+            } else {
+
+                $('.generalMarginBox').css({'transition':'0.3s', 'height':'575px'});
+                $('.imageWrap23').css({'transition':'0.3s', 'opacity':'1'});
+
+            }
+
+            calculator.display.spinButton(true);
+        }
         vibrate.of1Switch = false;
+
     }
 );
 
 $('#ovSlider2').hover(
     function() {
+
         setTimeout(()=>calculator.update.barLabelY('obarf2', true), 150);
+
         calculator.display.activeFollowerIcon('spf1L22', true);
+
         $('.sliderQuestion_of2').css({'transition':'all 5s cubic-bezier(0.02, 0.96, 0.63, 0.88)', 'transform':'rotateY(1530deg)'});
     },
     function() {
+
         setTimeout(()=>calculator.update.barLabelY('obarf2', false), 400);
+
         calculator.update.barGridY('obarf2', false);
+
         calculator.display.activeFollowerIcon('spf1L22', false);
+
         $('.sliderQuestion_of2').css({'transition':'all 5s cubic-bezier(0.02, 0.96, 0.63, 0.88)',  'transform':'rotateY(-90deg)'});
     }
 );
 
 $('.rbf2').hover(
     function() {
+
+        if(mainDivHoverActive && allDivHoversActive) {
+
+            $('.generalMarginBox').css({'transition':'0.3s', 'height':'575px'});
+            $('.imageWrap23, .payoffWrap').css({'transition':'0.3s', 'opacity':'0'});
+
+            if(calculator.display.resultSpaceOpen) {
+
+                calculator.hide.followerResults(1);
+
+            }
+
+            calculator.display.spinButton(false);
+
+
+            $('.OGCIcon').css({'margin-top':'-29px'});
+
+        }
+
         if(vibrate.sliderLocked[5]) {
             vibrate.of2Switch = true;
             vibrate.of2(1);
         }
+
     },
     function() {
+
+        if(mainDivHoverActive && allDivHoversActive) {
+
+            if(calculator.display.resultSpaceOpen) {
+
+                calculator.hide.followerResults(0);
+                $('.generalMarginBox').css({'transition':'0.3s', 'height':'670px'});
+
+            } else {
+
+                $('.generalMarginBox').css({'transition':'0.3s', 'height':'575px'});
+                $('.imageWrap23').css({'transition':'0.3s', 'opacity':'1'});
+
+            }
+
+            calculator.display.spinButton(true);
+
+        }
+
         vibrate.of2Switch = false;
+
     }
 );
+
+
+/************/
+
+
+$('.hsWrap').hover(
+
+    function() {
+
+        if(mainDivHoverActive && allDivHoversActive) {
+
+
+            $('.ctBottom').css({'transition':'0.3s', 'transition-delay':'0s', 'transform' : 'rotate3d(1, 0, 0, 0.5turn)'});
+            $('.ctBottom').css({'transition':'0.3s', 'transition-delay':'0s', 'opacity':'0'});
+            $('.ctTop').css({'transition':'0.8s', 'transition-delay':'0s', 'transform' : 'rotate3d(1, 0, 0, 1turn)'});
+            $('.ctTop').css({'transition':'0.8s', 'transition-delay':'0s', 'opacity':'1'});
+            // $('.imageWrap23').css({'transition':'0.8s', 'opacity':'1'});
+
+
+            $('.ctTop').css({'transition':'0.15s', 'transform' : 'rotate3d(1, 0, 0, 1turn)'});
+            $('.ctBottom').css({'transition':'0.15s', 'transform' : 'rotate3d(1, 0, 0, 0.5turn)'});
+            $('.ctTop').css({'transition':'0.3s', 'opacity':'1'});
+            $('.ctBottom').css({'transition':'0.3s', 'opacity':'0'});
+
+            calculator.hide.hs(1);
+
+            if(calculator.display.resultSpaceOpen) {
+                $('.generalMarginBox').css({'transition':'0.3s', 'height':'670px'});
+                calculator.hide.followerResults(0);
+            }
+            if(!calculator.display.resultSpaceOpen) {
+                $('.generalMarginBox').css({'transition':'0.3s', 'height':'575px'});
+            }
+            $('.payoffWrap').css({'transition':'0.3s', 'opacity':'0'});
+
+
+
+            $('.wrapMid').css({'transition':'0.3s', 'opacity':'0.5'});
+            $('.wrapLeft, .wrapRight').css({'transition':'0.3s', 'opacity':'1'});
+
+            calculator.display.fightIcon(0);
+
+            calculator.display.spinButton(true);
+            calculator.display.spinButton2(false);
+
+            $('.OGCIcon').css({'margin-top':'-29px'});
+
+        }
+
+    },
+
+    function() {
+
+        if(mainDivHoverActive && allDivHoversActive) {
+
+            $('.payoffWrap').css({'transition':'0.3s', 'opacity':'0'});
+
+            if(calculator.display.resultSpaceOpen) {
+
+
+            }
+
+        }
+    }
+
+)
+
+$('.contestSection').hover(
+
+    function() {
+        console.log('inside contesthover');
+        if(mainDivHoverActive && allDivHoversActive) {
+
+            console.log('inside action');
+            $('.ctTop').css({'transition':'0.3s', 'transition-delay':'0s', 'transform' : 'rotate3d(1, 0, 0, 0.5turn)'});
+            $('.ctTop').css({'transition':'0.3s', 'transition-delay':'0s', 'opacity':'0'});
+            $('.ctBottom').css({'transition':'0.8s', 'transition-delay':'0s', 'transform' : 'rotate3d(1, 0, 0, 1turn)'});
+            $('.ctBottom').css({'transition':'0.8s', 'transition-delay':'0s', 'opacity':'1'});
+            $('.imageWrap23').css({'transition':'0.8s', 'opacity':'1'});
+
+
+            calculator.hide.followerResults(1);
+            $('.generalMarginBox').css({'transition':'0.3s', 'height':'710px'});
+
+            $('.OGCIcon').css({'margin-top':'39px'});
+            $('.wrapMid').css({'transition':'0.3s', 'opacity':'1'});
+            $('.wrapLeft,  .wrapRight').css({'transition':'0.3s', 'opacity':'0.2'});
+
+            calculator.display.fightIcon(true);
+
+            calculator.display.spinButton(false);
+            calculator.display.spinButton2(true);
+
+            if(calculator.display.resultSpaceOpen) {
+                if(spinButtonEnabled2) {
+                    $('.payoffWrap').css({'transition':'0.6s', 'opacity':'1'});
+                }
+            }
+
+            if(!spinButtonEnabled2) {
+                $('.payoffWrap').css({'transition':'0.6s', 'opacity':'0'});
+            }
+
+        }
+
+    },
+
+    function() {
+        if(mainDivHoverActive && allDivHoversActive) {
+
+            if(spinButtonEnabled2) {
+                calculator.hide.hs(true);
+            }
+
+        }
+
+    }
+
+)
+var sp23C = 0;
+
+$('#spinImage23').hover(
+    function() {
+        sp23C = sp23C + 1;
+        var str = 'rotate('+sp23C+'turn)';
+        $('#spinImage23').css({'transform':str});
+    },
+    function() {
+        // calculator.display.outcomeColors(1);
+    }
+)
+
+var spC = 0;
+$('#spinImage').hover(
+    function() {
+        spC = spC + 1;
+        var str = 'rotate('+spC+'turn)';
+        $('#spinImage').css({'transform':str});
+    },
+    function() {
+        // calculator.display.outcomeColors(1);
+    }
+)
+
+// the order of context for the array text is as below
+// need to stick to this order as the x coordinates are predefined accordingly
+// var textArray = ['GROUP A', 'YOU', 'FOLLOWER', 'STRONG', 'WEAK', 1000]
+calculator.stopRolling = false;
+calculator.roll.displayTime = 4500;
+calculator.roll.f1 = function(index, prevIndex, textArray) {
+
+    var fSideText10 = document.getElementById('fSideText10');
+    var fSideText11 = document.getElementById('fSideText11');
+    var fSideText12 = document.getElementById('fSideText12');
+    var fSideText13 = document.getElementById('fSideText13');
+    var fSideText14 = document.getElementById('fSideText14');
+    var fSideText15 = document.getElementById('fSideText15');
+
+    if(!calculator.stopRolling) {
+
+
+        fSideText10.innerHTML = textArray[0];
+        fSideText11.innerHTML = textArray[1];
+        fSideText12.innerHTML = textArray[2];
+        fSideText13.innerHTML = textArray[3];
+        fSideText14.innerHTML = textArray[4];
+        fSideText15.innerHTML = 'Current Balance: ' + textArray[5];
+
+        var str1 = '.fSideText1' + index;
+        var str2 = '.fSideText1' + prevIndex;
+
+        $(str1).css({'transition':'1.5s', 'transform':'rotate(270deg)'});
+        $(str2).css({'transition':'1.5s', 'transform':'rotate(300deg)'});
+        setTimeout(()=>{$(str2).css({'transition':'0s', 'transform':'rotate(200deg)'});}, 1600);
+
+        var m = textArray.length;
+        var nextIndex = index + 1;
+        nextIndex = nextIndex % m;
+        prevIndex = index;
+
+        while(textArray[nextIndex] === -1) {
+            nextIndex = nextIndex + 1;
+            nextIndex = nextIndex % m;
+        }
+
+        setTimeout(()=>calculator.roll.f1(nextIndex, prevIndex, textArray), calculator.roll.displayTime);
+
+    } else {
+
+        fSideText10.innerHTML = 'GOUP A';
+        fSideText11.innerHTML = '';
+        fSideText12.innerHTML = '';
+        fSideText13.innerHTML = '';
+        fSideText14.innerHTML = '';
+        fSideText15.innerHTML = '';
+
+        $('.fSideText10').css({'transition':'1.5s', 'transform':'rotate(270deg)'});
+        $('.fSideText11, .fSideText12, .fSideText13, .fSideText14, .fSideText15').css({'transition':'0s', 'transform':'rotate(200deg)'});
+
+    }
+
+
+}
+
+
+calculator.roll.f2 = function(index, prevIndex, textArray) {
+
+    var fSideText20 = document.getElementById('fSideText20');
+    var fSideText21 = document.getElementById('fSideText21');
+    var fSideText22 = document.getElementById('fSideText22');
+    var fSideText23 = document.getElementById('fSideText23');
+    var fSideText24 = document.getElementById('fSideText24');
+    var fSideText25 = document.getElementById('fSideText25');
+
+    if(!calculator.stopRolling) {
+
+
+        fSideText20.innerHTML = textArray[0];
+        fSideText21.innerHTML = textArray[1];
+        fSideText22.innerHTML = textArray[2];
+        fSideText23.innerHTML = textArray[3];
+        fSideText24.innerHTML = textArray[4];
+        fSideText25.innerHTML = 'Current Balance: ' + textArray[5];
+
+        var str1 = '.fSideText2' + index;
+        var str2 = '.fSideText2' + prevIndex;
+
+        $(str1).css({'transition':'1.5s', 'transform':'rotate(270deg)'});
+        $(str2).css({'transition':'1.5s', 'transform':'rotate(300deg)'});
+        setTimeout(()=>{$(str2).css({'transition':'0s', 'transform':'rotate(200deg)'});}, 1600);
+
+        var m = textArray.length;
+        var nextIndex = index + 1;
+        nextIndex = nextIndex % m;
+        prevIndex = index;
+
+        while(textArray[nextIndex] === -1) {
+            nextIndex = nextIndex + 1;
+            nextIndex = nextIndex % m;
+        }
+
+        setTimeout(()=>calculator.roll.f2(nextIndex, prevIndex, textArray), calculator.roll.displayTime);
+
+    } else {
+
+        fSideText20.innerHTML = 'GOUP A';
+        fSideText21.innerHTML = '';
+        fSideText22.innerHTML = '';
+        fSideText23.innerHTML = '';
+        fSideText24.innerHTML = '';
+        fSideText25.innerHTML = '';
+
+        $('.fSideText20').css({'transition':'1.5s', 'transform':'rotate(270deg)'});
+        $('.fSideText21, .fSideText22, .fSideText23, .fSideText24, .fSideText25').css({'transition':'0s', 'transform':'rotate(200deg)'});
+
+    }
+
+
+}
+
+calculator.roll.f3 = function(index, prevIndex, textArray) {
+
+    var fSideText30 = document.getElementById('fSideText30');
+    var fSideText31 = document.getElementById('fSideText31');
+    var fSideText32 = document.getElementById('fSideText32');
+    var fSideText33 = document.getElementById('fSideText33');
+    var fSideText34 = document.getElementById('fSideText34');
+    var fSideText35 = document.getElementById('fSideText35');
+
+    if(!calculator.stopRolling) {
+
+
+        fSideText30.innerHTML = textArray[0];
+        fSideText31.innerHTML = textArray[1];
+        fSideText32.innerHTML = textArray[2];
+        fSideText33.innerHTML = textArray[3];
+        fSideText34.innerHTML = textArray[4];
+        fSideText35.innerHTML = 'Current Balance: ' + textArray[5];
+
+        var str1 = '.fSideText3' + index;
+        var str2 = '.fSideText3' + prevIndex;
+
+        $(str1).css({'transition':'1.5s', 'transform':'rotate(270deg)'});
+        $(str2).css({'transition':'1.5s', 'transform':'rotate(300deg)'});
+        setTimeout(()=>{$(str2).css({'transition':'0s', 'transform':'rotate(200deg)'});}, 1600);
+
+        var m = textArray.length;
+        var nextIndex = index + 1;
+        nextIndex = nextIndex % m;
+        prevIndex = index;
+
+        while(textArray[nextIndex] === -1) {
+            nextIndex = nextIndex + 1;
+            nextIndex = nextIndex % m;
+        }
+
+        setTimeout(()=>calculator.roll.f3(nextIndex, prevIndex, textArray), calculator.roll.displayTime);
+
+    } else {
+
+        fSideText30.innerHTML = 'GOUP B';
+        fSideText31.innerHTML = '';
+        fSideText32.innerHTML = '';
+        fSideText33.innerHTML = '';
+        fSideText34.innerHTML = '';
+        fSideText35.innerHTML = '';
+
+        $('.fSideText30').css({'transition':'1.5s', 'transform':'rotate(270deg)'});
+        $('.fSideText31, .fSideText32, .fSideText33, .fSideText34, .fSideText35').css({'transition':'0s', 'transform':'rotate(200deg)'});
+
+    }
+
+
+}
+
+calculator.roll.f4 = function(index, prevIndex, textArray) {
+
+    var fSideText40 = document.getElementById('fSideText40');
+    var fSideText41 = document.getElementById('fSideText41');
+    var fSideText42 = document.getElementById('fSideText42');
+    var fSideText43 = document.getElementById('fSideText43');
+    var fSideText44 = document.getElementById('fSideText44');
+    var fSideText45 = document.getElementById('fSideText45');
+
+    if(!calculator.stopRolling) {
+
+
+        fSideText40.innerHTML = textArray[0];
+        fSideText41.innerHTML = textArray[1];
+        fSideText42.innerHTML = textArray[2];
+        fSideText43.innerHTML = textArray[3];
+        fSideText44.innerHTML = textArray[4];
+        fSideText45.innerHTML = 'Current Balance: ' + textArray[5];
+
+        var str1 = '.fSideText4' + index;
+        var str2 = '.fSideText4' + prevIndex;
+
+        $(str1).css({'transition':'1.5s', 'transform':'rotate(270deg)'});
+        $(str2).css({'transition':'1.5s', 'transform':'rotate(300deg)'});
+        setTimeout(()=>{$(str2).css({'transition':'0s', 'transform':'rotate(200deg)'});}, 1600);
+
+        var m = textArray.length;
+        var nextIndex = index + 1;
+        nextIndex = nextIndex % m;
+        prevIndex = index;
+
+        while(textArray[nextIndex] === -1) {
+            nextIndex = nextIndex + 1;
+            nextIndex = nextIndex % m;
+        }
+
+        setTimeout(()=>calculator.roll.f4(nextIndex, prevIndex, textArray), calculator.roll.displayTime);
+
+    } else {
+
+        fSideText40.innerHTML = 'GOUP B';
+        fSideText41.innerHTML = '';
+        fSideText42.innerHTML = '';
+        fSideText43.innerHTML = '';
+        fSideText44.innerHTML = '';
+        fSideText45.innerHTML = '';
+
+        $('.fSideText40').css({'transition':'1.5s', 'transform':'rotate(270deg)'});
+        $('.fSideText41, .fSideText42, .fSideText43, .fSideText44, .fSideText45').css({'transition':'0s', 'transform':'rotate(200deg)'});
+
+    }
+
+
+}
+
+calculator.roll.all = function(on, state) {
+
+    calculator.stopRolling = !on;
+
+    if(state === 'tuto_ashe') {
+
+        var fa1, fa2, fa3, fa4;
+
+        fa1 = ['GROUP A', 'FOLLOWER', 'YOU', 'STRONG', -1,  1000];
+        fa2 = ['GROUP A', 'FOLLOWER', '', 'WEAK', -1,  1000];
+        fa3 = ['GROUP B', 'FOLLOWER', '', 'EQUAL POWER', -1,  1000];
+        fa4 = ['GROUP B', 'FOLLOWER', '', 'EQUAL POWER', -1,  1000];
+
+        calculator.roll.f1(0, 6, fa1);
+        calculator.roll.f2(0, 6, fa2);
+        calculator.roll.f3(0, 6, fa3);
+        calculator.roll.f4(0, 6, fa4);
+
+    }
+
+}
+
+
 
 //-----wheel methods------//
 
@@ -1781,53 +2568,166 @@ calculator.wheel.show = function() {
 
 }
 
-calculator.hide.contestResults = function() {
+calculator.wheel.spin = function(hideType) {
 
-        $('.payoffWrap, .fResults, .fNetPayoffText').css({'opacity':'0'});
-        $('.payoffWrap').css({'margin-top':'-152px'});
-        $('.pWrap').css({'margin-top':'-75px'});
+    if(hideType === 1) {
+        calculator.hide.contestResults();
+    }
 
-}
+    if(hideType === 2) {
+        calculator.hide.contestResults2();
+    }
 
-calculator.wheel.spin = function(showFollowerRole) {
-
-    calculator.hide.contestResults();
 
     calculator.wheel.show();
 
+    spinButtonEnabled = false;
+    spinButtonEnabled2 = false;
 
-    calculator.wheel.create(pwin, 'leaderWheel', 'l');
+    calculator.wheel.create(pwin, 'myWheel');
     calculator.wheel.myWheelObj.stopAnimation(false);
     calculator.wheel.myWheelObj.rotationAngle = 0;
 
     var winner = (pwin > Math.random()) ? 1 : 2;
+    calculator.wheel.winner  = winner;
     var stopAt = calculator.wheel.myWheelObj.getRandomForSegment(winner);
     calculator.wheel.myWheelObj.animation.stopAngle = stopAt;
     calculator.wheel.myWheelObj.startAnimation();
 
-    setTimeout(()=>calculator.update.resultTexts(winner), 1000);
-    setTimeout(()=>calculator.wheel.showResults(winner, showFollowerRole), calculator.wheel.spinDuration*1000);
+    setTimeout(()=>calculator.update.resultTexts(winner), calculator.wheel.spinDuration*1000);
+    setTimeout(()=>calculator.wheel.showResults(winner), calculator.wheel.spinDuration*1000);
 
 }
 
-calculator.wheel.showResults = function(w, showFollowerRole) {
+var allDivHoversActive = true;
+var mainDivHoverActive = true;
+calculator.wheel.showResults = function(w) {
 
-        $('.payoffWrap, .fResults').css({'opacity':'1'});
-        $('.pWrap').css({'margin-top':'20px'});
-        $('.fNetPayoffText').css({'opacity':'1'});
+    calculator.display.resultSpaceOpen = true;
+    spinButtonEnabled = true;
+    spinButtonEnabled2 = true;
+    setTimeout(()=>{mainDivHoverActive = true}, 3000);
 
 
-        calculator.display.followerRole(showFollowerRole);
 
-        calculator.update.payoffHeights(calculator.display.displayed)
+    var trans = calculator.wheel.spinDuration / 2;
+    trans = trans + 's';
 
-        if(w === 1) {
-            $('.resultLeft, .leftSideResult').css({'background-color':'indigo'});
-            $('.resultRight, .rightSideResult').css({'background-color':'darkorange'});
+    $('.payoffWrap, .fResults').css({'transition' : trans, 'opacity':'1'});
+    $('.fNetPayoffText').css({'opacity':'1'});
+
+
+    if(calculator.display.HSandLC) {
+
+        $('.pWrap').css({'margin-top':'40px'});
+        $('.generalMarginBox').css({'height':'800px'});
+
+        calculator.hide.followerResults(false);
+        calculator.hide.hs(1);
+
+    }
+
+
+    if(!calculator.display.onlyLC) {
+        $('.pWrap').css({'margin-top':'5px'});
+    }
+
+
+    calculator.display.followerRole();
+    calculator.update.payoffHeights(calculator.display.displayed)
+
+    calculator.display.outcomeColors(1)
+
+
+}
+
+calculator.display.outcomeColors = function(on) {
+    if(on) {
+        if(calculator.wheel.winner === 1) {
+            $('.resultLeft, .leftSideResult').css({'transition':'1s', 'background-color':'darkblue'});
+            $('.resultRight, .rightSideResult').css({'transition':'1s', 'background-color':'darkred', 'color':'white'});
         } else {
-            $('.resultLeft,.lefttSideResult').css({'background-color':'darkorange'});
-            $('.resultRight, .rightSideResult').css({'background-color':'indigo'});
+            $('.resultLeft, .leftSideResult').css({'transition':'1s', 'background-color':'darkred'});
+            $('.resultRight, .rightSideResult').css({'transition':'1s', 'background-color':'darkblue', 'color':'white'});
         }
+    } else {
+        $('.resultLeft, .leftSideResult').css({'transition':'1s', 'background-color':'rgb(60,60,60)'});
+        $('.resultRight, .rightSideResult').css({'transition':'1s', 'background-color':'rgb(210,210,210)', 'color':'black'});
+    }
+
+}
+
+calculator.hide.followerResults = function(on) {
+    if(on) {
+        $('.pWrap').css({'transition':'0.6s', 'margin-top':'-54px'});
+        $(' .leftSideResult, .rightSideResult, .leftSidePrize, .rightSidePrize, .leftSideRole, .rightSideRole').css({'transition':'0.2s', 'opacity':'0'});
+    }
+
+
+    if(!on) {
+        $('.pWrap').css({'transition':'0.6s', 'margin-top':'40px'});
+        $(' .leftSideResult, .rightSideResult, .leftSidePrize, .rightSidePrize, .leftSideRole, .rightSideRole').css({'transition':'0.7s', 'opacity':'1'});
+    }
+}
+
+calculator.hide.hs = function(o) {
+    $('.followersRight, .followersLeft, .cTop').css({'transition':'0.3s', 'opacity': o.toString()});
+}
+
+calculator.hide.contestResults = function() {
+
+    calculator.display.resultSpaceOpen = false;
+
+    var trans = calculator.wheel.spinDuration / 2;
+    var trans2 = trans * 0.75;
+    trans = trans + 's';
+    trans2 = trans2 + 's';
+
+    $('.payoffWrap, .fResults, .fNetPayoffText').css({'transition' : trans, 'opacity':'0'});
+
+    if(!calculator.display.onlyLC) {
+        $('.pWrap').css({'margin-top':'-75px'});
+    }
+
+    if(calculator.display.HSandLC && calculator.display.rewindSpin) {
+        $('.pWrap').css({'margin-top':'-54px'});
+        $('.generalMarginBox').css({'height':'710px'});
+    }
+
+}
+
+calculator.hide.contestResults2 = function() {
+
+    var trans = calculator.wheel.spinDuration / 2;
+    var trans2 = trans * 0.75;
+    trans = trans + 's';
+    trans2 = trans2 + 's';
+
+    $('.payoffWrap, .fResults, .fNetPayoffText').css({'transition' : trans, 'opacity':'0'});
+
+}
+
+calculator.disable.spinButton1 = function() {
+
+    $('.spinImage').css({'display':'none'});
+
+}
+
+calculator.disable.spinButton2 = function() {
+
+    $('.spinImage23').css({'display':'none'});
+
+}
+
+calculator.enable.spinButton1 = function() {
+
+    $('.spinImage').css({'display':'inline'});
+
+}
+
+calculator.enable.spinButton2 = function() {
+
+    $('.spinImage23').css({'display':'inline'});
 
 }
 
@@ -1852,7 +2752,7 @@ calculator.update.payoffHeights = function(array) {
 
     if(sum === 1 || sum === 2) {
 
-        $('.payoffWrap').css({'margin-top':'-38px'});
+        $('.payoffWrap').css({'margin-top':'-145px'});
         $('.c1, .c2').css({'opacity':'1'});
         $('.bottomText').css({'display':'none'});
 
@@ -1860,7 +2760,7 @@ calculator.update.payoffHeights = function(array) {
 
     if(sum === 3) {
 
-        $('.payoffWrap').css({'margin-top':'-38px'});
+        $('.payoffWrap').css({'margin-top':'-145px'});
         $('.c1, .c2').css({'opacity':'1'});
         $('.bottomText').css({'display':'flex', 'margin-bottom':'-25px'});
 
@@ -1868,7 +2768,7 @@ calculator.update.payoffHeights = function(array) {
 
     if(sum === 4) {
 
-        $('.payoffWrap').css({'margin-top':'-38px'});
+        $('.payoffWrap').css({'margin-top':'-145px'});
         $('.c1, .c2').css({'opacity':'1'});
         $('.bottomText').css({'display':'flex', 'margin-bottom':'0px'});
 
@@ -1881,12 +2781,20 @@ calculator.display.spinButton = function(show) {
 
     var opacity = show ? '1' : '0';
     var cursor = show ? 'pointer' : 'default';
-    $('.spinImage').css({'opacity': opacity, 'cursor' : cursor});
-    spinButtonEnabled = show;
+    $('.spinImage, .minImage').css({'opacity': opacity, 'cursor' : cursor});
+
+    // spinButtonEnabled = show;
 
 }
 
+calculator.display.spinButton2 = function(show) {
 
+    var opacity = show ? '1' : '0';
+    var cursor = show ? 'pointer' : 'default';
+    $('.spinImage23, .minImage2').css({'opacity': opacity, 'cursor' : cursor});
+    // spinButtonEnabled2 = show;
+
+}
 
 
 
@@ -1941,17 +2849,23 @@ calculator.display.role = function(show) {
 
 }
 
-calculator.display.followerRole = function(show) {
+calculator.display.followerRole = function() {
 
-    if(!show) {
+    if(!calculator.showFollowerRole) {
 
         $('.followerRoleText').css({'margin-top':'-55px', 'opacity':'0'});
-        $('.pWrap').css({'margin-top':'-10px'});
+
+        if(!calculator.display.onlyLC) {
+            $('.pWrap').css({'margin-top':'-10px'});
+        }
 
     } else {
 
         $('.followerRoleText').css({'margin-top':'-22px', 'opacity':'1'});
-        $('.pWrap').css({'margin-top':'20px'});
+
+        if(calculator.display.HSandLC) {
+            $('.pWrap').css({'margin-top':'40px'});
+        }
 
     }
 
@@ -1984,13 +2898,15 @@ calculator.display.totalHelpSabo = function(show) {
 
     if(!show) {
 
-        $('.OGCIcon').css({'transition':'0.7s', 'margin-top' : '-42px'});
+        $('.OGCIcon').css({'transition':'0.7s', 'margin-top' : '-29px'});
         $('.followersTotalHS').css({'opacity':'0'});
+        $('.ctWrap').css({'margin-bottom':'-110px'});
 
     } else {
 
         $('.OGCIcon').css({'margin-top' : '0px'});
         $('.followersTotalHS').css({'opacity':'1'});
+        $('.ctWrap').css({'margin-bottom':'-50px'});
 
     }
 
@@ -1998,11 +2914,11 @@ calculator.display.totalHelpSabo = function(show) {
 
 calculator.display.fightIcon = function(show) {
 
-    var display1 = show ? 'flex' : 'none';
-    var display2 = !show ? 'flex' : 'none';
+    var display1 = show ? '1' : '0';
+    // var display2 = !show ? 'flex' : 'none';
 
-    $('.imgwrapfight').css({'display' : display1});
-    $('.verticalSeparator').css({'display' : display2});
+    $('.imgwrapfight').css({'transition':'0.3s', 'opacity' : display1});
+    // $('.verticalSeparator').css({'display' : display2});
 
 }
 
@@ -2071,7 +2987,6 @@ calculator.display.powerBar = function(show) {
     var opacity = show ? '1' : '0';
     $('.pWrap').css({'opacity' : opacity});
 
-
 }
 
 calculator.display.powerBarText = function(tag) {
@@ -2100,9 +3015,9 @@ calculator.display.powerBarText = function(tag) {
 
 calculator.display.powerBarLegend = function(show) {
 
-    var opacity = show ? '1' : '0';
+    var opacity = show ? 'flex' : 'none';
 
-    $('.legendwrapwrap').css({'opacity' : opacity});
+    $('.legendwrapwrap').css({'display' : opacity});
 
 }
 
@@ -2152,6 +3067,17 @@ calculator.display.lockedSliders = function(array) {
 
 }
 
+calculator.display.titles = function(array) {
+    var topt, bopt;
+
+    topt = array[0] ? '1' : '0';
+    bopt = array[1] ? '1' : '0';
+
+    $('.ctTop').css({'opacity':topt});
+    $('.ctBottom').css({'opacity':bopt});
+
+}
+
 
 //----------set methods for initiation------------//
 
@@ -2197,8 +3123,8 @@ calculator.set.sliders = function() {
     $('#olSlider1').prop('value', oefo);
     $('#olSlider1').change();
 
-    calculator.update.effortBar(efo, 'barl1', ourSide, !showAxis, 'l');
-    calculator.update.effortBar(oefo, 'barl2', !ourSide, !showAxis, 'l');
+    calculator.update.effortBar(efo, 'barl1', ourSide, !showAxis);
+    calculator.update.effortBar(oefo, 'barl2', !ourSide, !showAxis);
 
 
     f1 = s1 > 0 ? -s1 : h1;
@@ -2244,6 +3170,169 @@ calculator.set.Xaxis = function() {
 
 }
 
+
+//----------setup methods------------//
+
+calculator.setup.refresh = function() {
+
+    var ourSide, showAxis;
+    ourSide = true;
+    showAxis = true;
+
+    calculator.update.effortBar(efo, 'barl1', ourSide, !showAxis);
+    calculator.update.effortBar(oefo, 'barl2', !ourSide, !showAxis);
+
+    calculator.update.probability();
+    calculator.update.efficiencies();
+
+}
+
+calculator.setup.hs = function(n, showPR) {
+
+    allDivHoversActive = false;
+    calculator.disable.spinButton1();
+    calculator.disable.spinButton2();
+
+    if(n === 1) {
+
+        calculator.hide.contestResults();
+
+        calculator.update.contestName('hs_og1');
+        calculator.update.contestSetup('l');
+        calculator.display.titles([1,0]);
+
+
+        calculator.showFollowerRole = true;
+        calculator.display.followerRole();
+        calculator.display.helpSaboSection(true);
+        calculator.display.helpSaboBars(true);
+        calculator.display.spinButton(false);
+        calculator.display.totalHelpSabo(false);
+        calculator.display.fightIcon(false);
+        calculator.display.helpSaboIcons(true);
+        calculator.display.spinButton(1);
+
+
+        calculator.display.powerBar(showPR);
+        if(showPR) {
+            $('.pWrap').css({'margin-top':'-58px'});
+        } else {
+            $('.pWrap').css({'margin-top':'-150px'});
+        }
+        calculator.display.powerBarText('bottom');
+        calculator.dynamicPowerBarText = false;
+
+
+        calculator.display.contestSection(false);
+
+        calculator.display.onlyHS = true;
+        calculator.display.onlyLC = false;
+        calculator.display.HSandLC = false;
+
+        calculator.display.spinButton2(0);
+
+        $('.generalMarginBox').css({'height' : '475px'});
+
+    }
+
+}
+
+calculator.setup.lc = function(n) {
+
+    if(n === 1) {
+
+        $('.generalMarginBox').css({'height' : '375px'});
+
+        calculator.hide.contestResults();
+        $('.payoffWrap').css({'margin-bottom':'5px'});
+
+
+        calculator.update.contestName('l_og1');
+        calculator.update.contestSetup('l');
+        calculator.display.titles([0,1]);
+
+
+        calculator.display.helpSaboSection(false);
+        calculator.display.spinButton(0);
+
+
+        calculator.display.powerBar(true);
+        calculator.display.powerBarText('none');
+        calculator.dynamicPowerBarText = true;
+        calculator.setup.refresh();
+        $('.pWrap').css({'margin-top':'52px'});
+
+
+        calculator.display.contestSection(true);
+
+        calculator.display.onlyLC = true;
+        calculator.display.onlyHS = false;
+        calculator.display.HSandLC = false;
+
+        calculator.display.spinButton2(1);
+        calculator.display.investment(true);
+        calculator.display.prize(true);
+        calculator.display.netPayoff(true);
+        calculator.display.role(true);
+
+    }
+
+    allDivHoversActive = false;
+    calculator.disable.spinButton1();
+    calculator.disable.spinButton2();
+
+}
+
+calculator.setup.og = function(n) {
+
+    if(n === 1) {
+
+        calculator.hide.contestResults();
+        $('.payoffWrap').css({'margin-bottom':'5px'});
+        $('.generalMarginBox').css({'height':'710px'});
+
+        calculator.update.contestName('hs_og1');
+        calculator.update.contestName('l_og1');
+        calculator.update.contestSetup('l');
+        calculator.display.titles([1,1]);
+        $('.ctTop').css({'margin-top':'35px'});
+
+
+        calculator.showFollowerRole = true;
+        calculator.display.followerRole();
+        calculator.display.helpSaboSection(true);
+        calculator.display.helpSaboBars(true);
+        calculator.display.spinButton(true);
+        calculator.display.rewindSpin = true;
+        calculator.display.totalHelpSabo(false);
+        calculator.display.fightIcon(false);
+        calculator.display.helpSaboIcons(true);
+
+        calculator.display.powerBar(true);
+        calculator.display.powerBarText('none');
+        calculator.dynamicPowerBarText = true;
+        calculator.setup.refresh();
+        $('.pWrap').css({'margin-top':'-54px'});
+
+        calculator.display.contestSection(true);
+
+        calculator.display.onlyHS = false;
+        calculator.display.onlyLC = false;
+        calculator.display.HSandLC = true;
+
+        calculator.display.investment(true);
+        calculator.display.prize(true);
+        calculator.display.netPayoff(true);
+        calculator.display.role(true);
+        calculator.display.spinButton2(true);
+
+    }
+
+    allDivHoversActive = true;
+    calculator.enable.spinButton1();
+    calculator.enable.spinButton2();
+
+}
 
 //-----Icon methods------//
 
@@ -2385,7 +3474,7 @@ icon.tool.updateSize = function(h, s) {
 
     var hRatio = h / 80;
     var sRatio = s / 80;
-    var k = 0.1//0.2
+    var k = 0.2//0.2
 
     var m = (1 + Math.pow(hRatio, k)) / (1 + Math.pow(sRatio, k));
 
@@ -2623,18 +3712,6 @@ map.icon.state = function(state) {
 }
 
 map.icon.full();
-// map.icon.none();
-// map.icon.state('og1');
-// map.icon.state('s2');
-// map.icon.state('s3');
-// map.icon.state('leaderwon');
-// map.icon.state('leaderlost');
-// map.icon.state('s4');
-// map.icon.state('s4toog2');
-// map.icon.state('s3toog2');
-// map.icon.state('og2');
-// map.icon.state('s5');
-// map.icon.state('s6');
 
 map.dashedBox = function(section, show) {
 
@@ -3209,143 +4286,286 @@ map.initiate = function() {
 }
 
 
-map.update('full');
+// map.update('full');
+map.clearAll();
 
 //---------------------------------------------------//
 
 
 var initiate  = function() {
 
+    calculator.update.contestSetup('l') ;
+
     calculator.display.wiggleArrow([0, 0, 0, 0, 0, 0]);
     calculator.display.questionMarks(false);
 
+    calculator.update.contestName('hs_and_l_og1');
+    calculator.update.playerTitles();
 
-    // calculator.update.contestName('WHEEL OF FORTUNE');
-    calculator.update.contestNameOG('OUT-GROUP CONTEST I', true);
-    // calculator.update.contestNameOG('OUT-GROUP CONTEST II', true);
-    // calculator.update.contestName('IN-GROUP CONTEST');
-    calculator.update.playerTitles('LEADER');
+
+    calculator.display.helpSaboSection(true);
+    calculator.display.totalHelpSabo(true);
+    calculator.display.fightIcon(false);
+    calculator.display.helpSaboIcons(true);
+    calculator.display.spinButton(true);
+
+
+    calculator.display.powerBar(true);
+    calculator.display.powerBarText('top');
+    calculator.display.powerBarLegend(false);
+    calculator.display.powerBarText('none');
+
+
+    calculator.display.contestSection(true);
+    calculator.display.spinButton2(true);
+
+
+    calculator.display.investment(true);
+    calculator.display.prize(true);
+    calculator.display.netPayoff(true);
+    calculator.display.role(true);
+    calculator.showFollowerRole = true;
+
+    calculator.set.helpSabo([0,0,0,0,0,0,0,0]);
+    calculator.set.efforts([200,200]);
+    calculator.set.sliders();
+    calculator.update.pie();
+    // calculator.update.pie2();
+
+
+    calculator.update.resultTexts(1);
+
+    calculator.wheel.create(0.99, 'myWheel', 'l');
+
+}
+
+var setup = function() {
+
+    calculator.display.wiggleArrow([0, 0, 0, 0, 0, 0]);
+    calculator.display.questionMarks(false);
+
 
     calculator.set.helpSabo([0,0,0,0,0,0,0,0]);
     calculator.set.efforts([200,200]);
     calculator.set.sliders();
     calculator.update.pie();
 
-    resultTextsTag = 'leader';
-    // resultTextsTag = 'generic';
-    calculator.update.resultTexts(1);
-
-    calculator.wheel.create(0.99, 'leaderWheel', 'l');
-
 }
 
+// initiate();
+setup();
+calculator.setup.og(1);
+// calculator.setup.hs(1,1);
+// calculator.setup.lc(1);
 
-initiate();
-calculator.display.spinButton(true);
-calculator.display.investment(true);
-calculator.display.prize(true);
-calculator.display.netPayoff(false);
-calculator.display.role(false);
+calculator.roll.all(true, 'tuto_ashe');
 
-// // calculator.display.contestSection(false);
-// calculator.display.contestSection(true);
-// calculator.display.helpSaboSection(true);
-// // calculator.display.powerBar(false);
-// calculator.display.powerBar(true);
-// calculator.display.powerBarText('none');
-// calculator.display.powerBarLegend(false);
-//
-// // calculator.display.totalHelpSabo(false);
-// calculator.display.totalHelpSabo(true);
-//
-// calculator.display.fightIcon(false);
-//
-// calculator.display.helpSaboIcons(true);
-// // calculator.display.grayOGC();
-//
-// // calculator.display.helpSaboBars(false);
-// calculator.display.helpSaboBars(true);
 
 icon.set.stage1();
 icon.display.stage1(true);
 
-calculator.display.contestSection(true);
-calculator.display.helpSaboSection(true);
-calculator.display.powerBar(true);
-calculator.display.powerBarText('top');
-calculator.display.powerBarLegend(true);
-calculator.display.totalHelpSabo(true);
-calculator.display.fightIcon(false);
-calculator.display.helpSaboIcons(true);
-calculator.display.powerBarText('none');
+
 
 
 
 var spin = document.getElementById('spinImage');
 var spinButtonEnabled = true;
-var buttonFunction = 0;
 spin.onclick = function() {
     if(spinButtonEnabled) {
-        if(buttonFunction === 0) {
-            $('.spinImage').css({'transition':'0.2s', 'background-color':'lightgray', 'opacity':'0'});
-            setTimeout(()=>{$('.spinImage').css({'transition':'0s', 'transform':'rotate(360deg)'});},200);
-            setTimeout(()=>{$('.spinImage').css({'transition':'0.5s','opacity':'1'});},2000);
-            var showFollowerRole = true;
-            calculator.wheel.spin(showFollowerRole);
-            calculator.display.contestSection(true);
-            // calculator.display.helpSaboSection(false);
-        }
-        if(buttonFunction === 1) {
-            $('.spinImage').css({'transition':'0.5s','background-color':'lime', 'transform':'rotate(0deg)'});
-            calculator.hide.contestResults();
-        }
-        buttonFunction = 1 - buttonFunction;
+        $('.spinImage, .spinImage23, .minImage, .minImage2').css({'transition':'0.2s', 'cursor':'default', 'opacity':'0'});
+        setTimeout(()=>{$('.spinImage, .minImage').css({'transition':'0.2s', 'cursor':'pointer', 'opacity':'1'});},1000);
+        calculator.wheel.spin(2);
+        mainDivHoverActive = false;
     }
 }
 
 
-var rotateCounter = 0;
-var rotateCounter2 = 0;
-var rotate = function() {
-    var array = ['full', 's1', 'og1', 's2', 's3', 's4', 's4?', 'discardFC',
-    'leaderwonleader', 'leaderwonfollower', 'leaderwon',
-    'leaderlostleader', 'leaderlostfollower', 'leaderlost',
-    'followercontest', 'followercontestlost', 'followercontestwon', 'og2', 's5', 's6'];
+var spin2 = document.getElementById('spinImage23');
+var spinButtonEnabled2 = true;
+spin2.onclick = function() {
+    if(spinButtonEnabled2) {
+        $('.spinImage, .spinImage23, .minImage, .minImage2').css({'transition':'0.2s', 'cursor':'default', 'opacity':'0'});
+        setTimeout(()=>{$('.spinImage23, .minImage2').css({'transition':'0.2s', 'cursor':'pointer', 'opacity':'1'});},1000);
+        calculator.wheel.spin(2);
 
-    var array2 = ['og1', 's2', 's3', 's3ands4', 'leaderwon', 'leaderwontoog2',
-    'leaderlost', 'llog2',
-    'og2', 's5', 's6']
-    // console.log(array[rotateCounter]);
-    console.log(array2[rotateCounter2]);
-
-    // map.update(array[rotateCounter]);
-    map.icon.state(array2[rotateCounter2]);
-
-    rotateCounter++;
-    rotateCounter2++;
-
-    if(rotateCounter === array.length) rotateCounter = 0;
-    if(rotateCounter2 === array2.length) rotateCounter2 = 0;
-
-}
-
-var yoyo = document.getElementById('mybutton1');
-yoyo.onclick = function() {
-    rotate();
+        spinButtonEnabled2 = false;
+        mainDivHoverActive = false;
+    }
 }
 
 
-var ok1 = document.getElementById('ok1');
 
-ok1.onclick = function() {
+// var minButton = document.getElementById('minImage');
+//
+// minButton.onclick = function() {
+//
+//
+//
+//     if(calculator.display.resultSpaceOpen) {
+//
+//         $('.OGCIcon').css({'margin-top':'-29px'});
+//         $('.payoffWrap, .fResults, .fNetPayoffText').css({'transition' : '0.2s', 'opacity':'0'});
+//
+//         if(calculator.display.HSandLC) {
+//             $('.pWrap').css({'margin-top':'-54px'});
+//             $('.generalMarginBox').css({'height':'710px'});
+//         }
+//
+//     }
+//
+//     if(!calculator.display.resultSpaceOpen) {
+//
+//         // $('.OGCIcon').css({'margin-top':'39px'});
+//         $('.payoffWrap, .fResults, .fNetPayoffText').css({'transition' : '0.2', 'opacity':'1'});
+//
+//         if(calculator.display.HSandLC) {
+//             $('.pWrap').css({'margin-top':'40px'});
+//             $('.generalMarginBox').css({'height':'800px'});
+//             calculator.display.followerRole();
+//             calculator.update.payoffHeights(calculator.display.displayed)
+//         }
+//
+//
+//     }
+//
+//     calculator.display.resultSpaceOpen = 1 - calculator.display.resultSpaceOpen
+//
+// }
 
-    // var box2Height = $('.box2').height() + 'px';
-    // console.log(box2Height);
+// var minButton2 = document.getElementById('minImage2');
+//
+// minButton2.onclick = function() {
+//
+//     if(calculator.display.resultSpaceOpen) {
+//
+//         $('.OGCIcon').css({'margin-top':'39px'});
+//         calculator.display.spinButton(false);
+//         $('.payoffWrap, .fResults, .fNetPayoffText').css({'transition' : '0.2s', 'opacity':'0'});
+//
+//         if(calculator.display.HSandLC) {
+//
+//             if(!calculator.display.HSMinimized){
+//                 $('.pWrap').css({'margin-top':'-54px'});
+//                 $('.generalMarginBox').css({'height':'710px'});
+//             }
+//             if(calculator.display.HSMinimized){
+//                 $('.pWrap').css({'margin-top':'70px'});
+//                 $('.generalMarginBox').css({'height':'475px'});
+//                 // $('.hsWrap').css({'opacity':'0', 'height':'135px', 'z-index':'-10'});
+//             }
+//
+//         }
+//
+//
+//
+//     }
+//
+//     if(!calculator.display.resultSpaceOpen) {
+//
+//         // $('.OGCIcon').css({'margin-top':'39px'});
+//         $('.payoffWrap, .fResults, .fNetPayoffText').css({'transition' : '0.2', 'opacity':'1'});
+//
+//         if(calculator.display.HSandLC) {
+//             $('.pWrap').css({'margin-top':'40px'});
+//             $('.generalMarginBox').css({'height':'800px'});
+//             calculator.display.followerRole();
+//             calculator.update.payoffHeights(calculator.display.displayed)
+//
+//             if(calculator.display.HSMinimized){
+//                 $('.pWrap').css({'margin-top':'70px'});
+//                 $('.generalMarginBox').css({'height':'475px'});
+//             }
+//         }
+//
+//
+//     }
+//
+//     calculator.display.resultSpaceOpen = 1 - calculator.display.resultSpaceOpen
+//
+// }
 
-    // $('.box1').css({'position':'absolute', 'opacity':'0', 'z-index':'-1', 'height':'0'});
-    // $('.box2').css({'position':'static', 'opacity':'1', 'z-index':'0', 'height':box2Height});
 
-    $('.box1').css({'display':'none'});
-    $('.box2').css({'display':'flex'});
-
-}
+// var hsMinButton = document.getElementById('topTitleButton');
+// calculator.display.HSMinimized = false;
+//
+// hsMinButton.onclick = function() {
+//
+//     if(calculator.display.resultSpaceOpen){
+//         if(!calculator.display.HSMinimized) {
+//
+//             $('.generalMarginBox').css({'height':'475px'});
+//             $('.hsWrap').css({'display':'none'});
+//             $('.ctTop').css({
+//                 'padding-top':'24px',
+//                 'margin-left':'324px',
+//                 'width':'355px',
+//                 'margin-bottom':'-110px',
+//                 'margin-top':'35px',
+//                 'opacity':'1',
+//                 'box-shadow':'0px 2px 3px 3px black',
+//                 'height':'68px',
+//                 'border-radius':'40px',
+//             });
+//             $('.pWrap').css({'margin-top':'70px'});
+//
+//         }
+//
+//         if(calculator.display.HSMinimized) {
+//             $('.generalMarginBox').css({'height':'800px'});
+//             $('.hsWrap').css({'display':'flex'});
+//             $('.ctTop').css({
+//                 'padding-top':'24px',
+//                 'margin-left':'324px',
+//                 'width':'355px',
+//                 'margin-bottom':'-110px',
+//                 'margin-top':'35px',
+//                 'opacity':'1',
+//                 'box-shadow':'0px 2px 3px 3px black',
+//                 'height':'68px',
+//                 'border-radius':'40px',
+//             });
+//             $('.pWrap').css({'margin-top':'40px'});
+//
+//         }
+//     }
+//
+//     if(!calculator.display.resultSpaceOpen){
+//         if(!calculator.display.HSMinimized) {
+//             $('.generalMarginBox').css({'height':'475px'});
+//             $('.hsWrap').css({'display':'none'});
+//             $('.ctTop').css({
+//                 'padding-top':'24px',
+//                 'margin-left':'324px',
+//                 'width':'355px',
+//                 'margin-bottom':'-110px',
+//                 'margin-top':'35px',
+//                 'opacity':'1',
+//                 'box-shadow':'0px 2px 3px 3px black',
+//                 'height':'68px',
+//                 'border-radius':'40px',
+//             });
+//             $('.pWrap').css({'margin-top':'70px'});
+//         }
+//
+//         if(calculator.display.HSMinimized) {
+//             $('.generalMarginBox').css({'height':'700px'});
+//             $('.hsWrap').css({'display':'flex'});
+//             $('.ctTop').css({
+//                 'padding-top':'24px',
+//                 'margin-left':'324px',
+//                 'width':'355px',
+//                 'margin-bottom':'-110px',
+//                 'margin-top':'35px',
+//                 'opacity':'1',
+//                 'box-shadow':'0px 2px 3px 3px black',
+//                 'height':'68px',
+//                 'border-radius':'40px',
+//             });
+//             $('.pWrap').css({'margin-top':'-54px'});
+//         }
+//     }
+//
+//
+//     calculator.display.HSMinimized = 1 - calculator.display.HSMinimized;
+//
+// }

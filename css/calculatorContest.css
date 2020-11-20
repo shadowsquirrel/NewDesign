@@ -9,6 +9,58 @@
     flex-grow:5;
     margin-top:0px;
 }
+.ctWrap
+{
+    display:flex;
+    flex-direction:row;
+    justify-content: center;
+    margin-bottom:-54px;
+    margin-top:30px;
+}
+.ctWrap2
+{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+}
+.contestTitle1
+{
+    /* box-shadow:0px 2px 2px 0px black; */
+    width:308px;
+    font-size:25px;
+    font-weight:100;
+    text-align:center;
+    margin-bottom:0px;
+
+}
+.contestTitle2
+{
+    width:490px;
+    font-size:20px;
+    font-weight:100;
+    text-align:center;
+}
+.contestTitle21
+{
+    width:490px;
+    font-size:22px;
+    font-weight:100;
+    text-align:center;
+    margin-bottom:2px;
+    margin-top:25px;
+}
+.contestTitle22
+{
+    padding:3px;
+    font-weight:100;
+    text-align:center;
+    width:298px;
+    font-size:26px;
+    margin-left:94px;
+    border-radius:20px;
+    color:white;
+    margin-bottom:-35px;
+}
 .contestSection
 {
     transition:0.7s;
@@ -41,6 +93,12 @@
     margin-bottom:0px;
     padding-top:10px;
     padding-bottom:5px;
+}
+.lTextWrap
+{
+    position:absolute;
+    font-weight:100;
+    font-size:28px;
 }
 /**LEFT SECTION**/
 .playerLeft
@@ -111,6 +169,7 @@
     justify-content: center;
     width: 250px;
     height: 250px;
+    z-index:-1;
 }
 .mywheel
 {
@@ -140,19 +199,28 @@
     justify-content: center;
 }
 /*SPIN THE WHEEL BUTTON*/
-.imageWrap
+.imageWrap23
 {
     opacity: 1;
     z-index:1;
-    margin-top:-21px;
+    margin-top:-29px;
+    margin-bottom:23px;
 }
-.spinImage
+.spinImage23
 {
-    transition:0.35s;
+    position:relative;
+    transition:0.5s;
     opacity :0;
+    z-index:2;
+    margin-top:12px;
+    margin-bottom:-12px;
 }
-
-img.spinImage
+.ctBottom
+{
+    position:relative;
+    z-index:-2;
+}
+img.spinImage23
 {
     padding: 5px;
     border-collapse: separate;
@@ -166,14 +234,14 @@ img.spinImage
     border: none;
     border-radius: 15px;
     box-shadow: 0 6px black;
-    transition: 0.15s;
+    transition: 0.5s;
 }
-
-.spinImage:active
+.spinImage23:active
 {
   box-shadow: 0 2px black;
   transform: translateY(2px);
 }
+/*HIDDEN ICONS*/
 .OGCIcon2
 {
     display:none;

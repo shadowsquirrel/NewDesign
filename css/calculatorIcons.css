@@ -67,12 +67,22 @@ img.splc2
     width:65px;
     /* margin-top:-36px;. */
 }
+.activeLeaderRight
+{
+    opacity:0;
+    position:absolute;
+}
 img.splc1
 {
     transition:0.5s;
     height:85px;
     width:65px;
     /* margin-top:-36px; */
+}
+.activeLeaderLeft
+{
+    opacity:0;
+    position:absolute;
 }
 img.crown
 {
@@ -136,6 +146,7 @@ img.replayButton
     flex-direction:column;
     width:45px;
     transition:0.3s;
+    margin-bottom:10px;
 }
 .imgbottomtext
 {

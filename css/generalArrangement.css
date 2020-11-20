@@ -1,0 +1,46 @@
+.generalMarginBox
+{
+    z-index:1;
+    transition:0.5s;
+}
+.ctTop
+{
+    transition:0.3s;
+    padding-top: 24px;
+    margin-left: 324px;
+    width: 355px;
+    margin-bottom: -110px;
+    margin-top: 35px;
+    opacity: 1;
+    box-shadow:0;
+    height: 68px;
+    border-radius: 40px;
+    cursor:pointer;
+    position:relative;
+    z-index:10;
+}
+/* .ctTop:active
+{
+    box-shadow: black 0px 1px 1px 1px;
+    transform: translateY(2px);
+} */
+/* .ctBottom
+{
+    padding-top: 24px;
+    margin-left: 324px;
+    width: 355px;
+    margin-bottom: -110px;
+    margin-top: 35px;
+    opacity: 1;
+    box-shadow: 0px 2px 3px 3px black;
+    height: 68px;
+    border-radius: 40px;
+    cursor:pointer;
+    position:relative;
+    z-index:10;
+}
+.ctBottom:active
+{
+    box-shadow: 0 2px black;
+    transform: translateY(2px);
+} */
