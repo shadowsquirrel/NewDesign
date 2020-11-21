@@ -1,6 +1,7 @@
 
 var calculator = {
 
+    initiate: {},
     hide: {},
     wheel: {},
     update: {},
@@ -10,7 +11,9 @@ var calculator = {
     setup: {},
     disable: {},
     enable: {},
-    roll: {}
+    roll: {},
+    currentBalance: {},
+    netBalance: {}
 
 };
 
@@ -41,6 +44,7 @@ calculator.display.resultSpaceOpen;
 
 calculator.wheel.spinDuration = 1;
 calculator.wheel.spinNumber = 10;
+calculator.wheel.isSpinning = false;
 
 calculator.wheel.create = function(probability, id) {
 
@@ -69,24 +73,25 @@ calculator.wheel.create = function(probability, id) {
         'numSegments': 2,
         'lineWidth' : 0,
         'outerRadius': 58, // controls the size of the theWheel
-        'textOrientation' : 'vertical',    // Set orientation. horizontal, vertical, curved.
+        'textOrientation' : 'curved',    // Set orientation. horizontal, vertical, curved.
         'textFontFamily'  : 'Courier',     // Monospace font best for vertical and curved.
         'rotationAngle':Math.random()*360,
+        'textFontSize':20,
 
         'segments':
         [
             {
                 'fillStyle' : colors[0],
                 'strokeStyle':'transparent',
-                'textFillStyle': 'white',
-                'text'      : '',
+                // 'textFillStyle': 'white',
+                // 'text'      : 'A wins',
                 'size'      : winwheelPercentToDegrees(a),
             },
             {
                 'fillStyle' : colors[1],
                 'strokeStyle':'transparent',
-                'textFillStyle': 'rgb(60, 60, 60)',
-                'text'      : '',
+                // 'textFillStyle': 'rgb(60, 60, 60)',
+                // 'text'      : 'B wins',
                 'size'      : winwheelPercentToDegrees(b),
             },
         ],
@@ -928,6 +933,8 @@ calculator.update.efficiencies = function() {
 
     calculator.update.efficiencyBar(false);
 
+    calculator.update.lPowerText(efi, oefi);
+
 }
 
 calculator.update.probability = function() {
@@ -1066,6 +1073,19 @@ calculator.update.resultTexts = function(w) {
     of2NetPayoff.innerHTML = -(oh2 + os2) + ((w === 2) ? 100 : 0);
 
     calculator.update.resultTextColors(w);
+
+    //
+    // var f1np, f2np, of1np, of2np, l1np, l2np;
+    //
+    // f1np =  -(h1 + s1) + ((w === 1) ? 100 : 0);
+    // f2np =  -(h2 + s2) + ((w === 1) ? 100 : 0);
+    // of1np =  -(oh1 + os1) + ((w === 2) ? 100 : 0);
+    // of2np =  -(oh2 + os2) + ((w === 2) ? 100 : 0);
+    //
+    // l1np = -efo + ( w === 1 ? winnerPrize : 0);
+    // l2np = -oefo + ( w === 2 ? winnerPrize : 0);
+    //
+    // calculator.update.netBalance([l1np, l2np], [f1np, f2np, of1np, of2np]);
 
 }
 
@@ -2283,8 +2303,17 @@ $('#spinImage23').hover(
         sp23C = sp23C + 1;
         var str = 'rotate('+sp23C+'turn)';
         $('#spinImage23').css({'transform':str});
+
+        calculator.wheel.cruise();
+        calculator.wheel.show();
     },
     function() {
+        if(!calculator.wheel.isSpinning) {
+
+            calculator.wheel.myWheelObj.stopAnimation(false);
+            calculator.wheel.hide();
+
+        }
         // calculator.display.outcomeColors(1);
     }
 )
@@ -2295,8 +2324,17 @@ $('#spinImage').hover(
         spC = spC + 1;
         var str = 'rotate('+spC+'turn)';
         $('#spinImage').css({'transform':str});
+
+        calculator.wheel.cruise();
+        calculator.wheel.show();
     },
     function() {
+        if(!calculator.wheel.isSpinning) {
+
+            calculator.wheel.myWheelObj.stopAnimation(false);
+            calculator.wheel.hide();
+
+        }
         // calculator.display.outcomeColors(1);
     }
 )
@@ -2346,7 +2384,7 @@ calculator.roll.f1 = function(index, prevIndex, textArray) {
 
     } else {
 
-        fSideText10.innerHTML = 'GOUP A';
+        fSideText10.innerHTML = 'GROUP A';
         fSideText11.innerHTML = '';
         fSideText12.innerHTML = '';
         fSideText13.innerHTML = '';
@@ -2360,7 +2398,6 @@ calculator.roll.f1 = function(index, prevIndex, textArray) {
 
 
 }
-
 
 calculator.roll.f2 = function(index, prevIndex, textArray) {
 
@@ -2402,7 +2439,7 @@ calculator.roll.f2 = function(index, prevIndex, textArray) {
 
     } else {
 
-        fSideText20.innerHTML = 'GOUP A';
+        fSideText20.innerHTML = 'GROUP A';
         fSideText21.innerHTML = '';
         fSideText22.innerHTML = '';
         fSideText23.innerHTML = '';
@@ -2457,7 +2494,7 @@ calculator.roll.f3 = function(index, prevIndex, textArray) {
 
     } else {
 
-        fSideText30.innerHTML = 'GOUP B';
+        fSideText30.innerHTML = 'GROUP B';
         fSideText31.innerHTML = '';
         fSideText32.innerHTML = '';
         fSideText33.innerHTML = '';
@@ -2512,7 +2549,7 @@ calculator.roll.f4 = function(index, prevIndex, textArray) {
 
     } else {
 
-        fSideText40.innerHTML = 'GOUP B';
+        fSideText40.innerHTML = 'GROUP B';
         fSideText41.innerHTML = '';
         fSideText42.innerHTML = '';
         fSideText43.innerHTML = '';
@@ -2527,25 +2564,235 @@ calculator.roll.f4 = function(index, prevIndex, textArray) {
 
 }
 
+
+calculator.roll.l1 = function(index, prevIndex, textArray) {
+
+    var lSideText10 = document.getElementById('lSideText10');
+    var lSideText11 = document.getElementById('lSideText11');
+    var lSideText12 = document.getElementById('lSideText12');
+    var lSideText13 = document.getElementById('lSideText13');
+    var lSideText14 = document.getElementById('lSideText14');
+    var lSideText15 = document.getElementById('lSideText15');
+
+    if(!calculator.stopRolling) {
+
+
+        lSideText10.innerHTML = textArray[0];
+        lSideText11.innerHTML = textArray[1];
+        lSideText12.innerHTML = textArray[2];
+        lSideText13.innerHTML = textArray[3];
+        // lSideText13.innerHTML = calculator.roll.l1PowerText;
+        lSideText14.innerHTML = textArray[4];
+        lSideText15.innerHTML = 'Current Balance: ' + textArray[5];
+
+        var str1 = '.lSideText1' + index;
+        var str2 = '.lSideText1' + prevIndex;
+
+        $(str1).css({'transition':'1.5s', 'transform':'rotate(0deg)'});
+        $(str2).css({'transition':'1.5s', 'transform':'rotate(-60deg)'});
+        setTimeout(()=>{$(str2).css({'transition':'0s', 'transform':'rotate(90deg)'});}, 1600);
+
+        var m = textArray.length;
+        var nextIndex = index + 1;
+        nextIndex = nextIndex % m;
+        prevIndex = index;
+
+        while(textArray[nextIndex] === -1) {
+            nextIndex = nextIndex + 1;
+            nextIndex = nextIndex % m;
+        }
+
+        setTimeout(()=>calculator.roll.l1(nextIndex, prevIndex, textArray), calculator.roll.displayTime);
+
+    } else {
+
+        lSideText10.innerHTML = 'GROUP A';
+        lSideText11.innerHTML = '';
+        lSideText12.innerHTML = '';
+        lSideText13.innerHTML = '';
+        lSideText14.innerHTML = '';
+        lSideText15.innerHTML = '';
+
+        $('.lSideText10').css({'transition':'1.5s', 'transform':'rotate(0deg)'});
+        $('.lSideText11, .lSideText12, .lSideText13, .lSideText14, .lSideText15').css({'transition':'0s', 'transform':'rotate(90deg)'});
+
+    }
+
+
+}
+
+calculator.roll.l2 = function(index, prevIndex, textArray) {
+
+    var lSideText20 = document.getElementById('lSideText20');
+    var lSideText21 = document.getElementById('lSideText21');
+    var lSideText22 = document.getElementById('lSideText22');
+    var lSideText23 = document.getElementById('lSideText23');
+    var lSideText24 = document.getElementById('lSideText24');
+    var lSideText25 = document.getElementById('lSideText25');
+
+    if(!calculator.stopRolling) {
+
+
+        lSideText20.innerHTML = textArray[0];
+        lSideText21.innerHTML = textArray[1];
+        lSideText22.innerHTML = textArray[2];
+        lSideText23.innerHTML = textArray[3];
+        // lSideText23.innerHTML = calculator.roll.l2PowerText;
+        lSideText24.innerHTML = textArray[4];
+        lSideText25.innerHTML = 'Current Balance: ' + textArray[5];
+
+        var str1 = '.lSideText2' + index;
+        var str2 = '.lSideText2' + prevIndex;
+
+        $(str1).css({'transition':'1.5s', 'transform':'rotate(0deg)'});
+        $(str2).css({'transition':'1.5s', 'transform':'rotate(-60deg)'});
+        setTimeout(()=>{$(str2).css({'transition':'0s', 'transform':'rotate(90deg)'});}, 1600);
+
+        var m = textArray.length;
+        var nextIndex = index + 1;
+        nextIndex = nextIndex % m;
+        prevIndex = index;
+
+        while(textArray[nextIndex] === -1) {
+            nextIndex = nextIndex + 1;
+            nextIndex = nextIndex % m;
+        }
+
+        setTimeout(()=>calculator.roll.l2(nextIndex, prevIndex, textArray), calculator.roll.displayTime);
+
+    } else {
+
+        lSideText20.innerHTML = 'GROUP A';
+        lSideText21.innerHTML = '';
+        lSideText22.innerHTML = '';
+        lSideText23.innerHTML = '';
+        lSideText24.innerHTML = '';
+        lSideText25.innerHTML = '';
+
+        $('.lSideText20').css({'transition':'1.5s', 'transform':'rotate(0deg)'});
+        $('.lSideText21, .lSideText22, .lSideText23, .lSideText24, .lSideText25').css({'transition':'0s', 'transform':'rotate(90deg)'});
+
+    }
+
+
+}
+
+
+calculator.initiate.currentBalance = function(larray, farray) {
+
+    calculator.currentBalance.f1 = farray[0];
+    calculator.currentBalance.f2 = farray[1];
+    calculator.currentBalance.f3 = farray[2];
+    calculator.currentBalance.f4 = farray[3];
+
+    calculator.currentBalance.l1 = larray[0];
+    calculator.currentBalance.l2 = larray[1];
+
+}
+
+calculator.update.netBalance = function(nplArray, npfArray) {
+
+    calculator.netBalance.f1 = calculator.currentBalance.f1 + npfArray[0];
+    calculator.netBalance.f2 = calculator.currentBalance.f2 + npfArray[1];
+    calculator.netBalance.f3 = calculator.currentBalance.f3 + npfArray[2];
+    calculator.netBalance.f4 = calculator.currentBalance.f4 + npfArray[3];
+
+    calculator.netBalance.l1 = calculator.currentBalance.l1 + nplArray[0];
+    calculator.netBalance.l2 = calculator.currentBalance.l2 + nplArray[1];
+
+}
+
+calculator.update.lPowerText = function(efi1, efi2) {
+
+    if(efi1 > efi2) {
+        calculator.roll.l1PowerText = 'ADVANTAGED';
+        calculator.roll.l2PowerText = 'DISADVANTAGED';
+    }
+
+    if(efi2 > efi1) {
+        calculator.roll.l2PowerText = 'ADVANTAGED';
+        calculator.roll.l1PowerText = 'DISADVANTAGED';
+    }
+
+    if(efi1 === efi2) {
+        calculator.roll.l1PowerText = 'EQUAL POWER';
+        calculator.roll.l2PowerText = 'EQUAL POWER';
+    }
+
+}
+
+
+
+
 calculator.roll.all = function(on, state) {
+
+    var fa1, fa2, fa3, fa4, la1, la2;
 
     calculator.stopRolling = !on;
 
     if(state === 'tuto_ashe') {
 
-        var fa1, fa2, fa3, fa4;
+        fa1 = ['GROUP A', 'FOLLOWER', 'YOU', 'STRONG', -1,  calculator.netBalance.f1];
+        fa2 = ['GROUP A', 'FOLLOWER', '', 'WEAK', -1,  calculator.netBalance.f2];
+        fa3 = ['GROUP B', 'FOLLOWER', '', 'EQUAL POWER', -1,  calculator.netBalance.f3];
+        fa4 = ['GROUP B', 'FOLLOWER', '', 'EQUAL POWER', -1,  calculator.netBalance.f4];
 
-        fa1 = ['GROUP A', 'FOLLOWER', 'YOU', 'STRONG', -1,  1000];
-        fa2 = ['GROUP A', 'FOLLOWER', '', 'WEAK', -1,  1000];
-        fa3 = ['GROUP B', 'FOLLOWER', '', 'EQUAL POWER', -1,  1000];
-        fa4 = ['GROUP B', 'FOLLOWER', '', 'EQUAL POWER', -1,  1000];
-
-        calculator.roll.f1(0, 6, fa1);
-        calculator.roll.f2(0, 6, fa2);
-        calculator.roll.f3(0, 6, fa3);
-        calculator.roll.f4(0, 6, fa4);
+        // la1 = ['GROUP A', 'LEADER', '', calculator.roll.l1PowerText, -1,  calculator.netBalance.l1];
+        // la2 = ['GROUP B', 'LEADER', '', calculator.roll.l2PowerText, -1,  calculator.netBalance.l2];
+        la1 = ['GROUP A', 'LEADER', '', '', -1,  calculator.netBalance.l1];
+        la2 = ['GROUP B', 'LEADER', '', '', -1,  calculator.netBalance.l2];
 
     }
+
+    if(state === 'tuto_sho_hs1') {
+
+        fa1 = ['GROUP A', 'FOLLOWER', -1, -1, -1, -1];
+        fa2 = ['GROUP A', 'FOLLOWER', -1, -1, -1, -1];
+        fa3 = ['GROUP B', 'FOLLOWER', -1, -1, -1, -1];
+        fa4 = ['GROUP B', 'FOLLOWER', -1, -1, -1, -1];
+
+        // la1 = ['GROUP A', 'LEADER', '', calculator.roll.l1PowerText, -1,  calculator.netBalance.l1];
+        // la2 = ['GROUP B', 'LEADER', '', calculator.roll.l2PowerText, -1,  calculator.netBalance.l2];
+        la1 = [-1, -1, -1, -1, -1, -1];
+        la2 = [-1, -1, -1, -1, -1, -1];
+
+    }
+
+    if(state === 'tuto_sho_lc1') {
+
+        fa1 = [-1, -1, -1, -1, -1, -1];
+        fa2 = [-1, -1, -1, -1, -1, -1];
+        fa3 = [-1, -1, -1, -1, -1, -1];
+        fa4 = [-1, -1, -1, -1, -1, -1];
+
+        // la1 = ['GROUP A', 'LEADER', '', calculator.roll.l1PowerText, -1,  calculator.netBalance.l1];
+        // la2 = ['GROUP B', 'LEADER', '', calculator.roll.l2PowerText, -1,  calculator.netBalance.l2];
+        la1 = ['GROUP A', 'LEADER', -1, -1, -1, -1];
+        la2 = ['GROUP B', 'LEADER', -1, -1, -1, -1];
+
+    }
+
+    if(state === 'tuto_sho_og1') {
+
+        fa1 = ['GROUP A', 'FOLLOWER', -1, -1, -1, -1];
+        fa2 = ['GROUP A', 'FOLLOWER', -1, -1, -1, -1];
+        fa3 = ['GROUP B', 'FOLLOWER', -1, -1, -1, -1];
+        fa4 = ['GROUP B', 'FOLLOWER', -1, -1, -1, -1];
+
+        // la1 = ['GROUP A', 'LEADER', '', calculator.roll.l1PowerText, -1,  calculator.netBalance.l1];
+        // la2 = ['GROUP B', 'LEADER', '', calculator.roll.l2PowerText, -1,  calculator.netBalance.l2];
+        la1 = ['GROUP A', 'LEADER', -1, -1, -1, -1];
+        la2 = ['GROUP B', 'LEADER', -1, -1, -1, -1];
+
+    }
+
+    calculator.roll.f1(0, 6, fa1);
+    calculator.roll.f2(0, 6, fa2);
+    calculator.roll.f3(0, 6, fa3);
+    calculator.roll.f4(0, 6, fa4);
+
+    calculator.roll.l1(0, 6, la1);
+    calculator.roll.l2(0, 6, la2);
 
 }
 
@@ -2570,6 +2817,8 @@ calculator.wheel.show = function() {
 
 calculator.wheel.spin = function(hideType) {
 
+    calculator.wheel.isSpinning = true;
+
     if(hideType === 1) {
         calculator.hide.contestResults();
     }
@@ -2584,6 +2833,9 @@ calculator.wheel.spin = function(hideType) {
     spinButtonEnabled = false;
     spinButtonEnabled2 = false;
 
+    calculator.wheel.spinDuration = 1;
+    calculator.wheel.spinNumber = 10;
+
     calculator.wheel.create(pwin, 'myWheel');
     calculator.wheel.myWheelObj.stopAnimation(false);
     calculator.wheel.myWheelObj.rotationAngle = 0;
@@ -2596,6 +2848,24 @@ calculator.wheel.spin = function(hideType) {
 
     setTimeout(()=>calculator.update.resultTexts(winner), calculator.wheel.spinDuration*1000);
     setTimeout(()=>calculator.wheel.showResults(winner), calculator.wheel.spinDuration*1000);
+
+}
+
+calculator.wheel.cruise = function() {
+
+    if(!calculator.wheel.isSpinning) {
+
+        calculator.wheel.show();
+
+        calculator.wheel.spinDuration = 60;
+        calculator.wheel.spinNumber = 6;
+
+        calculator.wheel.create(pwin, 'myWheel');
+        calculator.wheel.myWheelObj.stopAnimation(false);
+        calculator.wheel.myWheelObj.rotationAngle = 0;
+        calculator.wheel.myWheelObj.startAnimation();
+
+    }
 
 }
 
@@ -2624,6 +2894,8 @@ calculator.wheel.showResults = function(w) {
 
         calculator.hide.followerResults(false);
         calculator.hide.hs(1);
+
+        setTimeout(()=>{calculator.wheel.isSpinning = false;}, 3000);
 
     }
 
@@ -3233,6 +3505,8 @@ calculator.setup.hs = function(n, showPR) {
 
         $('.generalMarginBox').css({'height' : '475px'});
 
+        calculator.roll.all(true, 'tuto_sho_hs1');
+
     }
 
 }
@@ -3280,6 +3554,8 @@ calculator.setup.lc = function(n) {
     allDivHoversActive = false;
     calculator.disable.spinButton1();
     calculator.disable.spinButton2();
+
+    calculator.roll.all(true, 'tuto_sho_lc1');
 
 }
 
@@ -3332,6 +3608,8 @@ calculator.setup.og = function(n) {
     calculator.enable.spinButton1();
     calculator.enable.spinButton2();
 
+    calculator.roll.all(true, 'tuto_sho_og1');
+
 }
 
 //-----Icon methods------//
@@ -3365,7 +3643,7 @@ icon.tool.set.myRole = function(array) {
 
         var myRole = array[i] ? 0 : 1;
         var myClass = '.a' + (i + 1) + myRole;
-        var myRoleClass = '.c' + (i + 1);
+        var myRoleClass = '.cr' + (i + 1);
         $(myClass).css({'z-index':'1'});
 
         var myRole2 = array[i] ? '1' : '0';
@@ -4343,12 +4621,17 @@ var setup = function() {
 
     calculator.display.wiggleArrow([0, 0, 0, 0, 0, 0]);
     calculator.display.questionMarks(false);
+    calculator.display.lockedSliders([0, 0, 0, 0, 0, 0])
 
 
     calculator.set.helpSabo([0,0,0,0,0,0,0,0]);
     calculator.set.efforts([200,200]);
     calculator.set.sliders();
     calculator.update.pie();
+
+
+    calculator.initiate.currentBalance([1000, 1000], [1000, 1000, 1000, 1000]);
+    calculator.update.netBalance([-500, 400], [-40, -20, 90, 80]);
 
 }
 
@@ -4358,7 +4641,6 @@ calculator.setup.og(1);
 // calculator.setup.hs(1,1);
 // calculator.setup.lc(1);
 
-calculator.roll.all(true, 'tuto_ashe');
 
 
 icon.set.stage1();

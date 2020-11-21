@@ -174,3 +174,92 @@
 {
     opacity:0;
 }
+/*NET PAYOFF WHEEL*/
+.netPayoffTextAndWheel
+{
+    display:none;
+}
+.netPayoffTextAndWheel2
+{
+    transition:0.5s;
+    display:flex;
+    flex-direction:row;
+    justify-content: space-between;
+    font-size:29px;
+    font-weight:100;
+}
+.netPayoffTableLeft
+{
+    display:flex;
+    flex-direction: row;
+    padding-top:144px;
+}
+.netPayoffTableRight
+{
+    display:flex;
+    flex-direction: row;
+    padding-top:144px;
+}
+.netPayoffTableLeftTitles
+{
+    font-weight:400;
+}
+.netPayoffTableRightTitles
+{
+    font-weight:400;
+}
+.netPayoffTableLeftResults
+{
+    margin-left:10px;
+
+}
+.netPayoffTableRightResults
+{
+    margin-left:10px;
+
+}
+.netPayoffTitleRow
+{
+    opacity:0;
+    transition:0.3s;
+}
+.netPayoffResultRow
+{
+    opacity:0;
+    transition:0.3s;
+}
+.netPayoffWheelWrap
+{
+    margin-top:80px;
+    display:flex;
+    flex-direction:row;
+    justify-content: center;
+}
+.netPayoffWheelWrapWrap
+{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 400px;
+    height: 400px;
+}
+.npWheel
+{
+    position:relative;
+}
+.npWheelArrow
+{
+    z-index:2;
+    opacity:1;
+    width:80px;
+    height:80px;
+    position: absolute;
+    transform:rotate(180deg);
+    margin-top:-38px;
+}
+.netPayoffWheelPickedResult
+{
+    opacity:0;
+    font-size:28px;
+    font-weight:400;
+}

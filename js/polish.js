@@ -6,9 +6,12 @@ var map = {
     opacity: {},
     active: {},
     reset: {},
-    animate: {}
+    animate: {},
+    wheel: {}
 
 };
+
+var data = {};
 
 map.winnerFollowerIndex = 1;
 
@@ -608,6 +611,8 @@ map.animate.winner = function(winnerLeaderIndex, winnerFollowerIndex) {
 map.animate.roundNumber = document.getElementById('roundCount');
 map.animate.roundCount = 1;
 
+
+// map.animate.rotateSectionsSimple([0,0,0],0,0)
 map.animate.rotateSectionsSimple = function(array, counter, metaCounter) {
 
     array[counter] = 1;
@@ -873,7 +878,216 @@ map.animate.showPayoffs = function() {
 }
 
 
-//-----NETPAYOFF 2----//
+//-----WHEEL NETPAYOFF----//
+
+map.display.wheelPayoff = function(on) {
+
+    var d = on ? 'block' : 'none';
+
+    $('.netPayoffTextAndWheel').css({'display' : d});
+
+}
+
+map.wheel.spinDuration = 2;
+map.wheel.spinNumber = 20;
+map.wheel.rotationAngle = 0;
+
+map.wheel.create = function(npArray) {
+
+
+    map.wheel.myWheelObj = new Winwheel({
+        'canvasId': 'myNetPayoffWheel',
+        'numSegments': 10,
+        'lineWidth' : 0,
+        'outerRadius': 200, // controls the size of the theWheel
+        'textOrientation' : 'vertical',    // Set orientation. horizontal, vertical, curved.
+        'textFontFamily'  : 'Monospace',     // Monospace font best for vertical and curved.
+        'textFontSize':30,
+        'rotationAngle': map.wheel.rotationAngle,
+
+        'segments':
+        [
+            {
+                'fillStyle' : 'rgb(60,60,60)',
+                'strokeStyle':'transparent',
+                'textFillStyle': 'white',
+                'text'      : npArray[0].toString(),
+            },
+            {
+                'fillStyle' : 'rgb(210,210,210)',
+                'strokeStyle':'transparent',
+                'textFillStyle': 'black',
+                'text'      : npArray[9].toString(),
+            },
+            {
+                'fillStyle' : 'rgb(60,60,60)',
+                'strokeStyle':'transparent',
+                'textFillStyle': 'white',
+                'text'      : npArray[8].toString(),
+            },
+            {
+                'fillStyle' : 'rgb(210,210,210)',
+                'strokeStyle':'transparent',
+                'textFillStyle': 'black',
+                'text'      : npArray[7].toString(),
+            },
+            {
+                'fillStyle' : 'rgb(60,60,60)',
+                'strokeStyle':'transparent',
+                'textFillStyle': 'white',
+                'text'      : npArray[6].toString(),
+            },
+            {
+                'fillStyle' : 'rgb(210,210,210)',
+                'strokeStyle':'transparent',
+                'textFillStyle': 'black',
+                'text'      : npArray[5].toString(),
+            },
+            {
+                'fillStyle' : 'rgb(60,60,60)',
+                'strokeStyle':'transparent',
+                'textFillStyle': 'white',
+                'text'      : npArray[4].toString(),
+            },
+            {
+                'fillStyle' : 'rgb(210,210,210)',
+                'strokeStyle':'transparent',
+                'textFillStyle': 'black',
+                'text'      : npArray[3].toString(),
+            },
+            {
+                'fillStyle' : 'rgb(60,60,60)',
+                'strokeStyle':'transparent',
+                'textFillStyle': 'white',
+                'text'      : npArray[2].toString(),
+            },
+            {
+                'fillStyle' : 'rgb(210,210,210)',
+                'strokeStyle':'transparent',
+                'textFillStyle': 'black',
+                'text'      : npArray[1].toString(),
+            },
+        ],
+        'animation' :
+        {
+            'type'     : map.wheel.spinType,
+            'duration' : map.wheel.spinDuration,
+            'repeat'   : map.wheel.spinRepeat,
+            'spins'    : map.wheel.spinNumber,
+        }
+    });
+
+    console.log(map.wheel.rotationAngle);
+
+}
+
+map.wheel.cruising = function(startAngle) {
+
+    map.wheel.spinType = 'spinOngoing';
+    map.wheel.spinDuration = 600;
+    map.wheel.spinNumber = 20;
+    map.wheel.spinRepeat = 0;
+    map.wheel.create(map.wheel.netPayoffArray);
+
+    map.wheel.myWheelObj.rotationAngle = startAngle //36;
+
+    map.wheel.myWheelObj.startAnimation();
+
+}
+
+map.wheel.spin = function() {
+
+    map.wheel.spinType = 'spinToStop';
+    map.wheel.spinDuration = 5;
+    map.wheel.spinNumber = 50;
+    map.wheel.spinRepeat = 0;
+    map.wheel.create(map.wheel.netPayoffArray);
+
+    map.wheel.myWheelObj.stopAnimation(false);
+    map.wheel.myWheelObj.rotationAngle = 0;
+
+    var winner = Math.floor(Math.random() * 10) + 1;
+    // map.wheel.winner = winner;
+
+    var stopAt = map.wheel.myWheelObj.getRandomForSegment(winner);
+    map.wheel.myWheelObj.animation.stopAngle = stopAt;
+    map.wheel.myWheelObj.startAnimation();
+
+    setTimeout(()=>map.wheel.showResult(winner), map.wheel.spinDuration*1000);
+
+}
+
+map.wheel.showResult = function(winner) {
+
+    var roundWheelResult = document.getElementById('roundWheelResult');
+    var finalNetPayoffEuro = document.getElementById('finalNetPayoffEuro');
+    var finalNetPayoffToken = document.getElementById('finalNetPayoffToken');
+    var round;
+
+    $('.netPayoffWheelPickedResult').css({'opacity':'1'});
+
+    if(winner === 1) {
+        winner = 0;
+        round = 1;
+
+    } else if(winner != 1) {
+        winner = 11 - winner;
+        round = winner + 1
+    }
+
+    roundWheelResult.innerHTML = round;
+    finalNetPayoffEuro.innerHTML = Math.ceil(map.wheel.netPayoffArray[winner] * 1.5 / 100);
+    finalNetPayoffToken.innerHTML = map.wheel.netPayoffArray[winner];
+
+}
+
+map.wheel.setRoundResult = function(index) {
+
+    // text
+    map.wheel.netPayoffArray[index - 1] = data.netPayoffs[index - 1];
+
+    var str = 'netPayoffResultRound' + index;
+    var span = document.getElementById(str);
+    if(map.wheel.netPayoffArray[index - 1] != '?') {
+        span.innerHTML = map.wheel.netPayoffArray[index - 1];
+        var str2 = '.nptr' + index;
+        $(str2).css({'opacity':'1'});
+        map.wheel.spinToPick = true;
+    }
+
+    if(map.wheel.netPayoffArray[index - 1] === '?') {
+        map.wheel.spinToPick = false;
+    }
+
+
+
+    // wheel
+    map.wheel.rotationAngle = ((index - 1) * 36) - 18;
+    map.wheel.create(map.wheel.netPayoffArray);
+    map.wheel.cruising(map.wheel.rotationAngle)
+
+
+    if(index < 10) {
+        setTimeout(()=>map.wheel.setRoundResult(index + 1), 1520);
+    }
+
+    if(index === 10) {
+
+        setTimeout(()=>map.wheel.cruising(342), 1520);
+        if(map.wheel.spinToPick) {
+            setTimeout(()=>map.wheel.spin(), 3000);
+        }
+
+    }
+
+}
+
+
+data.netPayoffs = [1161, 345, 543, 1491, 654, 342, 1781, 543, 1234, 567];
+data.netPayoffs = [1161, '?', '?', '?', '?', '?', '?', '?', '?', '?'];
+map.wheel.netPayoffArray = ['?', '?', '?', '?', '?', '?', '?', '?', '?', '?'];
+map.wheel.rotationAngle = -18;
+map.wheel.create(map.wheel.netPayoffArray);
 
 //-------------------------//
 //-------------------------//
@@ -983,6 +1197,12 @@ map.display.stage4 = function(highlightBorder) {
 
 
 
+map.showMap();
+map.show.sections();
+
+
+
+/*
 // map.show = function(state) {
 //
 //
@@ -1129,7 +1349,6 @@ var yoyo = document.getElementById('mybutton1');
 yoyo.onclick = function() {
     rotate();
 }
+*/
 
-map.showMap();
-map.show.sections();
 //
