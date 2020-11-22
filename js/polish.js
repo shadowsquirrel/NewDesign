@@ -7,14 +7,21 @@ var map = {
     active: {},
     reset: {},
     animate: {},
-    wheel: {}
+    wheel: {},
+    set: {}
 
 };
 
 var data = {};
 
 map.winnerFollowerIndex = 1;
+map.winnerLeaderIndex = 1;
 
+//--------------------------//
+// fake data generation to be updated by showresult of wheel
+
+//this is not a fake data
+map.og1_topWon = undefined;
 
 //-------------------------//
 //-------------------------//
@@ -225,9 +232,17 @@ map.insideOf = function(contest, myOpt) {
 // [OG1, IG, OG2]
 map.opacity.inside = function(optArray) {
 
-    map.insideOf('og1', optArray[0].toString());
-    map.insideOf('ig', optArray[1].toString());
-    map.insideOf('og2', optArray[2].toString());
+    if(optArray[0] != -1) {
+        map.insideOf('og1', optArray[0].toString());
+    }
+
+    if(optArray[1] != -1) {
+        map.insideOf('ig', optArray[1].toString());
+    }
+
+    if(optArray[2] != -1) {
+        map.insideOf('og2', optArray[2].toString());
+    }
 
 }
 
@@ -268,6 +283,11 @@ map.reset.OG1results = function(activeIG) {
 
     $('.wonLostBoxes').css({'transition':'0.5s', 'opacity': '1'});
     $('.topBoxLeaderResult, .bottomBoxLeaderResult').css({'transition':'0.5s', 'opacity':'0'});
+
+    map.og1_topWon = undefined;
+    $('.topLeaderWon, .bottomLeaderLost').css({'transition':'0s', 'opacity':'0'});
+    $('.topLeaderLost, .bottomLeaderWon').css({'transition':'0s', 'opacity':'0'});
+
     map.opacity.arrowsToResultIcons([0,0]);
 
     map.reset.IGresults(activeIG);
@@ -313,6 +333,8 @@ map.reset.IGresults = function(activeIG) {
 //------SHOW ACTIVE STAGE METHODS-------//
 //------SHOW ACTIVE STAGE METHODS-------//
 
+
+// This serves the same purpose as the below methods but map.active.ig provide selecting top or bottom
 map.active.main = function(logicArray) {
 
     if(1 === logicArray[0]) {
@@ -353,7 +375,7 @@ map.active.main = function(logicArray) {
 
 }
 
-
+// redundant method but nice name so keep it
 map.active.og1 = function(on) {
 
     if(on) {
@@ -414,7 +436,7 @@ map.show.sections = function() {
 
 }
 
-map.show.overview = function() {
+map.show.overview = function(showIGIcons) {
 
     map.closeSpace();
     map.opacity.arrowsToResultIcons([0,0]);
@@ -429,8 +451,15 @@ map.show.overview = function() {
     map.opacity.section([0.1,0.1,0.1]);
     map.opacity.sectionTitles([1,1,1]);
 
+    if(showIGIcons) {
+        map.opacity.cover([1,0,1]);
+        map.opacity.inside([0,1,0]);
+    }
+
 }
 
+// shows og1 with icons makes the other secions opaque
+// does not show the inside of the other sections
 map.show.og1 = function() {
 
     // arrows
@@ -453,6 +482,8 @@ map.show.og1 = function() {
 
 }
 
+
+
 //------ANIMATE METHODS------//
 //------ANIMATE METHODS------//
 //------ANIMATE METHODS------//
@@ -461,7 +492,47 @@ map.show.og1 = function() {
 // show arrow
 // show icon result + hide related leader icon from og1
 //
-map.animate.OG1Outcome = function(player, delay) {
+map.animate.OG1Winner = function(delay) {
+
+    delay = delay === undefined ? 750 : delay;
+
+    map.openSpace();
+    map.active.og1(false);
+    $('.OG1FightIconLime').css({'opacity':'0'});
+    $('.OG1FightIcon').css({'opacity':'0.3'});
+    $('.wonLostBoxes').css({'opacity':'1'});
+
+    var winnerPlayer;
+
+    winnerPlayer = map.winnerLeaderIndex === 1 ? 'top' : 'bottom';
+
+    if(winnerPlayer === 'top') {
+
+        setTimeout(()=>{$('.arrowToTopIconResults').css({'transition':'0.5s', 'opacity':'1'});}, delay)
+
+        setTimeout(()=>{
+            $('.topBoxLeaderResult').css({'transition':'0.5s', 'opacity':'1'});
+            $('.OG1LeaderLeft').css({'transition':'0.5s', 'opacity':'0.3'});
+            map.set.OG1ResultIcons();
+        }, 2 * delay);
+
+    }
+
+    if(winnerPlayer === 'bottom') {
+
+        setTimeout(()=>{$('.arrowToBottomIconResults').css({'transition':'0.5s', 'opacity':'1'});}, delay)
+
+        setTimeout(()=>{
+            $('.bottomBoxLeaderResult').css({'transition':'0.5s', 'opacity':'1'});
+            $('.OG1LeaderRight').css({'transition':'0.5s', 'opacity':'0.3'});
+            map.set.OG1ResultIcons();
+        }, 2 * delay);
+
+    }
+
+}
+
+map.animate.OG1Loser = function(delay) {
 
     delay = delay === undefined ? 750 : delay;
 
@@ -470,40 +541,106 @@ map.animate.OG1Outcome = function(player, delay) {
     $('.OG1FightIconLime').css({'opacity':'0'});
     $('.OG1FightIcon').css({'opacity':'0.3'});
 
-    if(player === 'top') {
+    var loserPlayer;
+
+    loserPlayer = map.winnerLeaderIndex === 1 ? 'bottom' : 'top';
+
+    if(loserPlayer === 'top') {
 
         setTimeout(()=>{$('.arrowToTopIconResults').css({'transition':'0.5s', 'opacity':'1'});}, delay)
 
         setTimeout(()=>{
             $('.topBoxLeaderResult').css({'transition':'0.5s', 'opacity':'1'});
             $('.OG1LeaderLeft').css({'transition':'0.5s', 'opacity':'0.3'});
+            map.set.OG1ResultIcons();
         }, 2 * delay);
 
     }
 
-    if(player === 'bottom') {
+    if(loserPlayer === 'bottom') {
 
         setTimeout(()=>{$('.arrowToBottomIconResults').css({'transition':'0.5s', 'opacity':'1'});}, delay)
 
         setTimeout(()=>{
             $('.bottomBoxLeaderResult').css({'transition':'0.5s', 'opacity':'1'});
             $('.OG1LeaderRight').css({'transition':'0.5s', 'opacity':'0.3'});
+            map.set.OG1ResultIcons();
         }, 2 * delay);
 
     }
 
 }
 
+map.set.OG1ResultIcons = function() {
+
+    var winnerLeader = map.winnerLeaderIndex === 1 ? 'top' : 'bottom';
+
+    if(winnerLeader === 'top') {
+        $('.topLeaderWon, .bottomLeaderLost').css({'transition':'0.3s', 'opacity':'1'});
+        $('.topLeaderLost, .bottomLeaderWon').css({'transition':'0s', 'opacity':'0'});
+    }
+
+    if(winnerLeader === 'bottom') {
+        $('.topLeaderLost, .bottomLeaderWon').css({'transition':'0.3s', 'opacity':'1'});
+        $('.topLeaderWon, .bottomLeaderLost').css({'transition':'0s', 'opacity':'0'});
+    }
+
+}
+
+map.set.OG2ResultingIcons = function() {
+
+    var winnerLeader = map.winnerLeaderIndex === 1 ? 'top' : 'bottom';
+    var winnerFollower = map.winnerFollowerindex === 1 ? 'top' :'bottom';
+
+    if(winnerLeader === 'top') {
+
+        $('.newLeaderKingRight').css({'opacity':'1'});
+
+        if(winnerFollower === 'top') {
+            //lost leader replaces the winner follower's follower place in the group
+            $('.OG2OldLeaderTopRight').css({'opacity':'1'});
+        }
+
+        if(winnerFollower === 'bottom') {
+            $('.OG2OldLeaderBottomRight').css({'opacity':'1'});
+        }
+
+    }
+
+    if(winnerLeader === 'bottom') {
+
+        $('.newLeaderKingLeft').css({'opacity':'1'});
+
+        // notice that this is the winner follower for the top team
+        if(winnerFollower === 'top') {
+            //lost leader replaces the winner follower's follower place in the group
+            $('.OG2OldLeaderTopLeft').css({'opacity':'1'});
+        }
+
+        if(winnerFollower === 'bottom') {
+            $('.OG2OldLeaderBottomLeft').css({'opacity':'1'})
+        }
+
+    }
+
+}
+
+
+
 // point arrow from result icon to IG contest
 // Position the lime crown icon to the middle
 // turn the fight icon from lime to black by hiding limefighticon
 // turn the black fight icon hidden
 // put the red cross
-map.animate.discardIG1 = function(player, delay) {
+map.animate.discardIG_firstStep = function(delay) {
 
     delay = delay === undefined ? 750 : delay;
 
-    if(player === 'top') {
+    var winnerLeader = map.winnerLeaderIndex;
+
+    winnerLeader = map.winnerLeaderIndex === 1 ? 'top' : 'bottom';
+
+    if(winnerLeader === 'top') {
 
         map.opacity.arrowsFromResultIcons([1,-1], [0, -1]);
         setTimeout(()=>map.active.ig([0,-1]), 250);
@@ -520,7 +657,7 @@ map.animate.discardIG1 = function(player, delay) {
 
     }
 
-    if(player === 'bottom') {
+    if(winnerLeader === 'bottom') {
 
         map.opacity.arrowsFromResultIcons([-1,1], [-1, 0]);
         setTimeout(()=>map.active.ig([-1,0]), 250);
@@ -540,47 +677,43 @@ map.animate.discardIG1 = function(player, delay) {
 }
 
 // make the discarded IG opaque show the long arrow hide the short arrow
-map.animate.discardIG2 = function(player, delay) {
+map.animate.discardIG_secondStep = function(player, delay) {
 
-        delay = delay === undefined ? 750 : delay;
+    delay = delay === undefined ? 750 : delay;
 
-        if(player === 'top') {
+    var winnerLeader = map.winnerLeaderIndex;
 
-            map.opacity.arrowsFromResultIcons([0, -1], [1, -1]);
-            $('.IGTopContestWrap').css({'transition':'0.5s','opacity':'0.1'});
-            $('.mapdiscardedXTop').css({'transition':'0.5s','opacity':'0.2'});
-            setTimeout(()=>{map.opacity.arrowsFromResultIcons([0,-1], [1, 0]);}, delay);
+    winnerLeader = map.winnerLeaderIndex === 1 ? 'top' : 'bottom';
 
-        }
+    if(winnerLeader === 'top') {
 
-        if(player === 'bottom') {
+        map.opacity.arrowsFromResultIcons([0, -1], [1, -1]);
+        $('.IGTopContestWrap').css({'transition':'0.5s','opacity':'0.1'});
+        $('.mapdiscardedXTop').css({'transition':'0.5s','opacity':'0.2'});
+        setTimeout(()=>{map.opacity.arrowsFromResultIcons([0,-1], [1, 0]);}, delay);
 
-            map.opacity.arrowsFromResultIcons([-1, 0], [-1, 1]);
-            $('.IGBottomContestWrap').css({'transition':'0.5s','opacity':'0.1'});
-            $('.mapdiscardedXBottom').css({'transition':'0.5s','opacity':'0.2'});
-            setTimeout(()=>{map.opacity.arrowsFromResultIcons([-1, 0], [0, 1]);}, delay);
+    }
 
-        }
+    if(winnerLeader === 'bottom') {
+
+        map.opacity.arrowsFromResultIcons([-1, 0], [-1, 1]);
+        $('.IGBottomContestWrap').css({'transition':'0.5s','opacity':'0.1'});
+        $('.mapdiscardedXBottom').css({'transition':'0.5s','opacity':'0.2'});
+        setTimeout(()=>{map.opacity.arrowsFromResultIcons([-1, 0], [0, 1]);}, delay);
+
+    }
 
 }
 
 // player= top or bottom and winner index = 1 or 0
-map.animate.validIG = function(player, delay, winnerFollowerIndex) {
+map.animate.validateIG = function(delay) {
 
-    var ml = winnerFollowerIndex === 1 ? '-37px' : '37px';
+    var ml = map.winnerFollowerIndex === 1 ? '-37px' : '37px';
 
-    if(player === 'top') {
+    var winnerPlayer = map.winnerLeaderIndex === 1 ? 'top' : 'bottom';
 
-        map.opacity.arrowsFromResultIcons([1,0], [0, -1]);
-        setTimeout(()=>{
-            $('.prizeCrownLimeTop, .IGFI_Top').css({'transition':'0.5s', 'opacity':'1'});
-            $('.prizeCrownBlackTop, .IGFightIconLimeTop').css({'transition':'0.5s', 'opacity':'0'});
-        }, delay)
-        setTimeout(()=>{$('.prizeCrownLimeTop').css({'transition':'2s', 'margin-top':'-24px', 'margin-left': ml});}, 2 * delay)
-
-    }
-
-    if(player === 'bottom') {
+    // Notice that if the winnerPlayer(leader) is top then the bottom IG is validated
+    if(winnerPlayer === 'top') {
 
         map.opacity.arrowsFromResultIcons([0, 1], [-1, 0]);
         setTimeout(()=>{
@@ -591,19 +724,19 @@ map.animate.validIG = function(player, delay, winnerFollowerIndex) {
 
     }
 
-}
+    if(winnerPlayer === 'bottom') {
 
-
-map.animate.winner = function(winnerLeaderIndex, winnerFollowerIndex) {
-
-    if(winnerLeaderIndex === 1) {
-
-        // show winner
-
+        map.opacity.arrowsFromResultIcons([1,0], [0, -1]);
+        setTimeout(()=>{
+            $('.prizeCrownLimeTop, .IGFI_Top').css({'transition':'0.5s', 'opacity':'1'});
+            $('.prizeCrownBlackTop, .IGFightIconLimeTop').css({'transition':'0.5s', 'opacity':'0'});
+        }, delay)
+        setTimeout(()=>{$('.prizeCrownLimeTop').css({'transition':'2s', 'margin-top':'-24px', 'margin-left': ml});}, 2 * delay)
 
     }
 
 }
+
 
 
 //------ROTATING SECTIONS-----//
@@ -728,7 +861,7 @@ map.animate.rotateTextandSection = function() {
 }
 
 
-//-----NETPAYOFF 1----//
+//-----ROTATING NETPAYOFFS ON THE MAP----//
 
 map.animate.startRoundNetPayoffs = function(roundCount) {
 
@@ -1082,6 +1215,8 @@ map.wheel.setRoundResult = function(index) {
 
 }
 
+// map.display.wheelPayoff(1)
+// map.wheel.setRoundResult(1)
 
 data.netPayoffs = [1161, 345, 543, 1491, 654, 342, 1781, 543, 1234, 567];
 data.netPayoffs = [1161, '?', '?', '?', '?', '?', '?', '?', '?', '?'];
@@ -1112,7 +1247,7 @@ map.display.og1 = function() {
 
 map.display.stage2 = function() {
 
-    map.opacity.main([1,0,0]);
+    map.opacity.main([1,0.5,0.1]);
     map.opacity.mainArrowSections([0,0,0]);
     map.active.og1(false);
 
@@ -1140,8 +1275,8 @@ map.display.stage3 = function() {
     map.opacity.mainArrowSections([0,0,0]);
 
     // stage 2 inactive
-    $('.OG1FollowersWrapLeft, .OG1FollowersWrapRight').css({'transition':'0.5s', 'opacity': '0.5'});
-    $('.OG1FollowerArrowsLeft, .OG1FollowerArrowsRight').css({'transition':'0.5s', 'opacity': '0.5'});
+    $('.OG1FollowersWrapLeft, .OG1FollowersWrapRight').css({'transition':'0.5s', 'opacity': '0.4'});
+    $('.OG1FollowerArrowsLeft, .OG1FollowerArrowsRight').css({'transition':'0.5s', 'opacity': '1'});
 
     $('.OG1GroupSeparator').css({'transition':'1s', 'opacity':'0', 'height':'0px'});
 
@@ -1159,8 +1294,11 @@ map.display.stage4 = function(highlightBorder) {
 
     map.opacity.main([1,1,0]);
     map.opacity.cover([0,0,1]);
-    map.opacity.coverArrows([0,1]);
+    map.opacity.coverArrows([0,0]);
     map.opacity.inside([1,1,0]);
+
+    // Hide followers icon
+    $('.OG1FollowersWrapLeft, .OG1FollowersWrapRight').css({'transition':'0.5s', 'opacity': '0.1'});
 
     // hide icon results
     $('.wonLostBoxes').css({'transition':'0.5s', 'opacity': '1'});
@@ -1200,7 +1338,13 @@ map.display.stage4 = function(highlightBorder) {
 map.showMap();
 map.show.sections();
 
-
+map.show.everything = function() {
+    map.opacity.main([1,1,1]);
+    map.opacity.section([0.1,0.1,0.1]);
+    map.opacity.cover([0,0,0]);
+    map.opacity.inside([1,1,1]);
+}
+map.show.everything();
 
 /*
 // map.show = function(state) {

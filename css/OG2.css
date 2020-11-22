@@ -14,7 +14,7 @@ img.OG2ficonLime
     opacity:0;
     z-index:1;
 }
-img.OG2OldLeaderTop
+img.OG2OldLeaderTopLeft
 {
     transition:0s;
     height:50px;
@@ -23,7 +23,7 @@ img.OG2OldLeaderTop
     opacity:0;
     z-index:1;
 }
-img.OG2OldLeaderTopLime
+img.OG2OldLeaderTopLimeLeft
 {
     transition:0s;
     height:50px;
@@ -32,7 +32,7 @@ img.OG2OldLeaderTopLime
     opacity:0;
     z-index:1;
 }
-img.OG2OldLeaderBottom
+img.OG2OldLeaderBottomLeft
 {
     transition:0s;
     height:50px;
@@ -41,7 +41,43 @@ img.OG2OldLeaderBottom
     opacity:1;
     z-index:1;
 }
-img.OG2OldLeaderBottomLime
+img.OG2OldLeaderBottomLimeLeft
+{
+    transition:0s;
+    height:50px;
+    width:30px;
+    position:absolute;
+    opacity:0;
+    z-index:1;
+}
+img.OG2OldLeaderTopRight
+{
+    transition:0s;
+    height:50px;
+    width:30px;
+    position:absolute;
+    opacity:0;
+    z-index:1;
+}
+img.OG2OldLeaderTopLimeRight
+{
+    transition:0s;
+    height:50px;
+    width:30px;
+    position:absolute;
+    opacity:0;
+    z-index:1;
+}
+img.OG2OldLeaderBottomRight
+{
+    transition:0s;
+    height:50px;
+    width:30px;
+    position:absolute;
+    opacity:1;
+    z-index:1;
+}
+img.OG2OldLeaderBottomLimeRight
 {
     transition:0s;
     height:50px;
@@ -92,117 +128,7 @@ img.OG2FightIconLime
     position:absolute;
     opacity:0;
 }
-/*CIRCLES AND ARROWS AND TEXTS*/
-img.OG2f2Circle
-{
-    opacity:0;
-    height:71px;
-    width:80px;
-    position:absolute;
-    z-index:1;
-    margin-top:-60px;
-    margin-left:-24px;
-}
-img.OG2f2CircleArrow
-{
-    opacity:0;
-    height:24px;
-    width:25px;
-    position:absolute;
-    z-index:1;
-    margin-left:30px;
-    margin-top:-17px;
-}
-.OG2f2CircleArrowText
-{
-    opacity:0;
-    position:absolute;
-    z-index:1;
-    margin-left:30px;
-    margin-top:-17px;
-}
-img.newLeaderTextArrow
-{
-    opacity:0;
-    height:24px;
-    width:25px;
-    position:absolute;
-    z-index:1;
-    margin-left:112px;
-    margin-top:-38px;
-}
-.newLeaderText
-{
-    opacity:0;
-    margin-top:-96px;
-    margin-left:79px;
-}
-img.newLeaderCircleLeft
-{
-    opacity:0;
-    height:71px;
-    width:80px;
-    position:absolute;
-    z-index:1;
-    margin-top:-60px;
-    margin-left:-24px;
-}
-img.newLeaderCircleRight
-{
-    opacity:0;
-    height:71px;
-    width:80px;
-    position:absolute;
-    z-index:1;
-    margin-top:-60px;
-    margin-left:-24px;
-}
-img.winnerLeaderArrowRight
-{
-    opacity:0;
-    height:24px;
-    width:25px;
-    position:absolute;
-    z-index:1;
-    margin-left:-26px;
-    margin-top:-17px;
-}
-.winnerLeaderTextRight
-{
-    opacity:0;
-    position: absolute;
-    margin-top:-74px;
-    margin-left:-91px;
-}
-img.OG2BothFollowersCircle
-{
-    opacity:0;
-    height:143px;
-    width:86px;
-    position:absolute;
-    z-index:1;
-    margin-top:-119px;
-    margin-left:-27px;
-    margin-right:-20px;
-}
-img.OG2BothFollowersCircleArrow
-{
-    opacity:0;
-    height:24px;
-    width:25px;
-    position:absolute;
-    z-index:1;
-    margin-left:-26px;
-    margin-top:84px;
-}
-.OG2BothFollowersCircleText
-{
-    opacity:0;
-    position:absolute;
-    margin-top:38px;
-    margin-left:-196px;
-}
-
+/*SECTION*/
 .section3
 {
     position:absolute;
@@ -218,7 +144,7 @@ img.OG2BothFollowersCircleArrow
     font-size:140px;
     margin-top:-47px;
 }
-
+/*OTHER CLASSES*/
 .OG2
 {
     display:flex;
@@ -254,7 +180,6 @@ img.OG2BothFollowersCircleArrow
     margin-right:-8px;
 }
 /*OG1 FOLLOWERS*/
-
 .OG2FollowersWrapLeft
 {
     margin-top:20px;
@@ -370,8 +295,6 @@ img.OG2BothFollowersCircleArrow
     position:absolute;
     opacity:0;
 }
-
-
 /*opacity initiations*/
 .og2f1Leader
 {
