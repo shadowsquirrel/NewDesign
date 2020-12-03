@@ -1,0 +1,65 @@
+/*TREATMENT ICONS*/
+.homo
+{
+    display:flex;
+}
+
+.shetero
+{
+    display:none;
+}
+
+.ashetero
+{
+    display:none;
+}
+/*ME ICONS*/
+.me_og1f1
+{
+    display:none;
+}
+.notme_og1f1
+{
+    display:flex;
+}
+.me_og1f2
+{
+    display:none;
+}
+.notme_og1f2
+{
+    display:flex;
+}
+.me_og1l
+{
+    display:none;
+}
+.notme_og1l
+{
+    display:flex;
+}
+
+.me_og2f1
+{
+    display:none;
+}
+.notme_og2f1
+{
+    display:flex;
+}
+.me_og2f2
+{
+    display:none;
+}
+.notme_og2f2
+{
+    display:flex;
+}
+.me_og2l
+{
+    display:none;
+}
+.notme_og2l
+{
+    display:flex;
+}

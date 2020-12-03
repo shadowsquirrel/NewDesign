@@ -11,19 +11,23 @@
 }
 .verticalSeparator
 {
-    dislay:flex;
+
+    opacity:0;
+    display:flex;
     flex-direction:row;
     justify-content: center;
+    position:absolute;
+    width:50px;
+    height:0px;
 }
 .verticalSection1
 {
-    margin-left:13px;
+    margin-top:29px;
+    margin-left:201px;
+    box-shadow:0px 0px 4px 2px black;
+    border-style:double;
 }
-.verticalSection2
-{
-    margin-right:13px;
-    /* border-left:solid 1px; */
-}
+
 .fNetPayoffText
 {
     opacity:0;
@@ -243,6 +247,7 @@
 }
 .followerRoleText
 {
+    opacity:1;
     margin-top:-22px;
     font-size: 22px;
     width:275px;
@@ -322,6 +327,8 @@
     opacity: 1;
     z-index:1;
     margin-top:-21px;
+    display:flex;
+    justify-content:center;
 }
 .spinImage
 {
@@ -340,7 +347,7 @@ img.spinImage
     outline: none;
     background-color: lime;
     border: none;
-    border-radius: 15px;
+    border-radius: 30px;
     box-shadow: 0 6px black;
     transition: 0.5s;
 }
@@ -351,49 +358,38 @@ img.spinImage
 }
 img.minImage
 {
+    margin-left:482px;
     display:none;
+    position:absolute;
+    margin-top:-10px;
     padding: 5px;
     border-collapse: separate;
     border-spacing: 15px;
-    opacity: 0;
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
     cursor: pointer;
     outline: none;
-    background-color: yellow;
     border: none;
-    border-radius: 15px;
+    background-color: #234f1e;
     box-shadow: 0 6px black;
     transition: 0.15s;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
 }
 .minImage:active
 {
   box-shadow: 0 2px black;
-  transform: translateY(2px);
-}
-img.minImage2
-{
-    display:none;
-    position:relative;
-    z-index:2;
-    padding: 5px;
-    border-collapse: separate;
-    border-spacing: 15px;
-    opacity: 0;
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-    outline: none;
-    background-color: yellow;
-    border: none;
-    border-radius: 15px;
-    box-shadow: 0 6px black;
-    transition: 0.15s;
-}
-.minImage2:active
-{
-  box-shadow: 0 2px black;
-  transform: translateY(2px);
+  /* transform: translateY(2px); */
 }
 
+
 /****/
+
+.ctGhost
+{
+    position:absolute;
+    margin-top:64px;
+    margin-left:245px;
+    opacity:0;
+    display:flex;
+}

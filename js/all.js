@@ -1,11 +1,111 @@
 
 var calculator = {
 
+    globalVariable: {},
+    refresh: {},
+    space: {
+        update:{},
+        open: {},
+        close:{},
+    },
+    icons: {
+        calculate: {},
+        update: {},
+        set: {},
+        rescale: {},
+        show: {},
+        hide: {},
+        enervate:{},
+    },
+    values: {
+        update: {},
+        set: {},
+    },
+    graphics: {
+        update: {},
+        activate: {},
+    },
+    decisionSlider: {
+        leader:{},
+        follower:{},
+    },
+    results: {
+        opacity:{},
+        softHide:{},
+        display:{},
+        update:{},
+        show:{},
+        hide:{},
+        disable:{},
+        leader:{
+            update:{},
+            display:{},
+        },
+    },
+    titles: {
+        hs: {
+            ghost:{},
+        },
+        contest: {},
+        set:{},
+        update:{},
+        opacity:{},
+    },
+    slider : {
+        followerDecision: {},
+        playerDecision: {},
+    },
+    questions: {
+        activate:{},
+        spin1:{},
+        spin2:{},
+    },
+    lock: {
+        switch: {},
+        vibrate: {},
+        activate:{},
+    },
+    button: {
+        enable: {},
+        disable: {},
+        display: {},
+    },
+    pointers: {
+        wiggle: {},
+        activate: {},
+    },
+    section: {
+        all:{
+            adjust: {},
+        },
+        hs: {
+            opacity:{},
+            display:{},
+            set:{},
+            show:{},
+            hide:{}
+        },
+        contest: {
+            show:{},
+            hide:{},
+            display:{},
+        },
+        power: {
+            opacity:{},
+            display:{},
+        },
+        decision: {
+            leader: {},
+            follower: {},
+            player: {},
+        },
+    },
+    opacity: {},
     initiate: {},
     hide: {},
+    show: {},
     wheel: {},
     update: {},
-    slider : {},
     display: {},
     set: {},
     setup: {},
@@ -13,9 +113,14 @@ var calculator = {
     enable: {},
     roll: {},
     currentBalance: {},
-    netBalance: {}
+    netBalance: {},
+    sync: {},
+    flash: {},
+    open:{},
+    close: {},
 
 };
+
 
 var icon = {
 
@@ -34,16 +139,199 @@ var wiggle = {};
 
 var vibrate = {};
 
-calculator.typeOfPlayer;
+
+////////////////////// ICON SORTING ANIMATIONS ////////////////////////////////
+////////////////////// ICON SORTING ANIMATIONS ////////////////////////////////
+////////////////////// ICON SORTING ANIMATIONS ////////////////////////////////
+////////////////////// ICON SORTING ANIMATIONS ////////////////////////////////
+////////////////////// ICON SORTING ANIMATIONS ////////////////////////////////
+////////////////////// ICON SORTING ANIMATIONS ////////////////////////////////
+////////////////////// ICON SORTING ANIMATIONS ////////////////////////////////
+////////////////////// ICON SORTING ANIMATIONS ////////////////////////////////
+////////////////////// ICON SORTING ANIMATIONS ////////////////////////////////
+////////////////////// ICON SORTING ANIMATIONS ////////////////////////////////
+////////////////////// ICON SORTING ANIMATIONS ////////////////////////////////
+
+
+icon.tool.shuffle = function(array) {
+
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+
+    return array;
+
+};
+
+icon.tool.matchIcon = function(array) {
+    for(var i = 0; i < array.length; i++) {
+        var myID = 'a' + (i + 1);
+        var temp = document.getElementById(myID);
+        temp.innerHTML = array[i];
+    }
+}
+
+icon.tool.set.myRole = function(array) {
+
+    $('.p0, .a10, .a11, .a20, .a21, .a30, .a31, .a40, .a41, .a50, .a51, .a60, .a61').css({'z-index':'0'});
+
+    for(var i = 0; i < array.length; i++) {
+
+        var myRole = array[i] ? 0 : 1;
+        var myClass = '.a' + (i + 1) + myRole;
+        var myRoleClass = '.cr' + (i + 1);
+        $(myClass).css({'z-index':'1'});
+
+        var myRole2 = array[i] ? '1' : '0';
+        $(myRoleClass).css({'opacity': myRole2});
+
+    }
+}
+
+icon.stage1.generateSortedArray = function() {
+
+    icon.stage1.sortedArray = icon.tool.shuffle([1,2,3,4,5,6]);
+
+}
+
+icon.set.stage1 = function() {
+
+    var mySort, myRole1, myRole2, roles;
+
+    icon.stage1.generateSortedArray();
+
+    mySort = icon.stage1.sortedArray;
+    myRole1 = icon.tool.shuffle([true, false, false]);
+    myRole2 = icon.tool.shuffle([false, true, false]);
+    roles = myRole1.concat(myRole2);
+
+    icon.tool.matchIcon(mySort);
+    icon.tool.set.myRole(roles);
+
+    $('.imgwrap2').css({'opacity':'0'});
+    $('.playerBracketImage, .playerRandomSortImage, .wrap1, .imgwrap1').css({'opacity':'1'});
+    $('.replayButton').css({'opacity':'0', 'z-index':'-1'});
+    $('.hidder').css({'z-index':'2'});
+
+}
+
+icon.stage1.animateSort = function() {
+
+    icon.stage1.showHide(0);
+    setTimeout(()=>icon.stage1.showHide(1), 500);
+    setTimeout(()=>icon.stage1.showHide(2), 1000);
+    setTimeout(()=>icon.stage1.showHide(3), 1500);
+    setTimeout(()=>icon.stage1.showHide(4), 2000);
+    setTimeout(()=>icon.stage1.showHide(5), 2500);
+    setTimeout(()=>icon.stage1.hideShowButtons(), 2500);
+
+
+}
+
+icon.stage1.showHide = function(index) {
+
+    var myString1, myString2, myNewIndex;
+
+    var newArray = icon.stage1.sortedArray;
+
+    myString1 = '.initialIwIndex' + (index + 1);
+    $(myString1).css({'opacity':'0'});
+
+    myNewIndex = newArray.indexOf(index + 1);
+    myString2 = '.iwIndex' + (myNewIndex + 1);
+    $(myString2).css({'opacity':'1'})
+
+}
+
+icon.stage1.hideShowButtons = function() {
+    $('.playerBracketImage, .playerRandomSortImage, .wrap1').css({'opacity':'0'});
+    $('.replayButton').css({'opacity':'1', 'z-index':'2'});
+    $('.hidder').css({'z-index':'-1'});
+}
+
+icon.stage1.button1 = document.getElementById('stage1RandomButton');
+icon.stage1.button1.onclick = function() {
+
+    icon.stage1.animateSort();
+}
+
+icon.stage1.button2 = document.getElementById('replayButton');
+icon.stage1.button2.onclick = function() {
+
+    icon.set.stage1();
+
+}
+
+icon.display.stage1 = function(show) {
+
+    var display = show ? 'flex' : 'none';
+
+    $('.s1Icon').css({'display' : display});
+
+}
+
+
+////////////////////////////// CALCULATOR /////////////////////////////////////
+////////////////////////////// CALCULATOR /////////////////////////////////////
+////////////////////////////// CALCULATOR /////////////////////////////////////
+////////////////////////////// CALCULATOR /////////////////////////////////////
+////////////////////////////// CALCULATOR /////////////////////////////////////
+////////////////////////////// CALCULATOR /////////////////////////////////////
+////////////////////////////// CALCULATOR /////////////////////////////////////
+////////////////////////////// CALCULATOR /////////////////////////////////////
+////////////////////////////// CALCULATOR /////////////////////////////////////
+
+
+/////////////////////// CALCULATOR GLOBAL VARIABLES ////////////////////////////
+/////////////////////// CALCULATOR GLOBAL VARIABLES ////////////////////////////
+/////////////////////// CALCULATOR GLOBAL VARIABLES ////////////////////////////
+/////////////////////// CALCULATOR GLOBAL VARIABLES ////////////////////////////
+
+
+var efo, oefo, efi, oefi, pwin, efefo, oefefo;
+var s1, h1, s2, h2, ts, th, os1, oh1, os2, oh2, tos, toh;
+
+calculator.globalVariable.gameStage = undefined;
+calculator.globalVariable.typeOfContest = undefined;
+calculator.globalVariable.isOG2 = undefined;
+
+calculator.globalVariable.leftHetero = true;
+calculator.globalVariable.rightHetero = true;
+
+calculator.globalVariable.winnerLeaderIndex = 2;
+calculator.globalVariable.winnerFollowerIndex = 1;
+
+calculator.globalVariable.subjectiveView = false;
+calculator.globalVariable.subjectiveIndex = undefined; //-1,0,1 (l,f1,f2)
+
+
+calculator.decisionSlider.leader.isFlashing;
+
 calculator.showFollowerRole;
-calculator.dynamicPowerBarText;
-calculator.display.onlyLC;
-calculator.display.resultSpaceOpen;
-//------wheel object-----//
+
+calculator.graphics.dynamicPowerBarText;
+
+
+//////////////////////// WHEEL ///////////////////////
+//////////////////////// WHEEL ///////////////////////
+//////////////////////// WHEEL ///////////////////////
+//////////////////////// WHEEL ///////////////////////
+//////////////////////// WHEEL ///////////////////////
+//////////////////////// WHEEL ///////////////////////
+//////////////////////// WHEEL ///////////////////////
+//////////////////////// WHEEL ///////////////////////
+//////////////////////// WHEEL ///////////////////////
+//////////////////////// WHEEL ///////////////////////
+//////////////////////// WHEEL ///////////////////////
+//////////////////////// WHEEL ///////////////////////
+//////////////////////// WHEEL ///////////////////////
+//////////////////////// WHEEL ///////////////////////
+//////////////////////// WHEEL ///////////////////////
 
 
 calculator.wheel.spinDuration = 1;
-calculator.wheel.spinNumber = 10;
+calculator.wheel.spinNumber = 3;
 calculator.wheel.isSpinning = false;
 
 calculator.wheel.create = function(probability, id) {
@@ -56,15 +344,19 @@ calculator.wheel.create = function(probability, id) {
     var followerBColorArray = ['rgb(18,103,48)', 'rgb(210,210,210)'];
     var colors;
 
-    if(calculator.typeOfPlayer === 'l') {
+    if(calculator.globalVariable.subjectiveView && calculator.globalVariable.subjectiveIndex === -1) {
+        leaderColorArray = ['rgb(35, 79, 30)', 'rgb(210, 210, 210)'];
+    }
+
+    if(calculator.globalVariable.typeOfContest === 'l') {
         colors = leaderColorArray;
     }
 
-    if(calculator.typeOfPlayer === 'f') {
+    if(calculator.globalVariable.typeOfContest === 'f') {
         colors = followerAColorArray;
     }
 
-    if(calculator.typeOfPlayer === 'of') {
+    if(calculator.globalVariable.typeOfContest === 'of') {
         colors = followerBColorArray;
     }
 
@@ -107,14 +399,23 @@ calculator.wheel.create = function(probability, id) {
 }
 
 
-//-----calculator global variables initiation-----//
-
-var efo, oefo, efi, oefi, pwin, efefo, oefefo;
-var s1, h1, s2, h2, ts, th, os1, oh1, os2, oh2, tos, toh;
-
-
-
-//------calculator graphical methods-----//
+/////////////////// GRAPHICS ////////////////////
+/////////////////// GRAPHICS ////////////////////
+/////////////////// GRAPHICS ////////////////////
+/////////////////// GRAPHICS ////////////////////
+/////////////////// GRAPHICS ////////////////////
+/////////////////// GRAPHICS ////////////////////
+/////////////////// GRAPHICS ////////////////////
+/////////////////// GRAPHICS ////////////////////
+/////////////////// GRAPHICS ////////////////////
+/////////////////// GRAPHICS ////////////////////
+/////////////////// GRAPHICS ////////////////////
+/////////////////// GRAPHICS ////////////////////
+/////////////////// GRAPHICS ////////////////////
+/////////////////// GRAPHICS ////////////////////
+/////////////////// GRAPHICS ////////////////////
+/////////////////// GRAPHICS ////////////////////
+/////////////////// GRAPHICS ////////////////////
 
 
 var logistic2 = function(val , k) {
@@ -129,8 +430,10 @@ var nzt = function(val) {
     return (val != 0) ? val : '';
 }
 
-calculator.update.playerLabels;
-calculator.update.pie = function() {
+//-------------- PIE ----------------//
+calculator.globalVariable.pieBorderRight = false;
+calculator.globalVariable.pieBorderLeft = false;
+calculator.graphics.update.pie = function() {
 
     var x = pwin;
     var y = 1-pwin;
@@ -146,21 +449,59 @@ calculator.update.pie = function() {
     var fcolors = ['rgb(60, 60, 60)', 'rgb(18,103,48)'];
     var ofcolors = ['rgb(210, 210, 210)', 'rgb(18,103,48)'];
 
-    if(calculator.typeOfPlayer === 'l') {
+    if(calculator.globalVariable.subjectiveView && calculator.globalVariable.subjectiveIndex === -1) {
+        lcolors = ['rgb(210, 210, 210)', 'rgb(35, 79, 30)'];
+    }
+
+    var p1, p2;
+
+    if(calculator.globalVariable.typeOfContest === 'l') {
         pieColors = lcolors;
+        p1 = 'LEADER A';
+        p2 = 'LEADER B';
     }
 
-    if(calculator.typeOfPlayer === 'f') {
+    if(calculator.globalVariable.typeOfContest === 'f') {
         pieColors = fcolors;
+        p1 = 'FOLLOWER 1A';
+        p2 = 'FOLLOWER 2A';
     }
 
-    if(calculator.typeOfPlayer === 'of') {
-        pieColors = ofcolors;
+    // NOT SURE IF THIS WILL WORK YET
+    if(calculator.globalVariable.typeOfContest === 'fhetero') {
+        pieColors = fcolors;
+        p1 = 'STRONG F.';
+        p2 = 'WEAK F.';
     }
+
+    if(calculator.globalVariable.typeOfContest === 'of') {
+        pieColors = ofcolors;
+        p1 = 'FOLLOWER 1B';
+        p2 = 'FOLLOWER 2B';
+    }
+
+    // NOT SURE IF THIS WILL WORK YET
+    if(calculator.globalVariable.typeOfContest === 'ofhetero') {
+        pieColors = ofcolors;
+        p1 = 'STRONG F.';
+        p2 = 'WEAK F.';
+    }
+
+    var pieBorderArray = Array(2);
+    pieBorderArray = [0,0];
+    if(calculator.globalVariable.pieBorderLeft) {
+        pieBorderArray = [0,3];
+    }
+    if(calculator.globalVariable.pieBorderRight) {
+        pieBorderArray = [3,0];
+    }
+
+
+    var playerLabels = [p2, p1];
 
     var data = [{
         values: [y, x],
-        labels: calculator.update.playerLabels,
+        labels: playerLabels,
         textinfo:'none',
         textfont: {
             // color: ['black', 'white'],
@@ -172,6 +513,10 @@ calculator.update.pie = function() {
         automargin: true,
         marker:{
             colors: pieColors,
+            line: {
+                color: 'lime',
+                width: pieBorderArray,
+            },
         }
     }];
 
@@ -181,74 +526,16 @@ calculator.update.pie = function() {
         font:{
             size: 10
         },
-        margin: {"t": 0, "b": 0, "l": 0, "r": 0},
+        margin: {"t": 2, "b": 2, "l":2, "r": 2},
         showlegend: false,
     };
 
     Plotly.react('pie', data, layout, {displayModeBar: false});
 }
 
-/*
-// calculator.update.pie2 = function() {
-//
-//     var x = pwin;
-//     var y = 1-pwin;
-//     if(typeof(x) === 'undefined') x = 0;
-//     if(typeof(y) === 'undefined') y = 0;
-//     if((x + y) === 0) {
-//         x = 1;
-//         y = 1;
-//     }
-//
-//     var pieColors;
-//     var lcolors = ['rgb(210, 210, 210)', 'rgb(60, 60, 60)'];
-//     var fcolors = ['rgb(60, 60, 60)', 'rgb(18,103,48)'];
-//     var ofcolors = ['rgb(210, 210, 210)', 'rgb(18,103,48)'];
-//
-//     if(calculator.typeOfPlayer === 'l') {
-//         pieColors = lcolors;
-//     }
-//
-//     if(calculator.typeOfPlayer === 'f') {
-//         pieColors = fcolors;
-//     }
-//
-//     if(calculator.typeOfPlayer === 'of') {
-//         pieColors = ofcolors;
-//     }
-//
-//     var data = [{
-//         values: [y, x],
-//         labels: calculator.update.playerLabels,
-//         textinfo:'none',
-//         textfont: {
-//             // color: ['black', 'white'],
-//             color: ['transparent', 'transparent']
-//         },
-//         type: 'pie',
-//         sort: false,
-//         hoverinfo: 'percent+label',
-//         automargin: true,
-//         marker:{
-//             colors: pieColors,
-//         }
-//     }];
-//
-//     var layout = {
-//         height: 40,
-//         width: 40,
-//         font:{
-//             size: 0
-//         },
-//         margin: {"t": 0, "b": 0, "l": 0, "r": 0},
-//         showlegend: false,
-//     };
-//
-//     Plotly.react('pie2', data, layout, {displayModeBar: false});
-// }
-*/
 
-calculator.update.effortBar = function(e, barId, ourSide, axisOn) {
+//-------------- LEADER EFFORT ----------------//
+calculator.graphics.update.effortBar = function(e, barId, ourSide, axisOn) {
 
     var y = e;
     if(typeof(x) === 'undefined') x = 0;
@@ -258,16 +545,20 @@ calculator.update.effortBar = function(e, barId, ourSide, axisOn) {
     var colorArrays = Array(2);
     var insideTextColor = Array(2);
 
-    if(calculator.typeOfPlayer === 'l') {
+    if(calculator.globalVariable.typeOfContest === 'l') {
         colorArrays = ['rgb(60, 60, 60)', 'rgb(210, 210, 210)'];
         upperBound = 742;
         myTickVal = [0, 50, 100, 150, 250, 350, 500, 650, 800];
         myTickText = [0, 50, 100, 150, 250, 350, 500, 650, 800];
         myRange = [0, 800];
         insideTextColor = ['white', 'black'];
+
+        if(calculator.globalVariable.subjectiveView && calculator.globalVariable.subjectiveIndex === -1) {
+            colorArrays[0] = 'rgb(35, 79, 30)';
+        }
     }
 
-    if(calculator.typeOfPlayer === 'f') {
+    if(calculator.globalVariable.typeOfContest === 'f') {
         colorArrays = ['rgb(18,103,48)', 'rgb(60, 60, 60)'];
         upperBound = 128;
         myTickVal = [0, 5, 10, 20, 30, 50, 75, 100, 140];
@@ -276,7 +567,7 @@ calculator.update.effortBar = function(e, barId, ourSide, axisOn) {
         insideTextColor = ['white', 'white'];
     }
 
-    if(calculator.typeOfPlayer === 'of') {
+    if(calculator.globalVariable.typeOfContest === 'of') {
         colorArrays = ['rgb(18,103,48)', 'rgb(210, 210, 210)'];
         upperBound = 128;
         myTickVal = [0, 5, 10, 20, 30, 50, 75, 100, 140];
@@ -333,14 +624,18 @@ calculator.update.effortBar = function(e, barId, ourSide, axisOn) {
     var ticktextcolors = ['black', 'white'];
     var tindex = 1;
 
-    var papercolors = ['rgb(60, 60, 60)', 'rgb(210, 210, 210)', 'rgb(18,103,48)'];
+    var papercolors = ['rgb(60, 60, 60)', 'rgb(210, 210, 210)', 'rgb(18,103,48)', 'rgb(35, 79, 30)'];
     var pindex = 1;
 
-    if(calculator.typeOfPlayer === 'l') {
+    if(calculator.globalVariable.typeOfContest === 'l') {
 
         if(barId === 'barl1'){//darkgray white //NEED TO DO FOR 4 OTHER IDS
             pindex=0;
             tindex=1;
+
+            if(calculator.globalVariable.subjectiveView && calculator.globalVariable.subjectiveIndex === -1) {
+                pindex = 3;
+            }
         }
 
         if(barId === 'barl2'){
@@ -351,7 +646,9 @@ calculator.update.effortBar = function(e, barId, ourSide, axisOn) {
 
     }
 
-    if(calculator.typeOfPlayer === 'f') {
+
+
+    if(calculator.globalVariable.typeOfContest === 'f') {
 
         if(barId === 'barl1'){//darkgreen white
             pindex=2;
@@ -366,7 +663,7 @@ calculator.update.effortBar = function(e, barId, ourSide, axisOn) {
 
     }
 
-    if(calculator.typeOfPlayer === 'of') {
+    if(calculator.globalVariable.typeOfContest === 'of') {
 
         if(barId === 'barl1'){//darkgreen white
             pindex=2;
@@ -380,6 +677,8 @@ calculator.update.effortBar = function(e, barId, ourSide, axisOn) {
         }
 
     }
+
+
 
     var layout = {
         paper_bgcolor: papercolors[pindex],
@@ -417,28 +716,70 @@ calculator.update.effortBar = function(e, barId, ourSide, axisOn) {
         },
     }
 
+
+
+
     Plotly.react(barId, data, layout, {displayModeBar: false});
 }
 
-calculator.update.effortSliderRange = function() {
+calculator.graphics.update.effortSliderRange = function() {
 
     var myMax;
 
-    if(calculator.typeOfPlayer === 'l') {
+    if(calculator.globalVariable.typeOfContest === 'l') {
         myMax = 800;
     }
-    if(calculator.typeOfPlayer === 'f' || calculator.typeOfPlayer === 'of') {
+    if(calculator.globalVariable.typeOfContest === 'f' || calculator.globalVariable.typeOfContest === 'of') {
         myMax = 140;
     }
 
-    $("#lSlider1, #olSlider1").attr({
+    $("#lSlider1, #olSlider1, #dSliderL").attr({
         "max" : myMax,
         "min" : 0
     });
 
 }
 
-calculator.update.helpSaboBar = function(a, barId, lighter, axisOn) {
+calculator.graphics.update.effortBarLeftPlayerBackgroundColor = function() {
+    if(!calculator.globalVariable.subjectiveView && calculator.globalVariable.typeOfContest === 'l') {
+        $('.bswLeft').css({'background-color': 'rgb(60,60,60)'});
+    }
+    if(calculator.globalVariable.subjectiveView && calculator.globalVariable.subjectiveIndex === -1) {
+        $('.bswLeft').css({'background-color': 'rgb(35, 79, 30)'});
+    }
+}
+
+// USES calculator.globalVariable.typeOfContest TO DETErmine leader slider colors
+// it is not concerned with the me coloring but leader vs leader or
+// follower vs follower for either group ig slider top coloring
+// it also updates the slider range for type of contest
+// it also determines the resulting text's tag as this is dependent on leader or follower
+calculator.graphics.update.horizontalSliderTitleBackgroundColorAndSliderRange = function() {
+
+    if(calculator.globalVariable.typeOfContest === 'l') {
+        calculator.results.resultTextsType = 'leader';
+        $('.bswLeft').css({'background-color':'rgb(60,60,60)', 'color':'white'});
+        $('.bswRight').css({'background-color':'rgb(210,210,210)', 'color':'black'});
+    }
+    if(calculator.globalVariable.typeOfContest === 'f' || calculator.globalVariable.typeOfContest === 'fhetero') {
+        calculator.results.resultTextsType = 'follower';
+        $('.bswLeft').css({'background-color':'rgb(18,103,48)', 'color':'white'});
+        $('.bswRight').css({'background-color':'rgb(60,60,60)', 'color':'white'});
+    }
+    if(calculator.globalVariable.typeOfContest === 'of' || calculator.globalVariable.typeOfContest === 'ofhetero') {
+        calculator.results.resultTextsType = 'follower';
+        $('.bswLeft').css({'background-color':'rgb(18,103,48)', 'color':'white'});
+        $('.bswRight').css({'background-color':'rgb(210,210,210)', 'color':'black'});
+    }
+
+    calculator.graphics.update.effortSliderRange();
+    calculator.refresh.values();
+
+}
+
+
+//-------------- HELP SABO BARS ----------------//
+calculator.graphics.update.helpSaboBar = function(a, barId, lighter, axisOn) {
 
     var x, colors, myLabel, myColor, position;
 
@@ -491,10 +832,16 @@ calculator.update.helpSaboBar = function(a, barId, lighter, axisOn) {
     if(barId === 'barf2'){//darkgray white
         tindex = 1;
         pindex = 1;
+        if(calculator.globalVariable.subjectiveView && calculator.globalVariable.subjectiveIndex === 1) {
+            pindex = 0;
+        }
     }
     if(barId === 'barf1'){//darkgray or darkgreen and  white
         tindex = 1;
         pindex = 1;
+        if(calculator.globalVariable.subjectiveView && calculator.globalVariable.subjectiveIndex === 0) {
+            pindex = 0;
+        }
     }
     if(barId === 'obarf1' || barId === 'obarf2'){//lightgray black
         tindex = 0;
@@ -541,7 +888,7 @@ calculator.update.helpSaboBar = function(a, barId, lighter, axisOn) {
     Plotly.react(barId, data, layout, {displayModeBar: false});
 }
 
-calculator.update.totalHelpBar = function(a,b) {
+calculator.graphics.update.totalHelpBar = function(a,b) {
     var x = a;
     var y = b;
     if(typeof(x) === 'undefined') x = 0;
@@ -588,7 +935,7 @@ calculator.update.totalHelpBar = function(a,b) {
     Plotly.react('helpBar', data, layout, {displayModeBar: false});
 }
 
-calculator.update.totalSaboBar = function(a, b) {
+calculator.graphics.update.totalSaboBar = function(a, b) {
     var x = -a;
     var y = -b;
     if(typeof(x) === 'undefined') x = 0;
@@ -634,7 +981,287 @@ calculator.update.totalSaboBar = function(a, b) {
     Plotly.react('saboBar', data, layout, {displayModeBar: false});
 }
 
-calculator.update.powerBarDynamicText = function(place) {
+
+//-------------- DECISION SLIDER FOLLOWER ----------------//
+
+calculator.decisionSlider.follower.isFlashing = true;
+calculator.decisionSlider.follower.flash = function(state) {
+
+    if(calculator.decisionSlider.follower.isFlashing) {
+
+        if(state === 0) {
+            $('.inputF').css({'transition':'0.7s', 'box-shadow':'0px 0px 10px 5px orange'});
+            if(calculator.globalVariable.subjectiveIndex === 0) {
+                $('.bf1').css({'transition':'0.7s', 'box-shadow':'0px 0px 10px 5px orange'});
+            }
+            if(calculator.globalVariable.subjectiveIndex === 1) {
+                $('.bf2').css({'transition':'0.7s', 'box-shadow':'0px 0px 10px 5px orange'});
+            }
+            setTimeout(()=>calculator.decisionSlider.follower.flash(1), 700);
+        }
+        if(state === 1) {
+            $('.inputF').css({'transition':'0.7s', 'box-shadow':'0px 0px 0px 0px orange'});
+            if(calculator.globalVariable.subjectiveIndex === 0) {
+                $('.bf1').css({'transition':'0.7s', 'box-shadow':'0px 0px 0px 0px orange'});
+            }
+            if(calculator.globalVariable.subjectiveIndex === 1) {
+                $('.bf2').css({'transition':'0.7s', 'box-shadow':'0px 0px 0px 0px orange'});
+            }
+            setTimeout(()=>calculator.decisionSlider.follower.flash(0), 700);
+        }
+
+    } else {
+        $('.inputF').css({'transition':'0.7s', 'box-shadow':'0px 0px 4px 2px lime'});
+
+        if(calculator.globalVariable.subjectiveIndex === 0) {
+            $('.bf1').css({'transition':'0.7s', 'box-shadow':'0px 0px 4px 2px lime'});
+        }
+        if(calculator.globalVariable.subjectiveIndex === 1) {
+            $('.bf2').css({'transition':'0.7s', 'box-shadow':'0px 0px 4px 2px lime'});
+        }
+
+    }
+
+}
+
+calculator.decisionSlider.follower.helpSaboBar = function(a, axisOn) {
+
+    var y = a;
+    if(typeof(y) === 'undefined') y = 0;
+
+    var colors = ['rgb(120,120,255)',  'rgb(255,120,120)'];
+
+    var myLabel = y > 0 ? y : -y;
+    var myColor = y > 0 ? colors[0] : colors[1];
+
+
+    var mytextpos= myLabel > 38 ? 'inside':'outside';
+
+
+    var ticktextcolors = ['black', 'white'];
+    var tindex = 1;
+
+    var papercolors = ['white', 'rgb(35,79,30)'];
+    var pindex = 1;
+
+
+    var data = [{
+        x: [y],
+        orientation: 'h',
+        name: [''],
+        type: 'bar',
+        sort: false,
+        hoverinfo: 'none',
+        automargin: true,
+        showlegend: false,
+        marker:{
+            color: [myColor],
+            line: {
+                color: 'none',
+                width: 0
+            }
+        },
+        text: [myLabel],
+        textfont: {
+            size: '50',
+            color:'black',
+        },
+        textposition: mytextpos,
+        cliponaxis: false,
+    }];
+
+    var layout = {
+        paper_bgcolor: papercolors[pindex],
+        barmode: 'group',
+        height: 75,
+        width: 975,
+        margin: {"t": 20, "b": 20, "l": 5, "r": 20},
+        xaxis: {
+            side: 'top',
+            fixedrange: true,
+            autorange: false,
+            range: [-40,40],
+            layer: 'below traces',
+            ticks:'',
+            tickfont: {
+                size: 10,
+                color:ticktextcolors[tindex],
+            },
+            tickmode: 'array',
+            tickvals: [-40, -30, -20, -12, -8, -4, -2, 0, 2, 4, 8, 12, 20, 30, 40],
+            ticktext: [40, 30, 20, 12, 8, 4, 2, 0, 2, 4, 8, 12, 20, 30, 40],
+            showline: false,
+            showgrid: axisOn,
+            showticklabels: axisOn,
+            gridcolor: "rgb(207, 202, 202)",
+
+        },
+        yaxis: {
+            layer: 'below traces',
+            fixedrange: true,
+            showline: false,
+            showgrid: false,
+            ticks: '',
+            showticklabels: false,
+        },
+
+    };
+
+    Plotly.react('bardf', data, layout, {displayModeBar: false});
+
+}
+
+calculator.decisionSlider.follower.enable = function() {
+    $('.decisionWrapF').css({'display':'flex'});
+}
+
+calculator.decisionSlider.follower.disable = function() {
+    $('.decisionWrapF').css({'display':'none'});
+}
+
+
+//-------------- DECISION SLIDER LEADER ----------------//
+calculator.decisionSlider.leader.effortBar = function(a, axisOn) {
+
+
+        var y = a;
+
+        var upperBound, myTickVal, myTickText, myRange;
+
+        var colorArrays = Array(1);
+        var insideTextColor = Array(1);
+
+        if(calculator.globalVariable.typeOfContest === 'l') {
+
+            colorArrays = ['rgb(35, 79, 30)'];
+            upperBound = 742;
+            myTickVal = [0, 50, 100, 150, 250, 350, 500, 650, 800];
+            myTickText = [0, 50, 100, 150, 250, 350, 500, 650, 800];
+            myRange = [0, 800];
+            insideTextColor = ['white'];
+
+        }
+
+        if(calculator.globalVariable.typeOfContest === 'f') {
+
+            colorArrays = ['rgb(35, 79, 30)'];
+            upperBound = 128;
+            myTickVal = [0, 5, 10, 20, 30, 50, 75, 100, 140];
+            myTickText = [0, 5, 10, 20, 30, 50, 75, 100, 140];
+            myRange = [0, 140];
+            insideTextColor = ['white'];
+
+        }
+
+        if(calculator.globalVariable.typeOfContest === 'of') {
+
+            colorArrays = ['rgb(35, 79, 30)'];
+            upperBound = 128;
+            myTickVal = [0, 5, 10, 20, 30, 50, 75, 100, 140];
+            myTickText = [0, 5, 10, 20, 30, 50, 75, 100, 140];
+            myRange = [0, 140];
+            insideTextColor = ['white'];
+
+        }
+
+
+        var mColor = colorArrays[0];
+
+        var mytextpos = 'outside';
+
+        var somecolor = 'black';
+
+        if(y > upperBound) {
+
+            mytextpos = 'inside';
+            somecolor = insideTextColor[0];
+
+        }
+
+
+        var data = [{
+            x: [y],
+            name: [''],
+            type: 'bar',
+            sort: false,
+            hoverinfo: 'none',
+            automargin: true,
+            showlegend: false,
+            cliponaxis: false,
+            marker:{
+                color: mColor,
+            },
+            text: [y],
+            textfont: {
+                size: '50',
+                color:somecolor,
+            },
+            orientation: 'h',
+            // textanchor: 'right',
+            textposition: mytextpos,
+        }];
+
+
+        var ticktextcolors = ['white'];
+        var tindex = 0;
+
+        var papercolors = ['rgb(35, 79, 30)'];
+        var pindex = 0;
+
+
+        var layout = {
+            paper_bgcolor: papercolors[pindex],
+            barmode: 'group',
+            height: 75,
+            width: 975,
+            margin: {"t": 20, "b": 20, "l": 5, "r": 20},
+            xaxis: {
+                side: 'top',
+                fixedrange: true,
+                autorange: false,
+                range: myRange,
+                layer: 'below traces',
+                tickfont: {
+                    size: 10,
+                    color:ticktextcolors[tindex],
+                },
+                tickmode: 'array',
+                tickvals: myTickVal,
+                ticktext: myTickText,
+                tickangle: -30,
+                ticks:'',
+                showline: false,
+                showgrid: axisOn,
+                showticklabels: axisOn,
+                gridcolor: "rgb(207, 202, 202)",
+            },
+            yaxis: {
+                ticks: '',
+                layer: 'below traces',
+                fixedrange: true,
+                showline: false,
+                showgrid: false,
+                showticklabels: false,
+            },
+        }
+
+
+
+
+        Plotly.react('bardl', data, layout, {displayModeBar: false});
+}
+
+calculator.decisionSlider.leader.enable = function() {
+    $('.decisionWrapL').css({'display':'flex'});
+}
+
+calculator.decisionSlider.leader.disable = function() {
+    $('.decisionWrapL').css({'display':'none'});
+}
+
+
+//-------------- POWER RATIO BAR ----------------//
+calculator.graphics.activate.dynamicPowerBarText = function(place) {
 
     $('.pTitleDynamicLeft').css({'transition':'0s', 'opacity':'0'});
     $('.pTitleDynamicMiddle').css({'transition':'0s', 'opacity':'0'});
@@ -677,31 +1304,34 @@ calculator.update.powerBarDynamicText = function(place) {
 
 }
 
-calculator.update.efficiencyBar = function() {
+calculator.globalVariable.powerBarRight = false;
+calculator.globalVariable.powerBarLeft = false;
+
+calculator.graphics.update.efficiencyBar = function(efficiency1, efficiency2) {
 
     var efi1, efi2;
-    efi1 = efi;
-    efi2 = oefi;
+    efi1 = efficiency1 != undefined ? efficiency1 : efi;
+    efi2 = efficiency2 != undefined ? efficiency2 : oefi;
 
     var val1 = efi1 / (efi1 + efi2);
     var val2 = efi2 / (efi1 + efi2);
 
-    if(!calculator.dynamicPowerBarText) {
+    if(!calculator.graphics.dynamicPowerBarText) {
 
-        calculator.update.powerBarDynamicText();
+        calculator.graphics.activate.dynamicPowerBarText();
 
     }
 
-    if(efi1 === efi2 && calculator.dynamicPowerBarText) {
+    if(efi1 === efi2 && calculator.graphics.dynamicPowerBarText) {
 
-        calculator.update.powerBarDynamicText('middle');
+        calculator.graphics.activate.dynamicPowerBarText('middle');
 
     }
 
     if((efi1 / efi2) > 1){
         var myText = (val1 >= 0.99) ? '100+' : (efi1 / efi2).toFixed(2);
-        if(calculator.dynamicPowerBarText) {
-            calculator.update.powerBarDynamicText('left');
+        if(calculator.graphics.dynamicPowerBarText) {
+            calculator.graphics.activate.dynamicPowerBarText('left');
         }
     } else {
         myText = 1;
@@ -709,8 +1339,8 @@ calculator.update.efficiencyBar = function() {
 
     if((efi1 / efi2) < 1){
         var myText2 = (val2 >= 0.99) ? '100+' : (efi2 / efi1).toFixed(2);
-        if(calculator.dynamicPowerBarText) {
-            calculator.update.powerBarDynamicText('right');
+        if(calculator.graphics.dynamicPowerBarText) {
+            calculator.graphics.activate.dynamicPowerBarText('right');
         }
     } else {
         myText2 = 1;
@@ -729,15 +1359,31 @@ calculator.update.efficiencyBar = function() {
     var ofcolors = ['rgb(18,103,48)', 'rgb(210,210,210)'];
     var cA = Array(2);
 
-    if(calculator.typeOfPlayer === 'l') {
+    if(calculator.globalVariable.subjectiveView && calculator.globalVariable.subjectiveIndex === -1) {
+        lcolors = ['rgb(35, 79, 30)', 'rgb(210, 210, 210)'];
+    }
+
+    if(calculator.globalVariable.typeOfContest === 'l') {
         cA = lcolors;
     }
-    if(calculator.typeOfPlayer === 'f') {
+    if(calculator.globalVariable.typeOfContest === 'f') {
         cA = fcolors;
     }
-    if(calculator.typeOfPlayer === 'of') {
+    if(calculator.globalVariable.typeOfContest === 'of') {
         cA = ofcolors;
     }
+
+    var myLineWith1 = 0;
+    var myLineWith2 = 0;
+
+    if(calculator.globalVariable.powerBarLeft) {
+        myLineWith1 = 4
+    }
+    if(calculator.globalVariable.powerBarRight) {
+        myLineWith2 = 4
+    }
+
+
 
     var player1 = {
         y: ['group 1'],
@@ -751,8 +1397,8 @@ calculator.update.efficiencyBar = function() {
         marker: {
             color: cA[0],
             line: {
-                color: 'black',
-                width: 0,
+                color: 'lime',
+                width: myLineWith1,
             }
         },
         text: myText,
@@ -802,8 +1448,8 @@ calculator.update.efficiencyBar = function() {
         marker: {
             color: cA[1],
             line: {
-                color: 'black',
-                width: 0,
+                color: 'lime',
+                width: myLineWith2,
             }
         },
         text: myText2,
@@ -841,28 +1487,30 @@ calculator.update.efficiencyBar = function() {
     Plotly.react('powerRatio', data, layout, {displayModeBar: false});
 }
 
-calculator.update.barLabelX = function(barId, show) {
+
+//-------------- GRID GRAPHICS ----------------//
+calculator.graphics.update.barLabelX = function(barId, show) {
     var update = {
         'xaxis.showticklabels': show
     };
     Plotly.relayout(barId, update);
 }
 
-calculator.update.barGridX = function(barId, show) {
+calculator.graphics.update.barGridX = function(barId, show) {
     var update = {
         'xaxis.showgrid': show
         };
     Plotly.relayout(barId, update);
 }
 
-calculator.update.barLabelY = function(barId, show) {
+calculator.graphics.update.barLabelY = function(barId, show) {
     var update = {
         'yaxis.showticklabels': show
     };
     Plotly.relayout(barId, update);
 }
 
-calculator.update.barGridY = function(barId, show) {
+calculator.graphics.update.barGridY = function(barId, show) {
     var update = {
         'yaxis.showgrid': show
         };
@@ -870,11 +1518,22 @@ calculator.update.barGridY = function(barId, show) {
 }
 
 
+//////////////////// VALUES ////////////////////
+//////////////////// VALUES ////////////////////
+//////////////////// VALUES ////////////////////
+//////////////////// VALUES ////////////////////
+//////////////////// VALUES ////////////////////
+//////////////////// VALUES ////////////////////
+//////////////////// VALUES ////////////////////
+//////////////////// VALUES ////////////////////
+//////////////////// VALUES ////////////////////
+//////////////////// VALUES ////////////////////
+//////////////////// VALUES ////////////////////
+//////////////////// VALUES ////////////////////
 
-//------calculator methods------//
 
-
-calculator.update.totalHelpSabo = function() {
+//---- CALCULATE TOTAL HELP AND SABOTAGE -----//
+calculator.values.update.totalHelpSabo = function() {
 
     th = h1 + h2;
     ts = s1 + s2;
@@ -882,451 +1541,162 @@ calculator.update.totalHelpSabo = function() {
     tos = os1 + os2;
 
     // update total help sabo graphics
-    calculator.update.totalHelpBar(th, toh);
-    calculator.update.totalSaboBar(ts, tos);
+    calculator.graphics.update.totalHelpBar(th, toh);
+    calculator.graphics.update.totalSaboBar(ts, tos);
 
-    // leader aura color
-    var leaderIconBorderColor = icon.tool.logisticColor(ts, th, 255, 132);
-    var libcRGB = icon.tool.set.RGBforLeaders(leaderIconBorderColor);
-    $('.imgwrapwrapwrap31').css({'background-color':libcRGB, 'border-color':libcRGB});
+    calculator.icons.update.leaderAuraColor();
+    calculator.icons.update.followerArrows();
+    calculator.icons.update.leaderSize();
 
-    leaderIconBorderColor = icon.tool.logisticColor(tos, toh, 255, 132);
-    libcRGB = icon.tool.set.RGBforLeaders(leaderIconBorderColor);
-    $('.imgwrapwrapwrap32').css({'background-color':libcRGB, 'border-color':libcRGB});
-
-    // follower arrow color
-    var followerArrowColor = icon.tool.arrowColor(h1, s1);
-    var facRGB = icon.tool.set.RGBforFollowers(followerArrowColor);
-    $('.iaf1').css({'stroke':facRGB});
-    $('.arrowTip11').css({'fill':facRGB});
-
-    followerArrowColor = icon.tool.arrowColor(h2, s2);
-    facRGB = icon.tool.set.RGBforFollowers(followerArrowColor);
-    $('.iaf2').css({'stroke':facRGB});
-    $('.arrowTip12').css({'fill':facRGB});
-
-    followerArrowColor = icon.tool.arrowColor(oh1, os1);
-    facRGB = icon.tool.set.RGBforFollowers(followerArrowColor);
-    $('.iaof1').css({'stroke':facRGB});
-    $('.arrowTip21').css({'fill':facRGB});
-
-    followerArrowColor = icon.tool.arrowColor(oh2, os2);
-    facRGB = icon.tool.set.RGBforFollowers(followerArrowColor);
-    $('.iaof2').css({'stroke':facRGB});
-    $('.arrowTip22').css({'fill':facRGB});
-
-    // leader size
-    var m1 = icon.tool.updateSize(th, ts);
-    icon.set.iconSize('splc1', 85 * m1, 65 * m1);
-
-    var m2 = icon.tool.updateSize(toh, tos)
-    icon.set.iconSize('splc2', 85 * m2, 65 * m2)
 
 }
 
-calculator.update.efficiencies = function() {
 
-    calculator.update.totalHelpSabo();
+//----- CALCULATE LEADER EFFICINCIES -----//
+// VALUES: values.update.totalHelpSabo()
+// GRAPHICS: graphics.update.efficiencyBar()
+calculator.values.update.efficiencies = function() {
+
+    calculator.values.update.totalHelpSabo();
 
     efi = (1 + th) / (1 + ts);
     oefi = (1 + toh) / (1 + tos);
 
-    calculator.update.efficiencyBar(false);
-
-    calculator.update.lPowerText(efi, oefi);
+    calculator.graphics.update.efficiencyBar();
 
 }
 
-calculator.update.probability = function() {
+
+//----- CALCULATE PROBABILITIES GIVEN EFFICIENCIES -----//
+// Does not call values.efficiencies takes it as given
+// GRAPHICS: graphics.update.pie()
+calculator.values.update.probability = function() {
 
     efefo = efo * efi;
     oefefo = oefo * oefi;
     pwin = ((efo + oefo) === 0) ? 0.5 : (efefo / (efefo + oefefo));
 
-    calculator.update.pie();
-    // calculator.update.pie2();
+    calculator.graphics.update.pie();
 
 }
 
-var lastWinner, winnerRole, loserRole, winnerPrize, showTokenTag, resultTextsTag;
-var fwinnerRole, floserRole, fwinnerPrize, floserPrize;
-showTokenTag = true;
-calculator.update.resultTexts = function(w) {
 
-    var resultLeft = document.getElementById('resultLeft');
-    var prizeLeft = document.getElementById('prizeLeft');
-    var costLeft = document.getElementById('costLeft');
-    var netPayoffLeft = document.getElementById('netPayoffLeft');
-    var roleLeft = document.getElementById('roleLeft');
-    var resultRight = document.getElementById('resultRight');
-    var prizeRight = document.getElementById('prizeRight');
-    var costRight = document.getElementById('costRight');
-    var netPayoffRight = document.getElementById('netPayoffRight');
-    var roleRight = document.getElementById('roleRight');
-    var myTokenTag1 = document.getElementById('tokenTag1');
-    var myTokenTag2 = document.getElementById('tokenTag2');
-
-    w = w === undefined ? lastWinner : w;
-    lastWinner = w;
-
-    if(resultTextsTag === 'leader') {
-        winnerRole = 'Continue as Leader';
-        loserRole = 'Became a Follower';
-        winnerPrize = 1000;
-    }
-    if(resultTextsTag === 'follower') {
-        winnerRole = 'Became the Leader';
-        loserRole = 'Continue as Follower';
-        winnerPrize = 0;
-    }
-    if(resultTextsTag === 'generic') {
-        winnerRole = 'Upgrade in role';
-        loserRole = 'Downgrade in role';
-
-        winnerPrize = 'PRIZE';
-    }
-
-    var tokenTag1, tokenTag2;
-    if(showTokenTag) {
-        tokenTag1 = efo === 0 ? ' token' : ' tokens';
-        tokenTag2 = oefo === 0 ? ' token' : ' tokens';
-        $('.tokenTag').css({'padding-left':'10px', 'font-weight':'400'});
-    } else {
-        tokenTag1 = tokenTag2 = '';
-        $('.tokenTag').css({'display':'none'});
-    }
-
-    resultLeft.innerHTML = w === 1 ? 'WON' : 'LOST';
-    prizeLeft.innerHTML = w === 1 ? winnerPrize : 0;
-    costLeft.innerHTML = efo;
-    myTokenTag1.innerHTML = tokenTag1;
-    netPayoffLeft.innerHTML = -efo + ( w === 1 ? winnerPrize : 0);
-    roleLeft.innerHTML = w === 1 ? winnerRole : loserRole;
-
-    resultRight.innerHTML = w === 2 ? 'WON' : 'LOST';
-    prizeRight.innerHTML = w === 2 ? winnerPrize : 0;
-    costRight.innerHTML = oefo;
-    myTokenTag2.innerHTML = tokenTag2;
-    netPayoffRight.innerHTML = -oefo + ( w === 2 ? winnerPrize : 0);
-    roleRight.innerHTML = w === 2 ? winnerRole : loserRole;
-
-    if(resultTextsTag === 'generic') {
-
-        prizeLeft.innerHTML = w === 1 ? winnerPrize : 0;
-        prizeRight.innerHTML = w === 2 ? winnerPrize : 0;
-
-        var str1, str2, str3;
-        str1 = '<span style=\'color:red;\'>';
-        str2 = '</span>';
-        str3 = str1 + ' - ' + efo + str2;
+//////////////////// SLIDER /////////////////////
+//////////////////// SLIDER /////////////////////
+//////////////////// SLIDER /////////////////////
+//////////////////// SLIDER /////////////////////
+//////////////////// SLIDER /////////////////////
+//////////////////// SLIDER /////////////////////
+//////////////////// SLIDER /////////////////////
+//////////////////// SLIDER /////////////////////
+//////////////////// SLIDER /////////////////////
+//////////////////// SLIDER /////////////////////
+//////////////////// SLIDER /////////////////////
+//////////////////// SLIDER /////////////////////
+//////////////////// SLIDER /////////////////////
+//////////////////// SLIDER /////////////////////
+//////////////////// SLIDER /////////////////////
+//////////////////// SLIDER /////////////////////
+//////////////////// SLIDER /////////////////////
 
 
+// Decision Sliders
 
-        if(efo === 0) {
-            netPayoffLeft.innerHTML =  w === 1 ? winnerPrize : -efo;
-        } else if(efo > 0) {
-            netPayoffLeft.innerHTML = w === 1 ? (winnerPrize + str3) : -efo;
-        }
+//FOLLOWER HELP AND SABOTAGE
+calculator.slider.followerDecision.helpSabo = document.getElementById('dSliderF');
+calculator.slider.followerDecision.helpSabo.oninput = function() {
 
-        var ostr1, ostr2, ostr3;
-        ostr1 = '<span style=\'color:red;\'>';
-        ostr2 = '</span>';
-        ostr3 = ostr1 + ' - ' + oefo + ostr2;
+    calculator.wheel.hide();
 
-        if(oefo === 0) {
-            netPayoffRight.innerHTML =  w === 2 ? winnerPrize : -oefo;
-        } else if(oefo > 0) {
-            netPayoffRight.innerHTML = w === 2 ? (winnerPrize + ostr3) : -oefo;
-        }
+    // get the value from the slider
+    var dValue = parseFloat(calculator.slider.followerDecision.helpSabo.value);
 
+    // update bar plot
+    calculator.decisionSlider.follower.helpSaboBar(dValue, true);
+
+    // SYNC HELP SABO VALUES AND HELP SABO BARS GIVEN FOLLOWER INDEX
+
+    // if you are the first follower (strong)
+    if(calculator.globalVariable.subjectiveIndex === 0) {
+
+        //convert it to sabotage or help of follower 1
+        s1 = dValue >= 0 ? 0 : -dValue;
+        h1 = dValue >= 0 ? dValue : 0;
+
+        //synching sliders with follower 1 slider
+        $('#vSlider1').prop('value', dValue);
+        $('#vSlider1').change();
+
+        // call update.bar for hs for follower 1
+        calculator.graphics.update.helpSaboBar(dValue, 'barf1', false, false);
 
     }
 
+    //if you are the second follower (weak)
+    if(calculator.globalVariable.subjectiveIndex === 1) {
 
-    var f1NetPayoff = document.getElementById('f1netPayoff');
-    var f2NetPayoff = document.getElementById('f2netPayoff');
-    var leftSidePrize = document.getElementById('leftSidePrize')
-    var leftSideRole = document.getElementById('leftSideRole');
-    var leftSideResult = document.getElementById('leftSideResult');
-    var of1NetPayoff = document.getElementById('of1netPayoff');
-    var of2NetPayoff = document.getElementById('of2netPayoff');
-    var rightSidePrize = document.getElementById('rightSidePrize')
-    var rightSideRole = document.getElementById('rightSideRole');
-    var rightSideResult = document.getElementById('rightSideResult');
+        //convert it to sabotage or help of follower 2
+        s2 = dValue >= 0 ? 0 : -dValue;
+        h2 = dValue >= 0 ? dValue : 0;
+
+        //synching sliders with follower 2 slider
+        $('#vSlider2').prop('value', dValue);
+        $('#vSlider2').change();
+
+        // call update.bar for hs for follower 2
+        calculator.graphics.update.helpSaboBar(dValue, 'barf2', false, false);
+
+    }
+
+    calculator.values.update.efficiencies();
+    calculator.values.update.probability();
+    calculator.results.update.allTextAndColors();
 
 
-    fwinnerRole = 'Each continues as Follower';
-    fwinnerPrize = 'Each receives 100 tokens'
-    floserRole = 'Chance to be the new Leader';
-    floserPrize = 'Each receives 0 token'
-
-    leftSidePrize.innerHTML = w === 1 ? fwinnerPrize : floserPrize;
-    leftSideRole.innerHTML = w === 1 ? fwinnerRole : floserRole;
-    leftSideResult.innerHTML = w === 1 ? 'LEADER WON' : 'LEADER LOST';
-    f1NetPayoff.innerHTML = -(h1 + s1) + ((w === 1) ? 100 : 0);
-    f2NetPayoff.innerHTML = -(h2 + s2) + ((w === 1) ? 100 : 0);
-
-    rightSidePrize.innerHTML = w === 2 ? fwinnerPrize : floserPrize;
-    rightSideRole.innerHTML = w === 2 ? fwinnerRole : floserRole;
-    rightSideResult.innerHTML = w === 2 ? 'LEADER WON' : 'LEADER LOST';
-    of1NetPayoff.innerHTML = -(oh1 + os1) + ((w === 2) ? 100 : 0);
-    of2NetPayoff.innerHTML = -(oh2 + os2) + ((w === 2) ? 100 : 0);
-
-    calculator.update.resultTextColors(w);
-
-    //
-    // var f1np, f2np, of1np, of2np, l1np, l2np;
-    //
-    // f1np =  -(h1 + s1) + ((w === 1) ? 100 : 0);
-    // f2np =  -(h2 + s2) + ((w === 1) ? 100 : 0);
-    // of1np =  -(oh1 + os1) + ((w === 2) ? 100 : 0);
-    // of2np =  -(oh2 + os2) + ((w === 2) ? 100 : 0);
-    //
-    // l1np = -efo + ( w === 1 ? winnerPrize : 0);
-    // l2np = -oefo + ( w === 2 ? winnerPrize : 0);
-    //
-    // calculator.update.netBalance([l1np, l2np], [f1np, f2np, of1np, of2np]);
+    //WILL ADD AN ACTIVE WIGGLE SWITCH OFF HERE
 
 }
 
-calculator.update.resultTextColors = function(w) {
+// Decision Sliders
 
-    if(w === 1) {
-        $('.p1, .np1, .f1NetPayoff, .f2NetPayoff').css({'color':'blue'});
-        $('.p2').css({'color':'black'});
-        $('.np2, .of1NetPayoff, .of2NetPayoff').css({'color':'red'});
-    }
-
-    if(w === 2) {
-        $('.p2, .np2, .of1NetPayoff, .of2NetPayoff').css({'color':'blue'});
-        $('.p1').css({'color':'black'});
-        $('.np1, .f1NetPayoff, .f2NetPayoff').css({'color':'red'});
-    }
-
-    if(oefo > 0 && w === 1) {
-        $('.np2').css({'color':'red'});
-    }
-
-    if(efo > 0 && w === 2) {
-        $('.np1').css({'color':'red'});
-    }
-
-    $('.c1, .c2').css({'color':'red'});
-
-    if(efo === 0 && w === 2) {
-        $('.np1').css({'color':'black'});
-    }
-
-    if(oefo === 0 && w === 1) {
-        $('.np2').css({'color':'black'});
-    }
-
-    if(efo === 0) {
-        $('.c1').css({'color':'black'});
-    }
-
-    if(oefo === 0) {
-        $('.c2').css({'color':'black'});
-    }
-
-    if(resultTextsTag === 'follower') {
-
-        $('.p1, .p2').css({'color':'black'});
-
-        if(efo === 0) {
-            $('.np1').css({'color':'black'});
-        }
-        if(efo > 0) {
-            $('.np1').css({'color':'red'});
-        }
-        if(oefo === 0) {
-            $('.np2').css({'color':'black'});
-        }
-        if(oefo > 0) {
-            $('.np2').css({'color':'red'});
-        }
-    }
+// EFFORT
+calculator.slider.playerDecision.effort = document.getElementById('dSliderL');
+calculator.slider.playerDecision.effort.oninput = function() {
 
 
-    $('.p1, .c1, .np1, .p2, .c2, .np2').css({'font-weight':'500'});
+    calculator.wheel.hide();
 
-    if(w === 2) {
-        if(s1 + h1 === 0) {
-            $('.f1NetPayoff').css({'color':'black'});
-        }
-        if(s2 + h2 === 0) {
-            $('.f2NetPayoff').css({'color':'black'});
-        }
-    }
 
-    if(w === 1) {
-        if(os1 + oh1 === 0) {
-            $('.of1NetPayoff').css({'color':'black'});
-        }
-        if(os2 + oh2 === 0) {
-            $('.of2NetPayoff').css({'color':'black'});
-        }
-    }
+    // get the value from the slider
+    efo = parseFloat(calculator.slider.playerDecision.effort.value);
+
+
+    // update bar plot
+    calculator.decisionSlider.leader.effortBar(efo, true);
+
+
+    // slider sync
+    $('#lSlider1').prop('value', efo);
+    $('#lSlider1').change();
+
+
+    // bar plot sync
+    var ourSide, showAxis;
+    ourSide = true;
+    showAxis = true;
+
+    calculator.graphics.update.effortBar(efo, 'barl1', ourSide, !showAxis)
+
+
+    calculator.values.update.efficiencies();
+    calculator.values.update.probability();
+    calculator.results.update.allTextAndColors();
+
+
+    //WILL ADD AN ACTIVE WIGGLE SWITCH OFF HERE
 
 
 }
-
-calculator.update.playerTitles = function() {
-
-    var p1Text = document.getElementById('player1');
-    var p2Text = document.getElementById('player2');
-
-    var p1, p2;
-
-    if(calculator.typeOfPlayer === 'l') {
-
-        p1 = 'LEADER A';
-        p2 = 'LEADER B';
-
-    }
-
-    if(calculator.typeOfPlayer === 'f') {
-
-        p1 = 'FOLLOWER A1';
-        p2 = 'FOLLOWER A2';
-
-    }
-
-    if(calculator.typeOfPlayer === 'of') {
-
-        p1 = 'FOLLOWER B1';
-        p2 = 'FOLLOWER B2';
-
-    }
-
-    p1Text.innerHTML = p1;
-    p2Text.innerHTML = p2;
-    calculator.update.playerLabels = [p2, p1];
-
-}
-
-calculator.update.contestName = function(stateOfDisplay) {
-
-    var contestName1, contestName2, contestName21, contestName22;
-    contestName1 = document.getElementById('contestName1');
-    contestName2 = document.getElementById('contestName2');
-    contestName21 = document.getElementById('contestName21');
-    contestName22 = document.getElementById('contestName22');
-
-
-
-    if(stateOfDisplay === 'hs_and_l_og1') {
-
-        contestName1.innerHTML = 'OUT-GROUP CONTEST I';
-        contestName2.innerHTML = '';
-        $('.ctWrap').css({'margin-bottom':'-67px', 'margin-top':'0px'});
-
-    }
-
-    if(stateOfDisplay === 'hs_og1') {
-
-        $('.ctTop').css({'margin-bottom':'-51px', 'margin-top':'40px'});
-
-        contestName1.innerHTML = 'OUT-GROUP CONTEST I';
-        contestName2.innerHTML = 'FOLLOWERS\' HELP & SABOTAGE';
-
-        $('.contestTitle1').css({'color':'white', 'font-size':'25px',
-        'background':'linear-gradient(90deg, rgb(60,60,60), rgb(210,210,210))',
-        'width':'308px', 'margin-left':'90px', 'margin-top':'-4px',
-        'border-radius':'40px'});
-        $('.contestTitle2').css({'font-size':'22px'});
-
-    }
-
-    if(stateOfDisplay === 'l_og1') {
-
-        $('.ctTop').css({'margin-top':'-45px'});
-        $('.ctBottom').css({'margin-bottom':'-151px', 'margin-top':'7px'});
-
-        contestName21.innerHTML = 'LEADERS\' COMPETITION';
-        contestName22.innerHTML = 'OUT-GROUP CONTEST I';
-
-        $('.contestTitle22').css({'color':'white',
-        'background':'linear-gradient(90deg, rgb(60,60,60), rgb(210,210,210))'});
-
-
-    }
-
-    if(stateOfDisplay === 'iga') {
-
-        contestName2.innerHTML = 'FOLLOWERS\' COMPETITION';
-        contestName1.innerHTML = 'IN-GROUP CONTEST A';
-        $('.ctWrap').css({'margin-bottom':'-97px', 'margin-top':'0px'});
-
-        $('.contestTitle22').css({'color':'white',
-        'background':'linear-gradient(90deg, rgb(18,103,48), rgb(60,60,60))'});
-    }
-
-    if(stateOfDisplay === 'igb') {
-
-        contestName1.innerHTML = 'IN-GROUP CONTEST A';
-        contestName2.innerHTML = '';
-        $('.ctWrap').css({'margin-bottom':'-97px', 'margin-top':'0px'});
-
-        $('.contestTitle22').css({'color':'white',
-        'background':'linear-gradient(90deg, rgb(18,103,48), rgb(210,210,210))'});
-    }
-
-    if(stateOfDisplay === 'hs_and_l_og2') {
-
-        contestName1.innerHTML = 'OUT-GROUP CONTEST II';
-        contestName2.innerHTML = '';
-        $('.ctWrap').css({'margin-bottom':'-67px', 'margin-top':'0px'});
-
-    }
-
-    if(stateOfDisplay === 'hs_og2') {
-
-        contestName1.innerHTML = 'OUT-GROUP CONTEST II';
-        contestName2.innerHTML = 'FOLLOWERS\' HELP & SABOTAGE';
-        $('.ctWrap').css({'margin-bottom':'-51px', 'margin-top':'0px'});
-
-    }
-
-    if(stateOfDisplay === 'l_og2') {
-
-        contestName1.innerHTML = 'OUT-GROUP CONTEST II';
-        contestName2.innerHTML = 'LEADERS\' COMPETITION';
-        $('.ctWrap').css({'margin-bottom':'-97px', 'margin-top':'0px'});
-
-    }
-
-
-}
-
-calculator.update.contestSetup = function(state) {
-
-    calculator.typeOfPlayer = state;
-
-    if(calculator.typeOfPlayer === 'l') {
-        resultTextsTag = 'leader';
-        $('.bswLeft').css({'background-color':'rgb(60,60,60)', 'color':'white'});
-        $('.bswRight').css({'background-color':'rgb(210,210,210)', 'color':'black'});
-    }
-    if(calculator.typeOfPlayer === 'f') {
-        resultTextsTag = 'follower';
-        $('.bswLeft').css({'background-color':'rgb(18,103,48)', 'color':'white'});
-        $('.bswRight').css({'background-color':'rgb(60,60,60)', 'color':'white'});
-    }
-    if(calculator.typeOfPlayer === 'of') {
-        resultTextsTag = 'follower';
-        $('.bswLeft').css({'background-color':'rgb(18,103,48)', 'color':'white'});
-        $('.bswRight').css({'background-color':'rgb(210,210,210)', 'color':'black'});
-    }
-
-    calculator.update.effortSliderRange();
-    calculator.setup.refresh();
-
-    calculator.update.playerTitles();
-
-}
-
-//-----sliders-----//
 
 // Effort Section
 
@@ -1342,14 +1712,15 @@ calculator.slider.l1.oninput = function() {
     ourSide = true;
     showAxis = true;
 
-    calculator.update.effortBar(efo, 'barl1', ourSide, !showAxis);
-    calculator.update.resultTexts();
+    calculator.graphics.update.effortBar(efo, 'barl1', ourSide, !showAxis);
 
-    calculator.update.barLabelX('barl1', true);
+    calculator.results.update.allTextAndColors();
 
-    calculator.update.probability();
+    calculator.graphics.update.barLabelX('barl1', true);
 
-    wiggle.activeWiggles[0] = false;
+    calculator.values.update.probability();
+
+    calculator.pointers.switches[0] = false;
 
 }
 
@@ -1365,14 +1736,15 @@ calculator.slider.l2.oninput = function() {
     ourSide = true;
     showAxis = true;
 
-    calculator.update.effortBar(oefo, 'barl2', !ourSide, !showAxis);
-    calculator.update.resultTexts();
+    calculator.graphics.update.effortBar(oefo, 'barl2', !ourSide, !showAxis);
 
-    calculator.update.probability();
+    calculator.results.update.allTextAndColors();
 
-    calculator.update.barLabelX('barl2', true);
+    calculator.values.update.probability();
 
-    wiggle.activeWiggles[1] = false;
+    calculator.graphics.update.barLabelX('barl2', true);
+
+    calculator.pointers.switches[1] = false;
 
 }
 
@@ -1385,7 +1757,7 @@ calculator.slider.l2.oninput = function() {
 calculator.slider.f1= document.getElementById('vSlider1');
 calculator.slider.f1.oninput = function() {
 
-    calculator.update.barLabelY('barf1', true);
+    calculator.graphics.update.barLabelY('barf1', true);
     calculator.wheel.hide();
 
     var hsValue, theirSide, showAxis;
@@ -1397,13 +1769,28 @@ calculator.slider.f1.oninput = function() {
     s1 = hsValue > 0 ? 0 : -hsValue;
     h1 = hsValue > 0 ? hsValue : 0;
 
-    calculator.update.efficiencies();
-    calculator.update.probability();
+    calculator.values.update.efficiencies();
 
-    calculator.update.helpSaboBar(hsValue, 'barf1', !theirSide, showAxis);
-    calculator.update.resultTexts();
+    calculator.values.update.probability();
 
-    wiggle.activeWiggles[2] = false;
+    calculator.graphics.update.helpSaboBar(hsValue, 'barf1', !theirSide, showAxis);
+
+    calculator.results.update.allTextAndColors();
+
+    calculator.pointers.switches[2] = false;
+
+    // SYNC WITH THE DECISION SLIDER IF IT IS A MATCH
+    // if you are the first follower (strong)
+    if(calculator.globalVariable.subjectiveIndex === 0) {
+
+        //update decision slider
+        calculator.decisionSlider.follower.helpSaboBar(hsValue, false);
+
+        //synching sliders with d slider
+        $('#dSliderF').prop('value', hsValue);
+        $('#dSliderF').change();
+
+    }
 
 }
 
@@ -1411,7 +1798,7 @@ calculator.slider.f1.oninput = function() {
 calculator.slider.f2= document.getElementById('vSlider2');
 calculator.slider.f2.oninput = function() {
 
-    calculator.update.barLabelY('barf2', true);
+    calculator.graphics.update.barLabelY('barf2', true);
     calculator.wheel.hide();
 
     var hsValue, theirSide, showAxis;
@@ -1423,13 +1810,26 @@ calculator.slider.f2.oninput = function() {
     s2 = hsValue > 0 ? 0 : -hsValue;
     h2 = hsValue > 0 ? hsValue : 0;
 
-    calculator.update.efficiencies();
-    calculator.update.probability();
+    calculator.values.update.efficiencies();
+    calculator.values.update.probability();
 
-    calculator.update.helpSaboBar(hsValue, 'barf2', !theirSide, showAxis);
-    calculator.update.resultTexts();
+    calculator.graphics.update.helpSaboBar(hsValue, 'barf2', !theirSide, showAxis);
+    calculator.results.update.allTextAndColors();
 
-    wiggle.activeWiggles[3] = false;
+    calculator.pointers.switches[3] = false;
+
+    // SYNC WITH THE DECISION SLIDER IF IT IS A MATCH
+    // if you are the second follower (weak)
+    if(calculator.globalVariable.subjectiveIndex === 1) {
+
+        //update decision slider
+        calculator.decisionSlider.follower.helpSaboBar(hsValue, false);
+
+        //synching sliders with d slider
+        $('#dSliderF').prop('value', hsValue);
+        $('#dSliderF').change();
+
+    }
 
 }
 
@@ -1439,7 +1839,7 @@ calculator.slider.f2.oninput = function() {
 calculator.slider.of1= document.getElementById('ovSlider1');
 calculator.slider.of1.oninput = function() {
 
-    calculator.update.barLabelY('obarf1', true);
+    calculator.graphics.update.barLabelY('obarf1', true);
     calculator.wheel.hide();
 
     var hsValue, theirSide, showAxis;
@@ -1451,13 +1851,15 @@ calculator.slider.of1.oninput = function() {
     os1 = hsValue > 0 ? 0 : -hsValue;
     oh1 = hsValue > 0 ? hsValue : 0;
 
-    calculator.update.efficiencies();
-    calculator.update.probability();
+    calculator.values.update.efficiencies();
 
-    calculator.update.helpSaboBar(hsValue, 'obarf1', theirSide, showAxis);
-    calculator.update.resultTexts();
+    calculator.values.update.probability();
 
-    wiggle.activeWiggles[4] = false;
+    calculator.graphics.update.helpSaboBar(hsValue, 'obarf1', theirSide, showAxis);
+
+    calculator.results.update.allTextAndColors();
+
+    calculator.pointers.switches[4] = false;
 
 }
 
@@ -1465,7 +1867,7 @@ calculator.slider.of1.oninput = function() {
 calculator.slider.of2= document.getElementById('ovSlider2');
 calculator.slider.of2.oninput = function() {
 
-    calculator.update.barLabelY('obarf2', true);
+    calculator.graphics.update.barLabelY('obarf2', true);
     calculator.wheel.hide();
 
     var hsValue, theirSide, showAxis;
@@ -1477,24 +1879,1510 @@ calculator.slider.of2.oninput = function() {
     os2 = hsValue > 0 ? 0 : -hsValue;
     oh2 = hsValue > 0 ? hsValue : 0;
 
-    calculator.update.efficiencies();
-    calculator.update.probability();
+    calculator.values.update.efficiencies();
 
-    calculator.update.helpSaboBar(hsValue, 'obarf2', theirSide, showAxis);
-    calculator.update.resultTexts();
+    calculator.values.update.probability();
 
-    wiggle.activeWiggles[5] = false;
+    calculator.graphics.update.helpSaboBar(hsValue, 'obarf2', theirSide, showAxis);
+
+    calculator.results.update.allTextAndColors();
+
+    calculator.pointers.switches[5] = false;
 
 }
 
-//-------------vibrating locks-----------//
 
-vibrate.sliderLocked = Array(6);
+////////////////////////// HOVER ///////////////////////////
+////////////////////////// HOVER ///////////////////////////
+////////////////////////// HOVER ///////////////////////////
+////////////////////////// HOVER ///////////////////////////
+////////////////////////// HOVER ///////////////////////////
+////////////////////////// HOVER ///////////////////////////
+////////////////////////// HOVER ///////////////////////////
+////////////////////////// HOVER ///////////////////////////
+////////////////////////// HOVER ///////////////////////////
+////////////////////////// HOVER ///////////////////////////
+////////////////////////// HOVER ///////////////////////////
+////////////////////////// HOVER ///////////////////////////
+////////////////////////// HOVER ///////////////////////////
+////////////////////////// HOVER ///////////////////////////
+////////////////////////// HOVER ///////////////////////////
+////////////////////////// HOVER ///////////////////////////
+////////////////////////// HOVER ///////////////////////////
 
-vibrate.l1Switch = true;
-vibrate.l1 = function(state) {
 
-    if(vibrate.l1Switch) {
+//----- LEADER DECISION SLIDER ------//
+
+$('#dSliderL').hover(
+    function() {
+
+        setTimeout(()=>calculator.graphics.update.barLabelX('bardl', true), 150);
+
+
+        calculator.globalVariable.pieBorderLeft = true;
+        calculator.graphics.update.pie();
+
+        calculator.globalVariable.enervateLeaderLeft = true;
+        calculator.icons.enervate.leaderLeft(0);
+
+        $('.activeLeaderLeft').css({'opacity':'1'});
+        $('.passiveLeaderLeft').css({'opacity':'0'});
+
+        $('.bswLeft').css({'box-shadow':'0px 0px 1px 4px lime'});
+
+
+    },
+    function() {
+
+        setTimeout(()=>calculator.graphics.update.barLabelX('bardl', false), 150);
+        calculator.graphics.update.barGridX('bardl', false);
+
+        calculator.globalVariable.pieBorderLeft = false;
+        calculator.graphics.update.pie();
+
+        calculator.globalVariable.enervateLeaderLeft = false;
+
+        $('.activeLeaderLeft').css({'opacity':'0'});
+        $('.passiveLeaderLeft').css({'opacity':'1'});
+
+        $('.bswLeft').css({'box-shadow':'0px 1px 1px 0px black'});
+
+    }
+)
+
+$('.inputL').hover(
+
+    function() {
+
+        if(calculator.globalVariable.dynamicDisplay && calculator.globalVariable.aBitOfWaitingIsDone) {
+
+        calculator.results.hide.followerOutcomesAll();
+
+        }
+
+        calculator.button.display.spinBottom(false);
+
+
+
+
+        calculator.decisionSlider.leader.isFlashing = false;
+
+    },
+    function() {
+
+    }
+
+)
+
+//----- FOLLOWER DECISION SLIDER ------//
+
+$('#dSliderF').hover(
+    function() {
+
+        setTimeout(()=>calculator.graphics.update.barLabelX('bardf', true), 150);
+
+        calculator.globalVariable.pieBorderLeft = true;
+        calculator.graphics.update.pie();
+
+        calculator.globalVariable.powerBarLeft = true;
+        calculator.graphics.update.efficiencyBar();
+
+        if(calculator.globalVariable.subjectiveIndex === 0) {
+            calculator.section.hs.opacity.activeFollowerIcon('spf1L11', true)
+        }
+
+        if(calculator.globalVariable.subjectiveIndex === 1) {
+            calculator.section.hs.opacity.activeFollowerIcon('spf1L12', true);
+        }
+
+    },
+    function() {
+
+        calculator.globalVariable.pieBorderLeft = false;
+        calculator.graphics.update.pie();
+
+        calculator.globalVariable.powerBarLeft = false;
+        calculator.graphics.update.efficiencyBar();
+
+        setTimeout(()=>calculator.graphics.update.barLabelX('bardf', false), 150);
+        calculator.graphics.update.barGridX('bardf', false);
+
+        if(calculator.globalVariable.subjectiveIndex === 0){
+            calculator.section.hs.opacity.activeFollowerIcon('spf1L11', false)
+        }
+
+        if(calculator.globalVariable.subjectiveIndex === 1) {
+            calculator.section.hs.opacity.activeFollowerIcon('spf1L12', false);
+        }
+
+
+    }
+)
+
+$('.inputF').hover(
+
+    function() {
+
+        if(calculator.globalVariable.subjectiveIndex === 0) {
+            $('.bf1').css({'box-shadow':'0px 0px 3px 3px lime'});
+        }
+
+        if(calculator.globalVariable.subjectiveIndex === 1) {
+            $('.bf2').css({'box-shadow':'0px 0px 3px 3px lime'});
+        }
+
+        if(calculator.globalVariable.dynamicDisplay && calculator.globalVariable.aBitOfWaitingIsDone) {
+
+            calculator.results.hide.followerOutcomesBottom();
+            calculator.results.hide.followerOutcomesTop();
+            calculator.results.hide.leaderOutcomes();
+            calculator.titles.hs.ghost.hide();
+            calculator.titles.update.position();
+
+        }
+
+        if(calculator.globalVariable.aBitOfWaitingIsDone) {
+
+            calculator.section.hs.opacity.SFiALiFiS([1,1,1,0.5,0,1]);
+            calculator.section.hs.set.iconPosition('center');
+            calculator.titles.hs.ghost.hide();
+            calculator.titles.hs.show();
+            calculator.titles.update.position();
+
+        }
+
+
+        calculator.button.display.spinTop(false);
+        // calculator.button.display.minTop(false);
+        // calculator.button.disable.minTop();
+
+        calculator.decisionSlider.leader.isFlashing = false;
+
+    },
+    function() {
+        if(calculator.globalVariable.subjectiveIndex === 0) {
+            $('.bf1').css({'box-shadow':'0px 0px 0px 0px black'});
+        }
+
+        if(calculator.globalVariable.subjectiveIndex === 1) {
+            $('.bf2').css({'box-shadow':'0px 0px 0px 0px black'});
+        }
+    }
+
+)
+
+
+//----- LEFT HORIZONTAL SLIDER -----//
+
+$('#lSlider1').hover(
+    function() {
+
+        calculator.globalVariable.pieBorderLeft = true;
+        calculator.graphics.update.pie();
+
+        calculator.globalVariable.enervateLeaderLeft = true;
+        calculator.icons.enervate.leaderLeft(0);
+
+        $('.activeLeaderLeft').css({'opacity':'1'});
+        $('.passiveLeaderLeft').css({'opacity':'0'});
+        setTimeout(()=>calculator.graphics.update.barLabelX('barl1', true), 150);
+        calculator.questions.spin2.l1();
+
+        },
+    function() {
+
+        calculator.globalVariable.pieBorderLeft = false;
+        calculator.graphics.update.pie();
+
+        calculator.globalVariable.enervateLeaderLeft = false;
+
+        $('.activeLeaderLeft').css({'opacity':'0'});
+        $('.passiveLeaderLeft').css({'opacity':'1'});
+        setTimeout(()=>calculator.graphics.update.barLabelX('barl1', false), 400);
+        calculator.graphics.update.barGridX('barl1', false);
+
+    }
+);
+
+$('.bswLeft').hover(
+    function() {
+
+        $('.bswLeft').css({'transition':'0.7s', 'box-shadow':'0px 6px 6px 2px black'});
+        calculator.button.display.spinBottom(false);
+        calculator.questions.spin1.l1();
+
+        if(calculator.lock.switch.all[0]) {
+            calculator.lock.switch.l1 = true;
+            calculator.lock.vibrate.l1(1);
+        }
+
+    },
+    function() {
+
+        $('.bswLeft').css({'transition':'0.7s', 'box-shadow':'0px 1px 1px 0px black'});
+        calculator.button.display.spinBottom(true);
+        calculator.questions.spin2.l1();
+        calculator.lock.switch.l1 = false;
+
+    }
+);
+
+
+//----- RIGHT HORIZONTAL SLIDER -----//
+
+$('#olSlider1').hover(
+    function() {
+
+        calculator.globalVariable.pieBorderRight = true;
+        calculator.graphics.update.pie();
+
+        calculator.globalVariable.enervateLeaderRight = true;
+        calculator.icons.enervate.leaderRight(0);
+
+        $('.activeLeaderRight').css({'opacity':'1'});
+        $('.passiveLeaderRight').css({'opacity':'0'});
+        setTimeout(()=>calculator.graphics.update.barLabelX('barl2', true), 150);
+        calculator.questions.spin2.l2();
+
+    },
+    function() {
+
+        calculator.globalVariable.pieBorderRight = false;
+        calculator.graphics.update.pie();
+
+        calculator.globalVariable.enervateLeaderRight = false;
+
+        $('.activeLeaderRight').css({'opacity':'0'});
+        $('.passiveLeaderRight').css({'opacity':'1'});
+        setTimeout(()=>calculator.graphics.update.barLabelX('barl2', false), 400);
+        calculator.graphics.update.barGridX('barl2', false);
+
+    }
+);
+
+$('.bswRight').hover(
+
+    function() {
+
+        $('.bswRight').css({'transition':'0.7s', 'box-shadow':'0px 6px 6px 2px black'});
+        calculator.button.display.spinBottom(false);
+        calculator.questions.spin1.l2();
+
+        if(calculator.lock.switch.all[1]) {
+            calculator.lock.switch.l2 = true;
+            calculator.lock.vibrate.l2(1);
+        }
+
+    },
+    function() {
+
+        $('.bswRight').css({'transition':'0.7s', 'box-shadow':'0px 1px 1px 0px black'});
+        calculator.button.display.spinBottom(true);
+        calculator.questions.spin2.l2();
+        calculator.lock.switch.l2 = false;
+
+    }
+
+);
+
+
+//------ FOLLOWER 1 SLIDER ------//
+
+$('#vSlider1').hover(
+    function() {
+
+        calculator.globalVariable.pieBorderLeft = true;
+        calculator.graphics.update.pie();
+
+        calculator.globalVariable.powerBarLeft = true;
+        calculator.graphics.update.efficiencyBar();
+
+        setTimeout(()=>calculator.graphics.update.barLabelY('barf1', true), 150);
+        calculator.section.hs.opacity.activeFollowerIcon('spf1L11', true);
+        calculator.questions.spin2.f1();
+        calculator.globalVariable.enervateFollowerF1 = true;
+        calculator.icons.enervate.followerF1(0);
+
+        },
+
+    function() {
+
+        calculator.globalVariable.pieBorderLeft = false;
+        calculator.graphics.update.pie();
+
+        calculator.globalVariable.powerBarLeft = false;
+        calculator.graphics.update.efficiencyBar();
+
+        setTimeout(()=>calculator.graphics.update.barLabelY('barf1', false), 400);
+        calculator.section.hs.opacity.activeFollowerIcon('spf1L11', false);
+        calculator.graphics.update.barGridY('barf1', false);
+
+        calculator.globalVariable.enervateFollowerOF1 = false;
+
+    }
+);
+
+$('.lbf1').hover(
+
+    function() {
+
+        if(calculator.globalVariable.dynamicDisplay && calculator.globalVariable.aBitOfWaitingIsDone) {
+
+            calculator.results.hide.followerOutcomesBottom();
+
+        }
+
+        calculator.questions.spin1.f1();
+
+        calculator.button.display.spinTop(false);
+
+        if(calculator.space.hsResultsTopIsOpen){
+            calculator.button.display.minTop(false);
+            calculator.button.disable.minTop();
+        }
+
+        calculator.questions.spin1.f1();
+
+        if(calculator.lock.switch.all[2]) {
+
+            calculator.lock.switch.f1 = true;
+            calculator.lock.vibrate.f1(1);
+
+        }
+
+    },
+    function() {
+
+        if(calculator.globalVariable.dynamicDisplay && calculator.globalVariable.aBitOfWaitingIsDone) {
+
+            calculator.results.show.followerOutcomesBottom();
+
+        }
+
+        calculator.button.display.spinTop(true);
+
+        if(calculator.space.hsResultsTopIsOpen){
+            calculator.button.display.minTop(true);
+            calculator.button.enable.minTop();
+        }
+
+        calculator.questions.spin2.f1();
+
+        calculator.lock.switch.f1 = false;
+
+    }
+
+);
+
+
+//-------- FOLLOWER 2 SLIDER ------//
+
+$('#vSlider2').hover(
+    function() {
+
+        calculator.globalVariable.pieBorderLeft = true;
+        calculator.graphics.update.pie();
+
+        calculator.globalVariable.powerBarLeft = true;
+        calculator.graphics.update.efficiencyBar();
+
+        setTimeout(()=>calculator.graphics.update.barLabelY('barf2', true), 150);
+        calculator.section.hs.opacity.activeFollowerIcon('spf1L12', true);
+        calculator.questions.spin2.f2();
+        calculator.globalVariable.enervateFollowerF2 = true;
+        calculator.icons.enervate.followerF2(0);
+
+    },
+    function() {
+
+        calculator.globalVariable.pieBorderLeft = false;
+        calculator.graphics.update.pie();
+
+        calculator.globalVariable.powerBarLeft = false;
+        calculator.graphics.update.efficiencyBar();
+
+        setTimeout(()=>calculator.graphics.update.barLabelY('barf2', false), 400);
+        calculator.graphics.update.barGridY('barf2', false);
+        calculator.section.hs.opacity.activeFollowerIcon('spf1L12', false);
+        calculator.globalVariable.enervateFollowerF2 = false;
+
+    }
+);
+
+$('.lbf2').hover(
+
+    function() {
+
+        if(calculator.globalVariable.dynamicDisplay && calculator.globalVariable.aBitOfWaitingIsDone) {
+
+            calculator.results.hide.followerOutcomesBottom();
+
+        }
+
+        calculator.button.display.spinTop(false);
+
+        if(calculator.space.hsResultsTopIsOpen){
+            calculator.button.display.minTop(false);
+            calculator.button.disable.minTop();
+        }
+
+        calculator.questions.spin1.f2();
+
+        if(calculator.lock.switch.all[3]) {
+
+            calculator.lock.switch.f2 = true;
+            calculator.lock.vibrate.f2(1);
+
+        }
+
+    },
+    function() {
+
+            if(calculator.globalVariable.dynamicDisplay && calculator.globalVariable.aBitOfWaitingIsDone) {
+
+                calculator.results.show.followerOutcomesBottom();
+
+            }
+
+            calculator.button.display.spinTop(true);
+
+            if(calculator.space.hsResultsTopIsOpen){
+                calculator.button.display.minTop(true);
+                calculator.button.enable.minTop();
+            }
+
+            calculator.questions.spin2.f2();
+
+            calculator.lock.switch.f2 = false;
+
+    }
+
+);
+
+
+//-------- O FOLLOWER 1 SLIDER -----//
+
+$('#ovSlider1').hover(
+    function() {
+
+        calculator.globalVariable.pieBorderRight = true;
+        calculator.graphics.update.pie();
+
+        calculator.globalVariable.powerBarRight = true;
+        calculator.graphics.update.efficiencyBar();
+
+        setTimeout(()=>calculator.graphics.update.barLabelY('obarf1', true), 150);
+        calculator.section.hs.opacity.activeFollowerIcon('spf1L21', true);
+        calculator.questions.spin2.of2();
+        calculator.globalVariable.enervateFollowerOF1 = true;
+        calculator.icons.enervate.followerOF1(0);
+
+    },
+    function() {
+
+        calculator.globalVariable.pieBorderRight = false;
+        calculator.graphics.update.pie();
+
+        calculator.globalVariable.powerBarRight = false;
+        calculator.graphics.update.efficiencyBar();
+
+        calculator.graphics.update.barGridY('obarf1', false);
+        setTimeout(()=>calculator.graphics.update.barLabelY('obarf1', false), 400);
+        calculator.section.hs.opacity.activeFollowerIcon('spf1L21', false);
+        calculator.globalVariable.enervateFollowerOF1 = false;
+
+    }
+);
+
+$('.rbf1').hover(
+
+    function() {
+
+        if(calculator.globalVariable.dynamicDisplay && calculator.globalVariable.aBitOfWaitingIsDone) {
+
+            calculator.results.hide.followerOutcomesBottom();
+
+        }
+
+        calculator.button.display.spinTop(false);
+
+        if(calculator.space.hsResultsTopIsOpen){
+            calculator.button.display.minTop(false);
+            calculator.button.disable.minTop();
+        }
+
+        calculator.questions.spin1.of1();
+
+        if(calculator.lock.switch.all[4]) {
+
+            calculator.lock.switch.of1 = true;
+            calculator.lock.vibrate.of1(1);
+
+        }
+
+    },
+    function() {
+
+        if(calculator.globalVariable.dynamicDisplay && calculator.globalVariable.aBitOfWaitingIsDone) {
+
+            calculator.results.show.followerOutcomesBottom();
+
+        }
+
+        calculator.button.display.spinTop(true);
+
+        if(calculator.space.hsResultsTopIsOpen){
+            calculator.button.display.minTop(true);
+            calculator.button.enable.minTop();
+        }
+
+        calculator.questions.spin2.of1();
+
+        calculator.lock.switch.of1 = false;
+
+    }
+
+);
+
+
+//-------- O FOLLOWER 2 SLIDER -----//
+
+$('#ovSlider2').hover(
+    function() {
+
+        calculator.globalVariable.pieBorderRight = true;
+        calculator.graphics.update.pie();
+
+        calculator.globalVariable.powerBarRight = true;
+        calculator.graphics.update.efficiencyBar();
+
+        setTimeout(()=>calculator.graphics.update.barLabelY('obarf2', true), 150);
+        calculator.section.hs.opacity.activeFollowerIcon('spf1L22', true);
+        calculator.questions.spin2.of2();
+        calculator.globalVariable.enervateFollowerOF2 = true;
+        calculator.icons.enervate.followerOF2(0);
+
+    },
+    function() {
+
+        calculator.globalVariable.pieBorderRight = false;
+        calculator.graphics.update.pie();
+
+        calculator.globalVariable.powerBarRight = false;
+        calculator.graphics.update.efficiencyBar();
+
+        calculator.graphics.update.barGridY('obarf2', false);
+        setTimeout(()=>calculator.graphics.update.barLabelY('obarf2', false), 400);
+        calculator.section.hs.opacity.activeFollowerIcon('spf1L22', false);
+        calculator.globalVariable.enervateFollowerOF2 = false;
+
+    }
+);
+
+$('.rbf2').hover(
+
+    function() {
+
+        if(calculator.globalVariable.dynamicDisplay && calculator.globalVariable.aBitOfWaitingIsDone) {
+
+            calculator.results.hide.followerOutcomesBottom();
+
+        }
+
+        calculator.button.display.spinTop(false);
+
+        if(calculator.space.hsResultsTopIsOpen){
+            calculator.button.display.minTop(false);
+            calculator.button.disable.minTop();
+        }
+
+        calculator.questions.spin1.of2();
+
+        if(calculator.lock.switch.all[5]) {
+
+            calculator.lock.switch.of2 = true;
+            calculator.lock.vibrate.of2(1);
+
+        }
+
+    },
+    function() {
+
+            if(calculator.globalVariable.dynamicDisplay && calculator.globalVariable.aBitOfWaitingIsDone) {
+
+                calculator.results.show.followerOutcomesBottom();
+
+            }
+
+            calculator.button.display.spinTop(true);
+
+            if(calculator.space.hsResultsTopIsOpen){
+                calculator.button.display.minTop(true);
+                calculator.button.enable.minTop();
+            }
+
+            calculator.questions.spin2.of2();
+
+            calculator.lock.switch.of2 = false;
+
+    }
+
+);
+
+
+//------ HELP SABOTAGE SECTION -----//
+
+$('.hsWrap').hover(
+
+    function() {
+
+        if(calculator.globalVariable.aBitOfWaitingIsDone) {
+
+            calculator.titles.contest.hide();
+            calculator.button.display.spinBottom(false);
+
+            calculator.section.hs.opacity.SFiALiFiS([1,1,1,0.5,0,1]);
+            calculator.section.hs.set.iconPosition('center');
+            calculator.titles.hs.show();
+            calculator.button.display.spinTop(true);
+
+            if(calculator.globalVariable.dynamicDisplay) {
+
+                calculator.results.hide.leaderOutcomes();
+                calculator.results.show.followerOutcomesAll();
+
+                calculator.button.display.minTop(true);
+                calculator.button.enable.minTop();
+
+                calculator.button.display.minBottom(false);
+                calculator.button.disable.minBottom();
+                calculator.titles.update.position();
+
+            }
+
+            var str;
+
+            if(!calculator.globalVariable.dynamicDisplay && !calculator.space.hsResultsTopIsOpen && !calculator.space.open.hsResultsBottomIsOpen) {
+
+                str = calculator.globalVariable.isOG2 ? 'og2' : 'og1';
+                calculator.titles.hs.ghost.text(str);
+                calculator.titles.hs.ghost.hide();
+
+            }
+
+            if(calculator.globalVariable.dynamicDisplay && calculator.space.hsResultsTopIsOpen && calculator.space.hsResultsBottomIsOpen && calculator.globalVariable.subjectiveView && calculator.globalVariable.subjectiveIndex === -1) {
+
+                str = calculator.globalVariable.isOG2 ? 'og2' : 'og1';
+                calculator.titles.hs.ghost.text(str);
+                calculator.titles.hs.ghost.hide();
+
+            }
+
+        }
+
+    },
+
+    function() {}
+
+)
+
+
+//------ CONTEST SECTION ------//
+
+$('.contestSection').hover(
+
+    function() {
+
+        if(calculator.globalVariable.aBitOfWaitingIsDone) {
+
+            calculator.button.enable.spinBottom();
+            calculator.button.display.spinBottom(true);
+
+            calculator.section.hs.opacity.SFiALiFiS([0.2,0.2,1,1,1,0]);
+            calculator.section.hs.set.iconPosition('bottom');
+            calculator.titles.hs.hide();
+            calculator.button.display.spinTop(false);
+
+            if(calculator.globalVariable.dynamicDisplay) {
+
+                calculator.titles.contest.show();
+                calculator.results.show.leaderOutcomes();
+                calculator.results.hide.followerOutcomesAll();
+
+                calculator.button.display.minTop(false);
+                calculator.button.disable.minTop();
+
+                calculator.button.display.minBottom(true);
+                calculator.button.enable.minBottom();
+
+            }
+
+            var str;
+
+            if(!calculator.globalVariable.dynamicDisplay && !calculator.space.hsResultsTopisOpen && !calculator.space.hsResultsBottomIsOpen) {
+
+                str = calculator.globalVariable.isOG2 ? 'og2' : 'og1';
+                calculator.titles.hs.ghost.text(str);
+                calculator.titles.hs.ghost.show();
+
+            }
+
+            if(calculator.globalVariable.dynamicDisplay && !calculator.space.hsResultsTopIsOpen && !calculator.space.hsResultsBottomIsOpen && calculator.globalVariable.subjectiveView && calculator.globalVariable.subjectiveIndex === -1) {
+
+                str = calculator.globalVariable.isOG2 ? 'og2' : 'og1';
+                calculator.titles.hs.ghost.text(str);
+                calculator.titles.hs.ghost.show();
+
+            }
+
+        }
+
+    },
+
+    function() {}
+
+)
+
+
+//----- SPIN BUTTONS -----//
+
+var sp23C = 0;
+$('#spinImage23').hover(
+    function() {
+        sp23C = sp23C + 1;
+        var str = 'rotate('+sp23C+'turn)';
+        $('#spinImage23').css({'transition':'0.5s', 'transform':str});
+    },
+    function() {
+
+    }
+)
+
+var spC = 0;
+$('#spinImage').hover(
+    function() {
+        spC = spC + 1;
+        var str = 'rotate('+spC+'turn)';
+        $('#spinImage').css({'transition':'0.5s', 'transform':str});
+
+        // calculator.wheel.cruise();
+        // calculator.wheel.show();
+    },
+    function() {
+    }
+)
+
+var sp3C = 0;
+$('#spinImageMini').hover(
+    function() {
+        sp3C = sp3C + 1;
+        var str = 'rotate('+sp3C+'turn)';
+        $('#spinImageMini').css({'transition':'0.5s', 'transform':str});
+    },
+    function() {
+
+    }
+)
+
+
+/////////////////// TITLE /////////////////////
+/////////////////// TITLE /////////////////////
+/////////////////// TITLE /////////////////////
+/////////////////// TITLE /////////////////////
+/////////////////// TITLE /////////////////////
+/////////////////// TITLE /////////////////////
+/////////////////// TITLE /////////////////////
+/////////////////// TITLE /////////////////////
+/////////////////// TITLE /////////////////////
+/////////////////// TITLE /////////////////////
+/////////////////// TITLE /////////////////////
+/////////////////// TITLE /////////////////////
+/////////////////// TITLE /////////////////////
+/////////////////// TITLE /////////////////////
+
+
+//------- POSITION -----//
+calculator.titles.update.position = function() {
+
+    if(!calculator.space.hsResultsTopIsOpen) {
+        calculator.titles.update.topTitleMargins(0, -75);
+    }
+
+    if(calculator.space.hsResultsTopIsOpen) {
+        calculator.titles.update.topTitleMargins(35, -110);
+    }
+
+}
+
+calculator.titles.update.topTitleMargins = function(mt, mb) {
+
+    mt = mt === undefined ? 0 : mt;
+    mb = mb === undefined ? 0 : mb;
+
+    mt = mt + 'px';
+    mb = mb + 'px';
+
+    $('.ctTop').css({'margin-bottom': mb , 'margin-top': mt});
+
+}
+
+calculator.titles.update.bottomTitleMargins = function(mt, mb) {
+
+    mt = mt === undefined ? 0 : mt;
+    mb = mb === undefined ? 0 : mb;
+
+    mt = mt + 'px';
+    mb = mb + 'px';
+
+    $('.ctBottom').css({'margin-bottom': mb , 'margin-top': mt});
+
+}
+
+
+//------- HS TITLE SHOW / HIDE -------//
+
+calculator.titles.hs.show = function() {
+
+    $('.ctTop').css({'transition':'0.3s', 'transition-delay':'0s', 'transform' : 'rotate3d(1, 0, 0, 0turn)'});
+    $('.ctTop').css({'opacity':'1'});
+
+}
+
+calculator.titles.hs.hide = function() {
+
+    $('.ctTop').css({'transition':'0.3s', 'transition-delay':'0s', 'transform' : 'rotate3d(1, 0, 0, 0.5turn)'});
+    $('.ctTop').css({ 'opacity':'0'});
+
+}
+
+calculator.titles.hs.ghost.show = function() {
+
+    $('.ctGhost').css({'transition':'0.3s', 'transition-delay':'0s', 'transform' : 'rotate3d(1, 0, 0, 0turn)'});
+    $('.ctGhost').css({'opacity':'1'});
+
+}
+
+calculator.titles.hs.ghost.hide = function() {
+
+    $('.ctGhost').css({'transition':'0.3s', 'transition-delay':'0s', 'transform' : 'rotate3d(1, 0, 0, 1turn)'});
+    $('.ctGhost').css({ 'opacity':'0'});
+
+}
+
+calculator.titles.opacity.all = function(array) {
+    var topt, bopt;
+
+    topt = array[0] ? '1' : '0';
+    bopt = array[1] ? '1' : '0';
+
+    $('.ctTop').css({'opacity':topt});
+    $('.ctBottom').css({'opacity':bopt});
+
+}
+
+
+//------- CONTEST TITLE SHOW / HIDE -------//
+
+calculator.titles.contest.show = function() {
+
+    $('.ctBottom').css({'transition':'0.3s', 'transition-delay':'0s', 'transform' : 'rotate3d(1, 0, 0, 1turn)'});
+    $('.ctBottom').css({'opacity':'1'});
+
+}
+
+calculator.titles.contest.hide = function() {
+
+    $('.ctBottom').css({'transition':'0.3s', 'transition-delay':'0s', 'transform' : 'rotate3d(1, 0, 0, 0.5turn)'});
+    $('.ctBottom').css({ 'opacity':'0'});
+
+    if(calculator.globalVariable.subjectiveIndex === -1 && calculator.globalVariable.subjectiveView) {
+        calculator.titles.contest.show();
+    }
+
+}
+
+
+//---------- TEXT AND COLOR ---------//
+
+calculator.titles.hs.ghost.text = function(name) {
+
+    var contestName1, contestName2;
+
+    contestName1 = document.getElementById('contestNameG1');
+    contestName2 = document.getElementById('contestNameG2');
+
+    if(name === 'og1') {
+
+        contestName1.innerHTML = 'OUT-GROUP CONTEST I';
+        contestName2.innerHTML = 'LEADERS\' COMPETITION';
+
+    }
+
+    if(name === 'og2') {
+
+        contestName1.innerHTML = 'OUT-GROUP CONTEST II';
+        contestName2.innerHTML = 'LEADERS\' COMPETITION';
+
+    }
+
+    if(name === undefined) {
+
+        contestName1.innerHTML = 'OUT-GROUP CONTEST X';
+        contestName2.innerHTML = 'LEADERS\' COMPETITION';
+
+    }
+
+}
+
+calculator.titles.update.textAndColor = function(name) {
+
+    var contestName1, contestName2, contestName21, contestName22;
+
+    contestName1 = document.getElementById('contestName1');
+    contestName2 = document.getElementById('contestName2');
+    contestName21 = document.getElementById('contestName21');
+    contestName22 = document.getElementById('contestName22');
+
+    if(name === 'og1') {
+
+        $('.contestTitle1').css({'color':'white', 'font-size':'25px',
+        'background':'linear-gradient(90deg, rgb(60,60,60), rgb(210,210,210))',
+        'width':'308px', 'margin-left':'90px', 'margin-top':'-4px',
+        'border-radius':'40px'});
+        $('.contestTitle2').css({'font-size':'22px'});
+        contestName1.innerHTML = 'OUT-GROUP CONTEST I';
+        contestName2.innerHTML = 'FOLLOWERS\' HELP & SABOTAGE';
+
+
+        $('.contestTitle22').css({'color':'white',
+        'background':'linear-gradient(90deg, rgb(60,60,60), rgb(210,210,210))'});
+        contestName21.innerHTML = 'LEADERS\' COMPETITION';
+        contestName22.innerHTML = 'OUT-GROUP CONTEST I';
+
+    }
+
+    if(name === 'og2') {
+
+        $('.contestTitle1').css({'color':'white', 'font-size':'25px',
+        'background':'linear-gradient(90deg, rgb(60,60,60), rgb(210,210,210))',
+        'width':'308px', 'margin-left':'90px', 'margin-top':'-4px',
+        'border-radius':'40px'});
+        $('.contestTitle2').css({'font-size':'22px'});
+        contestName1.innerHTML = 'OUT-GROUP CONTEST II';
+        contestName2.innerHTML = 'FOLLOWERS\' HELP & SABOTAGE';
+
+
+        $('.contestTitle22').css({'color':'white',
+        'background':'linear-gradient(90deg, rgb(60,60,60), rgb(210,210,210))'});
+        contestName21.innerHTML = 'LEADERS\' COMPETITION';
+        contestName22.innerHTML = 'OUT-GROUP CONTEST II';
+
+    }
+
+    if(name === 'iga') {
+
+        contestName2.innerHTML = 'FOLLOWERS\' COMPETITION';
+        contestName1.innerHTML = 'IN-GROUP CONTEST A';
+        $('.ctWrap').css({'margin-bottom':'-97px', 'margin-top':'0px'});
+
+        $('.contestTitle22').css({'color':'white',
+        'background':'linear-gradient(90deg, rgb(18,103,48), rgb(60,60,60))'});
+    }
+
+    if(name === 'igb') {
+
+        contestName2.innerHTML = 'FOLLOWERS\' COMPETITION';
+        contestName1.innerHTML = 'IN-GROUP CONTEST A';
+        $('.ctWrap').css({'margin-bottom':'-97px', 'margin-top':'0px'});
+
+        $('.contestTitle22').css({'color':'white',
+        'background':'linear-gradient(90deg, rgb(18,103,48), rgb(210,210,210))'});
+    }
+
+}
+
+
+///////////////////////////////
+///////////////////////////////
+///////////////////////////////
+///////////////////////////////
+///////////////////////////////
+///////////////////////////////
+///////////////////////////////
+///////////////////////////////
+
+
+calculator.update.typeOfContest = function(toc) {
+
+        calculator.globalVariable.typeOfContest = toc;
+
+}
+
+
+//////////// ICON /////////////
+//////////// ICON /////////////
+//////////// ICON /////////////
+//////////// ICON /////////////
+//////////// ICON /////////////
+//////////// ICON /////////////
+//////////// ICON /////////////
+//////////// ICON /////////////
+//////////// ICON /////////////
+//////////// ICON /////////////
+//////////// ICON /////////////
+//////////// ICON /////////////
+//////////// ICON /////////////
+//////////// ICON /////////////
+//////////// ICON /////////////
+//////////// ICON /////////////
+//////////// ICON /////////////
+//////////// ICON /////////////
+//////////// ICON /////////////
+//////////// ICON /////////////
+
+
+//----- DISPLAY ICON DEPENDING ON INDEX AND ROLE ------//
+
+calculator.icons.setMe = function() {
+
+    $('.objectivef1').css({'display':'flex'});
+    $('.objectivef2').css({'display':'flex'});
+    $('.objectivel').css({'display':'flex'});
+
+    $('.subjectivef1').css({'display':'none'});
+    $('.subjectivef2').css({'display':'none'});
+    $('.subjectivel').css({'display':'none'});
+
+    if(calculator.globalVariable.subjectiveView) {
+
+        if(calculator.globalVariable.subjectiveIndex === 0) {
+            $('.subjectivef1').css({'display':'flex'});
+            $('.objectivef1').css({'display':'none'});
+        }
+
+        if(calculator.globalVariable.subjectiveIndex === 1) {
+            $('.subjectivef2').css({'display':'flex'});
+            $('.objectivef2').css({'display':'none'});
+        }
+
+        if(calculator.globalVariable.subjectiveIndex === -1) {
+            $('.subjectivel').css({'display':'flex'});
+            $('.objectivel').css({'display':'none'});
+        }
+
+
+    }
+
+}
+
+calculator.icons.setOG1 = function() {
+
+    // right side og1 setup initial roles
+    $('.sameOLeaderIcon, .oldFollowerIconOfNewLeaderOf1, .oldFollowerIconOfNewLeaderOf2').css({'display':'flex'});
+    $('.newLeaderIconOfOldOf, .newLeaderIconOfOldOf1, .newLeaderIconOfOldOf2, .newFollowerIconOfOldLeaderOf1, .newFollowerIconOfOldLeaderOf2').css({'display':'none'});
+
+    // left side og1 setup intial roles
+    $('.sameLeaderIcon, .oldFollowerIconOfNewLeaderf2, .oldFollowerIconOfNewLeaderf1').css({'display':'flex'});
+    $('.newLeaderIconOfOldf, .newLeaderIconOfOldf1, .newLeaderIconOfOldf2, .newFollowerIconOfOldLeaderf1, .newFollowerIconOfOldLeaderf2').css({'display':'none'});
+
+
+}
+
+calculator.icons.adjustForTreatment = function() {
+
+        $('.homoLeftFollowers, .homoRightFollowers, .homoLeftLeaders, .homoRightLeaders').css({'display':'flex'});
+        $('.heteroLeftFollowers, .heteroRightFollowers, .heteroLeftLeaders, .heteroRightLeaders').css({'display':'none'});
+
+        if(calculator.globalVariable.leftHetero) {
+            $('.homoLeftFollowers, .homoLeftLeaders').css({'display':'none'});
+            $('.heteroLeftFollowers, .heteroLeftLeaders').css({'display':'flex'});
+        }
+        if(calculator.globalVariable.rightHetero) {
+            $('.homoRightFollowers, .homoRightLeaders').css({'display':'none'});
+            $('.heteroRightFollowers, .heteroRightLeaders').css({'display':'flex'});
+        }
+
+}
+
+calculator.icons.setOG2 = function() {
+
+    if(calculator.globalVariable.winnerLeaderIndex === 1) {
+        // left side the same
+        // same followers
+        $('.oldFollowerIconOfNewLeaderf2, .oldFollowerIconOfNewLeaderf1').css({'display':'flex'});
+        $('.newFollowerIconOfOldLeaderf1, .newFollowerIconOfOldLeaderf2').css({'display':'none'});
+        //same leader
+        $('.sameLeaderIcon').css({'display':'flex'});
+        $('.newLeaderIconOfOldf, .newLeaderIconOfOldf1, .newLeaderIconOfOldf2').css({'display':'none'});
+        if(calculator.globalVariable.winnerFollowerIndex === 1) {//right side changes
+            // top follower or strong follower is now the new leader
+            // defeated leader takes the top follower's place the other follower is the same
+            $('.newFollowerIconOfOldLeaderOf1, .oldFollowerIconOfNewLeaderOf2').css({'display':'flex'});
+            $('.oldFollowerIconOfNewLeaderOf1, .newFollowerIconOfOldLeaderOf2').css({'display':'none'});
+            // leader icon is now the old follower's new leader icon
+            $('.newLeaderIconOfOldOf, .newLeaderIconOfOldOf1').css({'display':'flex'});
+            $('.sameOLeaderIcon, .newLeaderIconOfOldOf2').css({'display':'none'});
+        }
+        if(calculator.globalVariable.winnerFollowerIndex === 2) {
+            // top follower or strong follower is now the new leader
+            // defeated leader takes the top follower's place the other follower is the same
+            $('.newFollowerIconOfOldLeaderOf2, .oldFollowerIconOfNewLeaderOf1').css({'display':'flex'});
+            $('.oldFollowerIconOfNewLeaderOf2, .newFollowerIconOfOldLeaderOf1').css({'display':'none'});
+            // leader icon is now the old follower's new leader icon
+            $('.newLeaderIconOfOldOf, .newLeaderIconOfOldOf2').css({'display':'flex'});
+            $('.sameOLeaderIcon, .newLeaderIconOfOldOf1').css({'display':'none'});
+        }
+    }
+
+    if(calculator.globalVariable.winnerLeaderIndex === 2) {
+        // left side the same
+        // same followers
+        $('.oldFollowerIconOfNewLeaderOf2, .oldFollowerIconOfNewLeaderOf1').css({'display':'flex'});
+        $('.newFollowerIconOfOldLeaderOf1, .newFollowerIconOfOldLeaderOf2').css({'display':'none'});
+        //same leader
+        $('.sameOLeaderIcon').css({'display':'flex'});
+        $('.newLeaderIconOfOldOf, .newLeaderIconOfOldOf1, .newLeaderIconOfOldOf2').css({'display':'none'});
+        if(calculator.globalVariable.winnerFollowerIndex === 1) {//right side changes
+            // top follower or strong follower is now the new leader
+            // defeated leader takes the top follower's place the other follower is the same
+            $('.newFollowerIconOfOldLeaderf1, .oldFollowerIconOfNewLeaderf2').css({'display':'flex'});
+            $('.oldFollowerIconOfNewLeaderf1, .newFollowerIconOfOldLeaderf2').css({'display':'none'});
+            // leader icon is now the old follower's new leader icon
+            $('.newLeaderIconOfOldf, .newLeaderIconOfOldf1').css({'display':'flex'});
+            $('.sameLeaderIcon, .newLeaderIconOfOldf2').css({'display':'none'});
+        }
+        if(calculator.globalVariable.winnerFollowerIndex === 2) {
+            // top follower or strong follower is now the new leader
+            // defeated leader takes the top follower's place the other follower is the same
+            $('.newFollowerIconOfOldLeaderf2, .oldFollowerIconOfNewLeaderf1').css({'display':'flex'});
+            $('.oldFollowerIconOfNewLeaderf2, .newFollowerIconOfOldLeaderf1').css({'display':'none'});
+            // leader icon is now the old follower's new leader icon
+            $('.newLeaderIconOfOldf, .newLeaderIconOfOldf2').css({'display':'flex'});
+            $('.sameLeaderIcon, .newLeaderIconOfOldf1').css({'display':'none'});
+        }
+    }
+
+}
+
+calculator.icons.setAll = function() {
+
+    calculator.icons.setMe();
+
+    calculator.icons.adjustForTreatment();
+
+    if(!calculator.isOG2) {
+
+        calculator.icons.setOG1();
+
+    }
+
+    if(calculator.isOG2) {
+
+        calculator.icons.setOG2();
+
+    }
+
+}
+
+
+//-------- SET SIZE OF ICONS IN HS SECTION -------//
+
+calculator.icons.set.size = function(Id, h, w) {
+
+    var myClass, myHeight, myWidth;
+
+    myClass = '.' + Id;
+    myHeight = h + 'px';
+    myWidth = w + 'px';
+
+    $(myClass).css({'height' : myHeight, 'width' : myWidth});
+
+}
+
+calculator.icons.calculate.size = function(h, s) {
+
+    var hRatio = h / 80;
+    var sRatio = s / 80;
+    var k = 0.2//0.2
+
+    var m = (1 + Math.pow(hRatio, k)) / (1 + Math.pow(sRatio, k));
+
+    return m;
+
+}
+
+calculator.icons.update.logisticColor = function(help, sabo, max, avg) {
+
+    var k1, val, val1, val2, result;
+    val = help / (help + sabo);
+    val = max * val;
+
+    // set color
+    k1 = 0.05;
+    val1 = max / (1 + Math.exp(-k1 * (val - avg)));
+    // blue
+    val1 = Math.floor(val1);
+    // red
+    val2 = max - val1;
+
+
+    result = [val1, 0, val2];
+
+    if(help === 0 && sabo === 0) {
+        result = [235, 235, 235];
+    }
+
+    return result;
+
+}
+
+calculator.icons.update.arrowColor = function(help, sabo) {
+
+    var hW, sW, myArray;
+
+    myArray = Array(3);
+    hW = (help + 30) / 60;
+    sW = (sabo + 30) / 60;
+
+    if(help === 0) {
+
+        myArray = [255,0, 0, sW];
+
+    }
+
+    if(sabo === 0) {
+
+        myArray = [0, 0, 255, hW];
+
+    }
+
+    if(help === 0 && sabo === 0) {
+        myArray = [60, 60, 60, 0];
+    }
+
+    return myArray
+
+}
+
+calculator.icons.set.RGB4Leaders = function(val){
+
+    return ('rgb(' + val[0] +',' + val[1] + ', ' + val[2] +', 0.2)');
+
+}
+
+calculator.icons.set.RGB4Followers = function(val){
+
+    return ('rgb(' + val[0] +',' + val[1] +', ' + val[2] + ',' + val[3] + ')');
+
+}
+
+
+//------- LEADER ICON RESIZING METHOD DEPENDENT ON HELP AND SABOTAGE VALUES ----//
+
+calculator.icons.update.leaderAuraColor = function() {
+
+    // leader aura color
+    var leaderIconBorderColor = calculator.icons.update.logisticColor(ts, th, 255, 132);
+    var libcRGB = calculator.icons.set.RGB4Leaders(leaderIconBorderColor);
+    $('.imgwrapwrapwrap31').css({'background-color':libcRGB, 'border-color':libcRGB});
+
+    leaderIconBorderColor = calculator.icons.update.logisticColor(tos, toh, 255, 132);
+    libcRGB = calculator.icons.set.RGB4Leaders(leaderIconBorderColor);
+    $('.imgwrapwrapwrap32').css({'background-color':libcRGB, 'border-color':libcRGB});
+
+}
+
+calculator.icons.update.followerArrows = function() {
+
+    // follower arrow color
+    var followerArrowColor = calculator.icons.update.arrowColor(h1, s1);
+    var facRGB = calculator.icons.set.RGB4Followers(followerArrowColor);
+    $('.iaf1').css({'stroke':facRGB});
+    $('.arrowTip11').css({'fill':facRGB});
+
+    followerArrowColor = calculator.icons.update.arrowColor(h2, s2);
+    facRGB = calculator.icons.set.RGB4Followers(followerArrowColor);
+    $('.iaf2').css({'stroke':facRGB});
+    $('.arrowTip12').css({'fill':facRGB});
+
+    followerArrowColor = calculator.icons.update.arrowColor(oh1, os1);
+    facRGB = calculator.icons.set.RGB4Followers(followerArrowColor);
+    $('.iaof1').css({'stroke':facRGB});
+    $('.arrowTip21').css({'fill':facRGB});
+
+    followerArrowColor = calculator.icons.update.arrowColor(oh2, os2);
+    facRGB = calculator.icons.set.RGB4Followers(followerArrowColor);
+    $('.iaof2').css({'stroke':facRGB});
+    $('.arrowTip22').css({'fill':facRGB});
+
+}
+
+calculator.icons.update.leaderSize = function() {
+
+    var m1 = calculator.icons.calculate.size(th, ts);
+    calculator.icons.set.size('splc1', 85 * m1, 65 * m1);
+
+    var m2 = calculator.icons.calculate.size(toh, tos)
+    calculator.icons.set.size('splc2', 85 * m2, 65 * m2)
+
+}
+
+calculator.icons.rescale.leaderIconSize = function(scale) {
+
+    var m1 = calculator.icons.calculate.size(th, ts) * scale;
+    calculator.icons.set.size('rescaleL1', 85 * m1, 65 * m1);
+
+    var m2 = calculator.icons.calculate.size(toh, tos) * scale;
+    calculator.icons.set.size('rescaleL2', 85 * m2, 65 * m2)
+
+}
+
+
+//------------- ENERVATE ICONS -----------------//
+
+calculator.icons.enervate.delayTime = 200;
+
+calculator.globalVariable.enervateLeaderLeft = false;
+calculator.icons.enervate.leaderLeft = function(state) {
+
+    if(calculator.globalVariable.enervateLeaderLeft) {
+
+        if(state === 0) {
+            $('.splc1').css({'transition':'0.15s', 'transform':'scale(1.05)'});
+            setTimeout(()=>calculator.icons.enervate.leaderLeft(1), calculator.icons.enervate.delayTime);
+        }
+        if(state === 1) {
+            $('.splc1').css({'transition':'0.15s', 'transform':'scale(1)'});
+            setTimeout(()=>calculator.icons.enervate.leaderLeft(0), calculator.icons.enervate.delayTime);
+        }
+
+    } else {
+        $('.splc1').css({'transition':'0.15s', 'transform':'scale(1)'});
+    }
+
+}
+
+calculator.globalVariable.enervateLeaderRight = false;
+calculator.icons.enervate.leaderRight = function(state) {
+
+    if(calculator.globalVariable.enervateLeaderRight) {
+
+        if(state === 0) {
+            $('.splc2').css({'transition':'0.15s', 'transform':'scale(1.05)'});
+            setTimeout(()=>calculator.icons.enervate.leaderRight(1), calculator.icons.enervate.delayTime);
+        }
+        if(state === 1) {
+            $('.splc2').css({'transition':'0.15s', 'transform':'scale(1)'});
+            setTimeout(()=>calculator.icons.enervate.leaderRight(0), calculator.icons.enervate.delayTime);
+        }
+
+    } else {
+        $('.splc2').css({'transition':'0.15s', 'transform':'scale(1)'});
+    }
+
+}
+
+calculator.globalVariable.enervateFollowerF1 = false;
+calculator.icons.enervate.followerF1 = function(state) {
+
+    if(calculator.globalVariable.enervateFollowerF1) {
+
+        if(state === 0) {
+            $('.spf1L11').css({'transition':'0.15s', 'transform':'scale(1.05)'});
+            setTimeout(()=>calculator.icons.enervate.followerF1(1), calculator.icons.enervate.delayTime);
+        }
+        if(state === 1) {
+            $('.spf1L11').css({'transition':'0.15s', 'transform':'scale(1)'});
+            setTimeout(()=>calculator.icons.enervate.followerF1(0), calculator.icons.enervate.delayTime);
+        }
+
+    } else {
+        $('.spf1L11').css({'transition':'0.15s', 'transform':'scale(1)'});
+    }
+
+}
+
+calculator.globalVariable.enervateFollowerF2 = false;
+calculator.icons.enervate.followerF2 = function(state) {
+
+    if(calculator.globalVariable.enervateFollowerF2) {
+
+        if(state === 0) {
+            $('.spf1L12').css({'transition':'0.15s', 'transform':'scale(1.05)'});
+            setTimeout(()=>calculator.icons.enervate.followerF2(1), calculator.icons.enervate.delayTime);
+        }
+        if(state === 1) {
+            $('.spf1L12').css({'transition':'0.15s', 'transform':'scale(1)'});
+            setTimeout(()=>calculator.icons.enervate.followerF2(0), calculator.icons.enervate.delayTime);
+        }
+
+    } else {
+        $('.spf1L12').css({'transition':'0.15s', 'transform':'scale(1)'});
+    }
+
+}
+
+calculator.globalVariable.enervateFollowerOF1 = false;
+calculator.icons.enervate.followerOF1 = function(state) {
+
+    if(calculator.globalVariable.enervateFollowerOF1) {
+
+        if(state === 0) {
+            $('.spf1L21').css({'transition':'0.15s', 'transform':'scale(1.05)'});
+            setTimeout(()=>calculator.icons.enervate.followerOF1(1), calculator.icons.enervate.delayTime);
+        }
+        if(state === 1) {
+            $('.spf1L21').css({'transition':'0.15s', 'transform':'scale(1)'});
+            setTimeout(()=>calculator.icons.enervate.followerOF1(0), calculator.icons.enervate.delayTime);
+        }
+
+    } else {
+        $('.spf1L21').css({'transition':'0.15s', 'transform':'scale(1)'});
+    }
+
+}
+
+calculator.globalVariable.enervateFollowerOF2 = false;
+calculator.icons.enervate.followerOF2 = function(state) {
+
+    if(calculator.globalVariable.enervateFollowerOF2) {
+
+        if(state === 0) {
+            $('.spf1L22').css({'transition':'0.15s', 'transform':'scale(1.05)'});
+            setTimeout(()=>calculator.icons.enervate.followerOF2(1), calculator.icons.enervate.delayTime);
+        }
+        if(state === 1) {
+            $('.spf1L22').css({'transition':'0.15s', 'transform':'scale(1)'});
+            setTimeout(()=>calculator.icons.enervate.followerOF2(0), calculator.icons.enervate.delayTime);
+        }
+
+    } else {
+        $('.spf1L22').css({'transition':'0.15s', 'transform':'scale(1)'});
+    }
+
+}
+
+
+////////////////////////// LOCK ///////////////////////////
+////////////////////////// LOCK ///////////////////////////
+////////////////////////// LOCK ///////////////////////////
+////////////////////////// LOCK ///////////////////////////
+////////////////////////// LOCK ///////////////////////////
+////////////////////////// LOCK ///////////////////////////
+////////////////////////// LOCK ///////////////////////////
+////////////////////////// LOCK ///////////////////////////
+////////////////////////// LOCK ///////////////////////////
+////////////////////////// LOCK ///////////////////////////
+////////////////////////// LOCK ///////////////////////////
+////////////////////////// LOCK ///////////////////////////
+
+
+calculator.lock.switch.all = Array(6);
+
+calculator.lock.switch.l1 = true;
+calculator.lock.vibrate.l1 = function(state) {
+
+    if(calculator.lock.switch.l1) {
 
         $('.l1vibrate').css({'height':'80px', 'width':'80px', 'opacity':'0.7', 'margin-right':'4px'})
 
@@ -1502,30 +3390,30 @@ vibrate.l1 = function(state) {
         if(state === 1) {
 
             $('.l1vibrate').css({'margin-left':'10px'});
-            setTimeout(()=>vibrate.l1(2),100);
+            setTimeout(()=>calculator.lock.vibrate.l1(2),100);
 
         }
 
         if(state === 2) {
 
             $('.l1vibrate').css({'margin-left':'0px'});
-            setTimeout(()=>vibrate.l1(1),100);
+            setTimeout(()=>calculator.lock.vibrate.l1(1),100);
 
         }
 
     } else {
 
-        vibrate.l1Switch = false;
+        calculator.lock.switch.l1 = false;
         $('.l1vibrate').css({'height':'20px', 'width':'20px', 'margin-left':'0px', 'opacity':'1', 'margin-right':'341px'})
 
     }
 
 }
 
-vibrate.l2Switch = true;
-vibrate.l2 = function(state) {
+calculator.lock.switch.l2 = true;
+calculator.lock.vibrate.l2 = function(state) {
 
-    if(vibrate.l2Switch) {
+    if(calculator.lock.switch.l2) {
 
         $('.l2vibrate').css({'height':'80px', 'width':'80px', 'opacity':'0.7', 'margin-right':'4px'})
 
@@ -1533,30 +3421,30 @@ vibrate.l2 = function(state) {
         if(state === 1) {
 
             $('.l2vibrate').css({'margin-left':'10px'});
-            setTimeout(()=>vibrate.l2(2),100);
+            setTimeout(()=>calculator.lock.vibrate.l2(2),100);
 
         }
 
         if(state === 2) {
 
             $('.l2vibrate').css({'margin-left':'0px'});
-            setTimeout(()=>vibrate.l2(1),100);
+            setTimeout(()=>calculator.lock.vibrate.l2(1),100);
 
         }
 
     } else {
 
-        vibrate.l2Switch = false;
+        calculator.lock.switch.l2 = false;
         $('.l2vibrate').css({'height':'20px', 'width':'20px', 'margin-left':'0px', 'opacity':'1', 'margin-right':'341px'})
 
     }
 
 }
 
-vibrate.f1Switch = true;
-vibrate.f1 = function(state) {
+calculator.lock.switch.f1 = true;
+calculator.lock.vibrate.f1 = function(state) {
 
-    if(vibrate.f1Switch) {
+    if(calculator.lock.switch.f1) {
 
         $('.f1vibrate').css({'height':'80px', 'width':'80px', 'opacity':'0.7', 'margin-right':'-19px', 'margin-top':'78px'})
 
@@ -1564,30 +3452,30 @@ vibrate.f1 = function(state) {
         if(state === 1) {
 
             $('.f1vibrate').css({'margin-left':'10px'});
-            setTimeout(()=>vibrate.f1(2),100);
+            setTimeout(()=>calculator.lock.vibrate.f1(2),100);
 
         }
 
         if(state === 2) {
 
             $('.f1vibrate').css({'margin-left':'0px'});
-            setTimeout(()=>vibrate.f1(1),100);
+            setTimeout(()=>calculator.lock.vibrate.f1(1),100);
 
         }
 
     } else {
 
-        vibrate.f1Switch = false;
+        calculator.lock.switch.f1 = false;
         $('.f1vibrate').css({'height':'20px', 'width':'20px', 'margin-left':'0px', 'opacity':'1', 'margin-right':'61px', 'margin-top':'38px'})
 
     }
 
 }
 
-vibrate.f2Switch = true;
-vibrate.f2 = function(state) {
+calculator.lock.switch.f2 = true;
+calculator.lock.vibrate.f2 = function(state) {
 
-    if(vibrate.f2Switch) {
+    if(calculator.lock.switch.f2) {
 
         $('.f2vibrate').css({'height':'80px', 'width':'80px', 'opacity':'0.7', 'margin-right':'-19px', 'margin-top':'78px'})
 
@@ -1595,30 +3483,30 @@ vibrate.f2 = function(state) {
         if(state === 1) {
 
             $('.f2vibrate').css({'margin-left':'10px'});
-            setTimeout(()=>vibrate.f2(2),100);
+            setTimeout(()=>calculator.lock.vibrate.f2(2),100);
 
         }
 
         if(state === 2) {
 
             $('.f2vibrate').css({'margin-left':'0px'});
-            setTimeout(()=>vibrate.f2(1),100);
+            setTimeout(()=>calculator.lock.vibrate.f2(1),100);
 
         }
 
     } else {
 
-        vibrate.f2Switch = false;
+        calculator.lock.switch.f2 = false;
         $('.f2vibrate').css({'height':'20px', 'width':'20px', 'margin-left':'0px', 'opacity':'1', 'margin-right':'61px', 'margin-top':'38px'})
 
     }
 
 }
 
-vibrate.of1Switch = true;
-vibrate.of1 = function(state) {
+calculator.lock.switch.of1 = true;
+calculator.lock.vibrate.of1 = function(state) {
 
-    if(vibrate.of1Switch) {
+    if(calculator.lock.switch.of1) {
 
         $('.of1vibrate').css({'height':'80px', 'width':'80px', 'opacity':'0.7', 'margin-right':'-19px', 'margin-top':'78px'})
 
@@ -1626,30 +3514,30 @@ vibrate.of1 = function(state) {
         if(state === 1) {
 
             $('.of1vibrate').css({'margin-left':'10px'});
-            setTimeout(()=>vibrate.of1(2),100);
+            setTimeout(()=>calculator.lock.vibrate.of1(2),100);
 
         }
 
         if(state === 2) {
 
             $('.of1vibrate').css({'margin-left':'0px'});
-            setTimeout(()=>vibrate.of1(1),100);
+            setTimeout(()=>calculator.lock.vibrate.of1(1),100);
 
         }
 
     } else {
 
-        vibrate.of1Switch = false;
+        calculator.lock.switch.of1 = false;
         $('.of1vibrate').css({'height':'20px', 'width':'20px', 'margin-left':'0px', 'opacity':'1', 'margin-right':'61px', 'margin-top':'38px'})
 
     }
 
 }
 
-vibrate.of2Switch = true;
-vibrate.of2 = function(state) {
+calculator.lock.switch.of2 = true;
+calculator.lock.vibrate.of2 = function(state) {
 
-    if(vibrate.of2Switch) {
+    if(calculator.lock.switch.of2) {
 
         $('.of2vibrate').css({'height':'80px', 'width':'80px', 'opacity':'0.7', 'margin-right':'-19px', 'margin-top':'78px'})
 
@@ -1657,46 +3545,80 @@ vibrate.of2 = function(state) {
         if(state === 1) {
 
             $('.of2vibrate').css({'margin-left':'10px'});
-            setTimeout(()=>vibrate.of2(2),100);
+            setTimeout(()=>calculator.lock.vibrate.of2(2),100);
 
         }
 
         if(state === 2) {
 
             $('.of2vibrate').css({'margin-left':'0px'});
-            setTimeout(()=>vibrate.of2(1),100);
+            setTimeout(()=>calculator.lock.vibrate.of2(1),100);
 
         }
 
     } else {
 
-        vibrate.of2Switch = false;
+        calculator.lock.switch.of2 = false;
         $('.of2vibrate').css({'height':'20px', 'width':'20px', 'margin-left':'0px', 'opacity':'1', 'margin-right':'61px', 'margin-top':'38px'})
 
     }
 
 }
 
-//------wiggling arrows------//
+calculator.lock.activate = function(array) {
 
-wiggle.activeWiggles = Array(6);
+    calculator.lock.switch.all = array;
 
-wiggle.activeWiggles[0] = true;
-wiggle.l1= function(state) {
+    var l1, l2, f1, f2, of1, of2;
+    l1 = array[0] ? '2' : '-1';
+    l2 = array[1] ? '2' : '-1';
+    f1 = array[2] ? '2' : '-1';
+    f2 = array[3] ? '2' : '-1';
+    of1 = array[4] ? '2' : '-1';
+    of2 = array[5] ? '2' : '-1';
 
-    if(wiggle.activeWiggles[0]) {
+    $('.lockedCover_l1').css({'z-index' : l1});
+    $('.lockedCover_l2').css({'z-index' : l2});
+    $('.lockedCover_f1').css({'z-index' : f1});
+    $('.lockedCover_f2').css({'z-index' : f2});
+    $('.lockedCover_of1').css({'z-index' : of1});
+    $('.lockedCover_of2').css({'z-index' : of2});
+
+}
+
+
+////////////////////// POINTER ///////////////////////////
+////////////////////// POINTER ///////////////////////////
+////////////////////// POINTER ///////////////////////////
+////////////////////// POINTER ///////////////////////////
+////////////////////// POINTER ///////////////////////////
+////////////////////// POINTER ///////////////////////////
+////////////////////// POINTER ///////////////////////////
+////////////////////// POINTER ///////////////////////////
+////////////////////// POINTER ///////////////////////////
+////////////////////// POINTER ///////////////////////////
+////////////////////// POINTER ///////////////////////////
+////////////////////// POINTER ///////////////////////////
+
+
+calculator.pointers.switches = Array(6);
+
+calculator.pointers.switches[0] = true;
+calculator.pointers.wiggle.l1= function(state) {
+
+    if(calculator.pointers.switches[0]) {
 
         if(state === 1) {
 
             $('.sliderArrowImageWrap_l1').css({'margin-left':'28px', 'margin-top':'-28px', 'opacity':'1'});
-            setTimeout(()=>wiggle.l1(0), 750);
+            setTimeout(()=>calculator.pointers.wiggle.l1(0), 750);
 
         }
 
         if(state === 0) {
 
             $('.sliderArrowImageWrap_l1').css({'margin-left':'48px', 'margin-top':'-8px'});
-            setTimeout(()=>wiggle.l1(1), 750);
+            setTimeout(()=>calculator.pointers.wiggle.l1(1), 750);
 
         }
 
@@ -1708,22 +3630,22 @@ wiggle.l1= function(state) {
 
 }
 
-wiggle.activeWiggles[1] = true;
-wiggle.l2= function(state) {
+calculator.pointers.switches[1] = true;
+calculator.pointers.wiggle.l2= function(state) {
 
-    if(wiggle.activeWiggles[1]) {
+    if(calculator.pointers.switches[1]) {
 
         if(state === 1) {
 
             $('.sliderArrowImageWrap_l2').css({'margin-left':'28px', 'margin-top':'-28px', 'opacity':'1'});
-            setTimeout(()=>wiggle.l2(0), 750);
+            setTimeout(()=>calculator.pointers.wiggle.l2(0), 750);
 
         }
 
         if(state === 0) {
 
             $('.sliderArrowImageWrap_l2').css({'margin-left':'48px', 'margin-top':'-8px'});
-            setTimeout(()=>wiggle.l2(1), 750);
+            setTimeout(()=>calculator.pointers.wiggle.l2(1), 750);
 
         }
 
@@ -1735,22 +3657,22 @@ wiggle.l2= function(state) {
 
 }
 
-wiggle.activeWiggles[2] = true;
-wiggle.f1= function(state) {
+calculator.pointers.switches[2] = true;
+calculator.pointers.wiggle.f1= function(state) {
 
-    if(wiggle.activeWiggles[2]) {
+    if(calculator.pointers.switches[2]) {
 
         if(state === 1) {
 
             $('.sliderArrowImageWrap_f1').css({'margin-left':'-20px', 'margin-top':'-140px', 'opacity':'1'});
-            setTimeout(()=>wiggle.f1(0), 750);
+            setTimeout(()=>calculator.pointers.wiggle.f1(0), 750);
 
         }
 
         if(state === 0) {
 
             $('.sliderArrowImageWrap_f1').css({'margin-left':'-1px', 'margin-top':'-107px'});
-            setTimeout(()=>wiggle.f1(1), 750);
+            setTimeout(()=>calculator.pointers.wiggle.f1(1), 750);
 
         }
 
@@ -1762,22 +3684,22 @@ wiggle.f1= function(state) {
 
 }
 
-wiggle.activeWiggles[3] = true;
-wiggle.f2 = function(state) {
+calculator.pointers.switches[3] = true;
+calculator.pointers.wiggle.f2 = function(state) {
 
-    if(wiggle.activeWiggles[3]) {
+    if(calculator.pointers.switches[3]) {
 
         if(state === 1) {
 
             $('.sliderArrowImageWrap_f2').css({'margin-left':'-20px', 'margin-top':'-140px', 'opacity':'1'});
-            setTimeout(()=>wiggle.f2(0), 750);
+            setTimeout(()=>calculator.pointers.wiggle.f2(0), 750);
 
         }
 
         if(state === 0) {
 
             $('.sliderArrowImageWrap_f2').css({'margin-left':'-1px', 'margin-top':'-107px'});
-            setTimeout(()=>wiggle.f2(1), 750);
+            setTimeout(()=>calculator.pointers.wiggle.f2(1), 750);
 
         }
 
@@ -1789,22 +3711,22 @@ wiggle.f2 = function(state) {
 
 }
 
-wiggle.activeWiggles[4] = true;
-wiggle.of1 = function(state) {
+calculator.pointers.switches[4] = true;
+calculator.pointers.wiggle.of1 = function(state) {
 
-    if(wiggle.activeWiggles[4]) {
+    if(calculator.pointers.switches[4]) {
 
         if(state === 1) {
 
             $('.sliderArrowImageWrap_of1').css({'margin-left':'-20px', 'margin-top':'-140px', 'opacity':'1'});
-            setTimeout(()=>wiggle.of1(0), 750);
+            setTimeout(()=>calculator.pointers.wiggle.of1(0), 750);
 
         }
 
         if(state === 0) {
 
             $('.sliderArrowImageWrap_of1').css({'margin-left':'-1px', 'margin-top':'-107px'});
-            setTimeout(()=>wiggle.of1(1), 750);
+            setTimeout(()=>calculator.pointers.wiggle.of1(1), 750);
 
         }
 
@@ -1816,22 +3738,22 @@ wiggle.of1 = function(state) {
 
 }
 
-wiggle.activeWiggles[5] = true;
-wiggle.of2 = function(state) {
+calculator.pointers.switches[5] = true;
+calculator.pointers.wiggle.of2 = function(state) {
 
-    if(wiggle.activeWiggles[5]) {
+    if(calculator.pointers.switches[5]) {
 
         if(state === 1) {
 
             $('.sliderArrowImageWrap_of2').css({'margin-left':'-20px', 'margin-top':'-140px', 'opacity':'1'});
-            setTimeout(()=>wiggle.of2(0), 750);
+            setTimeout(()=>calculator.pointers.wiggle.of2(0), 750);
 
         }
 
         if(state === 0) {
 
             $('.sliderArrowImageWrap_of2').css({'margin-left':'-1px', 'margin-top':'-107px'});
-            setTimeout(()=>wiggle.of2(1), 750);
+            setTimeout(()=>calculator.pointers.wiggle.of2(1), 750);
 
         }
 
@@ -1843,507 +3765,48 @@ wiggle.of2 = function(state) {
 
 }
 
-// slider minor hover effects
-
-$('#lSlider1').hover(
-    function() {
-
-        $('.activeLeaderLeft').css({'opacity':'1'});
-        $('.passiveLeaderLeft').css({'opacity':'0'});
-        setTimeout(()=>calculator.update.barLabelX('barl1', true), 150);
-        $('.sliderQuestion_l1').css({'transition':'all 5s cubic-bezier(0.02, 0.96, 0.63, 0.88)', 'transform':'rotateY(1530deg)'});
-
-        },
-    function() {
-
-        $('.activeLeaderLeft').css({'opacity':'0'});
-        $('.passiveLeaderLeft').css({'opacity':'1'});
-        setTimeout(()=>calculator.update.barLabelX('barl1', false), 400);
-        calculator.update.barGridX('barl1', false);
-        $('.sliderQuestion_l1').css({'transition':'all 5s cubic-bezier(0.02, 0.96, 0.63, 0.88)',  'transform':'rotateY(-90deg)'});
-
-    }
-);
-
-$('.bswLeft').hover(
-    function() {
-
-        if(allDivHoversActive) {
-            calculator.display.spinButton(false);
-            calculator.display.spinButton2(false);
-        }
-
-        if(vibrate.sliderLocked[0]) {
-            vibrate.l1Switch = true;
-            vibrate.l1(1);
-        }
-
-    },
-    function() {
-
-        vibrate.l1Switch = false;
-
-        if(allDivHoversActive) {
-            calculator.display.spinButton2(true);
-        }
-
-    }
-);
-
-$('#olSlider1').hover(
-    function() {
-
-        $('.activeLeaderRight').css({'opacity':'1'});
-        $('.passiveLeaderRight').css({'opacity':'0'});
-        setTimeout(()=>calculator.update.barLabelX('barl2', true), 150);
-        $('.sliderQuestion_l2').css({'transition':'all 5s cubic-bezier(0.02, 0.96, 0.63, 0.88)',  'transform':'rotateY(1530deg)'});
-
-    },
-    function() {
-
-        calculator.display.spinButton2(true);
-        $('.activeLeaderRight').css({'opacity':'0'});
-        $('.passiveLeaderRight').css({'opacity':'1'});
-        setTimeout(()=>calculator.update.barLabelX('barl2', false), 400);
-        calculator.update.barGridX('barl2', false);
-        $('.sliderQuestion_l2').css({'transition':'all 5s cubic-bezier(0.02, 0.96, 0.63, 0.88)',  'transform':'rotateY(-90deg)'});
-
-    }
-);
-
-$('.bswRight').hover(
-    function() {
-        if(allDivHoversActive) {
-            calculator.display.spinButton(false);
-            calculator.display.spinButton2(false);
-        }
-
-        if(vibrate.sliderLocked[1]) {
-            vibrate.l2Switch = true;
-            vibrate.l2(1);
-        }
-    },
-    function() {
-        if(allDivHoversActive) {
-            vibrate.l2Switch = false;
-            calculator.display.spinButton2(true);
-        }
-    }
-);
-
-
-/************/
-
-$('#vSlider1').hover(
-    function() {
-
-        setTimeout(()=>calculator.update.barLabelY('barf1', true), 150);
-        calculator.display.activeFollowerIcon('spf1L11', true)
-
-        },
-
-    function() {
-
-        setTimeout(()=>calculator.update.barLabelY('barf1', false), 400);
-        calculator.display.activeFollowerIcon('spf1L11', false)
-        calculator.update.barGridY('barf1', false);
-
-    }
-);
-
-$('.lbf1').hover(
-    function() {
-        if(mainDivHoverActive && allDivHoversActive) {
-            $('.generalMarginBox').css({'transition':'0.3s', 'height':'575px'});
-            $('.imageWrap23, .payoffWrap').css({'transition':'0.3s', 'opacity':'0'});
-            calculator.hide.followerResults(1);
-
-            calculator.display.spinButton(false);
-        }
-        if(vibrate.sliderLocked[2]) {
-            vibrate.f1Switch = true;
-            vibrate.f1(1);
-        }
-
-    },
-    function() {
-        if(mainDivHoverActive && allDivHoversActive) {
-            if(calculator.display.resultSpaceOpen) {
-
-                calculator.hide.followerResults(0);
-                $('.generalMarginBox').css({'transition':'0.3s', 'height':'670px'});
-
-            } else {
-
-                $('.generalMarginBox').css({'transition':'0.3s', 'height':'575px'});
-                $('.imageWrap23').css({'transition':'0.3s', 'opacity':'1'});
-
-            }
-
-            calculator.display.spinButton(true);
-        }
-        vibrate.f1Switch = false;
-    }
-);
-
-$('#vSlider2').hover(
-    function() {
-
-        setTimeout(()=>calculator.update.barLabelY('barf2', true), 150);
-        calculator.display.activeFollowerIcon('spf1L12', true);
-        $('.sliderQuestion_f2').css({'transition':'all 5s cubic-bezier(0.02, 0.96, 0.63, 0.88)', 'transform':'rotateY(1530deg)'});
-
-    },
-    function() {
-
-        setTimeout(()=>calculator.update.barLabelY('barf2', false), 400);
-        calculator.update.barGridY('barf2', false);
-        calculator.display.activeFollowerIcon('spf1L12', false);
-        $('.sliderQuestion_f2').css({'transition':'all 5s cubic-bezier(0.02, 0.96, 0.63, 0.88)',  'transform':'rotateY(-90deg)'});
-
-    }
-);
-
-$('.lbf2').hover(
-    function() {
-        if(mainDivHoverActive && allDivHoversActive) {
-            $('.generalMarginBox').css({'transition':'0.3s', 'height':'575px'});
-            $('.imageWrap23, .payoffWrap').css({'transition':'0.3s', 'opacity':'0'});
-
-            if(calculator.display.resultSpaceOpen) {
-
-                calculator.hide.followerResults(1);
-
-            }
-
-            calculator.display.spinButton(false);
-            $('.OGCIcon').css({'margin-top':'-29px'});
-        }
-        if(vibrate.sliderLocked[3]) {
-            vibrate.f2Switch = true;
-            vibrate.f2(1);
-        }
-    },
-    function() {
-        if(mainDivHoverActive && allDivHoversActive) {
-            if(calculator.display.resultSpaceOpen) {
-
-                calculator.hide.followerResults(0);
-                $('.generalMarginBox').css({'transition':'0.3s', 'height':'670px'});
-
-            } else {
-
-            $('.generalMarginBox').css({'transition':'0.3s', 'height':'575px'});
-            $('.imageWrap23').css({'transition':'0.3s', 'opacity':'1'});
-
-        }
-
-        calculator.display.spinButton(true);
-    }
-        vibrate.f2Switch = false;
-    }
-);
-
-$('#ovSlider1').hover(
-    function() {
-
-        setTimeout(()=>calculator.update.barLabelY('obarf1', true), 150);
-        calculator.display.activeFollowerIcon('spf1L21', true);
-        $('.sliderQuestion_of1').css({'transition':'all 5s cubic-bezier(0.02, 0.96, 0.63, 0.88)', 'transform':'rotateY(1530deg)'});
-        vibrate.of1Switch = true;
-        vibrate.of1(1);
-
-        },
-    function() {
-
-        setTimeout(()=>calculator.update.barLabelY('obarf1', false), 400);
-        calculator.update.barGridY('obarf1', false);
-        calculator.display.activeFollowerIcon('spf1L21', false)
-        $('.sliderQuestion_of1').css({'transition':'all 5s cubic-bezier(0.02, 0.96, 0.63, 0.88)',  'transform':'rotateY(-90deg)'});
-        vibrate.of1Switch = false;
-
-    }
-);
-
-$('.rbf1').hover(
-    function() {
-        if(mainDivHoverActive && allDivHoversActive) {
-            $('.generalMarginBox').css({'transition':'0.3s', 'height':'575px'});
-            $('.imageWrap23, .payoffWrap').css({'transition':'0.3s', 'opacity':'0'});
-
-            if(calculator.display.resultSpaceOpen) {
-
-                calculator.hide.followerResults(1);
-
-            }
-            calculator.display.spinButton(false);
-            $('.OGCIcon').css({'margin-top':'-29px'});
-        }
-        if(vibrate.sliderLocked[4]) {
-            vibrate.of1Switch = true;
-            vibrate.of1(1);
-        }
-    },
-    function() {
-        if(mainDivHoverActive && allDivHoversActive) {
-            if(calculator.display.resultSpaceOpen) {
-
-                calculator.hide.followerResults(0);
-                $('.generalMarginBox').css({'transition':'0.3s', 'height':'670px'});
-
-            } else {
-
-                $('.generalMarginBox').css({'transition':'0.3s', 'height':'575px'});
-                $('.imageWrap23').css({'transition':'0.3s', 'opacity':'1'});
-
-            }
-
-            calculator.display.spinButton(true);
-        }
-        vibrate.of1Switch = false;
-
-    }
-);
-
-$('#ovSlider2').hover(
-    function() {
-
-        setTimeout(()=>calculator.update.barLabelY('obarf2', true), 150);
-
-        calculator.display.activeFollowerIcon('spf1L22', true);
-
-        $('.sliderQuestion_of2').css({'transition':'all 5s cubic-bezier(0.02, 0.96, 0.63, 0.88)', 'transform':'rotateY(1530deg)'});
-    },
-    function() {
-
-        setTimeout(()=>calculator.update.barLabelY('obarf2', false), 400);
-
-        calculator.update.barGridY('obarf2', false);
-
-        calculator.display.activeFollowerIcon('spf1L22', false);
-
-        $('.sliderQuestion_of2').css({'transition':'all 5s cubic-bezier(0.02, 0.96, 0.63, 0.88)',  'transform':'rotateY(-90deg)'});
-    }
-);
-
-$('.rbf2').hover(
-    function() {
-
-        if(mainDivHoverActive && allDivHoversActive) {
-
-            $('.generalMarginBox').css({'transition':'0.3s', 'height':'575px'});
-            $('.imageWrap23, .payoffWrap').css({'transition':'0.3s', 'opacity':'0'});
-
-            if(calculator.display.resultSpaceOpen) {
-
-                calculator.hide.followerResults(1);
-
-            }
-
-            calculator.display.spinButton(false);
-
-
-            $('.OGCIcon').css({'margin-top':'-29px'});
-
-        }
-
-        if(vibrate.sliderLocked[5]) {
-            vibrate.of2Switch = true;
-            vibrate.of2(1);
-        }
-
-    },
-    function() {
-
-        if(mainDivHoverActive && allDivHoversActive) {
-
-            if(calculator.display.resultSpaceOpen) {
-
-                calculator.hide.followerResults(0);
-                $('.generalMarginBox').css({'transition':'0.3s', 'height':'670px'});
-
-            } else {
-
-                $('.generalMarginBox').css({'transition':'0.3s', 'height':'575px'});
-                $('.imageWrap23').css({'transition':'0.3s', 'opacity':'1'});
-
-            }
-
-            calculator.display.spinButton(true);
-
-        }
-
-        vibrate.of2Switch = false;
-
-    }
-);
-
-
-/************/
-
-
-$('.hsWrap').hover(
-
-    function() {
-
-        if(mainDivHoverActive && allDivHoversActive) {
-
-
-            $('.ctBottom').css({'transition':'0.3s', 'transition-delay':'0s', 'transform' : 'rotate3d(1, 0, 0, 0.5turn)'});
-            $('.ctBottom').css({'transition':'0.3s', 'transition-delay':'0s', 'opacity':'0'});
-            $('.ctTop').css({'transition':'0.8s', 'transition-delay':'0s', 'transform' : 'rotate3d(1, 0, 0, 1turn)'});
-            $('.ctTop').css({'transition':'0.8s', 'transition-delay':'0s', 'opacity':'1'});
-            // $('.imageWrap23').css({'transition':'0.8s', 'opacity':'1'});
-
-
-            $('.ctTop').css({'transition':'0.15s', 'transform' : 'rotate3d(1, 0, 0, 1turn)'});
-            $('.ctBottom').css({'transition':'0.15s', 'transform' : 'rotate3d(1, 0, 0, 0.5turn)'});
-            $('.ctTop').css({'transition':'0.3s', 'opacity':'1'});
-            $('.ctBottom').css({'transition':'0.3s', 'opacity':'0'});
-
-            calculator.hide.hs(1);
-
-            if(calculator.display.resultSpaceOpen) {
-                $('.generalMarginBox').css({'transition':'0.3s', 'height':'670px'});
-                calculator.hide.followerResults(0);
-            }
-            if(!calculator.display.resultSpaceOpen) {
-                $('.generalMarginBox').css({'transition':'0.3s', 'height':'575px'});
-            }
-            $('.payoffWrap').css({'transition':'0.3s', 'opacity':'0'});
-
-
-
-            $('.wrapMid').css({'transition':'0.3s', 'opacity':'0.5'});
-            $('.wrapLeft, .wrapRight').css({'transition':'0.3s', 'opacity':'1'});
-
-            calculator.display.fightIcon(0);
-
-            calculator.display.spinButton(true);
-            calculator.display.spinButton2(false);
-
-            $('.OGCIcon').css({'margin-top':'-29px'});
-
-        }
-
-    },
-
-    function() {
-
-        if(mainDivHoverActive && allDivHoversActive) {
-
-            $('.payoffWrap').css({'transition':'0.3s', 'opacity':'0'});
-
-            if(calculator.display.resultSpaceOpen) {
-
-
-            }
-
-        }
-    }
-
-)
-
-$('.contestSection').hover(
-
-    function() {
-        console.log('inside contesthover');
-        if(mainDivHoverActive && allDivHoversActive) {
-
-            console.log('inside action');
-            $('.ctTop').css({'transition':'0.3s', 'transition-delay':'0s', 'transform' : 'rotate3d(1, 0, 0, 0.5turn)'});
-            $('.ctTop').css({'transition':'0.3s', 'transition-delay':'0s', 'opacity':'0'});
-            $('.ctBottom').css({'transition':'0.8s', 'transition-delay':'0s', 'transform' : 'rotate3d(1, 0, 0, 1turn)'});
-            $('.ctBottom').css({'transition':'0.8s', 'transition-delay':'0s', 'opacity':'1'});
-            $('.imageWrap23').css({'transition':'0.8s', 'opacity':'1'});
-
-
-            calculator.hide.followerResults(1);
-            $('.generalMarginBox').css({'transition':'0.3s', 'height':'710px'});
-
-            $('.OGCIcon').css({'margin-top':'39px'});
-            $('.wrapMid').css({'transition':'0.3s', 'opacity':'1'});
-            $('.wrapLeft,  .wrapRight').css({'transition':'0.3s', 'opacity':'0.2'});
-
-            calculator.display.fightIcon(true);
-
-            calculator.display.spinButton(false);
-            calculator.display.spinButton2(true);
-
-            if(calculator.display.resultSpaceOpen) {
-                if(spinButtonEnabled2) {
-                    $('.payoffWrap').css({'transition':'0.6s', 'opacity':'1'});
-                }
-            }
-
-            if(!spinButtonEnabled2) {
-                $('.payoffWrap').css({'transition':'0.6s', 'opacity':'0'});
-            }
-
-        }
-
-    },
-
-    function() {
-        if(mainDivHoverActive && allDivHoversActive) {
-
-            if(spinButtonEnabled2) {
-                calculator.hide.hs(true);
-            }
-
-        }
-
-    }
-
-)
-var sp23C = 0;
-
-$('#spinImage23').hover(
-    function() {
-        sp23C = sp23C + 1;
-        var str = 'rotate('+sp23C+'turn)';
-        $('#spinImage23').css({'transform':str});
-
-        calculator.wheel.cruise();
-        calculator.wheel.show();
-    },
-    function() {
-        if(!calculator.wheel.isSpinning) {
-
-            calculator.wheel.myWheelObj.stopAnimation(false);
-            calculator.wheel.hide();
-
-        }
-        // calculator.display.outcomeColors(1);
-    }
-)
-
-var spC = 0;
-$('#spinImage').hover(
-    function() {
-        spC = spC + 1;
-        var str = 'rotate('+spC+'turn)';
-        $('#spinImage').css({'transform':str});
-
-        calculator.wheel.cruise();
-        calculator.wheel.show();
-    },
-    function() {
-        if(!calculator.wheel.isSpinning) {
-
-            calculator.wheel.myWheelObj.stopAnimation(false);
-            calculator.wheel.hide();
-
-        }
-        // calculator.display.outcomeColors(1);
-    }
-)
+calculator.pointers.activate = function(array) {
+
+    calculator.pointers.switches = array;
+
+    calculator.pointers.wiggle.l1(1);
+    calculator.pointers.wiggle.l2(1);
+    calculator.pointers.wiggle.f1(1);
+    calculator.pointers.wiggle.f2(1);
+    calculator.pointers.wiggle.of1(1);
+    calculator.pointers.wiggle.of2(1);
+
+}
+
+
+/////////////////////// ROLL ////////////////////////
+/////////////////////// ROLL ////////////////////////
+/////////////////////// ROLL ////////////////////////
+/////////////////////// ROLL ////////////////////////
+/////////////////////// ROLL ////////////////////////
+/////////////////////// ROLL ////////////////////////
+/////////////////////// ROLL ////////////////////////
+/////////////////////// ROLL ////////////////////////
+/////////////////////// ROLL ////////////////////////
+/////////////////////// ROLL ////////////////////////
+/////////////////////// ROLL ////////////////////////
+/////////////////////// ROLL ////////////////////////
+/////////////////////// ROLL ////////////////////////
+/////////////////////// ROLL ////////////////////////
+/////////////////////// ROLL ////////////////////////
+/////////////////////// ROLL ////////////////////////
+/////////////////////// ROLL ////////////////////////
+/////////////////////// ROLL ////////////////////////
+
+
+// MICRO ROLLING METHDODS
 
 // the order of context for the array text is as below
 // need to stick to this order as the x coordinates are predefined accordingly
 // var textArray = ['GROUP A', 'YOU', 'FOLLOWER', 'STRONG', 'WEAK', 1000]
 calculator.stopRolling = false;
 calculator.roll.displayTime = 4500;
+
 calculator.roll.f1 = function(index, prevIndex, textArray) {
 
     var fSideText10 = document.getElementById('fSideText10');
@@ -2678,7 +4141,7 @@ calculator.roll.l2 = function(index, prevIndex, textArray) {
 }
 
 
-calculator.initiate.currentBalance = function(larray, farray) {
+calculator.roll.setCurrentBalance = function(larray, farray) {
 
     calculator.currentBalance.f1 = farray[0];
     calculator.currentBalance.f2 = farray[1];
@@ -2690,7 +4153,7 @@ calculator.initiate.currentBalance = function(larray, farray) {
 
 }
 
-calculator.update.netBalance = function(nplArray, npfArray) {
+calculator.roll.calculateNetBalance = function(nplArray, npfArray) {
 
     calculator.netBalance.f1 = calculator.currentBalance.f1 + npfArray[0];
     calculator.netBalance.f2 = calculator.currentBalance.f2 + npfArray[1];
@@ -2702,28 +4165,19 @@ calculator.update.netBalance = function(nplArray, npfArray) {
 
 }
 
-calculator.update.lPowerText = function(efi1, efi2) {
 
-    if(efi1 > efi2) {
-        calculator.roll.l1PowerText = 'ADVANTAGED';
-        calculator.roll.l2PowerText = 'DISADVANTAGED';
-    }
+// MICRO TO MACRO CONNECTION ARRAYS
 
-    if(efi2 > efi1) {
-        calculator.roll.l2PowerText = 'ADVANTAGED';
-        calculator.roll.l1PowerText = 'DISADVANTAGED';
-    }
+calculator.roll.lArray = Array(6);
+calculator.roll.f1Array = Array(6);
+calculator.roll.f2Array = Array(6);
+calculator.roll.olArray = Array(6);
+calculator.roll.of1Array = Array(6);
+calculator.roll.of2Array = Array(6);
 
-    if(efi1 === efi2) {
-        calculator.roll.l1PowerText = 'EQUAL POWER';
-        calculator.roll.l2PowerText = 'EQUAL POWER';
-    }
-
-}
-
-
-
-
+//*-*-*-*//
+// this is the old roll method it is not used but it still has usefull code
+// that can later be used
 calculator.roll.all = function(on, state) {
 
     var fa1, fa2, fa3, fa4, la1, la2;
@@ -2737,8 +4191,6 @@ calculator.roll.all = function(on, state) {
         fa3 = ['GROUP B', 'FOLLOWER', '', 'EQUAL POWER', -1,  calculator.netBalance.f3];
         fa4 = ['GROUP B', 'FOLLOWER', '', 'EQUAL POWER', -1,  calculator.netBalance.f4];
 
-        // la1 = ['GROUP A', 'LEADER', '', calculator.roll.l1PowerText, -1,  calculator.netBalance.l1];
-        // la2 = ['GROUP B', 'LEADER', '', calculator.roll.l2PowerText, -1,  calculator.netBalance.l2];
         la1 = ['GROUP A', 'LEADER', '', '', -1,  calculator.netBalance.l1];
         la2 = ['GROUP B', 'LEADER', '', '', -1,  calculator.netBalance.l2];
 
@@ -2751,8 +4203,6 @@ calculator.roll.all = function(on, state) {
         fa3 = ['GROUP B', 'FOLLOWER', -1, -1, -1, -1];
         fa4 = ['GROUP B', 'FOLLOWER', -1, -1, -1, -1];
 
-        // la1 = ['GROUP A', 'LEADER', '', calculator.roll.l1PowerText, -1,  calculator.netBalance.l1];
-        // la2 = ['GROUP B', 'LEADER', '', calculator.roll.l2PowerText, -1,  calculator.netBalance.l2];
         la1 = [-1, -1, -1, -1, -1, -1];
         la2 = [-1, -1, -1, -1, -1, -1];
 
@@ -2765,8 +4215,6 @@ calculator.roll.all = function(on, state) {
         fa3 = [-1, -1, -1, -1, -1, -1];
         fa4 = [-1, -1, -1, -1, -1, -1];
 
-        // la1 = ['GROUP A', 'LEADER', '', calculator.roll.l1PowerText, -1,  calculator.netBalance.l1];
-        // la2 = ['GROUP B', 'LEADER', '', calculator.roll.l2PowerText, -1,  calculator.netBalance.l2];
         la1 = ['GROUP A', 'LEADER', -1, -1, -1, -1];
         la2 = ['GROUP B', 'LEADER', -1, -1, -1, -1];
 
@@ -2779,12 +4227,11 @@ calculator.roll.all = function(on, state) {
         fa3 = ['GROUP B', 'FOLLOWER', -1, -1, -1, -1];
         fa4 = ['GROUP B', 'FOLLOWER', -1, -1, -1, -1];
 
-        // la1 = ['GROUP A', 'LEADER', '', calculator.roll.l1PowerText, -1,  calculator.netBalance.l1];
-        // la2 = ['GROUP B', 'LEADER', '', calculator.roll.l2PowerText, -1,  calculator.netBalance.l2];
-        la1 = ['GROUP A', 'LEADER', -1, -1, -1, -1];
+            la1 = ['GROUP A', 'LEADER', -1, -1, -1, -1];
         la2 = ['GROUP B', 'LEADER', -1, -1, -1, -1];
 
     }
+
 
     calculator.roll.f1(0, 6, fa1);
     calculator.roll.f2(0, 6, fa2);
@@ -2795,10 +4242,370 @@ calculator.roll.all = function(on, state) {
     calculator.roll.l2(0, 6, la2);
 
 }
+//*-*-*-*//
 
 
+// MACRO ARRAY CONTROLLING METHODS
+calculator.roll.emptyAll = function() {
 
-//-----wheel methods------//
+    calculator.roll.f1Array = [-1, -1, -1, -1, -1, -1];
+    calculator.roll.f2Array = [-1, -1, -1, -1, -1, -1];
+    calculator.roll.of1Array = [-1, -1, -1, -1, -1, -1];
+    calculator.roll.of2Array = [-1, -1, -1, -1, -1, -1];
+    calculator.roll.lArray = [-1, -1, -1, -1, -1, -1];
+    calculator.roll.olArray = [-1, -1, -1, -1, -1, -1];
+
+}
+
+// typeOfContest is about which type of contest is being played
+// in the experiment only 'l', 'f' and 'fhetero will be relevant'
+calculator.roll.setRolesAndGroups = function() {
+
+    // contest section related
+    // Also help sabo is available for leader contest so the standart role rolls
+    // for followers are also assigned
+    if(calculator.globalVariable.typeOfContest === 'l') {
+
+        calculator.roll.lArray[1] = 'LEADER';
+        calculator.roll.f1Array[1] = 'FOLLOWER';
+        calculator.roll.f2Array[1] = 'FOLLOWER';
+        calculator.roll.lArray[0] = 'GROUP A';
+        calculator.roll.f1Array[0] = 'GROUP A';
+        calculator.roll.f2Array[0] = 'GROUP A';
+
+        calculator.roll.olArray[1] = 'LEADER';
+        calculator.roll.of1Array[1] = 'FOLLOWER';
+        calculator.roll.of2Array[1] = 'FOLLOWER';
+        calculator.roll.olArray[0] = 'GROUP B';
+        calculator.roll.of1Array[0] = 'GROUP B';
+        calculator.roll.of2Array[0] = 'GROUP B';
+
+    }
+
+    // contest section related
+    if(calculator.globalVariable.typeOfContest === 'f') {
+
+        calculator.roll.lArray[0] = 'GROUP A';
+        calculator.roll.lArray[1] = 'FOLLOWER';
+        calculator.roll.olArray[0] = 'GROUP A';
+        calculator.roll.olArray[1] = 'FOLLOWER';
+
+    }
+
+    // contest section related
+    if(calculator.globalVariable.typeOfContest === 'fhetero') {
+
+        calculator.roll.lArray[0] = 'GROUP A';
+        calculator.roll.lArray[1] = 'FOLLOWER';
+        calculator.roll.lArray[3] = 'STRONG';
+        calculator.roll.olArray[0] = 'GROUP A';
+        calculator.roll.olArray[1] = 'FOLLOWER';
+        calculator.roll.olArray[3] = 'WEAK';
+
+        if(calculator.globalVariable.subjectiveIndex === 1) {
+            calculator.roll.lArray[3] = 'WEAK';
+            calculator.roll.olArray[3] = 'STRONG';
+        }
+
+    }
+
+    // contest section related
+    if(calculator.globalVariable.typeOfContest === 'of') {
+
+        calculator.roll.lArray[0] = 'GROUP B';
+        calculator.roll.lArray[1] = 'FOLLOWER';
+        calculator.roll.olArray[0] = 'GROUP B';
+        calculator.roll.olArray[1] = 'FOLLOWER';
+
+    }
+
+    // contest section related
+    if(calculator.globalVariable.typeOfContest === 'ofhetero') {
+
+        calculator.roll.lArray[0] = 'GROUP B';
+        calculator.roll.lArray[1] = 'FOLLOWER';
+        calculator.roll.lArray[3] = 'STRONG';
+        calculator.roll.olArray[0] = 'GROUP B';
+        calculator.roll.olArray[1] = 'FOLLOWER';
+        calculator.roll.olArray[3] = 'WEAK';
+
+    }
+
+
+}
+
+calculator.roll.setYouTag = function() {
+
+    if(calculator.globalVariable.subjectiveView) {
+
+        if(calculator.globalVariable.subjectiveIndex === -1) {
+            calculator.roll.lArray[2] = 'YOU';
+
+            calculator.roll.f1Array[2] = '';
+            calculator.roll.f2Array[2] = '';
+            calculator.roll.of1Array[2] = '';
+            calculator.roll.of2Array[2] = '';
+            // calculator.roll.lArray[2] = '';
+            calculator.roll.olArray[2] = '';
+        }
+
+        if(calculator.globalVariable.subjectiveIndex === 0) {
+            calculator.roll.f1Array[2] = 'YOU';
+
+            // calculator.roll.f1Array[2] = '';
+            calculator.roll.f2Array[2] = '';
+            calculator.roll.of1Array[2] = '';
+            calculator.roll.of2Array[2] = '';
+            calculator.roll.lArray[2] = '';
+            calculator.roll.olArray[2] = '';
+        }
+
+        if(calculator.globalVariable.subjectiveIndex === 1) {
+            calculator.roll.f2Array[2] = 'YOU';
+
+            calculator.roll.f1Array[2] = '';
+            // calculator.roll.f2Array[2] = '';
+            calculator.roll.of1Array[2] = '';
+            calculator.roll.of2Array[2] = '';
+            calculator.roll.lArray[2] = '';
+            calculator.roll.olArray[2] = '';
+        }
+    }
+
+}
+
+
+// MAINLY FOLLOWERS SLIDERS RELATED
+calculator.roll.adjustForTreatment = function() {
+
+    if(!calculator.globalVariable.rightHetero && !calculator.globalVariable.leftHetero) {
+
+        calculator.roll.f1Array[3] = -1;
+        calculator.roll.f2Array[3] = -1;
+        calculator.roll.of1Array[3] = -1;
+        calculator.roll.of2Array[3] = -1;
+
+        calculator.roll.lArray[3] = -1;
+        calculator.roll.olArray[3] = -1;
+
+    }
+
+
+    // we are always represented by left side so left hetero implies our
+    // group is hetero
+    if(calculator.globalVariable.leftHetero) {
+
+        calculator.roll.f1Array[3] = 'STRONG';
+        calculator.roll.f2Array[3] = 'WEAK';
+        calculator.roll.of1Array[3] = 'EQUAL';
+        calculator.roll.of2Array[3] = 'EQUAL';
+
+        calculator.roll.lArray[3] = '';
+        calculator.roll.olArray[3] = '';
+
+        if(calculator.globalVariable.typeOfContest === 'f') {
+
+            if(calculator.globalVariable.subjectiveIndex === 0) {
+
+                calculator.roll.lArray[3] = 'STRONG';
+                calculator.roll.olArray[3] = 'WEAK';
+
+            }
+
+            if(calculator.globalVariable.subjectiveIndex === 1) {
+
+                calculator.roll.olArray[3] = 'STRONG';
+                calculator.roll.lArray[3] = 'WEAK';
+
+            }
+
+        }
+
+    }
+
+    if(calculator.globalVariable.rightHetero) {
+
+        calculator.roll.of1Array[3] = 'STRONG';
+        calculator.roll.of2Array[3] = 'WEAK';
+        calculator.roll.f1Array[3] = 'EQUAL';
+        calculator.roll.f2Array[3] = 'EQUAL';
+
+        calculator.roll.lArray[3] = '';
+        calculator.roll.olArray[3] = '';
+
+        if(calculator.globalVariable.typeOfContest === 'f') {
+
+            calculator.roll.lArray[3] = 'EQUAL';
+            calculator.roll.olArray[3] = 'EQUAL';
+
+        }
+
+
+    }
+
+    if(calculator.globalVariable.rightHetero && calculator.globalVariable.leftHetero) {
+
+        calculator.roll.f1Array[3] = 'STRONG';
+        calculator.roll.f2Array[3] = 'WEAK';
+        calculator.roll.of1Array[3] = 'STRONG';
+        calculator.roll.of2Array[3] = 'WEAK';
+
+        calculator.roll.lArray[3] = '';
+        calculator.roll.olArray[3] = '';
+
+        if(calculator.globalVariable.typeOfContest === 'f') {
+
+            if(calculator.globalVariable.subjectiveIndex === 0) {
+
+                calculator.roll.lArray[3] = 'STRONG';
+                calculator.roll.olArray[3] = 'WEAK';
+
+            }
+
+            if(calculator.globalVariable.subjectiveIndex === 1) {
+
+                calculator.roll.olArray[3] = 'STRONG';
+                calculator.roll.lArray[3] = 'WEAK';
+
+            }
+
+        }
+
+    }
+
+}
+
+
+// ACTION AND EXECUTION
+calculator.roll.animate = function() {
+
+    calculator.roll.f1(0, 6, calculator.roll.f1Array);
+    calculator.roll.f2(0, 6, calculator.roll.f2Array);
+    calculator.roll.f3(0, 6, calculator.roll.of1Array);
+    calculator.roll.f4(0, 6, calculator.roll.of2Array);
+
+    calculator.roll.l1(0, 6, calculator.roll.lArray);
+    calculator.roll.l2(0, 6, calculator.roll.olArray);
+
+}
+
+calculator.roll.initiate = function() {
+
+    calculator.roll.emptyAll();
+    calculator.roll.setRolesAndGroups();
+    calculator.roll.setYouTag();
+    calculator.roll.adjustForTreatment();
+    calculator.stopRolling = false;
+    calculator.roll.animate();
+
+}
+
+calculator.roll.reset = function() {
+
+    calculator.stopRolling = true;
+    setTimeout(()=>calculator.roll.initiate(), 4500);
+
+}
+
+
+/////////////////////// QUESTIONS ////////////////////////
+/////////////////////// QUESTIONS ////////////////////////
+/////////////////////// QUESTIONS ////////////////////////
+/////////////////////// QUESTIONS ////////////////////////
+/////////////////////// QUESTIONS ////////////////////////
+/////////////////////// QUESTIONS ////////////////////////
+/////////////////////// QUESTIONS ////////////////////////
+/////////////////////// QUESTIONS ////////////////////////
+/////////////////////// QUESTIONS ////////////////////////
+/////////////////////// QUESTIONS ////////////////////////
+/////////////////////// QUESTIONS ////////////////////////
+/////////////////////// QUESTIONS ////////////////////////
+/////////////////////// QUESTIONS ////////////////////////
+/////////////////////// QUESTIONS ////////////////////////
+/////////////////////// QUESTIONS ////////////////////////
+/////////////////////// QUESTIONS ////////////////////////
+/////////////////////// QUESTIONS ////////////////////////
+/////////////////////// QUESTIONS ////////////////////////
+
+
+calculator.questions.spin1.l1 = function() {
+    $('.sliderQuestion_l1').css({'transition':'all 5s cubic-bezier(0.02, 0.96, 0.63, 0.88)', 'transform':'rotateY(1530deg)'});
+}
+
+calculator.questions.spin2.l1 = function() {
+    $('.sliderQuestion_l1').css({'transition':'all 5s cubic-bezier(0.02, 0.96, 0.63, 0.88)', 'transform':'rotateY(-90deg)'});
+}
+
+calculator.questions.spin1.l2 = function() {
+    $('.sliderQuestion_l2').css({'transition':'all 5s cubic-bezier(0.02, 0.96, 0.63, 0.88)',  'transform':'rotateY(1530deg)'});
+}
+
+calculator.questions.spin2.l2 = function() {
+    $('.sliderQuestion_l2').css({'transition':'all 5s cubic-bezier(0.02, 0.96, 0.63, 0.88)',  'transform':'rotateY(-90deg)'});
+}
+
+calculator.questions.spin1.f1 = function() {
+    $('.sliderQuestion_f1').css({'transition':'all 5s cubic-bezier(0.02, 0.96, 0.63, 0.88)', 'transform':'rotateY(1530deg)'});
+}
+
+calculator.questions.spin2.f1 = function() {
+    $('.sliderQuestion_f1').css({'transition':'all 5s cubic-bezier(0.02, 0.96, 0.63, 0.88)', 'transform':'rotateY(-90deg)'});
+}
+
+calculator.questions.spin1.f2 = function() {
+    $('.sliderQuestion_f2').css({'transition':'all 5s cubic-bezier(0.02, 0.96, 0.63, 0.88)', 'transform':'rotateY(1530deg)'});
+}
+
+calculator.questions.spin2.f2 = function() {
+    $('.sliderQuestion_f2').css({'transition':'all 5s cubic-bezier(0.02, 0.96, 0.63, 0.88)', 'transform':'rotateY(-90deg)'});
+}
+
+calculator.questions.spin1.of1 = function() {
+    $('.sliderQuestion_of1').css({'transition':'all 5s cubic-bezier(0.02, 0.96, 0.63, 0.88)', 'transform':'rotateY(1530deg)'});
+}
+
+calculator.questions.spin2.of1 = function() {
+    $('.sliderQuestion_of1').css({'transition':'all 5s cubic-bezier(0.02, 0.96, 0.63, 0.88)', 'transform':'rotateY(-90deg)'});
+}
+
+calculator.questions.spin1.of2 = function() {
+    $('.sliderQuestion_of2').css({'transition':'all 5s cubic-bezier(0.02, 0.96, 0.63, 0.88)', 'transform':'rotateY(1530deg)'});
+}
+
+calculator.questions.spin2.of2 = function() {
+    $('.sliderQuestion_of2').css({'transition':'all 5s cubic-bezier(0.02, 0.96, 0.63, 0.88)', 'transform':'rotateY(-90deg)'});
+}
+
+calculator.questions.activate.all = function(array) {
+
+    $('.sliderQuestion_l1').css({'opacity': array[0].toString()});
+    $('.sliderQuestion_f1').css({'opacity': array[1].toString()});
+    $('.sliderQuestion_f2').css({'opacity': array[2].toString()});
+    $('.sliderQuestion_l2').css({'opacity': array[3].toString()});
+    $('.sliderQuestion_of1').css({'opacity': array[4].toString()});
+    $('.sliderQuestion_of2').css({'opacity': array[5].toString()});
+
+}
+
+
+/////////////////////// WHEEL ////////////////////////
+/////////////////////// WHEEL ////////////////////////
+/////////////////////// WHEEL ////////////////////////
+/////////////////////// WHEEL ////////////////////////
+/////////////////////// WHEEL ////////////////////////
+/////////////////////// WHEEL ////////////////////////
+/////////////////////// WHEEL ////////////////////////
+/////////////////////// WHEEL ////////////////////////
+/////////////////////// WHEEL ////////////////////////
+/////////////////////// WHEEL ////////////////////////
+/////////////////////// WHEEL ////////////////////////
+/////////////////////// WHEEL ////////////////////////
+/////////////////////// WHEEL ////////////////////////
+/////////////////////// WHEEL ////////////////////////
+/////////////////////// WHEEL ////////////////////////
+/////////////////////// WHEEL ////////////////////////
+/////////////////////// WHEEL ////////////////////////
+/////////////////////// WHEEL ////////////////////////
 
 
 calculator.wheel.hide = function() {
@@ -2815,39 +4622,49 @@ calculator.wheel.show = function() {
 
 }
 
-calculator.wheel.spin = function(hideType) {
+calculator.wheel.spin = function() {
 
-    calculator.wheel.isSpinning = true;
+    calculator.globalVariable.topSpinButtonIsEnabled = false;
+    calculator.globalVariable.bottomSpinButtonIsEnabled = false;
 
-    if(hideType === 1) {
-        calculator.hide.contestResults();
-    }
+    //---//
 
-    if(hideType === 2) {
-        calculator.hide.contestResults2();
-    }
+    calculator.results.softHide.all();
+    calculator.button.disable.spinBottomMini();
 
 
-    calculator.wheel.show();
-
-    spinButtonEnabled = false;
-    spinButtonEnabled2 = false;
+    //---//
 
     calculator.wheel.spinDuration = 1;
-    calculator.wheel.spinNumber = 10;
+    calculator.wheel.spinNumber = 3;
 
     calculator.wheel.create(pwin, 'myWheel');
     calculator.wheel.myWheelObj.stopAnimation(false);
     calculator.wheel.myWheelObj.rotationAngle = 0;
 
+    calculator.wheel.show();
+
+    //---//
+
     var winner = (pwin > Math.random()) ? 1 : 2;
-    calculator.wheel.winner  = winner;
+
     var stopAt = calculator.wheel.myWheelObj.getRandomForSegment(winner);
     calculator.wheel.myWheelObj.animation.stopAngle = stopAt;
     calculator.wheel.myWheelObj.startAnimation();
 
-    setTimeout(()=>calculator.update.resultTexts(winner), calculator.wheel.spinDuration*1000);
-    setTimeout(()=>calculator.wheel.showResults(winner), calculator.wheel.spinDuration*1000);
+    //---//
+
+    setTimeout(()=>
+    {
+        calculator.results.update.allTextAndColors(winner);
+    },
+    calculator.wheel.spinDuration * 0.75 * 1000);
+
+    setTimeout(()=>
+    {
+        calculator.results.show.outcomes();
+    },
+    calculator.wheel.spinDuration * 1000);
 
 }
 
@@ -2869,148 +4686,192 @@ calculator.wheel.cruise = function() {
 
 }
 
-var allDivHoversActive = true;
-var mainDivHoverActive = true;
-calculator.wheel.showResults = function(w) {
 
-    calculator.display.resultSpaceOpen = true;
-    spinButtonEnabled = true;
-    spinButtonEnabled2 = true;
-    setTimeout(()=>{mainDivHoverActive = true}, 3000);
+//////////////////////// SPACE ///////////////////////////
+//////////////////////// SPACE ///////////////////////////
+//////////////////////// SPACE ///////////////////////////
+//////////////////////// SPACE ///////////////////////////
+//////////////////////// SPACE ///////////////////////////
+//////////////////////// SPACE ///////////////////////////
+//////////////////////// SPACE ///////////////////////////
+//////////////////////// SPACE ///////////////////////////
+//////////////////////// SPACE ///////////////////////////
+//////////////////////// SPACE ///////////////////////////
+//////////////////////// SPACE ///////////////////////////
+//////////////////////// SPACE ///////////////////////////
+//////////////////////// SPACE ///////////////////////////
+//////////////////////// SPACE ///////////////////////////
 
 
+calculator.space.hsIsOpen = undefined;
 
-    var trans = calculator.wheel.spinDuration / 2;
-    trans = trans + 's';
+calculator.space.hsResultsTopIsOpen = undefined;
 
-    $('.payoffWrap, .fResults').css({'transition' : trans, 'opacity':'1'});
-    $('.fNetPayoffText').css({'opacity':'1'});
+calculator.space.hsResultsBottomIsOpen = undefined;
+
+calculator.space.powerBarIsOpen = undefined;
+
+calculator.space.contestIsOpen = undefined;
+
+calculator.space.contestResultsIsOpen = undefined;
 
 
-    if(calculator.display.HSandLC) {
+// TOP RESULTS OF HELP / SABOTAGE
 
-        $('.pWrap').css({'margin-top':'40px'});
-        $('.generalMarginBox').css({'height':'800px'});
+calculator.space.open.hsResultsTop = function() {
 
-        calculator.hide.followerResults(false);
-        calculator.hide.hs(1);
+    $('.hsWrap').css({'transition-delay':'1.2s', 'transition':'0.15s', 'margin-top':'0px'});
+    calculator.space.hsResultsTopIsOpen = true;
+    calculator.space.update.heights();
 
-        setTimeout(()=>{calculator.wheel.isSpinning = false;}, 3000);
+}
 
+calculator.space.close.hsResultsTop = function() {
+
+    $('.hsWrap').css({'transition-delay':'0s', 'transition':'0.15s', 'margin-top':'-57px'});
+    calculator.space.hsResultsTopIsOpen = false;
+    calculator.space.update.heights();
+
+}
+
+
+// BOTTOM RESULTS OF HELP / SABOTAGE
+
+calculator.space.open.hsResultsBottom = function() {
+
+    $('.pWrap').css({'transition':'0.3s', 'margin-top':'40px'});
+    calculator.space.hsResultsBottomIsOpen = true;
+    calculator.space.update.heights();
+
+}
+
+calculator.space.close.hsResultsBottom = function() {
+
+    $('.pWrap').css({'transition':'0.3s', 'margin-top':'-54px'});
+    calculator.space.hsResultsBottomIsOpen = false;
+    calculator.space.update.heights();
+
+}
+
+
+// CLOSE BOTH HELP SABOTAGE SECTION AND 'CLOSE' LEADER RESULT SECTION
+
+calculator.space.close.all = function() {
+
+    calculator.space.close.hsResultsTop();
+    calculator.space.close.hsResultsBottom();
+    calculator.space.contestResultsIsOpen = false;
+
+    if(calculator.globalVariable.subjectiveIndex === -1 && calculator.globalVariable.subjectiveView) {
+        calculator.space.contestResultsIsOpen = true;
     }
 
-
-    if(!calculator.display.onlyLC) {
-        $('.pWrap').css({'margin-top':'5px'});
-    }
-
-
-    calculator.display.followerRole();
-    calculator.update.payoffHeights(calculator.display.displayed)
-
-    calculator.display.outcomeColors(1)
-
-
-}
-
-calculator.display.outcomeColors = function(on) {
-    if(on) {
-        if(calculator.wheel.winner === 1) {
-            $('.resultLeft, .leftSideResult').css({'transition':'1s', 'background-color':'darkblue'});
-            $('.resultRight, .rightSideResult').css({'transition':'1s', 'background-color':'darkred', 'color':'white'});
-        } else {
-            $('.resultLeft, .leftSideResult').css({'transition':'1s', 'background-color':'darkred'});
-            $('.resultRight, .rightSideResult').css({'transition':'1s', 'background-color':'darkblue', 'color':'white'});
-        }
-    } else {
-        $('.resultLeft, .leftSideResult').css({'transition':'1s', 'background-color':'rgb(60,60,60)'});
-        $('.resultRight, .rightSideResult').css({'transition':'1s', 'background-color':'rgb(210,210,210)', 'color':'black'});
-    }
-
-}
-
-calculator.hide.followerResults = function(on) {
-    if(on) {
-        $('.pWrap').css({'transition':'0.6s', 'margin-top':'-54px'});
-        $(' .leftSideResult, .rightSideResult, .leftSidePrize, .rightSidePrize, .leftSideRole, .rightSideRole').css({'transition':'0.2s', 'opacity':'0'});
-    }
-
-
-    if(!on) {
-        $('.pWrap').css({'transition':'0.6s', 'margin-top':'40px'});
-        $(' .leftSideResult, .rightSideResult, .leftSidePrize, .rightSidePrize, .leftSideRole, .rightSideRole').css({'transition':'0.7s', 'opacity':'1'});
-    }
-}
-
-calculator.hide.hs = function(o) {
-    $('.followersRight, .followersLeft, .cTop').css({'transition':'0.3s', 'opacity': o.toString()});
-}
-
-calculator.hide.contestResults = function() {
-
-    calculator.display.resultSpaceOpen = false;
-
-    var trans = calculator.wheel.spinDuration / 2;
-    var trans2 = trans * 0.75;
-    trans = trans + 's';
-    trans2 = trans2 + 's';
-
-    $('.payoffWrap, .fResults, .fNetPayoffText').css({'transition' : trans, 'opacity':'0'});
-
-    if(!calculator.display.onlyLC) {
-        $('.pWrap').css({'margin-top':'-75px'});
-    }
-
-    if(calculator.display.HSandLC && calculator.display.rewindSpin) {
-        $('.pWrap').css({'margin-top':'-54px'});
-        $('.generalMarginBox').css({'height':'710px'});
-    }
-
-}
-
-calculator.hide.contestResults2 = function() {
-
-    var trans = calculator.wheel.spinDuration / 2;
-    var trans2 = trans * 0.75;
-    trans = trans + 's';
-    trans2 = trans2 + 's';
-
-    $('.payoffWrap, .fResults, .fNetPayoffText').css({'transition' : trans, 'opacity':'0'});
-
-}
-
-calculator.disable.spinButton1 = function() {
-
-    $('.spinImage').css({'display':'none'});
-
-}
-
-calculator.disable.spinButton2 = function() {
-
-    $('.spinImage23').css({'display':'none'});
-
-}
-
-calculator.enable.spinButton1 = function() {
-
-    $('.spinImage').css({'display':'inline'});
-
-}
-
-calculator.enable.spinButton2 = function() {
-
-    $('.spinImage23').css({'display':'inline'});
+    calculator.space.update.heights();
 
 }
 
 
-//------display methods-----//
+// ADJUST HEIGHT DEPENDING ON WHAT IS DISPLAYED AND OPEN
+
+calculator.space.update.heights = function() {
+
+    // var pb = calculator.space.powerBarIsOpen ? 35 : 0;
+    // var c = calculator.space.contestIsOpen ? 175 : 0;
+    // var cr = calculator.space.contestResultsIsOpen ? 150 : 0;
+    // var hs = calculator.space.hsIsOpen ? 300 : 0;
+    // var hsT = calculator.space.hsResultsTopIsOpen ? 75 : 0;
+    // var hsB = calculator.space.hsResultsBottomIsOpen ? 100 : 0;
+
+    var pb = calculator.space.powerBarIsOpen ? 30 : 0;
+    var c = calculator.space.contestIsOpen ? 170 : 0;
+    var hs = calculator.space.hsIsOpen ? 295 : 0;
+    var cr = calculator.space.contestResultsIsOpen ? 145 : 0;
+    var hsT = calculator.space.hsResultsTopIsOpen ? 65 : 0;
+    var hsB = calculator.space.hsResultsBottomIsOpen ? 90 : 0;
+
+    var total = pb + c + cr + hs + hsT + hsB;
+
+    // if(total === 835) {
+    //     total = 795;
+    // }
+
+    total = total + 'px';
+
+    // console.log('********************');
+    // console.log('power bar: ' + pb);
+    // console.log('contest: ' + c);
+    // console.log('contestResult: ' + cr);
+    // console.log('hs: ' + hs);
+    // console.log('hs Top: ' + hsT);
+    // console.log('hs Bottom: ' + hsB);
+    // console.log('total: ' + total);
+    // console.log('********************');
 
 
-calculator.display.displayed = Array(4);
-calculator.display.displayed = [false, false, false];
 
-calculator.update.payoffHeights = function(array) {
+    $('.generalMarginBox').css({'transition':'0.15s', 'height' : total});
+
+}
+
+
+////////////////////////// RESULTS ////////////////////////////
+////////////////////////// RESULTS ////////////////////////////
+////////////////////////// RESULTS ////////////////////////////
+////////////////////////// RESULTS ////////////////////////////
+////////////////////////// RESULTS ////////////////////////////
+////////////////////////// RESULTS ////////////////////////////
+////////////////////////// RESULTS ////////////////////////////
+////////////////////////// RESULTS ////////////////////////////
+////////////////////////// RESULTS ////////////////////////////
+////////////////////////// RESULTS ////////////////////////////
+////////////////////////// RESULTS ////////////////////////////
+////////////////////////// RESULTS ////////////////////////////
+////////////////////////// RESULTS ////////////////////////////
+////////////////////////// RESULTS ////////////////////////////
+////////////////////////// RESULTS ////////////////////////////
+////////////////////////// RESULTS ////////////////////////////
+
+
+//-------------- AFTER WHEEL STOPS ------------//
+
+calculator.results.show.outcomes = function() {
+
+    calculator.globalVariable.topSpinButtonIsEnabled = true;
+    calculator.globalVariable.bottomSpinButtonIsEnabled = true;
+
+
+    calculator.button.enable.spinBottom();
+    calculator.titles.contest.show();
+    calculator.results.show.leaderOutcomes();
+
+    calculator.button.enable.spinTop();
+    calculator.results.show.followerOutcomesAll();
+    calculator.section.hs.opacity.SFiALiFiS([1,1,1,1,0,0]);
+    calculator.section.hs.set.iconPosition('center');
+    calculator.titles.hs.show();
+    calculator.titles.update.position();
+
+    setTimeout(()=>{
+        calculator.globalVariable.aBitOfWaitingIsDone = true;
+        calculator.globalVariable.dynamicDisplay = true;
+        calculator.button.display.spinTop(true);
+        calculator.button.enable.minTop();
+        calculator.button.display.minTop(true);
+        calculator.button.display.spinBottom(true);
+        calculator.button.enable.minBottom();
+        calculator.button.display.minBottom(true);
+    }, 5000);
+
+}
+
+
+//------------------ CONTEST -----------------//
+
+calculator.results.leader.switches = Array(4);
+calculator.results.leader.switches = [false, false, false, false];
+
+
+calculator.results.leader.update.payoffHeights = function(array) {
 
     var sum = array.reduce((a,b) => a + b, 0)
 
@@ -3049,28 +4910,7 @@ calculator.update.payoffHeights = function(array) {
 
 }
 
-calculator.display.spinButton = function(show) {
-
-    var opacity = show ? '1' : '0';
-    var cursor = show ? 'pointer' : 'default';
-    $('.spinImage, .minImage').css({'opacity': opacity, 'cursor' : cursor});
-
-    // spinButtonEnabled = show;
-
-}
-
-calculator.display.spinButton2 = function(show) {
-
-    var opacity = show ? '1' : '0';
-    var cursor = show ? 'pointer' : 'default';
-    $('.spinImage23, .minImage2').css({'opacity': opacity, 'cursor' : cursor});
-    // spinButtonEnabled2 = show;
-
-}
-
-
-
-calculator.display.investment = function(show) {
+calculator.results.leader.display.investment = function(show) {
 
     var opacity = show ? '1' : '0';
     $('.cLeft, .cRight').css({'opacity': opacity});
@@ -3078,65 +4918,602 @@ calculator.display.investment = function(show) {
     $('.topText').css({'justify-content':'center'});
 
 
-    calculator.display.displayed[0] = show;
-    calculator.update.payoffHeights(calculator.display.displayed);
+    calculator.results.leader.switches[0] = show;
+    calculator.results.leader.update.payoffHeights(calculator.results.leader.switches);
 
-    showTokenTag = true;
+    calculator.results.tokenTextIsShown = true;
 
 }
 
-calculator.display.prize = function(show) {
+calculator.results.leader.display.prize = function(show) {
 
     var opacity = show ? '1' : '0';
     $('.pLeft, .pRight').css({'opacity': opacity});
 
-    calculator.display.displayed[1] = show;
-    calculator.update.payoffHeights(calculator.display.displayed);
+    calculator.results.leader.switches[1] = show;
+    calculator.results.leader.update.payoffHeights(calculator.results.leader.switches);
 
     if(show) {
 
         $('.pRight, .pLeft').css({'display':'flex'});
         $('.topText').css({'justify-content':'space-between'});
-        showTokenTag = false;
+        calculator.results.tokenTextIsShown = false;
 
     }
 
 }
 
-calculator.display.netPayoff = function(show) {
+calculator.results.leader.display.netPayoff = function(show) {
 
     var opacity = show ? '1' : '0';
     $('.npLeft, .npRight').css({'opacity': opacity});
-    calculator.display.displayed[2] = show;
-    calculator.update.payoffHeights(calculator.display.displayed);
+    calculator.results.leader.switches[2] = show;
+    calculator.results.leader.update.payoffHeights(calculator.results.leader.switches);
 
 }
 
-calculator.display.role = function(show) {
+calculator.results.leader.display.role = function(show) {
 
     var opacity = show ? '1' : '0';
     $('.rLeft, .rRight').css({'opacity': opacity});
-    calculator.display.displayed[3] = show;
-        calculator.update.payoffHeights(calculator.display.displayed);
+    calculator.results.leader.switches[3] = show;
+    calculator.results.leader.update.payoffHeights(calculator.results.leader.switches);
 
 }
 
-calculator.display.followerRole = function() {
 
-    if(!calculator.showFollowerRole) {
 
-        $('.followerRoleText').css({'margin-top':'-55px', 'opacity':'0'});
+calculator.results.show.leaderOutcomes = function() {
 
-        if(!calculator.display.onlyLC) {
-            $('.pWrap').css({'margin-top':'-10px'});
+    $('.payoffWrap, .imageWrap23').css({'transition' : '0.15s', 'opacity':'1'});
+    calculator.space.contestResultsIsOpen = true;
+
+    calculator.space.update.heights();
+
+}
+
+calculator.results.hide.leaderOutcomes = function() {
+
+    $('.payoffWrap, .imageWrap23').css({'transition' : '0.15s', 'opacity':'0'});
+    calculator.space.contestResultsIsOpen = false;
+
+    if(calculator.globalVariable.subjectiveIndex === -1 && calculator.globalVariable.subjectiveView) {
+        calculator.space.contestResultsIsOpen = true;
+        $('.imageWrap23').css({'transition' : '0.15s', 'opacity':'1'});
+    }
+
+    calculator.space.update.heights();
+
+}
+
+
+//----------- HELP SABOTAGE ----------//
+
+calculator.results.hide.followerOutcomesBottom = function() {
+
+    calculator.space.close.hsResultsBottom();
+    $('.leftSideResult, .rightSideResult, .leftSidePrize, .rightSidePrize, .leftSideRole, .rightSideRole').css({'transition-delay':'0s', 'transition':'0.15s', 'opacity':'0'});
+
+}
+
+calculator.results.hide.followerOutcomesTop = function() {
+
+    calculator.space.close.hsResultsTop();
+    $('.fNetPayoffText').css({'transition-delay':'0s', 'transition':'0.15s', 'opacity':'0'});
+
+}
+
+calculator.results.hide.followerOutcomesAll = function() {
+
+    calculator.results.hide.followerOutcomesTop();
+    calculator.results.hide.followerOutcomesBottom();
+
+}
+
+
+calculator.results.show.followerOutcomesBottom = function() {
+
+    if(calculator.globalVariable.subjectiveView && calculator.globalVariable.subjectiveIndex === -1)
+
+    $('.fResults').css({'transition' : '0.15s', 'opacity':'1'});
+
+    calculator.space.open.hsResultsBottom();
+
+    $('.leftSideResult, .rightSideResult').css({'transition-delay':'0.3s', 'transition':'0.15s', 'opacity':'1'});
+    $('.leftSidePrize, .rightSidePrize').css({'transition-delay':'0.6s', 'transition':'0.15s', 'opacity':'1'});
+    $('.leftSideRole, .rightSideRole').css({'transition-delay':'0.9s', 'transition':'0.15s', 'opacity':'1'});
+
+}
+
+calculator.results.show.followerOutcomesTop = function() {
+
+    calculator.space.open.hsResultsTop();
+    $('.fNetPayoffText').css({'transition-delay':'1.2s','transition':'0.15s', 'opacity':'1'});
+
+}
+
+calculator.results.show.followerOutcomesAll = function() {
+
+    calculator.results.show.followerOutcomesTop();
+    calculator.results.show.followerOutcomesBottom();
+
+}
+
+
+//---------- ALL ----------//
+
+calculator.results.softHide.all = function() {
+
+    $('.payoffWrap, .imageWrap23, .fNetPayoffText, .fResults, .leftSideResult, .rightSideResult, .leftSidePrize, .rightSidePrize, .leftSideRole, .rightSideRole').css({'transition-delay':'0s', 'transition' : '0.15s', 'opacity':'0'});
+
+}
+
+calculator.results.hide.all = function() {
+
+    calculator.results.hide.followerOutcomesAll();
+    calculator.results.hide.leaderOutcomes();
+    calculator.globalVariable.dynamicDisplay = false;
+    calculator.titles.update.position();
+
+}
+
+calculator.results.show.all = function() {
+
+    calculator.results.show.followerOutcomesBottom();
+    calculator.results.show.followerOutcomeTop();
+    calculator.results.show.leaderOutcomes();
+
+}
+
+
+//-------------- TEXT AND COLOR UPDATING ------------//
+
+calculator.results.tokenTextIsShown = undefined;
+calculator.results.resultTextsType = undefined;
+calculator.results.lastWinner = undefined;
+
+
+calculator.results.update.contestText = function(w) {
+
+    w = w === undefined ? calculator.results.lastWinner : w;
+    calculator.results.lastWinner = w;
+
+    var winnerPrize,winnerRole, loserRole;
+
+    // can be replaced with typeofcontest
+    if(calculator.results.resultTextsType === 'leader') {
+        winnerRole = 'Continue as Leader';
+        loserRole = 'Became a Follower';
+        winnerPrize = 1000;
+    }
+    if(calculator.results.resultTextsType === 'follower') {
+        winnerRole = 'Became the Leader';
+        loserRole = 'Continue as Follower';
+        winnerPrize = 0;
+    }
+    if(calculator.results.resultTextsType === 'generic') {
+        winnerRole = 'Upgrade in role';
+        loserRole = 'Downgrade in role';
+
+        winnerPrize = 'PRIZE';
+    }
+
+
+    //---//
+
+
+    var resultLeft = document.getElementById('resultLeft');
+    var prizeLeft = document.getElementById('prizeLeft');
+    var costLeft = document.getElementById('costLeft');
+    var netPayoffLeft = document.getElementById('netPayoffLeft');
+    var roleLeft = document.getElementById('roleLeft');
+    var resultRight = document.getElementById('resultRight');
+    var prizeRight = document.getElementById('prizeRight');
+    var costRight = document.getElementById('costRight');
+    var netPayoffRight = document.getElementById('netPayoffRight');
+    var roleRight = document.getElementById('roleRight');
+    var myTokenTag1 = document.getElementById('tokenTag1');
+    var myTokenTag2 = document.getElementById('tokenTag2');
+
+    var tokenTag1, tokenTag2;
+    if(calculator.results.tokenTextIsShown) {
+        tokenTag1 = efo === 0 ? ' token' : ' tokens';
+        tokenTag2 = oefo === 0 ? ' token' : ' tokens';
+        $('.tokenTag').css({'padding-left':'10px', 'font-weight':'400'});
+    } else {
+        tokenTag1 = tokenTag2 = '';
+        $('.tokenTag').css({'display':'none'});
+    }
+
+
+    //---//
+
+
+    resultLeft.innerHTML = w === 1 ? 'WON' : 'LOST';
+    prizeLeft.innerHTML = w === 1 ? winnerPrize : 0;
+    costLeft.innerHTML = efo;
+    myTokenTag1.innerHTML = tokenTag1;
+    netPayoffLeft.innerHTML = -efo + ( w === 1 ? winnerPrize : 0);
+    roleLeft.innerHTML = w === 1 ? winnerRole : loserRole;
+
+    resultRight.innerHTML = w === 2 ? 'WON' : 'LOST';
+    prizeRight.innerHTML = w === 2 ? winnerPrize : 0;
+    costRight.innerHTML = oefo;
+    myTokenTag2.innerHTML = tokenTag2;
+    netPayoffRight.innerHTML = -oefo + ( w === 2 ? winnerPrize : 0);
+    roleRight.innerHTML = w === 2 ? winnerRole : loserRole;
+
+
+    //---//
+
+
+    if(calculator.results.resultTextsType === 'generic') {
+
+        prizeLeft.innerHTML = w === 1 ? winnerPrize : 0;
+        prizeRight.innerHTML = w === 2 ? winnerPrize : 0;
+
+        var str1, str2, str3;
+        str1 = '<span style=\'color:red;\'>';
+        str2 = '</span>';
+        str3 = str1 + ' - ' + efo + str2;
+
+        if(efo === 0) {
+            netPayoffLeft.innerHTML =  w === 1 ? winnerPrize : -efo;
+        } else if(efo > 0) {
+            netPayoffLeft.innerHTML = w === 1 ? (winnerPrize + str3) : -efo;
         }
 
-    } else {
+        var ostr1, ostr2, ostr3;
+        ostr1 = '<span style=\'color:red;\'>';
+        ostr2 = '</span>';
+        ostr3 = ostr1 + ' - ' + oefo + ostr2;
 
-        $('.followerRoleText').css({'margin-top':'-22px', 'opacity':'1'});
+        if(oefo === 0) {
+            netPayoffRight.innerHTML =  w === 2 ? winnerPrize : -oefo;
+        } else if(oefo > 0) {
+            netPayoffRight.innerHTML = w === 2 ? (winnerPrize + ostr3) : -oefo;
+        }
 
-        if(calculator.display.HSandLC) {
-            $('.pWrap').css({'margin-top':'40px'});
+    }
+
+}
+
+calculator.results.update.followerHSText = function(w) {
+
+    w = w === undefined ? calculator.results.lastWinner : w;
+    calculator.results.lastWinner = w;
+
+    var fwinnerRole, floserRole, fwinnerPrize, floserPrize;
+
+
+    var f1NetPayoff = document.getElementById('f1netPayoff');
+    var f2NetPayoff = document.getElementById('f2netPayoff');
+    var leftSidePrize = document.getElementById('leftSidePrize')
+    var leftSideRole = document.getElementById('leftSideRole');
+    var leftSideResult = document.getElementById('leftSideResult');
+    var of1NetPayoff = document.getElementById('of1netPayoff');
+    var of2NetPayoff = document.getElementById('of2netPayoff');
+    var rightSidePrize = document.getElementById('rightSidePrize')
+    var rightSideRole = document.getElementById('rightSideRole');
+    var rightSideResult = document.getElementById('rightSideResult');
+
+
+    fwinnerRole = 'Each continues as Follower';
+    fwinnerPrize = 'Each receives 100 tokens'
+    floserRole = 'Chance to be the new Leader';
+    floserPrize = 'Each receives 0 token'
+
+    leftSidePrize.innerHTML = w === 1 ? fwinnerPrize : floserPrize;
+    leftSideRole.innerHTML = w === 1 ? fwinnerRole : floserRole;
+    leftSideResult.innerHTML = w === 1 ? 'LEADER WON' : 'LEADER LOST';
+    f1NetPayoff.innerHTML = -(h1 + s1) + ((w === 1) ? 100 : 0);
+    f2NetPayoff.innerHTML = -(h2 + s2) + ((w === 1) ? 100 : 0);
+
+    rightSidePrize.innerHTML = w === 2 ? fwinnerPrize : floserPrize;
+    rightSideRole.innerHTML = w === 2 ? fwinnerRole : floserRole;
+    rightSideResult.innerHTML = w === 2 ? 'LEADER WON' : 'LEADER LOST';
+    of1NetPayoff.innerHTML = -(oh1 + os1) + ((w === 2) ? 100 : 0);
+    of2NetPayoff.innerHTML = -(oh2 + os2) + ((w === 2) ? 100 : 0);
+
+    //
+    // var f1np, f2np, of1np, of2np, l1np, l2np;
+    //
+    // f1np =  -(h1 + s1) + ((w === 1) ? 100 : 0);
+    // f2np =  -(h2 + s2) + ((w === 1) ? 100 : 0);
+    // of1np =  -(oh1 + os1) + ((w === 2) ? 100 : 0);
+    // of2np =  -(oh2 + os2) + ((w === 2) ? 100 : 0);
+    //
+    // l1np = -efo + ( w === 1 ? winnerPrize : 0);
+    // l2np = -oefo + ( w === 2 ? winnerPrize : 0);
+
+}
+
+calculator.results.update.outcomeColors = function(w) {
+
+    w = w === undefined ? calculator.results.lastWinner : w;
+    calculator.results.lastWinner = w;
+
+    if(w === 1) {
+        $('.resultLeft, .leftSideResult').css({'transition':'1s', 'background-color':'darkblue'});
+        $('.resultRight, .rightSideResult').css({'transition':'1s', 'background-color':'darkred', 'color':'white'});
+    }
+    if(w === 2) {
+        $('.resultLeft, .leftSideResult').css({'transition':'1s', 'background-color':'darkred'});
+        $('.resultRight, .rightSideResult').css({'transition':'1s', 'background-color':'darkblue', 'color':'white'});
+    }
+
+}
+
+calculator.results.update.allColors = function(w) {
+
+    if(w === 1) {
+        $('.p1, .np1, .f1NetPayoff, .f2NetPayoff').css({'color':'blue'});
+        $('.p2').css({'color':'black'});
+        $('.np2, .of1NetPayoff, .of2NetPayoff').css({'color':'red'});
+    }
+
+    if(w === 2) {
+        $('.p2, .np2, .of1NetPayoff, .of2NetPayoff').css({'color':'blue'});
+        $('.p1').css({'color':'black'});
+        $('.np1, .f1NetPayoff, .f2NetPayoff').css({'color':'red'});
+    }
+
+    if(oefo > 0 && w === 1) {
+        $('.np2').css({'color':'red'});
+    }
+
+    if(efo > 0 && w === 2) {
+        $('.np1').css({'color':'red'});
+    }
+
+    $('.c1, .c2').css({'color':'red'});
+
+    if(efo === 0 && w === 2) {
+        $('.np1').css({'color':'black'});
+    }
+
+    if(oefo === 0 && w === 1) {
+        $('.np2').css({'color':'black'});
+    }
+
+    if(efo === 0) {
+        $('.c1').css({'color':'black'});
+    }
+
+    if(oefo === 0) {
+        $('.c2').css({'color':'black'});
+    }
+
+    if(calculator.results.resultTextsType === 'follower') {
+
+        $('.p1, .p2').css({'color':'black'});
+
+        if(efo === 0) {
+            $('.np1').css({'color':'black'});
+        }
+        if(efo > 0) {
+            $('.np1').css({'color':'red'});
+        }
+        if(oefo === 0) {
+            $('.np2').css({'color':'black'});
+        }
+        if(oefo > 0) {
+            $('.np2').css({'color':'red'});
+        }
+
+    }
+
+    $('.p1, .c1, .np1, .p2, .c2, .np2').css({'font-weight':'500'});
+
+    if(w === 2) {
+        if(s1 + h1 === 0) {
+            $('.f1NetPayoff').css({'color':'black'});
+        }
+        if(s2 + h2 === 0) {
+            $('.f2NetPayoff').css({'color':'black'});
+        }
+    }
+
+    if(w === 1) {
+        if(os1 + oh1 === 0) {
+            $('.of1NetPayoff').css({'color':'black'});
+        }
+        if(os2 + oh2 === 0) {
+            $('.of2NetPayoff').css({'color':'black'});
+        }
+    }
+
+    calculator.results.update.outcomeColors(w)
+
+}
+
+calculator.results.update.allTextAndColors = function(w) {
+
+    if(w === 'undefined') {
+        console.log('WARNING WINNER INDEX FOR CALCULATOR.RESULTS.UPDATE.* IS UNDEFINED');
+    }
+
+    calculator.results.update.contestText(w);
+    calculator.results.update.followerHSText(w);
+    calculator.results.update.allColors(w);
+
+}
+
+
+/////////////// BUTTONS /////////////////
+/////////////// BUTTONS /////////////////
+/////////////// BUTTONS /////////////////
+/////////////// BUTTONS /////////////////
+/////////////// BUTTONS /////////////////
+/////////////// BUTTONS /////////////////
+/////////////// BUTTONS /////////////////
+/////////////// BUTTONS /////////////////
+/////////////// BUTTONS /////////////////
+/////////////// BUTTONS /////////////////
+/////////////// BUTTONS /////////////////
+/////////////// BUTTONS /////////////////
+/////////////// BUTTONS /////////////////
+/////////////// BUTTONS /////////////////
+/////////////// BUTTONS /////////////////
+/////////////// BUTTONS /////////////////
+/////////////// BUTTONS /////////////////
+
+
+//----- SPIN TOP -----//
+
+calculator.button.enable.spinTop= function() {
+
+    $('.spinImage').css({'display':'inline'});
+
+}
+
+calculator.button.disable.spinTop = function() {
+
+    $('.spinImage').css({'display':'none'});
+
+}
+
+calculator.button.display.spinTop = function(show) {
+
+    var opacity = show ? '1' : '0';
+    var cursor = show ? 'pointer' : 'default';
+    $('.spinImage').css({'transition':'0.15s', 'opacity': opacity, 'cursor' : cursor});
+
+}
+
+
+//------ MINIMIZE TOP ------//
+
+calculator.button.display.minTop = function(show) {
+
+    var opacity = show ? '1' : '0';
+    var cursor = show ? 'pointer' : 'default';
+    $('.minImageTopSetup').css({'transition':'0.15s', 'opacity': opacity, 'cursor' : cursor});
+
+}
+
+calculator.button.disable.minTop = function() {
+
+    $('.minImageTopSetup').css({'display':'none'});
+
+}
+
+calculator.button.enable.minTop = function() {
+
+    $('.minImageTopSetup').css({'display':'flex'});
+
+}
+
+
+//--------- SPIN BOTTOM --------//
+
+calculator.button.display.spinBottom = function(show) {
+
+    var opacity = show ? '1' : '0';
+    var cursor = show ? 'pointer' : 'default';
+    $('.spinImage23').css({'transition':'0.15s', 'opacity': opacity, 'cursor' : cursor});
+
+}
+
+calculator.button.disable.spinBottom = function() {
+
+    $('.spinImage23').css({'display':'none'});
+
+}
+
+calculator.button.enable.spinBottom = function() {
+
+    $('.spinImage23').css({'display':'inline'});
+
+}
+
+
+//--------- MINIMIZE BOTTOM ---------//
+
+calculator.button.display.minBottom = function(show) {
+
+    var opacity = show ? '1' : '0';
+    var cursor = show ? 'pointer' : 'default';
+    $('.minImageBottomSetup').css({'transition':'1s', 'opacity': opacity, 'cursor' : cursor});
+
+}
+
+calculator.button.disable.minBottom = function() {
+
+    $('.minImageBottomSetup').css({'display':'none'});
+
+}
+
+calculator.button.enable.minBottom = function() {
+
+    $('.minImageBottomSetup').css({'display':'flex'});
+
+}
+
+
+//---------- SPIN BOTTOM MINI -------//
+
+calculator.button.display.spinBottomMini = function(show) {
+
+    var opacity = show ? '1' : '0';
+    var cursor = show ? 'pointer' : 'default';
+    $('.spinImageMini').css({'transition':'0.15s', 'opacity': opacity, 'cursor' : cursor});
+
+}
+
+calculator.button.disable.spinBottomMini = function() {
+
+    $('.spinImageMini').css({'display':'none'});
+
+}
+
+calculator.button.enable.spinBottomMini = function() {
+
+    $('.spinImageMini').css({'display':'flex'});
+
+}
+
+
+////////////////////// SECTIONS /////////////////////////
+////////////////////// SECTIONS /////////////////////////
+////////////////////// SECTIONS /////////////////////////
+////////////////////// SECTIONS /////////////////////////
+////////////////////// SECTIONS /////////////////////////
+////////////////////// SECTIONS /////////////////////////
+////////////////////// SECTIONS /////////////////////////
+////////////////////// SECTIONS /////////////////////////
+////////////////////// SECTIONS /////////////////////////
+////////////////////// SECTIONS /////////////////////////
+////////////////////// SECTIONS /////////////////////////
+////////////////////// SECTIONS /////////////////////////
+////////////////////// SECTIONS /////////////////////////
+////////////////////// SECTIONS /////////////////////////
+////////////////////// SECTIONS /////////////////////////
+////////////////////// SECTIONS /////////////////////////
+////////////////////// SECTIONS /////////////////////////
+////////////////////// SECTIONS /////////////////////////
+
+
+//------------- DISPLAY CALCULATOR ------------------//
+
+calculator.section.all.opacity = function(opt) {
+
+    $('.generalMarginBox').css({'opacity' : opt.toString()});
+
+}
+
+calculator.section.all.adjust.decisionSliders = function() {
+
+    if(calculator.globalVariable.subjectiveView) {
+
+        if(calculator.globalVariable.subjectiveIndex === -1) {
+            calculator.decisionSlider.leader.enable();
+            calculator.decisionSlider.follower.disable();
+        }
+
+        if(calculator.globalVariable.subjectiveIndex === 0 || calculator.globalVariable.subjectiveIndex === 1) {
+            calculator.decisionSlider.follower.enable();
+            calculator.decisionSlider.leader.disable();
         }
 
     }
@@ -3144,10 +5521,51 @@ calculator.display.followerRole = function() {
 }
 
 
+//------------- DISPLAY FOLLOWER DECISION SLIDER -----------------//
+
+calculator.section.decision.follower.opacity = function(opt) {
+
+    $('.decisionWrapF').css({'opacity' : opt.toString()});
+
+}
+
+calculator.section.decision.follower.disable = function() {
+
+    $('.decisionWrapF').css({'display' : 'none'});
+
+}
+
+calculator.section.decision.follower.enable = function() {
+
+    $('.decisionWrapF').css({'display' : 'flex'});
+
+}
 
 
+//------------- DISPLAY PLAYER DECISION SLIDER -----------------//
 
-calculator.display.helpSaboSection = function(show) {
+calculator.section.decision.player.opacity = function(opt) {
+
+    $('.decisionWrapL').css({'opacity' : opt.toString()});
+
+}
+
+calculator.section.decision.player.disable = function() {
+
+    $('.decisionWrapL').css({'display' : 'none'});
+
+}
+
+calculator.section.decision.player.enable = function() {
+
+    $('.decisionWrapL').css({'display' : 'flex'});
+
+}
+
+
+//--------------- HELP SABOTAGE SECTION  ----------//
+
+calculator.section.hs.display.all = function(show) {
 
     var opacity = show ? '1' : '0';
     var height = show ? '375px' : '0px';
@@ -3157,22 +5575,13 @@ calculator.display.helpSaboSection = function(show) {
 
 }
 
-calculator.display.helpSaboBars = function(show) {
-
-    var zindex = show ? '0' : '-1';
-    var opacity = show ? '1' : '0';
-    $('.sliderBarWrap').css({'opacity':opacity, 'z-index':zindex});
-
-
-}
-
-calculator.display.totalHelpSabo = function(show) {
+calculator.section.hs.display.totalHSBars = function(show) {
 
     if(!show) {
 
-        $('.OGCIcon').css({'transition':'0.7s', 'margin-top' : '-29px'});
+
         $('.followersTotalHS').css({'opacity':'0'});
-        $('.ctWrap').css({'margin-bottom':'-110px'});
+
 
     } else {
 
@@ -3184,24 +5593,114 @@ calculator.display.totalHelpSabo = function(show) {
 
 }
 
-calculator.display.fightIcon = function(show) {
 
-    var display1 = show ? '1' : '0';
-    // var display2 = !show ? 'flex' : 'none';
 
-    $('.imgwrapfight').css({'transition':'0.3s', 'opacity' : display1});
-    // $('.verticalSeparator').css({'display' : display2});
+// Slider - Follower icon - Arrows - Leader icon - Fight icon - Separator
+calculator.section.hs.opacity.SFiALiFiS = function(array) {
 
-}
-
-calculator.display.helpSaboIcons = function(show) {
-
-    var opacity = show ? '1' : '0';
-    $('.wrapLeft, .wrapRight, .arrowIconBoxLeft, .arrowIconBoxRight').css({'opacity':opacity});
+    calculator.section.hs.opacity.followerSliders(array[0]);
+    calculator.section.hs.opacity.followerIcons(array[1]);
+    calculator.section.hs.opacity.followerArrows(array[2]);
+    calculator.section.hs.opacity.leaderIconsMain(array[3]);
+    calculator.section.hs.opacity.fightIcon(array[4]);
+    calculator.section.hs.opacity.separator(array[5]);
 
 }
 
-calculator.display.activeFollowerIcon = function(tag, show) {
+// Methods used in SFIALIFIS
+calculator.section.hs.opacity.followerSliders = function(o) {
+
+    if(o != -1) {
+
+        $('.followersRight, .followersLeft').css({'transition':'0.3s', 'opacity': o.toString()});
+
+    }
+
+}
+
+calculator.section.hs.opacity.followerArrows = function(o) {
+
+    if(o != -1) {
+
+        $('.arrowIconBoxLeft, .arrowIconBoxRight').css({'opacity':o.toString()});
+
+    }
+
+}
+
+calculator.section.hs.opacity.followerIcons = function(o) {
+
+    if(o != -1) {
+
+        $('.wrapLeft,  .wrapRight').css({'transition':'0.3s', 'opacity': o.toString()});
+
+    }
+
+}
+
+calculator.section.hs.opacity.leaderIconsMain = function(o) {
+
+    if(o != -1) {
+
+        $('.wrapMid').css({'transition':'0.3s', 'opacity': o.toString()});
+
+    }
+
+}
+
+calculator.section.hs.opacity.fightIcon = function(o) {
+
+    if(o != -1) {
+
+        $('.imgwrapfight').css({'transition':'0.5s', 'opacity' : o.toString()});
+
+    }
+
+}
+
+calculator.section.hs.opacity.separator = function(o) {
+
+    if(o === 1) {
+
+        $('.verticalSeparator').css({'transition-delay':'0.5s', 'transition':'0.15s', 'height':'166px', 'opacity' : '1'});
+
+    }
+
+    if(o === 0) {
+
+        $('.verticalSeparator').css({'transition-delay':'0s', 'transition':'0.15s', 'height':'0px', 'opacity' : '0'});
+
+    }
+
+}
+
+
+calculator.section.hs.set.iconPosition = function(position) {
+
+    if(position === 'center') {
+
+        $('.OGCIcon').css({'transition':'0.3s', 'margin-top':'-29px'});
+        $('.imgwrapfight').css({'transition':'0.3s','margin-left':'0px', 'margin-right':'0px', 'margin-top':'0px'});
+        $('.leftLeaderIconMainWrap').css({'transition':'0s','transform':'rotate(0deg)'});
+        $('.rightLeaderIconMainWrap').css({'transition':'0s','transform':'rotate(0deg)'});
+        $('.fightIcon').css({'transition':'0.5s', 'transform':'rotate(0turn)'});
+
+    }
+
+    if(position == 'bottom') {
+
+        $('.OGCIcon').css({'margin-top':'39px'});
+        $('.imgwrapfight').css({'transition':'0.7s','margin-left':'35px', 'margin-right':'35px', 'margin-top':'10px'});
+        $('.leftLeaderIconMainWrap').css({'transition':'0.7s','transform':'rotate(10deg)'});
+        $('.rightLeaderIconMainWrap').css({'transition':'0.7s','transform':'rotate(-10deg)'});
+        $('.fightIcon').css({'transition':'0.5s', 'transform':'rotate(1turn)'});
+
+    }
+
+}
+
+
+calculator.section.hs.opacity.activeFollowerIcon = function(tag, show) {
 
     var opacity = show ? '1' : '0';
     var myString = '.' + tag;
@@ -3209,7 +5708,7 @@ calculator.display.activeFollowerIcon = function(tag, show) {
 
 }
 
-calculator.display.grayOGC = function() {
+calculator.section.hs.set.grayToAll = function() {
 
     var gray = 'rgb(140, 140, 140, 0.2)'
     var black = 'rgb(50, 50, 50, 1)'
@@ -3227,65 +5726,40 @@ calculator.display.grayOGC = function() {
 }
 
 
+//-------------- POWER RATIO ----------------//
+//-------------- POWER RATIO ----------------//
 
+calculator.section.power.opacity.bar = function(opt) {
 
-
-calculator.display.contestSection = function(show) {
-
-    var opacity = show ? '1' : '0';
-    var height = show ? '188px' : '0px';
-    var zindex = show ? '0' : '-1';
-    var display = show ? 'flex' : 'none';
-
-    $('.contestSection').css({'opacity': opacity, 'height' : height, 'z-index' : zindex});
-    $('.payoffWrap').css({'display': display});
+    $('.pWrap').css({'opacity' : opt.toString()});
 
 }
 
-calculator.display.contestSectionIcons = function(show) {
-
-    var opt = show ? '1' : '0';
-    var display = show ? 'flex' : 'none'
-    $('.OGCIcon2').css({'opacity':opt, 'display':display});
-
-}
-
-
-
-
-
-calculator.display.powerBar = function(show) {
-
-    var opacity = show ? '1' : '0';
-    $('.pWrap').css({'opacity' : opacity});
-
-}
-
-calculator.display.powerBarText = function(tag) {
+calculator.section.power.display.barText = function(tag) {
 
     if(tag === 'top') {
         $('.pTitleTop').css({'opacity' : '1'});
         $('.pTitleBottom').css({'opacity' : '0'});
         $('.powerRatio').css({'margin-top':'0px', 'margin-bottom':'-10px'});
-        calculator.display.powerBarLegend(false);
+        calculator.section.power.display.barLegend(false);
     }
 
     if(tag === 'bottom') {
         $('.pTitleTop').css({'opacity' : '0'});
         $('.pTitleBottom').css({'opacity' : '1'});
-        calculator.display.powerBarLegend(true);
+        calculator.section.power.display.barLegend(true);
     }
 
     if(tag === 'none') {
         $('.pTitleTop').css({'opacity' : '0'});
         $('.pTitleBottom').css({'opacity' : '0'});
         $('.powerRatio').css({'margin-top':'0px', 'margin-bottom':'-4px'});
-        calculator.display.powerBarLegend(false);
+        calculator.section.power.display.barLegend(false);
     }
 
 }
 
-calculator.display.powerBarLegend = function(show) {
+calculator.section.power.display.barLegend = function(show) {
 
     var opacity = show ? 'flex' : 'none';
 
@@ -3294,67 +5768,42 @@ calculator.display.powerBarLegend = function(show) {
 }
 
 
+//-------------- CONTEST SECTION ----------------//
+//-------------- CONTEST SECTION ----------------//
 
+calculator.section.contest.display.all = function(show) {
 
+    var display = show ? 'flex' : 'none';
 
-calculator.display.questionMarks = function(show) {
+    $('.contestSection, .payoffWrap').css({'display': display});
+
+}
+
+// unused second set of leader icons
+calculator.section.contest.display.icons = function(show) {
 
     var opt = show ? '1' : '0';
-
-    $('.sliderQuestion_l1, .sliderQuestion_l2, .sliderQuestion_f2, .sliderQuestion_of1, .sliderQuestion_of2').css({'opacity':opt});
-
-}
-
-calculator.display.wiggleArrow = function(array) {
-
-    wiggle.activeWiggles = array;
-
-    wiggle.l1(1);
-    wiggle.l2(1);
-    wiggle.f1(1);
-    wiggle.f2(1);
-    wiggle.of1(1);
-    wiggle.of2(1);
-
-}
-
-calculator.display.lockedSliders = function(array) {
-
-    vibrate.sliderLocked = array;
-
-    var l1, l2, f1, f2, of1, of2;
-    l1 = array[0] ? '2' : '-1';
-    l2 = array[1] ? '2' : '-1';
-    f1 = array[2] ? '2' : '-1';
-    f2 = array[3] ? '2' : '-1';
-    of1 = array[4] ? '2' : '-1';
-    of2 = array[5] ? '2' : '-1';
-
-    $('.lockedCover_l1').css({'z-index' : l1});
-    $('.lockedCover_l2').css({'z-index' : l2});
-    $('.lockedCover_f1').css({'z-index' : f1});
-    $('.lockedCover_f2').css({'z-index' : f2});
-    $('.lockedCover_of1').css({'z-index' : of1});
-    $('.lockedCover_of2').css({'z-index' : of2});
-
-}
-
-calculator.display.titles = function(array) {
-    var topt, bopt;
-
-    topt = array[0] ? '1' : '0';
-    bopt = array[1] ? '1' : '0';
-
-    $('.ctTop').css({'opacity':topt});
-    $('.ctBottom').css({'opacity':bopt});
+    var display = show ? 'flex' : 'none'
+    $('.OGCIcon2').css({'opacity':opt, 'display':display});
 
 }
 
 
-//----------set methods for initiation------------//
+///////////// SET VALUES //////////
+///////////// SET VALUES //////////
+///////////// SET VALUES //////////
+///////////// SET VALUES //////////
+///////////// SET VALUES //////////
+///////////// SET VALUES //////////
+///////////// SET VALUES //////////
+///////////// SET VALUES //////////
+///////////// SET VALUES //////////
+///////////// SET VALUES //////////
+///////////// SET VALUES //////////
+///////////// SET VALUES //////////
 
 
-calculator.set.helpSabo = function(valueArray) {
+calculator.values.set.helpSabo = function(valueArray) {
 
     s1 = valueArray[0];
     s2 = valueArray[1];
@@ -3365,21 +5814,33 @@ calculator.set.helpSabo = function(valueArray) {
     oh1 = valueArray[6];
     oh2 = valueArray[7];
 
-    calculator.update.efficiencies();
-    calculator.update.probability();
+    calculator.values.update.efficiencies();
+    calculator.values.update.probability();
 
 }
 
-calculator.set.efforts = function(valueArray) {
+calculator.values.set.efforts = function(valueArray) {
 
     efo = valueArray[0];
     oefo = valueArray[1];
 
-    calculator.update.probability();
+    calculator.values.update.probability();
 
 }
 
-calculator.set.sliders = function() {
+
+///////////// REFRESH ////////////
+///////////// REFRESH ////////////
+///////////// REFRESH ////////////
+///////////// REFRESH ////////////
+///////////// REFRESH ////////////
+///////////// REFRESH ////////////
+///////////// REFRESH ////////////
+///////////// REFRESH ////////////
+///////////// REFRESH ////////////
+
+
+calculator.refresh.sliders = function() {
 
     var ourSide, theirSide, showAxis;
     ourSide = true;
@@ -3395,8 +5856,8 @@ calculator.set.sliders = function() {
     $('#olSlider1').prop('value', oefo);
     $('#olSlider1').change();
 
-    calculator.update.effortBar(efo, 'barl1', ourSide, !showAxis);
-    calculator.update.effortBar(oefo, 'barl2', !ourSide, !showAxis);
+    calculator.graphics.update.effortBar(efo, 'barl1', ourSide, !showAxis);
+    calculator.graphics.update.effortBar(oefo, 'barl2', !ourSide, !showAxis);
 
 
     f1 = s1 > 0 ? -s1 : h1;
@@ -3416,14 +5877,54 @@ calculator.set.sliders = function() {
     $('#ovSlider2').prop('value', of2);
     $('#ovSlider2').change();
 
-    calculator.update.helpSaboBar(f1, 'barf1', !theirSide, !showAxis);
-    calculator.update.helpSaboBar(f2, 'barf2', !theirSide, !showAxis);
-    calculator.update.helpSaboBar(of1, 'obarf1', theirSide, !showAxis);
-    calculator.update.helpSaboBar(of2, 'obarf2', theirSide, !showAxis);
+    calculator.graphics.update.helpSaboBar(f1, 'barf1', !theirSide, !showAxis);
+    calculator.graphics.update.helpSaboBar(f2, 'barf2', !theirSide, !showAxis);
+    calculator.graphics.update.helpSaboBar(of1, 'obarf1', theirSide, !showAxis);
+    calculator.graphics.update.helpSaboBar(of2, 'obarf2', theirSide, !showAxis);
+
+    //if you are the leader
+    if(calculator.globalVariable.subjectiveIndex === -1) {
+        //update dfslider according to efo
+        calculator.decisionSlider.leader.effortBar(efo, !showAxis);
+        $('#dSliderL').prop('value', efo);
+        $('#dSliderL').change();
+        calculator.graphics.update.barLabelX('bardl', true);
+
+    }
+
+    // if you are the first follower (strong)
+    if(calculator.globalVariable.subjectiveIndex === 0) {
+        //update dfslider according to h1 s1
+        calculator.decisionSlider.follower.helpSaboBar(f1, !showAxis);
+        $('#dSliderF').prop('value', f1);
+        $('#dSliderF').change();
+        calculator.graphics.update.barLabelX('bardf', true);
+
+    }
+
+    //if you are the second follower (weak)
+    if(calculator.globalVariable.subjectiveIndex === 1) {
+        //update dfslider according to h2 s2
+        calculator.decisionSlider.follower.helpSaboBar(f2, !showAxis);
+        $('#dSliderF').prop('value', f2);
+        $('#dSliderF').change();
+        calculator.graphics.update.barLabelX('bardf', true);
+
+    }
+
 
 }
 
-calculator.set.Xaxis = function() {
+calculator.refresh.values = function() {
+
+    calculator.values.update.probability();
+    calculator.values.update.efficiencies();
+
+    calculator.refresh.sliders();
+
+}
+
+calculator.refresh.barXAxis = function() {
 
     calculator.update.barLabel('barl1', false);
     calculator.update.barLabel('barl2', false);
@@ -3443,65 +5944,57 @@ calculator.set.Xaxis = function() {
 }
 
 
-//----------setup methods------------//
+//////////////////////// SETUP METHODS //////////////////////////////////
+//////////////////////// SETUP METHODS //////////////////////////////////
+//////////////////////// SETUP METHODS //////////////////////////////////
+//////////////////////// SETUP METHODS //////////////////////////////////
+//////////////////////// SETUP METHODS //////////////////////////////////
+//////////////////////// SETUP METHODS //////////////////////////////////
 
-calculator.setup.refresh = function() {
 
-    var ourSide, showAxis;
-    ourSide = true;
-    showAxis = true;
+calculator.setup.hs = function(n, prOpacity) {
 
-    calculator.update.effortBar(efo, 'barl1', ourSide, !showAxis);
-    calculator.update.effortBar(oefo, 'barl2', !ourSide, !showAxis);
+    calculator.update.typeOfContest('l');
 
-    calculator.update.probability();
-    calculator.update.efficiencies();
-
-}
-
-calculator.setup.hs = function(n, showPR) {
-
-    allDivHoversActive = false;
-    calculator.disable.spinButton1();
-    calculator.disable.spinButton2();
+    calculator.button.disable.spinTop();
+    calculator.button.disable.spinBottom();
+    calculator.results.disable.all();
 
     if(n === 1) {
 
-        calculator.hide.contestResults();
 
-        calculator.update.contestName('hs_og1');
-        calculator.update.contestSetup('l');
-        calculator.display.titles([1,0]);
+        calculator.titles.update.textAndColor('og1');
+        calculator.graphics.update.horizontalSliderTitleBackgroundColorAndSliderRange();
+        calculator.titles.opacity.all([1,0]);
 
 
         calculator.showFollowerRole = true;
-        calculator.display.followerRole();
-        calculator.display.helpSaboSection(true);
-        calculator.display.helpSaboBars(true);
-        calculator.display.spinButton(false);
-        calculator.display.totalHelpSabo(false);
-        calculator.display.fightIcon(false);
-        calculator.display.helpSaboIcons(true);
-        calculator.display.spinButton(1);
+        // calculator.results.display.followerRole(true);
+        calculator.section.hs.display.all(true);
+        calculator.section.hs.display.sliders(true);
+        calculator.button.display.spinTop(false);
+        calculator.section.hs.display.totalHSBars(false);
+        calculator.section.hs.opacity.fightIcon(0);
+        calculator.section.hs.opacity.followerArrows(1);
+        calculator.button.display.spinTop(1);
 
 
-        calculator.display.powerBar(showPR);
-        if(showPR) {
+        calculator.section.power.opacity.bar(prOpacity);
+        if(prOpacity != 0) {
             $('.pWrap').css({'margin-top':'-58px'});
         } else {
             $('.pWrap').css({'margin-top':'-150px'});
         }
-        calculator.display.powerBarText('bottom');
-        calculator.dynamicPowerBarText = false;
+        calculator.section.power.display.barText('bottom');
+        calculator.graphics.dynamicPowerBarText = false;
 
 
-        calculator.display.contestSection(false);
+        calculator.section.contest.display.all(false);
 
-        calculator.display.onlyHS = true;
         calculator.display.onlyLC = false;
         calculator.display.HSandLC = false;
 
-        calculator.display.spinButton2(0);
+        calculator.button.display.spinBottom(0);
 
         $('.generalMarginBox').css({'height' : '475px'});
 
@@ -3513,1134 +6006,221 @@ calculator.setup.hs = function(n, showPR) {
 
 calculator.setup.lc = function(n) {
 
+    calculator.globalVariable.aBitOfWaitingIsDone = true;
+
+    calculator.update.typeOfPlayer('l');
+
     if(n === 1) {
 
         $('.generalMarginBox').css({'height' : '375px'});
 
-        calculator.hide.contestResults();
+        calculator.results.disable.all();
         $('.payoffWrap').css({'margin-bottom':'5px'});
 
 
-        calculator.update.contestName('l_og1');
-        calculator.update.contestSetup('l');
-        calculator.display.titles([0,1]);
+        calculator.titles.update.textAndColor('og1');
+        calculator.graphics.update.horizontalSliderTitleBackgroundColorAndSliderRange();
+        calculator.titles.opacity.all([0,1]);
 
 
-        calculator.display.helpSaboSection(false);
-        calculator.display.spinButton(0);
+        calculator.section.hs.display.all(false);
+        calculator.button.display.spinTop(0);
 
 
-        calculator.display.powerBar(true);
-        calculator.display.powerBarText('none');
-        calculator.dynamicPowerBarText = true;
-        calculator.setup.refresh();
+        calculator.section.power.opacity.bar(true);
+        calculator.section.power.display.barText('none');
+        calculator.graphics.dynamicPowerBarText = true;
+        calculator.refresh.values();
         $('.pWrap').css({'margin-top':'52px'});
 
 
-        calculator.display.contestSection(true);
+        calculator.section.contest.display.all(true);
 
         calculator.display.onlyLC = true;
-        calculator.display.onlyHS = false;
         calculator.display.HSandLC = false;
 
-        calculator.display.spinButton2(1);
-        calculator.display.investment(true);
-        calculator.display.prize(true);
-        calculator.display.netPayoff(true);
-        calculator.display.role(true);
+        calculator.button.display.spinBottom(1);
+        calculator.results.leader.display.investment(true);
+        calculator.results.leader.display.prize(true);
+        calculator.results.leader.display.netPayoff(true);
+        calculator.results.leader.display.role(true);
 
     }
 
     allDivHoversActive = false;
-    calculator.disable.spinButton1();
-    calculator.disable.spinButton2();
+    calculator.button.disable.spinTop();
+    calculator.button.disable.spinBottom();
 
-    calculator.roll.all(true, 'tuto_sho_lc1');
+    // calculator.roll.all(true, 'tuto_sho_lc1');
 
 }
 
 calculator.setup.og = function(n) {
 
+    calculator.space.hsIsOpen = true;
+    calculator.space.powerBarIsOpen = true;
+     calculator.space.contestIsOpen = true;
+     calculator.globalVariable.aBitOfWaitingIsDone = true;
+
+     // calculator.space.hsResultsTopIsOpen = false;
+     // calculator.space.hsResultsBottomIsOpen = false;
+
+    calculator.update.typeOfContest('l');
+    calculator.graphics.update.horizontalSliderTitleBackgroundColorAndSliderRange();
+
     if(n === 1) {
 
-        calculator.hide.contestResults();
-        $('.payoffWrap').css({'margin-bottom':'5px'});
-        $('.generalMarginBox').css({'height':'710px'});
+        calculator.globalVariable.leftHetero = true;
+        calculator.globalVariable.rightHetero = true;
+        calculator.globalVariable.winnerLeaderIndex = 2;
+        calculator.globalVariable.winnerFollowerIndex = 1;
+        calculator.globalVariable.subjectiveView = true;
+        calculator.globalVariable.subjectiveIndex = -1;
+        calculator.isOG2 = true;
+        calculator.section.all.adjust.decisionSliders();
+        calculator.refresh.sliders();
 
-        calculator.update.contestName('hs_og1');
-        calculator.update.contestName('l_og1');
-        calculator.update.contestSetup('l');
-        calculator.display.titles([1,1]);
-        $('.ctTop').css({'margin-top':'35px'});
+        // set icons
+        calculator.icons.setAll();
+
+        // set rolling
+        calculator.roll.emptyAll();
+        calculator.roll.setRolesAndGroups();
+        calculator.roll.setYouTag();
+        calculator.roll.animate();
+        calculator.roll.adjustForTreatment();
+
+        // hide result sections
+        calculator.results.softHide.all();
+        calculator.space.close.all();
 
 
-        calculator.showFollowerRole = true;
-        calculator.display.followerRole();
-        calculator.display.helpSaboSection(true);
-        calculator.display.helpSaboBars(true);
-        calculator.display.spinButton(true);
-        calculator.display.rewindSpin = true;
-        calculator.display.totalHelpSabo(false);
-        calculator.display.fightIcon(false);
-        calculator.display.helpSaboIcons(true);
+        calculator.titles.update.textAndColor('og1');
 
-        calculator.display.powerBar(true);
-        calculator.display.powerBarText('none');
-        calculator.dynamicPowerBarText = true;
-        calculator.setup.refresh();
+
+        calculator.button.display.spinTop(true);
+        calculator.globalVariable.topSpinButtonIsEnabled = true;
+        calculator.button.display.spinBottom(false);
+        calculator.globalVariable.bottomSpinButtonIsEnabled = false;
+
+        calculator.titles.contest.hide();
+        calculator.results.hide.leaderOutcomes();
+
+        // help sabotage section settings
+        calculator.globalVariable.dynamicDisplay = false;
+        calculator.results.hide.followerOutcomesAll();
+        calculator.section.hs.opacity.SFiALiFiS([1,1,1,1,0,0]);
+        calculator.section.hs.set.iconPosition('center');
+        calculator.titles.hs.show();
+        calculator.titles.update.position();
+
+
+        calculator.section.hs.display.totalHSBars(false);
+
+
+
+        calculator.section.power.opacity.bar(true);
+        calculator.section.power.display.barText('none');
+        calculator.graphics.dynamicPowerBarText = true;
+        calculator.refresh.values();
         $('.pWrap').css({'margin-top':'-54px'});
 
-        calculator.display.contestSection(true);
+        calculator.section.contest.display.all(true);
 
-        calculator.display.onlyHS = false;
+        calculator.graphics.update.effortBarLeftPlayerBackgroundColor();
+
         calculator.display.onlyLC = false;
         calculator.display.HSandLC = true;
 
-        calculator.display.investment(true);
-        calculator.display.prize(true);
-        calculator.display.netPayoff(true);
-        calculator.display.role(true);
-        calculator.display.spinButton2(true);
+        calculator.results.leader.display.investment(true);
+        calculator.results.leader.display.prize(true);
+        calculator.results.leader.display.netPayoff(true);
+        calculator.results.leader.display.role(true);
+        calculator.button.display.spinBottom(true);
 
     }
 
-    allDivHoversActive = true;
-    calculator.enable.spinButton1();
-    calculator.enable.spinButton2();
 
-    calculator.roll.all(true, 'tuto_sho_og1');
+    calculator.button.enable.spinTop();
+    calculator.button.enable.spinBottom();
 
-}
-
-//-----Icon methods------//
-
-//---- STAGE 1 RELATED ICON METHODS ----//
-
-icon.tool.shuffle = function(array) {
-
-    for (var i = array.length - 1; i > 0; i--) {
-        var j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
+    setTimeout(()=> {
+        calculator.section.decision.follower.opacity(1);
+        calculator.section.decision.player.opacity(1);
+        calculator.section.all.opacity(1);
     }
+        , 1000);
 
-    return array;
-
-};
-
-icon.tool.matchIcon = function(array) {
-    for(var i = 0; i < array.length; i++) {
-        var myID = 'a' + (i + 1);
-        var temp = document.getElementById(myID);
-        temp.innerHTML = array[i];
-    }
-}
-
-icon.tool.set.myRole = function(array) {
-
-    $('.p0, .a10, .a11, .a20, .a21, .a30, .a31, .a40, .a41, .a50, .a51, .a60, .a61').css({'z-index':'0'});
-
-    for(var i = 0; i < array.length; i++) {
-
-        var myRole = array[i] ? 0 : 1;
-        var myClass = '.a' + (i + 1) + myRole;
-        var myRoleClass = '.cr' + (i + 1);
-        $(myClass).css({'z-index':'1'});
-
-        var myRole2 = array[i] ? '1' : '0';
-        $(myRoleClass).css({'opacity': myRole2});
-
-    }
-}
-
-icon.stage1.generateSortedArray = function() {
-
-    icon.stage1.sortedArray = icon.tool.shuffle([1,2,3,4,5,6]);
-
-}
-
-icon.set.stage1 = function() {
-
-    var mySort, myRole1, myRole2, roles;
-
-    icon.stage1.generateSortedArray();
-
-    mySort = icon.stage1.sortedArray;
-    myRole1 = icon.tool.shuffle([true, false, false]);
-    myRole2 = icon.tool.shuffle([false, true, false]);
-    roles = myRole1.concat(myRole2);
-
-    icon.tool.matchIcon(mySort);
-    icon.tool.set.myRole(roles);
-
-    $('.imgwrap2').css({'opacity':'0'});
-    $('.playerBracketImage, .playerRandomSortImage, .wrap1, .imgwrap1').css({'opacity':'1'});
-    $('.replayButton').css({'opacity':'0', 'z-index':'-1'});
-    $('.hidder').css({'z-index':'2'});
-
-}
-
-icon.stage1.animateSort = function() {
-
-    icon.stage1.showHide(0);
-    setTimeout(()=>icon.stage1.showHide(1), 500);
-    setTimeout(()=>icon.stage1.showHide(2), 1000);
-    setTimeout(()=>icon.stage1.showHide(3), 1500);
-    setTimeout(()=>icon.stage1.showHide(4), 2000);
-    setTimeout(()=>icon.stage1.showHide(5), 2500);
-    setTimeout(()=>icon.stage1.hideShowButtons(), 2500);
-
-
-}
-
-icon.stage1.showHide = function(index) {
-
-    var myString1, myString2, myNewIndex;
-
-    var newArray = icon.stage1.sortedArray;
-
-    myString1 = '.initialIwIndex' + (index + 1);
-    $(myString1).css({'opacity':'0'});
-
-    myNewIndex = newArray.indexOf(index + 1);
-    myString2 = '.iwIndex' + (myNewIndex + 1);
-    $(myString2).css({'opacity':'1'})
-
-}
-
-icon.stage1.hideShowButtons = function() {
-    $('.playerBracketImage, .playerRandomSortImage, .wrap1').css({'opacity':'0'});
-    $('.replayButton').css({'opacity':'1', 'z-index':'2'});
-    $('.hidder').css({'z-index':'-1'});
-}
-
-icon.stage1.button1 = document.getElementById('stage1RandomButton');
-icon.stage1.button1.onclick = function() {
-
-    icon.stage1.animateSort();
-}
-icon.stage1.button2 = document.getElementById('replayButton');
-icon.stage1.button2.onclick = function() {
-
-    icon.set.stage1();
-
-}
-
-icon.display.stage1 = function(show) {
-
-    var display = show ? 'flex' : 'none';
-
-    $('.s1Icon').css({'display' : display});
+    // calculator.roll.all(true, 'tuto_sho_og1');
 
 }
 
 
-//----- HELP SABOTAGE DEPENDENT LEADER SIZE AND COLOR METHODS -------//
 
-icon.set.iconSize = function(Id, h, w) {
 
-    var myClass, myHeight, myWidth;
+calculator.setup.hs = function(n) {
 
-    myClass = '.' + Id;
-    myHeight = h + 'px';
-    myWidth = w + 'px';
 
-    $(myClass).css({'height' : myHeight, 'width' : myWidth});
 
-}
+    if(n === 1) {
 
-icon.tool.updateSize = function(h, s) {
+        calculator.display.onlyLC = false;
+        calculator.display.HSandLC = false;
+        // ADD DISPLAY NONE TO CONTEST SECTION
+        calculator.section.contest.display.all(false);
 
-    var hRatio = h / 80;
-    var sRatio = s / 80;
-    var k = 0.2//0.2
+        $('.pWrap').css({'margin-top':'-58px'});
+        calculator.section.power.display.barText('bottom');
+        calculator.graphics.dynamicPowerBarText = false;
+        calculator.refresh.values();
 
-    var m = (1 + Math.pow(hRatio, k)) / (1 + Math.pow(sRatio, k));
+        calculator.results.hide.followerOutcomes();
+        calculator.button.disable.spinTop();
+        calculator.button.disable.spinBottom();
 
-    return m;
+        $('.generalMarginBox').css({'height' : '475px'});
 
-}
+        allDivHoversActive = false;
 
-icon.tool.logisticColor = function(help, sabo, max, avg) {
-
-    var k1, val, val1, val2, result;
-    val = help / (help + sabo);
-    val = max * val;
-
-    // set color
-    k1 = 0.05;
-    val1 = max / (1 + Math.exp(-k1 * (val - avg)));
-    // blue
-    val1 = Math.floor(val1);
-    // red
-    val2 = max - val1;
-
-
-    result = [val1, 0, val2];
-
-    if(help === 0 && sabo === 0) {
-        result = [235, 235, 235];
-    }
-
-    return result;
-
-}
-
-icon.tool.arrowColor = function(help, sabo) {
-
-    var hW, sW, myArray;
-
-    myArray = Array(3);
-    hW = (help + 30) / 60;
-    sW = (sabo + 30) / 60;
-
-    if(help === 0) {
-
-        myArray = [255,0, 0, sW];
-
-    }
-
-    if(sabo === 0) {
-
-        myArray = [0, 0, 255, hW];
-
-    }
-
-    if(help === 0 && sabo === 0) {
-        myArray = [60, 60, 60, 0];
-    }
-
-    return myArray
-
-}
-
-icon.tool.set.RGBforLeaders = function(val){
-
-    return ('rgb(' + val[0] +',' + val[1] + ', ' + val[2] +', 0.2)');
-
-}
-
-icon.tool.set.RGBforFollowers = function(val){
-
-    return ('rgb(' + val[0] +',' + val[1] +', ' + val[2] + ',' + val[3] + ')');
-
-}
-
-//-------- MAP SECTION ------ MAP SECTION ------ MAP SECTION ---------//
-
-var map = {
-
-    update: {},
-    icon: {},
-
-};
-
-map.icon.full = function() {
-
-    $('.mapsexplain').css({'opacity':'1'});
-    $('.mapx3aw2, .mapx3al2, .mapboldarrow').css({'opacity':'1'});
-    $('.og1leaderlime1, .og1leaderlime2').css({'border-color':'gray'});
-    $('.mapOG1, .mapOG2, .IG').css({'border-color': 'black', 'opacity':'1'});
-    $('.mapw34').css({'border-color':'black'});
-
-    $('.x1a2, .unknownresult, .modifications3, .mapwa5, .winnerleadertalk').css({'opacity':'0'});
-    // $('.mapl34, .la4, .wa4').css({'opacity':'0'});
-
-    // recovery
-    $('.mapx3wl, .mapxwl, .IG, .x456, .mapOG2').css({'opacity':'1'});
-    $('.mapl34, .la4, .mapacceptedBox, .mapigtitle, .x4da5').css({'opacity':'1'});
-    $('.mapw34').css({'opacity':'1'});
-    $('.mapfightIconLime2, .mapdiscardedX').css({'opacity':'0'});
-    $('.followersbusyA, .followersbusyB, .leaderbusyA, .leaderbusyB, .leaderbusyF').css({'opacity':'1'});
-
-}
-
-map.icon.none = function() {
-
-    $('.mapsexplain').css({'opacity':'1'});
-    $('.x1a2, .la4, .wa5').css({'opacity':'0'});
-    $('.unknownresult, .modifications3').css({'opacity':'0'});
-    $('.mapspf1L1, .mapspf1L2, .arrowdashedlime1, .arrowdashedlime2').css({'opacity':'0'})
-    $('.mapfightIconLime1,.mapfightIconLime2').css({'opacity':'0'});
-    $('.mapl34, .mapw34, .mapx44, .x3aw2, .x3al2').css({'opacity':'0'});
-    $('.mapOG2, .mapOG1, .x456').css({'opacity':'0'});
-
-}
-
-map.icon.state = function(state) {
-
-    map.icon.full();
-
-    if(state === 'og1') {
-
-        $('.mapx3wl, .IG, .x456, .mapOG2').css({'opacity':'0'});
-        $('.mapOG1').css({'border-color':'lime'});
-
-    }
-
-    if(state === 's2') {
-
-        $('.mapx3wl, .IG, .x456, .mapOG2').css({'opacity':'0'});
-        $('.mapspf1L1, .arrowdashedlime1').css({'opacity':'1'});
-
-    }
-
-    if(state === 's3') {
-
-        $('.mapspf1L1, .arrowdashedlime1').css({'opacity':'0'});
-        $('.mapx3wl, .IG, .x456, .mapOG2').css({'opacity':'0'});
-        $('.og1leaderlime1').css({'border-color':'lime'});
-        $('.mapfightIconLime1').css({'opacity':'1'});
-
-    }
-
-    if(state === 's3ands4') {
-
-        $('.mapspf1L1, .arrowdashedlime1').css({'opacity':'0'});
-        $('.mapx3wl, .x456, .mapOG2, .mapl34, .mapw34, .la4, .wa4, .mapwa5').css({'opacity':'0'});
-        $('.og1leaderlime1').css({'border-color':'lime'});
-        $('.mapfightIconLime1, .mapfightIconLimeFollowers').css({'opacity':'1'});
-        $('.mapacceptedBox').css({'border-color':'lime'});
-        $('.followersbusyA, .followersbusyB').css({'opacity':'0.4'});
-
-
-    }
-
-    if(state === 'leaderwon') {
-
-        $('.mapfightIconLime1, .mapfightIconLimeFollowers, .wa4, .mapdiscarded').css({'opacity':'0'});
-        $('.mapx3al2, .mapl34, .la4, .mapwa5, .mapacceptedBox, .mapigtitle, .x456, .mapOG2').css({'opacity':'0'});
-        $('.mapw34').css({'border-color':'lime'});
-        $('.followersbusyB, .leaderbusyB, .leaderbusyF').css({'opacity':'0.4'});
-        $('.discardedIGcontest, .mapdiscarded, .mapdiscardedB, .mapdiscardedX').css({'opacity':'1'});
-        $('.mapacceptedBox').css({'border-color':'black'});
-
-    }
-
-    if(state === 'leaderwontoog2') {
-
-        $('.mapfightIconLime1, .mapfightIconLimeFollowers, .wa4, .mapdiscarded').css({'opacity':'0'});
-        $('.mapx3al2, .mapl34, .la4, .mapwa5, .mapacceptedBox, .mapigtitle, .x456, .mapOG2').css({'opacity':'0'});
-        $('.mapw34').css({'border-color':'black'});
-        $('.followersbusyB, .leaderbusyB, .leaderbusyF').css({'opacity':'0.4'});
-        $('.discardedIGcontest, .mapdiscarded, .mapdiscardedB, .mapdiscardedX, .x4da5').css({'opacity':'1'});
-        $('.mapacceptedBox').css({'border-color':'black'});
-        $('.mapOG2, .wa4, .x4da5, .x456, .winnerleadertalk').css({'opacity':'1'});
-        $('.groupA, .x4a5, .mapfightIcon2').css({'opacity':'0'});
-        $('.mapOG2').css({'border-color':'lime'});
-
-
-    }
-
-    if(state === 'leaderlost') {
-
-        $('.mapx3aw2, .mapw34, .wa4, .mapwa5, .mapacceptedBox, .mapigtitle, .x456, .mapOG2, .discardedIGcontest').css({'opacity':'0'});
-        $('.mapl34, .mapacceptedBox').css({'border-color':'lime'});
-        $('.la4, .mapacceptedBox').css({'opacity':'1'});
-        $('.followersbusyA, .leaderbusyA,.followersbusyB, .leaderbusyB, .leaderbusyF').css({'opacity':'0.4'});
-
-    }
-
-    if(state === 'llog2') {
-
-        $('.mapx3aw2, .mapw34, .wa4, .mapwa5, .mapacceptedBox, .mapigtitle, .x456, .mapOG2, .discardedIGcontest').css({'opacity':'0'});
-        $('.mapl34, .mapacceptedBox').css({'border-color':'black'});
-        $('.la4, .mapacceptedBox').css({'opacity':'1'});
-        $('.followersbusyA, .leaderbusyA,.followersbusyB, .leaderbusyB, .leaderbusyF').css({'opacity':'0.4'});
-        $('.mapOG2, .x4da5, .x456, .mapigtitle, .x4a5, .groupA, .lostleadertalk').css({'opacity':'1'});
-        $('.mapx3aw2, .w34, .mapw34, .wa4, .mapwa5, .x4da5, .groupB, .winnerleadertalk').css({'opacity':'0'});
-        $('.mapOG2').css({'border-color':'lime'});
-
-    }
-
-    if(state === 'og2') {
-
-        $('.discardedIGcontest, .mapdiscarded, .mapdiscardedB, .mapdiscardedX, .x4da5, .groupB, .mapfightIcon2').css({'opacity':'1'});
-        $('.mapx3aw2, .mapx3al2, .followersbusyA, .leaderbusyA,.followersbusyB, .leaderbusyB, .leaderbusyF, .mapxwl, .la4, .wa4, .mapacceptedBox, .mapdiscardedB, .x4a5, .x4da5').css({'opacity':'0.4'});
-        $('.mapOG2').css({'border-color':'lime'});
-        $('.lostleadertalk').css({'opacity':'0'});
-
-    }
-
-    if(state === 's5') {
-
-        $('.discardedIGcontest, .mapdiscarded, .mapdiscardedB, .mapdiscardedX, .x4da5, .groupB, .mapfightIcon2').css({'opacity':'1'});
-        $('.mapx3aw2, .mapx3al2, .followersbusyA, .leaderbusyA,.followersbusyB, .leaderbusyB, .leaderbusyF, .mapxwl, .la4, .wa4, .mapacceptedBox, .mapdiscardedB, .x4a5, .x4da5').css({'opacity':'0.4'});
-        $('.mapOG2').css({'border-color':'lime'});
-        $('.lostleadertalk').css({'opacity':'0'});
-
-        $('.mapspf1L2, .arrowdashedlime2').css({'opacity':'1'});
-        $('.lostleadertalk').css({'opacity':'0'});
-
-
-    }
-
-    if(state === 's6') {
-
-        $('.discardedIGcontest, .mapdiscarded, .mapdiscardedB, .mapdiscardedX, .x4da5, .groupB, .mapfightIcon2').css({'opacity':'1'});
-        $('.mapx3aw2, .mapx3al2, .followersbusyA, .leaderbusyA,.followersbusyB, .leaderbusyB, .leaderbusyF, .mapxwl, .la4, .wa4, .mapacceptedBox, .mapdiscardedB, .x4a5, .x4da5').css({'opacity':'0.4'});
-        $('.mapOG2').css({'border-color':'lime'});
-        $('.lostleadertalk').css({'opacity':'0'});
-
-        $('.mapspf1L2, .arrowdashedlime2').css({'opacity':'0'});
-        $('.og1leaderlime2').css({'border-color':'lime'});
-        $('.mapfightIconLime2').css({'opacity':'1'});
 
     }
 
 }
 
-map.icon.full();
 
-map.dashedBox = function(section, show) {
 
-    var color = show ? '#8a8a77' : 'transparent';
 
-    if(section === 'og1') {
+//-------------------------------------------------------------------------//
+//-------------------------------------------------------------------------//
+//-------------------------------------------------------------------------//
+//-------------------------------------------------------------------------//
+//-------------------------------------------------------------------------//
+//-------------------------------------------------------------------------//
 
-        $('.OG1').css({'border-color': color});
-
-    }
-
-    if(section === 'og2') {
-
-        $('.OG2').css({'border-color': color});
-
-    }
-
-    if(section === 'ig') {
-
-        $('.IG').css({'border-color':color});
-
-    }
-
-}
-
-map.clearAll = function() {
-
-    $('.sexplain').css({'opacity':'1'});
-    $('.b1, .b2, .b3, .l34, .w34, .x44, .b41, .b42, .b5, .b6, .acceptedBox').css({'opacity':'0', 'border-color':'rgb(68,68,60)'});
-    $('.x1a2, .x2a3, .o2a3, .x3al, .x3al2, .x3aw, .x3aw2, .la4, .la42, .la43, .wa5, .wa53, .cwa5, .cwa52, .la5, .la52, .wa6,  .x4a5, .x4a52, .x4a53, .c4a6, .x5a6').css({'opacity':'0'});
-    $('.la52text, .cwa5text, .wa6text').css({'opacity':'0'});
-    $('.discardx, .unknownresult').css({'opacity':'0'});
-    $('.igtext, .acceptedBox, .modifications3').css({'opacity':'1'});
-    $('.stageboxtext, .stageboxtextlong').css({'color':'rgb(60, 60, 60)'});
-    $('.s3topl, .s6topl, .s2topf, .s5topf').css({'opacity':'0', 'color':'rgb(60, 60, 60)'});
-
-    map.dashedBox('og1', false);
-    map.dashedBox('og2', false);
-    map.dashedBox('ig', false);
-
-}
-
-map.update = function(state) {
-
-    map.clearAll();
-
-    if(state === 'full') {
-
-        $('.b1, .b2, .b3, .l34, .w34, .x44, .b41, .acceptedBox, .b5, .b6, .OG1, .OG2').css({'opacity':'1'});
-        $('.x1a2, .x2a3, .x3al, .x3aw, .la4, .cwa52, .x4a5, .x5a6').css({'opacity':'1'});
-        map.dashedBox('og1', true);
-        map.dashedBox('og2', true);
-
-
-        $('.b1').css({'border':'4px inset gray'});
-        $('.b3, .b6').css({'border-style':'dashed'});
-        $('.s2topf, .s3topl, .s5topf, .s6topl').css({'color':'rgb(60, 60, 60)'});
-
-        $('.s3topl, .s6topl').css({'opacity':'1'});
-        $('.s2topf, .s5topf').css({'opacity':'1'});
-
-    }
-
-    if(state === 's1') {
-
-        $('.b1, .b2, .b3, .l34, .w34, .x44, .b41, .acceptedBox, .b5, .b6, .OG1, .OG2').css({'opacity':'0.3'});
-        $('.x1a2, .x2a3, .x3al, .x3aw, .la4, .cwa52, .x4a5, .x5a6').css({'opacity':'0.3'});
-        map.dashedBox('og1', true);
-        map.dashedBox('og2', true);
-
-        $('.b1').css({'border':'4px inset lime', 'opacity':'1'});
-        $('.b3, .b6').css({'border-style':'dashed'});
-        // $('.s2topf, .s3topl, .s5topf, .s6topl').css({'color':'rgb(60, 60, 60)'});
-
-    }
-
-    if(state === 'og1') {
-
-        $('.b1, .b2, .b3, .l34, .w34, .x44, .b41, .acceptedBox, .b5, .b6, .OG1, .OG2').css({'opacity':'0.3'});
-        $('.x1a2, .x2a3, .x3al, .x3aw, .la4, .cwa52, .x4a5, .x5a6').css({'opacity':'0.3'});
-        map.dashedBox('og1', true);
-        map.dashedBox('og2', true);
-
-        $('.b3, .b6').css({'border-style':'dashed'});
-        $('.s2topf, .s3topl').css({'opacity':'1'});
-
-        $('.OG1, .b2, .b3, .x2a3').css({'opacity':'1'});
-        $('.OG1').css({'border-color':'lime'});
-
-    }
-
-    if(state === 's2') {
-
-        $('.b1, .b2, .b3, .l34, .w34, .x44, .b41, .acceptedBox, .b5, .b6, .OG1, .OG2').css({'opacity':'0.3'});
-        $('.x1a2, .x2a3, .x3al, .x3aw, .la4, .cwa52, .x4a5, .x5a6').css({'opacity':'0.3'});
-        map.dashedBox('og1', true);
-        map.dashedBox('og2', true);
-
-        $('.b3, .b6').css({'border-style':'dashed'});
-        $('.s2topf').css({'opacity':'1'});
-
-        $('.OG1, .b2, .b3, .x2a3').css({'opacity':'1'});
-        $('.b2').css({'border-color':'lime'});
-
-    }
-
-    if(state === 's5') {
-
-        $('.b1, .b2, .b3, .l34, .w34, .x44, .b5, .b6, .OG1, .OG2').css({'opacity':'0.3'});
-        $('.b1').css({'opacity':'0.1'});
-        $('.x1a2, .x2a3, .x3al, .x3aw, .la4, .cwa52, .x4a5, .x5a6').css({'opacity':'0.3'});
-        map.dashedBox('og1', true);
-        map.dashedBox('og2', true);
-
-        $('.b3, .b6').css({'border-style':'dashed'});
-
-        $('.OG2, .b5, .b6, .x5a6').css({'opacity':'1'});
-        $('.b5').css({'border-color':'lime'});
-
-        $('.s5topf').css({'opacity':'1'});
-
-    }
-
-    if(state === 's3') {
-
-        $('.b1, .b2, .b3, .l34, .w34, .x44, .b41, .acceptedBox, .b5, .b6, .OG1, .OG2').css({'opacity':'0.3'});
-        $('.x1a2, .x2a3, .x3al, .x3aw, .la4, .cwa52, .x4a5, .x5a6').css({'opacity':'0.3'});
-        map.dashedBox('og1', true);
-        map.dashedBox('og2', true);
-
-        $('.b3, .b6').css({'border-style':'dashed'});
-        // $('.s2topf, .s3topl, .s5topf, .s6topl').css({'color':'rgb(60, 60, 60)'});
-
-        $('.OG1, .b2, .b3, .x2a3').css({'opacity':'1'});
-        $('.b3').css({'border-color':'lime'});
-
-        $('.s3topl').css({'opacity':'1'});
-
-    }
-
-    if(state === 's6') {
-
-        $('.b1, .b2, .b3, .l34, .w34, .x44, .b5, .b6, .OG1, .OG2').css({'opacity':'0.3'});
-        $('.b1').css({'opacity':'0.1'});
-        $('.x1a2, .x2a3, .x3al, .x3aw, .la4, .cwa52, .x4a5, .x5a6').css({'opacity':'0.3'});
-        map.dashedBox('og1', true);
-        map.dashedBox('og2', true);
-
-        $('.b3, .b6').css({'border-style':'dashed'});
-        // $('.s2topf, .s3topl, .s5topf, .s6topl').css({'color':'rgb(60, 60, 60)'});
-
-        $('.OG2, .b5, .b6, .x5a6').css({'opacity':'1'});
-        $('.b6').css({'border-color':'lime'});
-
-        $('.s3topl, .s6topl').css({'opacity':'1'});
-        // $('.s2topf, .s5topf').css({'opacity':'0'});
-
-    }
-
-    if(state === 'og2') {
-
-        $('.b1, .b2, .b3, .l34, .w34, .x44, .b41, .acceptedBox, .b5, .b6, .OG1, .OG2').css({'opacity':'0.3'});
-        $('.x1a2, .x2a3, .x3al, .x3aw, .la4, .cwa52, .x4a5, .x5a6').css({'opacity':'0.3'});
-        map.dashedBox('og1', true);
-        map.dashedBox('og2', true);
-
-        $('.b3, .b6').css({'border-style':'dashed'});
-        $('.s5topf, .s6topl').css({'opacity':'1'});
-
-        $('.OG2, .b5, .b6, .x5a6').css({'opacity':'1'});
-        $('.OG2').css({'border-color':'lime'});
-
-    }
-
-    if(state === 's4') {
-
-        $('.l34, .w34').css({'opacity':'0.7'});
-
-        $('.b1, .b2, .b5, .b6, .OG2').css({'opacity':'0.3'});
-        $('.x1a2, .x2a3, .cwa52, .x4a5, .x5a6, .cwa52').css({'opacity':'0.2'});
-        $('.x3al, .x3aw, .la4').css({'opacity':'0.7'});
-        map.dashedBox('og1', true);
-        map.dashedBox('og2', true);
-        $(' .x4a5').css({'opacity':'0'});
-
-        $('.b3, .b6').css({'border-style':'dashed'});
-        $('.s3topl').css({'opacity':'1'});
-
-        $('.b3, .x44, .acceptedBox').css({'opacity':'1', 'border-color':'lime'});
-        $('.b1').css({'opacity':'0.1'});
-
-    }
-
-    if(state === 's4?') {
-
-        $('.unknownresult, .l34, .w34').css({'opacity':'0.7'});
-
-        $('.b1, .b2, .b5, .b6, .OG2').css({'opacity':'0.3'});
-        $('.x1a2, .x2a3, .cwa52, .x4a5, .x5a6, .cwa52').css({'opacity':'0.3'});
-        $('.x3al, .x3aw, .la4').css({'opacity':'0.7'});
-        map.dashedBox('og1', true);
-        map.dashedBox('og2', true);
-        $(' .x4a5').css({'opacity':'0'});
-
-        $('.b3, .b6').css({'border-style':'dashed'});
-        $('.s3topl').css({'opacity':'1'});
-
-        $('.b3, .x44, .acceptedBox').css({'opacity':'1', 'border-color':'lime'});
-        $('.b1').css({'opacity':'0.1'});
-
-    }
-
-    if(state === 'leaderwon') {
-
-        // opacity of boxes before and after
-        $('.b1, .x1a2').css({'opacity':'0.2'});
-        $(' .b5, .x5a6, .b6').css({'opacity':'0.7'});
-
-        // og contest 1 coloring arrow and box
-        $('.b2').css({'border':'orange 3px solid', 'opacity':'0.7'});
-        $('.x2a3').css({'opacity':'0'});
-        $('.o2a3').css({'opacity':'1'});
-        $('.b3').css({'border':'purple 3px dashed', 'opacity':'0.7'});
-        $('.s2topf').css({'opacity':'1', 'color':'orange'});
-        $('.s3topl').css({'opacity':'1', 'color':'purple'});
-
-        // circling og1 and og2
-        map.dashedBox('og1', true);
-        map.dashedBox('og2', true);
-        $('.OG2').css({'opacity':'1'});
-
-        // arrow from the circle to the outcome
-        $('.x3aw').css({'opacity':'0'});
-        $('.x3aw2').css({'opacity':'1'});
-
-        // highlight the outcome
-        $('.w34').css({'background-color':'transparent', 'opacity':'1'});
-
-        // show arrows from the outcome stages
-        $('.wa6, .cwa5').css({'opacity':'1'});
-        $('.s5topf, .s6topl').css({'opacity':'1'});
-
-    }
-
-    if(state === 'leaderwonleader') {
-
-        // opacity of boxes before and after
-        $('.b1, .x1a2').css({'opacity':'0.2'});
-        $(' .b5, .x5a6, .b6').css({'opacity':'0.7'});
-
-        // og contest 1 coloring arrow and box
-        $('.b2').css({'border':'rgb(60, 60, 60) 3px solid', 'opacity':'0.7'});
-        $('.s2topf').css({'opacity':'0'});
-        $('.x2a3').css({'opacity':'0.7'});
-        $('.b3, .b6').css({'border':'purple 3px dashed', 'opacity':'1'});
-        $('.s3topl').css({'opacity':'1', 'color':'purple'});
-
-        // circling og1 and og2
-        map.dashedBox('og1', true);
-        map.dashedBox('og2', true);
-        $('.OG2').css({'opacity':'1'});
-
-        // arrow from the circle to the outcome
-        $('.x3aw').css({'opacity':'0'});
-        $('.x3aw2').css({'opacity':'1'});
-
-        // highlight the outcome
-        $('.w34').css({'background-color':'transparent', 'opacity':'1'});
-
-        // show arrows from the outcome stages
-        $('.wa6, .wa6text').css({'opacity':'1'});
-
-        $('.s6topl').css({'opacity':'1', 'color' : 'purple'});
-
-    }
-
-    if(state === 'discardFC') {
-
-        // opacity of boxes before and after
-        $('.b1, .x1a2').css({'opacity':'0.2'});
-        $(' .b5, .x5a6, .b6').css({'opacity':'0.7'});
-        $('.s5topf').css({'opacity':'1'});
-
-        // og contest 1 coloring arrow and box
-        $('.b2').css({'border':'rgb(60, 60, 60) 3px solid', 'opacity':'0.7'});
-        $('.x2a3').css({'opacity':'0.7'});
-        $('.b3').css({'border':'rgb(60, 60, 60) 3px dashed', 'opacity':'0.7'});
-        $('.s2topf, .s3topl').css({'opacity':'1'});
-
-        // circling og1 and og2
-        map.dashedBox('og1', true);
-        map.dashedBox('og2', true);
-        $('.OG2').css({'opacity':'0'});
-
-        // arrow from the circle to the outcome
-        $('.x3al2').css({'opacity':'0.1'});
-        $('.x3aw2').css({'opacity':'1'});
-
-        // highlight the outcome
-        $('.w34').css({'background-color':'white', 'opacity':'1'});
-
-        // discarded outcome
-        $('.b41').css({'border-color':'rgb(60, 60, 60)', 'opacity':'1'});
-        $('.modifications3').css({'opacity':'0.2'});
-        $('.l34').css({'background-color':'white', 'opacity':'0.2'});
-        $('.acceptedBox, .discardx').css({'opacity':'0.8'});
-        $('.igtext').css({'opacity':'0.3'});
-        $('.x44').css({'opacity':'1'});
-
-        // show arrows from the outcome stages
-        $('.la4').css({'opacity':'0.2'});
-
-    }
-
-    if(state === 'leaderwonfollower') {
-
-        // opacity of boxes before and after
-        $('.b1, .x1a2').css({'opacity':'0.2'});
-        $(' .b5, .x5a6, .b6').css({'opacity':'0.7'});
-
-        // og contest 1 coloring arrow and box
-        $('.b2, .b5').css({'border':'orange 3px solid', 'opacity':'1'});
-        $('.x2a3').css({'opacity':'0.7'});
-        $('.b3').css({'border':'rgb(60, 60, 60) 3px dashed', 'opacity':'0.7'});
-        // $('.s3topl').css({'opacity':'0'});
-        $('.s2topf').css({'opacity':'1', 'color':'orange'});
-
-        // circling og1 and og2
-        map.dashedBox('og1', true);
-        map.dashedBox('og2', true);
-        $('.OG2').css({'opacity':'1'});
-
-        // arrow from the circle to the outcome
-        $('.x3aw').css({'opacity':'0'});
-        $('.x3aw2').css({'opacity':'1'});
-
-        // highlight the outcome
-        $('.w34').css({'background-color':'transparent', 'opacity':'1'});
-
-        // show arrows from the outcome stages
-        $('.cwa5, .cwa5text').css({'opacity':'1'});
-        $('.s5topf').css({'opacity':'1', 'color':'orange'});
-        // $('.s6topl').css({'opacity':'0'});
-
-    }
-
-    if(state === 'leaderlost') {
-
-        // opacity of boxes before and after
-        $('.b1, .x1a2').css({'opacity':'0.2'});
-        $(' .b5, .x5a6, .b6').css({'opacity':'0.7'});
-        $('.s5topf').css({'opacity':'1'});
-
-        // og contest 1 coloring arrow and box
-        $('.b2').css({'border':'orange 3px solid', 'opacity':'0.7'});
-        $('.o2a3').css({'opacity':'1'});
-        $('.b3').css({'border':'purple 3px dashed', 'opacity':'0.7'});
-        $('.s2topf, .s5topf').css({'opacity':'1', 'color':'orange'});
-        $('.s3topl, .s6topl').css({'opacity':'1', 'color':'purple'});
-
-        // circling og1 and og2
-        map.dashedBox('og1', true);
-        map.dashedBox('og2', true);
-        $('.OG2').css({'opacity':'1'});
-
-        // arrow from the circle to the outcome
-        $('.x3al2').css({'opacity':'1'});
-        $('.x44').css({'opacity':'1'});
-
-        // highlight the outcome
-        $('.l34').css({'background-color':'transparent', 'opacity':'1'});
-        $('.b41').css({'border-color':'orange', 'opacity':'1'});
-
-        // show arrows from the outcome stages
-        $('.la52, .la43').css({'opacity':'1'});
-
-    }
-
-    if(state === 'leaderlostleader') {
-
-        // opacity of boxes before and after
-        $('.b1, .x1a2').css({'opacity':'0.2'});
-        $('.x5a6, .b6').css({'opacity':'0.7'});
-
-        // og contest 1 coloring arrow and box
-        $('.b2').css({'border':'rgb(60, 60, 60) 3px solid', 'opacity':'0.7'});
-        $('.x2a3').css({'opacity':'0.7'});
-        $('.b3').css({'border':'purple 3px dashed', 'opacity':'1'});
-        $('.b5').css({'border':'orange 3px solid', 'opacity':'1'});
-        $('.stageboxtextTopL').css({'color':'purple'});
-
-        // circling og1 and og2
-        map.dashedBox('og1', true);
-        map.dashedBox('og2', true);
-        $('.OG2').css({'opacity':'1'});
-
-        // arrow from the circle to the outcome
-        $('.x3al2').css({'opacity':'1'});
-
-        // highlight the outcome
-        $('.l34').css({'background-color':'transparent', 'opacity':'1'});
-
-        // show arrows from the outcome stages
-        $('.la52, .la52text').css({'opacity':'1'});
-        $('.s5topf').css({'opacity':'1', 'color':'orange'});
-        $('.s3topl').css({'opacity':'1', 'color':'purple'});
-
-    }
-
-    if(state === 'leaderlostfollower') {
-
-        // opacity of boxes before and after
-        $('.b1, .x1a2').css({'opacity':'0.2'});
-        $(' .b5, .x5a6, .b6').css({'opacity':'0.7'});
-        $('.s5topf, .s2topf').css({'opacity':'1', 'color':'orange'});
-
-        // og contest 1 coloring arrow and box
-        $('.b2').css({'border':'orange 3px solid', 'opacity':'1'});
-        $('.o2a3').css({'opacity':'1'});
-        $('.b3').css({'border':'black 3px dashed', 'opacity':'0.7'});
-
-        // circling og1 and og2
-        map.dashedBox('og1', true);
-        map.dashedBox('og2', true);
-        $('.OG2').css({'opacity':'0'});
-
-        // arrow from the circle to the outcome
-        $('.x3al2').css({'opacity':'1'});
-
-        // highlight the outcome
-        $('.l34').css({'background-color':'white', 'opacity':'1'});
-        $('.b41').css({'border-color':'orange', 'opacity':'1'});
-        $('.x44').css({'opacity':'1'});
-
-        // show arrows from the outcome stages
-        $('.la43').css({'opacity':'1'});
-
-    }
-
-    if(state === 'followercontest') {
-
-        $('.x44').css({'opacity':'1'});
-
-        // opacity of boxes before and after
-        $('.b1, .x1a2').css({'opacity':'0.2'});
-        $(' .b5, .x5a6, .b6').css({'opacity':'0.7'});
-
-        // og contest 1 coloring arrow and box
-        $('.b2').css({'border':'orange 3px solid', 'opacity':'0.7'});
-        $('.o2a3').css({'opacity':'1'});
-        $('.b3').css({'border':'rgb(60, 60, 60) 3px dashed', 'opacity':'0.7'});
-        $('.s3topl').css({'opacity':'0'});
-
-        // circling og1 and og2
-        map.dashedBox('og1', true);
-        map.dashedBox('og2', true);
-        $('.OG2').css({'opacity':'1'});
-
-        // arrow from the circle to the outcome
-        $('.x3al2').css({'opacity':'1'});
-
-        // highlight the outcome
-        $('.l34').css({'background-color':'transparent', 'opacity':'1'});
-        $('.b41').css({'border-color':'orange', 'opacity':'1'});
-
-        // show arrows from the outcome stages
-        $('.c4a6, .x4a53, .la43').css({'opacity':'1'});
-        $('.s5topf, .s5topl').css({'opacity':'0'});
-
-    }
-
-    if(state === 'followercontestlost') {
-
-        $('.x44').css({'opacity':'1'});
-
-        // opacity of boxes before and after
-        $('.b1, .x1a2').css({'opacity':'0.2'});
-        $('.x5a6, .b6').css({'opacity':'0.7'});
-
-        // og contest 1 coloring arrow and box
-        $('.b2, .b5').css({'border':'orange 3px solid', 'opacity':'1'});
-        $('.o2a3').css({'opacity':'1'});
-        $('.b3').css({'border':'rgb(60, 60, 60) 3px dashed', 'opacity':'0.7'});
-
-
-        // circling og1 and og2
-        map.dashedBox('og1', true);
-        map.dashedBox('og2', true);
-        $('.OG2').css({'opacity':'1'});
-
-        // arrow from the circle to the outcome
-        $('.x3al2').css({'opacity':'1'});
-
-        // highlight the outcome
-        $('.l34').css({'background-color':'transparent', 'opacity':'1'});
-        $('.b41').css({'border-color':'orange', 'opacity':'1'});
-
-        // show arrows from the outcome stages
-        $('.x4a53, .la43').css({'opacity':'1'});
-        $('.s2topf, .s5topf').css({'opacity':'1', 'color':'orange'});
-
-    }
-
-    if(state === 'followercontestwon') {
-
-        $('.x44').css({'opacity':'1'});
-
-        // opacity of boxes before and after
-        $('.b1, .x1a2').css({'opacity':'0.2'});
-        $(' .b5, .x5a6').css({'opacity':'0.7'});
-
-        // og contest 1 coloring arrow and box
-        $('.b2').css({'border':'orange 3px solid', 'opacity':'1'});
-        $('.o2a3').css({'opacity':'1'});
-        $('.b3').css({'border':'rgb(60, 60, 60) 3px dashed', 'opacity':'0.7'});
-        $('.b6').css({'border':'purple 3px dashed', 'opacity':'1'});
-
-        // circling og1 and og2
-        map.dashedBox('og1', true);
-        map.dashedBox('og2', true);
-        $('.OG2').css({'opacity':'1'});
-
-        // arrow from the circle to the outcome
-        $('.x3al2').css({'opacity':'1'});
-
-        // highlight the outcome
-        $('.l34').css({'background-color':'transparent', 'opacity':'1'});
-        $('.b41').css({'border-color':'orange', 'opacity':'1'});
-
-        // show arrows from the outcome stages
-        $('.c4a6, .la43').css({'opacity':'1'});
-        $('.s2topf').css({'opacity':'1', 'color':'orange'});
-        $('.s6topl').css({'opacity':'1', 'color':'purple'});
-
-    }
-
-}
-
-map.initiate = function() {
-
-    //f1
-    $('.b1').css({'border':'5px solid black','transition':'0.51s', 'transition-delay':'0s', 'opacity':'1'});
-
-    //f2
-    $('.x1a2').css({'transition':'0.51s', 'transition-delay':'0s', 'opacity':'1'});
-    $('.b2').css({'border':'5px solid orange', 'transition':'0.51s', 'transition-delay':'0s', 'opacity':'1'});
-
-    //f3
-    $('.x2a3').css({'transition':'0.51s', 'transition-delay':'0s', 'opacity':'1'});
-    $('.b3').css({'border':'5px solid blue', 'transition':'0.51s', 'transition-delay':'0s', 'opacity':'1'});
-
-
-    //f4
-    $('.x3al').css({'transition':'0.51s', 'transition-delay':'0s', 'opacity':'1'});
-    $('.l34').css({'transition':'0.51s', 'transition-delay':'0s', 'opacity':'1', 'border':'double 4px black',});
-
-    $('.la4').css({'transition':'0.51s', 'transition-delay':'0s', 'opacity':'1'});
-    $('.b4').css({'border':'5px solid lime', 'transition':'0.51s', 'transition-delay':'0s', 'opacity':'1'});
-
-    //f5
-    $('.x3aw').css({'transition':'0.51s', 'transition-delay':'0s', 'opacity':'1'});
-    $('.w34').css({'transition':'0.51s', 'transition-delay':'0s', 'opacity':'1', 'border':'double 4px black',});
-
-    $('.x4a5').css({'transition':'0.51s', 'transition-delay':'0s', 'opacity':'1'});
-    $('.wa5').css({'transition':'0.51s', 'transition-delay':'0s', 'opacity':'1'});
-    $('.b5').css({'border':'5px solid orange', 'transition':'0.51s', 'transition-delay':'0s', 'opacity':'1'});
-
-    //f6
-    $('.x5a6').css({'transition':'0.51s', 'transition-delay':'0s', 'opacity':'1'});
-    $('.b6').css({'border':'5px solid blue', 'transition':'0.51s', 'transition-delay':'0s', 'opacity':'1'});
-
-}
-
-
-// map.update('full');
-map.clearAll();
-
-//---------------------------------------------------//
-
-
-var initiate  = function() {
-
-    calculator.update.contestSetup('l') ;
-
-    calculator.display.wiggleArrow([0, 0, 0, 0, 0, 0]);
-    calculator.display.questionMarks(false);
-
-    calculator.update.contestName('hs_and_l_og1');
-    calculator.update.playerTitles();
-
-
-    calculator.display.helpSaboSection(true);
-    calculator.display.totalHelpSabo(true);
-    calculator.display.fightIcon(false);
-    calculator.display.helpSaboIcons(true);
-    calculator.display.spinButton(true);
-
-
-    calculator.display.powerBar(true);
-    calculator.display.powerBarText('top');
-    calculator.display.powerBarLegend(false);
-    calculator.display.powerBarText('none');
-
-
-    calculator.display.contestSection(true);
-    calculator.display.spinButton2(true);
-
-
-    calculator.display.investment(true);
-    calculator.display.prize(true);
-    calculator.display.netPayoff(true);
-    calculator.display.role(true);
-    calculator.showFollowerRole = true;
-
-    calculator.set.helpSabo([0,0,0,0,0,0,0,0]);
-    calculator.set.efforts([200,200]);
-    calculator.set.sliders();
-    calculator.update.pie();
-    // calculator.update.pie2();
-
-
-    calculator.update.resultTexts(1);
-
-    calculator.wheel.create(0.99, 'myWheel', 'l');
-
-}
 
 var setup = function() {
 
-    calculator.display.wiggleArrow([0, 0, 0, 0, 0, 0]);
-    calculator.display.questionMarks(false);
-    calculator.display.lockedSliders([0, 0, 0, 0, 0, 0])
+    calculator.pointers.activate([0, 0, 0, 0, 0, 0]);
+    calculator.questions.activate.all([0, 0, 0, 0, 0, 0]);
+    calculator.lock.activate([0, 0, 0, 0, 0, 0])
 
 
-    calculator.set.helpSabo([0,0,0,0,0,0,0,0]);
-    calculator.set.efforts([200,200]);
-    calculator.set.sliders();
-    calculator.update.pie();
+    calculator.values.set.helpSabo([0,0,0,0,0,0,0,0]);
+    calculator.values.set.efforts([200,200]);
+    calculator.refresh.sliders();
+    calculator.graphics.update.pie();
 
 
-    calculator.initiate.currentBalance([1000, 1000], [1000, 1000, 1000, 1000]);
-    calculator.update.netBalance([-500, 400], [-40, -20, 90, 80]);
+    calculator.roll.setCurrentBalance([1000, 1000], [1000, 1000, 1000, 1000]);
+    calculator.roll.calculateNetBalance([-500, 400], [-40, -20, 90, 80]);
 
 }
 
-// initiate();
 setup();
 calculator.setup.og(1);
+
 // calculator.setup.hs(1,1);
 // calculator.setup.lc(1);
-
 
 
 icon.set.stage1();
@@ -4651,203 +6231,74 @@ icon.display.stage1(true);
 
 
 var spin = document.getElementById('spinImage');
-var spinButtonEnabled = true;
+calculator.globalVariable.topSpinButtonIsEnabled = true;
 spin.onclick = function() {
-    if(spinButtonEnabled) {
-        $('.spinImage, .spinImage23, .minImage, .minImage2').css({'transition':'0.2s', 'cursor':'default', 'opacity':'0'});
-        setTimeout(()=>{$('.spinImage, .minImage').css({'transition':'0.2s', 'cursor':'pointer', 'opacity':'1'});},1000);
-        calculator.wheel.spin(2);
-        mainDivHoverActive = false;
+    if(calculator.globalVariable.topSpinButtonIsEnabled) {
+
+        calculator.globalVariable.aBitOfWaitingIsDone = false;
+
+        calculator.wheel.spin();
+        calculator.globalVariable.dynamicDisplay = false;
+
     }
 }
 
 
 var spin2 = document.getElementById('spinImage23');
-var spinButtonEnabled2 = true;
+calculator.globalVariable.bottomSpinButtonIsEnabled = true;
 spin2.onclick = function() {
-    if(spinButtonEnabled2) {
-        $('.spinImage, .spinImage23, .minImage, .minImage2').css({'transition':'0.2s', 'cursor':'default', 'opacity':'0'});
-        setTimeout(()=>{$('.spinImage23, .minImage2').css({'transition':'0.2s', 'cursor':'pointer', 'opacity':'1'});},1000);
-        calculator.wheel.spin(2);
+    if(calculator.globalVariable.bottomSpinButtonIsEnabled) {
 
-        spinButtonEnabled2 = false;
-        mainDivHoverActive = false;
+        calculator.globalVariable.aBitOfWaitingIsDone = false;
+
+
+        calculator.wheel.spin();
+        calculator.globalVariable.dynamicDisplay = false;
+
+        calculator.titles.hs.ghost.hide();
+
     }
 }
 
 
+var minButton = document.getElementById('minImage');
+calculator.globalVariable.minButtonIsEnabled = true;
+minButton.onclick = function() {
+    calculator.results.hide.all();
+    calculator.button.display.minTop(false);
+    calculator.button.disable.minTop();
 
-// var minButton = document.getElementById('minImage');
-//
-// minButton.onclick = function() {
-//
-//
-//
-//     if(calculator.display.resultSpaceOpen) {
-//
-//         $('.OGCIcon').css({'margin-top':'-29px'});
-//         $('.payoffWrap, .fResults, .fNetPayoffText').css({'transition' : '0.2s', 'opacity':'0'});
-//
-//         if(calculator.display.HSandLC) {
-//             $('.pWrap').css({'margin-top':'-54px'});
-//             $('.generalMarginBox').css({'height':'710px'});
-//         }
-//
-//     }
-//
-//     if(!calculator.display.resultSpaceOpen) {
-//
-//         // $('.OGCIcon').css({'margin-top':'39px'});
-//         $('.payoffWrap, .fResults, .fNetPayoffText').css({'transition' : '0.2', 'opacity':'1'});
-//
-//         if(calculator.display.HSandLC) {
-//             $('.pWrap').css({'margin-top':'40px'});
-//             $('.generalMarginBox').css({'height':'800px'});
-//             calculator.display.followerRole();
-//             calculator.update.payoffHeights(calculator.display.displayed)
-//         }
-//
-//
-//     }
-//
-//     calculator.display.resultSpaceOpen = 1 - calculator.display.resultSpaceOpen
-//
-// }
+    setTimeout(()=>{
+        calculator.button.display.spinBottom(false);
+    },200)
 
-// var minButton2 = document.getElementById('minImage2');
-//
-// minButton2.onclick = function() {
-//
-//     if(calculator.display.resultSpaceOpen) {
-//
-//         $('.OGCIcon').css({'margin-top':'39px'});
-//         calculator.display.spinButton(false);
-//         $('.payoffWrap, .fResults, .fNetPayoffText').css({'transition' : '0.2s', 'opacity':'0'});
-//
-//         if(calculator.display.HSandLC) {
-//
-//             if(!calculator.display.HSMinimized){
-//                 $('.pWrap').css({'margin-top':'-54px'});
-//                 $('.generalMarginBox').css({'height':'710px'});
-//             }
-//             if(calculator.display.HSMinimized){
-//                 $('.pWrap').css({'margin-top':'70px'});
-//                 $('.generalMarginBox').css({'height':'475px'});
-//                 // $('.hsWrap').css({'opacity':'0', 'height':'135px', 'z-index':'-10'});
-//             }
-//
-//         }
-//
-//
-//
-//     }
-//
-//     if(!calculator.display.resultSpaceOpen) {
-//
-//         // $('.OGCIcon').css({'margin-top':'39px'});
-//         $('.payoffWrap, .fResults, .fNetPayoffText').css({'transition' : '0.2', 'opacity':'1'});
-//
-//         if(calculator.display.HSandLC) {
-//             $('.pWrap').css({'margin-top':'40px'});
-//             $('.generalMarginBox').css({'height':'800px'});
-//             calculator.display.followerRole();
-//             calculator.update.payoffHeights(calculator.display.displayed)
-//
-//             if(calculator.display.HSMinimized){
-//                 $('.pWrap').css({'margin-top':'70px'});
-//                 $('.generalMarginBox').css({'height':'475px'});
-//             }
-//         }
-//
-//
-//     }
-//
-//     calculator.display.resultSpaceOpen = 1 - calculator.display.resultSpaceOpen
-//
-// }
+    setTimeout(()=>{
+        calculator.button.disable.spinBottom();
+    }, 500)
+
+}
 
 
-// var hsMinButton = document.getElementById('topTitleButton');
-// calculator.display.HSMinimized = false;
-//
-// hsMinButton.onclick = function() {
-//
-//     if(calculator.display.resultSpaceOpen){
-//         if(!calculator.display.HSMinimized) {
-//
-//             $('.generalMarginBox').css({'height':'475px'});
-//             $('.hsWrap').css({'display':'none'});
-//             $('.ctTop').css({
-//                 'padding-top':'24px',
-//                 'margin-left':'324px',
-//                 'width':'355px',
-//                 'margin-bottom':'-110px',
-//                 'margin-top':'35px',
-//                 'opacity':'1',
-//                 'box-shadow':'0px 2px 3px 3px black',
-//                 'height':'68px',
-//                 'border-radius':'40px',
-//             });
-//             $('.pWrap').css({'margin-top':'70px'});
-//
-//         }
-//
-//         if(calculator.display.HSMinimized) {
-//             $('.generalMarginBox').css({'height':'800px'});
-//             $('.hsWrap').css({'display':'flex'});
-//             $('.ctTop').css({
-//                 'padding-top':'24px',
-//                 'margin-left':'324px',
-//                 'width':'355px',
-//                 'margin-bottom':'-110px',
-//                 'margin-top':'35px',
-//                 'opacity':'1',
-//                 'box-shadow':'0px 2px 3px 3px black',
-//                 'height':'68px',
-//                 'border-radius':'40px',
-//             });
-//             $('.pWrap').css({'margin-top':'40px'});
-//
-//         }
-//     }
-//
-//     if(!calculator.display.resultSpaceOpen){
-//         if(!calculator.display.HSMinimized) {
-//             $('.generalMarginBox').css({'height':'475px'});
-//             $('.hsWrap').css({'display':'none'});
-//             $('.ctTop').css({
-//                 'padding-top':'24px',
-//                 'margin-left':'324px',
-//                 'width':'355px',
-//                 'margin-bottom':'-110px',
-//                 'margin-top':'35px',
-//                 'opacity':'1',
-//                 'box-shadow':'0px 2px 3px 3px black',
-//                 'height':'68px',
-//                 'border-radius':'40px',
-//             });
-//             $('.pWrap').css({'margin-top':'70px'});
-//         }
-//
-//         if(calculator.display.HSMinimized) {
-//             $('.generalMarginBox').css({'height':'700px'});
-//             $('.hsWrap').css({'display':'flex'});
-//             $('.ctTop').css({
-//                 'padding-top':'24px',
-//                 'margin-left':'324px',
-//                 'width':'355px',
-//                 'margin-bottom':'-110px',
-//                 'margin-top':'35px',
-//                 'opacity':'1',
-//                 'box-shadow':'0px 2px 3px 3px black',
-//                 'height':'68px',
-//                 'border-radius':'40px',
-//             });
-//             $('.pWrap').css({'margin-top':'-54px'});
-//         }
-//     }
-//
-//
-//     calculator.display.HSMinimized = 1 - calculator.display.HSMinimized;
-//
-// }
+var minButton2 = document.getElementById('minImage2');
+minButton2.onclick = function() {
+
+    calculator.results.hide.all();
+
+    calculator.button.display.minTop(false);
+    calculator.button.disable.minTop();
+
+    calculator.button.display.minBottom(false);
+    calculator.button.disable.minBottom();
+
+    // calculator.button.display.spinBottomMini(true);
+    // calculator.button.enable.spinBottomMini();
+
+    setTimeout(()=>{
+        calculator.button.display.spinBottom(false);
+    },200)
+
+    // setTimeout(()=>{
+    //     calculator.button.disable.spinBottom();
+    // }, 500)
+
+}

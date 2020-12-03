@@ -396,9 +396,6 @@ img.unlocked
 {
     box-shadow: 0px 9px 9px 0px black;
 }
-
-
-
 .bottomsection
 {
     transition:0.7s;
@@ -414,9 +411,6 @@ img.unlocked
 {
     box-shadow: 0px 9px 9px 0px black;
 }
-
-
-
 .efficiencyBarWrap
 {
     position: sticky;
@@ -627,10 +621,6 @@ img.unlocked
 {
     box-shadow:0px 7px 7px 0px;
 }
-
-
-
-
 .slidebargroup
 {
     display:flex;
