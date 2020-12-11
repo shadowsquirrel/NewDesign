@@ -1,18 +1,10 @@
-/**CONTEST SLIDER-BAR**/
-.sliderBarL
-{
-    font-weight:500;
-    display:flex;
-    justify-content: center;
-    margin-top:47px;
-    margin-bottom:35px;
-}
-.pbar
+/**IG CONTEST SLIDER-BAR**/
+.IG_pbar
 {
     z-index:0;
     position: relative;
 }
-.pSlider
+.IG_pSlider
 {
     cursor: pointer;
     z-index: 1;
@@ -26,14 +18,14 @@
     width: 356px;
     height: 4px;
 }
-.pSlider:hover
+.IG_pSlider:hover
 {
     opacity:1;
     /* background-color: red; */
     background-color: lime;
     margin-top:51px;
 }
-.pSlider::-webkit-slider-thumb
+.IG_pSlider::-webkit-slider-thumb
 {
     z-index:1;
     -webkit-appearance: none;
@@ -47,7 +39,7 @@
     background: lime;
     margin-top: 20px;
 }
-.pSlider::-moz-range-thumb
+.IG_pSlider::-moz-range-thumb
 {
     z-index:1;
     -webkit-appearance: none;
@@ -61,19 +53,19 @@
     background: lime;
     margin-top: 20px;
 }
-.pSlider:hover::-webkit-slider-thumb
+.IG_pSlider:hover::-webkit-slider-thumb
 {
     opacity:1;
     height: 80px;
     margin-top: -15px;
 }
-.pSlider:hover::-moz-range-thumb
+.IG_pSlider:hover::-moz-range-thumb
 {
     opacity:1;
     height: 80px;
     margin-top: -15px;
 }
-.pSlider:focus
+.IG_pSlider:focus
 {
     outline: none;
 }

@@ -1,0 +1,297 @@
+/**CALCULATOR**/
+.IG_calculator
+{
+    transition:1s;
+    border:0px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    flex-grow:5;
+    margin-top:0px;
+}
+/*--CONTEST TITLE ON THE HS SECTION ON TOP OF THE HS ICONS--*/
+.IG_ctWrap
+{
+    display:flex;
+    flex-direction:row;
+    justify-content: center;
+    margin-bottom:-35px;
+    margin-top:-53px;
+}
+.IG_ctGhost
+{
+    position:absolute;
+    margin-top:64px;
+    margin-left:255px;
+    opacity:0;
+    display:flex;
+}
+.IG_contestTitle1
+{
+    /* box-shadow:0px 2px 2px 0px black; */
+    width:308px;
+    font-size:25px;
+    font-weight:100;
+    text-align:center;
+    margin-bottom:0px;
+
+}
+.IG_contestTitle2
+{
+    width:490px;
+    font-size:20px;
+    font-weight:100;
+    text-align:center;
+}
+/*--HS SECTION - CONTEST FOLLOWER ICONS--*/
+.IG_hsWrap
+{
+    transition:0.7s;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top:0px;
+    height:375px;
+}
+.IG_wrapMid
+{
+    display:flex;
+    flex-direction:row;
+}
+.wrapMidIGASetup
+{
+    display:flex;
+}
+.wrapMidIGBSetup
+{
+    display:none;
+}
+.IG_OGCIcon
+{
+    display:flex;
+    flex-direction:row;
+    justify-content: center;
+    /* margin-left:27px; */
+    margin-top:-15px;
+}
+.IG_imgwrapwrapwrap31
+{
+    display:flex;
+    flex-direction:row;
+    justify-content: center;
+    border:dashed 2px transparent;
+    border-radius: 150px;
+    padding:5px;
+}
+.IG_imgwrapwrapwrap32
+{
+    display:flex;
+    flex-direction:row;
+    justify-content: center;
+    border:dashed 2px transparent;
+    border-radius: 150px;
+    padding:5px;
+}
+.IG_imgwrapfight
+{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    width:50px;
+    height:200px;
+}
+img.IG_fightIcon
+{
+    height:50px;
+    width:50px;
+}
+/**all the other stuff inside OGCIcon are used from the calculatorIcons.css**/
+.activeFollowerLeft
+{
+    position:absolute;
+    opacity:0;
+}
+.activeFollowerRight
+{
+    position:absolute;
+    opacity:0;
+}
+/*--CONTEST SECTION--*/
+.IG_contestSection
+{
+    transition:0.7s;
+    display:flex;
+    height:188px;
+    margin-top: -5px;
+    flex-direction: row;
+    justify-content: space-around;
+    position:relative;
+    z-index:2;
+}
+/*HIDDEN COMPETING PLAYER ICONS*/
+.IG_OGCIcon2
+{
+    transform:scale(0.55);
+    /* display:none; */
+    opacity:0;
+    z-index:2;
+    position:absolute;
+    flex-direction:row;
+    justify-content: center;
+    margin-top:90px;
+}
+.IG_hiddenTiltLeft
+{
+    transform:rotate(15deg);
+}
+.IG_hiddenTiltRight
+{
+    transform:rotate(-15deg);
+}
+img.IG_fightIconHidden
+{
+    height:50px;
+    width:50px;
+}
+.IG_imgwrapfightHidden
+{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    width:50px;
+    height:200px;
+    margin-left:70px;
+    margin-right:70px;
+}
+/**LEFT AND RIGHT SLIDERBAR COMMON**/
+.IG_lTextWrap
+{
+    position:absolute;
+    font-weight:100;
+    font-size:28px;
+    margin-top:9px;
+}
+/**LEFT SECTION**/
+.IG_playerLeft
+{
+    display: flex;
+    flex-direction: column;
+    margin-top:28px;
+    margin-right:-70px;
+}
+.IG_bswLeft
+{
+    color:white;
+    background-color:rgb(60, 60, 60);
+}
+/**RIGHT SECTION**/
+.IG_playerRight
+{
+    display: flex;
+    flex-direction: column;
+    margin-top:28px;
+    margin-left:-70px;
+}
+.IG_bswRight
+{
+    background-color:rgb(210, 210, 210);
+}
+/**PIE SECTION**/
+.IG_mywheel
+{
+    margin-bottom:59px;
+    margin-left:2px;
+    z-index:0;
+    opacity:0;
+    transition:0.15s;
+    display: flex;
+    position: relative;
+}
+.IG_pw
+{
+    z-index: 1;
+    opacity: 1;
+    transition:0.15s;
+    position:absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 68px;
+    margin-bottom:58px;
+}
+.IG_pie
+{
+    display: flex;
+    justify-content: center;
+}
+/*SPIN THE WHEEL BUTTON*/
+.IG_imageWrap23
+{
+    position:relative;
+    opacity: 1;
+    z-index:2;
+    margin-top:-29px;
+    margin-bottom:23px;
+}
+.IG_spinImage23
+{
+    position:relative;
+    transition:0.5s;
+    opacity :0;
+    z-index:2;
+    margin-top:12px;
+    margin-bottom:-12px;
+}
+.IG_ctBottom
+{
+    position:relative;
+    z-index:-2;
+}
+img.IG_spinImage23
+{
+    padding: 5px;
+    border-collapse: separate;
+    border-spacing: 15px;
+    opacity: 0;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    outline: none;
+    background-color: lime;
+    border: none;
+    border-radius: 30px;
+    box-shadow: 0 6px black;
+    transition: 0.5s;
+}
+.IG_spinImage23:active
+{
+  box-shadow: 0 2px black;
+  transform: translateY(2px);
+}
+/*BOTTOM TITLE*/
+.IG_ctBottom
+{
+    margin-bottom:30px;
+    margin-top:3px;
+}
+.IG_contestTitle21
+{
+    width:490px;
+    font-size:22px;
+    font-weight:100;
+    text-align:center;
+    margin-bottom:2px;
+    margin-top:25px;
+}
+.IG_contestTitle22
+{
+    padding:3px;
+    font-weight:100;
+    text-align:center;
+    width:298px;
+    font-size:26px;
+    margin-left:94px;
+    border-radius:20px;
+    color:white;
+    margin-bottom:-35px;
+}

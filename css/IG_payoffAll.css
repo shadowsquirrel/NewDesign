@@ -1,0 +1,128 @@
+.IG_payoffWrap
+{
+    z-index:-1;
+    opacity:0;
+    transition:1s;
+    margin-bottom:20px;
+    margin-top:2px;
+    display:flex;
+    flex-direction:row;
+    justify-content: start;
+    margin-left:-28px;
+    position:relative;
+}
+/*COMMON TO BOTH SIDES*/
+.IG_c1
+{
+    opacity:1;
+}
+.IG_c2
+{
+    opacity:1;
+}
+.IG_topText
+{
+    display:flex;
+    flex-direction:row;
+    justify-content: space-between;
+    border-bottom:dashed 1px black;
+    padding-bottom:5px;
+}
+.IG_bottomText
+{
+    margin-top:5px;
+    display:flex;
+    flex-direction:row;
+}
+.IG_sideColumn
+{
+    font-weight:400;
+    padding-top: 0px;
+    padding-right: 5px;
+    /* padding-left: 13px; */
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+}
+.IG_titleRow
+{
+    margin-bottom:0px;
+}
+.IG_resultRow
+{
+    margin-bottom:-16px;
+    display: flex;
+    flex-direction: row;
+}
+/*LEFT COLUMN*/
+.IG_tableLeft
+{
+    width:320px;
+    margin-left:20px;
+    font-size:20px;
+    display: flex;
+    flex-direction: column;
+}
+.IG_resultLeft
+{
+    width:283px;
+    margin-left:22px;
+    margin-right:-2px;
+    margin-bottom:2px;
+    /* box-shadow:0px 1px 4px 0px black; */
+    background-color:rgb(50, 50, 50);
+    color:white;
+    font-weight:100;
+    font-size:24px;
+    border-radius:20px;
+}
+.IG_pTextLeft
+{
+    display:flex;
+    flex-direction:column;
+    padding-left:21px;
+    font-weight:100;
+    font-size:18px;
+}
+.IG_mainColumnLeft
+{
+    padding-left: 45px;
+    display:flex;
+    flex-direction: column;
+}
+/*RIGHT COLUMN*/
+.IG_tableRight
+{
+    width:320px;
+    margin-left:358px;
+    font-size:20px;
+    display: flex;
+    flex-direction: column;
+}
+.IG_pTextRight
+{
+    display:flex;
+    flex-direction:column;
+    padding-left:28px;
+    font-weight:100;
+    font-size:18px;
+}
+.IG_mainColumnRight
+{
+    padding-left: 45px;
+    display:flex;
+    flex-direction: column;
+}
+.IG_resultRight
+{
+    width:283px;
+    margin-left:43px;
+    margin-right:3px;
+    margin-bottom:2px;
+    /* box-shadow:0px 1px 4px 0px black; */
+    background-color:rgb(210, 210, 210);
+    color:white;
+    font-weight:100;
+    font-size:24px;
+    border-radius: 20px;
+}

@@ -1,4 +1,4 @@
-/*FOLLOWER DECISION SLIDER FOR HELP AND SABOTAGE*/
+/*DECISION SLIDER MAY NOT BE USED*/
 .dSliderF
 {
     cursor: pointer;
@@ -32,7 +32,7 @@
     -webkit-appearance: none;
     appearance: none;
     width: 3px;
-    height: 83px;
+    height: 75px;
     background: black;
     cursor: pointer;
     opacity: 0;
@@ -45,7 +45,7 @@
     -webkit-appearance: none;
     appearance: none;
     width: 3px;
-    height: 83px;
+    height: 75px;
     background: black;
     cursor: pointer;
     opacity: 0;
@@ -59,7 +59,7 @@
     color:lime;
     background-color: lime;
     background: lime;
-    height: 83px;
+    height: 70px;
     margin-top: 0px;
 }
 .dSliderF:hover::-moz-range-thumb
@@ -68,12 +68,9 @@
     color:lime;
     background-color: lime;
     background: lime;
-    height: 83px;
+    height: 70px;
     margin-top: 0px;
 }
-
-
-
 /*LEADER DECISION SLIDER*/
 .dSliderL
 {
@@ -106,7 +103,7 @@
     -webkit-appearance: none;
     appearance: none;
     width: 3px;
-    height: 83px;
+    height: 75px;
     background: black;
     cursor: pointer;
     opacity: 0;
@@ -119,7 +116,7 @@
     -webkit-appearance: none;
     appearance: none;
     width: 3px;
-    height: 83px;
+    height: 75px;
     background: black;
     cursor: pointer;
     opacity: 0;
@@ -133,7 +130,7 @@
     color:lime;
     background-color: lime;
     background: lime;
-    height: 83px;
+    height: 70px;
     margin-top: 0px;
 }
 .dSliderL:hover::-moz-range-thumb
@@ -142,80 +139,6 @@
     color:lime;
     background-color: lime;
     background: lime;
-    height: 83px;
-    margin-top: 0px;
-}
-
-
-
-/*IG FOLLOWER DECISION SLIDER*/
-.IG_dSliderL
-{
-    cursor: pointer;
-    z-index: 1;
-    position: absolute;
-    -webkit-appearance: none;
-    appearance: none;
-    opacity: 0;
-    transition: 0.35s;
-    width: 950px;
-    background: gray;
-    margin-top: 35px;
-    margin-left:-15px;
-    height: 5px;
-}
-.IG_dSliderL:focus
-{
-    outline: none;
-}
-.IG_dSliderL:hover
-{
-    opacity:1;
-    margin-top: 50px;
-    background:lime;
-}
-.IG_dSliderL::-webkit-slider-thumb
-{
-    z-index:1;
-    -webkit-appearance: none;
-    appearance: none;
-    width: 3px;
-    height: 83px;
-    background: black;
-    cursor: pointer;
-    opacity: 0;
-    transition: 0.35s;
-    margin-top: -1px;
-}
-.IG_dSliderL::-moz-range-thumb
-{
-    z-index:1;
-    -webkit-appearance: none;
-    appearance: none;
-    width: 3px;
-    height: 83px;
-    background: black;
-    cursor: pointer;
-    opacity: 0;
-    transition: 0.35s;
-    margin-top: -1px;
-}
-
-.IG_dSliderL:hover::-webkit-slider-thumb
-{
-    opacity: 1;
-    color:lime;
-    background-color: lime;
-    background: lime;
-    height: 83px;
-    margin-top: 0px;
-}
-.IG_dSliderL:hover::-moz-range-thumb
-{
-    opacity: 1;
-    color:lime;
-    background-color: lime;
-    background: lime;
-    height: 83px;
+    height: 70px;
     margin-top: 0px;
 }

@@ -403,6 +403,7 @@ map.me.og2 = function(me) {
         $('.me_og2f2').css({'display':'flex'});
         $('.notme_og2f2').css({'display':'none'});
     }
+    
     if(me === 'l') {
         $('.me_og2l').css({'display':'flex'});
         $('.notme_og2l').css({'display':'none'});

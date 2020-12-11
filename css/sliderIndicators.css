@@ -1,9 +1,31 @@
-
+/*INDICATOR ARROWS*/
 img.redArrowImage1
 {
     height:109px;
     width:80px;
 }
+
+
+
+.IG_sliderArrowImageWrap_l1
+{
+    position:absolute;
+    transform:rotate(321deg);
+    transition:1s;
+    margin-left:48px;
+    margin-top:-8px;
+}
+.IG_sliderArrowImageWrap_l2
+{
+    position:absolute;
+    transform:rotate(321deg);
+    transition:1s;
+    margin-left:48px;
+    margin-top:-8px;
+}
+
+
+
 .sliderArrowImageWrap_l1
 {
     position:absolute;
@@ -52,7 +74,41 @@ img.redArrowImage1
     margin-left:-1px;
     margin-top:-107px;
 }
-/*qUESTION MARKS*/
+
+
+
+/*REVOLVING qUESTION MARKS*/
+.IG_sliderQuestion_l1
+{
+    opacity:0;
+    color:red;
+    position:absolute;
+    transition:8s;
+    font-size:40px;
+    margin-left:270px;
+    margin-top:-15px;
+    transition:8s;
+    transform:rotateY(90deg);
+    font-weight:100;
+    font-size:56px;
+}
+.IG_sliderQuestion_l2
+{
+    opacity:0;
+    color:red;
+    position:absolute;
+    transition:8s;
+    font-size:40px;
+    margin-left:270px;
+    margin-top:-15px;
+    transition:8s;
+    transform:rotateY(90deg);
+    font-weight:100;
+    font-size:56px;
+}
+
+
+
 .sliderQuestion_l1
 {
     opacity:0;
@@ -136,4 +192,88 @@ img.redArrowImage1
     transform:rotateY(90deg);
     font-weight:100;
     font-size:56px;
+}
+
+
+
+/*LOCKS*/
+.IG_lockedCover_l1
+{
+    z-index:-1;
+    position: absolute;
+    height:123px;
+    width:405px;
+}
+.IG_lockedCover_l2
+{
+    z-index:-1;
+    position: absolute;
+    height:123px;
+    width:405px;
+}
+
+
+
+.lockedCover_l1
+{
+    z-index:-1;
+    position: absolute;
+    height:123px;
+    width:405px;
+}
+.lockedCover_l2
+{
+    z-index:-1;
+    position: absolute;
+    height:123px;
+    width:405px;
+}
+.lockedImageRed2
+{
+    transition:0.15s;
+    height:20px;
+    width:20px;
+    margin-top:19px;
+    margin-right:341px;
+}
+
+.lockedCover_f1
+{
+    z-index:-1;
+    position: absolute;
+    height:296px;
+    width:96px;
+    margin-top:34px;
+}
+.lockedCover_f2
+{
+    z-index:-1;
+    position: absolute;
+    height:296px;
+    width:96px;
+    margin-top:34px;
+}
+.lockedCover_of1
+{
+    z-index:-1;
+    position: absolute;
+    height:296px;
+    width:96px;
+    margin-top:34px;
+}
+.lockedCover_of2
+{
+    z-index:-1;
+    position: absolute;
+    height:296px;
+    width:96px;
+    margin-top:34px;
+}
+.lockedImageRed
+{
+    transition:0.15s;
+    height:20px;
+    width:20px;
+    margin-top:38px;
+    margin-right:61px;
 }

@@ -4,7 +4,7 @@ var calculator = {
     globalVariable: {
         tutorial: {},
         display: {},
-        hover: {},
+        hover:{},
     },
     refresh: {},
     space: {
@@ -20,7 +20,6 @@ var calculator = {
         show: {},
         hide: {},
         enervate:{},
-        enervate2:{},
     },
     values: {
         update: {},
@@ -98,7 +97,6 @@ var calculator = {
         power: {
             opacity:{},
             display:{},
-            adjust:{},
         },
         decision: {
             leader: {},
@@ -328,29 +326,13 @@ calculator.globalVariable.tutorial.IGSameColor = undefined;
 calculator.globalVariable.tutorial.IGDifferentColor = undefined;
 calculator.globalVariable.tutorial.weAreInTutorial = undefined;
 
-// RESULT DISPLAY ON/OFF VARIABLES (AFTER SPIN)
-calculator.globalVariable.display.hsIcons = undefined;
+// need to turn on resultSwitchesActive to make hsresults and cresults work
+calculator.globalVariable.display.resultSwitchesActive = undefined;
 calculator.globalVariable.display.hsResults = undefined;
-calculator.globalVariable.display.hsMainTitle = undefined;
-calculator.globalVariable.display.hsGhostTitle = undefined;
-calculator.globalVariable.display.hsButton = undefined;
-
 calculator.globalVariable.display.cResults = undefined;
-calculator.globalVariable.display.cTitle = undefined;
-calculator.globalVariable.display.cButton = undefined;
 
-// HOVER ON/OFF VARIABLES
-calculator.globalVariable.hover.hsMinimize = undefined;
-calculator.globalVariable.hover.hsIcons = undefined;
-calculator.globalVariable.hover.hsResults = undefined;
-calculator.globalVariable.hover.hsMainTitle = undefined;
-calculator.globalVariable.hover.hsGhostTitle = undefined;
-calculator.globalVariable.hover.hsButton = undefined;
+calculator.globalVariable.sectionHoversDisabled = undefined;
 
-calculator.globalVariable.hover.cMinimize = undefined;
-calculator.globalVariable.hover.cResults = undefined;
-calculator.globalVariable.hover.cTitle = undefined;
-calculator.globalVariable.hover.cButton = undefined;
 
 calculator.decisionSlider.leader.isFlashing;
 
@@ -2253,11 +2235,6 @@ calculator.slider.of2.oninput = function() {
 ////////////////////////// HOVER ///////////////////////////
 ////////////////////////// HOVER ///////////////////////////
 
-//------------------------------------------------//
-//------------------------------------------------//
-//------------ DECISION SLIDER SECTIONS ----------//
-//------------------------------------------------//
-//------------------------------------------------//
 
 //----- LEADER DECISION SLIDER ------//
 
@@ -2272,7 +2249,6 @@ $('#dSliderL').hover(
 
         calculator.globalVariable.enervateLeaderLeft = true;
         calculator.icons.enervate.leaderLeft(0);
-        calculator.globalVariable.enervate2LeaderLeft = false;
 
         $('.activeLeaderLeft').css({'opacity':'1'});
         $('.passiveLeaderLeft').css({'opacity':'0'});
@@ -2290,8 +2266,6 @@ $('#dSliderL').hover(
         calculator.graphics.update.pie();
 
         calculator.globalVariable.enervateLeaderLeft = false;
-        calculator.globalVariable.enervate2LeaderLeft = true;
-        calculator.icons.enervate2.leaderLeft(0);
 
         $('.activeLeaderLeft').css({'opacity':'0'});
         $('.passiveLeaderLeft').css({'opacity':'1'});
@@ -2305,63 +2279,12 @@ $('.inputL').hover(
 
     function() {
 
-        // even the follower results are not shown make sure to display the ghost title for contest on top of leader icons
-        if(!calculator.space.hsResultsTopIsOpen && !calculator.space.hsResultsBottomIsOpen) {
-
-            if(calculator.globalVariable.hover.hsGhostTitle){
-                calculator.titles.hs.ghost.text();
-                calculator.titles.hs.ghost.show();
-            }
-
-        }
-
-        if(calculator.globalVariable.dynamicDisplay && !calculator.space.hsResultsTopIsOpen && !calculator.space.hsResultsBottomIsOpen && calculator.globalVariable.subjectiveView && calculator.globalVariable.subjectiveIndex === -1) {
-
-            if(calculator.globalVariable.hover.hsGhostTitle){
-                calculator.titles.hs.ghost.text();
-                calculator.titles.hs.ghost.show();
-            }
-
-        }
-
-        // hs title
-        if(calculator.globalVariable.hover.hsMainTitle){
-            calculator.titles.hs.hide();
-        }
-
-        // contest maximize
-        if(calculator.globalVariable.hover.cMinimize) {
-            calculator.section.contest.minimize(true);
-        }
-
-        // hs minimize
-        if(calculator.globalVariable.hover.hsMinimize) {
-            calculator.section.hs.minimize(true);
-        }
-
-        // hs icon
-        if(calculator.globalVariable.hover.hsIcons){
-            calculator.section.hs.opacity.SFiALiFiS([0.8,0.3,1,1,1,0]);
-            calculator.section.hs.set.iconPosition('bottom');
-        }
-
-        // hs button
-        if(calculator.globalVariable.hover.hsButton){
-            calculator.button.display.spinTop(false);
-        }
-
-        calculator.globalVariable.enervate2LeaderLeft = true;
-        calculator.icons.enervate2.leaderLeft(0);
-
-        $('.decisionWrapL').css({'transition':'0.7s', 'transform':'scale(1.1)'});
-        $('.bswLeft').css({'transition':'0.7s', 'transform':'scale(1.1)'});
+        $('.decisionWrapL').css({'transition':'0.7s', 'transform':'scale(1.04)'});
+        $('.bswLeft').css({'transition':'0.7s', 'transform':'scale(1.04)'});
 
         if(calculator.globalVariable.dynamicDisplay && calculator.globalVariable.aBitOfWaitingIsDone) {
 
-            // hs results
-            if(calculator.globalVariable.hover.hsResults){
-                calculator.results.hide.followerOutcomesAll();
-            }
+        calculator.results.hide.followerOutcomesAll();
 
         }
 
@@ -2373,8 +2296,6 @@ $('.inputL').hover(
 
     },
     function() {
-
-        calculator.globalVariable.enervate2LeaderLeft = false;
 
         $('.decisionWrapL').css({'transition':'0.3s', 'transform':'scale(1)'});
         $('.bswLeft').css({'transition':'0.7s', 'transform':'scale(1)'});
@@ -2436,7 +2357,7 @@ $('.inputF').hover(
 
     function() {
 
-        $('.decisionWrapF').css({'transition':'0.3s', 'transform':'scale(1.1)'});
+        $('.decisionWrapF').css({'transition':'0.3s', 'transform':'scale(1.04)'});
 
         if(calculator.globalVariable.subjectiveIndex === 0) {
             $('.bf1').css({'transition':'0.3s', 'box-shadow':'0px 0px 3px 3px lime', 'transform':'scale(1.04)'});
@@ -2490,13 +2411,6 @@ $('.inputF').hover(
 )
 
 
-
-//------------------------------------------------//
-//------------------------------------------------//
-//-------------- CONTEST SECTION -----------------//
-//------------------------------------------------//
-//------------------------------------------------//
-
 //----- LEFT HORIZONTAL SLIDER -----//
 
 $('#lSlider1').hover(
@@ -2507,14 +2421,9 @@ $('#lSlider1').hover(
 
         calculator.globalVariable.enervateLeaderLeft = true;
         calculator.icons.enervate.leaderLeft(0);
-        calculator.globalVariable.enervate2LeaderLeft = false;
 
         $('.activeLeaderLeft').css({'opacity':'1'});
         $('.passiveLeaderLeft').css({'opacity':'0'});
-
-        $('.activeFollowerLeft').css({'opacity':'1'});
-        $('.passiveFollowerLeft').css({'opacity':'0'});
-
         setTimeout(()=>calculator.graphics.update.barLabelX('barl1', true), 150);
         // calculator.questions.spin2.l1();
 
@@ -2525,15 +2434,9 @@ $('#lSlider1').hover(
         calculator.graphics.update.pie();
 
         calculator.globalVariable.enervateLeaderLeft = false;
-        calculator.globalVariable.enervate2LeaderLeft = true;
-        calculator.icons.enervate2.leaderLeft(0);
 
         $('.activeLeaderLeft').css({'opacity':'0'});
         $('.passiveLeaderLeft').css({'opacity':'1'});
-
-        $('.activeFollowerLeft').css({'opacity':'0'});
-        $('.passiveFollowerLeft').css({'opacity':'1'});
-
         setTimeout(()=>calculator.graphics.update.barLabelX('barl1', false), 400);
         calculator.graphics.update.barGridX('barl1', false);
 
@@ -2542,19 +2445,11 @@ $('#lSlider1').hover(
 
 $('.bswLeft').hover(
     function() {
-
-        calculator.globalVariable.enervate2LeaderLeft = true;
-        calculator.icons.enervate2.leaderLeft(0);
-
         $('.l1vibrate').css({'transition':'0s', 'opacity':'0'});
-        $('.decisionWrapL').css({'transition':'0.7s', 'transform':'scale(1.1)'});
-        $('.bswLeft').css({'transition':'0.7s', 'transform':'scale(1.1)'});
+        $('.decisionWrapL').css({'transition':'0.7s', 'transform':'scale(1.04)'});
+        $('.bswLeft').css({'transition':'0.7s', 'transform':'scale(1.04)'});
         $('.bswLeft').css({'transition':'0.7s', 'box-shadow':'0px 6px 6px 2px black'});
-
-        if(calculator.globalVariable.hover.cButton) {
-            calculator.button.display.spinBottom(false);
-        }
-
+        calculator.button.display.spinBottom(false);
         calculator.questions.spin1.l1();
 
         if(calculator.lock.switch.all[0]) {
@@ -2565,17 +2460,10 @@ $('.bswLeft').hover(
 
     },
     function() {
-
-        calculator.globalVariable.enervate2LeaderLeft = false;
-
         $('.decisionWrapL').css({'transition':'0.7s', 'transform':'scale(1)'});
         $('.bswLeft').css({'transition':'0.7s', 'transform':'scale(1)'});
         $('.bswLeft').css({'transition':'0.7s', 'box-shadow':'0px 1px 1px 0px black'});
-
-        if(calculator.globalVariable.hover.cButton) {
-            calculator.button.display.spinBottom(true);
-        }
-
+        calculator.button.display.spinBottom(true);
         calculator.questions.spin2.l1();
         calculator.lock.switch.l1 = false;
 
@@ -2594,14 +2482,8 @@ $('#olSlider1').hover(
         calculator.globalVariable.enervateLeaderRight = true;
         calculator.icons.enervate.leaderRight(0);
 
-        calculator.globalVariable.enervate2LeaderRight = false;
-
         $('.activeLeaderRight').css({'opacity':'1'});
         $('.passiveLeaderRight').css({'opacity':'0'});
-
-        $('.activeFollowerRight').css({'opacity':'1'});
-        $('.passiveFollowerRight').css({'opacity':'0'});
-
         setTimeout(()=>calculator.graphics.update.barLabelX('barl2', true), 150);
         // calculator.questions.spin2.l2();
 
@@ -2612,15 +2494,9 @@ $('#olSlider1').hover(
         calculator.graphics.update.pie();
 
         calculator.globalVariable.enervateLeaderRight = false;
-        calculator.globalVariable.enervate2LeaderRight = true;
-        calculator.icons.enervate2.leaderRight(0);
 
         $('.activeLeaderRight').css({'opacity':'0'});
         $('.passiveLeaderRight').css({'opacity':'1'});
-
-        $('.activeFollowerRight').css({'opacity':'0'});
-        $('.passiveFollowerRight').css({'opacity':'1'});
-
         setTimeout(()=>calculator.graphics.update.barLabelX('barl2', false), 400);
         calculator.graphics.update.barGridX('barl2', false);
 
@@ -2630,18 +2506,10 @@ $('#olSlider1').hover(
 $('.bswRight').hover(
 
     function() {
-
-        calculator.globalVariable.enervate2LeaderRight = true;
-        calculator.icons.enervate2.leaderRight(0);
-
         $('.l2vibrate').css({'transition':'0s', 'opacity':'0'});
-        $('.bswRight').css({'transition':'0.7s', 'transform':'scale(1.1)'});
+        $('.bswRight').css({'transition':'0.7s', 'transform':'scale(1.04)'});
         $('.bswRight').css({'transition':'0.7s', 'box-shadow':'0px 6px 6px 2px black'});
-
-        if(calculator.globalVariable.hover.cButton) {
-            calculator.button.display.spinBottom(false);
-        }
-
+        calculator.button.display.spinBottom(false);
         calculator.questions.spin1.l2();
 
         if(calculator.lock.switch.all[1]) {
@@ -2652,16 +2520,9 @@ $('.bswRight').hover(
 
     },
     function() {
-
-        calculator.globalVariable.enervate2LeaderRight = false
-
         $('.bswRight').css({'transition':'0.7s', 'transform':'scale(1)'});
         $('.bswRight').css({'transition':'0.7s', 'box-shadow':'0px 1px 1px 0px black'});
-
-        if(calculator.globalVariable.hover.cButton) {
-            calculator.button.display.spinBottom(true);
-        }
-
+        calculator.button.display.spinBottom(true);
         calculator.questions.spin2.l2();
         calculator.lock.switch.l2 = false;
 
@@ -2669,13 +2530,6 @@ $('.bswRight').hover(
 
 );
 
-
-
-//------------------------------------------------//
-//------------------------------------------------//
-//------------- HELP SABOTAGE SECTION ------------//
-//------------------------------------------------//
-//------------------------------------------------//
 
 //------ FOLLOWER 1 SLIDER ------//
 
@@ -2693,7 +2547,6 @@ $('#vSlider1').hover(
         // calculator.questions.spin2.f1();
         calculator.globalVariable.enervateFollowerF1 = true;
         calculator.icons.enervate.followerF1(0);
-        calculator.globalVariable.enervate2FollowerF1 = false;
 
         },
 
@@ -2709,9 +2562,7 @@ $('#vSlider1').hover(
         calculator.section.hs.opacity.activeFollowerIcon('spf1L11', false);
         calculator.graphics.update.barGridY('barf1', false);
 
-        calculator.globalVariable.enervateFollowerF1 = false;
-        calculator.globalVariable.enervate2FollowerF1 = true;
-        calculator.icons.enervate2.followerF1(0);
+        calculator.globalVariable.enervateFollowerOF1 = false;
 
     }
 );
@@ -2720,31 +2571,27 @@ $('.lbf1').hover(
 
     function() {
 
-        calculator.globalVariable.enervate2FollowerF1 = true;
-        calculator.icons.enervate2.followerF1(0);
-
         $('#barf1').css({'transition':'0.7s', 'transform':'scale(1.04)'});
 
-        if(calculator.globalVariable.dynamicDisplay && calculator.globalVariable.aBitOfWaitingIsDone) {
+        if(!calculator.globalVariable.sectionHoversDisabled){
 
-            if(calculator.globalVariable.hover.hsResults){
-                calculator.results.hide.followerOutcomesBottom();
+            if(calculator.globalVariable.dynamicDisplay && calculator.globalVariable.aBitOfWaitingIsDone) {
+                if(calculator.globalVariable.display.hsResults && calculator.globalVariable.display.cResults){
+                    calculator.results.hide.followerOutcomesBottom();
+                }
             }
 
-        }
+            calculator.questions.spin1.f1();
 
-        calculator.questions.spin1.f1();
-
-        if(calculator.globalVariable.hover.hsButton){
             calculator.button.display.spinTop(false);
-        }
 
-        if(calculator.space.hsResultsTopIsOpen){
-            calculator.button.display.minTop(false);
-            calculator.button.disable.minTop();
-        }
+            if(calculator.space.hsResultsTopIsOpen){
+                calculator.button.display.minTop(false);
+                calculator.button.disable.minTop();
+            }
 
-        calculator.questions.spin1.f1();
+            calculator.questions.spin1.f1();
+        }
 
         if(calculator.lock.switch.all[2]) {
 
@@ -2756,28 +2603,27 @@ $('.lbf1').hover(
     },
     function() {
 
-        calculator.globalVariable.enervate2FollowerF1 = false;
-
         $('#barf1').css({'transition':'0.7s', 'transform':'scale(1)'});
 
-        if(calculator.globalVariable.dynamicDisplay && calculator.globalVariable.aBitOfWaitingIsDone) {
+        if(!calculator.globalVariable.sectionHoversDisabled){
 
-            if(calculator.globalVariable.hover.hsResults){
-                calculator.results.show.followerOutcomesBottom();
+            if(calculator.globalVariable.dynamicDisplay && calculator.globalVariable.aBitOfWaitingIsDone) {
+
+                if(calculator.globalVariable.display.hsResults && calculator.globalVariable.display.cResults){
+                    calculator.results.show.followerOutcomesBottom();
+                }
+
             }
 
-        }
-
-        if(calculator.globalVariable.hover.hsButton){
             calculator.button.display.spinTop(true);
-        }
 
-        if(calculator.space.hsResultsTopIsOpen){
-            calculator.button.display.minTop(true);
-            calculator.button.enable.minTop();
-        }
+            if(calculator.space.hsResultsTopIsOpen){
+                calculator.button.display.minTop(true);
+                calculator.button.enable.minTop();
+            }
 
-        calculator.questions.spin2.f1();
+            calculator.questions.spin2.f1();
+        }
 
         calculator.lock.switch.f1 = false;
 
@@ -2802,8 +2648,6 @@ $('#vSlider2').hover(
         // calculator.questions.spin2.f2();
         calculator.globalVariable.enervateFollowerF2 = true;
         calculator.icons.enervate.followerF2(0);
-        calculator.globalVariable.enervate2FollowerF2 = false;
-
 
     },
     function() {
@@ -2817,10 +2661,7 @@ $('#vSlider2').hover(
         setTimeout(()=>calculator.graphics.update.barLabelY('barf2', false), 400);
         calculator.graphics.update.barGridY('barf2', false);
         calculator.section.hs.opacity.activeFollowerIcon('spf1L12', false);
-
         calculator.globalVariable.enervateFollowerF2 = false;
-        calculator.globalVariable.enervate2FollowerF2 = true;
-        calculator.icons.enervate2.followerF2(0);
 
     }
 );
@@ -2829,60 +2670,59 @@ $('.lbf2').hover(
 
     function() {
 
-        calculator.globalVariable.enervate2FollowerF2 = true;
-        calculator.icons.enervate2.followerF2(0);
-
         $('#barf2').css({'transition':'0.7s', 'transform':'scale(1.04)'});
 
-        if(calculator.globalVariable.dynamicDisplay && calculator.globalVariable.aBitOfWaitingIsDone) {
+        if(!calculator.globalVariable.sectionHoversDisabled){
 
-            if(calculator.globalVariable.hover.hsResults){
-                calculator.results.hide.followerOutcomesBottom();
+            if(calculator.globalVariable.dynamicDisplay && calculator.globalVariable.aBitOfWaitingIsDone) {
+
+                if(calculator.globalVariable.display.hsResults && calculator.globalVariable.display.cResults){
+                    calculator.results.hide.followerOutcomesBottom();
+                }
+
             }
 
-        }
-
-        if(calculator.globalVariable.hover.hsTop){
             calculator.button.display.spinTop(false);
-        }
 
-        if(calculator.space.hsResultsTopIsOpen){
-            calculator.button.display.minTop(false);
-            calculator.button.disable.minTop();
-        }
+            if(calculator.space.hsResultsTopIsOpen){
+                calculator.button.display.minTop(false);
+                calculator.button.disable.minTop();
+            }
 
-        calculator.questions.spin1.f2();
+            calculator.questions.spin1.f2();
 
-        if(calculator.lock.switch.all[3]) {
+            if(calculator.lock.switch.all[3]) {
 
-            calculator.lock.switch.f2 = true;
-            calculator.lock.vibrate.f2(1);
+                calculator.lock.switch.f2 = true;
+                calculator.lock.vibrate.f2(1);
 
+            }
         }
 
     },
     function() {
 
-        calculator.globalVariable.enervate2FollowerF2 = false;
-
         $('#barf2').css({'transition':'0.7s', 'transform':'scale(1)'});
 
-        if(calculator.globalVariable.dynamicDisplay && calculator.globalVariable.aBitOfWaitingIsDone) {
-            if(calculator.globalVariable.hover.hsResults){
-                calculator.results.show.followerOutcomesBottom();
+        if(!calculator.globalVariable.sectionHoversDisabled){
+
+            if(calculator.globalVariable.dynamicDisplay && calculator.globalVariable.aBitOfWaitingIsDone) {
+
+                if(calculator.globalVariable.display.hsResults && calculator.globalVariable.display.cResults){
+                    calculator.results.show.followerOutcomesBottom();
+                }
+
             }
-        }
 
-        if(calculator.globalVariable.hover.hsButton){
             calculator.button.display.spinTop(true);
-        }
 
-        if(calculator.space.hsResultsTopIsOpen){
-            calculator.button.display.minTop(true);
-            calculator.button.enable.minTop();
-        }
+            if(calculator.space.hsResultsTopIsOpen){
+                calculator.button.display.minTop(true);
+                calculator.button.enable.minTop();
+            }
 
-        calculator.questions.spin2.f2();
+            calculator.questions.spin2.f2();
+        }
 
         calculator.lock.switch.f2 = false;
 
@@ -2907,7 +2747,6 @@ $('#ovSlider1').hover(
         // calculator.questions.spin2.of2();
         calculator.globalVariable.enervateFollowerOF1 = true;
         calculator.icons.enervate.followerOF1(0);
-        calculator.globalVariable.enervate2FollowerOF1 = false;
 
     },
     function() {
@@ -2921,10 +2760,7 @@ $('#ovSlider1').hover(
         calculator.graphics.update.barGridY('obarf1', false);
         setTimeout(()=>calculator.graphics.update.barLabelY('obarf1', false), 400);
         calculator.section.hs.opacity.activeFollowerIcon('spf1L21', false);
-
         calculator.globalVariable.enervateFollowerOF1 = false;
-        calculator.globalVariable.enervate2FollowerOF1 = true;
-        calculator.icons.enervate2.followerOF1(0);
 
     }
 );
@@ -2933,29 +2769,26 @@ $('.rbf1').hover(
 
     function() {
 
-        calculator.globalVariable.enervate2FollowerOF1 = true;
-        calculator.icons.enervate2.followerOF1(0);
-
         $('#obarf1').css({'transition':'0.7s', 'transform':'scale(1.04)'});
 
-        if(calculator.globalVariable.dynamicDisplay && calculator.globalVariable.aBitOfWaitingIsDone) {
+        if(!calculator.globalVariable.sectionHoversDisabled){
+            if(calculator.globalVariable.dynamicDisplay && calculator.globalVariable.aBitOfWaitingIsDone) {
 
-            if(calculator.globalVariable.hover.hsResults){
-                calculator.results.hide.followerOutcomesBottom();
+                if(calculator.globalVariable.display.hsResults && calculator.globalVariable.display.cResults){
+                    calculator.results.hide.followerOutcomesBottom();
+                }
+
             }
 
-        }
-
-        if(calculator.globalVariable.hover.hsButton){
             calculator.button.display.spinTop(false);
-        }
 
-        if(calculator.space.hsResultsTopIsOpen){
-            calculator.button.display.minTop(false);
-            calculator.button.disable.minTop();
-        }
+            if(calculator.space.hsResultsTopIsOpen){
+                calculator.button.display.minTop(false);
+                calculator.button.disable.minTop();
+            }
 
-        calculator.questions.spin1.of1();
+            calculator.questions.spin1.of1();
+        }
 
         if(calculator.lock.switch.all[4]) {
 
@@ -2967,28 +2800,26 @@ $('.rbf1').hover(
     },
     function() {
 
-        calculator.globalVariable.enervate2FollowerOF1 = false;
-
         $('#obarf1').css({'transition':'0.7s', 'transform':'scale(1)'});
 
-        if(calculator.globalVariable.dynamicDisplay && calculator.globalVariable.aBitOfWaitingIsDone) {
+        if(!calculator.globalVariable.sectionHoversDisabled){
+            if(calculator.globalVariable.dynamicDisplay && calculator.globalVariable.aBitOfWaitingIsDone) {
 
-            if(calculator.globalVariable.hover.hsResults){
-                calculator.results.show.followerOutcomesBottom();
+                if(calculator.globalVariable.display.hsResults && calculator.globalVariable.display.cResults){
+                    calculator.results.show.followerOutcomesBottom();
+                }
+
             }
 
-        }
-
-        if(calculator.globalVariable.hover.hsButton){
             calculator.button.display.spinTop(true);
-        }
 
-        if(calculator.space.hsResultsTopIsOpen){
-            calculator.button.display.minTop(true);
-            calculator.button.enable.minTop();
-        }
+            if(calculator.space.hsResultsTopIsOpen){
+                calculator.button.display.minTop(true);
+                calculator.button.enable.minTop();
+            }
 
-        calculator.questions.spin2.of1();
+            calculator.questions.spin2.of1();
+        }
 
         calculator.lock.switch.of1 = false;
 
@@ -3011,10 +2842,8 @@ $('#ovSlider2').hover(
         setTimeout(()=>calculator.graphics.update.barLabelY('obarf2', true), 150);
         calculator.section.hs.opacity.activeFollowerIcon('spf1L22', true);
         // calculator.questions.spin2.of2();
-
         calculator.globalVariable.enervateFollowerOF2 = true;
         calculator.icons.enervate.followerOF2(0);
-        calculator.globalVariable.enervate2FollowerOF2 = false;
 
     },
     function() {
@@ -3028,10 +2857,7 @@ $('#ovSlider2').hover(
         calculator.graphics.update.barGridY('obarf2', false);
         setTimeout(()=>calculator.graphics.update.barLabelY('obarf2', false), 400);
         calculator.section.hs.opacity.activeFollowerIcon('spf1L22', false);
-
         calculator.globalVariable.enervateFollowerOF2 = false;
-        calculator.globalVariable.enervate2FollowerOF2 = true;
-        calculator.icons.enervate2.followerOF2(0);
 
     }
 );
@@ -3040,27 +2866,27 @@ $('.rbf2').hover(
 
     function() {
 
-        calculator.globalVariable.enervate2FollowerOF2 = true;
-        calculator.icons.enervate2.followerOF2(0);
-
         $('#obarf2').css({'transition':'0.7s', 'transform':'scale(1.04)'});
 
-        if(calculator.globalVariable.dynamicDisplay && calculator.globalVariable.aBitOfWaitingIsDone) {
-            if(calculator.globalVariable.hover.hsResults){
-                calculator.results.hide.followerOutcomesBottom();
+        if(!calculator.globalVariable.sectionHoversDisabled){
+
+            if(calculator.globalVariable.dynamicDisplay && calculator.globalVariable.aBitOfWaitingIsDone) {
+
+                if(calculator.globalVariable.display.hsResults && calculator.globalVariable.display.cResults){
+                    calculator.results.hide.followerOutcomesBottom();
+                }
+
             }
-        }
 
-        if(calculator.globalVariable.hover.hsButton){
             calculator.button.display.spinTop(false);
-        }
 
-        if(calculator.space.hsResultsTopIsOpen){
-            calculator.button.display.minTop(false);
-            calculator.button.disable.minTop();
-        }
+            if(calculator.space.hsResultsTopIsOpen){
+                calculator.button.display.minTop(false);
+                calculator.button.disable.minTop();
+            }
 
-        calculator.questions.spin1.of2();
+            calculator.questions.spin1.of2();
+        }
 
         if(calculator.lock.switch.all[5]) {
 
@@ -3072,26 +2898,27 @@ $('.rbf2').hover(
     },
     function() {
 
-        calculator.globalVariable.enervate2FollowerOF2 = false;
-
         $('#obarf2').css({'transition':'0.7s', 'transform':'scale(1)'});
 
-        if(calculator.globalVariable.dynamicDisplay && calculator.globalVariable.aBitOfWaitingIsDone) {
-            if(calculator.globalVariable.hover.hsResults){
-                calculator.results.show.followerOutcomesBottom();
+        if(!calculator.globalVariable.sectionHoversDisabled){
+
+            if(calculator.globalVariable.dynamicDisplay && calculator.globalVariable.aBitOfWaitingIsDone) {
+
+                if(calculator.globalVariable.display.hsResults && calculator.globalVariable.display.cResults){
+                    calculator.results.show.followerOutcomesBottom();
+                }
+
             }
-        }
 
-        if(calculator.globalVariable.hover.hsButton){
             calculator.button.display.spinTop(true);
-        }
 
-        if(calculator.space.hsResultsTopIsOpen){
-            calculator.button.display.minTop(true);
-            calculator.button.enable.minTop();
-        }
+            if(calculator.space.hsResultsTopIsOpen){
+                calculator.button.display.minTop(true);
+                calculator.button.enable.minTop();
+            }
 
-        calculator.questions.spin2.of2();
+            calculator.questions.spin2.of2();
+        }
 
         calculator.lock.switch.of2 = false;
 
@@ -3100,117 +2927,69 @@ $('.rbf2').hover(
 );
 
 
-
-//------------------------------------------------//
-//------------------------------------------------//
-//------------------ MAIN BODIES -----------------//
-//------------------------------------------------//
-//------------------------------------------------//
-
 //------ HELP SABOTAGE SECTION -----//
 
 $('.hsWrap').hover(
 
     function() {
 
-        if(calculator.globalVariable.aBitOfWaitingIsDone) {
+        if(!calculator.globalVariable.sectionHoversDisabled){
 
+            if(calculator.globalVariable.aBitOfWaitingIsDone) {
 
-            // contes hide title
-            if(calculator.globalVariable.hover.cTitle) {
                 calculator.titles.contest.hide();
-            }
-
-            // contest hide botton
-            if(calculator.globalVariable.hover.cButton) {
                 calculator.button.display.spinBottom(false);
-            }
 
-            // hs icon setup
-            if(calculator.globalVariable.hover.hsIcons) {
                 calculator.section.hs.opacity.SFiALiFiS([1,1,1,0.7,0,1]);
                 calculator.section.hs.set.iconPosition('center');
-            }
-
-            // hs show main title
-            if(calculator.globalVariable.hover.hsMainTitle) {
                 calculator.titles.hs.show();
-            }
-
-            // hs show button
-            if(calculator.globalVariable.hover.hsButton) {
                 calculator.button.display.spinTop(true);
-            }
 
-            // turn of the hovering ability on showing the results
-            if(calculator.globalVariable.dynamicDisplay) {
+                if(calculator.globalVariable.dynamicDisplay) {
 
-                // contest hide results
-                if(calculator.globalVariable.hover.cResults) {
-                    calculator.results.hide.leaderOutcomes();
+                    if(calculator.globalVariable.display.hsResults && calculator.globalVariable.display.cResults){
+                        calculator.results.hide.leaderOutcomes();
+                        calculator.results.show.followerOutcomesAll();
+                    }
+
+                    calculator.button.display.minTop(true);
+                    calculator.button.enable.minTop();
+
+                    calculator.button.display.minBottom(false);
+                    calculator.button.disable.minBottom();
+                    calculator.titles.update.position();
+
                 }
 
-                // hs show results
-                if(calculator.globalVariable.hover.hsResults) {
-                    calculator.results.show.followerOutcomesAll();
-                }
 
-                calculator.button.display.minTop(true);
-                calculator.button.enable.minTop();
-
-                calculator.button.display.minBottom(false);
-                calculator.button.disable.minBottom();
-
-                calculator.titles.update.position();
-
-            }
-
-            // hs maximize
-            if(calculator.globalVariable.hover.hsMinimize) {
-                calculator.section.hs.minimize(false);
-            }
-
-            // contest minimize
-            if(calculator.globalVariable.hover.cMinimize) {
-                calculator.section.contest.minimize(true);
-
-            }
-
-            // hs ghost title chaos (so far it works)
-
-            if(!calculator.globalVariable.dynamicDisplay && !calculator.space.hsResultsTopIsOpen && !calculator.space.open.hsResultsBottomIsOpen) {
-
-                if(calculator.globalVariable.hover.hsGhostTitle){
+                if(!calculator.globalVariable.dynamicDisplay && !calculator.space.hsResultsTopIsOpen && !calculator.space.open.hsResultsBottomIsOpen) {
 
                     calculator.titles.hs.ghost.text();
                     calculator.titles.hs.ghost.hide();
 
                 }
 
-            }
-
-            if(calculator.globalVariable.dynamicDisplay && calculator.space.hsResultsTopIsOpen && calculator.space.hsResultsBottomIsOpen && calculator.globalVariable.subjectiveView && calculator.globalVariable.subjectiveIndex === -1) {
-
-                if(calculator.globalVariable.hover.hsGhostTitle){
+                if(calculator.globalVariable.dynamicDisplay && calculator.space.hsResultsTopIsOpen && calculator.space.hsResultsBottomIsOpen && calculator.globalVariable.subjectiveView && calculator.globalVariable.subjectiveIndex === -1) {
 
                     calculator.titles.hs.ghost.text();
                     calculator.titles.hs.ghost.hide();
 
                 }
 
-            }
+                if(calculator.globalVariable.display.resultSwitchesActive){
 
-            if(calculator.globalVariable.dynamicDisplay) {
+                    if(!calculator.globalVariable.display.hsResults && calculator.globalVariable.display.cResults) {
 
-                if(calculator.globalVariable.hover.hsGhostTitle){
+                        calculator.titles.contest.show();
 
-                    calculator.titles.hs.ghost.text();
-                    calculator.titles.hs.ghost.hide();
+                        calculator.titles.hs.ghost.text();
+                        calculator.titles.hs.ghost.hide();
+
+                    }
 
                 }
 
             }
-
         }
 
     },
@@ -3226,93 +3005,66 @@ $('.contestSection').hover(
 
     function() {
 
-        if(calculator.globalVariable.aBitOfWaitingIsDone) {
+        if(!calculator.globalVariable.sectionHoversDisabled){
 
-            // contest show button
-            if(calculator.globalVariable.hover.cButton){
-                calculator.button.enable.spinBottom();
-                calculator.button.display.spinBottom(true);
-            }
+            if(calculator.globalVariable.aBitOfWaitingIsDone) {
 
-            // hs setup icon
-            if(calculator.globalVariable.hover.hsIcons){
-                calculator.section.hs.opacity.SFiALiFiS([0.8,0.3,1,1,1,0]);
+                if(calculator.globalVariable.hover.bottomTextAndBotton) {
+                    calculator.button.enable.spinBottom();
+                    calculator.button.display.spinBottom(true);
+                }
+
+                calculator.section.hs.opacity.SFiALiFiS([0.7,0.5,1,1,1,0]);
                 calculator.section.hs.set.iconPosition('bottom');
-            }
-
-            // hs title
-            if(calculator.globalVariable.hover.hsMainTitle){
                 calculator.titles.hs.hide();
-            }
-
-            // hs button
-            if(calculator.globalVariable.hover.hsButton){
                 calculator.button.display.spinTop(false);
-            }
 
-            // c title
-            if(calculator.globalVariable.hover.cTitle){
-                calculator.titles.contest.show();
-            }
+                if(calculator.globalVariable.dynamicDisplay) {
 
-            if(calculator.globalVariable.dynamicDisplay) {
+                    if(calculator.globalVariable.display.hsResults && calculator.globalVariable.display.cResults) {
 
-                // // c title
-                // if(calculator.globalVariable.hover.cTitle){
-                //     calculator.titles.contest.show();
-                // }
-                // c results
-                if(calculator.globalVariable.hover.cResults){
-                    calculator.results.show.leaderOutcomes();
+                        calculator.titles.contest.show();
+                        calculator.results.show.leaderOutcomes();
+                        calculator.results.hide.followerOutcomesAll();
+
+                    }
+
+                    calculator.button.display.minTop(false);
+                    calculator.button.disable.minTop();
+
+                    calculator.button.display.minBottom(true);
+                    calculator.button.enable.minBottom();
+
                 }
-                //----//
 
-                // hs results
-                if(calculator.globalVariable.hover.hsResults){
-                    calculator.results.hide.followerOutcomesAll();
-                }
-                // hs minimize button on the decision slider of hs
-                calculator.button.display.minTop(false);
-                calculator.button.disable.minTop();
+                if(!calculator.globalVariable.dynamicDisplay && !calculator.space.hsResultsTopIsOpen && !calculator.space.hsResultsBottomIsOpen) {
 
-                //----//
-
-                // contest minimize button on the decision slider of contest
-                calculator.button.display.minBottom(true);
-                calculator.button.enable.minBottom();
-
-            }
-
-            // hs minimize
-            if(calculator.globalVariable.hover.hsMinimize) {
-                calculator.section.hs.minimize(true);
-            }
-
-            // contest maximize
-            if(calculator.globalVariable.hover.cMinimize) {
-                calculator.section.contest.minimize(false);
-            }
-
-            // even the follower results are not shown make sure to display the ghost title for contest on top of leader icons
-            if(!calculator.space.hsResultsTopIsOpen && !calculator.space.hsResultsBottomIsOpen) {
-
-                if(calculator.globalVariable.hover.hsGhostTitle){
                     calculator.titles.hs.ghost.text();
                     calculator.titles.hs.ghost.show();
+
                 }
 
-            }
+                if(calculator.globalVariable.dynamicDisplay && !calculator.space.hsResultsTopIsOpen && !calculator.space.hsResultsBottomIsOpen && calculator.globalVariable.subjectiveView && calculator.globalVariable.subjectiveIndex === -1) {
 
-            if(calculator.globalVariable.dynamicDisplay && !calculator.space.hsResultsTopIsOpen && !calculator.space.hsResultsBottomIsOpen && calculator.globalVariable.subjectiveView && calculator.globalVariable.subjectiveIndex === -1) {
-
-                if(calculator.globalVariable.hover.hsGhostTitle){
                     calculator.titles.hs.ghost.text();
                     calculator.titles.hs.ghost.show();
+
+                }
+
+                if(calculator.globalVariable.display.resultSwitchesActive){
+
+                    if(!calculator.globalVariable.display.hsResults && calculator.globalVariable.display.cResults) {
+
+                        calculator.titles.contest.show();
+
+                        calculator.titles.hs.ghost.text();
+                        calculator.titles.hs.ghost.show();
+
+                    }
+
                 }
 
             }
-
-
         }
 
     },
@@ -3322,12 +3074,7 @@ $('.contestSection').hover(
 )
 
 
-
-//------------------------------------------------//
-//------------------------------------------------//
-//----------------- SPIN BUTTONS -----------------//
-//------------------------------------------------//
-//------------------------------------------------//
+//----- SPIN BUTTONS -----//
 
 var sp23C = 0;
 $('#spinImage23').hover(
@@ -3442,7 +3189,6 @@ calculator.titles.hs.ghost.show = function() {
 
     $('.ctGhost').css({'transition':'0.3s', 'transition-delay':'0s', 'transform' : 'rotate3d(1, 0, 0, 0turn)'});
     $('.ctGhost').css({'opacity':'1'});
-    calculator.titles.hs.ghost.adjustHeight();
 
 }
 
@@ -3464,48 +3210,21 @@ calculator.titles.opacity.all = function(array) {
 
 }
 
-calculator.titles.hs.ghost.adjustHeight = function() {
-    var myEfi = Math.max(efi, oefi);
-    var marginTop;
-
-    if(myEfi < 1) {
-        marginTop = '125px';
-    } else if(myEfi === 1) {
-        marginTop = '112px';
-    } else if(myEfi === 2) {
-        marginTop = '94px';
-    } else if(myEfi < 6) {
-        marginTop = '86px';
-    } else if(myEfi < 16) {
-        marginTop = '81px';
-    } else {
-        marginTop = '75px';
-    }
-
-    $('.ctGhost').css({'transition':'0.3s', 'margin-top' : marginTop});
-
-}
-
 
 //------- CONTEST TITLE SHOW / HIDE -------//
 
 calculator.titles.contest.show = function() {
 
     $('.ctBottom').css({'transition':'0.3s', 'transition-delay':'0s', 'transform' : 'rotate3d(1, 0, 0, 1turn)', 'opacity':'1'});
-    $('.imageWrap23').css({'transition':'0.3s', 'opacity':'1'});
-
-    calculator.space.open.cResults();
+    $('.imgWrap23').css({'transition':'0.3s', 'opacity':'1'});
 
 }
 
 calculator.titles.contest.hide = function() {
 
     $('.ctBottom').css({'transition':'0.3s', 'transition-delay':'0s', 'transform' : 'rotate3d(1, 0, 0, 0.5turn)'});
-    $('.ctBottom').css({ 'opacity':'0'});
+    $('.ctBottom, .imgWrap23').css({ 'opacity':'0'});
 
-    calculator.space.close.cResults();
-
-    // this is a stupid line negating the method by calling its counterpart
     if(calculator.globalVariable.subjectiveIndex === -1 && calculator.globalVariable.subjectiveView) {
         calculator.titles.contest.show();
     }
@@ -3582,7 +3301,7 @@ calculator.titles.update.textAndColor = function() {
 
         if(calculator.globalVariable.subjectiveView && calculator.globalVariable.subjectiveIndex === -1) {
 
-            $('.contestTitle22, .ghostTitleColor').css({'color':'white',
+            $('.contestTitle22').css({'color':'white',
             'background':'linear-gradient(90deg, rgb(35, 79, 30), rgb(210,210,210))'});
 
         }
@@ -3607,7 +3326,7 @@ calculator.titles.update.textAndColor = function() {
 
         if(calculator.globalVariable.subjectiveView && calculator.globalVariable.subjectiveIndex === -1) {
 
-            $('.contestTitle22, .ghostTitleColor').css({'color':'white',
+            $('.contestTitle22').css({'color':'white',
             'background':'linear-gradient(90deg, rgb(35, 79, 30), rgb(210,210,210))'});
 
         }
@@ -3620,7 +3339,7 @@ calculator.titles.update.textAndColor = function() {
         contestName1.innerHTML = 'IN-GROUP CONTEST A';
         $('.ctWrap').css({'margin-bottom':'-97px', 'margin-top':'0px'});
 
-        $('.contestTitle22, .ghostTitleColor').css({'color':'white',
+        $('.contestTitle22').css({'color':'white',
         'background':'linear-gradient(90deg, rgb(35, 79, 30), rgb(60,60,60))'});
 
     }
@@ -3631,7 +3350,7 @@ calculator.titles.update.textAndColor = function() {
         contestName1.innerHTML = 'IN-GROUP CONTEST A';
         $('.ctWrap').css({'margin-bottom':'-97px', 'margin-top':'0px'});
 
-        $('.contestTitle22, .ghostTitleColor').css({'color':'white',
+        $('.contestTitle22').css({'color':'white',
         'background':'linear-gradient(90deg, rgb(35, 79, 30), rgb(210,210,210))'});
 
     }
@@ -4122,7 +3841,6 @@ calculator.icons.hide.hiddenContest = function() {
 
 calculator.icons.enervate.delayTime = 200;
 
-//-- ENERVATE ACTIVE ICONS --//
 calculator.globalVariable.enervateLeaderLeft = false;
 calculator.icons.enervate.leaderLeft = function(state) {
 
@@ -4239,128 +3957,6 @@ calculator.icons.enervate.followerOF2 = function(state) {
 
     } else {
         $('.spf1L22').css({'transition':'0.3521s', 'transform':'scale(1)'});
-    }
-
-}
-
-
-//-- ENERVATE PASIVE ICONS --//
-calculator.globalVariable.enervate2LeaderLeft = false;
-calculator.icons.enervate2.leaderLeft = function(state) {
-
-    if(calculator.globalVariable.enervate2LeaderLeft) {
-
-        if(state === 0) {
-            $('.lener1').css({'transition':'0.3521s', 'transform':'scale(1.1)'});
-            setTimeout(()=>calculator.icons.enervate2.leaderLeft(1), calculator.icons.enervate.delayTime);
-        }
-        if(state === 1) {
-            $('.lener1').css({'transition':'0.3521s', 'transform':'scale(1)'});
-            setTimeout(()=>calculator.icons.enervate2.leaderLeft(0), calculator.icons.enervate.delayTime);
-        }
-
-    } else {
-        $('.lener1').css({'transition':'0.3521s', 'transform':'scale(1)'});
-    }
-
-}
-
-calculator.globalVariable.enervate2LeaderRight = false;
-calculator.icons.enervate2.leaderRight = function(state) {
-
-    if(calculator.globalVariable.enervate2LeaderRight) {
-
-        if(state === 0) {
-            $('.lener2').css({'transition':'0.3521s', 'transform':'scale(1.1)'});
-            setTimeout(()=>calculator.icons.enervate2.leaderRight(1), calculator.icons.enervate.delayTime);
-        }
-        if(state === 1) {
-            $('.lener2').css({'transition':'0.3521s', 'transform':'scale(1)'});
-            setTimeout(()=>calculator.icons.enervate2.leaderRight(0), calculator.icons.enervate.delayTime);
-        }
-
-    } else {
-        $('.lener2').css({'transition':'0.3521s', 'transform':'scale(1)'});
-    }
-
-}
-
-calculator.globalVariable.enervate2FollowerF1 = false;
-calculator.icons.enervate2.followerF1 = function(state) {
-
-    if(calculator.globalVariable.enervate2FollowerF1) {
-
-        if(state === 0) {
-            $('.fener11').css({'transition':'0.3521s', 'transform':'scale(1.1)'});
-            setTimeout(()=>calculator.icons.enervate2.followerF1(1), calculator.icons.enervate.delayTime);
-        }
-        if(state === 1) {
-            $('.fener11').css({'transition':'0.3521s', 'transform':'scale(1)'});
-            setTimeout(()=>calculator.icons.enervate2.followerF1(0), calculator.icons.enervate.delayTime);
-        }
-
-    } else {
-        $('.fener11').css({'transition':'0.3521s', 'transform':'scale(1)'});
-    }
-
-}
-
-calculator.globalVariable.enervate2FollowerF2 = false;
-calculator.icons.enervate2.followerF2 = function(state) {
-
-    if(calculator.globalVariable.enervate2FollowerF2) {
-
-        if(state === 0) {
-            $('.fener12').css({'transition':'0.3521s', 'transform':'scale(1.1)'});
-            setTimeout(()=>calculator.icons.enervate2.followerF2(1), calculator.icons.enervate.delayTime);
-        }
-        if(state === 1) {
-            $('.fener12').css({'transition':'0.3521s', 'transform':'scale(1)'});
-            setTimeout(()=>calculator.icons.enervate2.followerF2(0), calculator.icons.enervate.delayTime);
-        }
-
-    } else {
-        $('.fener12').css({'transition':'0.3521s', 'transform':'scale(1)'});
-    }
-
-}
-
-calculator.globalVariable.enervate2FollowerOF1 = false;
-calculator.icons.enervate2.followerOF1 = function(state) {
-
-    if(calculator.globalVariable.enervate2FollowerOF1) {
-
-        if(state === 0) {
-            $('.fener21').css({'transition':'0.3521s', 'transform':'scale(1.1)'});
-            setTimeout(()=>calculator.icons.enervate2.followerOF1(1), calculator.icons.enervate.delayTime);
-        }
-        if(state === 1) {
-            $('.fener21').css({'transition':'0.3521s', 'transform':'scale(1)'});
-            setTimeout(()=>calculator.icons.enervate2.followerOF1(0), calculator.icons.enervate.delayTime);
-        }
-
-    } else {
-        $('.fener21').css({'transition':'0.3521s', 'transform':'scale(1)'});
-    }
-
-}
-
-calculator.globalVariable.enervate2FollowerOF2 = false;
-calculator.icons.enervate2.followerOF2 = function(state) {
-
-    if(calculator.globalVariable.enervate2FollowerOF2) {
-
-        if(state === 0) {
-            $('.fener22').css({'transition':'0.3521s', 'transform':'scale(1.1)'});
-            setTimeout(()=>calculator.icons.enervate2.followerOF2(1), calculator.icons.enervate.delayTime);
-        }
-        if(state === 1) {
-            $('.fener22').css({'transition':'0.3521s', 'transform':'scale(1)'});
-            setTimeout(()=>calculator.icons.enervate2.followerOF2(0), calculator.icons.enervate.delayTime);
-        }
-
-    } else {
-        $('.fener22').css({'transition':'0.3521s', 'transform':'scale(1)'});
     }
 
 }
@@ -6008,9 +5604,8 @@ calculator.wheel.spin = function() {
 
     //---//
 
-    calculator.results.softHide.allResults();
-    calculator.button.display.spinTop(false);
-    setTimeout(()=>calculator.button.disable.spinTop(), 300);
+    calculator.results.softHide.all();
+    calculator.button.disable.spinBottomMini();
 
 
     //---//
@@ -6095,21 +5690,6 @@ calculator.space.contestIsOpen = undefined;
 
 calculator.space.contestResultsIsOpen = undefined;
 
-// CONTEST SECTION SPACE MANAGEMENT
-
-calculator.space.open.cResults = function() {
-
-    calculator.space.contestResultsIsOpen = true;
-    calculator.space.update.heights();
-
-}
-
-calculator.space.close.cResults = function() {
-
-    calculator.space.contestResultsIsOpen = false;
-    calculator.space.update.heights();
-
-}
 
 // TOP RESULTS OF HELP / SABOTAGE
 
@@ -6155,13 +5735,13 @@ calculator.space.close.all = function() {
 
     calculator.space.close.hsResultsTop();
     calculator.space.close.hsResultsBottom();
-    calculator.space.close.cResults();
+    calculator.space.contestResultsIsOpen = false;
 
-    // if(calculator.globalVariable.subjectiveIndex === -1 && calculator.globalVariable.subjectiveView) {
-    //     calculator.space.contestResultsIsOpen = true;
-    // }
-    //
-    // calculator.space.update.heights();
+    if(calculator.globalVariable.subjectiveIndex === -1 && calculator.globalVariable.subjectiveView) {
+        calculator.space.contestResultsIsOpen = true;
+    }
+
+    calculator.space.update.heights();
 
 }
 
@@ -6180,7 +5760,7 @@ calculator.space.update.heights = function() {
     var pb = calculator.space.powerBarIsOpen ? 30 : 0;
     var c = calculator.space.contestIsOpen ? 170 : 0;
     var hs = calculator.space.hsIsOpen ? 295 : 0;
-    var cr = calculator.space.contestResultsIsOpen ? 150 : 0;//145 OLD VALUE
+    var cr = calculator.space.contestResultsIsOpen ? 145 : 0;
     var hsT = calculator.space.hsResultsTopIsOpen ? 65 : 0;
     var hsB = calculator.space.hsResultsBottomIsOpen ? 90 : 0;
 
@@ -6192,21 +5772,19 @@ calculator.space.update.heights = function() {
 
     total = total + 'px';
 
-    console.log('********************');
-    console.log('power bar: ' + pb);
-    console.log('contest: ' + c);
-    console.log('contestResult: ' + cr);
-    console.log('hs: ' + hs);
-    console.log('hs Top: ' + hsT);
-    console.log('hs Bottom: ' + hsB);
-    console.log('total: ' + total);
-    console.log('********************');
+    // console.log('********************');
+    // console.log('power bar: ' + pb);
+    // console.log('contest: ' + c);
+    // console.log('contestResult: ' + cr);
+    // console.log('hs: ' + hs);
+    // console.log('hs Top: ' + hsT);
+    // console.log('hs Bottom: ' + hsB);
+    // console.log('total: ' + total);
+    // console.log('********************');
 
 
 
     $('.generalMarginBox').css({'transition':'0.3521s', 'height' : total});
-
-    calculator.section.power.adjust.space();
 
 }
 
@@ -6233,79 +5811,106 @@ calculator.space.update.heights = function() {
 
 calculator.results.show.outcomes = function() {
 
-    calculator.globalVariable.topSpinButtonIsEnabled = true;
-    calculator.globalVariable.bottomSpinButtonIsEnabled = true;
+    calculator.globalVariable.display.resultSwitchesActive = true;
 
-    // enlarge to their original size both section when you display the results
-    calculator.section.hs.minimize(false);
-    calculator.section.contest.minimize(false);
+    if(calculator.globalVariable.display.hsResults && calculator.globalVariable.display.cResults) {
+
+        calculator.globalVariable.topSpinButtonIsEnabled = true;
+        calculator.globalVariable.bottomSpinButtonIsEnabled = true;
 
 
-    //---------- CONTEST SECTION -----------//
-
-    // I do not want the spinButton Bottom to have power to control the space
-    // results and titles are the primary determinantes we can be clever and use this switch accordingly
-    if(calculator.globalVariable.display.cButton) {
-        calculator.button.display.spinBottom(true);
-        setTimeout(()=>calculator.button.enable.spinBottom(), 300);
-    } else {
-        calculator.button.display.spinBottom(false);
-        calculator.button.disable.spinBottom();
-    }
-
-    if(calculator.globalVariable.display.cResults) {
-        calculator.results.show.leaderOutcomes();
-    } else {
-        calculator.results.hide.leaderOutcomes()
-    }
-
-    if(calculator.globalVariable.display.cTitle) {
+        calculator.button.enable.spinBottom();
         calculator.titles.contest.show();
-    } else {
-        calculator.titles.contest.hide();
-    }
+        calculator.results.show.leaderOutcomes();
 
-
-    //-------------- HELP / SABOTAGE SECTION ------------//
-
-    if(calculator.globalVariable.display.hsButton) {
-        calculator.button.display.spinTop(true);
-        setTimeout(()=>calculator.button.enable.spinTop(), 300);
-    }
-
-    if(calculator.globalVariable.display.hsResults) {
+        calculator.button.enable.spinTop();
         calculator.results.show.followerOutcomesAll();
-    } else {
-        calculator.results.hide.followerOutcomesAll();
-    }
-
-    if(calculator.globalVariable.display.hsIcons) {
         calculator.section.hs.opacity.SFiALiFiS([1,1,1,1,0,0]);
         calculator.section.hs.set.iconPosition('center');
-    } else {
-        // Not sure how can I benefit this state to be considered when needed
-    }
-
-    if(calculator.globalVariable.display.hsMainTitle) {
         calculator.titles.hs.show();
         calculator.titles.update.position();
+
+        setTimeout(()=>{
+            calculator.globalVariable.aBitOfWaitingIsDone = true;
+            calculator.globalVariable.dynamicDisplay = true;
+            calculator.button.display.spinTop(true);
+            calculator.button.enable.minTop();
+            calculator.button.display.minTop(true);
+            calculator.button.display.spinBottom(true);
+            calculator.button.enable.minBottom();
+            calculator.button.display.minBottom(true);
+        }, 5000);
+
     }
 
+    if(!calculator.globalVariable.display.hsResults && calculator.globalVariable.display.cResults) {
 
-    //------ DELAYED ACTIVATIONS -------//
+        calculator.globalVariable.topSpinButtonIsEnabled = true;
+        calculator.globalVariable.bottomSpinButtonIsEnabled = true;
 
-    setTimeout(()=>{
 
-        calculator.globalVariable.aBitOfWaitingIsDone = true;
-        calculator.globalVariable.dynamicDisplay = true;
+        calculator.button.enable.spinBottom();
+        calculator.titles.contest.show();
+        calculator.results.show.leaderOutcomes();
 
-        calculator.button.enable.minTop();
-        calculator.button.display.minTop(true);
+        calculator.button.disable.spinTop();
+        calculator.results.hide.followerOutcomesAll();
+        calculator.section.hs.opacity.SFiALiFiS([1,1,1,1,0,0]);
+        calculator.section.hs.set.iconPosition('center');
+        calculator.titles.hs.show();
+        calculator.titles.update.position();
 
-        calculator.button.enable.minBottom();
-        calculator.button.display.minBottom(true);
+        setTimeout(()=>{
+            calculator.globalVariable.aBitOfWaitingIsDone = true;
+            calculator.globalVariable.dynamicDisplay = true;
+            calculator.button.display.spinTop(true);
+            calculator.button.enable.minTop();
+            calculator.button.display.minTop(true);
+            calculator.button.display.spinBottom(true);
+            calculator.button.enable.minBottom();
+            calculator.button.display.minBottom(true);
+        }, 5000);
 
-    }, 5000);
+    }
+
+    if(calculator.globalVariable.display.hsResults && !calculator.globalVariable.display.cResults) {
+
+        calculator.globalVariable.topSpinButtonIsEnabled = true;
+        calculator.globalVariable.bottomSpinButtonIsEnabled = true;
+
+
+        calculator.button.disable.spinBottom();
+        calculator.titles.contest.show();
+        calculator.results.hide.leaderOutcomes();
+        // we may be interested in opening this space up for the title and button
+        // if we are gonna show the button then we need to have the space
+
+        calculator.button.enable.spinTop();
+        calculator.results.show.followerOutcomesAll();
+        calculator.section.hs.opacity.SFiALiFiS([1,1,1,1,0,0]);
+        calculator.section.hs.set.iconPosition('center');
+        calculator.titles.hs.show();
+        calculator.titles.update.position();
+
+        setTimeout(()=>{
+            calculator.globalVariable.aBitOfWaitingIsDone = true;
+            calculator.globalVariable.dynamicDisplay = true;
+            calculator.button.display.spinTop(true);
+            calculator.button.enable.minTop();
+            calculator.button.display.minTop(true);
+            calculator.button.display.spinBottom(true);
+            calculator.button.enable.minBottom();
+            calculator.button.display.minBottom(true);
+        }, 5000);
+
+    }
+
+    if(!calculator.globalVariable.display.hsResults && !calculator.globalVariable.display.cResults) {
+
+        calculator.globalVariable.topSpinButtonIsEnabled = true;
+        calculator.globalVariable.bottomSpinButtonIsEnabled = false;
+
+    }
 
 }
 
@@ -6426,15 +6031,7 @@ calculator.results.hide.leaderOutcomes = function() {
     $('.payoffWrap, .imageWrap23').css({'transition' : '0.15s', 'opacity':'0'});
     calculator.space.contestResultsIsOpen = false;
 
-    // Do not hide the contest titles when the subjective view is the leader
     if(calculator.globalVariable.subjectiveIndex === -1 && calculator.globalVariable.subjectiveView) {
-        calculator.space.contestResultsIsOpen = true;
-        $('.imageWrap23').css({'transition' : '0.15s', 'opacity':'1'});
-    }
-
-    // do not hide the contest title when contest title hover is close.
-    // If the title is hidden then it will never be opened by the hover since it is closed
-    if(!calculator.globalVariable.hover.cTitle) {
         calculator.space.contestResultsIsOpen = true;
         $('.imageWrap23').css({'transition' : '0.15s', 'opacity':'1'});
     }
@@ -6499,9 +6096,15 @@ calculator.results.show.followerOutcomesAll = function() {
 
 //---------- ALL ----------//
 
-calculator.results.softHide.allResults = function() {
+calculator.results.softHide.all = function() {
 
-    $('.payoffWrap, .fNetPayoffText, .fResults, .leftSideResult, .rightSideResult, .leftSidePrize, .rightSidePrize, .leftSideRole, .rightSideRole').css({'transition-delay':'0s', 'transition' : '0.15s', 'opacity':'0'});
+    $('.payoffWrap, .imageWrap23, .fNetPayoffText, .fResults, .leftSideResult, .rightSideResult, .leftSidePrize, .rightSidePrize, .leftSideRole, .rightSideRole').css({'transition-delay':'0s', 'transition' : '0.15s', 'opacity':'0'});
+    if(calculator.globalVariable.subjectiveIndex === -1 && calculator.globalVariable.subjectiveView) {
+        $('.imageWrap23').css({'transition' : '0.15s', 'opacity':'1'});
+    }
+    if(!calculator.globalVariable.display.hsResults && calculator.globalVariable.display.cResults) {
+        $('.imageWrap23').css({'transition' : '0.15s', 'opacity':'1'});
+    }
 
 }
 
@@ -6951,47 +6554,6 @@ calculator.button.enable.spinBottomMini = function() {
 ////////////////////// SECTIONS /////////////////////////
 
 
-//------------- MINIMIZE HELP/SABOTAGE SECTION -----------//
-
-calculator.section.hs.minimize = function(show) {
-
-    var mt = show ? '-77px' : '0px';
-    var pt = show ? '91px' : '0px';
-    var sc = show ? 'scale(0.6)' : 'scale(1)';
-
-    $('.sliderBarWrap').css({'transition':'0.3s', 'padding-top' : pt, 'transform' : sc});
-    $('.generalMarginBox').css({'transition':'0.3s', 'margin-top' : mt});
-
-
-}
-
-//------------ MINIMIZE CONTEST SECTION ---------------//
-
-calculator.section.contest.minimize = function(show) {
-
-    var mb;
-
-    var mt = show ? '-89px' : '-29px';
-    var sc = show ? 'scale(0.6)' : 'scale(1)';
-
-    if(calculator.space.contestResultsIsOpen) {
-        mb = show ? '-115px' : '0px';
-    } else {
-        mb = show ? '-66px' : '0px';
-    }
-
-
-    $('.contestSectionMinimize').css({'transition':'0.3s', 'transform-origin':'top',  'transform' : sc});
-    $('.generalMarginBox').css({'transition':'0.3s', 'margin-bottom' : mb});
-
-    $('.imageWrap23').css({'margin-top':mt});
-
-
-}
-
-
-
-
 //------------- DISPLAY CALCULATOR ------------------//
 
 calculator.section.all.opacity = function(opt) {
@@ -6999,9 +6561,6 @@ calculator.section.all.opacity = function(opt) {
     $('.generalMarginBox').css({'opacity' : opt.toString()});
 
 }
-
-
-
 
 calculator.section.all.adjust.decisionSliders = function() {
 
@@ -7030,6 +6589,7 @@ calculator.section.all.adjust.decisionSliders = function() {
 
 }
 
+
 //------------- DISPLAY FOLLOWER DECISION SLIDER -----------------//
 
 calculator.section.decision.follower.opacity = function(opt) {
@@ -7048,8 +6608,6 @@ calculator.section.decision.leader.opacity = function(opt) {
 }
 
 
-
-
 //--------------- HELP SABOTAGE SECTION  ----------//
 
 calculator.section.hs.display.all = function(show) {
@@ -7060,8 +6618,6 @@ calculator.section.hs.display.all = function(show) {
     calculator.space.hsIsOpen = show;
 
 }
-
-
 
 calculator.section.hs.display.totalHSBars = function(show) {
 
@@ -7082,9 +6638,6 @@ calculator.section.hs.display.totalHSBars = function(show) {
 }
 
 calculator.section.hs.display.totalHSBars(false);
-
-
-
 
 //----//
 // Slider - Follower icon - Arrows - Leader icon - Fight icon - Separator
@@ -7218,8 +6771,6 @@ calculator.section.hs.set.grayToAll = function() {
 }
 
 
-
-
 //-------------- POWER RATIO ----------------//
 //-------------- POWER RATIO ----------------//
 
@@ -7261,63 +6812,17 @@ calculator.section.power.display.barLegend = function(show) {
 
 }
 
-calculator.section.power.adjust.space = function() {
-
-    if(calculator.space.hsResultsBottomIsOpen) {
-        $('.pWrap').css({'transition':'0.3s', 'margin-top':'40px'});
-    } else {
-        $('.pWrap').css({'transition':'0.3s', 'margin-top':'-54px'});
-    }
-
-}
-
-
-
 
 //-------------- CONTEST SECTION ----------------//
 //-------------- CONTEST SECTION ----------------//
 
 calculator.section.contest.display.all = function(show) {
 
-    calculator.section.contest.display.sliders(show);
-    calculator.section.contest.display.title(show);
-    calculator.section.contest.display.results(show);
-
-}
-
-calculator.section.contest.display.sliders = function(show) {
-
     var display = show ? 'flex' : 'none';
 
-    $('.contestSection').css({'display': display});
+    $('.contestSection, .payoffWrap').css({'display': display});
 
     calculator.space.contestIsOpen = show;
-
-    calculator.space.update.heights();
-
-}
-
-calculator.section.contest.display.title = function(show) {
-
-    var display = show ? 'block' : 'none';
-
-    $('.imageWrap23').css({'display': display});
-
-    calculator.space.contestResultsIsOpen = show;
-
-    calculator.space.update.heights();
-
-}
-
-calculator.section.contest.display.results = function(show) {
-
-    var display = show ? 'flex' : 'none';
-
-    $('.payoffWrap').css({'display': display});
-
-    calculator.space.contestResultsIsOpen = show;
-
-    calculator.space.update.heights();
 
 }
 
@@ -7329,8 +6834,6 @@ calculator.section.contest.display.icons = function(show) {
     $('.OGCIcon2').css({'opacity':opt, 'display':display});
 
 }
-
-
 
 
 ///////////// SET VALUES //////////
@@ -7599,7 +7102,7 @@ calculator.setup.lc = function() {
 
     //------ HIDE ALL / CLOSE ALL RESULTS------//
 
-    calculator.results.softHide.allResults();
+    calculator.results.softHide.all();
     calculator.space.close.all();
 
 
@@ -7673,6 +7176,13 @@ calculator.setup.lc = function() {
 
 calculator.setup.og = function() {
 
+    //------ SETUP ------//
+
+    calculator.globalVariable.sectionHoversDisabled = false;
+
+    // will be turned on after spin
+    calculator.globalVariable.display.resultSwitchesActive = false;
+
     calculator.space.hsIsOpen = true;
     calculator.space.powerBarIsOpen = true;
     calculator.space.contestIsOpen = true;
@@ -7689,149 +7199,74 @@ calculator.setup.og = function() {
     calculator.globalVariable.winnerLeaderIndex = 1;
     calculator.globalVariable.winnerFollowerIndex = 1;
 
-    calculator.globalVariable.subjectiveView = 1;
-    calculator.globalVariable.subjectiveIndex = 0;
+    calculator.globalVariable.subjectiveView = 0;
+    calculator.globalVariable.subjectiveIndex = -1;
 
-    //------- TUTORIAL SWITCHES FOR IN-GROUP CONTEST ------//
-    calculator.globalVariable.tutorial.weAreInTutorial = 0;
-    calculator.globalVariable.tutorial.IGSameColor = 0;
-    calculator.globalVariable.tutorial.IGDifferentColor = 0;
-
-
-    //----- AFTER SPIN ACTION SWITCHES ----//
-
-    calculator.globalVariable.display.hsIcons = 1;
-    calculator.globalVariable.display.hsResults = 1;
-    calculator.globalVariable.display.hsMainTitle = 1;
-    calculator.globalVariable.display.hsGhostTitle = 1;
-    calculator.globalVariable.display.hsButton = 1;
-
-    calculator.globalVariable.display.cResults = 1;
-    calculator.globalVariable.display.cTitle = 1;
-    calculator.globalVariable.display.cButton = 1;
-
-
-    //----- HOVER SWITCHES ------//
-
-    calculator.globalVariable.hover.hsMinimize = 1;
-    calculator.globalVariable.hover.hsIcons = 1;
-    calculator.globalVariable.hover.hsResults = 1;
-    calculator.globalVariable.hover.hsMainTitle = 1;
-    calculator.globalVariable.hover.hsGhostTitle = 1;
-    calculator.globalVariable.hover.hsButton = 1;
-
-    // c results/title and button occupy the same space so
-    // if there is no title there cannot be results
-    // the primary determinant of this space i the title
-    // we can have title and nothing else if we want to.
-    calculator.globalVariable.hover.cMinimize = 1;
-    calculator.globalVariable.hover.cResults = 1;
-    calculator.globalVariable.hover.cTitle = 1;
-    calculator.globalVariable.hover.cButton = 1;
-
-
-
-
+    calculator.globalVariable.display.hsResults = 0;
+    calculator.globalVariable.display.cResults = 0;
 
     //------ QUESTIONS -----//
+
     calculator.questions.activate.all([1,1,1,1,1,1])
 
     //------ LOCKS -------//
+
     calculator.lock.activate([0,0,0,0,0,0]);
 
-    //----- ROLL ------//
-    calculator.roll.initiate();
+
+    //----- DECISION SLIDERS -----//
+
+    // show hide the relevant slider based on globalVariable.subjective**
+    calculator.section.all.adjust.decisionSliders();
+
 
     //----- ICONS -----//
+
     calculator.icons.setAll();
     calculator.section.hs.set.iconPosition('center');
 
-    //-- SETUP TEXT --//
-    calculator.titles.update.textAndColor();
-    calculator.titles.hs.ghost.text();
 
-    //----- DECISION SLIDERS -----//
-    // auto show hide the relevant slider based on globalVariable.subjective**
-    calculator.section.all.adjust.decisionSliders();
+    //----- ROLL ------//
+
+    calculator.roll.initiate();
+
 
     //------ HIDE ALL / CLOSE ALL RESULTS------//
-    calculator.results.softHide.allResults();
+
+    calculator.results.softHide.all();
     calculator.space.close.all();
 
 
+    //-------- TITLES -------//
 
-    //----------------------------------------------------------//
-    //--------------- HELP AND SABOTAGE SETTINGS ---------------//
-    //----------------------------------------------------------//
-    console.log('hs');
+    calculator.titles.hs.show();
+    calculator.titles.contest.hide();
+    calculator.titles.hs.ghost.hide();
+    calculator.titles.update.textAndColor();
+    calculator.titles.hs.ghost.text();
+
+
     //------- BUTTONS ------//
 
     calculator.button.display.spinTop(true);
     calculator.button.enable.spinTop();
     calculator.globalVariable.topSpinButtonIsEnabled = true;
+    calculator.button.display.spinBottom(true);
+    calculator.button.enable.spinBottom();
+    calculator.globalVariable.bottomSpinButtonIsEnabled = true;
 
-    //-------- TITLES -------//
 
-    calculator.titles.hs.show();
-    calculator.titles.hs.ghost.hide();
-
-    //----- GENERAL DISPLAY SETTINGS ----//
+    //----- HS GENERAL DISPLAY SETTINGS ----//
 
     calculator.globalVariable.dynamicDisplay = false;
     calculator.section.hs.opacity.SFiALiFiS([1,1,1,1,0,0]);
 
 
-    //----------------------------------------------------------//
-    //------------------- POWER BAR SETTINGS -------------------//
-    //----------------------------------------------------------//
+    //------ POWER BAR SETTINGS -------//
 
     calculator.section.power.opacity.bar(true);
     calculator.section.power.display.barText('none');
     calculator.graphics.dynamicPowerBarText = true;
-
-
-    //----------------------------------------------------------//
-    //--------------------- CONTEST SECTION --------------------//
-    //----------------------------------------------------------//
-    console.log('contest');
-    //----- GENERAL SETTINGS -----//
-
-    // these display settins simply display none the specific section
-    // calculator.section.contest.display.all(true);
-    calculator.section.contest.display.sliders(true);
-    calculator.section.contest.display.title(true);
-    calculator.section.contest.display.results(true);
-    calculator.section.contest.display.icons(false);
-
-    //------- RESULTS DISPLAY SETTINGS ------//
-
-    calculator.results.leader.display.investment(true);
-    calculator.results.leader.display.prize(true);
-    calculator.results.leader.display.netPayoff(true);
-    calculator.results.leader.display.role(true);
-
-    //------- BUTTONS ------//
-
-    calculator.button.display.spinBottom(true);
-    calculator.button.enable.spinBottom();
-    calculator.globalVariable.bottomSpinButtonIsEnabled = true;
-
-    //-------- TITLES -------//
-
-    // if the subjective index is leader then hiding the contest title will not work by construction
-    calculator.titles.contest.show();
-    // calculator.titles.contest.hide();
-
-    //------ SLIDERS -------//
-
-    // changes the slider range based on globalVariable.is***
-    calculator.graphics.update.effortSliderRange();
-    // changes the leader slider text background color based on globalVariable.is***
-    calculator.graphics.update.contestSliderBackgroundColor();
-
-
-
-
 
 
     //------ REFRESH ------// -> NOT SURE WHEN IT IS NECESSARY TO USE THESE
@@ -7840,6 +7275,26 @@ calculator.setup.og = function() {
     // VALUES HAS REFRESH.SLIDER INSIDE IT
     calculator.refresh.sliders();
 
+
+    //----- CONTEST SECTION SETTINGS -----//
+
+    calculator.section.contest.display.all(true);
+
+
+    //------ EFFORT SLIDERS -------//
+
+    // changes the slider range based on globalVariable.is***
+    calculator.graphics.update.effortSliderRange();
+    // changes the leader slider text background color based on globalVariable.is***
+    calculator.graphics.update.contestSliderBackgroundColor();
+
+
+    //------- CONTEST SECTION RESULTS DISPLAY SETTINGS ------//
+
+    calculator.results.leader.display.investment(true);
+    calculator.results.leader.display.prize(true);
+    calculator.results.leader.display.netPayoff(true);
+    calculator.results.leader.display.role(true);
 
 
 
