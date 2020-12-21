@@ -99,7 +99,7 @@ img.redArrowImage1
     position:absolute;
     transition:8s;
     font-size:40px;
-    margin-left:270px;
+    margin-left:27px;
     margin-top:-15px;
     transition:8s;
     transform:rotateY(90deg);
@@ -199,16 +199,18 @@ img.redArrowImage1
 /*LOCKS*/
 .IG_lockedCover_l1
 {
+    opacity:0;
     z-index:-1;
     position: absolute;
-    height:123px;
+    height:140px;
     width:405px;
 }
 .IG_lockedCover_l2
 {
+    opacity:0;
     z-index:-1;
     position: absolute;
-    height:123px;
+    height:140px;
     width:405px;
 }
 
@@ -216,16 +218,18 @@ img.redArrowImage1
 
 .lockedCover_l1
 {
+    opacity:0;
     z-index:-1;
     position: absolute;
-    height:123px;
+    height:140px;
     width:405px;
 }
 .lockedCover_l2
 {
+    opacity:0;
     z-index:-1;
     position: absolute;
-    height:123px;
+    height:140px;
     width:405px;
 }
 .lockedImageRed2
@@ -241,33 +245,33 @@ img.redArrowImage1
 {
     z-index:-1;
     position: absolute;
-    height:296px;
-    width:96px;
-    margin-top:34px;
+    height: 308px;
+    width: 115px;
+    margin-top: 32px
 }
 .lockedCover_f2
 {
     z-index:-1;
     position: absolute;
-    height:296px;
-    width:96px;
-    margin-top:34px;
+    height: 308px;
+    width: 115px;
+    margin-top: 32px
 }
 .lockedCover_of1
 {
     z-index:-1;
     position: absolute;
-    height:296px;
-    width:96px;
-    margin-top:34px;
+    height: 308px;
+    width: 115px;
+    margin-top: 32px
 }
 .lockedCover_of2
 {
     z-index:-1;
     position: absolute;
-    height:296px;
-    width:96px;
-    margin-top:34px;
+    height: 308px;
+    width: 115px;
+    margin-top: 32px
 }
 .lockedImageRed
 {

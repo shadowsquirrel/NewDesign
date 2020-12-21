@@ -1,0 +1,72 @@
+.calculatorTopBoxes
+{
+    height:200px;
+    display:flex;
+    flex-direction:column-reverse;
+}
+.sexplain
+{
+    transition: 0.3s;
+    transform: scale(0);
+    transform-origin: bottom left;
+    opacity: 0;
+    margin-bottom: -34px;
+    margin-left: 60px;
+    height:0px;
+    position:absolute;
+}
+
+
+/*-------*/
+
+.payoffBox
+{
+    display:flex;
+    flex-direction:column;
+}
+
+.yourLeaderWinsBoxWrap
+{
+    display:flex;
+    flex-direction:row;
+}
+.yourLeaderWinsTitleBox
+{
+    font-size:30px;
+    /* width:200px; */
+}
+.yourLeaderWinsBox
+{
+    display:flex;
+    flex-direction:column;
+}
+.leaderWonNetPayoffBox
+{
+    display:flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+.leaderWonRoleBox
+{
+    display:flex;
+    flex-direction: row;
+    font-size:28px;
+}
+
+.yourLeaderLosesBox
+{
+    display:flex;
+    flex-direction:column;
+}
+.leaderLostNetPayoffBox
+{
+    display:flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+.leaderLostRoleBox
+{
+    display:flex;
+    flex-direction: row;
+    font-size:28px;
+}

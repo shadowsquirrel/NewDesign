@@ -1,0 +1,27 @@
+.leader1Box
+{
+    background-color: rgb(35 79 30);
+}
+
+/*-------*/
+.decisionMadeExplanationWrap
+{
+    opacity:1;
+    background: #fefeab;
+    margin-top: 21px;
+    font-size: 18px;
+    padding-top: 7px;
+    height: 48px;
+    width: 374px;
+    border-radius: 50px;
+    border: 3px black solid;
+    margin-left: 52px;
+    font-weight: 400;
+}
+.lockedImage
+{
+    transition: 0.15s;
+    height: 30px;
+    width: 30px;
+    margin-top: -6px
+}

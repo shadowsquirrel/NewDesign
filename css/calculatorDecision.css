@@ -155,7 +155,7 @@
 
 
 
-/*------- BUTTONS TOP --------*/
+/*------- OG BUTTONS TOP --------*/
 
 /*MAP*/
 img.mapButtonTop
@@ -219,6 +219,7 @@ img.infoButtonTop
 
     margin-top:-40px;
     margin-left:110px;
+    margin-bottom:-1px;
 
     background: linear-gradient(0deg, rgba(0,255,0,1) -115%, rgba(35,79,30,1) 90%);
     box-shadow: 0 -6px black;
@@ -257,23 +258,24 @@ img.minImageTopSetup
     transition:0.5s;
     z-index:50;
 
-    margin-top:-40px;
-    margin-left:160px;
+    margin-top:-1px;
+    margin-bottom:-39px;
+    margin-left:0px;
 
     background: linear-gradient(0deg, rgba(0,255,0,1) -115%, rgba(35,79,30,1) 90%);
-    box-shadow: 0 -6px black;
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
+    box-shadow: 0 6px black;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
 }
 .minImageTopSetup:active
 {
-    box-shadow: 0 -2px black;
+    box-shadow: 0 2px black;
 }
 .minImageTopSetup:hover
 {
-    background: linear-gradient(0deg, rgb(69 148 33) -9%, rgb(223 255 47) 90%);
+    background: linear-gradient(180deg, rgb(35 79 30) 31%, rgb(223 255 47) 90%);
 }
 
 /*OPEN CLOSE CALCULATOR EXPERIMENTAL*/
@@ -296,9 +298,9 @@ img.calculatorTopSetup
     transition:0.5s;
     z-index:50;
 
-    margin-top:0px;
+    margin-top:-1px;
     margin-left:961px;
-    margin-bottom:-43px;
+    margin-bottom:-42px;
 
     background: linear-gradient(0deg, rgba(0,255,0,1) -115%, rgba(35,79,30,1) 90%);
     box-shadow: 0 6px black;
@@ -316,8 +318,63 @@ img.calculatorTopSetup
     background: linear-gradient(180deg, rgb(35 79 30) 31%, rgb(223 255 47) 90%);
 }
 
+/*SUBMIT BUTTON*/
+img.submitButtonTopImage
+{
+    top: 0px;
+    position: absolute;
+    height: 32px;
+    width: 32px;
+    right: 58px;
+    transform: rotate(43deg);
+}
+img.submitButtonTopImage2
+{
+    opacity:1;
+    top: 0px;
+    position: absolute;
+    height: 32px;
+    width: 32px;
+    right: 58px;
+    transform: rotate(43deg);
+}
+.submitButtonTop
+{
+    transition:0.3s;
+    z-index: -1;
+    height: 100px;
+    width: 150px;
+    position: absolute;
+    right: 53px;
+    background: #ad3939;
+    border-top-left-radius: 75px;
+    border-top-right-radius: 75px;
+    top: 10px;
+    box-shadow: 0 1px 21px 8px lime;
+}
+.submitButtonTop:hover
+{
+    cursor:pointer;
+    top:-20px;
+    box-shadow: 0 -3px 3px 1px black;
+}
+.submitButtonTop:active
+{
+    box-shadow: 0 -1px 1px 1px black;
+}
+.submitTextTop
+{
+    font-family: revert;
+    position: absolute;
+    color: white;
+    font-size: 31px;
+    font-weight: 300;
+    left: 23px;
+    top: 20px;
+}
 
-/*----- BUTTONS BOTTOM -------*/
+
+/*----- OG BUTTONS BOTTOM -------*/
 
 /*MAP*/
 img.mapButtonBottom
@@ -339,7 +396,7 @@ img.mapButtonBottom
     transition:0.5s;
     z-index:50;
 
-    /* margin-top:-96px; */
+    margin-top:-1px;
     margin-left:0px;
 
     background: linear-gradient(0deg, rgba(0,255,0,1) -115%, rgba(35,79,30,1) 90%);
@@ -419,8 +476,9 @@ img.minImageBottomSetup
     transition:0.5s;
     z-index:50;
 
-    margin-top:-40px;
-    margin-left:100px;
+    margin-top: -41px;
+    margin-bottom: -6px;
+    margin-left: 100px;
 
     background: linear-gradient(0deg, rgba(0,255,0,1) -115%, rgba(35,79,30,1) 90%);
     box-shadow: 0 6px black;
@@ -431,11 +489,106 @@ img.minImageBottomSetup
 }
 .minImageBottomSetup:active
 {
-    box-shadow: 0 -2px black;
+    box-shadow: 0 2px black;
 }
 .minImageBottomSetup:hover
 {
-    background: linear-gradient(180deg, rgba(35,79,30) 27%, rgb(223 255 47) 90%);
+    background: linear-gradient(180deg, rgb(35 79 30) 31%, rgb(223 255 47) 90%);
+}
+
+
+/*CALCULATOR BUTTON*/
+img.calculatorBottomSetup
+{
+    opacity: 1;
+    display: flex;
+    padding: 5px;
+    width: 40px;
+    height: 40px;
+    border-collapse: separate;
+    border-spacing: 15px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    transition: 0.15s;
+    position: relative;
+    transition: 0.5s;
+    z-index: 50;
+    margin-top: -42px;
+    margin-left: 913px;
+    margin-bottom: -1px;
+    background: linear-gradient(0deg, rgb(73 155 33) -2%, lime 79%);
+    box-shadow: 0 -6px black;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+.calculatorBottomSetup:active
+{
+    box-shadow: 0 -2px black;
+}
+.calculatorBottomSetup:hover
+{
+    background: linear-gradient(0deg, rgb(73 155 33) -4%, #eeff00 79%);
+}
+
+/*SUBMIT BUTTON*/
+img.submitButtonBottomImage
+{
+    transition:0.3s;
+    opacity:1;
+    top: 68px;
+    position: absolute;
+    height: 32px;
+    width: 32px;
+    right: 58px;
+    transform: rotate(43deg);
+}
+img.submitButtonBottomImage2
+{
+    transition:0.3s;
+    opacity:1;
+    top: 68px;
+    position: absolute;
+    height: 32px;
+    width: 32px;
+    right: 58px;
+    transform: rotate(43deg);
+}
+.submitButtonBottom
+{
+    transition: 0.3s;
+    z-index: -1;
+    height: 100px;
+    width: 150px;
+    position: absolute;
+    right: 53px;
+    background: #ad3939;
+    border-bottom-left-radius: 75px;
+    border-bottom-right-radius: 75px;
+    top: 42px;
+    box-shadow: 0 1px 21px 8px lime;
+}
+.submitButtonBottom:hover
+{
+    cursor:pointer;
+    top:70px;
+    box-shadow: 0 3px 3px 1px black;
+}
+.submitButtonBottom:active
+{
+    box-shadow: 0 -1px 1px 1px black;
+}
+.submitTextBottom
+{
+    font-family: revert;
+    position: absolute;
+    color: white;
+    font-size: 31px;
+    font-weight: 300;
+    left: 23px;
+    top: 32px;
 }
 
 
@@ -461,7 +614,7 @@ img.IG_mapButtonBottom
     transition:0.5s;
     z-index:50;
 
-    /* margin-top:-96px; */
+    margin-top:-1px;
     margin-left:0px;
 
     background: linear-gradient(0deg, rgba(0,255,0,1) -115%, rgba(35,79,30,1) 90%);
@@ -521,12 +674,11 @@ img.IG_infoButtonBottom
     background: linear-gradient(180deg, rgba(35,79,30) 27%, rgb(223 255 47) 90%);
 }
 
-/*MIN*/
-img.IG_minImageBottomSetup
+/*CALCULATOR BUTTON*/
+img.IG_calculatorBottomSetup
 {
-    opacity: 0;
-    display:none;
-
+    opacity: 1;
+    display: flex;
     padding: 5px;
     width: 40px;
     height: 40px;
@@ -535,27 +687,83 @@ img.IG_minImageBottomSetup
     cursor: pointer;
     outline: none;
     border: none;
-
     transition: 0.15s;
-    position:relative;
-    transition:0.5s;
-    z-index:50;
-
-    margin-top:-40px;
-    margin-left:100px;
-
-    background: linear-gradient(0deg, rgba(0,255,0,1) -115%, rgba(35,79,30,1) 90%);
-    box-shadow: 0 6px black;
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
-    border-top-left-radius: 0px;
-    border-top-right-radius: 0px;
+    position: relative;
+    transition: 0.5s;
+    z-index: 50;
+    margin-top: -42px;
+    margin-left: 913px;
+    margin-bottom: -1px;
+    background: linear-gradient(0deg, rgb(73 155 33) -2%, lime 79%);
+    box-shadow: 0 -6px black;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
 }
-.IG_minImageBottomSetup:active
+.IG_calculatorBottomSetup:active
 {
     box-shadow: 0 -2px black;
 }
-.IG_minImageBottomSetup:hover
+.IG_calculatorBottomSetup:hover
 {
-    background: linear-gradient(180deg, rgba(35,79,30) 27%, rgb(223 255 47) 90%);
+    background: linear-gradient(0deg, rgb(73 155 33) -4%, #eeff00 79%);
+}
+
+/*SUBMIT BUTTON*/
+img.IG_submitButtonBottomImage
+{
+    transition:0.3s;
+    opacity:1;
+    top: 68px;
+    position: absolute;
+    height: 32px;
+    width: 32px;
+    right: 58px;
+    transform: rotate(43deg);
+}
+img.IG_submitButtonBottomImage2
+{
+    transition:0.3s;
+    opacity:1;
+    top: 68px;
+    position: absolute;
+    height: 32px;
+    width: 32px;
+    right: 58px;
+    transform: rotate(43deg);
+}
+.IG_submitButtonBottom
+{
+    transition: 0.3s;
+    z-index: -1;
+    height: 100px;
+    width: 150px;
+    position: absolute;
+    right: 53px;
+    background: #ad3939;
+    border-bottom-left-radius: 75px;
+    border-bottom-right-radius: 75px;
+    top: 42px;
+    box-shadow: 0 1px 21px 8px lime;
+}
+.IG_submitButtonBottom:hover
+{
+    cursor:pointer;
+    top:70px;
+    box-shadow: 0 3px 3px 1px black;
+}
+.IG_submitButtonBottom:active
+{
+    box-shadow: 0 -1px 1px 1px black;
+}
+.IG_submitText
+{
+    font-family: revert;
+    position: absolute;
+    color: white;
+    font-size: 31px;
+    font-weight: 300;
+    left: 23px;
+    top: 32px;
 }

@@ -42,10 +42,10 @@
     opacity: 1;
     transition: 0.35s;
     width: 4px;
-    height: 100px;
     /* background: red; */
     background: lime;
-    margin-top: 20px;
+    height: 80px;
+    margin-top: -15px;
 }
 .pSlider::-moz-range-thumb
 {
@@ -56,10 +56,10 @@
     opacity: 1;
     transition: 0.35s;
     width: 4px;
-    height: 100px;
     /* background: red; */
     background: lime;
-    margin-top: 20px;
+    height: 80px;
+    margin-top: -15px;
 }
 .pSlider:hover::-webkit-slider-thumb
 {

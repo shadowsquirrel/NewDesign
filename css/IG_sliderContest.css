@@ -33,11 +33,11 @@
     cursor: pointer;
     opacity: 1;
     transition: 0.35s;
-    width: 4px;
-    height: 100px;
+    height: 80px;
     /* background: red; */
     background: lime;
-    margin-top: 20px;
+    margin-top: -15px;
+    width: 4px;
 }
 .IG_pSlider::-moz-range-thumb
 {
@@ -58,6 +58,7 @@
     opacity:1;
     height: 80px;
     margin-top: -15px;
+    border-radius:150px;
 }
 .IG_pSlider:hover::-moz-range-thumb
 {

@@ -38,3 +38,8 @@
     position:relative;
     z-index:1;
 }
+.testing
+{
+    transform:scale(0.3);
+
+}
