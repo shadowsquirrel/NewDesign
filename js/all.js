@@ -1,13 +1,4 @@
 
-
-
-
-
-
-
-
-
-
 ////////////////////// ICON SORTING ANIMATIONS ////////////////////////////////
 ////////////////////// ICON SORTING ANIMATIONS ////////////////////////////////
 ////////////////////// ICON SORTING ANIMATIONS ////////////////////////////////
@@ -173,7 +164,6 @@ var calculator = {
         display: {},
         hover: {},
     },
-    refresh: {},
     space: {
         update:{},
         open: {},
@@ -274,9 +264,12 @@ var calculator = {
             player: {},
         },
     },
+    refresh: {},
     wheel: {},
     setup: {},
     roll: {},
+    show: {},
+    hide: {},
 
 };
 
@@ -8218,13 +8211,6 @@ $(document).keydown(function() {
 
 });
 
-$('#dSliderF').change(function() {
-    // console.log(h1);
-    if(h1 === 20) {
-        console.log('help is 20');
-    }
-})
-
 //------//
 
 calculator.globalVariable.open;
@@ -8405,135 +8391,6 @@ calcBottom.onclick = function() {
 ////////////////////////////// CALCULATOR /////////////////////////////////////
 ////////////////////////////// CALCULATOR /////////////////////////////////////
 ////////////////////////////// CALCULATOR /////////////////////////////////////
-
-// var calculator = {
-//
-//     globalVariable: {
-//         tutorial: {},
-//         display: {},
-//         hover: {},
-//     },
-//     refresh: {},
-//     space: {
-//         update:{},
-//         open: {},
-//         close:{},
-//     },
-//     icons: {
-//         calculate: {},
-//         update: {},
-//         set: {},
-//         rescale: {},
-//         show: {},
-//         hide: {},
-//         enervate:{},
-//         enervate2:{},
-//     },
-//     values: {
-//         update: {},
-//         set: {},
-//     },
-//     graphics: {
-//         update: {},
-//         activate: {},
-//     },
-//     decisionSlider: {
-//         leader:{},
-//         follower:{},
-//     },
-//     results: {
-//         opacity:{},
-//         softHide:{},
-//         display:{},
-//         update:{},
-//         show:{},
-//         hide:{},
-//         disable:{},
-//         leader:{
-//             update:{},
-//             display:{},
-//         },
-//     },
-//     titles: {
-//         hs: {
-//             ghost:{},
-//         },
-//         contest: {},
-//         set:{},
-//         update:{},
-//         opacity:{},
-//     },
-//     slider : {
-//         followerDecision: {},
-//         playerDecision: {},
-//     },
-//     questions: {
-//         activate:{},
-//         spin1:{},
-//         spin2:{},
-//     },
-//     lock: {
-//         switch: {},
-//         vibrate: {},
-//         activate:{},
-//     },
-//     button: {
-//         enable: {},
-//         disable: {},
-//         display: {},
-//     },
-//     pointers: {
-//         wiggle: {},
-//         activate: {},
-//     },
-//     section: {
-//         all:{
-//             adjust: {},
-//         },
-//         hs: {
-//             opacity:{},
-//             display:{},
-//             set:{},
-//             show:{},
-//             hide:{}
-//         },
-//         contest: {
-//             show:{},
-//             hide:{},
-//             display:{},
-//         },
-//         power: {
-//             set: {},
-//             opacity:{},
-//             display:{},
-//             adjust:{},
-//         },
-//         decision: {
-//             leader: {},
-//             follower: {},
-//             player: {},
-//         },
-//     },
-//     opacity: {},
-//     initiate: {},
-//     hide: {},
-//     show: {},
-//     wheel: {},
-//     update: {},
-//     display: {},
-//     set: {},
-//     setup: {},
-//     disable: {},
-//     enable: {},
-//     roll: {},
-//     currentBalance: {},
-//     netBalance: {},
-//     sync: {},
-//     flash: {},
-//     open:{},
-//     close: {},
-//
-// };
 
 /////////////////////// CALCULATOR GLOBAL VARIABLES ////////////////////////////
 /////////////////////// CALCULATOR GLOBAL VARIABLES ////////////////////////////
@@ -12506,7 +12363,6 @@ calculator.button.enable.IG_spinBottom = function() {
 }
 
 
-
 ////////////////////// SECTIONS /////////////////////////
 ////////////////////// SECTIONS /////////////////////////
 ////////////////////// SECTIONS /////////////////////////
@@ -12525,7 +12381,6 @@ calculator.button.enable.IG_spinBottom = function() {
 ////////////////////// SECTIONS /////////////////////////
 ////////////////////// SECTIONS /////////////////////////
 ////////////////////// SECTIONS /////////////////////////
-
 
 
 //------------- DISPLAY CALCULATOR ------------------//
@@ -12535,7 +12390,6 @@ calculator.section.all.IG_opacity = function(opt) {
     $('.IG_generalMarginBox').css({'transition':'0.35s', 'opacity' : opt.toString()});
 
 }
-
 
 calculator.section.all.adjust.IG_decisionSliders = function() {
 
@@ -12590,7 +12444,6 @@ calculator.section.hs.display.IG_all = function(show) {
 }
 
 
-//----//
 // Leader icon - Fight icon
 calculator.section.hs.opacity.IG_LiFi = function(array) {
 
@@ -12600,8 +12453,7 @@ calculator.section.hs.opacity.IG_LiFi = function(array) {
 }
 
 // Methods used in IG_LIFI
-
-
+//----//
 calculator.section.hs.opacity.IG_leaderIconsMain = function(o) {
 
     if(o != -1) {
@@ -12621,9 +12473,7 @@ calculator.section.hs.opacity.IG_fightIcon = function(o) {
     }
 
 }
-
-
-//----//
+//---//
 
 calculator.section.hs.set.IG_iconPosition = function(position) {
 
@@ -12671,7 +12521,6 @@ calculator.section.power.opacity.IG_bar = function(opt) {
     $('.IG_pWrap').css({'opacity' : opt.toString()});
 
 }
-
 
 // !! NOT SURE IF THIS SHOULD BE USED OR NOT
 calculator.section.power.adjust.IG_space = function() {
@@ -12828,25 +12677,6 @@ calculator.refresh.IG_barXAxis = function() {
 //////////////////////// SETUP METHODS //////////////////////////////////
 //////////////////////// SETUP METHODS //////////////////////////////////
 
-
-calculator.setup.IG_feedbackAdjustment = function() {
-
-    if(calculator.globalVariable.IG_weAreInFeedbackStage) {
-
-        $('.IG_pWrap').css({'margin-top':'-22px'});
-        $('.IG_ctGhost, .IG_hsWrap, .IG_decisionWrapL').css({'display':'none'});
-        $('.IG_generalMarginBox').css({'transition':'0s', 'height':'345px'})
-
-        //------ QUESTIONS -----//
-        calculator.questions.activate.IG_all([0,0])
-
-        //------ LOCKS -------//
-        calculator.lock.IG_activate([1,1]);
-
-    }
-
-}
-
 calculator.setup.IG = function() {
 
     // HOVERS ACTIVE
@@ -12869,6 +12699,7 @@ calculator.setup.IG = function() {
     calculator.globalVariable.IG_isIGA = 1;
     calculator.globalVariable.IG_isIGB = 0;
 
+
     //------- PLAYER SPECIFIC INFORMATION -------//
 
     calculator.globalVariable.IG_ourFollowersAreHetero = 1;
@@ -12876,11 +12707,6 @@ calculator.setup.IG = function() {
 
     calculator.globalVariable.IG_playerView = 0;
     calculator.globalVariable.IG_playerIndex = 0;
-
-    // leader view setup - gray/yellow
-    // calculator.globalVariable.IG_playerView = 1;
-    // calculator.globalVariable.IG_playerIndex = -1;
-    // calculator.globalVariable.playerGroup = 1;
 
 
     //------- TUTORIAL SWITCHES FOR IN-GROUP CONTEST ------//
@@ -12904,9 +12730,20 @@ calculator.setup.IG = function() {
     calculator.globalVariable.hover.IG_cTitle = 1;
     calculator.globalVariable.hover.IG_cButton = 1;
 
+    //------------------------------------------------------------------------//
+    //------------------------------------------------------------------------//
+    //------------------------------------------------------------------------//
+
+    calculator.values.set.IG_efforts([20,20]);
+    calculator.refresh.IG_sliders();
+    calculator.graphics.update.IG_pie();
+
+    //------------------------------------------------------------------------//
+    //------------------------------------------------------------------------//
+    //------------------------------------------------------------------------//
 
     //------ QUESTIONS -----//
-    calculator.questions.activate.IG_all([1,1])
+    calculator.questions.activate.IG_all([0,0])
 
     //------ LOCKS -------//
     calculator.lock.IG_activate([0,0]);
@@ -12914,9 +12751,16 @@ calculator.setup.IG = function() {
     //----- ROLL ------//
     calculator.roll.IG_initiate();
 
+    //----- POINTERS -----//
+    calculator.pointers.IG_activate([0, 0]);
+
     //----- ICONS -----//
     calculator.icons.IG_setAll();
     calculator.section.hs.set.IG_iconPosition('bottom');
+
+    //------------------------------------------------------------------------//
+    //------------------------------------------------------------------------//
+    //------------------------------------------------------------------------//
 
     //-- SETUP TEXT --//
     calculator.titles.update.IG_textAndColor();
@@ -12928,13 +12772,14 @@ calculator.setup.IG = function() {
 
     //------ HIDE ALL / CLOSE ALL RESULTS------//
     calculator.results.softHide.IG_allResults();
-    // calculator.space.close.all();
 
+    //------------------------------------------------------------------------//
+    //------------------------------------------------------------------------//
+    //------------------------------------------------------------------------//
 
     //----------------------------------------------------------//
     //--------------- HELP AND SABOTAGE SETTINGS ---------------//
     //----------------------------------------------------------//
-
 
     //-------- TITLES -------//
 
@@ -12994,17 +12839,15 @@ calculator.setup.IG = function() {
     calculator.graphics.update.IG_contestSliderBackgroundColor();
 
 
+    //------------------------------------------------------------------------//
+    //------------------------------------------------------------------------//
+    //------------------------------------------------------------------------//
+
     //------ REFRESH ------// -> NOT SURE WHEN IT IS NECESSARY TO USE THESE
 
     calculator.refresh.IG_values();
     // VALUES HAS REFRESH.SLIDER INSIDE IT
     calculator.refresh.IG_sliders();
-
-
-    //------- FEEDBACK ARRANGEMENT -------//
-    calculator.globalVariable.IG_weAreInFeedbackStage = 0;
-    calculator.setup.IG_feedbackAdjustment();
-
 
     //------ DISPLAY ------//
     $('.IG_generalMarginBox').css({'transition':'0.7s', 'transform':'scale(1)', 'display':'grid'});
@@ -13018,10 +12861,14 @@ calculator.setup.IG = function() {
 
 }
 
-calculator.IG_null = function() {
+calculator.hide.IG = function() {
 
     $('.IG_generalMarginBox').css({'transition':'0.3s', 'transform':'scale(0)', 'height':'0'})
-    setTimeout(()=>{$('.IG_generalMarginBox').css({'display':'none'})}, 300);
+    setTimeout(()=>{$('.IG_generalMarginBox').css({'display':'none'})}, 350);
+
+}
+
+calculator.show.IG = function() {
 
 }
 
@@ -13034,29 +12881,12 @@ calculator.IG_null = function() {
 //-------------------------------------------------------------------------//
 
 
-calculator.IG_initialize = function() {
-
-    calculator.pointers.IG_activate([0, 0]);
-    calculator.questions.activate.IG_all([0, 0]);
-    calculator.lock.IG_activate([0, 0])
-
-
-    calculator.values.set.IG_efforts([20,20]);
-    calculator.refresh.IG_sliders();
-    calculator.graphics.update.IG_pie();
-
-}
-
-calculator.IG_initialize();
 calculator.setup.IG();
 
 
 
-var IG_calcButton = document.getElementById('IG_calcButtonBottom');
-calculator.globalVariable.IG_open = 1;
-
-IG_calcButton.onclick = function() {
-
+calculator.globalVariable.IG_open = true;
+$('#IG_calcButtonBottom').click(function() {
     // close calculator
     if(calculator.globalVariable.IG_open) {
 
@@ -13072,13 +12902,31 @@ IG_calcButton.onclick = function() {
     }
 
     calculator.globalVariable.IG_open = 1 - calculator.globalVariable.IG_open;
+})
+// var IG_calcButton = document.getElementById('IG_calcButtonBottom');
+// IG_calcButton.onclick = function() {
+//
+//     // close calculator
+//     if(calculator.globalVariable.IG_open) {
+//
+//         calculator.IG_close();
+//
+//     }
+//
+//     // open calculator
+//     if(!calculator.globalVariable.IG_open) {
+//
+//         calculator.IG_open();
+//
+//     }
+//
+//     calculator.globalVariable.IG_open = 1 - calculator.globalVariable.IG_open;
+//
+// }
 
-}
 
-
-var IG_spin2 = document.getElementById('IG_spinImage23');
 calculator.globalVariable.IG_bottomSpinButtonIsEnabled = true;
-IG_spin2.onclick = function() {
+$('#IG_spinImage23').click(function() {
     if(calculator.globalVariable.IG_bottomSpinButtonIsEnabled) {
 
         calculator.globalVariable.IG_aBitOfWaitingIsDone = false;
@@ -13088,45 +12936,298 @@ IG_spin2.onclick = function() {
 
 
     }
+})
+// var IG_spin2 = document.getElementById('IG_spinImage23');
+// IG_spin2.onclick = function() {
+//     if(calculator.globalVariable.IG_bottomSpinButtonIsEnabled) {
+//
+//         calculator.globalVariable.IG_aBitOfWaitingIsDone = false;
+//
+//         calculator.wheel.IG_spin();
+//         calculator.globalVariable.IG_dynamicDisplay = false;
+//
+//
+//     }    if(calculator.globalVariable.IG_bottomSpinButtonIsEnabled) {
+//
+//             calculator.globalVariable.IG_aBitOfWaitingIsDone = false;
+//
+//             calculator.wheel.IG_spin();
+//             calculator.globalVariable.IG_dynamicDisplay = false;
+//
+//
+//         }
+// }
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////// BOX METHODS ////////////////////////////////////
+/////////////////////////////// BOX METHODS ////////////////////////////////////
+/////////////////////////////// BOX METHODS ////////////////////////////////////
+/////////////////////////////// BOX METHODS ////////////////////////////////////
+/////////////////////////////// BOX METHODS ////////////////////////////////////
+/////////////////////////////// BOX METHODS ////////////////////////////////////
+/////////////////////////////// BOX METHODS ////////////////////////////////////
+/////////////////////////////// BOX METHODS ////////////////////////////////////
+/////////////////////////////// BOX METHODS ////////////////////////////////////
+/////////////////////////////// BOX METHODS ////////////////////////////////////
+/////////////////////////////// BOX METHODS ////////////////////////////////////
+/////////////////////////////// BOX METHODS ////////////////////////////////////
+/////////////////////////////// BOX METHODS ////////////////////////////////////
+/////////////////////////////// BOX METHODS ////////////////////////////////////
+/////////////////////////////// BOX METHODS ////////////////////////////////////
+/////////////////////////////// BOX METHODS ////////////////////////////////////
+/////////////////////////////// BOX METHODS ////////////////////////////////////
+var box = {
+
+    set: {},
+    show: {},
+    hide: {},
+    global: {},
+    button: {},
+
 }
 
+box.global.previousKey = undefined;
+box.global.currentKey = undefined;
+
+box.global.keys = [];
 
 
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
+box.set.wrapHeight = function(id) {
+
+    var key = id.split('-')[1];
+
+    box.global.keys.push(key);
+
+    box.global.currentKey = box.global.keys[box.global.keys.length - 1];
+
+    if(box.global.keys.length === 1) {
+
+        box.global.previousKey = box.global.keys[box.global.keys.length - 1];
+
+    } else {
+
+        box.global.previousKey = box.global.keys[box.global.keys.length - 2];
+
+    }
+
+    id = '#' + id;
+    var height = $(id).height();
+    height = height + 'px';
+
+    var boxbox = '#boxbox-' + key;
+
+    $(boxbox).css({'height' : height});
+
+    if(box.global.previousKey != box.global.currentKey) {
+
+        var prevBoxbox = '#boxbox-' + box.global.previousKey;
+        $(prevBoxbox).css({'height' : '0'});
+
+    }
+
+    if(box.global.keys.length > 2) {
+
+        box.global.keys = box.global.keys.slice(Math.max(box.global.keys.length - 2, 1));
+
+    }
+
+    // console.log(box.global.keys);
+
+}
+
+box.move = function(id) {
+
+    var myDiv = '#boxwrap-' + id.split('-')[1] + '-' + id.split('-')[2];
+
+    console.log(myDiv);
+
+    var myPlace = '#boxbox-' + id.split('-')[1];
+
+    console.log(myPlace);
+
+    $(myDiv).appendTo(myPlace);
+
+}
+
+box.show = function(id) {
+
+    box.move(id);
+
+    box.set.wrapHeight(id);
+
+    id = '#' + id;
+
+    $(id).css({'transform':'scale(1)'});
+
+    // ADD MOVE IFRAME TO THIS DIV METHOD HERE
+
+}
+
+box.hide = function(id, moveToReviewBox) {
+
+    id = '#' + id;
+    $(id).css({'transform':'scale(0)'});
+
+    if(moveToReviewBox) {
+
+        setTimeout(()=>{
+            box.store(id);
+            $(id).css({'transform':'scale(1)'});
+        }, 850);
+
+    }
+
+}
+
+box.transition = function(id1, id2, hideButton) {
+
+    if(hideButton) {
+
+        box.button.hide(id2);
+
+    }
+
+    id1 = 'box-' + id1;
+    id2 = 'box-' + id2;
+
+    box.hide(id1);
+    box.show(id2);
+
+}
+
+box.button.hide = function(id) {
+
+    id = '#btn-' + id;
+
+    console.log(id);
+
+    $(id).css({'transform':'scale(0) rotate(1turn)'});
+
+}
+
+box.button.show = function(id) {
+
+    id = '#btn-' + id;
+
+    $(id).css({'transform':'scale(1) rotate(0turn)'});
+
+}
+
+//----/
+// store is not used and may never be used.
+box.store = function(id) {
+
+    var myDiv = '#boxwrap-' + id.split('-')[1] + '-' + id.split('-')[2];
+
+    $(myDiv).appendTo('.reviewBox');
+
+}
+//----/
+
+//-------------------//
+
+box.show('box-A-1');
+
+
+$('#btn-A-1').click(function() {
+    box.transition('A-1', 'A-2');
+});
+
+$('#btn-A-2').click(function() {
+    box.transition('A-2', 'A-3');
+});
+
+$('#btn-A-3').click(function() {
+    box.transition('A-3', 'B-1');
+});
+
+$('#btn-B-1').click(function() {
+    box.transition('B-1', 'B-2');
+});
+
+$('#btn-B-2').click(function() {
+    box.transition('B-2', 'B-3');
+});
+
+$('#btn-B-3').click(function() {
+    box.transition('B-3', 'C-1');
+});
+
+$('#btn-C-1').click(function() {
+    box.transition('C-1', 'C-2');
+});
+
+$('#btn-C-2').click(function() {
+    box.transition('C-2', 'C-3');
+});
+
+$('#btn-C-3').click(function() {
+    box.transition('C-3', 'A-1');
+});
+
+
+
+////////////////////////// EVENT LISTENERS /////////////////////////////////////
+////////////////////////// EVENT LISTENERS /////////////////////////////////////
+////////////////////////// EVENT LISTENERS /////////////////////////////////////
+////////////////////////// EVENT LISTENERS /////////////////////////////////////
+////////////////////////// EVENT LISTENERS /////////////////////////////////////
+////////////////////////// EVENT LISTENERS /////////////////////////////////////
+////////////////////////// EVENT LISTENERS /////////////////////////////////////
+////////////////////////// EVENT LISTENERS /////////////////////////////////////
+////////////////////////// EVENT LISTENERS /////////////////////////////////////
+////////////////////////// EVENT LISTENERS /////////////////////////////////////
+////////////////////////// EVENT LISTENERS /////////////////////////////////////
+////////////////////////// EVENT LISTENERS /////////////////////////////////////
+////////////////////////// EVENT LISTENERS /////////////////////////////////////
+////////////////////////// EVENT LISTENERS /////////////////////////////////////
+////////////////////////// EVENT LISTENERS /////////////////////////////////////
+////////////////////////// EVENT LISTENERS /////////////////////////////////////
+
+
+$('#dSliderF').change(function() {
+    // console.log(h1);
+    if(h1 === 20) {
+        console.log('help is 20');
+    }
+})

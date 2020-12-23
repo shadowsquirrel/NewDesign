@@ -7,6 +7,7 @@ img.OG1ficon
 }
 img.OG1ficonLime
 {
+    filter: drop-shadow(0px 3px 2px black);
     height:50px;
     width:30px;
     position:absolute;
@@ -283,11 +284,11 @@ img.OG1FightIconLime
 }
 .OG1GroupSeparator
 {
-    height:126px;
+    height:0px;
     margin-left:11px;
     margin-top:5px;
     border-left:2px solid transparent;
-    box-shadow: 0 0 2px 1px black;
+    box-shadow: 0 0 6px 4px black;
     position:absolute;
     opacity:0;
 }

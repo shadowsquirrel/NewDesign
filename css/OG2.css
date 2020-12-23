@@ -13,6 +13,7 @@ img.OG2ficonLime
     position:absolute;
     opacity:0;
     z-index:1;
+    filter: drop-shadow(0px 3px 2px black);
 }
 img.OG2OldLeaderTopLeft
 {
@@ -20,7 +21,7 @@ img.OG2OldLeaderTopLeft
     height:50px;
     width:30px;
     position:absolute;
-    opacity:0;
+    opacity:1;
     z-index:1;
 }
 img.OG2OldLeaderTopLimeLeft
@@ -31,6 +32,7 @@ img.OG2OldLeaderTopLimeLeft
     position:absolute;
     opacity:0;
     z-index:1;
+    filter: drop-shadow(0px 3px 2px black);
 }
 img.OG2OldLeaderBottomLeft
 {
@@ -38,7 +40,7 @@ img.OG2OldLeaderBottomLeft
     height:50px;
     width:30px;
     position:absolute;
-    opacity:0;
+    opacity:1;
     z-index:1;
 }
 img.OG2OldLeaderBottomLimeLeft
@@ -49,6 +51,7 @@ img.OG2OldLeaderBottomLimeLeft
     position:absolute;
     opacity:0;
     z-index:1;
+    filter: drop-shadow(0px 3px 2px black);
 }
 img.OG2OldLeaderTopRight
 {
@@ -56,7 +59,7 @@ img.OG2OldLeaderTopRight
     height:50px;
     width:30px;
     position:absolute;
-    opacity:0;
+    opacity:1;
     z-index:1;
 }
 img.OG2OldLeaderTopLimeRight
@@ -67,6 +70,7 @@ img.OG2OldLeaderTopLimeRight
     position:absolute;
     opacity:0;
     z-index:1;
+    filter: drop-shadow(0px 3px 2px black);
 }
 img.OG2OldLeaderBottomRight
 {
@@ -74,7 +78,7 @@ img.OG2OldLeaderBottomRight
     height:50px;
     width:30px;
     position:absolute;
-    opacity:0;
+    opacity:1;
     z-index:1;
 }
 img.OG2OldLeaderBottomLimeRight
@@ -85,18 +89,19 @@ img.OG2OldLeaderBottomLimeRight
     position:absolute;
     opacity:0;
     z-index:1;
+    filter: drop-shadow(0px 3px 2px black);
 }
 img.OG2LeaderKingLeft
 {
     height:60px;
     width:48px;
     z-index:1;
-    opacity:0;
+    opacity:1;
     /* position:absolute; */
 }
 img.newLeaderKingLeft
 {
-    opacity: 0;
+    opacity: 1;
     height:60px;
     width:48px;
     z-index:1;
@@ -104,7 +109,7 @@ img.newLeaderKingLeft
 }
 img.OG2LeaderKingRight
 {
-    opacity: 0;
+    opacity: 1;
     height:60px;
     width:48px;
     z-index:1;
@@ -115,7 +120,7 @@ img.newLeaderKingRight
     height:60px;
     width:48px;
     z-index:1;
-    opacity:0;
+    opacity:1;
     position:absolute;
 }
 img.OG2FightIcon
@@ -289,11 +294,11 @@ img.OG2FightIconLime
 }
 .OG2GroupSeparator
 {
-    height:136px;
+    height:0px;
     margin-left:11px;
     margin-top:5px;
     border-left:2px solid white;
-    box-shadow: 0 0 3px 1px black;
+    box-shadow: 0 0 6px 4px black;
     position:absolute;
     opacity:0;
 }

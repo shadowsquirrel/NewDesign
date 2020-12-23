@@ -527,7 +527,7 @@ img.winnerLeaderArrowLeft
     width:60px;
     position:absolute;
     z-index:1;
-    margin-left:42px;
+    margin-left:88px;
     margin-top:-35px;
     transform:rotate(233deg);
 }
@@ -536,7 +536,7 @@ img.winnerLeaderArrowLeft
     opacity:0;
     position: absolute;
     margin-top:-38px;
-    margin-left:136px;
+    margin-left:278px;
     font-size:23px;
 }
 img.winnerLeaderArrowRight
@@ -548,12 +548,13 @@ img.winnerLeaderArrowRight
     z-index:1;
     margin-left:-26px;
     margin-top:72px;
+    transform: rotate(-8deg);
 }
 .winnerLeaderTextRight
 {
     opacity:0;
     position: absolute;
     margin-top:63px;
-    margin-left:-151px;
+    margin-left:-275px;
     font-size:23px;
 }

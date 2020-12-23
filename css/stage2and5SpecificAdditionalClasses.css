@@ -4,16 +4,21 @@
     display:flex;
     flex-direction:column-reverse;
 }
+.initialMapDiv
+{
+    height:275px;
+    transition:1s;
+}
 .sexplain
 {
     transition: 0.3s;
-    transform: scale(0);
+    transform: scale(1);
     transform-origin: bottom left;
     opacity: 0;
-    margin-bottom: -34px;
-    margin-left: 60px;
-    height:0px;
-    position:absolute;
+    /* margin-bottom: -34px;
+    margin-left: 60px; */
+    /* height:0px; */
+    position:relative;
 }
 
 

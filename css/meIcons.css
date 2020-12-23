@@ -1,18 +1,25 @@
 /*TREATMENT ICONS*/
-.homo
+.ourSideHomo
 {
     display:flex;
-}black
+}
 
-.shetero
+.ourSideHetero
 {
     display:none;
 }
 
-.ashetero
+.theirSideHomo
+{
+    display:flex;
+}
+
+.theirSideHetero
 {
     display:none;
 }
+
+
 /*ME ICONS*/
 .me_og1f1
 {
