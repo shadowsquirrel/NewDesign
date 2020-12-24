@@ -1,3 +1,21 @@
+.showSecond
+{
+    transition:0.3s;
+    display:none;
+    transform:scale(0);
+    margin-top:-200px;
+}
+.initialBox
+{
+    transform:scale(1);
+}
+.initialText
+{
+    text-align: center;
+    font-size: 67px;
+    font-weight: 100;
+    margin-top: -16px;
+}
 .imgbottomtext
 {
     margin-right: 0px;
@@ -10,7 +28,32 @@
 {
     transition:0.5s;
     opacity:0;
-    margin-top: -200px;
+    margin-top: -333px;
+}
+.wrap1
+{
+    margin-top:100px;
+    transition:0.5s;
+}
+.smallMeIcon
+{
+    height: 60px;
+    width: 40px;
+    margin-top: -6px;
+
+}
+.buttonPointerArrow
+{
+    transition:1s;
+    margin-top: 20px;
+    position: absolute;
+    margin-left: -13px;
+}
+.pointerArrow
+{
+    opacity:0;
+    height:150px;
+    width:150px;
 }
 /*-----*/
 .mememe1
@@ -136,13 +179,23 @@ img.crown
     position: relative;
     z-index: 5;
 }
-img.playerRandomSortImage
+img.playerRandomSortImage2
 {
+    opacity:0;
+
+    transition:0.15s;
+    border:1px solid;
+    border-radius: 57px;
+    padding:4px;
+    box-shadow:0px 7px 0px 0px black;
+    cursor:pointer;
+
     background: #65d147;
     height: 120px;
     width: 120px;
 }
-.topbox {
+
+.topbox1 {
     display: flex;
     flex-direction: row;
     width: 1000px;
@@ -153,6 +206,19 @@ img.playerRandomSortImage
     transition: 0.5s;
     position: absolute;
     transform: scale(1);
+    margin-top: -260px;
+}
+.topbox2 {
+    display: flex;
+    flex-direction: row;
+    width: 1000px;
+    background-color: rgb(255, 254, 172);
+    box-shadow: 0px 2px 5px 1px black;
+    border: 4px inset gray;
+    transform-origin: top left;
+    transition: 0.5s;
+    position: absolute;
+    transform: scale(0);
 }
 .toptext
 {
@@ -178,4 +244,6 @@ img.playerRandomSortImageMini
 {
     margin-top:70px;
     margin-bottom:-70px;
+    position: relative;
+    z-index: 10;
 }

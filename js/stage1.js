@@ -35,6 +35,8 @@ icon.globalVariable.theirFollowersAreHetero  = undefined;
 icon.globalVariable.bothHomo = undefined;
 icon.globalVariable.bothHetero = undefined;
 
+icon.globalVariable.isPracticeRound = undefined;
+
 icon.tool.shuffle = function(array) {
 
     for (var i = array.length - 1; i > 0; i--) {
@@ -265,6 +267,8 @@ icon.reset.stage1 = function() {
 
 icon.set.stage1 = function() {
 
+    icon.globalVariable.isPracticeRound = true;
+
     icon.reset.stage1();
 
     var roles;
@@ -285,8 +289,6 @@ icon.set.stage1 = function() {
     icon.globalVariable.bothHomo = 0;
     icon.globalVariable.bothHetero = 0;
     icon.set.treatment();
-    icon.globalVariable.ourFollowersAreHetero = 0;
-    icon.globalVariable.theirFollowersAreHetero = 1;
     icon.display.treatment();
     icon.tool.set.strongWeak(roles);
 
@@ -325,32 +327,130 @@ icon.stage1.animateSort = function() {
 
 
     icon.stage1.showHide(a[0]);
-    setTimeout(()=>icon.stage1.showHide(a[1]), 500);
-    setTimeout(()=>icon.stage1.showHide(a[2]), 1000);
-    setTimeout(()=>icon.stage1.showHide(a[3]), 1500);
-    setTimeout(()=>icon.stage1.showHide(a[4]), 2000);
-    setTimeout(()=>icon.stage1.showHide(me), 2500);
+    setTimeout(()=>icon.stage1.showHide(a[1]), 750);
+    setTimeout(()=>icon.stage1.showHide(a[2]), 1500);
+    setTimeout(()=>icon.stage1.showHide(a[3]), 2250);
+    setTimeout(()=>icon.stage1.showHide(a[4]), 3000);
+    setTimeout(()=>icon.stage1.showHide(me), 3750);
     setTimeout(()=>{
         icon.stage1.hideShowButtons();
-        $('.wrap2').css({'transition':'1s',  'transition-delay':'0.5s', 'margin-top':'-402px'});
-    }, 2500);
+        $('.wrap2').css({'transition':'1s',  'transition-delay':'0.5s', 'margin-top':'-550px'});
+    }, 4500);
     setTimeout(()=>{
         icon.stage1.text();
-    }, 3000)
+    }, 5250)
 
 
 }
 
 icon.stage1.text = function() {
 
+    $('#box-C-2').css({'transition':'0.5s', 'transform':'scale(1)'});
+    $('#boxbox-C').css({'opacity':'1'});
+
     var text1, text2, text3;
 
-    // TO DO
+    var myIndex = icon.stage1.sortedArray.indexOf(icon.globalVariable.playerIndex);
 
-    //FOR NOW
 
-    text1 = 'You are the strong follower of your group.'
-    text2 = 'Notice that the opposing group\'s follower have equal power.'
+    if(icon.globalVariable.ourFollowersAreHetero) {
+
+        if(myIndex === 0) {
+
+            text1 = 'You are the <strong>Leader</strong> of your group.';
+
+            if(icon.globalVariable.theirFollowersAreHetero) {
+
+                text2 = 'Notice that in both groups, one follower is strong and the other follower is weak.';
+
+            } else {
+
+                text2 = 'Notice that your followers have unequal power while the opposing group\'s followers have equal power.';
+
+            }
+
+        }
+
+        if(myIndex === 1) {
+
+            text1 = 'You are the <strong>strong follower</strong> of your group.';
+
+            if(icon.globalVariable.theirFollowersAreHetero) {
+
+                text2 = 'Notice that in both groups, one follower is strong and the other follower is weak.';
+
+            } else {
+
+                text2 = 'Notice that while you and the other follower in your group have different power levels, in the opposing group, followers have equal power';
+
+            }
+
+        }
+
+        if(myIndex === 2) {
+
+            text1 = 'You are the <strong>weak follower</strong> of your group.';
+
+            if(icon.globalVariable.theirFollowersAreHetero) {
+
+                text2 = 'Notice that in both groups, one follower is strong and the other follower is weak.';
+
+            } else {
+
+                text2 = 'Notice that while you and the other follower in your group have different power levels, in the opposing group, followers have equal power';
+
+            }
+
+        }
+
+    }
+
+    if(!icon.globalVariable.ourFollowersAreHetero) {
+
+        if(myIndex === 0) {
+
+            text1 = 'You are the <strong>Leader</strong> of your group.';
+
+            if(icon.globalVariable.theirFollowersAreHetero) {
+
+                text2 = 'Notice that while your followers have equal power, the opposing group\'s followers differ in their power levels.';
+
+            }
+
+        }
+
+        if(myIndex === 1) {
+
+            text1 = 'You are the <strong>follower</strong> of your group.';
+
+            if(icon.globalVariable.theirFollowersAreHetero) {
+
+                text2 = 'Notice that while you and the other follower in your group have equal power, the opposing group\'s followers differ in their power levels.';
+
+            }
+
+        }
+
+        if(myIndex === 2) {
+
+            text1 = 'You are the <strong>follower</strong> of your group.';
+
+            if(icon.globalVariable.theirFollowersAreHetero) {
+
+                text2 = 'Notice that while you and the other follower in your group have equal power, the opposing group\'s followers differ in their power levels.';
+
+            }
+
+        }
+
+    }
+
+    if(!icon.globalVariable.isPracticeRound || icon.globalVariable.bothHomo) {
+        text2 = '';
+        $('.text').css({'font-size':'35px'});
+
+    }
+
     text3 = 'Please click OK to proceed to the Out-Group Contest 1.'
 
     $('#text1').html(text1);
@@ -383,23 +483,41 @@ icon.stage1.hideShowButtons = function() {
 
 }
 
-icon.stage1.button1 = document.getElementById('stage1RandomButton');
-icon.stage1.button1.onclick = function() {
 
-    $('.wrap2').css({'opacity':'1'});
-    $('.topbox').css({'transform':'scale(0)'});
-    setTimeout(()=>icon.stage1.animateSort(), 1000);
+$('#stage1RandomButton').click(function() {
 
-}
+    wiggleArrowActive = false;
+    $('.pointerArrow').css({'transition':'0.2s', 'opacity':'0'});
+    $('.playerRandomSortImage2').css({'transition':'0.3s', 'transform':'scale(0) rotateY(2turn)'});
 
-icon.stage1.button2 = document.getElementById('replayButton');
-icon.stage1.button2.onclick = function() {
+    setTimeout(()=>{
+        $('.wrap2').css({'opacity':'1'});
+        $('#boxwrap-A-2').css({'transition':'0.5', 'transform':'scale(0)'});
+    },300)
+
+    setTimeout(()=>icon.stage1.animateSort(), 1500);
+
+})
+
+
+$('#replayButton').click(function() {
 
     icon.set.stage1();
-    $('.wrap2').css({'transition':'1s',  'transition-delay':'0s', 'margin-top':'-200px'});
+    $('#boxbox-C').css({'opacity':'0'});
+    $('.wrap2').css({'transition':'1s',  'transition-delay':'0s', 'margin-top':'-333px'});
+    $('.playerRandomSortImage2').css({'transition':'0.3s', 'transform':'scale(1) rotateY(0turn)'});
 
+})
 
-}
+$('#btn-C-2').click(function() {
+
+    icon.set.stage1();
+    $('#boxbox-C').css({'opacity':'0'});
+    $('.wrap2').css({'transition':'1s',  'transition-delay':'0s', 'margin-top':'-333px'});
+    $('.playerRandomSortImage2').css({'transition':'0.3s', 'transform':'scale(1) rotateY(0turn)'});
+
+});
+
 
 icon.display.stage1 = function(show) {
 
@@ -409,9 +527,252 @@ icon.display.stage1 = function(show) {
 
 }
 
-
-
+//-------------------------------------------//
 
 
 icon.set.stage1();
 icon.display.stage1(true);
+
+
+//---------------------------------------------//
+//---------------------------------------------//
+//---------------------------------------------//
+//---------------------------------------------//
+//---------------------------------------------//
+//---------------------------------------------//
+//---------------------------------------------//
+//---------------------------------------------//
+//---------------------------------------------//
+//---------------------------------------------//
+//---------------------------------------------//
+//---------------------------------------------//
+//---------------------------------------------//
+//---------------------------------------------//
+//---------------------------------------------//
+//---------------------------------------------//
+//---------------------------------------------//
+//---------------------------------------------//
+//---------------------------------------------//
+//---------------------------------------------//
+//---------------------------------------------//
+//---------------------------------------------//
+//---------------------------------------------//
+//---------------------------------------------//
+//---------------------------------------------//
+//---------------------------------------------//
+//---------------------------------------------//
+//---------------------------------------------//
+//---------------------------------------------//
+//---------------------------------------------//
+//---------------------------------------------//
+//---------------------------------------------//
+//---------------------------------------------//
+//---------------------------------------------//
+//---------------------------------------------//
+//---------------------------------------------//
+//---------------------------------------------//
+//---------------------------------------------//
+//---------------------------------------------//
+//---------------------------------------------//
+//---------------------------------------------//
+//---------------------------------------------//
+//---------------------------------------------//
+//---------------------------------------------//
+//---------------------------------------------//
+//---------------------------------------------//
+//---------------------------------------------//
+//---------------------------------------------//
+
+var box = {
+
+    set: {},
+    show: {},
+    hide: {},
+    global: {},
+    button: {},
+
+}
+
+box.global.previousKey = undefined;
+box.global.currentKey = undefined;
+
+box.global.keys = [];
+
+
+box.set.wrapHeight = function(id) {
+
+    var key = id.split('-')[1];
+
+    box.global.keys.push(key);
+
+    box.global.currentKey = box.global.keys[box.global.keys.length - 1];
+
+    if(box.global.keys.length === 1) {
+
+        box.global.previousKey = box.global.keys[box.global.keys.length - 1];
+
+    } else {
+
+        box.global.previousKey = box.global.keys[box.global.keys.length - 2];
+
+    }
+
+    id = '#' + id;
+    var height = $(id).height();
+    height = height + 'px';
+
+    var boxbox = '#boxbox-' + key;
+
+    $(boxbox).css({'height' : height});
+
+    if(box.global.previousKey != box.global.currentKey) {
+
+        var prevBoxbox = '#boxbox-' + box.global.previousKey;
+        $(prevBoxbox).css({'height' : '0'});
+
+    }
+
+    if(box.global.keys.length > 2) {
+
+        box.global.keys = box.global.keys.slice(Math.max(box.global.keys.length - 2, 1));
+
+    }
+
+    // console.log(box.global.keys);
+
+}
+
+box.move = function(id) {
+
+    var myDiv = '#boxwrap-' + id.split('-')[1] + '-' + id.split('-')[2];
+
+    console.log(myDiv);
+
+    var myPlace = '#boxbox-' + id.split('-')[1];
+
+    console.log(myPlace);
+
+    $(myDiv).appendTo(myPlace);
+
+}
+
+box.store = function(id) {
+
+    var myDiv = '#boxwrap-' + id.split('-')[1] + '-' + id.split('-')[2];
+
+    $(myDiv).appendTo('.reviewBox');
+
+}
+
+box.show = function(id) {
+
+    box.move(id);
+
+    box.set.wrapHeight(id);
+
+    id = '#' + id;
+
+    $(id).css({'transform':'scale(1)'});
+
+    // ADD MOVE IFRAME TO THIS DIV METHOD HERE
+
+}
+
+box.hide = function(id, moveToReviewBox) {
+
+    id = '#' + id;
+    $(id).css({'transform':'scale(0)'});
+
+    if(moveToReviewBox) {
+
+        setTimeout(()=>{
+            box.store(id);
+            $(id).css({'transform':'scale(1)'});
+        }, 850);
+
+    }
+
+}
+
+box.transition = function(id1, id2, hideButton) {
+
+    if(hideButton) {
+
+        box.button.hide(id2);
+
+    }
+
+    id1 = 'box-' + id1;
+    id2 = 'box-' + id2;
+
+    box.hide(id1);
+    box.show(id2);
+
+}
+
+box.button.hide = function(id) {
+
+    id = '#btn-' + id;
+
+    console.log(id);
+
+    $(id).css({'transform':'scale(0) rotate(1turn)'});
+
+}
+
+box.button.show = function(id) {
+
+    id = '#btn-' + id;
+
+    $(id).css({'transform':'scale(1) rotate(0turn)'});
+
+}
+
+
+//-------------------//
+
+box.show('box-A-1');
+
+
+$('#btn-A-1').click(function() {
+
+    box.transition('A-1', 'A-2');
+    $('.wrap1').css({'margin-top':'0px'});
+    $('.playerRandomSortImage2').css({'opacity':'1'})
+    $('.pointerArrow').css({'opacity':'1'});
+    wiggleArrow(1);
+
+});
+
+
+$('#btn-B-3').click(function() {
+
+    $('#boxbox-B').css({'transition':'0.4s', 'transform':'scale(0)'});
+    $('.showSecond').css({'display':'flex'});
+    setTimeout(()=>{$('.showSecond').css({'transition':'0.4s', 'transform':'scale(1)'});}, 400);
+
+});
+
+
+
+var wiggleArrowActive = true;
+var wiggleArrow = function(state) {
+
+    if(wiggleArrowActive) {
+
+        if(state === 0) {
+            $('.buttonPointerArrow').css({'margin-top':'20px'});
+            setTimeout(()=>wiggleArrow(1), 700);
+
+        }
+
+        if(state === 1) {
+            $('.buttonPointerArrow').css({'margin-top':'70px'});
+            setTimeout(()=>wiggleArrow(0), 700);
+        }
+
+    } else {
+        $('.buttonPointerArrow').css({'opacity':'0'});
+    }
+
+}
