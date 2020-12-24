@@ -1,0 +1,181 @@
+.imgbottomtext
+{
+    margin-right: 0px;
+    font-size: 33px;
+    font-weight: 800;
+    margin-top: 36px;
+    opacity: 0;
+}
+.wrap2
+{
+    transition:0.5s;
+    opacity:0;
+    margin-top: -200px;
+}
+/*-----*/
+.mememe1
+{
+    opacity:0;
+}
+.mememe2
+{
+    opacity:0;
+}
+.mememe3
+{
+    opacity:0;
+}
+.mememe4
+{
+    opacity:0;
+}
+.mememe5
+{
+    opacity:0;
+}
+.mememe6
+{
+    opacity:0;
+}
+/*-----*/
+.objective1
+{
+    display:flex;
+}
+.subjective1
+{
+    display:none;
+}
+.objective2
+{
+    display:flex;
+}
+.subjective2
+{
+    display:none;
+}
+.objective3
+{
+    display:flex;
+}
+.subjective3
+{
+    display:none;
+}
+/*----*/
+/**IMAGES**/
+img.p0
+{
+    filter: drop-shadow(0px 7px 3px black);
+    height:160px;
+    width:100px;
+    position:absolute;
+}
+img.pf1
+{
+    filter: drop-shadow(0px 7px 3px black);
+    height:160px;
+    width:100px;
+    position:absolute;
+}
+img.pl1
+{
+    filter: drop-shadow(0px 7px 3px black);
+    height:160px;
+    width:100px;
+    position:absolute;
+}
+.imgwrap1
+{
+    width:100px;
+}
+.imgwrap2
+{
+    height: 188px;
+    width:100px;
+    margin-top: 36px;
+}
+img.crown
+{
+    filter: drop-shadow(0px 7px 3px black);
+    height: 70px;
+    width: 72px;
+    position: absolute;
+    margin-left: 12px;
+    margin-top: -42px;
+    z-index: -1;
+}
+.groupAwrap
+{
+    padding:40px;
+    box-shadow: 0px 7px 10px 7px black
+}
+.grouptitleA
+{
+    font-size:50px;
+}
+.grouptitleB
+{
+    font-size:50px;
+}
+.groupBwrap
+{
+    margin-left: 336px;
+    width: 385px;
+    padding:40px;
+    box-shadow: 0px 7px 10px 7px black
+}
+.playerRandomSortImageWrap
+{
+    margin-top: 70px;
+    margin-bottom: -113px;
+}
+/*-----*/
+.playerRandomSortImageWrap
+{
+    position: relative;
+    z-index: 5;
+}
+img.playerRandomSortImage
+{
+    background: #65d147;
+    height: 120px;
+    width: 120px;
+}
+.topbox {
+    display: flex;
+    flex-direction: row;
+    width: 1000px;
+    background-color: rgb(255, 254, 172);
+    box-shadow: 0px 2px 5px 1px black;
+    border: 4px inset gray;
+    transform-origin: top left;
+    transition: 0.5s;
+    position: absolute;
+    transform: scale(1);
+}
+.toptext
+{
+    text-align:center;
+    font-size: 50px;
+    font-weight: 400;
+}
+.firstboxbox {
+    margin-top: 180px;
+}
+img.playerRandomSortImageMini
+{
+    background: #65d147;
+    height:40px;
+    width:40px;
+    border:1px solid;
+    border-radius: 57px;
+    padding:4px;
+    margin-left: 9px;
+    margin-top: -5px;
+}
+.newRoundButtonWrap
+{
+    margin-top:70px;
+    margin-bottom:-70px;
+}

@@ -120,6 +120,7 @@
 }
 img.IG_fightIcon
 {
+    filter: drop-shadow(rgb(60,60,60) 0px 4px 2px);
     height:50px;
     width:50px;
 }

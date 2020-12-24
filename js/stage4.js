@@ -4238,6 +4238,12 @@ calculator.section.hs.opacity.IG_leaderIconsMain = function(o) {
 
     }
 
+    if(o === 1) {
+        $('.IG_splc1, .IG_splc2').css({'filter':'drop-shadow(0px 7px 3px black)'});
+    } else {
+        $('.IG_splc1, .IG_splc2').css({'filter':'drop-shadow(0px 0px 0px transparent)'});
+    }
+
 }
 
 calculator.section.hs.opacity.IG_fightIcon = function(o) {

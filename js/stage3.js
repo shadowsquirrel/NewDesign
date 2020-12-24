@@ -7073,6 +7073,12 @@ calculator.section.hs.opacity.followerIcons = function(o) {
 
     }
 
+    if(o === 1) {
+        $('.spf1, .spf1L11, .spf1L12, .spf1L21, .spf1L22').css({'filter':'drop-shadow(0px 7px 3px black)'});
+    } else {
+        $('.spf1, .spf1L11, .spf1L12, .spf1L21, .spf1L22').css({'filter':'drop-shadow(0px 0px 0px transparent)'});
+    }
+
 }
 
 calculator.section.hs.opacity.leaderIconsMain = function(o) {
@@ -7081,6 +7087,12 @@ calculator.section.hs.opacity.leaderIconsMain = function(o) {
 
         $('.wrapMid').css({'transition':'1.023456s', 'opacity': o.toString()});
 
+    }
+
+    if(o === 1) {
+        $('.splc1, .splc2').css({'filter':'drop-shadow(0px 7px 3px black)'});
+    } else {
+        $('.splc1, .splc2').css({'filter':'drop-shadow(0px 0px 0px transparent)'});
     }
 
 }
