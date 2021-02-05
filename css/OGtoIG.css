@@ -1,12 +1,14 @@
 /*ICONS*/
 img.lostLeaderIcon
 {
+    filter: drop-shadow(0px 3px 2px black);
     height:50px;
     width:30px;
     z-index:1;
 }
 img.lostCrown
 {
+    filter: drop-shadow(0px 2px 1px black);
     z-index:2;
     opacity:0;
     height:21px;
@@ -18,6 +20,7 @@ img.lostCrown
 }
 img.wonLeaderIcon
 {
+    filter: drop-shadow(0px 3px 2px black);
     height:60px;
     width:48px;
     z-index:1;
@@ -37,6 +40,7 @@ img.wonLeaderIcon
 /*PREOUTCOMES*/
 .resultsUnknown
 {
+    filter: drop-shadow(0px 3px 2px black);
     position:absolute;
     opacity:0;
     margin-top:-126px;

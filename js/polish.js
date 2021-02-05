@@ -6,6 +6,7 @@ var map = {
     opacity: {},
     active: {},
     reset: {},
+    softReset: {},
     animate: {},
     wheel: {},
     set: {},
@@ -13,6 +14,7 @@ var map = {
     me: {},
     treatment: {},
     globalVariable: {},
+    enlarge: {},
 
 };
 
@@ -42,7 +44,8 @@ map.og1_topWon = undefined;
 
 map.showMap = function() {
 
-    $('.sexplain').css({'transition-delay':'0.5', 'opacity': '1'});
+    $('.sexplain').css({'display':'flex'});
+    setTimeout(()=>{$('.sexplain').css({'transition':'0.5', 'opacity': '1', 'transform':'scale(1)'});}, 100)
 
 }
 
@@ -143,6 +146,25 @@ map.opacity.main = function(optArray) {
     $('.OG1').css({'transition':'0.5s', 'opacity' : optArray[0].toString()});
     $('.IG').css({'transition':'0.5s', 'opacity' : optArray[1].toString()});
     $('.OG2').css({'transition':'0.5s', 'opacity' :  optArray[2].toString()});
+
+}
+
+
+map.enlarge.main = function(myArray) {
+
+    var s1, s2, s3;
+
+    s1 = 'scale('+myArray[0]+')';
+    s2 = 'scale('+myArray[1]+')';
+    s3 = 'scale('+myArray[2]+')';
+
+    $('.IG').css({'transition':'0s', 'transform-origin':'right'});
+    $('.OG2').css({'transition':'0s', 'transform-origin':'initial'});
+
+
+    $('.OG1').css({'transition':'0.5s', 'transform' : s1});
+    $('.IG').css({'transition':'0.5s', 'transform' : s2, 'margin-left':'-23px'});
+    $('.OG2').css({'transition':'0.5s',  'transform' :  s3, 'margin-top':'33px'});
 
 }
 
@@ -1010,6 +1032,32 @@ map.reset.OG1results = function(activeIG) {
 
 }
 
+
+map.softReset.OG1results = function(activeIG) {
+
+    map.opacity.coverArrows([0,0]);
+    map.opacity.mainArrowSections([1,1,0]);
+
+    $('.wonLostBoxes').css({'transition':'0.5s', 'opacity': '1'});
+    $('.topBoxLeaderResult, .bottomBoxLeaderResult').css({'transition':'0.5s', 'opacity':'0'});
+
+    map.og1_topWon = undefined;
+    $('.topLeaderWon, .bottomLeaderLost').css({'transition':'0s', 'opacity':'0'});
+    $('.topLeaderLost, .bottomLeaderWon').css({'transition':'0s', 'opacity':'0'});
+
+    $('.OG1LeaderLeft').css({'transition':'0.5s', 'opacity':'1'});
+    $('.OG1LeaderRight').css({'transition':'0.5s', 'opacity':'1'});
+
+    $('.OG1FightIconLime').css({'transition':'1s', 'opacity':'1'});
+    $('.OG1FightIcon').css({'transition':'1s', 'opacity':'0'});
+
+    map.opacity.arrowsToResultIcons([0,0]);
+
+    map.reset.IGresults(activeIG);
+    // map.active.igStart();
+
+}
+
 // RESETS IG RESULTS
 // hide short and long arrows leaving from result icons.
 // both fight icons are lime (active state)
@@ -1629,6 +1677,42 @@ map.animate.rotateSections = function(array, counter, metaCounter) {
 
 }
 
+map.animate.rotateSections2 = function(array, counter, metaCounter) {
+
+    array[counter] = 1;
+
+    map.opacity.section(array);
+    map.opacity.main(array);
+
+    var newCounter = counter + 1;
+    var newMetaCounter = metaCounter + 1;
+
+    if(newCounter === 3) {
+        // 6 for 2 rounds
+        if(newMetaCounter < 6) {
+
+            newCounter = 0;
+            array = [0,0,0];
+            setTimeout(()=>
+            map.animate.setNewRound2(array, newCounter, newMetaCounter),
+            1000);
+
+        } else {
+
+            // PLACE HERE INFO BOX TRIGGER
+
+        }
+
+    } else if (newCounter < 3) {
+
+        setTimeout(()=>
+        map.animate.rotateSections2(array, newCounter, newMetaCounter),
+        1000);
+
+    }
+
+}
+
 map.animate.setNewRound = function(array, counter, metaCounter) {
 
     map.opacity.section(array);
@@ -1645,12 +1729,39 @@ map.animate.setNewRound = function(array, counter, metaCounter) {
 
 }
 
+map.animate.setNewRound2 = function(array, counter, metaCounter) {
+
+    map.opacity.section(array);
+    map.opacity.main(array);
+
+    $('.newRound').css({'opacity':'1'});
+
+    $('.newRoundText0').css({'opacity':'1'});
+    // map.animate.roundNumber.innerHTML = map.animate.roundCount;
+    map.animate.roundCount = map.animate.roundCount + 1;
+
+    $('.endRoundText').css({'opacity':'0'});
+    setTimeout(()=>map.animate.beginNewRound2(array, counter, metaCounter), 750);
+
+}
+
 map.animate.beginNewRound = function(array, counter, metaCounter) {
 
     $('.newRound').css({'opacity':'0'});
+    $('.newRoundText0').css({'opacity':'0'});
     $('.newRoundText').css({'opacity':'0'});
     $('.endRoundText').css({'opacity':'0'});
     setTimeout(()=>map.animate.rotateSections(array, counter, metaCounter), 50);
+
+}
+
+map.animate.beginNewRound2 = function(array, counter, metaCounter) {
+
+    $('.newRound').css({'opacity':'0'});
+    $('.newRoundText0').css({'opacity':'0'});
+    $('.newRoundText').css({'opacity':'0'});
+    $('.endRoundText').css({'opacity':'0'});
+    setTimeout(()=>map.animate.rotateSections2(array, counter, metaCounter), 50);
 
 }
 
@@ -1661,8 +1772,22 @@ map.animate.rotateTextandSection = function() {
 
 }
 
+map.animate.rotateTextandSection2 = function() {
+
+    map.opacity.main([0,0,0]);
+    map.animate.setNewRound2([0,0,0],0,0);
+
+}
+
+map.animate.resetCounter = function() {
+
+    map.animate.roundCount = 1;
+
+}
 
 //-----ROTATING NETPAYOFFS ON THE MAP----//
+
+map.wheel.spinAllowed = false;
 
 map.animate.startRoundNetPayoffs = function(roundCount) {
 
@@ -1781,9 +1906,14 @@ map.animate.rotateNetPayoffs = function(roundCount, partCount) {
     }
 }
 
-map.animate.showPayoffs = function() {
+map.animate.showPayoffs = function(myDelay) {
 
-    var delay = 2000;
+    var delay;
+
+    myDelay = myDelay === undefined ? 2000 : myDelay;
+
+    delay = myDelay;
+
     map.opacity.section([0,0,0]);
 
     map.animate.startRoundNetPayoffs(1);
@@ -1808,6 +1938,41 @@ map.animate.showPayoffs = function() {
     setTimeout(()=>map.animate.rotateNetPayoffs(4, 1), 13 * delay);
     setTimeout(()=>map.animate.rotateNetPayoffs(4, 2), 14 * delay);
     setTimeout(()=>map.animate.rotateNetPayoffs(4, 3), 15 * delay);
+
+}
+
+
+map.animate.showPayoffs2 = function(myDelay) {
+
+    var delay;
+
+    myDelay = myDelay === undefined ? 500 : myDelay;
+
+    delay = myDelay;
+
+    map.opacity.section([0,0,0]);
+
+    map.animate.startRoundNetPayoffs(1);
+
+    setTimeout(()=>map.animate.rotateNetPayoffs(1, 1), delay);
+    setTimeout(()=>map.animate.rotateNetPayoffs(1, 2), 2 * delay);
+    setTimeout(()=>map.animate.rotateNetPayoffs(1, 3), 3 * delay);
+
+}
+
+map.animate.showPayoffs3 = function(myDelay) {
+
+    var delay;
+
+    myDelay = myDelay === undefined ? 500 : myDelay;
+
+    delay = myDelay;
+
+    setTimeout(()=>map.animate.startRoundNetPayoffs(2), 1 * delay);
+    setTimeout(()=>map.animate.rotateNetPayoffs(2, 1), 3 * delay);
+    setTimeout(()=>map.animate.rotateNetPayoffs(2, 2), 4 * delay);
+    setTimeout(()=>map.animate.rotateNetPayoffs(2, 3), 5 * delay);
+    setTimeout(()=>$('.netPayoffPart30').css({'opacity':'1'}), 7 * delay);
 
 }
 
@@ -2008,7 +2173,7 @@ map.wheel.setRoundResult = function(index) {
     if(index === 10) {
 
         setTimeout(()=>map.wheel.cruising(342), 1520);
-        if(map.wheel.spinToPick) {
+        if(map.wheel.spinToPick && map.whheel.spinAllowed) {
             setTimeout(()=>map.wheel.spin(), 3000);
         }
 
@@ -2020,7 +2185,7 @@ map.wheel.setRoundResult = function(index) {
 // map.wheel.setRoundResult(1)
 
 data.netPayoffs = [1161, 345, 543, 1491, 654, 342, 1781, 543, 1234, 567];
-data.netPayoffs = [1161, '?', '?', '?', '?', '?', '?', '?', '?', '?'];
+// data.netPayoffs = [1161, '?', '?', '?', '?', '?', '?', '?', '?', '?'];
 map.wheel.netPayoffArray = ['?', '?', '?', '?', '?', '?', '?', '?', '?', '?'];
 map.wheel.rotationAngle = -18;
 map.wheel.create(map.wheel.netPayoffArray);
@@ -2208,6 +2373,17 @@ map.show.everything = function(wl, wf) {
     setTimeout(()=>map.animate.discardIG_secondStep(), 12000);
 
     map.hide.og2_all();
+
+}
+
+
+map.display.ogs = function() {
+
+    map.opacity.main([1,1,1]);
+    map.opacity.cover([0,0,1]);
+    map.opacity.section([0.2, 1, 0.2]);
+    map.opacity.coverArrows([0,0]);
+    map.opacity.inside([1,0,0]);
 
 }
 
@@ -2548,19 +2724,33 @@ map.show.demo = function(delay) {
 
 
 
+// map.showMap();
+// map.show.sections();
+// map.opacity.main([1,1,1]);
+// map.opacity.section([0.1,0.1,0.1]);
+// map.opacity.cover([0,0,0]);
+// map.opacity.inside([1,1,1]);
+// map.opacity.sectionTitles([1,1,1]);
+// map.animate.OG1ResultsUknown(0);
+// map.globalVariable.ourSideIsHetero = 1;
+// map.globalVariable.theirSideIsHetero = 1;
+// map.treatment();
+// map.globalVariable.playerIndex = 1;
+// map.animate.YAH_og1();
+
+
 map.showMap();
 map.show.sections();
 map.opacity.main([1,1,1]);
-map.opacity.section([0.1,0.1,0.1]);
+map.opacity.section([1,1,1]);
 map.opacity.cover([0,0,0]);
-map.opacity.inside([1,1,1]);
-map.opacity.sectionTitles([1,1,1]);
-map.animate.OG1ResultsUknown(0);
+map.opacity.inside([0,0,0]);
+map.opacity.sectionTitles([0,0,0]);
+// map.animate.OG1ResultsUknown(0);
 map.globalVariable.ourSideIsHetero = 1;
 map.globalVariable.theirSideIsHetero = 1;
 map.treatment();
-map.globalVariable.playerIndex = 1;
-map.animate.YAH_og1();
+
 
 
 
@@ -2630,8 +2820,11 @@ var box = {
 
 box.global.previousKey = undefined;
 box.global.currentKey = undefined;
+box.global.transformedBoxes = [];
 
 box.global.keys = [];
+
+box.global.nextBoxToShow = undefined;
 
 
 box.set.wrapHeight = function(id) {
@@ -2654,9 +2847,18 @@ box.set.wrapHeight = function(id) {
 
     id = '#' + id;
     var height = $(id).height();
-    height = height + 'px';
+    console.log('height: ' + height);
+    if(height === undefined) {
+        height = '0px';
+    } else {
+        height = height + 'px';
+    }
+
+    console.log(height);
 
     var boxbox = '#boxbox-' + key;
+
+    console.log(boxbox);
 
     $(boxbox).css({'height' : height});
 
@@ -2699,24 +2901,141 @@ box.store = function(id) {
 
 }
 
-box.show = function(id) {
+// need to be used before the transition is made as it is added to the end of the div
+box.addSpace = function(id) {
 
-    box.move(id);
+    var key = id.split('-')[1];
 
-    box.set.wrapHeight(id);
+    var myBox = '#boxbox-' + key;
 
-    id = '#' + id;
-
-    $(id).css({'transform':'scale(1)'});
-
-    // ADD MOVE IFRAME TO THIS DIV METHOD HERE
+    $('<br>').appendTo(myBox);
 
 }
 
-box.hide = function(id, moveToReviewBox) {
+box.show = function(id, addSpaceAbove) {
+
+    var id1, id2, id3;
+
+    id1 = id.split(':')[0];
+
+    id2 = id.split(':')[1];
+
+    if(id2 != undefined) {
+        id3 = id1.split('box-')[1];
+    }
+
+    // console.log('id: ' + id);
+    // console.log('id1: ' + id1);
+    // console.log('id2: ' + id2);
+    // console.log('id3: ' + id3);
+
+
+    if(id2 === 'wait') {
+
+        // if this is not undefined then showresult that is called by the wheel
+        // will also activate showing the new box
+        // and as it shows it, it should make the below global undefined again
+        box.global.nextBoxToShow = id3;
+
+    } else {
+
+        if(addSpaceAbove) {
+
+            box.addSpace(id);
+
+        }
+
+        box.global.nextBoxToShow = undefined;
+
+        box.move(id);
+
+        box.set.wrapHeight(id);
+
+        id = '#' + id;
+
+        $(id).css({'transform':'scale(1)'});
+
+        // ADD MOVE IFRAME TO THIS DIV METHOD HERE
+
+    }
+
+}
+
+box.transform = function(idCore, id) {
+
+    var cT, cTCA;
+
+    box.global.transformedBoxes.push(id);
+    console.log(box.global.transformedBoxes);
+
+    box.button.hide(idCore);
+
+    $(id).css({'position':'relative', 'background':'transparent', 'border-width':'0px', 'box-shadow':'0px 0px black', 'margin-top':'-30px'});
+    cT = $(id).children('div:first');
+
+    console.log(cT);
+    $(cT).css({'font-size':'20px'});
+    cTCA = $(id).children('div:first').children();
+
+    console.log(cTCA);
+    for(var f = 0; f < cTCA.length; f++) {
+
+        $(cTCA[f]).css({'margin-bottom':'-5px'});
+
+    }
+
+}
+
+box.flush = function() {
+
+    var id, cT, cTCA;
+
+    var k = box.global.transformedBoxes;
+    box.global.transformedBoxes = [];
+
+    for(var i = 0; i < k.length; i++) {
+
+        id = k[i];
+        $(id).css({'transform':'scale(0)'});
+        $(id).css({'position':'absolute', 'background':'rgb(255, 254, 172)', 'border-width':'4px', 'box-shadow':'0px 2px 5px 1px black', 'margin-top':'0px'});
+
+        // text div of the div in question
+        cT = $(id).children('div:first');
+        $(cT).css({'font-size':'25px'});
+
+        // subtext divs of the text div of the div in question
+        cTCA = $(id).children('div:first').children();
+        for(var f = 0; f < cTCA.length; f++) {
+
+            $(cTCA[f]).css({'margin-bottom':'1rem'});
+
+        }
+
+        // show the button again
+        $($($(id).children()[1]).children()).css({'transform':'scale(1)'});
+
+        $('br').remove();
+
+    }
+
+}
+
+box.hide = function(id, transform, moveToReviewBox) {
+
+    var idCore = id.split('box-')[1];
 
     id = '#' + id;
-    $(id).css({'transform':'scale(0)'});
+
+    if(transform) {
+
+        box.transform(idCore, id);
+
+    } else {
+
+        $(id).css({'transform':'scale(0)'});
+
+    }
+
 
     if(moveToReviewBox) {
 
@@ -2729,7 +3048,9 @@ box.hide = function(id, moveToReviewBox) {
 
 }
 
-box.transition = function(id1, id2, hideButton) {
+//box.transition('A-1', 'A-2:wait', 1, 1, 0)
+
+box.transition = function(id1, id2, transform, addSpaceBetween, hideButton) {
 
     if(hideButton) {
 
@@ -2740,16 +3061,14 @@ box.transition = function(id1, id2, hideButton) {
     id1 = 'box-' + id1;
     id2 = 'box-' + id2;
 
-    box.hide(id1);
-    box.show(id2);
+    box.hide(id1, transform);
+    box.show(id2, addSpaceBetween);
 
 }
 
 box.button.hide = function(id) {
 
     id = '#btn-' + id;
-
-    console.log(id);
 
     $(id).css({'transform':'scale(0) rotate(1turn)'});
 
@@ -2770,15 +3089,15 @@ box.show('box-A-1');
 
 
 $('#btn-A-1').click(function() {
-    box.transition('A-1', 'A-2');
+    box.transition('A-1', 'A-2', 1, 1, 0);
 });
 
 $('#btn-A-2').click(function() {
-    box.transition('A-2', 'A-3');
+    box.transition('A-2', 'A-3', 1, 1, 0);
 });
 
 $('#btn-A-3').click(function() {
-    box.transition('A-3', 'B-1');
+    box.transition('A-3', 'B-1', 1, 0, 0);
 });
 
 $('#btn-B-1').click(function() {
@@ -2802,7 +3121,7 @@ $('#btn-C-2').click(function() {
 });
 
 $('#btn-C-3').click(function() {
-    box.transition('C-3', 'D-1');
+    box.transition('C-3', 'A-1');
 });
 
 $('#btn-D-1').click(function() {

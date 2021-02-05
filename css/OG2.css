@@ -1,6 +1,7 @@
 /*ICONS*/
 img.OG2ficon
 {
+    filter: drop-shadow(0px 3px 2px black);
     height:50px;
     width:30px;
     z-index:1;
@@ -17,6 +18,7 @@ img.OG2ficonLime
 }
 img.OG2OldLeaderTopLeft
 {
+    filter: drop-shadow(0px 3px 2px black);
     transition:0s;
     height:50px;
     width:30px;
@@ -36,6 +38,7 @@ img.OG2OldLeaderTopLimeLeft
 }
 img.OG2OldLeaderBottomLeft
 {
+    filter: drop-shadow(0px 3px 2px black);
     transition:0s;
     height:50px;
     width:30px;
@@ -55,6 +58,7 @@ img.OG2OldLeaderBottomLimeLeft
 }
 img.OG2OldLeaderTopRight
 {
+    filter: drop-shadow(0px 3px 2px black);
     transition:0s;
     height:50px;
     width:30px;
@@ -64,6 +68,7 @@ img.OG2OldLeaderTopRight
 }
 img.OG2OldLeaderTopLimeRight
 {
+    filter: drop-shadow(0px 3px 2px black);
     transition:0s;
     height:50px;
     width:30px;
@@ -74,6 +79,7 @@ img.OG2OldLeaderTopLimeRight
 }
 img.OG2OldLeaderBottomRight
 {
+    filter: drop-shadow(0px 3px 2px black);
     transition:0s;
     height:50px;
     width:30px;
@@ -93,6 +99,7 @@ img.OG2OldLeaderBottomLimeRight
 }
 img.OG2LeaderKingLeft
 {
+    filter: drop-shadow(0px 3px 2px black);
     height:60px;
     width:48px;
     z-index:1;
@@ -101,6 +108,7 @@ img.OG2LeaderKingLeft
 }
 img.newLeaderKingLeft
 {
+    filter: drop-shadow(0px 3px 2px black);
     opacity: 1;
     height:60px;
     width:48px;
@@ -109,6 +117,7 @@ img.newLeaderKingLeft
 }
 img.OG2LeaderKingRight
 {
+    filter: drop-shadow(0px 3px 2px black);
     opacity: 1;
     height:60px;
     width:48px;
@@ -117,6 +126,7 @@ img.OG2LeaderKingRight
 }
 img.newLeaderKingRight
 {
+    filter: drop-shadow(0px 3px 2px black);
     height:60px;
     width:48px;
     z-index:1;
@@ -125,11 +135,13 @@ img.newLeaderKingRight
 }
 img.OG2FightIcon
 {
+    filter: drop-shadow(0px 2px 1px black);
     height:25px;
     width:25px;
 }
 img.OG2FightIconLime
 {
+    filter: drop-shadow(0px 2px 1px black);
     height:25px;
     width:25px;
     position:absolute;

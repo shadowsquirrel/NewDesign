@@ -1,10 +1,28 @@
+.horizontalSliderExample
+{
+    margin-left: -50px;
+    transition:0.5s;
+    transform:scale(0);
+    display:none;
+    flex-direction:row;
+    justify-content: center;
+    opacity:0;
+}
+.verticalSliderExample
+{
+    transition:0.5s;
+    /* margin-top:20px; */
+    margin-left:-50px;
+    display:none;
+    opacity:0;
+    margin-top: -300px
+}
 /*INDICATOR ARROWS*/
 img.redArrowImage1
 {
     height:109px;
     width:80px;
 }
-
 
 
 .IG_sliderArrowImageWrap_l1
@@ -23,7 +41,6 @@ img.redArrowImage1
     margin-left:48px;
     margin-top:-8px;
 }
-
 
 
 .sliderArrowImageWrap_l1
@@ -76,6 +93,48 @@ img.redArrowImage1
 }
 
 
+/*ADDITIONAL POINTER*/
+
+.spinButtonTop_arrowLeft
+{
+    position: absolute;
+    transform: rotate(269deg);
+    transition: 1s;
+    margin-left: 131px;
+    margin-top: 266px;
+    z-index:-10;
+}
+
+.spinButtonTop_arrowRight
+{
+    position: absolute;
+    transform: rotate(89deg);
+    transition: 1s;
+    margin-left: 238px;
+    margin-top: 266px;
+    z-index:-10;
+}
+
+.spinButtonBottom_arrowLeft
+{
+    position: absolute;
+    transform: rotate(269deg);
+    transition: 1s;
+    margin-left: 407px;
+    margin-top: -16px;
+    z-index: -10;
+}
+
+.spinButtonBottom_arrowRight
+{
+    position: absolute;
+    transform: rotate(89deg);
+    transition: 1s;
+    margin-left: 515px;
+    margin-top: -56px;
+    z-index: -10;
+}
+
 
 /*REVOLVING qUESTION MARKS*/
 .IG_sliderQuestion_l1
@@ -106,7 +165,6 @@ img.redArrowImage1
     font-weight:100;
     font-size:56px;
 }
-
 
 
 .sliderQuestion_l1
@@ -249,6 +307,15 @@ img.redArrowImage1
     width: 115px;
     margin-top: 32px
 }
+.f1vex
+{
+    z-index:-1;
+    position: absolute;
+    height: 308px;
+    width: 115px;
+    margin-top: 12px;
+    margin-left:-44px;
+}
 .lockedCover_f2
 {
     z-index:-1;
@@ -280,4 +347,8 @@ img.redArrowImage1
     width:20px;
     margin-top:38px;
     margin-right:61px;
+}
+.f1vex
+{
+    margin-top: 12px;
 }

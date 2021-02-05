@@ -97,18 +97,21 @@
 /*NET PAYOFF RESULTS*/
 .netPayoffResultsTutorial
 {
-    position:absolute;
+    /* position:absolute; */
     text-align:left;
     display:flex;
     flex-direction:column;
-    font-size:24px;
-    margin-top:575px;
+    font-size:40px;
+    /* margin-top:575px; */
     font-weight:100;
-    transitino:0.3s;
+    transition:0.3s;
+    margin-top:-300px;
+    display:none;
 }
 .netPayoffResultsTutorialText1
 {
-
+    z-index: 10;
+    position: relative;
 }
 .netPayoffResultsTutorialText2
 {
@@ -135,6 +138,10 @@
     opacity:0;
 }
 .netPayoffPart13
+{
+    opacity:0;
+}
+.netPayoffPart14
 {
     opacity:0;
 }
@@ -177,7 +184,12 @@
 /*NET PAYOFF WHEEL*/
 .netPayoffTextAndWheel
 {
+    opacity:0;
+    margin-bottom:-500px;
     display:none;
+    flex-direction: column;
+    margin-top: -50px;
+
 }
 .netPayoffTextAndWheel2
 {
@@ -262,4 +274,5 @@
     opacity:0;
     font-size:28px;
     font-weight:400;
+    margin-top:-105px;
 }

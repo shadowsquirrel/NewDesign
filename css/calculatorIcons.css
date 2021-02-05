@@ -134,6 +134,8 @@ img.replayButton
 {
     display:none;
     flex-direction:column;
+    transform:scale(1.2);
+    height:333px;
 }
 .wrap1
 {
@@ -162,6 +164,7 @@ img.replayButton
     flex-direction:row;
     justify-content: center;
     z-index:1;
+    /* display:none; */
 }
 .transitionWrapWrap
 {
@@ -250,6 +253,29 @@ img.playerRandomSortImage
     flex-direction:column;
     width:45px;
     margin-top:20px;
+}
+
+img.unevenLeft
+{
+    height: 40px;
+    width: 40px;
+    margin-top: -85px;
+    opacity: 0;
+    background: black;
+    border-radius: 50px;
+    padding: 5px;
+    margin-left: -3px;
+}
+img.unevenRight
+{
+    height: 40px;
+    width: 40px;
+    margin-top: -85px;
+    opacity: 0;
+    background: black;
+    border-radius: 50px;
+    padding: 5px;
+    margin-left: 297px;
 }
 /*OGC*/
 .OGCIcon

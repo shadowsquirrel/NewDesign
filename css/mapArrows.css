@@ -9,12 +9,55 @@
     opacity: 1;
     transition: 0.35s;
 }
+.arrowDashedInfoBox
+{
+    stroke:black;
+    stroke-width:1;
+    stroke-dasharray:5,5;
+    marker-end:url(#markerArrow);
+    opacity: 1;
+    transition: 0.35s;
+}
+.arrowDashedBlueInfoBox
+{
+    stroke:blue;
+    stroke-width:1;
+    stroke-dasharray:5,5;
+    marker-end:url(#markerArrowBlue);
+    opacity: 0;
+    transition: 0.35s;
+}
+.arrowDashedRedInfoBox
+{
+    stroke:red;
+    stroke-width:1;
+    stroke-dasharray:5,5;
+    marker-end:url(#markerArrowRed);
+    opacity: 0;
+    transition: 0.35s;
+}
 .arrowDashedLime1
 {
     stroke:rgb(14, 209, 69);
     stroke-width:1;
     stroke-dasharray:5,5;
     marker-end:url(#markerArrowLime);
+    opacity:0;
+}
+.arrowDashedBlue1
+{
+    stroke:blue;
+    stroke-width:1;
+    stroke-dasharray:5,5;
+    marker-end:url(#markerArrowBlue);
+    opacity:0;
+}
+.arrowDashedRed1
+{
+    stroke:red;
+    stroke-width:1;
+    stroke-dasharray:5,5;
+    marker-end:url(#markerArrowRed);
     opacity:0;
 }
 /*og1tooutcomesarrows*/
