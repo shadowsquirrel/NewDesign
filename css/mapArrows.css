@@ -44,6 +44,14 @@
     marker-end:url(#markerArrowLime);
     opacity:0;
 }
+.arrowDashedLime2
+{
+    stroke:rgb(14, 209, 69);
+    stroke-width:1;
+    stroke-dasharray:5,5;
+    marker-end:url(#markerArrowLime);
+    opacity:0;
+}
 .arrowDashedBlue1
 {
     stroke:blue;

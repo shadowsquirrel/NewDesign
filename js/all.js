@@ -364,54 +364,54 @@ map.opacity.circles = function(contest, player, opt) {
     if(contest === 'og1') {
 
         if(player === 'l1') {
-            $('.OG1LeaderCircleLeft').css({'opacity': o});
+            $('.OG1LeaderCircleLeft').css({'transition':'1s', 'opacity': o});
         }
         if(player === 'f1') {
-            $('.OG1f1CircleLeft').css({'opacity': o});
+            $('.OG1f1CircleLeft').css({'transition':'1s', 'opacity': o});
         }
         if(player === 'f2') {
-            $('.OG1f2CircleLeft').css({'opacity': o});
+            $('.OG1f2CircleLeft').css({'transition':'1s', 'opacity': o});
         }
 
 
         if(player === 'ol1') {
-            $('.OG1LeaderCircleRight').css({'opacity': o});
+            $('.OG1LeaderCircleRight').css({'transition':'1s', 'opacity': o});
         }
         if(player === 'of1') {
-            $('.OG1f1CircleRight').css({'opacity': o});
+            $('.OG1f1CircleRight').css({'transition':'1s', 'opacity': o});
         }
         if(player === 'of2') {
-            $('.OG1f2CircleRight').css({'opacity': o});
+            $('.OG1f2CircleRight').css({'transition':'1s', 'opacity': o});
         }
 
     }
 
     if(contest === 'result') {
         if(player === 'l1') {
-            $('.OG1TopLeaderResultIconsCircle').css({'opacity': o});
+            $('.OG1TopLeaderResultIconsCircle').css({'transition':'1s', 'opacity': o});
         }
         if(player === 'l2') {
-            $('.OG1BottomLeaderResultIconsCircle').css({'opacity': o});
+            $('.OG1BottomLeaderResultIconsCircle').css({'transition':'1s', 'opacity': o});
         }
     }
 
 
     if(contest === 'iga') {
         if(player === 'f1') {
-            $('.IGTopLeftCircle').css({'opacity': o});
+            $('.IGTopLeftCircle').css({'transition':'1s', 'opacity': o});
         }
         if(player === 'f2') {
-            $('.IGTopRightCircle').css({'opacity': o});
+            $('.IGTopRightCircle').css({'transition':'1s', 'opacity': o});
         }
     }
 
 
     if(contest === 'igb') {
         if(player === 'f1') {
-            $('.IGBottomLeftCircle').css({'opacity': o});
+            $('.IGBottomLeftCircle').css({'transition':'1s', 'opacity': o});
         }
         if(player === 'f2') {
-            $('.IGBottomRightCircle').css({'opacity': o});
+            $('.IGBottomRightCircle').css({'transition':'1s', 'opacity': o});
         }
     }
 
@@ -419,24 +419,24 @@ map.opacity.circles = function(contest, player, opt) {
     if(contest === 'og2') {
 
         if(player === 'l1') {
-            $('.OG2LeaderCircleLeft').css({'opacity': o});
+            $('.OG2LeaderCircleLeft').css({'transition':'1s', 'opacity': o});
         }
         if(player === 'f1') {
-            $('.OG2f1CircleLeft').css({'opacity': o});
+            $('.OG2f1CircleLeft').css({'transition':'1s', 'opacity': o});
         }
         if(player === 'f2') {
-            $('.OG2f2CircleLeft').css({'opacity': o});
+            $('.OG2f2CircleLeft').css({'transition':'1s', 'opacity': o});
         }
 
 
         if(player === 'ol1') {
-            $('.OG2LeaderCircleRight').css({'opacity': o});
+            $('.OG2LeaderCircleRight').css({'transition':'1s', 'opacity': o});
         }
         if(player === 'of1') {
-            $('.OG2f1CircleRight').css({'opacity': o});
+            $('.OG2f1CircleRight').css({'transition':'1s', 'opacity': o});
         }
         if(player === 'of2') {
-            $('.OG2f2CircleRight').css({'opacity': o});
+            $('.OG2f2CircleRight').css({'transition':'1s', 'opacity': o});
         }
 
     }
@@ -1114,6 +1114,9 @@ map.reset.IGresults = function(activeIG) {
 
 }
 
+
+
+
 //------SHOW ACTIVE STAGE METHODS-------//
 //------SHOW ACTIVE STAGE METHODS-------//
 //------SHOW ACTIVE STAGE METHODS-------//
@@ -1471,18 +1474,6 @@ map.reset.og1Results = function() {
     $('.OG1FightIcon, .OG1FightIconLime, .OG1LeaderRight, .OG1LeaderLeft').css({'transition':'0.5s', 'opacity':'1'});
     $('.arrowToBottomIconResults').css({'transition':'0.5s', 'opacity':'0'});
     $('.arrowToTopIconResults').css({'transition':'0.5s', 'opacity':'0'});
-    //
-    // setTimeout(()=>{
-    //     $('.arrowToBottomIconResults').css({'transition':'0.5s', 'opacity':'0'});
-    //     $('.arrowToTopIconResults').css({'transition':'0.5s', 'opacity':'0'});
-    // }, 100)
-    //
-    // setTimeout(()=>{
-    //     // map.closeSpace();
-    //     setTimeout(()=>{
-    //         $('.OG1FightIcon, .OG1FightIconLime, .OG1LeaderRight, .OG1LeaderLeft').css({'transition':'0.5s', 'opacity':'1'});
-    //     }, 100)
-    // }, 100)
 
 }
 
@@ -1524,9 +1515,21 @@ map.opacity.bottom = function(opt) {
 
     opt = opt.toString();
 
-    $('.arrowToBottomIconResults').css({'transition':'2s', 'opacity':opt});
-    $('.bottomLeaderWon').css({'transition':'2s', 'opacity':opt});
-    $('.IGBottomContestWrap').css({'transition':'2s', 'opacity':opt});
+    $('.arrowToBottomIconResults').css({'transition':'1s', 'opacity':opt});
+    $('.bottomLeaderWon').css({'transition':'1s', 'opacity':opt});
+    $('.IGBottomContestWrap').css({'transition':'1s', 'opacity':opt});
+    $('.arrowBottomIGtoOG2').css({'transition':'1s', 'opacity':'0'});
+
+}
+
+
+map.opacity.top = function(opt) {
+
+    opt = opt.toString();
+
+    $('.arrowToTopIconResults, .arrowTopIconToIG, .arrowTopIGtoOG2').css({'transition':'1s', 'opacity':opt});
+    $('.topLeaderLost').css({'transition':'1s', 'opacity':opt});
+    $('.IGTopContestWrap').css({'transition':'1s', 'opacity':opt});
 
 }
 
@@ -1683,6 +1686,39 @@ map.animate.validateIG = function(delay) {
     map.set.OG2ResultingIcons();
 
 }
+
+map.globalVariable.stopTutorialCrownLoop = false;
+
+map.animate.tutorialCrownLoop = function(state) {
+
+    if(!map.globalVariable.stopTutorialCrownLoop) {
+
+        if(state === 0) {
+            $('.prizeCrownLimeTop').css({'transition':'0.15s', 'opacity':'0'});
+            setTimeout(()=>{
+                $('.prizeCrownLimeTop').css({'transition':'0s','margin-top':'-40px', 'margin-left':'0px'});
+                setTimeout(()=>{
+                    $('.prizeCrownLimeTop').css({'transition':'0.15s', 'opacity':'1'});
+                }, 125)
+            }, 125)
+
+            setTimeout(()=>{
+                map.animate.tutorialCrownLoop(1)
+            }, 350)
+        }
+
+        if(state === 1) {
+            $('.prizeCrownLimeTop').css({'transition':'2s', 'margin-top':'-51px', 'margin-left': '-40px', 'height':'27px', 'width':'29px', 'z-index':'0'});
+            setTimeout(()=>{
+                map.animate.tutorialCrownLoop(0)
+            }, 2500)
+        }
+    } else {
+        $('.prizeCrownLimeTop').css({'transition':'2s', 'margin-top':'-51px', 'margin-left': '-40px', 'height':'27px', 'width':'29px', 'z-index':'0'});
+    }
+
+}
+
 
 
 //------ROTATING SECTIONS-----//
@@ -2664,65 +2700,68 @@ map.show.og2_fightIcon = function() {
     $('.OG2FightIconWrap').css({'transition':'0.5s', 'opacity':'1'});
 }
 
+//----------------------//
 //-----LEFT SECTION------//
+//----------------------//
 
 map.show.og2_leftGroupIcons = function() {
-    $('.OG2LeaderLeft, .OG2FollowerArrowsLeft, .OG2FollowersWrapLeft').css({'opacity':'1'});
+    $('.OG2LeaderLeft, .OG2FollowerArrowsLeft, .OG2FollowersWrapLeft').css({'transition':'1s', 'opacity':'1'});
 }
 map.hide.og2_leftGroupIcons = function() {
 
-    $('.OG2LeaderLeft, .OG2FollowerArrowsLeft, .OG2FollowersWrapLeft').css({'opacity':'0'});
-    $('.OG2LeftFollower1, .OG2LeftFollower2').css({'opacity':'0'});
+    $('.OG2LeaderLeft, .OG2FollowerArrowsLeft, .OG2FollowersWrapLeft').css({'transition':'1s', 'opacity':'0'});
+    $('.OG2LeftFollower1, .OG2LeftFollower2').css({'transition':'1s', 'opacity':'0'});
 }
 
 map.show.og2_leftLeader = function() {
-    $('.OG2LeaderLeft, .OG2LeadersIcon').css({'transition':'0.5s', 'opacity':'1'});
+    $('.OG2LeaderLeft, .OG2LeadersIcon').css({'transition':'1s',  'opacity':'1'});
 }
 map.hide.og2_leftLeader = function() {
-    $('.OG2LeaderLeft').css({'transition':'0s', 'opacity':'0'});
+    $('.OG2LeaderLeft').css({'transition':'1s',  'opacity':'0'});
 }
 map.show.og2_leftLeaderCAT = function() {
 
-    $('.OG2LeaderCircleLeft, .winnerLeaderArrowLeft, .winnerLeaderTextLeft').css({'transition':'0.5s', 'opacity':'1'});
+    $('.OG2LeaderCircleLeft, .winnerLeaderArrowLeft, .winnerLeaderTextLeft').css({'transition':'1s',  'opacity':'1'});
 
-    $('.IGCircleArrowLeft_f1, .IGCircleArrowTextLeft_f1').css({'transition':'0.5s', 'opacity':'1'});
-    $('.IGLeftFollower1').css({'transition':'0.5s', 'opacity':'1'});
+    $('.IGCircleArrowLeft_f1, .IGCircleArrowTextLeft_f1').css({'transition':'1s',  'opacity':'1'});
+    $('.IGLeftFollower1').css({'transition':'1s', 'opacity':'1'});
     map.opacity.circles('iga', 'f1', 1);
 
-    $('.OG1LeftFollower1').css({'transition':'0.5s', 'opacity':'1'});
+    $('.OG1LeftFollower1').css({'transition':'1s', 'opacity':'1'});
     map.opacity.circles('og1','f1', 1);
 
 }
 map.hide.og2_leftLeaderCAT = function() {
 
-    $('.OG2LeaderCircleLeft, .winnerLeaderArrowLeft, .winnerLeaderTextLeft').css({'transition':'0.5s', 'opacity':'0'});
+    $('.OG2LeaderCircleLeft, .winnerLeaderArrowLeft, .winnerLeaderTextLeft').css({'transition':'1s', 'opacity':'0'});
 
-    $('.IGCircleArrowLeft_f1, .IGCircleArrowTextLeft_f1').css({'transition':'0.5s', 'opacity':'0'});
-    $('.IGLeftFollower1').css({'transition':'0.5s', 'opacity':'0.4', 'z-index':'2'});
+    $('.IGCircleArrowLeft_f1, .IGCircleArrowTextLeft_f1').css({'transition':'1s', 'opacity':'0'});
+    $('.IGLeftFollower1').css({'transition':'1s', 'opacity':'0.5', 'z-index':'2'});
+
     map.opacity.circles('iga', 'f1', 0);
-
     map.opacity.circles('og1','f1', 0);
-    $('.OG1LeftFollower1').css({'opacity':'0.8'});
-    $('.prizeCrownLimeTop').css({'opacity':'0.8'});
+
+
+    $('.prizeCrownLimeTop').css({'opacity':'0.5'});
 
 }
 
 map.show.og2_leftFollower1 = function() {
 
-    $('.OG2LeftFollower1').css({'transition':'0.5s', 'opacity':'1'});
-    $('.OG2LeftFollower2').css({'transition':'0.5s', 'opacity':'0'});
+    $('.OG2LeftFollower1').css({'transition':'1s', 'opacity':'1'});
+    $('.OG2LeftFollower2').css({'transition':'1s', 'opacity':'0'});
     $('.OG2FollowersWrapLeft, .OG2FollowerArrowsLeft').css({'opacity':'1'});
 
 }
 map.hide.og2_leftFollower1 = function() {
 
-    $('.OG2LeftFollower1').css({'transition':'0.5s', 'opacity':'0'});
+    $('.OG2LeftFollower1').css({'transition':'1s', 'opacity':'0'});
     $('.OG2FollowersWrapLeft, .OG2FollowerArrowsLeft').css({'opacity':'1'});
 
 }
 map.show.og2_leftFollower1CAT = function() {
 
-    $('.OG2CircleArrowLeft_f1, .OG2CircleArrowTextLeft_f1').css({'transition':'0.5s', 'opacity':'1'});
+    $('.OG2CircleArrowLeft_f1, .OG2CircleArrowTextLeft_f1').css({'transition':'1s', 'opacity':'1'});
     map.opacity.circles('og2', 'f1', 1);
 
     $('.OG1LeaderLeft, .leaderKingLeft,  .topBoxLeaderResult').css({'transition':'1s', 'opacity':'1'});
@@ -2733,10 +2772,10 @@ map.show.og2_leftFollower1CAT = function() {
 }
 map.hide.og2_leftFollower1CAT = function() {
 
-    $('.OG2CircleArrowLeft_f1, .OG2CircleArrowTextLeft_f1').css({'transition':'0.5s', 'opacity':'0'});
+    $('.OG2CircleArrowLeft_f1, .OG2CircleArrowTextLeft_f1').css({'transition':'1s', 'opacity':'0'});
     map.opacity.circles('og2', 'f1', 0);
 
-    $('.OG1LeaderLeft, .topBoxLeaderResult').css({'transition':'0.5s', 'opacity':'0.8'});
+    $('.topBoxLeaderResult').css({'transition':'1s', 'opacity':'0.5'});
     map.opacity.circles('result', 'l1', 0);
 
     map.opacity.circles('og1','l1', 0);
@@ -2745,24 +2784,24 @@ map.hide.og2_leftFollower1CAT = function() {
 
 map.show.og2_leftFollower2 = function() {
 
-    $('.OG2LeftFollower2').css({'transition':'0.5s', 'opacity':'1'});
+    $('.OG2LeftFollower2').css({'transition':'1s', 'opacity':'1'});
     $('.OG2FollowersWrapLeft, .OG2FollowerArrowsLeft').css({'opacity':'1'});
 
 }
 map.hide.og2_leftFollower2 = function() {
 
-    $('.OG2LeftFollower2').css({'transition':'0.5s', 'opacity':'0'});
+    $('.OG2LeftFollower2').css({'transition':'1s', 'opacity':'0'});
     $('.OG2FollowersWrapLeft, .OG2FollowerArrowsLeft').css({'opacity':'1'});
 
 }
 map.show.og2_leftFollower2CAT = function() {
 
-    $('.OG2CircleArrowLeft_f2, .OG2CircleArrowTextLeft_f2').css({'transition':'0.5s', 'opacity':'1'});
+    $('.OG2CircleArrowLeft_f2, .OG2CircleArrowTextLeft_f2').css({'transition':'1s', 'opacity':'1'});
     map.opacity.circles('og2', 'f2', 1);
 
     map.opacity.circles('iga', 'f2', 1);
-    $('.IGLeftFollower2').css({'transition':'0.5s', 'opacity':'1'});
-    $('.IGCircleArrowTextLeft_f2, .IGCircleArrowLeft_f2').css({'transition':'0.5s', 'opacity':'1'});
+    $('.IGLeftFollower2').css({'transition':'1s', 'opacity':'1'});
+    $('.IGCircleArrowTextLeft_f2, .IGCircleArrowLeft_f2').css({'transition':'1s', 'opacity':'1'});
 
     map.opacity.circles('og1', 'f2', 1);
     $('.OG1LeftFollower2').css({'opacity':'1'})
@@ -2770,65 +2809,66 @@ map.show.og2_leftFollower2CAT = function() {
 }
 map.hide.og2_leftFollower2CAT = function() {
 
-    $('.OG2CircleArrowLeft_f2, .OG2CircleArrowTextLeft_f2').css({'transition':'0.5s', 'opacity':'0'});
+    $('.OG2CircleArrowLeft_f2, .OG2CircleArrowTextLeft_f2').css({'transition':'1s', 'opacity':'0'});
     map.opacity.circles('og2', 'f2', 0);
 
     map.opacity.circles('iga', 'f2', 0);
-    $('.IGLeftFollower2').css({'transition':'0.5s', 'opacity':'0.4'});
-    $('.IGCircleArrowTextLeft_f2, .IGCircleArrowLeft_f2').css({'transition':'0.5s', 'opacity':'0'});
+    $('.IGLeftFollower2').css({'transition':'1s', 'opacity':'0.5'});
+    $('.IGCircleArrowTextLeft_f2, .IGCircleArrowLeft_f2').css({'transition':'1s', 'opacity':'0'});
 
     map.opacity.circles('og1', 'f2', 0);
-    $('.OG1LeftFollower2').css({'opacity':'0.4'});
+    $('.OG1LeftFollower2').css({'opacity':'0.5'});
 
 }
 
 map.show.og2_leftFollowers = function() {
-    $('.OG2LeftFollower1').css({'transition':'0.5s', 'opacity':'1'});
-    $('.OG2LeftFollower2').css({'transition':'0.5s', 'opacity':'1'});
+    $('.OG2LeftFollower1').css({'transition':'1s', 'opacity':'1'});
+    $('.OG2LeftFollower2').css({'transition':'1s', 'opacity':'1'});
 }
 map.hide.og2_leftFollowers = function() {
-    $('.OG2LeftFollower1').css({'transition':'0s', 'opacity':'0'});
-    $('.OG2LeftFollower2').css({'transition':'0s', 'opacity':'0'});
+    $('.OG2LeftFollower1').css({'transition':'1s', 'opacity':'0'});
+    $('.OG2LeftFollower2').css({'transition':'1s', 'opacity':'0'});
 }
 
+//----------------------//
 //-----RIGHT SECTION----//
-
+//----------------------//
 map.show.og2_rightGroupIcons = function() {
-    $('.OG2LeaderRight, .OG2FollowerArrowsRight, .OG2FollowersWrapRight').css({'opacity':'1'});
+    $('.OG2LeaderRight, .OG2FollowerArrowsRight, .OG2FollowersWrapRight').css({'transition':'1s','opacity':'1'});
 }
 map.hide.og2_rightGroupIcons = function() {
-    $('.OG2LeaderRight, .OG2FollowerArrowsRight, .OG2FollowersWrapRight').css({'opacity':'0'});
+    $('.OG2LeaderRight, .OG2FollowerArrowsRight, .OG2FollowersWrapRight').css({'transition':'1s','opacity':'0'});
 }
 
 map.show.og2_rightFollowers = function() {
-    $('.OG2FollowersWrapRight, .OG2FollowerArrowsRight').css({'transition':'0.5s', 'opacity':'1'});
+    $('.OG2FollowersWrapRight, .OG2FollowerArrowsRight, .arrowDashed').css({'transition':'1s', 'opacity':'1'});
 }
 map.hide.og2_rightFollowers = function() {
-    $('.OG2FollowersWrapRight, .OG2FollowerArrowsRight').css({'opacity':'0'});
+    $('.OG2FollowersWrapRight, .OG2FollowerArrowsRight').css({'transition':'1s', 'opacity':'0'});
 }
 map.show.og2_rightFollowersCAT = function() {
-    $('.OG2BothFollowersCircleRight, .OG2BothFollowersCircleRightText, .OG2BothFollowersCircleRightArrow').css({'transition':'0.5s', 'opacity':'1'});
-    $('.OG1BothFollowersCircleRight').css({'transition':'0.5s', 'opacity':'1'});
-    $('.OG1RightFollower1, .OG1RightFollower2').css({'transition':'0.5s', 'opacity':'1'});
+    $('.OG2BothFollowersCircleRight, .OG2BothFollowersCircleRightText, .OG2BothFollowersCircleRightArrow').css({'transition':'1s', 'opacity':'1'});
+    $('.OG1BothFollowersCircleRight').css({'transition':'1s', 'opacity':'1'});
+    $('.OG1RightFollower1, .OG1RightFollower2').css({'transition':'1s', 'opacity':'1'});
 }
 map.hide.og2_rightFollowersCAT = function() {
-    $('.OG2BothFollowersCircleRight, .OG2BothFollowersCircleRightText, .OG2BothFollowersCircleRightArrow').css({'transition':'0.5s', 'opacity':'0'});
-    $('.OG1BothFollowersCircleRight').css({'transition':'0.5s', 'opacity':'0'});
-    $('.OG1RightFollower1, .OG1RightFollower2').css({'transition':'0.5s', 'opacity':'0.4'});
+    $('.OG2BothFollowersCircleRight, .OG2BothFollowersCircleRightText, .OG2BothFollowersCircleRightArrow').css({'transition':'1s', 'opacity':'0'});
+    $('.OG1BothFollowersCircleRight').css({'transition':'1s', 'opacity':'0'});
+    $('.OG1RightFollower1, .OG1RightFollower2').css({'transition':'1s', 'opacity':'0.5'});
 }
 
 map.show.og2_rightLeader = function() {
-    $('.OG2LeaderRight').css({'transition':'0.5s', 'opacity':'1'});
+    $('.OG2LeaderRight').css({'transition':'1s', 'opacity':'1'});
 }
 map.hide.og2_rightLeader = function() {
-    $('.OG2LeaderRight').css({'opacity':'0'});
+    $('.OG2LeaderRight').css({'transition':'1s','opacity':'0'});
 }
 map.show.og2_rightLeaderCAT = function() {
 
-    $('.OG2LeaderCircleRight, .winnerLeaderArrowRight, .winnerLeaderTextRight').css({'transition':'0.5s', 'opacity':'1'});
+    $('.OG2LeaderCircleRight, .winnerLeaderArrowRight, .winnerLeaderTextRight').css({'transition':'1s', 'opacity':'1'});
 
-    $('.bottomBoxLeaderResult').css({'transition':'0.5s', 'opacity':'1'});
-    $('.OG1LeaderRight').css({'transition':'0.5s', 'opacity':'1'});
+    $('.bottomBoxLeaderResult').css({'transition':'1s', 'opacity':'1'});
+    $('.OG1LeaderRight').css({'transition':'1s', 'opacity':'1'});
 
     map.opacity.circles('og1','ol1', 1);
     map.opacity.circles('result','l2', 1);
@@ -2836,15 +2876,16 @@ map.show.og2_rightLeaderCAT = function() {
 }
 map.hide.og2_rightLeaderCAT = function() {
 
-    $('.OG2LeaderCircleRight, .winnerLeaderArrowRight, .winnerLeaderTextRight').css({'transition':'0.5s', 'opacity':'0'});
+    $('.OG2LeaderCircleRight, .winnerLeaderArrowRight, .winnerLeaderTextRight').css({'transition':'1s', 'opacity':'0'});
 
-    $('.bottomBoxLeaderResult').css({'transition':'0.5s', 'opacity':'0.4'});
-    $('.OG1LeaderRight').css({'transition':'0.5s', 'opacity':'0.4'});
+    $('.bottomBoxLeaderResult').css({'transition':'1s', 'opacity':'0.5'});
+    // $('.OG1LeaderRight').css({'transition':'1s', 'opacity':'0.5'});
 
     map.opacity.circles('og1','ol1', 0)
     map.opacity.circles('result','l2', 0);
 }
 
+//-------------------------------------------//
 
 map.show.demo = function(delay) {
 
@@ -3125,9 +3166,9 @@ map.animate.helpSabotage2 = function(state) {
 
 map.opacity.OG1Icons = function(opt) {
 
-    $('.OG1FightIcon, .s2PassiveFollower, .arrowDashed, .OG1LeaderLeft, .OG1LeaderRight, .leaderKingLeft, .leaderKingRight').css({'transition':'0.5s', 'opacity':opt});
+    $('.OG1FightIcon, .s2PassiveFollower, .OG1LeaderLeft, .OG1LeaderRight, .leaderKingLeft, .leaderKingRight').css({'transition':'0.5s', 'opacity':opt});
     $('.OG1FollowersWrapLeft, .OG1FollowersWrapRight, .OG1LeadersIcon, .OG1FollowerArrowsLeft, .OG1FollowerArrowsRight').css({'transition':'0.5s', 'opacity':opt});
-    // $('.OG2LeftFollower2').css({'transition':'0.5s', 'opacity':'0'});
+    $('.OG1LeftFollower2, .OG1LeftFollower1, .OG1RightFollower2, .OG1RightFollower1').css({'transition':'0.5s', 'opacity':opt});
 
 }
 
@@ -17599,12 +17640,12 @@ var debug = {
 debug.start.I = function() {
 
     title.update.text('WELCOME TO THE EXPERIMENT');
-
-    title.show();
+    title.update.size(true);
+    title.update.textColor(-6000, false, 50);
 
     setTimeout(()=>{
         box.show('box-I-1');
-    },3500);
+    },1500);
 
 }
 
@@ -17894,18 +17935,18 @@ debug.start.SE12 = function() {
 
 }
 
-// debug.start.I();
+debug.start.I();
 // debug.start.B();
 // debug.start.B12();
 // debug.start.BCP();
 // debug.start.SE();
-debug.start.SE12();
+// debug.start.SE12();
 
 //----------------------------------------------------------------------------//
 //---------------------------- TREATMENT SETUP -------------------------------//
 //----------------------------------------------------------------------------//
 
-box.set.treatment(0,1);
+box.set.treatment(0,0);
 
 //----------------------------------------------------------------------------//
 //----------------------------- INTRODUCTION ---------------------------------//
@@ -17915,6 +17956,7 @@ box.set.treatment(0,1);
 $('#btn-I-1').click(function() {
 
     box.transition('I-1', 'I-2', 0, 0, 1);
+    title.update.textColor(-6000, false, 50);
     setTimeout(()=>box.button.show('I-2'), 2000);
 
 });
@@ -17922,6 +17964,7 @@ $('#btn-I-1').click(function() {
 $('#btn-I-2').click(function() {
 
     box.transition('I-2', 'I-3', 0, 0, 1);
+    title.update.textColor(-6000, false, 50);
     setTimeout(()=>box.button.show('I-3'), 2000);
 
 });
@@ -17929,21 +17972,19 @@ $('#btn-I-2').click(function() {
 $('#btn-I-3').click(function() {
 
     box.transition('I-3', 'I-4', 1, 1, 1);
+    title.update.textColor(-6000, false, 50);
     setTimeout(()=>box.button.show('I-4'), 2000);
-
-    title.update.textColor(-150, true);
 
 });
 
 $('#btn-I-4').click(function() {
 
     box.transition('I-4', 'I-5', 1, 1, 1);
+    title.update.textColor(-6000, false, 50);
     setTimeout(()=>{
         box.button.show('I-5');
         box.button.point();
     }, 2000);
-
-    title.update.textColor(-150, true);
 
 });
 
@@ -17952,12 +17993,11 @@ $('#btn-I-5').click(function() {
     box.global.stopWiggle = true;
 
     box.transition('I-5', 'I-6', 1, 1, 1);
+    title.update.textColor(-6000, false, 50);
     setTimeout(()=>{
         box.button.show('I-6');
         box.button.point();
     }, 2000);
-
-    title.update.textColor(-150, true);
 
 });
 
@@ -17983,16 +18023,18 @@ $('#btn-I-6').click(function() {
         // show new title and a segue info box
         title.update.text('GAME BASICS');
         title.update.size(true);
-        title.update.textColor(0, true);
+        title.update.textColor(-6000, false, 50);
 
-    }, 1200)
+        title.update.size(true);
+
+    }, 1500)
 
     setTimeout(()=>{
         // show new title and a segue info box
         box.transition('', 'B-0', 0, 0, 1);
-    }, 2500)
+    }, 1650)
 
-    setTimeout(()=>box.button.show('B-0'), 4000);
+    setTimeout(()=>box.button.show('B-0'), 3000);
 
 });
 
@@ -18013,18 +18055,18 @@ $('#btn-B-0').click(function() {
         title.update.size(true);
         title.update.textColor(-200, true);
 
-    }, 1100)
+    }, 1750)
 
     setTimeout(()=>{
         map.show.initialSetup();
-        map.opacity.main([1,1,1]);
-        map.opacity.section([0,0,0]);
-    }, 1750)
+        map.opacity.main([1,1,1], 2);
+        map.opacity.section([0,0,0], 1);
+    }, 2250)
 
-    setTimeout(()=>box.transition('', 'B-1', 0, 0, 1), 2500);
+    setTimeout(()=>box.transition('', 'B-1', 0, 0, 1), 2250);
     setTimeout(()=>{
         box.button.show('B-1');
-    }, 3500);
+    }, 4000);
 
 });
 
@@ -18070,7 +18112,7 @@ $('#btn-B-3').click(function() {
 
     setTimeout(()=>{
         box.transition('', 'B-4', 1, 0, 1);
-    }, 1500);
+    }, 1000);
 
     setTimeout(()=>{
         box.button.show('B-4');
@@ -18326,19 +18368,19 @@ $('#btn-B-12').click(function() {
         icon.globalVariable.showUnevenIcon = true;
     }
 
-    setTimeout(()=>{
-        icon.globalVariable.genericIcons = false;
-        icon.set.stage1();
-        $('.wrap2').css({'transition':'0.3s', 'opacity':'1', 'margin-bottom':'0px'});
-        $('.s1Icon').css({'transition':'0.3s','margin-bottom':'-30px'});
-    }, 700)
-
-    setTimeout(()=>{
-        icon.stage1.animateSort();
-    }, 1300)
-
 
     if(box.global.symmetricHeteroTreatment) {
+
+        setTimeout(()=>{
+            icon.globalVariable.genericIcons = false;
+            icon.set.stage1();
+            $('.wrap2').css({'transition':'0.3s', 'opacity':'1', 'margin-bottom':'0px'});
+            $('.s1Icon').css({'transition':'0.3s','margin-bottom':'-30px'});
+        }, 700)
+
+        setTimeout(()=>{
+            icon.stage1.animateSort();
+        }, 1300)
 
         setTimeout(()=>{
             box.transition('', 'B-12_T1_1', 0, 0, 1);
@@ -18355,6 +18397,17 @@ $('#btn-B-12').click(function() {
     if(box.global.asymmetricHeteroTreatment) {
 
         setTimeout(()=>{
+            icon.globalVariable.genericIcons = false;
+            icon.set.stage1();
+            $('.wrap2').css({'transition':'0.3s', 'opacity':'1', 'margin-bottom':'0px'});
+            $('.s1Icon').css({'transition':'0.3s','margin-bottom':'-30px'});
+        }, 700)
+
+        setTimeout(()=>{
+            icon.stage1.animateSort();
+        }, 1300)
+
+        setTimeout(()=>{
             box.transition('', 'B-12_T2_0', 0, 0, 1);
         }, 3750)
 
@@ -18365,6 +18418,55 @@ $('#btn-B-12').click(function() {
 
     }
 
+    if(!box.global.symmetricHeteroTreatment && !box.global.asymmetricHeteroTreatment) {
+
+        $('.wrap2').css({'opacity':'0', 'margin-bottom':'-250px'});
+        $('.s1Icon').css({'margin-bottom':'-366px'});
+
+        // show map
+        map.opacity.main([0,0,0]);
+
+        // hide the sections map
+        setTimeout(()=>{
+            $('.sexplain').css({'transition':'0.7s', 'margin-bottom':'-194px',
+            'transform':'scale(0)', 'opacity':'0'});
+        }, 100)
+
+        title.update.size(false);
+
+        setTimeout(()=>{
+            // show new title and a segue info box
+            title.update.text('BUDGET & CURRENCY');
+            title.update.size(true);
+            title.update.textColor(-200, true);
+
+        }, 1100)
+
+        setTimeout(()=>{
+            $('.currencyRelatedWrap').css({'transition':'0s', 'display':'flex', 'opacity':'0'});
+        }, 1400)
+
+        setTimeout(()=>{
+            $('.currencyRelatedWrap').css({'transition':'2s', 'margin-bottom':'0px', 'opacity':'1', 'margin-top':'5px'});
+        }, 1700)
+
+        // close the introduction info box container
+        $('#boxbox-B').css({'transition':'0.3s','margin-bottom':'-20px'});
+        setTimeout(()=>{
+            $('#boxbox-B').css({'display':'none'});
+        }, 300);
+
+
+        setTimeout(()=>{
+            box.transition('', 'BCP-1', 0, 0, 1);
+        }, 2500)
+
+        // show the new info OK button
+        setTimeout(()=>{
+            box.button.show('BCP-1');
+        }, 4000);
+
+    }
 
 })
 
@@ -18473,7 +18575,7 @@ $('#btn-B-12_T1_3').click(function() {
 
     // hide the sections map
     setTimeout(()=>{
-        $('.sexplain').css({'transition':'0.7s', 'margin-bottom':'-194px',
+        $('.sexplain').css({'transition':'0.7s', 'margin-bottom':'-250px',
         'transform':'scale(0)', 'opacity':'0'});
     }, 100)
 
@@ -19421,7 +19523,7 @@ $('#btn-SE-12').click(function() {
 
     setTimeout(()=>{
         box.button.show('SE-13');
-    }, 5000)
+    }, 3000)
 
 })
 
@@ -19511,7 +19613,8 @@ $('#btn-SE-15').click(function() {
 
         box.transition('SE-15', 'SE-16', 0, 0, 1, 750);
 
-        $('.IGFightIcon, .IGFightIconLimeBottom, .IGFightIconLimeTop, .OG1FightIcon, .OG1FightIconLime').css({'transition':'10s', 'transform':'rotate3d(3,2,1, 36000deg)'});
+        $('.IGFightIcon, .IGFightIconLimeBottom, .IGFightIconLimeTop, .OG1FightIcon, .OG1FightIconLime').css({'transition':'5s', 'transform':'rotate3d(3,2,1, 18000deg)'});
+        map.globalVariable.stopKingIconAnimation = true;
 
         setTimeout(()=>{
             box.button.show('SE-16');
@@ -19613,12 +19716,12 @@ $('#btn-SE-17').click(function() {
     }, 750)
 
     setTimeout(()=>{
-        $('#anotherIdToCall11').css({'transition':'2s', 'opacity':'1'});
-    }, 3000)
+        $('#anotherIdToCall11').css({'transition':'1s', 'opacity':'1'});
+    }, 2250)
 
     setTimeout(()=>{
         box.button.show('SE-17A1');
-    }, 5250)
+    }, 5000)
 
 })
 
@@ -19628,11 +19731,11 @@ $('#btn-SE-17A1').click(function() {
 
     setTimeout(()=>{
         map.opacity.bottom(0);
-    }, 3000)
+    }, 1500)
 
     setTimeout(()=>{
         box.button.show('SE-17A2');
-    }, 4500)
+    }, 3000)
 
 })
 
@@ -19651,7 +19754,7 @@ $('#btn-SE-17A2').click(function() {
 
     setTimeout(()=>{
         box.button.show('SE-18');
-    }, 3250)
+    }, 2750)
 
 })
 
@@ -19670,20 +19773,20 @@ $('#btn-SE-18').click(function() {
     setTimeout(()=>{
         map.show.og2_leftFollower1();
         setTimeout(()=>{
-            map.opacity.OG1Icons(0.8);
+            map.opacity.OG1Icons(1);
             map.show.og2_leftFollower1CAT();
-        }, 1000)
-    }, 2000)
+        }, 250)
+    }, 4000)
 
     setTimeout(()=>{
         box.button.show('SE-19');
-    }, 4500)
+    }, 6000)
 
 })
 
 $('#btn-SE-19').click(function() {
 
-    box.transition('SE-19', 'SE-20', 0, 0, 1, 3500);
+    box.transition('SE-19', 'SE-20', 0, 0, 1, 4000);
 
     map.hide.og2_leftFollower1CAT();
     map.opacity.OG1Icons(0);
@@ -19691,12 +19794,19 @@ $('#btn-SE-19').click(function() {
     setTimeout(()=>{
         map.winnerFollowerIndex = 1;
         map.animate.validateIG();
+        setTimeout(()=>{
+            map.animate.tutorialCrownLoop(0)
+        }, 3500)
     }, 500)
 
+    setTimeout(()=>{
+        $('.arrowsToOG2, .arrowTopIGtoOG2').css({'transition':'1s', 'opacity':'1'})
+        $('.arrowBottomIGtoOG2').css({'transition':'0s', 'opacity':'0'})
+    }, 2250)
 
     setTimeout(()=>{
         box.button.show('SE-20');
-    }, 5000)
+    }, 5500)
 
 })
 
@@ -19710,32 +19820,35 @@ $('#btn-SE-20').click(function() {
         setTimeout(()=>{
             map.opacity.OG1Icons(1);
             map.show.og2_leftLeaderCAT()
-        }, 1000)
-    }, 2000)
+        }, 250)
+    }, 3000)
 
 
     setTimeout(()=>{
         box.button.show('SE-21');
-    }, 4500)
+    }, 5500)
 
 })
 
 $('#btn-SE-21').click(function() {
 
     box.transition('SE-21', 'SE-22', 0, 0, 1, 750);
+
+    map.globalVariable.stopTutorialCrownLoop = true;
+
     map.hide.og2_leftLeaderCAT()
 
     setTimeout(()=>{
         map.show.og2_leftFollower2()
         setTimeout(()=>{
             map.show.og2_leftFollower2CAT()
-        }, 1000)
-    }, 2000)
+        }, 250)
+    }, 3000)
 
 
     setTimeout(()=>{
         box.button.show('SE-22');
-    }, 4500)
+    }, 5500)
 
 })
 
@@ -19743,10 +19856,19 @@ $('#btn-SE-22').click(function() {
 
     box.transition('SE-22', 'SE-23', 0, 0, 1, 750);
     map.hide.og2_leftFollower2CAT()
+    map.opacity.OG1Icons(0);
+
+    $('.arrowBottomIGtoOG2').css({'transition':'1s', 'opacity':'0'});
 
     setTimeout(()=>{
         $('#anotherIdToCall9').css({'transition':'1s', 'opacity':'1'})
-    }, 1000)
+    }, 1500)
+    setTimeout(()=>{
+        map.opacity.top(0.3);
+    }, 2000)
+    setTimeout(()=>{
+        map.opacity.bottom(1);
+    }, 2500)
 
     setTimeout(()=>{
         $('#anotherIdToCall10').css({'transition':'1s', 'opacity':'1'})
@@ -19757,11 +19879,230 @@ $('#btn-SE-22').click(function() {
             $('.noTokenRightHomo2').css({'display':'flex'});
             $('.noTokenRightHetero2').css({'display':'none'});
         }
-    }, 2000)
+    }, 3500)
 
     setTimeout(()=>{
         box.button.show('SE-23');
-    }, 3500)
+    }, 4500)
+
+})
+
+$('#btn-SE-23').click(function() {
+
+    box.transition('SE-23', 'SE-24', 0, 0, 1, 750);
+
+    setTimeout(()=>{
+        $('#anotherIdToCall12').css({'transition':'1s', 'opacity':'1'});
+    },3000)
+
+    setTimeout(()=>{
+        map.animate.discardIG_firstStep()
+    },3500)
+
+    setTimeout(()=>{
+        box.button.show('SE-24');
+    },7500)
+
+})
+
+$('#btn-SE-24').click(function() {
+
+    box.transition('SE-24', 'SE-25', 0, 0, 1, 750);
+
+    setTimeout(()=>{
+        map.animate.discardIG_secondStep();
+    }, 2500)
+
+
+    setTimeout(()=>{
+        map.show.og2_rightLeader()
+        setTimeout(()=>{
+            map.opacity.OG1Icons(1);
+            map.show.og2_rightLeaderCAT();
+        }, 500)
+    },3250)
+
+
+    setTimeout(()=>{
+        box.button.show('SE-25');
+    }, 5500)
+
+})
+
+$('#btn-SE-25').click(function() {
+
+    box.transition('SE-25', 'SE-26', 0, 0, 1, 750);
+
+    map.hide.og2_rightLeaderCAT();
+    setTimeout(()=>{
+        map.opacity.OG1Icons(0);
+    }, 500)
+
+    setTimeout(()=>{
+        map.show.og2_rightFollowers()
+        setTimeout(()=>{
+            map.show.og2_rightFollowersCAT();
+            map.opacity.OG1Icons(1);
+        }, 500)
+    },3500)
+
+    setTimeout(()=>{
+        box.button.show('SE-26');
+    }, 5500)
+
+})
+
+$('#btn-SE-26').click(function() {
+
+    box.transition('SE-26', 'SE-27', 0, 0, 1, 750);
+
+    map.hide.og2_rightFollowersCAT();
+    setTimeout(()=>{
+        map.opacity.OG1Icons(0.8);
+        map.opacity.top(1);
+        map.opacity.bottom(1);
+        map.animate.discardIG_secondStep();
+        $('.OG2FightIconWrap').css({'transition':'1s', 'opacity':'1'});
+    }, 750)
+
+    setTimeout(()=>{
+        $('.OG2').css({'transition':'1s', 'box-shadow':'0px 0px 8px 3px lime'});
+    }, 1750)
+
+
+    setTimeout(()=>{
+        box.button.show('SE-27');
+    }, 3000)
+
+})
+
+$('#btn-SE-27').click(function() {
+
+    box.transition('SE-27', 'SE-28', 0, 0, 1, 750);
+
+    setTimeout(()=>{
+
+        $('#anotherIdToCall13').css({'transition':'1s', 'opacity':'1'});
+
+        $('.OG2').css({'transition':'1s', 'box-shadow':'0px 0px 8px 3px black'});
+
+        $('.OG2FightIconWrap').css({'transition':'1s', 'opacity':'0'});
+
+        $('.OG2LeadersIcon').css({'transition':'1s', 'opacity':'0.5'});
+
+        $('.OG2FollowerArrowsLeft, .OG2FollowerArrowsRight').css({'transition':'1s', 'opacity': '1'});
+        $('.arrowDashedLime2').css({'transition':'1s', 'opacity':'1'});
+        $('.og2BlackArrow').css({'transition':'1s', 'opacity':'0'});
+
+        $('.OG2FollowersWrapLeft, .OG2FollowersWrapRight').css({'transition':'1s', 'opacity': '1'});
+        $('.s5PassiveFollower').css({'transition':'1s','opacity':'0'});
+        $('.s5ActiveFollower').css({'transition':'1s','opacity':'1'});
+
+    }, 1000)
+
+
+    setTimeout(()=>{
+        box.button.show('SE-28');
+    }, 3000)
+
+})
+
+$('#btn-SE-28').click(function() {
+
+    box.transition('SE-28', 'SE-29', 1, 1, 1, 750);
+
+    setTimeout(()=>{
+
+        $('#anotherIdToCall13').css({'transition':'1s','margin-top':'10px'});
+
+        $('#anotherIdToCall14').css({'transition':'1s', 'opacity':'1'});
+
+        $('.OG2FightIconWrap').css({'transition':'1s', 'opacity':'1'});
+        $('.OG2FightIcon').css({'transition':'0s', 'opacity':'0'});
+        $('.OG2FightIconLime').css({'transition':'1s', 'opacity':'1'});
+
+
+        $('.OG2LeadersIcon').css({'transition':'1s', 'opacity':'1'});
+        $('.subsubOG2L').css({'transition':'1s', 'border-color':'lime', 'background-color':'#65f76a78'})
+
+        $('.OG2FollowerArrowsLeft, .OG2FollowerArrowsRight').css({'transition':'1s', 'opacity': '0.5'});
+        $('.arrowDashedLime2').css({'transition':'1s', 'opacity':'0'});
+        $('.og2BlackArrow').css({'transition':'1s', 'opacity':'1'});
+
+        $('.OG2FollowersWrapLeft, .OG2FollowersWrapRight').css({'transition':'1s', 'opacity': '0.5'});
+        $('.s5PassiveFollower').css({'transition':'1s','opacity':'1'});
+        $('.s5ActiveFollower').css({'transition':'1s','opacity':'0'});
+
+    }, 1250)
+
+
+    setTimeout(()=>{
+        box.button.show('SE-29');
+    }, 3000)
+
+})
+
+$('#btn-SE-29').click(function() {
+
+    box.transition('SE-29', 'SE-30', 1, 1, 1, 750);
+
+    setTimeout(()=>{
+        box.flush();
+    },100)
+
+    setTimeout(()=>{
+
+        $('.OG2FightIconWrap').css({'transition':'1s', 'opacity':'1'});
+        $('.OG2FightIcon').css({'transition':'1s', 'opacity':'1'});
+        $('.OG2FightIconLime').css({'transition':'0s', 'opacity':'0'});
+
+        $('.OG2LeadersIcon').css({'transition':'1s', 'opacity':'1'});
+        $('.subsubOG2L').css({'transition':'1s', 'border-color':'gray', 'background-color':'#d3d3d378'})
+
+        $('.OG2FollowerArrowsLeft, .OG2FollowerArrowsRight').css({'transition':'1s', 'opacity': '1'});
+
+        $('.OG2FollowersWrapLeft, .OG2FollowersWrapRight').css({'transition':'1s', 'opacity': '1'});
+
+    }, 500)
+
+
+    setTimeout(()=>{
+        box.button.show('SE-30');
+    }, 3000)
+
+})
+
+$('#btn-SE-30').click(function() {
+
+    box.transition('SE-30', 'SE-31', 1, 1, 1, 750);
+
+    setTimeout(()=>{
+        box.button.show('SE-31');
+    }, 2000)
+
+})
+
+$('#btn-SE-31').click(function() {
+
+    box.transition('SE-31', 'SE-32', 1, 1, 1, 750);
+
+    setTimeout(()=>{
+        box.flush();
+    },100)
+
+    setTimeout(()=>{
+        box.button.show('SE-32');
+    }, 2000)
+
+})
+
+$('#btn-SE-32').click(function() {
+
+    box.transition('SE-32', 'SE-33', 1, 1, 1, 750);
+
+    setTimeout(()=>{
+        box.button.show('SE-33');
+    }, 2000)
 
 })
 

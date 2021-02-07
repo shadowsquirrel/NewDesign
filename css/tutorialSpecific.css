@@ -226,7 +226,8 @@ img.bankIcon
     height: 500px;
     width: 500px;
     position: absolute;
-    margin-top: -39px;
+    /* margin-top: -39px; */
+    margin-top: -50px;
     margin-left: -31px;
     font-size: 29px;
     font-weight: 600;
