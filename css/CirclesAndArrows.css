@@ -256,11 +256,14 @@ img.IGBottomRightCircle
     opacity:0;
     position:absolute;
     z-index:1;
-    margin-left:-33px;
+    /* margin-left:-33px; */
     margin-top:0px;
     height:40px;
     width:40px;
-    transform:rotate(207deg);
+    /* transform:rotate(207deg); */
+
+    transform: rotate(241deg);
+    margin-left: -48px;
 }
 
 .IGCircleArrowTextLeft_f1
@@ -268,20 +271,25 @@ img.IGBottomRightCircle
     opacity:0;
     position:absolute;
     z-index:1;
-    margin-left:-57px;
-    margin-top:-19px;
+    /* margin-left:-57px; */
+    /* margin-top:-19px; */
     font-size:23px;
+
+    margin-top: -4px;
+    margin-left: -100px;
 }
 .IGCircleArrowLeft_f2
 {
     opacity:0;
     position:absolute;
     z-index:1;
-    margin-left:-33px;
+    /* margin-left:-33px; */
     margin-top:0px;
     height:40px;
     width:40px;
-    transform:rotate(207deg);
+    /* transform:rotate(207deg); */
+    transform: rotate(230deg);
+    margin-left: -43px;
 }
 
 .IGCircleArrowTextLeft_f2
@@ -289,9 +297,11 @@ img.IGBottomRightCircle
     opacity:0;
     position:absolute;
     z-index:1;
-    margin-left:-57px;
-    margin-top:-19px;
+    /* margin-left:-57px; */
+    /* margin-top:-19px; */
     font-size:23px;
+    margin-left: -102px;
+    margin-top: -5px
 }
 /*OG2*/
 /*CIRCLES*/
@@ -460,11 +470,17 @@ img.OG2LeaderCircleRight
     opacity:0;
     position:absolute;
     z-index:1;
-    margin-left:67px;
-    margin-top:-38px;
-    height:80px;
+    /* margin-left:67px; */
+    /* margin-top:-38px; */
+    /* height:80px; */
     width:80px;
-    transform:rotate(225deg);
+    /* transform:rotate(225deg); */
+    /***/
+    transform: rotate(-77deg);
+    margin-top: 34px;
+    margin-left: 62px;
+    height: 96px;
+
 }
 
 .OG2CircleArrowTextLeft_f1
@@ -472,9 +488,13 @@ img.OG2LeaderCircleRight
     opacity:0;
     position:absolute;
     z-index:1;
-    margin-left:94px;
-    margin-top:-43px;
+    /* margin-left:94px; */
+    /* margin-top:-43px; */
     font-size:23px;
+
+    margin-top: 81px;
+    margin-left: -5px;
+
 }
 
 .OG2CircleArrowLeft_f2
@@ -482,11 +502,14 @@ img.OG2LeaderCircleRight
     opacity:0;
     position:absolute;
     z-index:1;
-    margin-left:65px;
-    margin-top:17px;
+    /* margin-left:65px; */
+    /* margin-top:17px; */
     height:55px;
     width:55px;
-    transform:rotate(140deg);
+    /* transform:rotate(140deg); */
+    margin-left: 28px;
+    margin-top: 54px;
+    transform: rotate(173deg);
 }
 
 .OG2CircleArrowTextLeft_f2
@@ -494,9 +517,11 @@ img.OG2LeaderCircleRight
     opacity:0;
     position:absolute;
     z-index:1;
-    margin-left:85px;
-    margin-top:-49px;
+    /* margin-left:85px; */
+    /* margin-top:-49px; */
     font-size:23px;
+    margin-left: 42px;
+    margin-top: 31px;
 }
 
 /*IS THIS PART USED*/
@@ -527,15 +552,15 @@ img.winnerLeaderArrowLeft
     width:60px;
     position:absolute;
     z-index:1;
-    margin-left:88px;
-    margin-top:-35px;
-    transform:rotate(233deg);
+    margin-left:73px;
+    margin-top:72px;
+    transform:rotate(363deg);
 }
 .winnerLeaderTextLeft
 {
     opacity:0;
     position: absolute;
-    margin-top:-38px;
+    margin-top:61px;
     margin-left:278px;
     font-size:23px;
 }

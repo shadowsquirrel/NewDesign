@@ -23776,9 +23776,9 @@ debug.start.P = function(treatment) {
 // debug.start.GMHS1(2);
 // debug.start.GMHS2(2);
 // debug.start.LC1(2);
-// debug.start.IG(2);
+debug.start.IG(2);
 // debug.start.OG2(2);
-debug.start.P(1);
+// debug.start.P(1);
 
 //----------------------------------------------------------------------------//
 //---------------------------- TREATMENT SETUP -------------------------------//

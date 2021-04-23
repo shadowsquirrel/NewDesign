@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <link rel="stylesheet" href="css/frame.css">
+    <link rel="stylesheet" href="css/explanationBox.css">
+    <link rel="stylesheet" href="css/generalArrangement.css">
+    <link rel="stylesheet" href="css/tutorialSpecific.css">
+
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+    <title>Budget and Currency</title>
+</head>
+<body>
+    <div id=start></div>
+
+    <div class = 'wrap  noselect'>
+
+        <div class = 'all'>
+
+
+            <!-- #################### DYNAMIC TITLE ######################## -->
+
+            <div class=welcomeTitle>
+                <p class ='title1'>
+                    <span id='mainmainTitle'></span>
+                </p>
+            </div>
+
+
+            <!-- ################ BUDGET/CURRENCY/PAYMENT ################## -->
+
+            <div class='currencyRelatedWrap'>
+                <img class='bankIcon' src="images/bank.png" alt="V" />
+            </div>
+
+            <!-- ############### BUDGET/CURRENCY INFO BOXES ################ -->
+
+            <div class='boxbox' id='boxbox-BCP' style='display:none;'></div>
+
+            <!-- ########################################################### -->
+
+
+        </div>
+
+    </div>
+
+
+
+
+    <!-- BCP SECTION - BUDGET / CURRENCY / PAYMENT -->
+    <!-- NEW INFO BOX CONTAINER BC FOR EASIER DEBUG PURPOSES -->
+    <div class='boxStorage'>
+
+        <div class=boxwrap id='boxwrap-BCP-1'>
+
+            <div class='box' id='box-BCP-1'>
+
+                <div class=text>
+
+                    <p>
+                        Each player starts <i>every</i> round with a budget
+                        of <strong style='font-size:30px;'>1000</strong> tokens.
+                    </p>
+
+                </div>
+
+                <div class=buttonWrap>
+                    <div class=button id='btn-BCP-1'>
+                        <p>
+                            OK
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class=boxwrap id='boxwrap-BCP-2'>
+
+            <div class='box' id='box-BCP-2'>
+
+                <div class=text>
+
+                    <p>
+                        Tokens are exchanged with Euros at the following rate:
+                    </p>
+                    <br />
+                    <p style='margin-left: 332px;
+                    font-weight: 700;
+                    font-size: 30px;
+                    margin-top: -20px;' id='infoBoxCurrencyInfo'>
+                        1 token = 1.5 cents
+                        <br />
+                        100 tokens = 1.5 Euros
+                        <br />
+                        1000 tokens = 15 Euros
+                    </p>
+
+                </div>
+
+                <div class=buttonWrap>
+                    <div class=button id='btn-BCP-2'>
+                        <p>
+                            OK
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class=boxwrap id='boxwrap-BCP-3'>
+
+            <div class='box' id='box-BCP-3'>
+
+                <div class=text>
+
+                    <p>
+                        With your decisions in the game, you may
+                        <i style='color:green;font-weight:500;'>earn</i> or <i style='color:red;font-weight:500;'>lose</i> tokens.
+                    </p>
+
+                </div>
+
+                <div class=buttonWrap>
+                    <div class=button id='btn-BCP-3'>
+                        <p>
+                            OK
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <div id=end></div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="js/2_budgetCurrency.js"></script>
+
+</body>
+</html>

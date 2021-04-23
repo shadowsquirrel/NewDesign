@@ -58,6 +58,24 @@
     flex-direction: row;
     justify-content: space-evenly;
 }
+.someGrouping1
+{
+    height: 77px;
+    margin-top: 10px;
+    margin-bottom:10px;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.someGrouping2
+{
+    height: 77px;
+    margin-top: 10px;
+    margin-bottom:10px;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
 .colorGroupABox
 {
     padding-right: 30px;
@@ -97,12 +115,6 @@
     width: 45px;
     position:relative;
 }
-.B-11-winnerFollowerIcon
-{
-    height: 85px;
-    width: 65px;
-    position:relative;
-}
 .B-11-lostCrown
 {
     MARGIN-left: -145px;
@@ -111,12 +123,26 @@
     position: relative;
     margin-top: 43px;
 }
-.bigslash
+.B-11-winnerFollowerIcon
 {
-    font-size: 100px;
+    height: 75px;
+    width: 55px;
+    position:relative;
+}
+.bigslash1
+{
+    font-size: 81px;
     margin-left: -110px;
     /* font-weight: 800; */
-    margin-top: -52px;
+    margin-top: -27px;
+    margin-right: -105px;
+}
+.bigslash2
+{
+    font-size: 68px;
+    margin-left: -110px;
+    /* font-weight: 800; */
+    margin-top: -20px;
     margin-right: -105px;
 }
 img.unevenLeft2
@@ -177,11 +203,27 @@ img.unevenLeft2
     width:90px;
     position:relative;
 }
+.leaderLosing2
+{
+    margin-left:-181px;
+    height:150px;
+    width:90px;
+    position:absolute;
+}
 .followerWinning
 {
+    opacity:0;
     height:150px;
     width:90px;
     position:relative;
+}
+.followerWinning2
+{
+    margin-left:183px;
+    opacity:0;
+    height:150px;
+    width:90px;
+    position:absolute;
 }
 
 /*---- BANK SECTION ------*/
@@ -227,9 +269,9 @@ img.bankIcon
     width: 500px;
     position: absolute;
     /* margin-top: -39px; */
-    margin-top: -50px;
+    margin-top: -36px;
     margin-left: -31px;
-    font-size: 29px;
+    font-size: 33px;
     font-weight: 600;
     opacity:0;
 }
@@ -258,10 +300,10 @@ img.bankIcon
     height: 500px;
     width: 500px;
     position: absolute;
-    font-size: 29px;
+    font-size: 33px;
     font-weight: 600;
     margin-top: 80px;
-    margin-left: 448px;
+    margin-left: 452px;
     opacity:0;
 }
 .initialBudgetCircle2
@@ -281,8 +323,8 @@ img.bankIcon
     height: 75px;
     width: 75px;
     position: absolute;
-    transform: rotate(-52deg);
-    margin-left: 53px;
+    transform: rotate(-47deg);
+    margin-left: 44px;
     opacity:0;
 }
 .initialBudgetText2
@@ -290,9 +332,9 @@ img.bankIcon
     height: 500px;
     width: 900px;
     position: absolute;
-    margin-top: 7px;
-    margin-left: -25px;
-    font-size: 29px;
+    margin-top: 5px;
+    margin-left: -37px;
+    font-size: 27px;
     font-weight: 600;
     opacity:0;
 }
@@ -302,6 +344,8 @@ img.bankIcon
     display:flex;
     flex-direction:row;
     justify-content: center;
+    transform: scale(0.6);
+    transform-origin: top;
 }
 .tenTimeText
 {
@@ -315,7 +359,7 @@ img.bankIcon
 }
 .tenTimes
 {
-    filter: drop-shadow(0px 2px 1px black);
+    filter: drop-shadow(0px 2px 1px black) opacity(0.5);
     margin-left:-28px;
     margin-bottom: -27px;
     margin-top:-150px;
@@ -361,6 +405,15 @@ img.infoBoxFightIcon
     height: 40px;
     width: 40px;
     margin-top: -15px;
+}
+img.infoBoxFightIcon2
+{
+    filter: drop-shadow(0px 2px 1px black);
+    height: 25px;
+    width: 25px;
+    margin-top: -6px;
+    margin-left: 3px;
+    margin-right: 3px;
 }
 .someTextWrapForSomeSmallBusiness
 {
@@ -413,6 +466,32 @@ img.infoBoxFightIcon
     margin-left:56px;
     padding-left:18px;
 }
+.leftSideStep1Text-infoBox
+{
+    opacity: 1;
+    box-shadow: 0px 0px 0px 0 black;
+    margin-left: -240px;
+    position: absolute;
+    margin-top: 144px;
+    font-size: 22px;
+    color: white;
+    font-weight: 500;
+    background-color: rgb(38 78 46);
+    border-radius: 100px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 7px;
+    height: 45px;
+    width: 46px;
+    transform: scale(0.8);
+}
+.additionalStep1Class-infoBox
+{
+    margin-top:-54px;
+    margin-bottom:-5px;
+    margin-left:56px;
+    padding-left:18px;
+}
 .middleStep2Text
 {
     z-index: 1;
@@ -430,9 +509,34 @@ img.infoBoxFightIcon
     height: 43px;
     position: absolute;
     box-shadow: 0px 4px 4px 0 black;
-    width: 42px
+    width: 42px;
 }
 .additionalStep2Class
+{
+    margin-left:77px;
+    margin-top:17px;
+}
+.middleStep2Text-infoBox
+{
+    z-index: 1;
+    opacity: 1;
+    margin-left: -17px;
+    margin-top: 144px;
+    font-size: 22px;
+    color: white;
+    font-weight: 500;
+    background-color: rgb(38 78 46);
+    border-radius: 134px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    height: 43px;
+    position: absolute;
+    box-shadow: 0px 0px 0px 0 black;
+    width: 42px;
+    transform: scale(0.8);
+}
+.additionalStep2Class-infoBox
 {
     margin-left:77px;
     margin-top:17px;
@@ -468,6 +572,12 @@ img.infoBoxFightIcon
     height:50px;
     width:50px;
     position:absolute;
+}
+.anotherKingIcon3
+{
+    opacity:1;
+    height:50px;
+    width:50px;
 }
 /*--------------*/
 .someWrapForKingIcons
@@ -603,7 +713,7 @@ img.infoBoxFightIcon
 {
     height:50px;
     width:50px;
-    margin-left:3px;
+    margin-left:-1px;
     margin-right:1px;
     margin-top:-13px;
 }
@@ -619,4 +729,587 @@ img.infoBoxFightIcon
     width:60px;
     margin-right:5px;
     margin-top:-19px;
+}
+/*-----------------------*/
+.hsWrap
+{
+    filter:opacity(0);
+}
+.lockedIconInfoBox
+{
+    height:30px;
+    width:30px;
+    margin-top:-5px;
+}
+.tutorialCostArrowWrap31
+{
+    opacity:0;
+    position:absolute;
+    margin-left:-24px;
+    margin-top:-300px;
+}
+.tutorialCostArrowWrap32
+{
+    opacity:0;
+    position:absolute;
+    margin-left:-24px;
+    margin-top:-300px;
+}
+.tutorialCostArrowWrap33
+{
+    opacity:0;
+    position:absolute;
+    margin-left:-24px;
+    margin-top:-300px;
+}
+.tutorialCostArrowWrap34
+{
+    opacity:0;
+    position:absolute;
+    margin-left:-24px;
+    margin-top:-300px;
+}
+.tutorialCostArrow
+{
+    height:80px;
+    width:80px;
+    transform:rotate(-89deg);
+}
+.iconAdjustmentInfoBox3
+{
+    height:47px;
+    width:41px;
+    margin-top:4px;
+    margin-bottom:9px;
+    margin-left:-4px;
+    margin-right:-4px;
+}
+.dynamicLeaderIconSizeWrap
+{
+    display:flex;
+    flex-direction:row;
+    justify-content: center;
+    margin-top:-4px;
+    margin-bottom:6px;
+    margin-left: 115px;
+    height:0px;
+    opacity:0;
+}
+.infoBoxFollowerIcon5
+{
+    height:70px;
+    width:65px;
+    /* margin-left:10px;
+    margin-right:10px;
+    margin-bottom:15px; */
+}
+.infoBox93FightIcon
+{
+    height:40px;
+    width:40px;
+    margin-left:25px;
+    margin-right:25px;
+    margin-top:5px;
+}
+.fightIconInfoBox93Wrap
+{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    transition:1s;
+}
+.leaderLeftInfoBox93Wrap
+{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    transition:1s;
+}
+.leaderRightInfoBox93Wrap
+{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    transition:1s;
+}
+.redArrowInfoBoxHS2_3
+{
+    height:70px;
+    width:60px;
+    margin-left:-8px;
+    margin-right:-8px;
+    transform:rotate(-90deg);
+    margin-bottom:-31px;
+    margin-top:-31px;
+}
+.dynamicPowerBarRepWrap
+{
+    display:flex;
+    flex-direction:row;
+    justify-content: center;
+    margin-left: 115px;
+    height:0px;
+    opacity:0;
+}
+.leaderLeftBarInfoBoxWrap
+{
+    display:flex;
+    flex-direction:row;
+    justify-content: center;
+}
+.gapBetweenBarInfoBoxWrap
+{
+    display:flex;
+    flex-direction:row;
+    justify-content: center;
+}
+.leaderRightBarInfoBoxWrap
+{
+    display:flex;
+    flex-direction:row;
+    justify-content: center;
+}
+.leaderLeftBarInfoBox
+{
+    height:20px;
+    width:100px;
+    background-color: rgb(60,60,60);
+}
+.gapBetweenBarInfoBox
+{
+    height:20px;
+    width:10px;
+    background-color: white;
+}
+.leaderRightBarInfoBox
+{
+    height:20px;
+    width:100px;
+    background-color: rgb(190,190,190);
+}
+.middleStep2TextInfoBox
+{
+    z-index: 1;
+    opacity: 1;
+    margin-left: 444px;
+    margin-top: -11px;
+    font-size: 22px;
+    color: white;
+    font-weight: 500;
+    background-color: rgb(38 78 46);
+    border-radius: 134px;
+    padding-left: 15px;
+    padding-right: 10px;
+    padding-top: 5px;
+    height: 43px;
+    position: absolute;
+    /* box-shadow: 0px 4px 4px 0 black; */
+    width: 42px
+}
+/*----------------------*/
+.og1MoneyBagWrap1
+{
+    margin-top:17px;
+    position:absolute;
+    display:none;
+    opacity:0;
+    transition:0.7s;
+}
+.og1MoneyBagWrap2
+{
+    margin-left:175px;
+    margin-top:17px;
+    position:absolute;
+    display:none;
+    opacity:0;
+    transition:0.7s;
+}
+.og2MoneyBagWrap1
+{
+    margin-top:17px;
+    position:absolute;
+    display:none;
+    opacity:0;
+    transition:0.7s;
+}
+.og2MoneyBagWrap2
+{
+    margin-left:175px;
+    margin-top:17px;
+    position:absolute;
+    display:none;
+    opacity:0;
+    transition:0.7s;
+}
+.moneyBag
+{
+    transition:1s;
+    height:100px;
+    width:100px;
+}
+.bigCrownIcon
+{
+    transform:scale(0);
+    height:86px;
+    width:100px;
+    opacity:1;
+    transition:1s;
+    position:absolute;
+    margin-top:4px;
+}
+.igTopMoneyBagWrap1
+{
+    margin-top: -14px;
+    margin-left: 17px;
+    position:absolute;
+    display:none;
+    opacity:0;
+    transition:0.7s;
+}
+
+.igBottomMoneyBagWrap1
+{
+    margin-top: -14px;
+    margin-left: 17px;
+    position:absolute;
+    display:none;
+    opacity:0;
+    transition:0.7s;
+}
+
+.noMoney
+{
+    height:100px;
+    width:100px;
+}
+.mBold
+{
+    font-weight:500;
+}
+
+/*-------------------------------*/
+.OG2-201-icon
+{
+    margin-top: -4px;
+    height: 50px;
+    width: 29px;
+    position: relative;
+    padding-top: 2px;
+    margin-left: 4px;
+    margin-right: 4px;
+}
+.OG2-601-icon
+{
+    margin-top: -4px;
+    height: 55px;
+    width: 42px;
+    position: relative;
+    padding-top: 0px;
+    margin-left: -1px;
+    margin-right: 1px;
+}
+.OG2-601-icon2
+{
+    margin-top: -4px;
+    height: 51px;
+    width: 30px;
+    position: relative;
+    padding-top: 0px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+/*---------------*/
+.fightLime-SE-13
+{
+    height:30px;
+    width:30px;
+    margin-left: -1px;
+    margin-right: -1px;
+    margin-top: -3px;
+}
+.yourLeaderInfoBox
+{
+    height: 62px;
+    width: 51px;
+    margin-left: -4px;
+    margin-right: -4px;
+    margin-top: -9px;
+}
+.rColor
+{
+    color:#ec3c3c;
+}
+.bColor
+{
+    color:#2222ff
+}
+/*-------------*/
+.groupA-SE-17A1
+{
+    margin-top: -4px;
+    height: 50px;
+    width: 29px;
+    position: relative;
+    padding-top: 2px;
+    margin-left: 4px;
+    margin-right: 4px;
+}
+.OG2-infoBox-Icon-1
+{
+    margin-top: -3px;
+    height: 50px;
+    width: 29px;
+    position: relative;
+    padding-top: 2px;
+    margin-left: 4px;
+    margin-right: 4px;
+}
+.OG2-infoBox-Icon-2
+{
+    margin-top: -15px;
+    height: 56px;
+    width: 39px;
+    position: relative;
+    padding-top: 2px;
+    margin-left: -3px;
+    margin-right: -2px;
+}
+.OG2-infoBox-Icon-3
+{
+    margin-top: -4px;
+    height: 51px;
+    width: 30px;
+    position: relative;
+    padding-top: 2px;
+    margin-left: 4px;
+    margin-right: 4px;
+}
+.moneyBagBoxP6
+{
+    height: 40px;
+    width: 40px;
+    margin-right: -1px;
+    margin-left: 1px;
+    margin-top: -19px;
+}
+/*----------------------*/
+.moneyDistributionWrap
+{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    /* margin-top:6px; */
+    margin-bottom:12px;
+    transition:0.5s;
+    /* height:0px; */
+    opacity:0;
+    margin-top:-100px;
+}
+.leaderMoneyDistribution
+{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.moneyBagsWrap
+{
+    display:flex;
+    flex-direction: row;
+}
+.followerMoneyDistribution
+{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-right:32px;
+    margin-top:-1px;
+}
+.OG2-infoBox-Icon-6011
+{
+    margin-top: 6px;
+    height: 69px;
+    width: 53px;
+    position: relative;
+    padding-top: 2px;
+    margin-left: 4px;
+    margin-right: 4px;
+}
+.moneyBagBoxP601-1
+{
+    height: 40px;
+    width: 40px;
+    margin-right: -1px;
+    margin-left: 1px;
+    /* margin-top: -19px; */
+}
+.moneyBagBoxP601-2
+{
+    height: 40px;
+    width: 40px;
+    margin-right: -1px;
+    margin-left: 1px;
+    /* margin-top: -19px; */
+}
+.moneyBagBoxP601-3
+{
+    height: 40px;
+    width: 40px;
+    margin-right: -1px;
+    margin-left: 1px;
+    /* margin-top: -19px; */
+}
+.moneyBagBoxP601-4
+{
+    height: 40px;
+    width: 40px;
+    margin-right: -1px;
+    margin-left: 1px;
+    /* margin-top: -19px; */
+}
+.moneyBagBoxP601-5
+{
+    height: 40px;
+    width: 40px;
+    margin-right: -1px;
+    margin-left: 1px;
+    /* margin-top: -19px; */
+}
+.OG2-infoBox-Icon-6012
+{
+    margin-top: 12px;
+    height: 61px;
+    width: 35px;
+    position: relative;
+    padding-top: 2px;
+    margin-left: 4px;
+    margin-right: 4px;
+}
+.moneyBagBoxP601-0
+{
+    height: 40px;
+    width: 40px;
+    margin-right: -1px;
+    margin-left: 1px;
+    margin-top: 33px;
+}
+.leaderTokenAmount
+{
+    font-size:25px;
+    margin-top:75px;
+    margin-left:41px;
+    position:absolute;
+}
+.followerTokenAmount
+{
+    font-size: 25px;
+    margin-top: 72px;
+    margin-left: -17px;
+    position: absolute;
+}
+.debugInfoBoxText
+{
+    position:absolute;
+    opacity:1;
+    font-size:25px;
+    margin-left:-1222px;
+}
+.seInfoBox21IconHomo1
+{
+    height: 55px;
+    width: 34px;
+    margin-top: 7px;
+    margin-bottom: 10px;
+}
+.seInfoBox21IconHetero1
+{
+    height: 50px;
+    width: 32px;
+    margin-top: 4px;
+    margin-bottom: 5px;
+}
+.seInfoBox21IconHomo2
+{
+    height: 61px;
+    width: 44px;
+    margin-top: -4px;
+    margin-bottom: 6px;
+    margin-left: -6px;
+    margin-right: -5px;
+}
+.seInfoBox21IconHetero2
+{
+    height: 58px;
+    width: 43px;
+    margin-top: -5px;
+    margin-bottom: 4px;
+    margin-left: -6px;
+    margin-right: -4px;
+}
+.keyBoardImageWrap
+{
+    margin-left: 410px;
+    margin-top: -82px;
+    position:absolute;
+}
+.arrows
+{
+    height:85px;
+    width:125px;
+    /* position:absolute; */
+}
+.experimentalText
+{
+    filter: drop-shadow(0px 5px 3px black);
+    position: absolute;
+    margin-top: -245px;
+    font-size: 44px;
+    font-weight: 100;
+    margin-left: 307px;
+    width: 510px;
+}
+.goodEnoughText
+{
+    opacity: 0;
+    position: absolute;
+    margin-top: 43px;
+    margin-left: -180px;
+    font-size: 23px;
+    color: lime;
+    font-weight: 600;
+}
+.perfectText
+{
+    opacity: 0;
+    position: absolute;
+    margin-top: 32px;
+    margin-left: -163px;
+    font-size: 37px;
+    color: lime;
+    font-weight: 600;
+}
+.keyBoardImageWrap2
+{
+    margin-left: 796px;
+    margin-top: 3px;
+    position:absolute;
+}
+.IG-infoBoxIcon-1
+{
+    margin-top: -5px;
+    height: 50px;
+    width: 32px;
+    position: relative;
+    padding-top: 2px;
+    margin-left: 1px;
+    margin-right: 0px;
+}
+.IG-infoBoxIcon-2
+{
+    margin-top: -15px;
+    height: 58px;
+    width: 43px;
+    position: relative;
+    padding-top: 2px;
+    margin-left: -5px;
+    margin-right: -3px;
 }

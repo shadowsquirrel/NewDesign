@@ -8,27 +8,27 @@
 {
     position:absolute;
     color:red;
-    margin-left:16px;
-    font-size:50px;
-    margin-top:21px;
+    margin-left: 65px;
+    font-size: 85px;
+    margin-top: -2px;
     opacity:0;
 }
 .og1NetPayoffText2
 {
     position:absolute;
     color:red;
-    font-size:50px;
-    margin-top:21px;
-    margin-left:11px;
+    font-size: 88px;
+    margin-top: -3px;
+    margin-left: 38px;
     opacity:0;
 }
 .og1NetPayoffText4
 {
     position:absolute;
     color:green;
-    font-size:50px;
-    margin-top:21px;
-    margin-left:11px;
+    font-size: 88px;
+    margin-top: -5px;
+    margin-left: 23px;
     opacity:0;
 }
 .igNetPayoff
@@ -41,27 +41,27 @@
 {
     position:absolute;
     color:red;
-    font-size:24px;
-    margin-left:5px;
-    margin-top:12px;
+    font-size: 55px;
+    margin-left: 9px;
+    margin-top: -9px;
     opacity:0;
 }
 .igNetPayoffText2
 {
     position:absolute;
     color:black;
-    font-size:24px;
-    margin-top:12px;
-    margin-left:30px;
+    font-size:61px;
+    margin-top:-16px;
+    margin-left:51px;
     opacity:0;
 }
 .igNetPayoffText4
 {
     position:absolute;
     color:black;
-    font-size:24px;
-    margin-top:12px;
-    margin-left:30px;
+    font-size: 69px;
+    margin-top: -23px;
+    margin-left: 49px;
     opacity:0;
 }
 .og2NetPayoff
@@ -76,22 +76,25 @@
 {
     position:absolute;
     color:green;
-    font-size:44px;
+    font-size: 88px;
+    margin-top: -32px;
     opacity:0;
 }
 .og2NetPayoffText2
 {
-    position:absolute;
-    color:green;
-    font-size:44px;
-    margin-left:12px;
+    margin-top: -34px;
+    position: absolute;
+    color: green;
+    font-size: 88px;
+    margin-left: 20px;
     opacity:0;
 }
 .og2NetPayoffText4
 {
-    position:absolute;
-    color:green;
-    font-size:44px;
+    margin-top: -32px;
+    position: absolute;
+    color: green;
+    font-size: 88px;
     opacity:0;
 }
 /*NET PAYOFF RESULTS*/
@@ -205,12 +208,14 @@
     display:flex;
     flex-direction: row;
     padding-top:144px;
+    width: 240px;
 }
 .netPayoffTableRight
 {
     display:flex;
     flex-direction: row;
     padding-top:144px;
+    width: 240px;
 }
 .netPayoffTableLeftTitles
 {
@@ -271,8 +276,34 @@
 }
 .netPayoffWheelPickedResult
 {
+    display:none;
     opacity:0;
     font-size:28px;
     font-weight:400;
     margin-top:-105px;
+}
+/*-------------------------*/
+.thisIsExampleWrap
+{
+    position:absolute;
+    opacity:0;
+    transition:0.3s;
+    margin-left: 815px;
+    margin-top:244px;
+}
+.thisIsExampleBox
+{
+    border-radius:150px;
+    width:157px;
+    height:62px;
+    background-color: #fefec6;
+    color: black;
+    padding: 7px;
+    border: 2px solid black;
+    padding-top: 11px;
+}
+.thisIsExample
+{
+    font-size:23px;
+    /* font-weight:500; */
 }

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="css/frame.css">
+
+    <link rel="stylesheet" href="css/explanationBox.css">
+    <link rel="stylesheet" href="css/generalArrangement.css">
+
+    <link rel="stylesheet" href="css/tutorialSpecific.css">
+
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+    <title>Welcome To The Experiment!</title>
+</head>
+
+<body>
+    <div id=start></div>
+
+    <div class = 'wrap  noselect'>
+
+        <div class = 'all'>
+
+            <!-- #################### DYNAMIC TITLE ######################## -->
+
+            <div class=welcomeTitle>
+                <p class ='title1'>
+                    <span id='mainmainTitle'></span>
+                </p>
+            </div>
+
+            <!-- #################### INTRODUCTION BOXES ################### -->
+
+            <div class='boxbox' id='boxbox-I' style='display:none;'></div>
+
+            <div class='boxbox' id='boxbox-HSINTRO' style='display:none;'></div>
+
+
+        </div>
+
+    </div>
+
+
+    <!-- I SECTION - INTRODUCTION - INFO BOX MECHANICS -->
+    <div class='boxStorage'>
+
+        <div class=boxwrap id='boxwrap-I-1'>
+
+            <div class='box' id='box-I-1'>
+
+                <div class=text>
+                    <p>
+                        Please click the <strong>OK</strong> button to begin the tutorial.
+                    </p>
+                </div>
+
+                <div class=buttonWrap>
+                    <div class=button id='btn-I-1'>
+                        <p>
+                            OK
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class=boxwrap id='boxwrap-I-2'>
+
+            <div class='box' id='box-I-2'>
+
+                <div class=text>
+                    <p>
+                        During this experiment, you will encounter yellow information boxes such as this one.
+                    </p>
+                </div>
+
+                <div class=buttonWrap>
+                    <div class=button id='btn-I-2'>
+                        <p>
+                            OK
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class=boxwrap id='boxwrap-I-3'>
+
+            <div class='box' id='box-I-3'>
+
+                <div class=text>
+                    <p>
+                        You are expected to <i>carefully</i> read its content, then click the <strong>OK</strong> button to proceed.
+                    </p>
+                </div>
+
+                <div class=buttonWrap>
+                    <div class=button id='btn-I-3'>
+                        <p>
+                            OK
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class=boxwrap id='boxwrap-I-4'>
+
+            <div class='box' id='box-I-4'>
+
+                <div class=text>
+                    <p>
+                         At times, the <strong>OK</strong> button will appear only after you perform a required action.
+                    </p>
+                </div>
+
+                <div class=buttonWrap>
+                    <div class=button id='btn-I-4'>
+                        <p>
+                            OK
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class=boxwrap id='boxwrap-I-5'>
+
+            <div class='box' id='box-I-5'>
+
+                <div class=text>
+                    <p>
+                        Location of the required action will be pointed out by a red arrow.
+                    </p>
+                </div>
+
+                <div class='buttonIndicator'>
+                    <img class='buttonArrow' src="images/rarrow.png" alt="V" />
+                </div>
+
+                <div class=buttonWrap>
+                    <div class=button id='btn-I-5'>
+                        <p>
+                            OK
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class=boxwrap id='boxwrap-I-6'>
+
+            <div class='box' id='box-I-6'>
+
+                <div class=text>
+                    <p>
+                        Click OK to proceed to the next topic.
+                    </p>
+                </div>
+
+                <div class=buttonWrap>
+                    <div class=button id='btn-I-6'>
+                        <p>
+                            OK
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div id=end></div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="js/0_introduction.js"></script>
+
+</body>
+</html>

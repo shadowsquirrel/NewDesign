@@ -1,0 +1,2005 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <link rel="stylesheet" href="css/frame.css">
+
+    <link rel="stylesheet" href="css/oldMapClasses.css">
+    <link rel="stylesheet" href="css/mapArrows.css">
+    <link rel="stylesheet" href="css/OGclass.css">
+    <link rel="stylesheet" href="css/OGtoIG.css">
+    <link rel="stylesheet" href="css/IGclass.css">
+    <link rel="stylesheet" href="css/IGtoOG2.css">
+    <link rel="stylesheet" href="css/OG2.css">
+    <link rel="stylesheet" href="css/netPayoffClass.css">
+    <link rel="stylesheet" href="css/CirclesAndArrows.css">
+    <link rel="stylesheet" href="css/meIcons.css">
+
+    <link rel="stylesheet" href="css/calculatorIcons.css">
+
+    <link rel="stylesheet" href="css/mapicons.css">
+
+    <link rel="stylesheet" href="css/explanationBox.css">
+    <link rel="stylesheet" href="css/generalArrangement.css">
+
+    <link rel="stylesheet" href="css/tutorialSpecific.css">
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+    <title>Basics of the Game</title>
+
+</head>
+<body>
+    <div id=start></div>
+
+    <div class = 'wrap  noselect'>
+
+        <div class='debugInfoBoxText'>
+            <p>
+                <span id=debugInfoBoxText></span>
+            </p>
+        </div>
+
+        <div class = 'all'>
+
+
+            <!-- #################### DYNAMIC TITLE ######################## -->
+
+            <div class=welcomeTitle>
+                <p class ='title1'>
+                    <span id='mainmainTitle'></span>
+                </p>
+            </div>
+
+            <!-- ######################### MAP ############################# -->
+
+            <div class='sexplain noselect'>
+
+
+                <div class='newRound'>
+                    <p class='newRoundText0'>
+                        NEW ROUND
+                    </p>
+                    <p class='newRoundText'>
+                        ROUND <span id='roundCount'></span>
+                    </p>
+                    <p class='newRoundText2'>
+                        ROUND 3, 4, ...
+                    </p>
+                    <p class='newRoundText3'>
+                        ROUND 3, 4, ...
+                    </p>
+                </div>
+
+
+                <div class=allboxwrap>
+
+                    <svg height="0" width="0">
+                        <defs>
+                            <marker id="markerArrow" markerWidth="13" markerHeight="13" refX="2" refY="6" orient="auto">
+                                <path d="M2,2 L2,11 L10,6 L2,2"  style="fill: black;"/>
+                            </marker>
+                            <marker id="markerArrowLime" markerWidth="13" markerHeight="13" refX="2" refY="6" orient="auto">
+                                <path d="M2,2 L2,11 L10,6 L2,2"  style="fill: rgb(14, 209, 69);"/>
+                            </marker>
+                            <marker id="markerArrowRed" markerWidth="13" markerHeight="13" refX="2" refY="6" orient="auto">
+                                <path d="M2,2 L2,11 L10,6 L2,2"  style="fill: red;"/>
+                            </marker>
+                            <marker id="markerArrowBlue" markerWidth="13" markerHeight="13" refX="2" refY="6" orient="auto">
+                                <path d="M2,2 L2,11 L10,6 L2,2"  style="fill: blue;"/>
+                            </marker>
+                        </defs>
+                    </svg>
+
+
+                    <div class=OG1>
+
+                        <div class=og1MoneyBagWrap1>
+                            <img class='moneyBag' src="images/moneyBag.png" alt="V" />
+                        </div>
+                        <div class=og1MoneyBagWrap2>
+                            <img class='moneyBag' src="images/moneyBag.png" alt="V" />
+                        </div>
+
+                        <div class=og1NetPayoff>
+                            <p class=og1NetPayoffText1>
+                                -30
+                            </p>
+                            <p class=og1NetPayoffText2>
+                                -280
+                            </p>
+                            <p class=og1NetPayoffText4>
+                                +360
+                            </p>
+                        </div>
+
+                        <div class=section1>
+                            <p class=section1Text>
+                                1
+                            </p>
+                        </div>
+
+                        <div class=OG1Title>
+                            <p>
+                                OUT-GROUP CONTEST I
+                            </p>
+                        </div>
+
+                        <div class=IG1Description>
+                            <div class=groupADescription>
+                                <p>
+                                    GROUP A
+                                </p>
+                            </div>
+                            <div class=fightDescription>
+                                <img class='OG1DescriptionFightIcon' src="images/fight.png" alt="V" />
+                            </div>
+                            <div class=groupBDescription>
+                                <p>
+                                    GROUP B
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <div class=OG1IconsWrap>
+
+                            <div class=leftSideStep1Text>
+                                <p>
+                                    1
+                                </p>
+                            </div>
+
+                            <div class=middleStep2Text>
+                                <p>
+                                    2
+                                </p>
+                            </div>
+
+                            <div class=rightSideStep1Text>
+                                <p>
+                                    1
+                                </p>
+                            </div>
+
+
+                            <!-- Left side followers -->
+                            <div class='OG1FollowersWrapLeft og1all'>
+
+                                <!-- Follower 1 -->
+                                <div class='OG1FollowerImgWrap OG1TopFollower OG1LeftFollower1'>
+
+                                    <!-- Homo Followers  -->
+                                    <div class=ourSideHomo>
+                                        <!-- objective -->
+                                        <img class='OG1ficon s2PassiveFollower' src="images/F1.png" alt="V" />
+                                        <img class='OG1ficonLime s2ActiveFollower' src="images/F1l.png" alt="V" />
+                                    </div>
+
+                                    <!-- Hetero Followers -->
+                                    <div class=ourSideHetero>
+                                        <!-- objective -->
+                                        <img class='OG1ficon s2PassiveFollower' src="images/F1S.png" alt="V" />
+                                        <img class='OG1ficonLime s2ActiveFollower' src="images/F1lS.png" alt="V" />
+                                    </div>
+
+
+                                    <!-- Circles and Arrows -->
+                                    <img class='OG1f1CircleLeft' src="images/redcircle2.png" alt="V" />
+
+                                    <img class='OG1f1YAH' src="images/rarrow.png" alt="V" />
+                                    <svg height=100 width=200 class='OG1f1YAHT'>
+                                        <text x="58" y="68" fill="red" transform="rotate(0)">
+                                            YOU ARE HERE
+                                        </text>
+                                    </svg>
+
+                                </div>
+
+                                <!-- Follower 2 -->
+                                <div class='OG1FollowerImgWrap OG1BottomFollower OG1LeftFollower2'>
+
+                                    <div class='ourSideHomo'>
+                                        <img class='OG1ficon s2PassiveFollower' src="images/F1.png" alt="V" />
+                                        <img class='OG1ficonLime s2ActiveFollower' src="images/F1l.png" alt="V" />
+                                    </div>
+
+                                    <div class='ourSideHetero'>
+                                        <img class='OG1ficon s2PassiveFollower' src="images/F1W.png" alt="V" />
+                                        <img class='OG1ficonLime s2ActiveFollower' src="images/F1lW.png" alt="V" />
+                                    </div>
+
+
+                                    <img class='OG1f2CircleLeft' src="images/redcircle2.png" alt="V" />
+
+                                    <img class='OG1f2YAH' src="images/rarrowup.png" alt="V" />
+                                    <svg height=100 width=200 class='OG1f2YAHT'>
+                                        <text x="58" y="68" fill="red" transform="rotate(0)">
+                                            YOU ARE HERE
+                                        </text>
+                                    </svg>
+
+                                </div>
+
+                            </div>
+
+                            <div class='OG1FollowerArrowsLeft og1all'>
+                                <svg height="130" width="60">
+
+                                    <line x1="22" y1="60" x2="46" y2="68" class="arrowDashed OG1LeftFollower1"/>
+                                    <line x1="22" y1="110" x2="48" y2="102" class="arrowDashed OG1LeftFollower2"/>
+                                    <line x1="22" y1="60" x2="46" y2="68" class="arrowDashedLime1"/>
+                                    <line x1="22" y1="110" x2="48" y2="102" class="arrowDashedLime1"/>
+                                    <line x1="22" y1="60" x2="46" y2="68" class="arrowDashedBlue1"/>
+                                    <line x1="22" y1="110" x2="48" y2="102" class="arrowDashedBlue1"/>
+                                    <line x1="22" y1="60" x2="46" y2="68" class="arrowDashedRed1"/>
+                                    <line x1="22" y1="110" x2="48" y2="102" class="arrowDashedRed1"/>
+
+                                </svg>
+                            </div>
+
+                            <div class='OG1LeadersIcon og1all'>
+
+                                <div class='OG1LeaderLeft'>
+                                    <div class='subOG1L'>
+                                        <div class='subsubOG1L'>
+
+                                            <img class='leaderKingLeft notme_og1l' src="images/L1C.png" alt="V" />
+                                            <img class='leaderKingLeft me_og1l' src="images/L1Cmemap.png" alt="V" />
+
+                                            <img class='OG1LeaderCircleLeft' src="images/redcircle2.png" alt="V" />
+
+                                            <img class='OG1l1YAH' src="images/rarrow.png" alt="V" />
+                                            <svg height=100 width=200 class='OG1l1YAHT'>
+                                                <text x="58" y="68" fill="red" transform="rotate(0)">
+                                                    YOU ARE HERE
+                                                </text>
+
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class='OG1FightIconWrap'>
+                                    <img class='OG1FightIcon' src="images/fight.png" alt="V" />
+                                    <img class='OG1FightIconLime' src="images/fightlime.png" alt="V" />
+                                    <div class='OG1GroupSeparator'>
+
+                                    </div>
+                                </div>
+
+                                <div class='OG1LeaderRight'>
+                                    <div class='subOG1L'>
+                                        <div class='subsubOG1L'>
+
+                                            <img class='leaderKingRight' src="images/L2C.png" alt="V" />
+
+                                            <img class='OG1LeaderCircleRight' src="images/redcircle2.png" alt="V" />
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class='OG1FollowerArrowsRight og1all'>
+                                <svg height="130" width="60">
+
+                                    <line x2="10" y1="58" x1="40" y2="68" class="arrowDashed OG1RightFollower1"/>
+                                    <line x2="10" y1="110" x1="40" y2="102" class="arrowDashed OG1RightFollower2"/>
+                                    <line x2="10" y1="58" x1="40" y2="68" class="arrowDashedLime1"/>
+                                    <line x2="10" y1="110" x1="40" y2="102" class="arrowDashedLime1"/>
+                                    <line x2="10" y1="58" x1="40" y2="68" class="arrowDashedBlue1"/>
+                                    <line x2="10" y1="110" x1="40" y2="102" class="arrowDashedBlue1"/>
+                                    <line x2="10" y1="58" x1="40" y2="68" class="arrowDashedRed1"/>
+                                    <line x2="10" y1="110" x1="40" y2="102" class="arrowDashedRed1"/>
+
+                                </svg>
+                            </div>
+
+                            <div class='OG1FollowersWrapRight og1all'>
+
+                                <div class='OG1FollowerImgWrap OG1TopFollower OG1RightFollower1'>
+
+                                    <div class='theirSideHomo'>
+                                        <img class='OG1ficon s2PassiveFollower' src="images/F2.png" alt="V" />
+                                        <img class='OG1ficonLime s2ActiveFollower' src="images/F2l.png" alt="V" />
+                                    </div>
+
+                                    <div class='theirSideHetero'>
+                                        <img class='OG1ficon s2PassiveFollower' src="images/F2S.png" alt="V" />
+                                        <img class='OG1ficonLime s2ActiveFollower' src="images/F2lS.png" alt="V" />
+                                    </div>
+
+
+                                    <img class='OG1f1CircleRight' src="images/redcircle2.png" alt="V" />
+
+                                </div>
+
+                                <div class='OG1FollowerImgWrap OG1RightFollower2'>
+
+                                    <div class='theirSideHomo'>
+                                        <img class='OG1ficon s2PassiveFollower' src="images/F2.png" alt="V" />
+                                        <img class='OG1ficonLime s2ActiveFollower' src="images/F2l.png" alt="V" />
+                                    </div>
+
+                                    <div class='theirSideHetero'>
+                                        <img class='OG1ficon s2PassiveFollower' src="images/F2W.png" alt="V" />
+                                        <img class='OG1ficonLime s2ActiveFollower' src="images/F2lW.png" alt="V" />
+                                    </div>
+
+
+                                    <img class='OG1f2CircleRight' src="images/redcircle2.png" alt="V" />
+
+                                </div>
+
+                                <img class='OG1BothFollowersCircleRight' src="images/redcircle2.png" alt="V" />
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class='aboxdoublewrap arrowsToOG1IconResults' style='margin-top:40px;'>
+                        <div class='aboxdouble'>
+                            <svg height="200" width="60">
+                                <line x1="15" y1="38" x2="30" y2="30" class="boldArrow arrowToTopIconResults"/>
+                                <line x1="15" y1="102" x2="30" y2="110" class="boldArrow arrowToBottomIconResults"/>
+
+                                <line x1="7" y1="32" x2="22" y2="22" class='boldArrow coverArrowOG1toIG'/>
+                                <line x1="7" y1="110" x2="22" y2="120" class="boldArrow coverArrowOG1toIG"/>
+                            </svg>
+                        </div>
+                    </div>
+
+
+
+                    <div class=IG>
+
+
+                        <div class='resultsUnknown'>
+                            <p class='resultsUknownText'>
+                                ?
+                            </p>
+                        </div>
+
+
+
+                        <div class='sboxwrap wonLostBoxes'>
+
+                            <div class='sbox somespacedown topBoxLeaderResult'>
+
+
+                                <div class='topLeaderLost'>
+
+                                    <div class='stageboxtextlong'>
+                                        <p>
+                                            Leader
+                                        </p>
+                                        <div class='lostLeaderIconWrap'>
+                                            <img class='lostLeaderIcon notme_og1l' src="images/L1.png" alt="V" />
+                                            <img class='lostLeaderIcon me_og1l' src="images/L1me.png" alt="V" />
+                                            <img class='lostCrown' src="images/leaderdenied.png" alt="V" />
+                                        </div>
+                                        <p>
+                                            Lost
+                                        </p>
+                                    </div>
+
+                                </div>
+
+
+                                <div  class='topLeaderWon'>
+
+                                    <div class='stageboxtextlong'>
+                                        <p>
+                                            Leader
+                                        </p>
+                                        <div class='lostLeaderIconWrap'>
+                                            <img class='wonLeaderIcon notme_og1l' src="images/L1C.png" alt="V" />
+                                            <img class='wonLeaderIcon me_og1l' src="images/L1Cmemap.png" alt="V" />
+                                        </div>
+                                        <p>
+                                            Won
+                                        </p>
+                                    </div>
+
+                                </div>
+
+                                <img class='OG1TopLeaderResultIconsCircle' src="images/redcircle2.png" alt="V" />
+
+
+                            </div>
+
+
+                            <div class='sbox somespaceup bottomBoxLeaderResult'>
+
+
+                                <div class='bottomLeaderWon'>
+
+                                    <div class='stageboxtextlong'>
+                                        <p>
+                                            Leader
+                                        </p>
+                                        <div class='wonLeaderIconWrap'>
+                                            <img class='wonLeaderIcon' src="images/L2C.png" alt="V" />
+                                        </div>
+                                        <p>
+                                            Won
+                                        </p>
+                                    </div>
+
+                                </div>
+
+
+                                <div class='bottomLeaderLost'>
+
+                                    <div class='stageboxtextlong'>
+                                        <p>
+                                            Leader
+                                        </p>
+                                        <div class='lostLeaderIconWrap'>
+                                            <img class='lostLeaderIcon' src="images/L2.png" alt="V" />
+                                            <img class='lostCrown' src="images/leaderdenied.png" alt="V" />
+                                        </div>
+                                        <p>
+                                            Lost
+                                        </p>
+                                    </div>
+
+                                </div>
+
+                                <img class='OG1BottomLeaderResultIconsCircle' src="images/redcircle2.png" alt="V" />
+
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class='aboxdoublewrap arrowsFromIconResultsToIG closerToRight'>
+                            <div class='aboxdouble ontop'>
+                                <svg height="200" width="500">
+                                    <line x1="0" y1="33" x2="15" y2="33" class="boldArrow arrowTopIconToIG"/>
+                                    <line x1="0" y1="33" x2="220" y2="78" class="boldArrow longArrowTopIconToOG2"/>
+                                    <line x1="0" y1="175" x2="15" y2="175" class='boldArrow arrowBottomIconToIG'/>
+                                    <line x1="0" y1="175" x2="220" y2="130" class='boldArrow longArrowBottomIconToOG2'/>
+                                </svg>
+                            </div>
+                        </div>
+
+
+
+                        <div class='sboxwrap IGContests'>
+
+
+                            <div class='sbox IGTopContestWrap'>
+
+                                <div class=igTopMoneyBagWrap1>
+                                    <img class='noMoney' src="images/noMoney.png" alt="V" />
+                                    <img class='bigCrownIcon' src="images/fcrownLime.png" alt="V"/>
+                                </div>
+
+                                <div class=igNetPayoff>
+                                    <p class=igNetPayoffText1>
+                                        -130
+                                    </p>
+                                    <p class=igNetPayoffText2>
+                                        0
+                                    </p>
+                                    <p class=igNetPayoffText4>
+                                        0
+                                    </p>
+                                </div>
+
+                                <div class=section2>
+                                    <p class=section2Text>
+                                        2
+                                    </p>
+                                </div>
+
+                                <div class='IGTitleTop'>
+                                    <p>
+                                        IN-GROUP CONTEST A
+                                    </p>
+                                </div>
+
+                                <!-- IG CONTEST TOP -->
+                                <div class='IGIconWrap1 igalltop'>
+
+                                    <!-- Follower 1 -->
+                                    <div class='IGIconWrap2 IGLeftFollower1'>
+                                        <div class='IGIconWrap3'>
+                                            <div class='IGIconWrap4'>
+
+                                                <div class='ourSideHomo'>
+
+                                                    <!-- objective -->
+                                                    <img class='OG1ficon igPassive' src="images/F1.png" alt="V" />
+                                                    <img class='OG1ficonLime igActive' src="images/F1l.png" alt="V" />
+
+                                                </div>
+
+                                                <div class='ourSideHetero'>
+
+                                                    <!-- objective -->
+                                                    <img class='OG1ficon igPassive' src="images/F1S.png" alt="V" />
+                                                    <img class='OG1ficonLime igActive' src="images/F1lS.png" alt="V" />
+
+                                                </div>
+
+                                                <img class='IGTopLeftCircle' src="images/redcircle2.png" alt="V" />
+                                                <img class='IGf1YAH' src="images/rarrow.png" alt="V" />
+                                                <svg height=100 width=200 class='IGf1YAHT'>
+                                                    <text x="58" y="68" fill="red" transform="rotate(0)">
+                                                        YOU ARE HERE
+                                                    </text>
+                                                </svg>
+
+                                                <img class='IGCircleArrowLeft_f1' src="images/redarrow3.png" alt="V" />
+                                                <svg height=100 width=250 class='IGCircleArrowTextLeft_f1'>
+                                                    <text x="58" y="68" fill="red" transform="rotate(0)">
+                                                        Victorious
+                                                    </text>
+                                                </svg>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class='IGPrizeIconWrap IGLeftFightIcon'>
+                                        <img class='prizeCrownBlackTop' src="images/leader.png" alt="V" />
+                                        <img class='prizeCrownLimeTop' src="images/fcrownLime.png" alt="V" />
+                                        <img class='IGFightIcon IGFI_Top' src="images/fight.png" alt="V" />
+                                        <img class='IGFightIconLimeTop' src="images/fightlime.png" alt="V" />
+                                    </div>
+
+                                    <!-- Follower 2 -->
+                                    <div class='IGIconWrap2 IGLeftFollower2'>
+                                        <div class='IGIconWrap3'>
+                                            <div class='IGIconWrap4'>
+
+                                                <div class='ourSideHomo'>
+
+                                                    <!-- objective -->
+                                                    <img class='OG1ficon igPassive' src="images/F1.png" alt="V" />
+                                                    <img class='OG1ficonLime igActive' src="images/F1l.png" alt="V" />
+
+                                                </div>
+
+                                                <div class='ourSideHetero'>
+
+                                                    <!-- objective -->
+                                                    <img class='OG1ficon igPassive' src="images/F1W.png" alt="V" />
+                                                    <img class='OG1ficonLime igActive' src="images/F1lW.png" alt="V" />
+
+                                                </div>
+
+
+                                                <img class='IGTopRightCircle' src="images/redcircle2.png" alt="V" />
+                                                <img class='IGf2YAH' src="images/rarrow.png" alt="V" />
+                                                <svg height=100 width=200 class='IGf2YAHT'>
+                                                    <text x="58" y="68" fill="red" transform="rotate(0)">
+                                                        YOU ARE HERE
+                                                    </text>
+                                                </svg>
+
+                                                <img class='IGCircleArrowLeft_f2' src="images/redarrow3.png" alt="V" />
+                                                <svg height=100 width=250 class='IGCircleArrowTextLeft_f2'>
+                                                    <text x="58" y="68" fill="red" transform="rotate(0)">
+                                                        Defeated
+                                                    </text>
+                                                </svg>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class='IGFollowersTagTop igalltop'>
+                                    <p>
+                                        FOLLOWERS A
+                                    </p>
+                                </div>
+
+                            </div>
+
+
+                            <div class=IGCoverTop>
+                                <p class='IGCoverText'>
+                                    FOLLOWERS
+                                </p>
+                                <div class=IGCoverImage>
+                                    <img class='IGCoverFightIcon' src="images/fightwhite.png" alt="V" />
+                                </div>
+                            </div>
+
+                            <div class='mapdiscardedXTop '>
+                                <p class=xfontclass>
+                                    X
+                                </p>
+                            </div>
+
+
+
+                            <!-- IG BOTTOM -->
+                            <div class='sbox IGBottomContestWrap'>
+
+                                <div class=igBottomMoneyBagWrap1>
+                                    <img class='noMoney' src="images/noMoney.png" alt="V" />
+                                    <img class='bigCrownIcon' src="images/fcrownLime.png" alt="V"/>
+                                </div>
+
+                                <!-- WE CAN PLACE IGNETPAYOFFWRAP HERE -->
+
+                                <div class=section2>
+                                    <p class=section2Text>
+                                        2
+                                    </p>
+                                </div>
+
+                                <div class='IGTitleBottom'>
+                                    <p>
+                                        IN-GROUP CONTEST B
+                                    </p>
+                                </div>
+
+
+                                <!-- follower 1 -->
+                                <div class='IGIconWrap1 igallbottom'>
+
+                                    <div class='IGIconWrap2 IGRightFollower1'>
+                                        <div class='IGIconWrap3'>
+                                            <div class='IGIconWrap4'>
+
+
+                                                <div class='theirSideHomo'>
+                                                    <img class='OG1ficon igPassive' src="images/F2.png" alt="V" />
+                                                    <img class='OG1ficonLime igActive' src="images/F2l.png" alt="V" />
+                                                </div>
+
+                                                <div class='theirSideHetero'>
+                                                    <img class='OG1ficon igPassive' src="images/F2S.png" alt="V" />
+                                                    <img class='OG1ficonLime igActive' src="images/F2lS.png" alt="V" />
+                                                </div>
+
+
+                                                <img class='IGBottomLeftCircle' src="images/redcircle2.png" alt="V" />
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class='IGPrizeIconWrap IGRightFightIcon'>
+                                        <img class='prizeCrownBlackBottom' src="images/leader.png" alt="V" />
+                                        <img class='prizeCrownLimeBottom' src="images/fcrownLime.png" alt="V" />
+                                        <img class='IGFightIcon IGFI_Bottom' src="images/fight.png" alt="V" />
+                                        <img class='IGFightIconLimeBottom' src="images/fightlime.png" alt="V" />
+                                    </div>
+
+                                    <!-- follower 2 -->
+                                    <div class='IGIconWrap2 IGRightFollower2'>
+                                        <div class='IGIconWrap3'>
+                                            <div class='IGIconWrap4'>
+
+
+                                                <div class='theirSideHomo'>
+                                                    <img class='OG1ficon igPassive' src="images/F2.png" alt="V" />
+                                                    <img class='OG1ficonLime igActive' src="images/F2l.png" alt="V" />
+                                                </div>
+
+                                                <div class='theirSideHetero'>
+                                                    <img class='OG1ficon igPassive' src="images/F2W.png" alt="V" />
+                                                    <img class='OG1ficonLime igActive' src="images/F2lW.png" alt="V" />
+                                                </div>
+
+
+                                                <img class='IGBottomRightCircle' src="images/redcircle2.png" alt="V" />
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+
+                                <div class='IGFollowersTagBottom igallbottom'>
+                                    <p>
+                                        FOLLOWERS B
+                                    </p>
+                                </div>
+
+                            </div>
+
+
+                            <div class=IGCoverBottom>
+                                <p class='IGCoverText'>
+                                    FOLLOWERS
+                                </p>
+                                <div class=IGCoverImage>
+                                    <img class='IGCoverFightIcon' src="images/fight.png" alt="V" />
+                                </div>
+                            </div>
+
+                            <div class='mapdiscardedXBottom '>
+                                <p class=xfontclass>
+                                    X
+                                </p>
+                            </div>
+
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <div class='aboxdoublewrap arrowsToOG2'>
+                        <div class='aboxdouble'>
+                            <svg height="200" width="200">
+                                <line x1="10" y1="50" x2="25" y2="60" class='boldArrow arrowTopIGtoOG2'/>
+                                <line x1="10" y1="175" x2="25" y2="165" class="boldArrow arrowBottomIGtoOG2"/>
+                            </svg>
+                        </div>
+                    </div>
+
+
+
+                    <div class=OG2>
+
+                        <div class=og2MoneyBagWrap1>
+                            <img class='moneyBag' src="images/moneyBag.png" alt="V" />
+                        </div>
+                        <div class=og2MoneyBagWrap2>
+                            <img class='moneyBag' src="images/moneyBag.png" alt="V" />
+                        </div>
+
+                        <div class='og2NetPayoff'>
+                            <p class='og2NetPayoffText1'>
+                                +600
+                            </p>
+                            <p class='og2NetPayoffText2'>
+                                +80
+                            </p>
+                            <p class='og2NetPayoffText4'>
+                                +410
+                            </p>
+                        </div>
+
+                        <div class=section3>
+                            <p class=section3Text>
+                                3
+                            </p>
+                        </div>
+
+                        <div class=OG2Title>
+                            <p>
+                                OUT-GROUP CONTEST II
+                            </p>
+                        </div>
+
+                        <div class=IG2Description>
+                            <div class=groupADescription>
+                                <p>
+                                    GROUP A
+                                </p>
+                            </div>
+                            <div class=fightDescription>
+                                <img class='OG1DescriptionFightIcon' src="images/fight.png" alt="V" />
+                            </div>
+                            <div class=groupBDescription>
+                                <p>
+                                    GROUP B
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <div class=OG2IconsWrap>
+
+                            <!-- Left Side Followers -->
+                            <div class='OG2FollowersWrapLeft og2all'>
+
+                                <!-- Follower 1 -->
+                                <div class='OG2FollowerImgWrap OG2TopFollower OG2LeftFollower1'>
+
+                                    <!-- Homo left Followers -->
+                                    <div class='ourSideHomo'>
+
+                                        <!-- same follower -->
+                                        <!-- objective -->
+                                        <div class=f1SameRole>
+                                            <img class='OG2ficon s5PassiveFollower' src="images/F1.png" alt="V" />
+                                            <img class='OG2ficonLime s5ActiveFollower' src="images/F1l.png" alt="V" />
+                                        </div>
+
+                                        <!-- new follower old leader -->
+                                        <!-- objective -->
+                                        <div class=f1NewRole>
+                                            <img class='OG2OldLeaderTopLeft s5PassiveFollower' src="images/L1.png" alt="V" />
+                                            <img class='OG2OldLeaderTopLimeLeft s5ActiveFollower' src="images/L1L.png" alt="V" />
+                                        </div>
+
+                                    </div>
+
+                                    <!-- Hetero left Followers -->
+                                    <div class='ourSideHetero'>
+
+                                        <!-- same follower -->
+                                        <!-- objective -->
+                                        <div class=f1SameRole>
+                                            <img class='OG2ficon s5PassiveFollower' src="images/F1S.png" alt="V" />
+                                            <img class='OG2ficonLime s5ActiveFollower' src="images/F1lS.png" alt="V" />
+                                        </div>
+
+                                        <!-- new follower old leader -->
+                                        <!-- objective -->
+                                        <div class=f1NewRole>
+                                            <img class='OG2OldLeaderTopLeft s5PassiveFollower' src="images/L1.png" alt="V" />
+                                            <img class='OG2OldLeaderTopLimeLeft s5ActiveFollower' src="images/L1L.png" alt="V" />
+                                        </div>
+
+                                    </div>
+
+
+                                    <img class='OG2f1CircleLeft' src="images/redcircle2.png" alt="V" />
+
+                                    <img class='OG2f1YAH' src="images/rarrow.png" alt="V" />
+                                    <svg height=100 width=200 class='OG2f1YAHT'>
+                                        <text x="58" y="68" fill="red" transform="rotate(0)">
+                                            YOU ARE HERE
+                                        </text>
+                                    </svg>
+
+                                    <img class='OG2CircleArrowLeft_f1' src="images/redarrow2.png" alt="V" />
+                                    <svg height=100 width=250 class='OG2CircleArrowTextLeft_f1'>
+                                        <text x="58" y="68" fill="red" transform="rotate(0)">
+                                            New Follower
+                                        </text>
+                                        <text x="60" y="90" fill="red" transform="rotate(0)" style='font-size:20px;'>
+                                            (former Leader)
+                                        </text>
+                                    </svg>
+
+                                </div>
+
+                                <!-- Follower 2 -->
+                                <div class='OG2FollowerImgWrap OG2BottomFollower OG2LeftFollower2'>
+
+                                    <div class='ourSideHomo'>
+
+                                        <!-- same follower -->
+                                        <div class=f2SameRole>
+                                            <img class='OG2ficon s5PassiveFollower' src="images/F1.png" alt="V" />
+                                            <img class='OG2ficonLime s5ActiveFollower' src="images/F1l.png" alt="V" />
+                                        </div>
+
+                                        <!-- new follower old leader -->
+                                        <div class=f2NewRole>
+                                            <img class='OG2OldLeaderBottomLeft s5PassiveFollower' src="images/L1.png" alt="V" />
+                                            <img class='OG2OldLeaderBottomLimeLeft s5ActiveFollower' src="images/L1L.png" alt="V" />
+                                        </div>
+
+                                    </div>
+
+                                    <div class='ourSideHetero'>
+
+                                        <!-- same follower -->
+                                        <div class=f2SameRole>
+                                            <img class='OG2ficon s5PassiveFollower' src="images/F1W.png" alt="V" />
+                                            <img class='OG2ficonLime s5ActiveFollower' src="images/F1lW.png" alt="V" />
+                                        </div>
+
+                                        <!-- new follower old leader -->
+                                        <div class=f2NewRole>
+                                            <img class='OG2OldLeaderBottomLeft s5PassiveFollower' src="images/L1.png" alt="V" />
+                                            <img class='OG2OldLeaderBottomLimeLeft s5ActiveFollower' src="images/L1L.png" alt="V" />
+                                        </div>
+
+                                    </div>
+
+                                    <img class='OG2f2CircleLeft' src="images/redcircle2.png" alt="V" />
+                                    <img class='OG2f2YAH' src="images/rarrow.png" alt="V" />
+                                    <svg height=100 width=200 class='OG2f2YAHT'>
+                                        <text x="58" y="68" fill="red" transform="rotate(0)">
+                                            YOU ARE HERE
+                                        </text>
+                                    </svg>
+
+                                    <img class='OG2CircleArrowLeft_f2' src="images/redarrow3.png" alt="V" />
+                                    <svg height=100 width=250 class='OG2CircleArrowTextLeft_f2'>
+                                        <text x="50" y="68" fill="red" transform="rotate(0)">
+                                            Follower
+                                        </text>
+                                        <text x="40" y="90" fill="red" transform="rotate(0)" style='font-size:20px;'>
+                                            (for a second time)
+                                        </text>
+                                    </svg>
+
+                                </div>
+
+
+                            </div>
+
+
+                            <div class='OG2FollowerArrowsLeft og2all'>
+                                <svg height="130" width="60">
+                                    <line x1="22" y1="60" x2="46" y2="68" class="arrowDashed OG2LeftFollower1 og2BlackArrow"/>
+                                    <line x1="22" y1="110" x2="48" y2="102" class="arrowDashed OG2LeftFollower2 og2BlackArrow"/>
+                                    <line x1="22" y1="60" x2="46" y2="68" class="arrowDashedLime2"/>
+                                    <line x1="22" y1="110" x2="48" y2="102" class="arrowDashedLime2"/>
+                                </svg>
+                            </div>
+
+
+                            <div class='OG2LeadersIcon og2all'>
+
+
+                                <div class='OG2LeaderLeft'>
+                                    <div class='subOG2L'>
+                                        <div class='subsubOG2L'>
+
+                                            <div class=ourSideHomo>
+                                                <img class='OG2LeaderKingLeft l1SameRole' src="images/L1C.png" alt="V" />
+                                                <img class='newLeaderKingLeft l1NewRolef1' src="images/F1C.png" alt="V" />
+                                                <img class='newLeaderKingLeft l1NewRolef2' src="images/F1C.png" alt="V" />
+                                            </div>
+
+                                            <div class=ourSideHetero>
+                                                <img class='OG2LeaderKingLeft l1SameRole' src="images/L1C.png" alt="V" />
+                                                <img class='newLeaderKingLeft l1NewRolef1' src="images/F1CS.png" alt="V" />
+                                                <img class='newLeaderKingLeft l1NewRolef2' src="images/F1CW.png" alt="V" />
+                                            </div>
+
+                                            <img class='OG2LeaderCircleLeft' src="images/redcircle2.png" alt="V" />
+
+                                            <img class='OG2l1YAH' src="images/rarrow.png" alt="V" />
+                                            <svg height=100 width=200 class='OG2l1YAHT'>
+                                                <text x="58" y="68" fill="red" transform="rotate(0)">
+                                                    YOU ARE HERE
+                                                </text>
+                                            </svg>
+
+                                            <img class='winnerLeaderArrowLeft' src="images/redarrow.png" alt="V" />
+                                            <svg height=100 width=250 class='winnerLeaderTextLeft'>
+                                                <text x="58" y="68" fill="red" transform="rotate(0)" class='winnerleadertext'>
+                                                    New Leader
+                                                </text>
+                                                <text x="30" y="90" fill="red" transform="rotate(0)" style='font-size:20px;'>
+                                                    (former Follower)
+                                                </text>
+                                            </svg>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class='OG2FightIconWrap'>
+
+                                    <img class='OG2FightIcon' src="images/fight.png" alt="V" />
+                                    <img class='OG2FightIconLime' src="images/fightlime.png" alt="V" />
+                                    <div class='OG2GroupSeparator'></div>
+
+                                </div>
+
+
+                                <div class='OG2LeaderRight'>
+                                    <div class='subOG2L'>
+                                        <div class='subsubOG2L'>
+
+                                            <div class=theirSideHomo>
+                                                <img class='OG2LeaderKingRight ol1SameRole' src="images/L2C.png" alt="V" />
+                                                <img class='newLeaderKingRight ol1NewRoleof1' src="images/F2C.png" alt="V" />
+                                                <img class='newLeaderKingRight ol1NewRoleof2' src="images/F2C.png" alt="V" />
+                                            </div>
+
+                                            <div class=theirSideHetero>
+                                                <img class='OG2LeaderKingRight ol1SameRole' src="images/L2C.png" alt="V" />
+                                                <img class='newLeaderKingRight ol1NewRoleof1' src="images/F2CS.png" alt="V" />
+                                                <img class='newLeaderKingRight ol1NewRoleof2' src="images/F2CW.png" alt="V" />
+                                            </div>
+
+                                            <img class='OG2LeaderCircleRight' src="images/redcircle2.png" alt="V" />
+
+                                            <img class='winnerLeaderArrowRight' src="images/redarrow2.png" alt="V" />
+                                            <svg height=100 width=200 class='winnerLeaderTextRight'>
+                                                <text x="58" y="68" fill="red" transform="rotate(0)" class='winnerleadertext'>
+                                                    Same Leader
+                                                </text>
+                                            </svg>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+                            <div class='OG2FollowerArrowsRight og2all'>
+                                <svg height="130" width="60">
+                                    <line x2="10" y1="58" x1="40" y2="68" class="arrowDashed og2BlackArrow"/>
+                                    <line x2="10" y1="110" x1="40" y2="102" class="arrowDashed og2BlackArrow"/>
+                                    <line x2="10" y1="58" x1="40" y2="68" class="arrowDashedLime2"/>
+                                    <line x2="10" y1="110" x1="40" y2="102" class="arrowDashedLime2"/>
+                                </svg>
+                            </div>
+
+                            <!-- Right Side Followers -->
+                            <div class='OG2FollowersWrapRight og2all'>
+
+                                <!-- Follower 1 -->
+                                <div class='OG2FollowerImgWrap OG2TopFollower'>
+
+                                    <!-- Homo right Followers 1 -->
+                                    <div class=theirSideHomo>
+
+                                        <!-- Same Follower -->
+                                        <div class=of1SameRole>
+                                            <img class='OG2ficon s5PassiveFollower' src="images/F2.png" alt="V" />
+                                            <img class='OG2ficonLime s5ActiveFollower' src="images/F2l.png" alt="V" />
+                                        </div>
+
+                                        <!-- New Follower Old Leader -->
+                                        <div class=of1NewRole>
+                                            <img class='OG2OldLeaderTopRight s5PassiveFollower' src="images/L2.png" alt="V" />
+                                            <img class='OG2OldLeaderTopLimeRight s5ActiveFollower' src="images/L2L.png" alt="V" />
+                                        </div>
+
+                                    </div>
+
+                                    <!-- Hetero right Followers 1 -->
+                                    <div class=theirSideHetero>
+
+                                        <!-- Same Follower -->
+                                        <div class=of1SameRole>
+                                            <img class='OG2ficon s5PassiveFollower' src="images/F2S.png" alt="V" />
+                                            <img class='OG2ficonLime s5ActiveFollower' src="images/F2lS.png" alt="V" />
+                                        </div>
+
+                                        <!-- New Follower Old Leader -->
+                                        <div class=of1NewRole>
+                                            <img class='OG2OldLeaderTopRight s5PassiveFollower' src="images/L2.png" alt="V" />
+                                            <img class='OG2OldLeaderTopLimeRight s5ActiveFollower' src="images/L2L.png" alt="V" />
+                                        </div>
+
+                                    </div>
+
+                                    <img class='OG2f1CircleRight' src="images/redcircle2.png" alt="V" />
+
+                                </div>
+
+                                <!-- Follower 2 -->
+                                <div class='OG2FollowerImgWrap'>
+
+                                    <!-- Homo right Followers 2 -->
+                                    <div class=theirSideHomo>
+                                        <!-- Same Follower -->
+                                        <div class=of2SameRole>
+                                            <img class='OG2ficon s5PassiveFollower' src="images/F2.png" alt="V" />
+                                            <img class='OG2ficonLime s5ActiveFollower' src="images/F2l.png" alt="V" />
+                                        </div>
+
+                                        <!-- New Follower Old Leader -->
+                                        <div class=of2NewRole>
+                                            <img class='OG2OldLeaderBottomRight s5PassiveFollower' src="images/L2.png" alt="V" />
+                                            <img class='OG2OldLeaderBottomLimeRight s5ActiveFollower' src="images/L2L.png" alt="V" />
+                                        </div>
+
+                                    </div>
+
+                                    <!-- Hetero right Followers 2 -->
+                                    <div class=theirSideHetero>
+                                        <!-- Same Follower -->
+                                        <div class=of2SameRole>
+                                            <img class='OG2ficon s5PassiveFollower' src="images/F2W.png" alt="V" />
+                                            <img class='OG2ficonLime s5ActiveFollower' src="images/F2lW.png" alt="V" />
+                                        </div>
+
+                                        <!-- New Follower Old Leader -->
+                                        <div class=of2NewRole>
+                                            <img class='OG2OldLeaderBottomRight s5PassiveFollower' src="images/L2.png" alt="V" />
+                                            <img class='OG2OldLeaderBottomLimeRight s5ActiveFollower' src="images/L2L.png" alt="V" />
+                                        </div>
+
+                                    </div>
+
+                                    <img class='OG2f2CircleRight' src="images/redcircle2.png" alt="V" />
+
+                                </div>
+
+
+                                <img class='OG2BothFollowersCircleRight' src="images/redcircle2.png" alt="V" />
+                                <img class='OG2BothFollowersCircleRightArrow' src="images/redarrow2.png" alt="V" />
+                                <svg height=100 width=210 class='OG2BothFollowersCircleRightText'>
+                                    <text x="58" y="68" fill="red" transform="rotate(0)">
+                                        Same Followers
+                                    </text>
+                                </svg>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class='thisIsExampleWrap'>
+                        <div class='thisIsExampleBox'>
+                            <p class='thisIsExample'>
+                                EXAMPLE
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class='mapBracket' style='display:none;'>
+                    <img class='myBracket' src="images/bracket.png" alt="V" />
+                    <p class=bracketText>
+                        1 Round
+                    </p>
+
+                    <div class=tenTimesWrap>
+                        <p class=tenTimeText>
+                            <!-- 10 -->
+                            X
+                        </p>
+                        <img class='tenTimes' src="images/repeat.png" alt="V" />
+                    </div>
+                </div>
+
+
+                <div class='netPayoffResultsTutorial'>
+
+
+                    <p class='netPayoffResultsTutorialText1'>
+                        <span class='netPayoffPart10'><strong>ROUND 1</strong>
+                            <span style='font-size:19px;'>
+                                (payoff of a follower who becomes the new leader)
+                            </span>
+                        <BR />
+                        1000 </span>
+                        <span class='netPayoffPart11'> - 30 </span>
+                        <span class='netPayoffPart12'> - 130 </span>
+                        <span class='netPayoffPart13'> + 600 </span>
+                        <span class='netPayoffPart14'> = 1440</span>
+                    </p>
+
+                    <!-- Circles and Arrows -->
+                    <img class='initialBudgetCircle' src="images/graycircle.png" alt="V" />
+
+                    <img class='initialBudgetArrow' src="images/garrow.png" alt="V" />
+                    <svg height=500 width=500 class='initialBudgetText'>
+                        <text x="142" y="200" fill="gray" transform="rotate(0)">
+                            STARTING BUDGET
+                        </text>
+                    </svg>
+
+                    <img class='netPayoffCircle' src="images/graycircle.png" alt="V" />
+
+                    <img class='netPayoffArrow' src="images/garrow.png" alt="V" />
+                    <svg height=100 width=200 class='netPayoffText'>
+                        <text x="58" y="68" fill="gray" transform="rotate(0)">
+                            FINAL NET PAYOFF
+                        </text>
+                    </svg>
+
+
+                    <p class='netPayoffResultsTutorialText2'>
+                        <span class='netPayoffPart20'><strong>ROUND 2</strong>
+                            <span style='font-size:19px;'>
+                                (payoff of a leader who becomes a follower)
+                            </span>
+                        <BR />
+                        1000 </span>
+                        <span class='netPayoffPart21'> - 280 </span>
+                        <span class='netPayoffPart22'> - 0 </span>
+                        <span class='netPayoffPart23'> + 80 = 800</span>
+                    </p>
+
+                    <!-- Circles and Arrows -->
+                    <img class='initialBudgetCircle2' src="images/graycircle.png" alt="V" />
+
+                    <img class='initialBudgetArrow2' src="images/garrow.png" alt="V" />
+                    <svg height=500 width=900 class='initialBudgetText2'>
+                        <text x="142" y="200" fill="gray" transform="rotate(0)">
+                            NEW ROUND, NEW STARTING BUDGET
+                        </text>
+                    </svg>
+
+
+                    <p class='netPayoffResultsTutorialText3'>
+                        <span class='netPayoffPart30'><strong>...</strong></span>
+                    </p>
+                    <p class='netPayoffResultsTutorialText4'>
+                        <span class='netPayoffPart40'><strong>ROUND 3</strong>
+                        <BR />
+                        1000 </span>
+                        <span class='netPayoffPart41'> + 360 </span>
+                        <span class='netPayoffPart42'> - 0 </span>
+                        <span class='netPayoffPart43'> + 410 = 1770</span>
+                    </p>
+                </div>
+
+
+            </div>
+
+            <!-- ################### SORTING ANIMATIONS #################### -->
+
+            <!-- note there is also payoff animations in here for the end -->
+            <div class=s1Icon style='margin-bottom:-30px;'>
+
+                <div class='wrap1'>
+
+                    <div class='imgwrap1 initialIwIndex1'>
+                        <img class='p0 sub1' src="images/h0.png" alt="V" />
+                        <p class='imgbottomtext'>
+                            1
+                        </p>
+                    </div>
+
+                    <div class='imgwrap1 initialIwIndex2'>
+                        <img class='p0 sub2' src="images/h0.png" alt="V" />
+                        <p class='imgbottomtext'>
+                            2
+                        </p>
+                    </div>
+
+                    <div class='imgwrap1 initialIwIndex3'>
+                        <img class='p0 sub3' src="images/h0.png" alt="V" />
+                        <p class='imgbottomtext'>
+                            3
+                        </p>
+                    </div>
+
+                    <div class='imgwrap1 initialIwIndex4'>
+                        <img class='p0 sub4' src="images/h0.png" alt="V" />
+                        <p class='imgbottomtext'>
+                            4
+                        </p>
+                    </div>
+
+                    <div class='imgwrap1 initialIwIndex5'>
+                        <img class='p0 sub5' src="images/h0.png" alt="V" />
+                        <p class='imgbottomtext'>
+                            5
+                        </p>
+                    </div>
+
+                    <div class='imgwrap1 initialIwIndex6'>
+                        <img class='p0 sub6' src="images/h0.png" alt="V" />
+                        <p class='imgbottomtext'>
+                            6
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class='transitionWrap' style='display:none;'>
+
+                    <div class='transitionWrapWrap'>
+
+                        <img class='playerBracketImage' src="images/bracket.png" alt="V" />
+
+                        <div class=playerRandomSortImageWrap>
+                            <img class='playerRandomSortImage' id='stage1RandomButton' src="images/dice.png" alt="V" />
+                        </div>
+
+                        <div class='newRoundButtonWrap'>
+                            <div class=hidder></div>
+                            <img class='replayButton' id='replayButton' src="images/replay.png" alt="V" />
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class='wrap2'>
+
+                    <div class=grouptitlewrap>
+
+                        <div class=grouptitleA>
+                            <p>
+                                GROUP A
+                            </p>
+                        </div>
+
+                        <div class=groupAwrap>
+
+                            <div class='imgwrap2 iwIndex1'>
+
+                                <div class=roleSpecificIcons>
+
+                                    <img class='crown cr1' src="images/leader.png" alt="V" />
+                                    <img class='pl1 a10' src="images/L1.png" alt="V" />
+
+                                    <img class='pf1 a11 homoA' src="images/F1.png" alt="V" />
+
+
+                                    <img class='pf1 a11 heteroA strong1 ' src="images/F1S.png" alt="V" />
+                                    <img class='pf1 a11 heteroA weak1' src="images/F1W.png" alt="V" />
+
+                                </div>
+
+                                <div class=genericGroupIcon>
+
+                                    <img class='p0' src="images/h1.png" alt="V" />
+
+                                </div>
+
+                                <p class='imgbottomtext'>
+                                    <span id=a1></span>
+                                </p>
+
+                            </div>
+
+                            <div class='imgwrap2 iwIndex2'>
+
+                                <div class=roleSpecificIcons>
+
+                                    <img class='crown cr2' src="images/leader.png" alt="V" />
+                                    <img class='pl1 a20' src="images/L1.png" alt="V" />
+
+                                    <img class='pf1 a21 homoA' src="images/F1.png" alt="V" />
+
+                                    <img class='pf1 a21 heteroA strong2' src="images/F1S.png" alt="V" />
+                                    <img class='pf1 a21 heteroA weak2' src="images/F1W.png" alt="V" />
+
+                                </div>
+
+                                <div class=genericGroupIcon>
+
+                                    <img class='p0' src="images/h1.png" alt="V" />
+
+                                </div>
+
+                                <p class='imgbottomtext'>
+                                    <span id=a2></span>
+                                </p>
+
+                            </div>
+
+                            <div class='imgwrap2 iwIndex3'>
+
+                                <div class=roleSpecificIcons>
+
+                                    <img class='crown cr3' src="images/leader.png" alt="V" />
+                                    <img class='pl1 a30' src="images/L1.png" alt="V" />
+
+                                    <img class='pf1 a31 homoA' src="images/F1.png" alt="V" />
+
+                                    <img class='pf1 a31 heteroA strong3' src="images/F1S.png" alt="V" />
+                                    <img class='pf1 a31 heteroA weak3' src="images/F1W.png" alt="V" />
+
+                                </div>
+
+                                <div class=genericGroupIcon>
+
+                                    <img class='p0' src="images/h1.png" alt="V" />
+
+                                </div>
+
+                                <p class='imgbottomtext'>
+                                    <span id=a3></span>
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <img class='unevenLeft' src="images/uneven2.png" alt="V" />
+
+                    </div>
+
+                    <div class=grouptitlewrap>
+
+                        <div class=grouptitleB>
+                            <p>
+                                GROUP B
+                            </p>
+                        </div>
+
+                        <div class=groupBwrap>
+
+                            <div class='imgwrap2 iwIndex4'>
+
+                                <div class=roleSpecificIcons>
+
+                                    <img class='crown cr4' src="images/leader.png" alt="V" />
+                                    <img class='pl1 a40' src="images/L2.png" alt="V" />
+
+                                    <img class='pf1 a41 homoB' src="images/F2.png" alt="V" />
+
+                                    <img class='pf1 a41 heteroB strong4' src="images/F2S.png" alt="V" />
+                                    <img class='pf1 a41 heteroB weak4' src="images/F2W.png" alt="V" />
+
+                                </div>
+
+                                <div class=genericGroupIcon>
+
+                                    <img class='p0' src="images/h2.png" alt="V" />
+
+                                </div>
+
+                                <p class='imgbottomtext'>
+                                    <span id=a4></span>
+                                </p>
+                            </div>
+
+                            <div class='imgwrap2 iwIndex5'>
+
+                                <div class=roleSpecificIcons>
+
+                                    <img class='crown cr5' src="images/leader.png" alt="V" />
+                                    <img class='pl1 a50' src="images/L2.png" alt="V" />
+
+                                    <img class='pf1 a51 homoB' src="images/F2.png" alt="V" />
+
+                                    <img class='pf1 a51 heteroB strong5' src="images/F2S.png" alt="V" />
+                                    <img class='pf1 a51 heteroB weak5' src="images/F2W.png" alt="V" />
+
+                                </div>
+
+                                <div class=genericGroupIcon>
+
+                                    <img class='p0' src="images/h2.png" alt="V" />
+
+                                </div>
+
+                                <p class='imgbottomtext'>
+                                    <span id=a5></span>
+                                </p>
+
+                            </div>
+
+                            <div class='imgwrap2 iwIndex6'>
+
+                                <div class=roleSpecificIcons>
+
+                                    <img class='crown cr6' src="images/leader.png" alt="V" />
+                                    <img class='pl1 a60' src="images/L2.png" alt="V" />
+
+                                    <img class='pf1 a61 homoB' src="images/F2.png" alt="V" />
+
+                                    <img class='pf1 a61 heteroB strong6' src="images/F2S.png" alt="V" />
+                                    <img class='pf1 a61 heteroB weak6' src="images/F2W.png" alt="V" />
+
+                                </div>
+
+                                <div class=genericGroupIcon>
+
+                                    <img class='p0' src="images/h2.png" alt="V" />
+
+                                </div>
+
+                                <p class='imgbottomtext'>
+                                    <span id=a6></span>
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <img class='unevenRight' src="images/uneven2.png" alt="V" />
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ################### SORTING ANIMATIONS #################### -->
+
+            <div class='crownSwitchAnimationWrap'>
+                <img class='leaderLosing' src="images/L1.png" alt="V" />
+                <img class='leaderLosing2' src="images/L2.png" alt="V" />
+                <img class='leaderCrown' src="images/leader.png" alt="V" />
+                <img class='myLeaderDenied' src="images/leaderdenied.png" alt="V" />
+                <img class='followerCrown' src="images/fcrownLime.png" alt="V" />
+                <img class='followerWinning' src="images/F1.png" alt="V" />
+                <img class='followerWinning2' src="images/F2.png" alt="V" />
+            </div>
+
+            <!-- ################# GAME BASICS INFO BOXES ################## -->
+
+            <!-- uses map and sorting graphics above -->
+            <div class='boxbox' id='boxbox-B' style='display:none;'></div>
+
+            <!-- ########################################################### -->
+
+
+        </div>
+
+    </div>
+
+
+
+
+    <!-- #################### B SECTION - BASICS ########################### -->
+
+    <div class='boxStorage'>
+
+        <div class=boxwrap id='boxwrap-B-0'>
+
+            <div class='box' id='box-B-0'>
+
+                <div class=text>
+                    <p>
+                        We begin by introducing the basics of the game.
+                    </p>
+                </div>
+
+                <div class=buttonWrap>
+                    <div class=button id='btn-B-0'>
+                        <p>
+                            OK
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class=boxwrap id='boxwrap-B-3'>
+
+            <div class='box' id='box-B-3'>
+
+                <div class=text>
+                    <p>
+                        The game consists of <strong>3</strong> main <span style='font-weight:500;'>sections</span>.
+                    </p>
+                </div>
+
+                <div class=buttonWrap>
+                    <div class=button id='btn-B-3'>
+                        <p>
+                            OK
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class=boxwrap id='boxwrap-B-4'>
+
+            <div class='box' id='box-B-4'>
+
+                <div class=text>
+                    <p>
+                        These <span style='font-weight:500;'>3</span> sections constitute <span style='font-weight:500;'>1 round</span> of the game.
+                    </p>
+                </div>
+
+                <div class=buttonWrap>
+                    <div class=button id='btn-B-4'>
+                        <p>
+                            OK
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class=boxwrap id='boxwrap-B-5'>
+
+            <div class='box' id='box-B-5'>
+
+                <div class=text>
+                    <p>
+                        In the experiment,
+                        <br />
+                        you will be <span style='font-weight:500;'>re</span>-playing the <i>same</i> game for <strong>multiple</strong> rounds.
+                    </p>
+
+                    <!-- <p>
+                        You will be <span style='font-weight:500;'>re</span>-playing the <i>same</i> game for <strong>multiple</strong> rounds.
+                    </p> -->
+
+                </div>
+
+                <div class=buttonWrap>
+                    <div class=button id='btn-B-5'>
+                        <p>
+                            OK
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class=boxwrap id='boxwrap-B-6'>
+
+            <div class='box' id='box-B-6' style='margin-top:20px;'>
+
+                <div class=text>
+                    <p>
+                        Every round is an <strong>independent</strong> game on its own.
+                        <!-- <br /> -->
+                        <!-- Your <i>results/performance</i> from a round does <strong>not</strong> affect the next one. -->
+                    </p>
+                </div>
+
+                <div class=buttonWrap>
+                    <div class=button id='btn-B-6'>
+                        <p>
+                            OK
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class=boxwrap id='boxwrap-B-65'>
+
+            <div class='box' id='box-B-65'>
+
+                <div class=text>
+                    <p>
+                        You start <i>every</i> round with a <strong>new</strong> initial setup.
+                    </p>
+                </div>
+
+                <div class=buttonWrap>
+                    <div class=button id='btn-B-65'>
+                        <p>
+                            OK
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class=boxwrap id='boxwrap-B-675'>
+
+            <div class='box' id='box-B-675' style='margin-top:-10px;'>
+
+                <div class=text>
+                    <p>
+                        Your initial setup is determined by three factors/attributes/properties/?:
+                        <br />
+                         &#8226; Group <span style='font-size:19px;font-style:italic;'>(random)</span>
+                         <br />
+                         &#8226; Starting Role <span style='font-size:19px;font-style:italic;'>(random)</span>
+                         <br />
+                         &#8226; Starting Budget <span style='font-size:19px;font-style:italic;'>(always the same)</span>
+                    </p>
+                </div>
+
+                <div class=buttonWrap>
+                    <div class=button id='btn-B-675'>
+                        <p>
+                            OK
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class=boxwrap id='boxwrap-B-8'>
+
+            <div class='box' id='box-B-8'>
+
+                <div class=text>
+                    <p>
+                        Every round is played among the <i class=mBold>same</i> <strong>6</strong> players
+                    </p>
+                </div>
+
+                <div class=buttonWrap>
+                    <div class=button id='btn-B-8'>
+                        <p>
+                            OK
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class=boxwrap id='boxwrap-B-9'>
+
+            <div class='box' id='box-B-9'>
+
+                <div class=text>
+                    <p>
+                        At the beginning of <i>every</i> round,
+                        <br />
+
+                        <span style='margin-left:132px;display:inline-block;margin-top:13px;'>players are
+                        <strong>randomly</strong> assigned to
+                        <i>one of two</i> groups.</span>
+
+                    </p>
+                    <div class=someGrouping style='margin-top:2px;'>
+                        <p>
+                            GROUP A: <span class=colorGroupABox></span> / <img class='B-10-icon-right' src="images/h1.png" alt="V" />
+                        </p>
+                        <p>
+                            GROUP B:  <span class=colorGroupBBox></span> / <img class='B-10-icon-right' src="images/h2.png" alt="V" />
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class=buttonWrap>
+                    <div class=button id='btn-B-9'>
+                        <p>
+                            OK
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class=boxwrap id='boxwrap-B-10'>
+
+            <div class='box' id='box-B-10'>
+
+                <div class=text>
+                    <p>
+                        Every round, each player <strong>randomly</strong>
+                        <i>starts</i> <br />
+                        <span style='display:inline-block;margin-left:113px;margin-top:8px;'>
+                            either as the leader (<span style='font-weight:800; font-size:28px;'>L</span>)
+                             or one of the followers (<span style='font-weight:800; font-size:28px;'>F</span>) of its group.
+                        </span>
+                    </p>
+                    <div class=someGrouping style='margin-top:-5px;'>
+                        <p>
+                            LEADER: <img class='B-10-icon-left' style='margin-right:-10px;' src="images/L1C.png" alt="V" /> / <img class='B-10-icon-left' style='margin-left:-10px;' src="images/L2C.png" alt="V" />
+                        </p>
+                        <p>
+                            FOLLOWER: <img class='B-10-icon-right'  style='margin-left:10px;' src="images/F1.png" alt="V" /> / <img class='B-10-icon-right' src="images/F2.png" alt="V" />
+                        </p>
+                    </div>
+                </div>
+
+                <div class=buttonWrap>
+                    <div class=button id='btn-B-10'>
+                        <p>
+                            OK
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class=boxwrap id='boxwrap-B-11'>
+
+            <div class='box' id='box-B-11'>
+
+                <div class=text>
+                    <p>
+                        Each group
+                        <i>always</i> consists of
+                        <strong>1</strong>
+                        <span style='font-weight:500;'>leader</span> and
+                        <strong>2</strong>
+                        <span style='font-weight:500;'>followers</span>.
+                    </p>
+                </div>
+
+                <div class=buttonWrap>
+                    <div class=button id='btn-B-11'>
+                        <p>
+                            OK
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ############################################################### -->
+
+        <!-- SYMMETRIC HETERO FOLLOWERS BOXES -->
+
+        <div class=boxwrap id='boxwrap-B-12_T1_1'>
+
+            <div class='box' id='box-B-12_T1_1'>
+
+                <div class=text>
+                    <p>
+                        In <i>each</i> group, the <span class=mBold>followers</span> are further <i>randomly</i>
+                        categorized as
+                        <br />
+                        <span style='display:inline-block;margin-top:12px;margin-left:162px;' id='spanBoxB12T11'>
+                            the <span style='font-weight:500;'>strong</span> follower (<span style='font-weight:800; font-size:28px;'>S</span>) and the <span style='font-weight:500;'>weak</span> follower (<span style='font-weight:800; font-size:28px;'>W</span>).
+                        </span>
+                    </p>
+                    <div class=someGrouping style='margin-top:-6px;' id='someGroupingBox12T11'>
+                        <p>
+                            STRONG FOLLOWER: <img class='B-10-icon-right' style='margin-left:5px;' src="images/F1S.png" alt="V" /> / <img class='B-10-icon-right' style='margin-left:0px;' src="images/F2S.png" alt="V" />
+                        </p>
+                        <p>
+                            WEAK FOLLOWER: <img class='B-10-icon-right'  style='margin-left:10px;' src="images/F1W.png" alt="V" /> / <img class='B-10-icon-right' src="images/F2W.png" alt="V" />
+                        </p>
+                    </div>
+                </div>
+
+                <div class=buttonWrap>
+                    <div class=button id='btn-B-12_T1_1'>
+                        <p>
+                            OK
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class=boxwrap id='boxwrap-B-12_T1_2'>
+
+            <div class='box' id='box-B-12_T1_2'>
+
+                <div class=text>
+                    <p>
+                        Each group <i>always</i> has <strong>1</strong> <span style='font-weight:500;'>strong</span> and <strong>1</strong> <span style='font-weight:500;'>weak</span> follower.
+                    </p>
+                </div>
+
+                <div class=buttonWrap>
+                    <div class=button id='btn-B-12_T1_2'>
+                        <p>
+                            OK
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ASYMMETRIC HETERO FOLLOWERS BOXES -->
+
+        <div class=boxwrap id='boxwrap-B-12_T2_0'>
+
+            <div class='box' id='box-B-12_T2_0'>
+
+                <div class=text>
+                    <p>
+                        <i>Every</i> round,
+                        <br />
+                        <span style='font-weight:700;'>1</span>
+                        group is <i>randomly</i> picked to be the group with
+                        <strong>uneven</strong> (<img class='unevenLeft2' src="images/uneven2.png" alt="V" />)
+                        <strong>followers</strong>.
+                    </p>
+                </div>
+
+                <div class=buttonWrap>
+                    <div class=button id='btn-B-12_T2_0'>
+                        <p>
+                            OK
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class=boxwrap id='boxwrap-B-12_T2_1'>
+
+            <div class='box' id='box-B-12_T2_1' style='margin-top:10px;'>
+
+                <div class=text>
+                    <p>
+                        In the <i class=mBold>uneven</i> group (<img class='unevenLeft2' src="images/uneven2.png" alt="V" />), the <span class=mBold>followers</span> are further <i>randomly</i>
+                        categorized as the <span style='font-weight:700;'>strong</span>
+                        follower (<span style='font-weight:800; font-size:28px;'>S</span>)
+                        and the <span style='font-weight:700;'>weak</span> follower
+                        (<span style='font-weight:800; font-size:28px;'>W</span>).
+                    </p>
+                    <div class=someGrouping>
+                        <p>
+                            STRONG FOLLOWER: <img class='B-10-icon-right' style='margin-left:5px;' src="images/F1S.png" alt="V" /> / <img class='B-10-icon-right' style='margin-left:0px;' src="images/F2S.png" alt="V" />
+                        </p>
+                        <p>
+                            WEAK FOLLOWER: <img class='B-10-icon-right'  style='margin-left:10px;' src="images/F1W.png" alt="V" /> / <img class='B-10-icon-right' src="images/F2W.png" alt="V" />
+                        </p>
+                    </div>
+                </div>
+
+                <div class=buttonWrap>
+                    <div class=button id='btn-B-12_T2_1'>
+                        <p>
+                            OK
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class=boxwrap id='boxwrap-B-12_T2_2'>
+
+            <div class='box' id='box-B-12_T2_2'>
+
+                <div class=text>
+                    <p>
+                        In the <i class=mBold>uneven</i> group, there is <i>always</i> <strong>1</strong> <span style='font-weight:500;'>strong</span> and <strong>1</strong> <span style='font-weight:500;'>weak</span> follower.
+                    </p>
+                </div>
+
+                <div class=buttonWrap>
+                    <div class=button id='btn-B-12_T2_2'>
+                        <p>
+                            OK
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class=boxwrap id='boxwrap-B-12_T2_3'>
+
+            <div class='box' id='box-B-12_T2_3'>
+
+                <div class=text>
+                    <p>
+                        The <i>other</i> group's followers are of <span style='font-weight:500;'>equal power</span> (the <i class=mBold>even</i> group).
+                    </p>
+                </div>
+
+                <div class=buttonWrap>
+                    <div class=button id='btn-B-12_T2_3'>
+                        <p>
+                            OK
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- END OF HETERO TREATMENT INFO BOXES CONVERGENCE TO THE BELOW INFO BOX -->
+
+    </div>
+
+
+    <div id=end></div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="js/1_basics.js"></script>
+
+</body>
+</html>
