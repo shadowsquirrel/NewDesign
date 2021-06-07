@@ -7579,6 +7579,7 @@ calculator.setup.og = function() {
     calculator.section.power.opacity.bar(true);
     calculator.section.power.display.barText('none'); //also hides powerbar legend
     calculator.graphics.dynamicPowerBarText = true;
+    calculator.section.power.display.barLegend(true);
 
 
     //----------------------------------------------------------//

@@ -1,0 +1,167 @@
+.generalInfoWrap
+{
+    transition:0.5s;
+    z-index:-100;
+    transform:scale(0) rotateX(0turn);
+    background-color: white;
+    width: 1000px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    margin-top: 158px;
+    height: 440px;
+    border: 5px inset green;
+    box-shadow: 0px 4px 6px 4px black;
+}
+.generalInfoButtonWrap
+{
+    display:flex;
+    flex-direction:row;
+    justify-content: space-evenly;
+}
+.generalInfoButtonExtraSetup
+{
+    width: 171px;
+    font-size: 24px;
+    padding-top: 10px;
+    border-radius: 50px;
+}
+
+
+
+
+.generalInfoTextWrap
+{
+    position:absolute;
+    margin-top: 80px;
+    margin-left: 30px;
+    transform-origin: center center;
+    transform:scale(1);
+    transition:0.2s;
+    z-index:-100;
+}
+
+
+
+
+.generalInstructionTextWrap
+{
+    margin-top:52px;
+    position:absolute;
+    transition:0.2s;
+    transform:scale(1);
+    padding-left: 10px;
+    text-align: left;
+    background: white;
+    width: 942px;
+    font-size: 20px;
+}
+.generalInstructionMicroText
+{
+    display: inline-block;
+    margin-top: 17px;
+    font-size: 22px;
+    font-style: italic;
+    color: green;
+    margin-left: 174px;
+    font-weight: 100;
+}
+
+
+
+
+.infoTextGeneral
+{
+    position:absolute;
+    transition:0.2s;
+    transform:scale(0);
+    padding-left: 10px;
+    text-align: left;
+    background: white;
+    width: 942px;
+    font-size: 20px;
+}
+
+
+
+
+
+.basicInfoText
+{
+    transition:0.2s;
+    transform:scale(0);
+    margin-top: 60px;
+}
+
+
+.bbb
+{
+    font-weight:500;
+}
+
+
+.payoffInfoText
+{
+    transition:0.2s;
+    transform:scale(0);
+    margin-top: 40px;
+}
+.payoffInfoTextMicro1
+{
+    text-align: center;
+    font-weight: 100;
+    font-size: 30px;
+}
+.payoffInfoTextMicro2
+{
+    display: inline-block;
+}
+.payoffInfoTextMicro3
+{
+    border: 1px black dashed;
+    font-size: 17px;
+    width: 340px;
+    display: inline-block;
+    margin-left: 87px;
+    background-color: aliceblue;
+    padding: 20px;
+}
+
+
+
+
+
+.strategyInfoText
+{
+    transition:0.2s;
+    transform:scale(0);
+    margin-top: 40px;
+}
+.strategyInfoTextMicro
+{
+    display: inline-block;
+    margin-top: 20px;
+}
+
+
+
+
+
+.tipsInfoText
+{
+    transition:0.2s;
+    transform:scale(0);
+    margin-top: 30px;
+}
+.tipsInfoTextMicro1
+{
+    display: inline-block;
+    margin-top: 20px;
+    margin-bottom:-10px;
+}
+.tipsInfoTextMicro2
+{
+    margin-left: 40px;
+    display: inline-block;
+    margin-top: 30px;
+}

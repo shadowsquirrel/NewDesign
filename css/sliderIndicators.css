@@ -93,6 +93,17 @@ img.redArrowImage1
 }
 
 
+.sliderArrowImageWrap_dF
+{
+    position:absolute;
+    transform:rotate(300deg);
+    transition:1s;
+    margin-left:405px;
+    margin-top:-118px;
+}
+
+
+
 /*ADDITIONAL POINTER*/
 
 .spinButtonTop_arrowLeft

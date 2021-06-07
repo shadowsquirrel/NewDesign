@@ -3,7 +3,7 @@
 {
     transition:0.5s;
     opacity:0;
-    margin-top:20px;
+    margin-top:40px;
     margin-bottom:10px;
     display: flex;
     flex-direction: column;
@@ -500,6 +500,8 @@ img.minImageBottomSetup
 /*CALCULATOR BUTTON*/
 img.calculatorBottomSetup
 {
+    transform-origin: bottom right;
+    transform:scale(0);
     opacity: 1;
     display: flex;
     padding: 5px;

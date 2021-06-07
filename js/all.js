@@ -21,10 +21,6 @@ var map = {
 
 };
 
-var data = {};
-
-
-
 //--------- GLOBAL VARIABLES TO RULE IT ALL ------//
 
 map.globalVariable.ourSideIsHetero = undefined;

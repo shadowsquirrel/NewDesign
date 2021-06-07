@@ -139,6 +139,26 @@ img.OG1BothFollowersCircleRight
     margin-left:29px;
     position:absolute;
 }
+.OG1l1CALCYAH
+{
+    opacity: 1;
+    margin-top: 152px;
+    margin-left: 47px;
+    height: 73px;
+    width: 75px;
+    position: absolute;
+    transform: rotate(154deg);
+}
+.OG1l1CALCYAHT
+{
+    opacity: 1;
+    font-weight: 800;
+    font-family: cursive;
+    font-size: 18px;
+    margin-top: 174px;
+    margin-left: -1px;
+    position: absolute;
+}
 /*OG1 RESULTS*/
 img.OG1TopLeaderResultIconsCircle
 {
