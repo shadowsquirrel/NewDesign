@@ -40,10 +40,11 @@
     <link rel="stylesheet" href="css/generalInfo.css">
 
     <link rel="stylesheet" href="css/stage2and5SpecificAdditionalClasses.css">
+    <link rel="stylesheet" href="css/norp.css">
 
 
-    <!-- <script src='js/Winwheel.js'></script> -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script> -->
+    <script src='js/Winwheel.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <!-- <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
@@ -65,36 +66,45 @@
             </p>
         </div>
 
-        <div class='boxwrap cantSubmitWrap' >
+        <div class=metaNorp>
+            <div class=norp>
+                <div class='wrapLoad'>
 
-            <div class='box cantSubmitBox'>
-
-                <div class='text cantSubmitText'>
-
-                    <p>
-                        Please finish interface tutorial before
-                        submitting a decision.
-                    </p>
-
-                </div>
-
-                <div class=buttonWrap>
-                    <div class='button cantSubmitButton' id='cantSubmitButton'>
-                        <p>
-                            OK
-                        </p>
+                    <div class='imgWrapLoad l-1'>
+                        <img class='load r-1' src="images/h0me.png" alt="V" />
                     </div>
+
+                    <div class='imgWrapLoad l-2'>
+                        <img class='load r-2' src="images/h0me.png" alt="V" />
+                    </div>
+
+                    <div class='imgWrapLoad l-3'>
+                        <img class='load r-3' src="images/h0me.png" alt="V" />
+                    </div>
+
+                    <div class='imgWrapLoad l-4'>
+                        <img class='load r-4' src="images/h0me.png" alt="V" />
+                    </div>
+
+                    <div class='imgWrapLoad l-5'>
+                        <img class='load r-5' src="images/h0me.png" alt="V" />
+                    </div>
+
+                    <div class='imgWrapLoad l-6'>
+                        <img class='load r-6' src="images/h0me.png" alt="V" />
+                    </div>
+
                 </div>
 
+                <div class=norpTextWrap>
+                    <p>
+                        Waiting for <span id=noap></span>
+                    </p>
+                </div>
             </div>
-
         </div>
 
-        <div class='majorBlocker'></div>
-
-
         <div class = 'all'>
-
 
             <svg height="0" width="0">
 
@@ -1134,86 +1144,6 @@
                 </div>
 
             </div>
-
-
-            <div class='outcomeWrap'>
-
-                <!-- ARROWS AND TEXT FOR ROLE CHANGE LEFT -->
-                <img class='roleChangeLeftArrow outcomeHelper' src="images/rarrow.png" alt="V" />
-                <svg height=100 width=200 class='roleChangeIndicatorTextLeft outcomeHelper'>
-                    <text x="42" y="68" fill="red" transform="rotate(0)">
-                        Role
-                    </text>
-                </svg>
-
-                <div class='groupLostWrap'>
-
-                    <div class='lostTextWrap'>
-                        <p>
-                            IF YOUR GROUP LOSES
-                        </p>
-                    </div>
-
-                    <div class='netPayoffWrap'>
-                        <p>
-                            <span id='netPayoffValueLostDf'></span>
-                        </p>
-                    </div>
-
-                    <div class='roleChangeWrap'>
-                        <p>
-                            Chance to become the new leader
-                        </p>
-                    </div>
-
-                </div>
-
-                <!-- ARROWS AND TEXT FOR NETPAYOFFS -->
-                <img class='netPayoffLeftArrow outcomeHelper' src="images/rarrow.png" alt="V" />
-                <img class='netPayoffRightArrow outcomeHelper' src="images/rarrow.png" alt="V" />
-                <svg height=100 width=200 class='netPayoffIndicatorText outcomeHelper'>
-                    <text x="42" y="68" fill="red" transform="rotate(0)">
-                        Net
-                    </text>
-                    <text x="25" y="90" fill="red" transform="rotate(0)">
-                        Payoffs
-                    </text>
-                </svg>
-
-                <div class='groupWonWrap'>
-
-                    <div class='wonTextWrap'>
-                        <p>
-                            IF YOUR GROUP WINS
-                        </p>
-                    </div>
-
-                    <div class='netPayoffWrap'>
-                        <p>
-                            <span id='netPayoffValueWonDf'></span>
-                        </p>
-                    </div>
-
-                    <div class='roleChangeWrap'>
-                        <p>
-                            Continue as a follower
-                        </p>
-                    </div>
-
-                </div>
-
-                <!-- ARROWS AND TEXT FOR ROLE CHANGE RIGHT -->
-                <img class='roleChangeRightArrow outcomeHelper' src="images/rarrow.png" alt="V" />
-                <svg height=100 width=200 class='roleChangeIndicatorTextRight outcomeHelper'>
-                    <text x="42" y="68" fill="red" transform="rotate(0)">
-                        Role
-                    </text>
-                </svg>
-
-            </div>
-
-
-            <div class='boxbox' id='boxbox-B' style='transition:1s;position:absolute;margin-top:90px;height:100px;margin-left:500px;z-index:-300;'></div>
 
 
             <div class='decisionWrapF'>
@@ -2481,8 +2411,7 @@
                 <div class=text>
 
                     <p>
-                        You are <span id=infoTextFollowerType2></span>
-                        in the OUT-group contest <span style='font-weight:500;'>I</span>.
+
                     </p>
 
                 </div>
@@ -2499,451 +2428,18 @@
 
         </div>
 
-        <div class=boxwrap id='boxwrap-A-2' style='margin-top:-15px;'>
-
-            <div class='box' id='box-A-2'>
-
-                <div class=text>
-
-                    <p>
-                        The <i>above</i> slider represents <i>your</i> help/sabotage decision.
-                    </p>
-
-                </div>
-
-                <div class=buttonWrap>
-                    <div class=button id='btn-A-2'>
-                        <p>
-                            OK
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class=boxwrap id='boxwrap-A-3'>
-
-            <div class='box' id='box-A-3'>
-
-                <div class=text>
-
-                    <p>
-                        Drag the slider <i class=mBold>left</i> to
-                        <span class=rColor>sabotage</span> and
-                        <i class=mBold>right</i> to
-                        <span class=bColor>help</span>
-                    </p>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class=boxwrap id='boxwrap-A-4'>
-
-            <div class='box' id='box-A-4'>
-
-                <div class=text>
-
-                    <!--
-                    <p>
-                    <i>Above</i> the slider,
-                    <br />
-                    <span style='font-weight:500;'>your new payoff</span>
-                    (for your current help/sabotage decision) and
-                    <br />
-                    <span style='font-weight:500;'>your role change</span>
-                    for the OUT-group contest
-                    <span style='font-weight:700;'>II</span>
-                    is presented
-                    <br />
-                    for both <i>possible</i>
-                    outcomes (your group loses or your group wins)
-                </p> -->
-
-                    <p>
-                        <i>Above</i> the slider,
-                        <i>your net payoff</i>
-                        and
-                        <i>role</i>
-                        for <i>possible</i> outcomes
-                        are displayed.
-                    </p>
-
-                </div>
-
-                <div class=buttonWrap style='padding-left:15px;'>
-                    <div class=button id='btn-A-4' style='margin-left:-20px;'>
-                        <p>
-                            OK
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class=boxwrap id='boxwrap-A-5'>
-
-            <div class='box' id='box-A-5'>
-
-                <div class=text>
-
-                    <p>
-                        A <i>graphical calculator</i> is provided <i >below</i>
-                        your decision slider
-                    </p>
-
-                </div>
-
-                <div class=buttonWrap>
-                    <div class=button id='btn-A-5'>
-                        <p>
-                            OK
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-
-        <!-- ALTERNATIVE BOX FOR LEADERS SEING IT FOR THE FIRST TIME -->
-        <!-- FROM HERE JUMP TO 15 -->
-        <div class=boxwrap id='boxwrap-A-501'>
-
-            <div class='box' id='box-A-501'>
-
-                <div class=text>
-
-                    <p>
-                        A <i>graphical calculator</i> is provided below
-                        your decision slider to consider <i>hypothetical</i>
-                        scenarios (<span style='color:red;font-weight:500;'>?</span>)
-                        for the other players.
-                    </p>
-
-                </div>
-
-                <div class=buttonWrap>
-                    <div class=button id='btn-A-501'>
-                        <p>
-                            OK
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class=boxwrap id='boxwrap-A-6'>
-
-            <div class='box' id='box-A-6'>
-
-                <div class=text>
-
-                    <p>
-                        You can use the calculator to consider possible
-                        <i>hypothetical</i>
-                        (<span style='color:red;font-weight:500;'>?</span>)
-                        decisions for the <i>other</i> players.
-                    </p>
-
-                </div>
-
-                <div class=buttonWrap>
-                    <div class=button id='btn-A-6'>
-                        <p>
-                            OK
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class=boxwrap id='boxwrap-A-7'>
-
-            <div class='box' id='box-A-7'>
-
-                <div class=text>
-
-                    <p>
-                        The
-                        <span style='font-weight:700; color:rgb(35,79,30);'>green</span>
-                        <i>vertical</i> slider on the calculator
-                        <i>also</i> represents <i>your</i> decision.
-                    </p>
-
-                </div>
-
-                <div class=buttonWrap>
-                    <div class=button id='btn-A-7'>
-                        <p>
-                            OK
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class=boxwrap id='boxwrap-A-8'>
-
-            <div class='box' id='box-A-8'>
-
-                <div class=text>
-
-                    <p>
-                        Once you made your decision,
-                        hover over the red button
-                        <span class='halfRedCircle'>
-                            <img class='submitButtonInfo' src="images/submit.png" alt="V" /></span>
-                        <br />
-                        and click on it to <i>submit</i> your decision.
-                    </p>
-
-                </div>
-
-                <div class=buttonWrap>
-                    <div class=button id='btn-A-8'>
-                        <p>
-                            OK
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class=boxwrap id='boxwrap-A-9'>
-
-            <div class='box' id='box-A-9'>
-
-                <div class=text>
-
-                    <p>
-                        You have <i>limited</i> time to make your decision.
-                        <br />
-                        The time left is displayed on the
-                        <i>right side</i> of your screen.
-                    </p>
-
-                </div>
-
-                <div class=buttonWrap>
-                    <div class=button id='btn-A-9'>
-                        <p>
-                            OK
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class=boxwrap id='boxwrap-A-10'>
-
-            <div class='box' id='box-A-10'>
-
-                <div class=text>
-
-                    <p>
-                        When you have <span style='font-weight:500;'>15</span> seconds left,
-                        your background will briefly turn into <span style='color:orange;font-weight:700;'>orange</span>.
-                    </p>
-
-                </div>
-
-                <div class=buttonWrap style='margin-left:-25px;'>
-                    <div class=button id='btn-A-10'>
-                        <p>
-                            OK
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class=boxwrap id='boxwrap-A-11'>
-
-            <div class='box' id='box-A-11'>
-
-                <div class=text>
-
-                    <p>
-                        When you have <span style='font-weight:500;'>5</span> seconds left,
-                        your background will briefly turn into <span style='color:red;font-weight:700;'>red</span>.
-                    </p>
-
-                </div>
-
-                <div class=buttonWrap>
-                    <div class=button id='btn-A-11'>
-                        <p>
-                            OK
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class=boxwrap id='boxwrap-A-12'>
-
-            <div class='box' id='box-A-12'>
-
-                <div class=text>
-
-                    <p>
-                        If you <i style='font-weight:500;'>fail to submit</i>
-                        within the time limit,
-                        your <i style='font-weight:500;'>current entry</i>
-                        will be considered
-                        as your submitted decision.
-                    </p>
-
-                </div>
-
-                <div class=buttonWrap>
-                    <div class=button id='btn-A-12'>
-                        <p>
-                            OK
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class=boxwrap id='boxwrap-A-13'>
-
-            <div class='box' id='box-A-13'>
-
-                <div class=text>
-
-                    <p>
-                        You can access the map by clicking
-                        <img id="mapButtonTop2" class='mapButtonTop2' src="images/mapbutton.png" alt="V" />
-                        icon.
-                    </p>
-
-                </div>
-
-                <div class=buttonWrap>
-                    <div class=button id='btn-A-13'>
-                        <p>
-                            OK
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class=boxwrap id='boxwrap-A-14'>
-
-            <div class='box' id='box-A-14'>
-
-                <div class=text>
-
-                    <p>
-                        You can access information related to your decision
-                        by clicking
-                        <img id="infoButtonTop2" class='infoButtonTop2' src="images/infoicon.png" alt="V" />
-                        icon
-                    </p>
-
-                </div>
-
-                <div class=buttonWrap style='margin-left:-20px;'>
-                    <div class=button id='btn-A-14'>
-                        <p>
-                            OK
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <div class=boxwrap id='boxwrap-A-15'>
-
-            <div class='box' id='box-A-15'>
-
-                <div class=text>
-
-                    <p>
-                        Please make an help/sabotage decision.
-                    </p>
-
-                </div>
-
-                <div class=buttonWrap>
-                    <div class=button id='btn-A-15'>
-                        <p>
-                            OK
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class=boxwrap id='boxwrap-B-1'>
-
-            <div class='box' id='box-B-1'>
-
-                <div class=text style='font-size:44px;text-align:center;font-weight:100;'>
-
-                    <p>
-                        Please make an help/sabotage decision.
-                    </p>
-
-                </div>
-
-                <div class=buttonWrap>
-                    <div class=button id='btn-B-1'>
-                        <p>
-                            OK
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-
-
-
 
 
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="js/load.js"></script>
     <script src="js/box.js"></script>
     <script src="js/tool.js"></script>
     <script src="js/map.js"></script>
-    <script src="js/og.js"></script>
-    <script src="js/s2Setup.js"></script>
-    <script src="js/stage2.js"></script>
+    <script src="js/og_fb.js"></script>
+    <script src="js/s2s3FBSetup.js"></script>
+    <script src="js/stage23_FB.js"></script>
 
 
 </body>

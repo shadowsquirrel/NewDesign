@@ -1,0 +1,44 @@
+.metaNorp
+{
+    top: 184px;
+    left: 0;
+    transform: scale(0.4);
+    position: absolute;
+    transform-origin: top;
+}
+.norp
+{
+    bottom:0;
+    position:absolute;
+    transform:scale(0);
+    z-index: -1000;
+    opacity:0;
+}
+.wrapLoad
+{
+    margin-top:100px;
+    transition:0.5s;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.imgWrapLoad
+{
+    width:100px;
+    display:none;
+}
+img.load
+{
+    /* drop-shadow(0px 7px 3px black)  */
+    filter: grayscale(1) opacity(0.7) contrast(0.5);
+    height:160px;
+    width:100px;
+    /* position:absolute; */
+}
+.norpTextWrap
+{
+    transition:1s;
+    opacity:0;
+    font-size: 55px;
+    text-align: center;
+}

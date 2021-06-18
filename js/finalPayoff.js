@@ -24,7 +24,7 @@ window.onload = function() {
             s6Done: 0,
             fB1: 0,
             fB2: 0,
-            fB3: 0,
+            fB3: 1,
             miniGame: 0,
         },
         s2: [ [[0,20], [10,0]], [[0,5], [10,0]] ],
@@ -193,8 +193,8 @@ window.onload = function() {
 
         $('#someRound').html(mainData.round);
         setTimeout(()=>{
-            $('.someTitle').css({'transition':'2s', 'opacity':'1'});
-        }, 1000)
+            $('.someTitle').css({'transition':'1s', 'opacity':'1'});
+        }, 10)
 
     }
 
@@ -232,7 +232,7 @@ window.onload = function() {
     final.adjustCrowns(mainData);
     final.assignFinalPayoffs(payoffs);
     final.adjustIGCrowns();
-    final.adjustYouIcon(mainData, 3);
+    final.adjustYouIcon(mainData, 1);
     final.lockBlocker();
 
     final.setRound();

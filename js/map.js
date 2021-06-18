@@ -124,7 +124,9 @@ let generateMap = function() {
     // [arrow2TopIcon, arrow2BottomIcon]
     map.opacity.arrowsToResultIcons = function(optArray, transitionTime) {
 
-        transitionTime = transitionTime === undefined ? '0.5s' : (transitionTime + 's');
+        transitionTime = transitionTime === undefined ? 0.5 : transitionTime;
+
+        transitionTime = transitionTime + 's';
 
         $('.arrowToTopIconResults').css({'transition':transitionTime, 'opacity': optArray[0].toString()});
         $('.arrowToBottomIconResults').css({'transition':transitionTime, 'opacity': optArray[1].toString()});
@@ -339,17 +341,87 @@ let generateMap = function() {
 
     }
 
-    map.opacity.shadowOG2 = function(on) {
+    map.opacity.shadowOG2 = function(on, delay) {
+
+        delay = delay === undefined ? 0.5 : delay;
+
+        delay = delay + 's';
 
         if(on) {
-            $('.OG2IconsWrap').css({'filter':'brightness(0)'});
+            $('.OG2IconsWrap').css({'transition':delay, 'filter':'brightness(0)'});
         } else {
-            $('.OG2IconsWrap').css({'filter':'brightness(1)'});
+            $('.OG2IconsWrap').css({'transition':delay, 'filter':'brightness(1)'});
         }
 
 
     }
 
+    map.opacity.shadowOG2Right = function(on, delay) {
+
+        delay = delay === undefined ? 0.5 : delay;
+
+        delay = delay + 's';
+
+        if(on) {
+            $('.OG2FollowerArrowsRight, .OG2FollowersWrapRight, .OG2LeaderRight').css({'transition':delay, 'filter':'brightness(0)'});
+        } else {
+            $('.OG2FollowerArrowsRight, .OG2FollowersWrapRight, .OG2LeaderRight').css({'transition':delay, 'filter':'brightness(1)'});
+        }
+
+    }
+
+    map.opacity.OG2Right = function(o, delay) {
+
+        delay = delay === undefined ? 0.5 : delay;
+
+        delay = delay + 's';
+
+        o = o === undefined ? 0.5 : o;
+        o = o + '';
+
+            $('.OG2FollowerArrowsRight, .OG2FollowersWrapRight, .OG2LeaderRight').css({'transition':delay, 'opacity':o});
+
+    }
+
+    map.opacity.shadowOG2Left = function(on, delay) {
+
+        delay = delay === undefined ? 0.5 : delay;
+
+        delay = delay + 's';
+
+        if(on) {
+            $('.OG2FollowerArrowsLeft, .OG2FollowersWrapLeft, .OG2LeaderLeft').css({'transition':delay, 'filter':'brightness(0)'});
+        } else {
+            $('.OG2FollowerArrowsLeft, .OG2FollowersWrapLeft, .OG2LeaderLeft').css({'transition':delay, 'filter':'brightness(1)'});
+        }
+
+    }
+
+    map.opacity.OG2Right = function(opacity, delay) {
+
+        delay = delay === undefined ? 0.5 : delay;
+
+        delay = delay + 's';
+
+        opacity = opacity + '';
+
+
+        $('.OG2FollowerArrowsRight, .OG2FollowersWrapRight, .OG2LeaderRight').css({'transition':delay, 'opacity':opacity});
+
+    }
+
+    map.opacity.OG2Left = function(opacity, delay) {
+
+        delay = delay === undefined ? 0.5 : delay;
+
+        delay = delay + 's';
+
+        opacity = opacity + '';
+
+
+        $('.OG2FollowerArrowsLeft, .OG2FollowersWrapLeft, .OG2LeaderLeft').css({'transition':delay, 'opacity':opacity});
+
+    }
 
     map.opacity.IGContests = function(o, transitionTime) {
 
@@ -440,6 +512,37 @@ let generateMap = function() {
 
     }
 
+    map.opacity.topTransition = function(opacity, transitionTime) {
+
+        transitionTime = transitionTime === undefined ? '0.5s' : (transitionTime + 's');
+
+        opacity = opacity === undefined ? 0.5 : opacity;
+
+        o = opacity + '';
+
+        if(map.globalVariable.winnerLeaderIndex === 1) {
+
+            $('.arrowTopIGtoOG2').css({'transition':transitionTime,'opacity':o});
+            $('.longArrowTopIconToOG2').css({'transition':'0','opacity':'0'});
+            $('.arrowTopIconToIG').css({'transition':transitionTime,'opacity':o});
+            $('.IGTopContestWrap').css({'transition':transitionTime,'opacity':o});
+
+        }
+
+        if(map.globalVariable.winnerLeaderIndex === 0) {
+
+            $('.arrowTopIGtoOG2').css({'transition':'0','opacity':'0'});
+            $('.longArrowTopIconToOG2').css({'transition':transitionTime,'opacity':o});
+            $('.arrowTopIconToIG').css({'transition':'0','opacity':'0'});
+            $('.IGTopContestWrap').css({'transition':'0','opacity':'0'});
+
+        }
+
+        $('.topBoxLeaderResult, .arrowToTopIconResults').css({'transition':transitionTime,
+        'opacity':o});
+
+    }
+
     map.show.bottomTransition = function(state, transitionTime) {
 
         transitionTime = transitionTime === undefined ? '0.5s' : (transitionTime + 's');
@@ -471,12 +574,48 @@ let generateMap = function() {
 
     }
 
+    map.opacity.bottomTransition = function(opacity, transitionTime) {
+
+        transitionTime = transitionTime === undefined ? '0.5s' : (transitionTime + 's');
+
+        opacity = opacity === undefined ? 0.5 : opacity;
+
+        o = opacity + '';
+
+        if(map.globalVariable.winnerLeaderIndex === 0) {
+
+            $('.arrowBottomIGtoOG2').css({'transition':transitionTime,'opacity':o});
+            $('.longArrowBottomIconToOG2').css({'transition':'0','opacity':'0'});
+            $('.arrowBottomIconToIG').css({'transition':'0','opacity':o});
+            $('.IGBottomContestWrap').css({'transition':'0','opacity':o});
+
+        }
+
+        if(map.globalVariable.winnerLeaderIndex === 1) {
+
+            $('.arrowBottomIGtoOG2').css({'transition':'0','opacity':'0'});
+            $('.longArrowBottomIconToOG2').css({'transition':transitionTime,'opacity':o});
+            $('.arrowBottomIconToIG').css({'transition':'0','opacity':'0'});
+            $('.IGBottomContestWrap').css({'transition':'0','opacity':'0'});
+
+        }
+
+        $('.bottomBoxLeaderResult, .arrowToBottomIconResults').css({'transition':transitionTime,
+        'opacity':o});
+
+    }
+
     map.opacity.OG1Results = function(o, transitionTime) {
 
         map.opacity.arrowsToResultIcons([o,o], transitionTime);
 
+        transitionTime = transitionTime === undefined ? 0.5 : transitionTime;
+
+        transitionTime = transitionTime + 's';
+
         o = [o].toString();
-        $('.wonLostBoxes').css({'transition':transitionTime, 'opacity':o});
+        $('.wonLostBoxes,.topBoxLeaderResult, .bottomBoxLeaderResult').css({'transition':transitionTime, 'opacity':o});
+
 
     }
 
@@ -966,16 +1105,18 @@ let generateMap = function() {
 
         if(map.wiggle.active) {
 
-            if(state === 0) {
-                $('.IGf1YAHT').css({'transform':'rotateZ(1deg)'});
-                $('.IGf1YAH').css({'margin-top':'-45px', 'margin-left':'-90px'});
-                setTimeout(()=>map.wiggle.ig_f1(1), 750);
-            }
-            if(state === 1) {
-                $('.IGf1YAHT').css({'transform':'rotateZ(-1deg)'});
-                $('.IGf1YAH').css({'margin-top':'-50px', 'margin-left':'-85px'});
-                setTimeout(()=>map.wiggle.ig_f1(0), 750);
-            }
+            // if(state === 0) {
+            //     $('.IGf1YAHT').css({'transform':'rotateZ(1deg)'});
+            //     $('.IGf1YAH').css({'margin-top':'-45px', 'margin-left':'-90px'});
+            //     setTimeout(()=>map.wiggle.ig_f1(1), 750);
+            // }
+            // if(state === 1) {
+            //     $('.IGf1YAHT').css({'transform':'rotateZ(-1deg)'});
+            //     $('.IGf1YAH').css({'margin-top':'-50px', 'margin-left':'-85px'});
+            //     setTimeout(()=>map.wiggle.ig_f1(0), 750);
+            // }
+
+            setTimeout(()=>map.wiggle.ig_f1(0), 500);
 
         } else {
             $('.IGf1YAH, .IGf1YAHT').css({'transition':'1s', 'opacity':'0'})
@@ -997,16 +1138,18 @@ let generateMap = function() {
 
         if(map.wiggle.active) {
 
-            if(state === 0) {
-                $('.IGf2YAHT').css({'transform':'rotateZ(1deg)'});
-                $('.IGf2YAH').css({'margin-top':'-45px', 'margin-left':'14px'});
-                setTimeout(()=>map.wiggle.ig_f2(1), 750);
-            }
-            if(state === 1) {
-                $('.IGf2YAHT').css({'transform':'rotateZ(-1deg)'});
-                $('.IGf2YAH').css({'margin-top':'-50px', 'margin-left':'9px'});
-                setTimeout(()=>map.wiggle.ig_f2(0), 750);
-            }
+            // if(state === 0) {
+            //     $('.IGf2YAHT').css({'transform':'rotateZ(1deg)'});
+            //     $('.IGf2YAH').css({'margin-top':'-45px', 'margin-left':'14px'});
+            //     setTimeout(()=>map.wiggle.ig_f2(1), 750);
+            // }
+            // if(state === 1) {
+            //     $('.IGf2YAHT').css({'transform':'rotateZ(-1deg)'});
+            //     $('.IGf2YAH').css({'margin-top':'-50px', 'margin-left':'9px'});
+            //     setTimeout(()=>map.wiggle.ig_f2(0), 750);
+            // }
+
+            setTimeout(()=>map.wiggle.ig_f2(0), 500);
 
         } else {
             $('.IGf2YAH, .IGf2YAHT').css({'transition':'1s', 'opacity':'0'})
@@ -1022,16 +1165,18 @@ let generateMap = function() {
 
         if(map.wiggle.active) {
 
-            if(state === 0) {
-                $('.OG2f1YAHT').css({'transform':'rotateZ(1deg)'});
-                $('.OG2f1YAH').css({'margin-top':'-67px', 'margin-left':'-17px'});
-                setTimeout(()=>map.wiggle.og2_f1(1), 750);
-            }
-            if(state === 1) {
-                $('.OG2f1YAHT').css({'transform':'rotateZ(-1deg)'});
-                $('.OG2f1YAH').css({'margin-top':'-58px', 'margin-left':'-17px'});
-                setTimeout(()=>map.wiggle.og2_f1(0), 750);
-            }
+            // if(state === 0) {
+            //     $('.OG2f1YAHT').css({'transform':'rotateZ(1deg)'});
+            //     $('.OG2f1YAH').css({'margin-top':'-67px', 'margin-left':'-17px'});
+            //     setTimeout(()=>map.wiggle.og2_f1(1), 750);
+            // }
+            // if(state === 1) {
+            //     $('.OG2f1YAHT').css({'transform':'rotateZ(-1deg)'});
+            //     $('.OG2f1YAH').css({'margin-top':'-58px', 'margin-left':'-17px'});
+            //     setTimeout(()=>map.wiggle.og2_f1(0), 750);
+            // }
+
+            setTimeout(()=>map.wiggle.og2_f1(0), 500);
 
         } else {
             $('.OG2f1YAH, .OG2f1YAHT').css({'transition':'1s', 'opacity':'0'})
@@ -1047,16 +1192,18 @@ let generateMap = function() {
 
         if(map.wiggle.active) {
 
-            if(state === 0) {
-                $('.OG2f2YAHT').css({'transform':'rotateZ(-1deg)'});
-                $('.OG2f2YAH').css({'margin-top':'26px', 'margin-left':'33px'});
-                setTimeout(()=>map.wiggle.og2_f2(1), 750);
-            }
-            if(state === 1) {
-                $('.OG2f2YAHT').css({'transform':'rotateZ(1deg)'});
-                $('.OG2f2YAH').css({'margin-top':'21px', 'margin-left':'28px'});
-                setTimeout(()=>map.wiggle.og2_f2(0), 750);
-            }
+            // if(state === 0) {
+            //     $('.OG2f2YAHT').css({'transform':'rotateZ(-1deg)'});
+            //     $('.OG2f2YAH').css({'margin-top':'26px', 'margin-left':'33px'});
+            //     setTimeout(()=>map.wiggle.og2_f2(1), 750);
+            // }
+            // if(state === 1) {
+            //     $('.OG2f2YAHT').css({'transform':'rotateZ(1deg)'});
+            //     $('.OG2f2YAH').css({'margin-top':'21px', 'margin-left':'28px'});
+            //     setTimeout(()=>map.wiggle.og2_f2(0), 750);
+            // }
+
+            setTimeout(()=>map.wiggle.og2_f2(0), 500);
 
         } else {
             $('.OG2f2YAH, .OG2f2YAHT').css({'transition':'1s', 'opacity':'0'})
@@ -1072,16 +1219,18 @@ let generateMap = function() {
 
         if(map.wiggle.active) {
 
-            if(state === 0) {
-                $('.OG2l1YAHT').css({'transform':'rotateZ(-1deg)'});
-                $('.OG2l1YAH').css({'margin-top':'61px', 'margin-left':'0px'});
-                setTimeout(()=>map.wiggle.og2_l1(1), 750);
-            }
-            if(state === 1) {
-                $('.OG2l1YAHT').css({'transform':'rotateZ(1deg)'});
-                $('.OG2l1YAH').css({'margin-top':'56px', 'margin-left':'0px'});
-                setTimeout(()=>map.wiggle.og2_l1(0), 750);
-            }
+            // if(state === 0) {
+            //     $('.OG2l1YAHT').css({'transform':'rotateZ(-1deg)'});
+            //     $('.OG2l1YAH').css({'margin-top':'61px', 'margin-left':'0px'});
+            //     setTimeout(()=>map.wiggle.og2_l1(1), 750);
+            // }
+            // if(state === 1) {
+            //     $('.OG2l1YAHT').css({'transform':'rotateZ(1deg)'});
+            //     $('.OG2l1YAH').css({'margin-top':'56px', 'margin-left':'0px'});
+            //     setTimeout(()=>map.wiggle.og2_l1(0), 750);
+            // }
+
+            setTimeout(()=>map.wiggle.og2_l1(0), 500);
 
         } else {
             $('.OG2l1YAH, .OG2l1YAHT').css({'transition':'1s', 'opacity':'0'})
@@ -1297,6 +1446,7 @@ let generateMap = function() {
             $('.topLeaderWon, .bottomLeaderLost').css({'transition':'0s', 'opacity':'0'});
         }
 
+
     }
 
 
@@ -1416,6 +1566,18 @@ let generateMap = function() {
 
     }
 
+    map.zoom.ig = function(transitionTime) {
+
+        transitionTime = transitionTime === undefined ? '0.5s' : (transitionTime + 's');
+
+        $('.IG').css({'transition':transitionTime, 'transform-origin':'right',
+        'transform':'scale(1.4)', 'margin-left':'20px'});
+        $('.OG2').css({'transition':transitionTime, 'transform-origin':'left',
+        'transform':'scale(0.8)', 'margin-left':'-20px'});
+
+
+    }
+
     map.focus.og1.followers = function(transitionTime) {
 
         transitionTime2 = transitionTime === undefined ? 2 : (transitionTime * 2);
@@ -1507,7 +1669,11 @@ let generateMap = function() {
 
     }
 
-    map.setupAfterOG1 = function(myData) {
+    map.setupAfterOG1 = function(myData, isOpen, showUnusedIG) {
+
+        showUnusedIG = showUnusedIG === undefined ? false : showUnusedIG;
+
+        isOpen = isOpen === undefined ? true : isOpen;
 
         // this is where the icons are being basically determined
         map.globalVariable.ourSideIsHetero = myData.treatment[0];
@@ -1518,13 +1684,22 @@ let generateMap = function() {
 
         map.treatment();
 
-        map.openSpace();
+        if(isOpen) {
+            map.openSpace();
+        } else {
+            map.closeSpace();
+        }
+
 
         var winnerGroupIndex = myData.s3[1].indexOf(true);
         map.globalVariable.winnerLeaderIndex = winnerGroupIndex;
 
         map.set.OG1ResultIcons2();
-        map.opacity.IGContests();
+
+        if(!showUnusedIG) {
+            map.opacity.IGContests();
+        }
+
 
     }
 
@@ -1570,6 +1745,36 @@ let generateMap = function() {
         map.setup();
 
         // ------------ GRAPHICAL INTRODUCTION ---------- //
+
+        if(state === 'og1_wait_l') {
+
+            // do this as a first thing for graphical ease
+            map.opacity.shadowOG2(1);
+            $('.IGFI_Top, .IGFI_Bottom').css({'filter':'opacity(0)'});
+
+            // DISPLAY THE MAP WITH SECTIONS ONLY
+            map.show.sections(0);
+
+            $('.sexplain').css({
+                'transition':'0s',
+                'transform-origin':'center center',
+                'transform':'scale(1)'
+            });
+
+            setTimeout(()=>{
+                map.showMap(0.5);
+                setTimeout(()=>{
+                    map.zoom.og1(0.75);
+                    map.opacity.main([1,0.4,0.4], 0.75);
+                }, 300)
+            }, 10)
+
+            setTimeout(()=>{
+                map.opacity.section([0.1,0.4,0.4], 0.75);
+                map.opacity.inside([1,0,0], 0.75);
+            }, 500)
+
+        }
 
         if(state === 'og1_hs') {
 
@@ -1636,6 +1841,246 @@ let generateMap = function() {
                     map.animate.YAH_og1();
                 }, 1000)
             }, 1000)
+
+        }
+
+        if(state === 'ig') {
+
+            // ------ STARTING SETUP ------------ //
+
+            map.setupAfterOG1(mainData, false, true);
+
+            map.opacity.main([0,0,0], 0);
+
+            // do this as a first thing for graphical ease
+            map.opacity.shadowOG2(1);
+            $('.IGFI_Top, .IGFI_Bottom').css({'filter':'opacity(0)'});
+
+            map.show.sections(0);
+
+            map.set.OG1ResultIcons2();
+            map.opacity.OG1Results(0,0)
+
+
+            // DISPLAY THE MAP WITH SECTIONS ONLY
+
+
+            // ------ SHOW STARTING SETUP ------- //
+
+            setTimeout(()=>{
+                $('.sexplain').css({
+                    'transition':'0.75s',
+                    'transform-origin':'center center',
+                    'transform':'scale(1)',
+                    'opacity':'1'
+                });
+
+                map.opacity.main([1,1,1], 0.75);
+
+            }, 10)
+
+            // ------ prep the map ------- //
+
+            setTimeout(()=>{
+                map.opacity.main([1,1,0.4], 0.75);
+                map.opacity.section([0.1,0.7,0.4], 0.75);
+                map.opacity.inside([1,0,0], 0.75);
+            }, 650)
+
+
+            // ---- prep for show results ---- //
+
+            setTimeout(()=>{
+                map.opacity.main([1,1,0], 0.75);
+                map.openSpace(0.75);
+
+            }, 650)
+
+            // ---- show results ---- //
+
+            setTimeout(()=>{
+                $('.OG1FightIconWrap').css({'transition':'0.75s', 'opacity':'0'});
+                map.opacity.inside([0.4,0,0], 0.75);
+                map.opacity.OG1Results(1,0.75)
+                map.opacity.IGContests(1, 0.5);
+                map.show.bottomTransition(false, 0.5);
+                // $('.prizeCrownLimeTop').css({'transition':'0s', 'opacity':'0',
+                // 'margin-top':'40px', 'margin-left':'-132px'});
+
+            }, 1000)
+
+            // ----- show ig ----- //
+
+            setTimeout(()=>{
+                $('.IGFightIconLimeTop').css({'transition':'0.75s', 'opacity':'1'});
+                map.opacity.section([0.1,0.1,0.4], 0.75);
+                map.opacity.inside([0.3,1,0], 0.75);
+                $('.prizeCrownLimeTop').css({'transition':'4s', 'opacity':'1',
+                'margin-top':'-44px', 'margin-left':'0px'});
+            }, 1500)
+
+            setTimeout(()=>{
+                map.animate.YAH_ig();
+            }, 1750)
+
+
+            // ------ pre arrange you and circle for the calculator graphics -- //
+
+            if(map.globalVariable.ourSideIsHetero === 1) {
+
+                if(map.globalVariable.playerIndex === 0) {
+
+                    $('.dynamicCircle-big, .YAH-arrow-IG-big, .YAH-text-IG-big').css({'transition':'0.75s', 'opacity':'1'});
+
+                }
+
+                if(map.globalVariable.playerIndex === 1) {
+
+                    $('.dynamicCircle-small, .YAH-arrow-IG-small, .YAH-text-IG-small').css({'transition':'0.75s', 'opacity':'1'});
+
+                }
+
+            } else {
+
+                $('.dynamicCircle-normal, .YAH-arrow-IG-normal, .YAH-text-IG-normal').css({'transition':'0.75s', 'opacity':'1'});
+
+            }
+
+        }
+
+        if(state === 'ig_fb') {
+
+            // ------ STARTING SETUP ------------ //
+
+            map.setupAfterOG1(mainData, false, true);
+
+            map.opacity.main([0,0,0], 0);
+
+            // do this as a first thing for graphical ease
+            map.opacity.shadowOG2(1);
+            $('.IGFI_Top, .IGFI_Bottom').css({'filter':'opacity(0)'});
+
+            map.show.sections(0);
+
+            map.set.OG1ResultIcons2();
+            map.opacity.OG1Results(0,0)
+
+
+            // DISPLAY THE MAP WITH SECTIONS ONLY
+
+
+            // ------ SHOW STARTING SETUP ------- //
+
+            setTimeout(()=>{
+                $('.sexplain').css({
+                    'transition':'0.75s',
+                    'transform-origin':'center center',
+                    'transform':'scale(1)',
+                    'opacity':'1',
+                    'margin-left':'10px'
+                });
+
+                map.opacity.main([1,1,1], 0.75);
+
+            }, 10)
+
+            // ------ prep the map ------- //
+
+            setTimeout(()=>{
+                map.opacity.section([0.1,0.7,0.4], 0.75);
+                map.opacity.inside([1,0,0], 0.75);
+                map.opacity.main([1,0,0], 0.5);
+            }, 650)
+
+            setTimeout(()=>{
+                map.openSpace(0);
+            }, 1500)
+
+
+            // ---- show results ---- //
+
+            setTimeout(()=>{
+
+                $('.OG1FightIconWrap').css({'transition':'0.75s', 'opacity':'0'});
+                map.opacity.inside([0.6,1,0], 0.75);
+                map.opacity.main([1,1,0], 0.75);
+                $('.IGContests').css({'transition':'0.25s', 'opacity':'0'});
+                map.opacity.OG1Results(1,0.75)
+
+            }, 1750)
+
+            if(calculator.globalVariable.isIGB) {
+
+                setTimeout(()=>{
+                    map.opacity.IGContests(1, 0.5);
+                    map.show.bottomTransition(false, 0.5);
+                    $('.bottomBoxLeaderResult, .arrowToBottomIconResults').css({'transition':'0.5s', 'opacity':'1'});
+                    map.set.OG2ResultingIcons2();
+                }, 2250)
+
+                setTimeout(()=>{
+                    map.opacity.main([1,1,1], 0.5);
+                }, 2750)
+
+                setTimeout(()=>{
+                    map.opacity.inside([0.6,1,1], 0.75);
+                    map.opacity.shadowOG2(false, 0.75);
+                    map.opacity.shadowOG2Right(true, 0.75);
+                    map.opacity.section([0.1,0.7,0.1], 0.75);
+                    map.opacity.OG2Right(0.4, 0.75);
+                }, 3250)
+
+                setTimeout(()=>{
+                    map.animate.YAH_og2();
+                }, 3750)
+
+            } else {
+
+                setTimeout(()=>{
+                    map.opacity.IGContests(1, 0.5);
+                    map.show.topTransition(false, 0.5);
+                    $('.topBoxLeaderResult, .arrowToTopIconResults').css({'transition':'0.5s', 'opacity':'1'});
+                    map.set.OG2ResultingIcons2();
+                }, 2250)
+
+                setTimeout(()=>{
+                    map.opacity.main([1,1,1], 0.5);
+                }, 2750)
+
+                setTimeout(()=>{
+                    map.opacity.inside([0.6,1,1], 0.75);
+                    map.opacity.shadowOG2(false, 0.75);
+                    map.opacity.shadowOG2Left(true, 0.75);
+                    map.opacity.section([0.1,0.7,0.1], 0.75);
+                    map.opacity.OG2Left(0.4, 0.75);
+                }, 3250)
+
+
+                if(map.globalVariable.playerIndex != -1) {
+                    if(map.globalVariable.ourSideIsHetero === 1) {
+
+                        if(map.globalVariable.playerIndex === 0) {
+
+                            $('.dynamicCircle-big, .YAH-arrow-IG-big, .YAH-text-IG-big').css({'transition':'0.75s', 'opacity':'1'});
+
+                        }
+
+                        if(map.globalVariable.playerIndex === 1) {
+
+                            $('.dynamicCircle-small, .YAH-arrow-IG-small, .YAH-text-IG-small').css({'transition':'0.75s', 'opacity':'1'});
+
+                        }
+
+                    } else {
+
+                        $('.dynamicCircle-normal, .YAH-arrow-IG-normal, .YAH-text-IG-normal').css({'transition':'0.75s', 'opacity':'1'});
+
+                    }
+                }
+
+
+            }
+
 
         }
 

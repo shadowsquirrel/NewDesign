@@ -232,11 +232,11 @@ calculator.wheel.IG_create = function(probability, id) {
 
             if(calculator.globalVariable.playerIndex === -1) {
 
-                followerAColorArray = ['rgb(60,60,60)', 'rgb(210,210,0)'];
+                followerAColorArray = ['rgb(35, 79, 30)', 'rgb(80, 1, 140)'];
 
             } else {
 
-                followerAColorArray = ['rgb(35, 79, 30)', 'rgb(60,60,60)'];
+                followerAColorArray = ['rgb(35, 79, 30)', 'rgb(80, 1, 140)'];
 
             }
 
@@ -439,11 +439,11 @@ calculator.graphics.update.IG_pie = function() {
 
             if(calculator.globalVariable.playerIndex === -1) {
 
-                fcolors = ['rgb(210,210,0)', 'rgb(60,60,60)'];
+                fcolors = ['rgb(80, 1, 140)', 'rgb(35, 79, 30)'];
 
             } else {
 
-                fcolors = ['rgb(60, 60, 60)', 'rgb(35, 79, 30)'];
+                fcolors = ['rgb(80, 1, 140)', 'rgb(35, 79, 30)'];
 
             }
 
@@ -477,20 +477,8 @@ calculator.graphics.update.IG_pie = function() {
 
         pieColors = fcolors;
 
-        p1 = 'FOLLOWER 1A';
-        p2 = 'FOLLOWER 2A';
-
-        if(calculator.globalVariable.ourFollowersAreHetero) {
-
-            p1 = 'STRONG F.';
-            p2 = 'WEAK F.';
-
-            if(calculator.globalVariable.playerIndex === 1) {
-                p1 = 'WEAK F.';
-                p2 = 'STRONG F.';
-            }
-
-        }
+        p1 = 'YOU';
+        p2 = 'COMPUTER';
 
     }
 
@@ -583,16 +571,16 @@ calculator.graphics.update.IG_effortBar = function(e, barId, ourSide, axisOn) {
     var ticktextcolors = ['black', 'white'];
     var tindex = 1;
 
-    var papercolors = ['rgb(60, 60, 60)', 'rgb(210, 210, 210)', 'rgb(35, 79, 30)'];
+    var papercolors = ['rgb(60, 60, 60)', 'rgb(210, 210, 210)', 'rgb(35, 79, 30)', 'rgb(80, 1, 140)'];
     var pindex = 1;
 
 
     if(calculator.globalVariable.isIGA || calculator.globalVariable.isIGB) {
 
-        upperBound = 231;
-        myTickVal = [0, 10, 25, 50, 75, 125, 175, 250];
-        myTickText = [0, 10, 25, 50, 75, 125, 175, 250];
-        myRange = [0, 250];
+        upperBound = 923;
+        myTickVal = [0, 50, 100, 200, 300, 500, 700, 1000];
+        myTickText = [0, 50, 100, 200, 300, 500, 700, 1000];
+        myRange = [0, 1000];
 
     }
 
@@ -602,7 +590,7 @@ calculator.graphics.update.IG_effortBar = function(e, barId, ourSide, axisOn) {
 
             if(calculator.globalVariable.playerIndex != -1) {
 
-                colorArrays = ['rgb(35, 79, 30)', 'rgb(60, 60, 60)'];
+                colorArrays = ['rgb(35, 79, 30)', 'rgb(80, 1, 140)'];
                 insideTextColor = ['white', 'white'];
 
                 if(barId === 'IG_barl1'){
@@ -613,24 +601,24 @@ calculator.graphics.update.IG_effortBar = function(e, barId, ourSide, axisOn) {
 
                 if(barId === 'IG_barl2'){
                     //darkgray white
-                    pindex=0;
+                    pindex=3;
                     tindex=1;
                 }
 
             } else {
 
-                colorArrays = ['rgb(60, 60, 60)', 'rgb(210, 210, 0)'];
+                colorArrays = ['rgb(35, 79, 30)', 'rgb(80, 1, 140)'];
                 insideTextColor = ['white', 'black'];
 
                 if(barId === 'IG_barl1'){
                     //darkgray white
-                    pindex=0;
+                    pindex=2;
                     tindex=1;
                 }
 
                 if(barId === 'IG_barl2'){
                     //darkgray white
-                    pindex=0;
+                    pindex=3;
                     tindex=1;
                 }
 
@@ -970,10 +958,10 @@ calculator.decisionSlider.leader.IG_effortBar = function(a, axisOn) {
 
         if(calculator.globalVariable.isIGA || calculator.globalVariable.isIGB) {
 
-            upperBound = 231;
-            myTickVal = [0, 10, 25, 50, 75, 125, 175, 250];
-            myTickText = [0, 10, 25, 50, 75, 125, 175, 250];
-            myRange = [0, 250];
+            upperBound = 923;
+            myTickVal = [0, 50, 100, 200, 300, 500, 700, 1000];
+            myTickText = [0, 50, 100, 200, 300, 500, 700, 1000];
+            myRange = [0, 1000];
 
         }
 
@@ -1358,7 +1346,7 @@ calculator.graphics.update.IG_efficiencyBar = function(efficiency1, efficiency2)
     val2 = val2 - gapSize/2;
 
 
-    var fcolors = ['rgb(35, 79, 30)', 'rgb(60,60,60)'];
+    var fcolors = ['rgb(35, 79, 30)', 'rgb(80, 1, 140)'];
     var ofcolors = ['rgb(35, 79, 30)', 'rgb(210,210,210)'];
     var cA = Array(2);
 
@@ -1386,7 +1374,7 @@ calculator.graphics.update.IG_efficiencyBar = function(efficiency1, efficiency2)
         if(calculator.globalVariable.tutorial.IGDifferentColor) {
 
             if(calculator.globalVariable.isIGA) {
-                fcolors = ['rgb(60,60,60)', 'rgb(210,210,0)'];
+                fcolors = ['rgb(60,60,60)', 'rgb(80, 1, 140)'];
                 textColor = ['white', 'black'];
             }
 
@@ -1404,12 +1392,12 @@ calculator.graphics.update.IG_efficiencyBar = function(efficiency1, efficiency2)
 
             if(calculator.globalVariable.playerIndex === -1) {
 
-                fcolors = ['rgb(60,60,60)', 'rgb(210,210,0)'];
+                fcolors = ['rgb(35, 79, 30)', 'rgb(80, 1, 140)'];
                 textColor = ['white', 'black'];
 
             } else {
 
-                fcolors = ['rgb(35, 79, 30)', 'rgb(60,60,60)'];
+                fcolors = ['rgb(35, 79, 30)', 'rgb(80, 1, 140)'];
                 textColor = ['white', 'white'];
 
             }
@@ -1606,67 +1594,13 @@ calculator.graphics.update.barGridY = function(barId, show) {
 // VALUES: values.update.totalHelpSabo()
 // GRAPHICS: graphics.update.efficiencyBar()
 //
-calculator.values.update.IG_efficiencies = function() {
+calculator.values.update.IG_efficiencies = function(myPower, itsPower) {
 
-    if(calculator.globalVariable.isIGA) {
+    myPower = myPower === undefined ? 1 : myPower;
+    itsPower = itsPower === undefined ? 1 : itsPower;
 
-        if(calculator.globalVariable.ourFollowersAreHetero) {
-
-            if(calculator.globalVariable.playerIndex === -1) {
-                efi1 = 5;
-                efi2 = 1;
-            }
-
-            if(calculator.globalVariable.playerIndex === 0) {
-                efi1 = 5;
-                efi2 = 1;
-            }
-
-            if(calculator.globalVariable.playerIndex === 1) {
-                efi1 = 1;
-                efi2 = 5;
-            }
-
-        }
-
-        if(!calculator.globalVariable.ourFollowersAreHetero) {
-
-            efi1 = 1;
-            efi2 = 1;
-
-        }
-
-    }
-
-    if(calculator.globalVariable.isIGB) {
-
-        if(calculator.globalVariable.theirFollowersAreHetero) {
-
-            if(calculator.globalVariable.playerIndex === -1) {
-                efi1 = 5;
-                efi2 = 1;
-            }
-
-            if(calculator.globalVariable.playerIndex === 0) {
-                efi1 = 5;
-                efi2 = 1;
-            }
-
-            if(calculator.globalVariable.playerIndex === 1) {
-                efi1 = 1;
-                efi2 = 5;
-            }
-
-        }
-
-        if(!calculator.globalVariable.theirFollowersAreHetero) {
-
-            efi1 = 1;
-            efi2 = 1;
-
-        }
-
-    }
+    efi1 = myPower;
+    efi2 = itsPower;
 
     calculator.graphics.update.IG_efficiencyBar(efi1, efi2);
     calculator.icons.update.IG_leaderSize();
@@ -1780,9 +1714,28 @@ calculator.slider.playerDecision.IG_effort.oninput = function() {
 
 // Effort Section
 
+$('#IG_lSlider1').change(function() {
+
+    if(helper.spinButtonActivator) {
+
+        setTimeout(()=>{
+            calculator.button.display.IG_spinBottom(true);
+            calculator.globalVariable.IG_bottomSpinButtonIsEnabled = true;
+        }, 1000)
+
+    }
+
+})
+
 //Player 1 123456789
 calculator.slider.IG_l1= document.getElementById('IG_lSlider1');
 calculator.slider.IG_l1.oninput = function() {
+
+    if(helper.hideResultsOnSliderUse) {
+        calculator.results.softHide.IG_allResults();
+    }
+
+
 
     calculator.wheel.IG_hide();
 
@@ -3719,8 +3672,8 @@ calculator.wheel.IG_spin = function() {
 
     //---//
 
-    calculator.wheel.spinDuration = 1;
-    calculator.wheel.spinNumber = 3;
+    calculator.wheel.spinDuration = 3;
+    calculator.wheel.spinNumber = 9;
 
     calculator.wheel.IG_create(IG_pwin, 'IG_myWheel');
     calculator.wheel.IG_myWheelObj.stopAnimation(false);
@@ -3731,6 +3684,7 @@ calculator.wheel.IG_spin = function() {
     //---//
 
     var winner = (IG_pwin > Math.random()) ? 1 : 2;
+
 
     var stopAt = calculator.wheel.IG_myWheelObj.getRandomForSegment(winner);
     calculator.wheel.IG_myWheelObj.animation.stopAngle = stopAt;
@@ -3749,6 +3703,31 @@ calculator.wheel.IG_spin = function() {
         calculator.results.show.IG_outcomes();
     },
     calculator.wheel.spinDuration * 1000);
+
+
+
+    setTimeout(()=>
+    {
+
+        var myNetPayoff = -efo1 + ( winner === 1 ? 1000 : 0);
+
+        helper.currentGameScore = helper.currentGameScore + myNetPayoff;
+        mainData.myMiniGame.totalScore = mainData.myMiniGame.totalScore + myNetPayoff;
+
+        var msg = {
+            currentScore: helper.currentGameScore,
+            totalScore: mainData.myMiniGame.totalScore
+        }
+
+        calculator.updateLogic(msg);
+
+
+        $('#myCurrentGameScore').html(helper.currentGameScore);
+        $('#myMiniGameScore').html(helper.totalGameScore);
+
+        $('.miniGameScoreWrap').css({'transition':'1s', 'opacity':'1'});
+
+    }, (calculator.wheel.spinDuration + 1) * 1000);
 
 }
 
@@ -3883,12 +3862,19 @@ calculator.results.show.IG_outcomes = function() {
 
     // I do not want the spinButton Bottom to have power to control the space
     // results and titles are the primary determinantes we can be clever and use this switch accordingly
-    if(calculator.globalVariable.display.IG_cButton) {
-        calculator.button.display.IG_spinBottom(true);
-        setTimeout(()=>calculator.button.enable.IG_spinBottom(), 300);
+    if(!helper.spinButtonActivator) {
+        if(calculator.globalVariable.display.IG_cButton) {
+            calculator.button.display.IG_spinBottom(true);
+            calculator.globalVariable.IG_bottomSpinButtonIsEnabled = true;
+            setTimeout(()=>calculator.button.enable.IG_spinBottom(), 300);
+        } else {
+            calculator.button.display.IG_spinBottom(false);
+            calculator.globalVariable.IG_bottomSpinButtonIsEnabled = false;
+            // calculator.button.disable.IG_spinBottom();
+        }
     } else {
         calculator.button.display.IG_spinBottom(false);
-        calculator.button.disable.IG_spinBottom();
+        calculator.globalVariable.IG_bottomSpinButtonIsEnabled = false;
     }
 
     if(calculator.globalVariable.display.IG_cResults) {
@@ -3936,6 +3922,80 @@ calculator.results.show.IG_outcomes = function() {
         calculator.globalVariable.IG_dynamicDisplay = true;
 
     }, 5000);
+
+    $('#boxbox-B').css({'transition':'1s', 'margin-top':'80px'});
+
+    if(!helper.skipTuto) {
+
+        if(listener.b9) {
+
+            listener.b9 = false;
+
+            box.transition('', 'B-9', 0, 0, 1, 750);
+
+            $('.miniGameScoreWrap').css({'display':'flex'});
+            setTimeout(()=>{
+                $('.miniGameScoreWrap').css({'transition':'1', 'opacity':'1'});
+            }, 200)
+
+            setTimeout(()=>{
+                box.button.show('B-9');
+            }, 2000)
+
+        }
+
+        if(listener.b11) {
+
+            listener.b11 = false;
+
+            box.transition('', 'B-12', 0, 0, 1, 750);
+
+            setTimeout(()=>{
+                box.button.show('B-12');
+            }, 2000)
+
+        }
+
+        if(listener.b13) {
+
+            listener.b13 = false;
+
+            box.transition('', 'B-15', 0, 0, 1, 750);
+
+            setTimeout(()=>{
+                box.button.show('B-15');
+            }, 2000)
+
+        }
+
+        if(listener.b20) {
+
+            listener.b20 = false;
+
+            $('#boxbox-B').css({'display':'none'});
+            $('#boxbox-C').css({'display':'flex',
+            'margin-left':'500px', 'margin-top':'-126px'});
+
+            $('.miniGameScoreWrap').css({'margin-left':'373px'});
+
+            box.transition('', 'C-1', 0, 0, 1, 0);
+            box.button.show2('C-1');
+
+        }
+
+        if(listener.notuto) {
+
+            box.transition('', 'C-1', 0, 0, 1, 0);
+            box.button.show2('C-1');
+
+        }
+
+    } else {
+
+        box.transition('', 'C-1', 0, 0, 1, 0);
+        box.button.show2('C-1');
+
+    }
 
 }
 
@@ -4081,7 +4141,7 @@ calculator.results.hide.IG_leaderOutcomes = function() {
 
 calculator.results.softHide.IG_allResults = function() {
 
-    $('.IG_payoffWrap').css({'transition-delay':'0s', 'transition' : '0.15s', 'opacity':'0'});
+    $('.IG_payoffWrap').css({'transition-delay':'0s', 'transition' : '0.5s', 'opacity':'0'});
 
 }
 
@@ -4116,7 +4176,7 @@ calculator.results.update.IG_contestText = function(w) {
 
     winnerRole = 'Become the Leader';
     loserRole = 'Continue as Follower';
-    winnerPrize = 0;
+    winnerPrize = 1000;
 
     //---//
 
@@ -4240,6 +4300,14 @@ calculator.results.update.IG_allColors = function(w) {
     $('.IG_p1, .IG_c1, .IG_np1, .IG_p2, .IG_c2, .IG_np2').css({'font-weight':'500'});
 
     calculator.results.update.IG_outcomeColors(w)
+
+    $('#IG_netPayoffLeft, #IG_netPayoffRight').css({'color':'red'});
+    if(w === 1) {
+        $('#IG_netPayoffLeft').css({'color':'blue'});
+    }
+    if(w === 2) {
+        $('#IG_netPayoffRight').css({'color':'blue'});
+    }
 
 }
 
@@ -4708,30 +4776,6 @@ calculator.setup.ig_feedbackAdjustment = function() {
 
 
 
-var IG_calcButton = document.getElementById('IG_calcButtonBottom');
-calculator.globalVariable.IG_open = 0;
-IG_calcButton.onclick = function() {
-
-    // close calculator
-    if(calculator.globalVariable.IG_open) {
-
-        calculator.IG_close();
-
-    }
-
-    // open calculator
-    if(!calculator.globalVariable.IG_open) {
-
-        calculator.IG_open();
-
-    }
-
-    calculator.globalVariable.IG_open = 1 - calculator.globalVariable.IG_open;
-
-}
-
-
-
 
 
 var IG_spin2 = document.getElementById('IG_spinImage23');
@@ -4744,6 +4788,29 @@ IG_spin2.onclick = function() {
         calculator.wheel.IG_spin();
         calculator.globalVariable.dynamicDisplay = false;
 
+        box.transition('B-8', '', 0, 0, 1, 0);
+
+        calculator.button.display.IG_spinBottom(false);
+        calculator.globalVariable.IG_bottomSpinButtonIsEnabled = false;
+
+        if(listener.b13) {
+            box.transition('B-13', '', 0, 0, 1, 0);
+        }
+
+        if(listener.b20) {
+
+            box.transition('B-21', '', 0, 0, 1, 0);
+
+        }
+
+        if(listener.notuto) {
+
+            calculator.button.display.IG_spinBottom(false);
+            calculator.globalVariable.IG_bottomSpinButtonIsEnabled = false;
+
+        }
+
+        calculator.lock.IG_activate([1,1]);
 
     }
 }

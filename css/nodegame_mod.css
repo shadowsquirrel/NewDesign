@@ -1,0 +1,44 @@
+/* Overwrites default nodeGame css settings */
+
+#ng_header {
+    left: auto;
+    right: 10px;
+    background-color: black;
+    color:white;
+    box-shadow: 0 0 15px darkred;
+    max-width: 8em;
+    display: flex;
+    flex-direction: column;
+    height: auto !important;
+}
+
+ /** Widgets inside the header **/
+ /*******************************/
+ #ng_header .ng_widget {
+     float: left;
+     margin-right: 20px;
+     margin-bottom: 0;
+     border: none;
+     box-shadow: none;
+     padding: 10px;
+ }
+
+ #ng_header .ng_widget .panel-heading,
+ #ng_header .ng_widget .no-panel-heading {
+     background-color: black;
+ }
+
+ .ng_header_position-horizontal-t .visualround .rounddiv .content,
+ .ng_header_position-horizontal-t .visualround .stagediv .content,
+ .ng_header_position-horizontal-b .visualround .rounddiv .content,
+ .ng_header_position-horizontal-b .visualround .stagediv .content {
+     float: none;
+ }
+
+.ng_header_position-vertical-r, .ng_header_position-vertical-l {
+    width: 8em !important;
+}
+
+.visualstage-current {
+    margin: 0;
+}

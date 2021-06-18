@@ -1642,20 +1642,8 @@ calculator.values.update.IG_efficiencies = function() {
 
         if(calculator.globalVariable.theirFollowersAreHetero) {
 
-            if(calculator.globalVariable.playerIndex === -1) {
-                efi1 = 5;
-                efi2 = 1;
-            }
-
-            if(calculator.globalVariable.playerIndex === 0) {
-                efi1 = 5;
-                efi2 = 1;
-            }
-
-            if(calculator.globalVariable.playerIndex === 1) {
-                efi1 = 1;
-                efi2 = 5;
-            }
+            efi1 = 5;
+            efi2 = 1;
 
         }
 
@@ -2143,12 +2131,61 @@ calculator.globalVariable.IG_hsWrapActive = false;
 $('.IG_hsWrap').hover(
     function() {
         if(calculator.globalVariable.IG_hsWrapActive) {
+
             $('.lfpd, .rfpd').css({'transition':'0.75s', 'opacity':'1'});
+
+            if(map.globalVariable.playerIndex != -1 && calculator.globalVariable.isIGA === 1) {
+                if(map.globalVariable.ourSideIsHetero === 1) {
+
+                    if(map.globalVariable.playerIndex === 0) {
+
+                        $('.YAH-arrow-IG-big, .YAH-text-IG-big').css({'transition':'0.75s', 'opacity':'0'});
+
+                    }
+
+                    if(map.globalVariable.playerIndex === 1) {
+
+                        $('.YAH-arrow-IG-small, .YAH-text-IG-small').css({'transition':'0.75s', 'opacity':'0'});
+
+                    }
+
+                } else {
+
+                    $(' .YAH-arrow-IG-normal, .YAH-text-IG-normal').css({'transition':'0.75s', 'opacity':'0'});
+
+                }
+            }
+
+
         }
     },
     function() {
         if(calculator.globalVariable.IG_hsWrapActive) {
+
             $('.lfpd, .rfpd').css({'transition':'0.75s', 'opacity':'0.1'});
+
+            if(map.globalVariable.playerIndex != -1 && calculator.globalVariable.isIGA === 1) {
+                if(map.globalVariable.ourSideIsHetero === 1) {
+
+                    if(map.globalVariable.playerIndex === 0) {
+
+                        $('.YAH-arrow-IG-big, .YAH-text-IG-big').css({'transition':'0.75s', 'opacity':'1'});
+
+                    }
+
+                    if(map.globalVariable.playerIndex === 1) {
+
+                        $('.YAH-arrow-IG-small, .YAH-text-IG-small').css({'transition':'0.75s', 'opacity':'1'});
+
+                    }
+
+                } else {
+
+                    $(' .YAH-arrow-IG-normal, .YAH-text-IG-normal').css({'transition':'0.75s', 'opacity':'1'});
+
+                }
+            }
+
         }
     }
 )
@@ -2454,9 +2491,6 @@ calculator.icons.setMe = function() {
     if(calculator.globalVariable.playerView) {
 
         if(calculator.globalVariable.playerIndex === 0) {
-            // OG
-            $('.subjectivef1').css({'display':'flex'});
-            $('.objectivef1').css({'display':'none'});
 
             //IGA
             $('.subjectivef').css({'display':'flex'});
@@ -2467,20 +2501,9 @@ calculator.icons.setMe = function() {
 
         if(calculator.globalVariable.playerIndex === 1) {
 
-            // OG
-            $('.subjectivef2').css({'display':'flex'});
-            $('.objectivef2').css({'display':'none'});
-
             //IGA
             $('.subjectivef').css({'display':'flex'});
             $('.objectivef').css({'display':'none'});
-
-        }
-
-        if(calculator.globalVariable.playerIndex === -1) {
-            // OG
-            $('.subjectivel').css({'display':'flex'});
-            $('.objectivel').css({'display':'none'});
 
         }
 
@@ -3346,6 +3369,15 @@ calculator.roll.IG_setRolesAndGroups = function() {
         // group is hetero
         if(calculator.globalVariable.ourFollowersAreHetero) {
 
+            if(calculator.globalVariable.playerIndex === -1) {
+
+                calculator.roll.IG_lArray[3] = 'STRONG';
+                calculator.roll.IG_olArray[3] = 'WEAK';
+
+                calculator.roll.IG_dsLeader[3] = 'STRONG';
+
+            }
+
             if(calculator.globalVariable.playerIndex === 0) {
 
                 calculator.roll.IG_lArray[3] = 'STRONG';
@@ -3391,23 +3423,10 @@ calculator.roll.IG_setRolesAndGroups = function() {
         // group is hetero
         if(calculator.globalVariable.theirFollowersAreHetero) {
 
-            if(calculator.globalVariable.playerIndex === 0) {
+            calculator.roll.IG_lArray[3] = 'STRONG';
+            calculator.roll.IG_olArray[3] = 'WEAK';
 
-                calculator.roll.IG_lArray[3] = 'STRONG';
-                calculator.roll.IG_olArray[3] = 'WEAK';
-
-                calculator.roll.IG_dsLeader[3] = 'STRONG';
-
-            }
-
-            if(calculator.globalVariable.playerIndex === 1) {
-
-                calculator.roll.IG_lArray[3] = 'WEAK';
-                calculator.roll.IG_olArray[3] = 'STRONG';
-
-                calculator.roll.IG_dsLeader[3] = 'WEAK';
-
-            }
+            calculator.roll.IG_dsLeader[3] = 'STRONG';
 
         }
 
@@ -3709,7 +3728,7 @@ calculator.wheel.IG_show = function() {
 
 }
 
-calculator.wheel.IG_spin = function() {
+calculator.wheel.IG_spin = function(winner) {
 
     calculator.globalVariable.IG_bottomSpinButtonIsEnabled = false;
 
@@ -3719,8 +3738,8 @@ calculator.wheel.IG_spin = function() {
 
     //---//
 
-    calculator.wheel.spinDuration = 1;
-    calculator.wheel.spinNumber = 3;
+    calculator.wheel.spinDuration = 5;
+    calculator.wheel.spinNumber = 25;
 
     calculator.wheel.IG_create(IG_pwin, 'IG_myWheel');
     calculator.wheel.IG_myWheelObj.stopAnimation(false);
@@ -3730,7 +3749,10 @@ calculator.wheel.IG_spin = function() {
 
     //---//
 
-    var winner = (IG_pwin > Math.random()) ? 1 : 2;
+    if(winner === undefined) {
+        winner = (IG_pwin > Math.random()) ? 1 : 2;
+    }
+
 
     var stopAt = calculator.wheel.IG_myWheelObj.getRandomForSegment(winner);
     calculator.wheel.IG_myWheelObj.animation.stopAngle = stopAt;
@@ -3746,7 +3768,7 @@ calculator.wheel.IG_spin = function() {
 
     setTimeout(()=>
     {
-        calculator.results.show.IG_outcomes();
+        calculator.results.show.IG_outcomes((winner - 1));
     },
     calculator.wheel.spinDuration * 1000);
 
@@ -3758,8 +3780,8 @@ calculator.wheel.IG_cruise = function() {
 
         calculator.wheel.IG_show();
 
-        calculator.wheel.spinDuration = 60;
-        calculator.wheel.spinNumber = 6;
+        calculator.wheel.spinDuration = 120;
+        calculator.wheel.spinNumber = 12;
 
         calculator.wheel.IG_create(IG_pwin, 'IG_myWheel');
         calculator.wheel.IG_myWheelObj.stopAnimation(false);
@@ -3873,7 +3895,7 @@ calculator.space.update.IG_heights = function() {
 
 //-------------- AFTER WHEEL STOPS ------------//
 
-calculator.results.show.IG_outcomes = function() {
+calculator.results.show.IG_outcomes = function(winnerIndex) {
 
     calculator.globalVariable.IG_bottomSpinButtonIsEnabled = true;
 
@@ -3927,6 +3949,11 @@ calculator.results.show.IG_outcomes = function() {
         $('.IG_generalMarginBox').css({'height':'345px'});
     }
 
+    // ---------- ENLARGE RESULTS ---------- //
+
+    $('.IG_tableLeft').css({'transition':'1s', 'transform-origin':'top left', 'transform':'scale(1.33)'})
+    $('.IG_tableRight').css({'transition':'1s', 'transform-origin':'top right', 'transform':'scale(1.33)'})
+    $('.wpWrap').css({'transition':'1s', 'margin-top':'0px', 'transform':'scale(1)'})
 
     //------ DELAYED ACTIVATIONS -------//
 
@@ -3936,6 +3963,31 @@ calculator.results.show.IG_outcomes = function() {
         calculator.globalVariable.IG_dynamicDisplay = true;
 
     }, 5000);
+
+
+    // ------------ AFTER SPIN GRAPHICS --------- //
+
+    setTimeout(()=>{
+
+        box.transition('', 'B-5', 0, 0, 1, 750);
+
+        setTimeout(()=>{
+            box.button.show('B-5');
+        }, 2000)
+
+    }, 1000)
+
+
+    if(calculator.globalVariable.isIGA) {
+        if(calculator.globalVariable.playerIndex === -1) {
+            if(mainData.treatment[0] === 1) {
+
+            }
+        }
+    }
+
+
+
 
 }
 
@@ -4114,7 +4166,7 @@ calculator.results.update.IG_contestText = function(w) {
     var winnerPrize, winnerRole, loserRole;
 
 
-    winnerRole = 'Become the Leader';
+    winnerRole = 'Became the Leader';
     loserRole = 'Continue as Follower';
     winnerPrize = 0;
 

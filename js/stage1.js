@@ -224,7 +224,7 @@ window.onload = function() {
 
     // ------ debug data ------ //
     mainData = {
-        round: 1,
+        round: 4,
         sortedArray: [0,2,5,4,3,1],
         treatment: [1,0],
         myCount: 1
@@ -311,6 +311,11 @@ window.onload = function() {
                     $('.g1UnevenInfoBox').css({'transform':'scale(0.8)'});
                     $('.g1Uneven').css({'transition':'0s', 'transform':'scale(0)'})
                     tool.activateG1UnevenLater = true;
+                    if(tool.info.skip) {
+                        setTimeout(()=>{
+                            $('.g1Uneven').css({'transition':'1s', 'transform':'scale(1)'})
+                        }, 1000)
+                    }
 
                 }
 
@@ -375,6 +380,11 @@ window.onload = function() {
 
                     $('.g2Uneven').css({'transition':'0s', 'transform':'scale(0)'})
                     tool.activateG2UnevenLater = true;
+                    if(tool.info.skip) {
+                        setTimeout(()=>{
+                            $('.g2Uneven').css({'transition':'1s', 'transform':'scale(1)'})
+                        }, 1000)
+                    }
 
                 }
 
@@ -393,6 +403,11 @@ window.onload = function() {
 
                     $('.g2Uneven').css({'transition':'0s', 'transform':'scale(0)'})
                     tool.activateG2UnevenLater = true;
+                    if(tool.info.skip) {
+                        setTimeout(()=>{
+                            $('.g2Uneven').css({'transition':'1s', 'transform':'scale(1)'})
+                        }, 1000)
+                    }
 
 
                 }

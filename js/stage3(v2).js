@@ -113,7 +113,7 @@ window.onload = function() {
 
         setTimeout(()=>{
             box.button.show('A-1');
-        }, 1500)
+        }, 1000)
 
     }, 2000)
 
@@ -345,62 +345,6 @@ window.onload = function() {
                     setTimeout(()=>{
 
                         box.button.show('D-12');
-                        tool.active.sparkle = true;
-                        tool.sparkle('D-12');
-
-                        // if too much time spent finalize the setup automatically
-                        // NODE NODE NODE NODE NODE NODE NODE NODE NODE NODE NODE NODE NODE NODE
-                        setTimeout(()=>{
-
-                            if(listener.d12) {
-
-                                listener.d12 = false;
-
-                                calculator.globalVariable.leaderHoverBlock = false;
-
-                                tool.active.sparkle = false;
-
-                                // id1, id2, transform, addSpaceBetween, hideButton, delay
-                                box.transition('D-12', '', 0, 0, 1, 0);
-                                $('#boxbox-D').css({'margin-bottom':'-60px'})
-                                setTimeout(()=>{
-                                    $('#boxbox-D').css({'display':'none'});
-                                }, 350)
-
-                                calculator.globalVariable.hover.cMinimize = 1;
-                                calculator.globalVariable.hover.hsMinimize = 1;
-                                calculator.globalVariable.hover.hsIcons = 1;
-                                calculator.globalVariable.hover.hsMainTitle = 1;
-                                calculator.globalVariable.hover.hsGhostTitle = 1;
-                                calculator.globalVariable.hover.leaderContestAdjustments = 1;
-
-                                // -------------------- show calculator --------------------- //
-                                setTimeout(()=>{
-
-                                    calculator.section.contest.display.sliders(true);
-                                    $('.generalMarginBox').css({'height':'495px'});
-                                    $('.decisionWrapL').css({'transition':'1s', 'margin-top':'-17px'});
-                                    calculator.section.contest.opacity.sliders(1,0.5);
-
-                                    setTimeout(()=>{
-                                        calculator.section.contest.minimize(0);
-                                        calculator.section.contest.opacity.sliders(1,0.7);
-                                        calculator.questions.activate.all([0, 0, 0, 1, 0, 0]);
-
-                                        $('.outcomeWrap').css({'transition':'0.7s',
-                                        'transform':'scale(1.1)', 'margin-top':'-44px',
-                                        'filter':'opacity(1)', 'opacity':'1'});
-                                    }, 50)
-
-                                    $('.infoButtonBottom, .mapButtonBottom, .submitButtonBottom, .calcButtonBottom').css({ 'transform-origin':'top',
-                                    'transform':'scale(1)'});
-
-
-                                }, 250)
-
-                            }
-
-                        }, 6000)
 
                     }, 2000)
 
@@ -442,15 +386,94 @@ window.onload = function() {
 
     });
 
-    // NODE NODE NODE NODE NODE NODE
+
     $('#btn-D-12').click(function() {
+
+        listener.d12 = true;
+
+        // id1, id2, transform, addSpaceBetween, hideButton, delay
+        box.transition('D-12', 'D-13', 0, 0, 1, 750);
+
+        setTimeout(()=>{
+            box.button.show('D-13');
+            tool.active.sparkle = true;
+            tool.sparkle('D-13');
+        }, 2000)
+
+
+        setTimeout(()=>{
+
+            if(listener.d12) {
+
+                $('.decisionWrapWrap').css({'z-index':'100000000000'});
+
+                listener.d12 = false;
+
+                calculator.globalVariable.leaderHoverBlock = false;
+
+                tool.active.sparkle = false;
+
+                // id1, id2, transform, addSpaceBetween, hideButton, delay
+                box.transition('D-13', '', 0, 0, 1, 0);
+                $('#boxbox-D').css({'margin-bottom':'-60px'})
+                setTimeout(()=>{
+                    $('#boxbox-D').css({'display':'none'});
+                }, 350)
+
+                calculator.globalVariable.hover.cMinimize = 1;
+                calculator.globalVariable.hover.hsMinimize = 1;
+                calculator.globalVariable.hover.hsIcons = 1;
+                calculator.globalVariable.hover.hsMainTitle = 1;
+                calculator.globalVariable.hover.hsGhostTitle = 1;
+                calculator.globalVariable.hover.leaderContestAdjustments = 1;
+
+                // -------------------- show calculator --------------------- //
+                setTimeout(()=>{
+
+                    calculator.section.contest.display.sliders(true);
+                    $('.generalMarginBox').css({'height':'495px'});
+                    $('.decisionWrapL').css({'transition':'1s', 'margin-top':'-17px'});
+                    calculator.section.contest.opacity.sliders(1,0.5);
+
+                    setTimeout(()=>{
+                        calculator.section.contest.minimize(0);
+                        calculator.section.contest.opacity.sliders(1,0.7);
+                        calculator.questions.activate.all([0, 0, 0, 1, 0, 0]);
+
+                        $('.outcomeWrap').css({'transition':'0.7s',
+                        'transform':'scale(1.1)', 'margin-top':'-44px',
+                        'filter':'opacity(1)', 'opacity':'1'});
+                    }, 50)
+
+                    $('.infoButtonBottom, .mapButtonBottom').css({ 'transform-origin':'top',
+                    'transform':'scale(1)'});
+
+                    setTimeout(()=>{
+                        $('.submitButtonBottom').css({ 'transform-origin':'top',
+                        'transform':'scale(1)'});
+                    }, 10000)
+
+
+                }, 250)
+
+            }
+
+        }, 6000)
+
+
+    });
+
+    // NODE NODE NODE NODE NODE NODE
+    $('#btn-D-13').click(function() {
+
+        $('.decisionWrapWrap').css({'z-index':'100000000000'});
 
         calculator.globalVariable.leaderHoverBlock = false;
         tool.active.sparkle = false;
         listener.d12 = false;
 
         // id1, id2, transform, addSpaceBetween, hideButton, delay
-        box.transition('D-12', '', 0, 0, 1, 0);
+        box.transition('D-13', '', 0, 0, 1, 0);
         $('#boxbox-D').css({'margin-bottom':'-60px'})
         setTimeout(()=>{
                 $('#boxbox-D').css({'display':'none'});
@@ -481,8 +504,13 @@ window.onload = function() {
                 'filter':'opacity(1)', 'opacity':'1'});
             }, 50)
 
-            $('.infoButtonBottom, .mapButtonBottom, .submitButtonBottom, .calcButtonBottom').css({ 'transform-origin':'top',
+            $('.infoButtonBottom, .mapButtonBottom').css({ 'transform-origin':'top',
             'transform':'scale(1)'});
+
+            setTimeout(()=>{
+                $('.submitButtonBottom').css({ 'transform-origin':'top',
+                'transform':'scale(1)'});
+            }, 10000)
 
 
         }, 250)
@@ -555,11 +583,13 @@ window.onload = function() {
             setTimeout(()=>{
 
                 // show arrow pointer
-                console.log('ARROW POINTER METHOD NEEDED !!!!!!!!!');
+                setTimeout(()=>{
+                    calculator.pointers.wiggleD();
+                }, 250)
 
                 setTimeout(()=>{
                     listener.c2 = true;
-                }, 500)
+                }, 250)
 
             }, 750)
 
@@ -572,11 +602,17 @@ window.onload = function() {
 
     $('#btn-C-2').click(function() {
 
+        calculator.pointers.dSwitch = false;
+
         // id1, id2, transform, addSpaceBetween, hideButton, delay
         box.transition('C-2', 'C-3', 0, 0, 1, 750);
 
         listener.c2 = false;
         listener.c3 = true;
+
+        setTimeout(()=>{
+            calculator.pointers.wiggleD();
+        }, 750)
 
         if(calculator.quickTutorial) {
 
@@ -689,9 +725,11 @@ window.onload = function() {
             box.transition('D-2', 'D-11', 0, 0, 1, 750);
 
             $('.infoButtonBottom, .mapButtonBottom, .submitButtonBottom, .calcButtonBottom').css({ 'transform-origin':'top',
-            'transform':'scale(1)'});
+            'transform':'scale(0)'});
 
             calculator.pointers.activate([0,0,0,0,0,0]);
+
+            calculator.globalVariable.leaderHoverBlock = true;
 
             setTimeout(()=>{
                 box.button.show('D-11');
@@ -809,11 +847,15 @@ window.onload = function() {
 
     $('#btn-D-10').click(function() {
 
+        calculator.globalVariable.leaderHoverBlock = true;
+
         // id1, id2, transform, addSpaceBetween, hideButton, delay
         box.transition('D-10', 'D-11', 0, 0, 1, 750);
 
         setTimeout(()=>{
+            $('.decisionWrapL').css({'opacity':'0'});
             box.button.show('D-11');
+            calculator.globalVariable.leaderHoverBlock = true;
         }, 2000)
 
         setTimeout(()=>{
@@ -824,11 +866,38 @@ window.onload = function() {
 
     $('#btn-D-11').click(function() {
 
+        calculator.globalVariable.leaderHoverBlock = true;
         // id1, id2, transform, addSpaceBetween, hideButton, delay
-        box.transition('D-11', '', 0, 0, 1, 750);
+        box.transition('D-11', 'D-1102', 0, 0, 1, 750);
+
+        setTimeout(()=>{
+            box.button.show('D-1102');
+        }, 2000)
+
+    });
+
+    $('#btn-D-1102').click(function() {
+
+        // id1, id2, transform, addSpaceBetween, hideButton, delay
+        box.transition('D-1102', '', 0, 0, 1, 750);
+        $('.decisionWrapL').css({'opacity':'1'});
 
         $('.outcomeWrap').css({'transition':'0.7s',
         'transform':'scale(1.1)', 'margin-top':'-18px', 'filter':'opacity(1)'});
+
+        setTimeout(()=>{
+
+            calculator.globalVariable.leaderHoverBlock = false;
+
+            $('.infoButtonBottom, .mapButtonBottom').css({ 'transform-origin':'top',
+            'transform':'scale(1)'});
+
+            setTimeout(()=>{
+                $('.submitButtonBottom').css({ 'transform-origin':'top',
+                'transform':'scale(1)'});
+            }, 10000)
+
+        }, 1500)
 
 
     });
@@ -883,6 +952,10 @@ window.onload = function() {
             setTimeout(()=>{
 
                 box.transition('C-2', 'C-3', 0, 0, 1, 750);
+
+                setTimeout(()=>{
+                    calculator.pointers.wiggleD();
+                }, 750)
 
                 setTimeout(()=>{
                     listener.c3 = true;

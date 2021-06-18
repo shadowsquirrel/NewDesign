@@ -1,4 +1,14 @@
 
+////////////////////////////// CALCULATOR /////////////////////////////////////
+////////////////////////////// CALCULATOR /////////////////////////////////////
+////////////////////////////// CALCULATOR /////////////////////////////////////
+////////////////////////////// CALCULATOR /////////////////////////////////////
+////////////////////////////// CALCULATOR /////////////////////////////////////
+////////////////////////////// CALCULATOR /////////////////////////////////////
+////////////////////////////// CALCULATOR /////////////////////////////////////
+////////////////////////////// CALCULATOR /////////////////////////////////////
+////////////////////////////// CALCULATOR /////////////////////////////////////
+
 var calculator = {
 
     globalVariable: {
@@ -128,24 +138,6 @@ var calculator = {
 
 };
 
-
-
-
-
-
-
-
-////////////////////////////// CALCULATOR /////////////////////////////////////
-////////////////////////////// CALCULATOR /////////////////////////////////////
-////////////////////////////// CALCULATOR /////////////////////////////////////
-////////////////////////////// CALCULATOR /////////////////////////////////////
-////////////////////////////// CALCULATOR /////////////////////////////////////
-////////////////////////////// CALCULATOR /////////////////////////////////////
-////////////////////////////// CALCULATOR /////////////////////////////////////
-////////////////////////////// CALCULATOR /////////////////////////////////////
-////////////////////////////// CALCULATOR /////////////////////////////////////
-
-
 /////////////////////// CALCULATOR GLOBAL VARIABLES ////////////////////////////
 /////////////////////// CALCULATOR GLOBAL VARIABLES ////////////////////////////
 /////////////////////// CALCULATOR GLOBAL VARIABLES ////////////////////////////
@@ -159,20 +151,20 @@ calculator.globalVariable.gameStage = undefined;
 
 
 
-calculator.globalVariable.isIGA = undefined;
-calculator.globalVariable.isIGB = undefined;
+calculator.globalVariable.IG_isIGA = undefined;
+calculator.globalVariable.IG_isIGB = undefined;
 
-calculator.globalVariable.ourFollowersAreHetero = true;
-calculator.globalVariable.theirFollowersAreHetero = true;
+calculator.globalVariable.IG_ourFollowersAreHetero = true;
+calculator.globalVariable.IG_theirFollowersAreHetero = true;
 
-calculator.globalVariable.playerView = false;
-calculator.globalVariable.playerIndex = undefined; //-1,0,1 (l,f1,f2)
+calculator.globalVariable.IG_playerView = false;
+calculator.globalVariable.IG_playerIndex = undefined; //-1,0,1 (l,f1,f2)
 
-calculator.globalVariable.tutorial.IGSameColor = undefined;
-calculator.globalVariable.tutorial.IGDifferentColor = undefined;
-calculator.globalVariable.tutorial.weAreInTutorial = undefined;
+calculator.globalVariable.tutorial.IG_IGSameColor = undefined;
+calculator.globalVariable.tutorial.IG_IGDifferentColor = undefined;
+calculator.globalVariable.tutorial.IG_weAreInTutorial = undefined;
 
-calculator.globalVariable.weAreInFeedbackStage = undefined;
+calculator.globalVariable.IG_weAreInFeedbackStage = undefined;
 
 
 // RESULT DISPLAY ON/OFF VARIABLES (AFTER SPIN)
@@ -202,8 +194,8 @@ calculator.globalVariable.display.IG_cButton = undefined;
 //////////////////////// WHEEL ///////////////////////
 
 
-calculator.wheel.spinDuration = 1;
-calculator.wheel.spinNumber = 3;
+calculator.wheel.IG_spinDuration = 1;
+calculator.wheel.IG_spinNumber = 3;
 calculator.wheel.IG_isSpinning = false;
 
 calculator.wheel.IG_create = function(probability, id) {
@@ -225,12 +217,12 @@ calculator.wheel.IG_create = function(probability, id) {
 
     //---- in-group contest follower's competition color setup for leader's view----//
 
-    if(!calculator.globalVariable.tutorial.weAreInTutorial) {
+    if(!calculator.globalVariable.tutorial.IG_weAreInTutorial) {
 
         // In-group contest A
-        if(calculator.globalVariable.isIGA) {
+        if(calculator.globalVariable.IG_isIGA) {
 
-            if(calculator.globalVariable.playerIndex === -1) {
+            if(calculator.globalVariable.IG_playerIndex === -1) {
 
                 followerAColorArray = ['rgb(60,60,60)', 'rgb(210,210,0)'];
 
@@ -243,9 +235,9 @@ calculator.wheel.IG_create = function(probability, id) {
         }
 
         // In-group contest B
-        if(calculator.globalVariable.isIGB) {
+        if(calculator.globalVariable.IG_isIGB) {
 
-            if(calculator.globalVariable.playerIndex === -1) {
+            if(calculator.globalVariable.IG_playerIndex === -1) {
 
                 followerBColorArray = ['rgb(210,210,210)', 'rgb(210,210,0)'];
 
@@ -261,28 +253,28 @@ calculator.wheel.IG_create = function(probability, id) {
 
     //---- only for tutorial ----//
     // tutorial showing two followers as the same color to argue that we will use a different color
-    if(calculator.globalVariable.tutorial.weAreInTutorial) {
+    if(calculator.globalVariable.tutorial.IG_weAreInTutorial) {
 
-        if(calculator.globalVariable.tutorial.IGSameColor) {
+        if(calculator.globalVariable.tutorial.IG_IGSameColor) {
 
-            if(calculator.globalVariable.isIGA) {
+            if(calculator.globalVariable.IG_isIGA) {
                 followerAColorArray = ['rgb(60,60,60)', 'rgb(60,60,60)'];
             }
 
-            if(calculator.globalVariable.isIGB) {
+            if(calculator.globalVariable.IG_isIGB) {
                 followerBColorArray = ['rgb(210,210,210)', 'rgb(210,210,210)'];
             }
 
         }
 
         // tutorial showing two followers with different colors
-        if(calculator.globalVariable.tutorial.IGDifferentColor) {
+        if(calculator.globalVariable.tutorial.IG_IGDifferentColor) {
 
-            if(calculator.globalVariable.isIGA) {
+            if(calculator.globalVariable.IG_isIGA) {
                 followerAColorArray = ['rgb(60,60,60)', 'rgb(210,210,0)'];
             }
 
-            if(calculator.globalVariable.isIGB) {
+            if(calculator.globalVariable.IG_isIGB) {
                 followerBColorArray = ['rgb(210,210,210)', 'rgb(210,210,0)'];
             }
 
@@ -293,11 +285,11 @@ calculator.wheel.IG_create = function(probability, id) {
     //---------------------------//
 
 
-    if(calculator.globalVariable.isIGA) {
+    if(calculator.globalVariable.IG_isIGA) {
         colors = followerAColorArray;
     }
 
-    if(calculator.globalVariable.isIGB) {
+    if(calculator.globalVariable.IG_isIGB) {
         colors = followerBColorArray;
     }
 
@@ -331,8 +323,8 @@ calculator.wheel.IG_create = function(probability, id) {
         'animation' :
         {
             'type'     : 'spinToStop',
-            'duration' : calculator.wheel.spinDuration,
-            'spins'    : calculator.wheel.spinNumber,
+            'duration' : calculator.wheel.IG_spinDuration,
+            'spins'    : calculator.wheel.IG_spinNumber,
             'callbackFinished' : '',
         }
     });
@@ -359,7 +351,7 @@ calculator.wheel.IG_create = function(probability, id) {
 /////////////////// GRAPHICS ////////////////////
 
 
-var logistic2 = function(val , k) {
+var IG_logistic2 = function(val , k) {
     var L = 1;
     var m = 0.5;
     var result;
@@ -392,17 +384,17 @@ calculator.graphics.update.IG_pie = function() {
 
     //---- only for tutorial ----//
     // tutorial showing two followers as the same color to argue that we will use a different color
-    if(calculator.globalVariable.tutorial.weAreInTutorial) {
+    if(calculator.globalVariable.tutorial.IG_weAreInTutorial) {
 
-        if(calculator.globalVariable.tutorial.IGSameColor) {
+        if(calculator.globalVariable.tutorial.IG_IGSameColor) {
 
-            if(calculator.globalVariable.isIGA) {
+            if(calculator.globalVariable.IG_isIGA) {
 
                 fcolors = ['rgb(60,60,60)', 'rgb(60,60,60)'];
 
             }
 
-            if(calculator.globalVariable.isIGB) {
+            if(calculator.globalVariable.IG_isIGB) {
 
                 ofcolors = ['rgb(210,210,210)', 'rgb(210,210,210)'];
 
@@ -411,14 +403,14 @@ calculator.graphics.update.IG_pie = function() {
         }
 
         // tutorial showing two followers with different colors
-        if(calculator.globalVariable.tutorial.IGDifferentColor) {
+        if(calculator.globalVariable.tutorial.IG_IGDifferentColor) {
 
-            if(calculator.globalVariable.isIGA) {
+            if(calculator.globalVariable.IG_isIGA) {
 
                 fcolors = ['rgb(210,210,0)', 'rgb(60,60,60)'];
 
             }
-            if(calculator.globalVariable.isIGB) {
+            if(calculator.globalVariable.IG_isIGB) {
 
                 ofcolors = ['rgb(210,210,0)', 'rgb(210,210,210)'];
 
@@ -433,11 +425,11 @@ calculator.graphics.update.IG_pie = function() {
     //---- in-group contest follower's competition color setup for leader's view----//
 
     // In-group contest A, leader's point of view
-    if(!calculator.globalVariable.tutorial.weAreInTutorial) {
+    if(!calculator.globalVariable.tutorial.IG_weAreInTutorial) {
 
-        if(calculator.globalVariable.isIGA) {
+        if(calculator.globalVariable.IG_isIGA) {
 
-            if(calculator.globalVariable.playerIndex === -1) {
+            if(calculator.globalVariable.IG_playerIndex === -1) {
 
                 fcolors = ['rgb(210,210,0)', 'rgb(60,60,60)'];
 
@@ -450,9 +442,9 @@ calculator.graphics.update.IG_pie = function() {
         }
 
         // In-group contest A, leader's point of view
-        if(calculator.globalVariable.isIGB) {
+        if(calculator.globalVariable.IG_isIGB) {
 
-            if(calculator.globalVariable.playerIndex === -1) {
+            if(calculator.globalVariable.IG_playerIndex === -1) {
 
                 ofcolors = ['rgb(210,210,0)', 'rgb(210,210,210)'];
 
@@ -473,19 +465,19 @@ calculator.graphics.update.IG_pie = function() {
     var p1, p2;
 
 
-    if(calculator.globalVariable.isIGA) {
+    if(calculator.globalVariable.IG_isIGA) {
 
         pieColors = fcolors;
 
         p1 = 'FOLLOWER 1A';
         p2 = 'FOLLOWER 2A';
 
-        if(calculator.globalVariable.ourFollowersAreHetero) {
+        if(calculator.globalVariable.IG_ourFollowersAreHetero) {
 
             p1 = 'STRONG F.';
             p2 = 'WEAK F.';
 
-            if(calculator.globalVariable.playerIndex === 1) {
+            if(calculator.globalVariable.IG_playerIndex === 1) {
                 p1 = 'WEAK F.';
                 p2 = 'STRONG F.';
             }
@@ -495,19 +487,19 @@ calculator.graphics.update.IG_pie = function() {
     }
 
     // RELEVANT ONLY FOR TUTORIAL
-    if(calculator.globalVariable.isIGB) {
+    if(calculator.globalVariable.IG_isIGB) {
 
         pieColors = ofcolors;
 
         p1 = 'FOLLOWER 1B';
         p2 = 'FOLLOWER 2B';
 
-        if(calculator.globalVariable.theirFollowersAreHetero) {
+        if(calculator.globalVariable.IG_theirFollowersAreHetero) {
 
             p1 = 'STRONG F.';
             p2 = 'WEAK F.';
 
-            if(calculator.globalVariable.playerIndex === 1) {
+            if(calculator.globalVariable.IG_playerIndex === 1) {
 
                 p1 = 'WEAK F.';
                 p2 = 'STRONG F.';
@@ -587,20 +579,20 @@ calculator.graphics.update.IG_effortBar = function(e, barId, ourSide, axisOn) {
     var pindex = 1;
 
 
-    if(calculator.globalVariable.isIGA || calculator.globalVariable.isIGB) {
+    if(calculator.globalVariable.IG_isIGA || calculator.globalVariable.IG_isIGB) {
 
-        upperBound = 231;
-        myTickVal = [0, 10, 25, 50, 75, 125, 175, 250];
-        myTickText = [0, 10, 25, 50, 75, 125, 175, 250];
-        myRange = [0, 250];
+        upperBound = 128;
+        myTickVal = [0, 5, 10, 20, 30, 50, 75, 100, 140];
+        myTickText = [0, 5, 10, 20, 30, 50, 75, 100, 140];
+        myRange = [0, 140];
 
     }
 
-    if(!calculator.globalVariable.tutorial.weAreInTutorial) {
+    if(!calculator.globalVariable.tutorial.IG_weAreInTutorial) {
 
-        if(calculator.globalVariable.isIGA) {
+        if(calculator.globalVariable.IG_isIGA) {
 
-            if(calculator.globalVariable.playerIndex != -1) {
+            if(calculator.globalVariable.IG_playerIndex != -1) {
 
                 colorArrays = ['rgb(35, 79, 30)', 'rgb(60, 60, 60)'];
                 insideTextColor = ['white', 'white'];
@@ -618,6 +610,8 @@ calculator.graphics.update.IG_effortBar = function(e, barId, ourSide, axisOn) {
                 }
 
             } else {
+
+                $('.rightFollowerIconMainWrap').css({'filter':'drop-shadow(5px 5px 3px #d2d201)'});
 
                 colorArrays = ['rgb(60, 60, 60)', 'rgb(210, 210, 0)'];
                 insideTextColor = ['white', 'black'];
@@ -638,9 +632,9 @@ calculator.graphics.update.IG_effortBar = function(e, barId, ourSide, axisOn) {
 
         }
 
-        if(calculator.globalVariable.isIGB) {
+        if(calculator.globalVariable.IG_isIGB) {
 
-            if(calculator.globalVariable.playerIndex != -1) {
+            if(calculator.globalVariable.IG_playerIndex != -1) {
 
                 colorArrays = ['rgb(35, 79, 30)', 'rgb(210, 210, 210)'];
                 insideTextColor = ['white', 'black'];
@@ -658,6 +652,8 @@ calculator.graphics.update.IG_effortBar = function(e, barId, ourSide, axisOn) {
                 }
 
             } else {
+
+                $('.rightFollowerIconMainWrap').css({'filter':'drop-shadow(5px 5px 3px #d2d201)'});
 
                 colorArrays = ['rgb(210, 210, 210)', 'rgb(210, 210, 0)'];
                 insideTextColor = ['black', 'black'];
@@ -685,11 +681,11 @@ calculator.graphics.update.IG_effortBar = function(e, barId, ourSide, axisOn) {
     //---------------------------//
 
     // tutorial showing two followers as the same color to argue that we will use a different color
-    if(calculator.globalVariable.tutorial.weAreInTutorial) {
+    if(calculator.globalVariable.tutorial.IG_weAreInTutorial) {
 
-        if(calculator.globalVariable.tutorial.IGSameColor) {
+        if(calculator.globalVariable.tutorial.IG_IGSameColor) {
 
-            if(calculator.globalVariable.isIGA) {
+            if(calculator.globalVariable.IG_isIGA) {
 
                 colorArrays = ['rgb(60,60,60)', 'rgb(60,60,60)'];
                 insideTextColor = ['white', 'white'];
@@ -708,7 +704,7 @@ calculator.graphics.update.IG_effortBar = function(e, barId, ourSide, axisOn) {
 
             }
 
-            if(calculator.globalVariable.isIGB) {
+            if(calculator.globalVariable.IG_isIGB) {
 
                 colorArrays = ['rgb(210,210,210)', 'rgb(210,210,210)'];
                 insideTextColor = ['black', 'black'];
@@ -730,9 +726,11 @@ calculator.graphics.update.IG_effortBar = function(e, barId, ourSide, axisOn) {
         }
 
         // tutorial showing two followers with different colors
-        if(calculator.globalVariable.tutorial.IGDifferentColor) {
+        if(calculator.globalVariable.tutorial.IG_IGDifferentColor) {
 
-            if(calculator.globalVariable.isIGA) {
+            $('.rightFollowerIconMainWrap').css({'filter':'drop-shadow(5px 5px 3px #d2d201)'});
+
+            if(calculator.globalVariable.IG_isIGA) {
 
                 colorArrays = ['rgb(60,60,60)', 'rgb(210,210,0)'];
                 insideTextColor = ['white', 'black'];
@@ -751,7 +749,7 @@ calculator.graphics.update.IG_effortBar = function(e, barId, ourSide, axisOn) {
 
             }
 
-            if(calculator.globalVariable.isIGB) {
+            if(calculator.globalVariable.IG_isIGB) {
 
                 colorArrays = ['rgb(210,210,210)', 'rgb(210,210,0)'];
                 insideTextColor = ['black', 'black'];
@@ -872,18 +870,18 @@ calculator.graphics.update.IG_effortBar = function(e, barId, ourSide, axisOn) {
 // it also determines the resulting text's tag as this is dependent on leader or follower
 calculator.graphics.update.IG_contestSliderBackgroundColor = function() {
 
-    if(calculator.globalVariable.tutorial.weAreInTutorial) {
+    if(calculator.globalVariable.tutorial.IG_weAreInTutorial) {
 
-        if(calculator.globalVariable.tutorial.IGSameColor) {
+        if(calculator.globalVariable.tutorial.IG_IGSameColor) {
 
-            if(calculator.globalVariable.isIGA) {
+            if(calculator.globalVariable.IG_isIGA) {
 
                 $('.IG_bswLeft').css({'background-color':'rgb(60,60,60)', 'color':'white'});
                 $('.IG_bswRight').css({'background-color':'rgb(60,60,60)', 'color':'white'});
 
             }
 
-            if(calculator.globalVariable.isIGB) {
+            if(calculator.globalVariable.IG_isIGB) {
 
                 $('.IG_bswLeft').css({'background-color':'rgb(210,210,210)', 'color':'black'});
                 $('.IG_bswRight').css({'background-color':'rgb(210,210,210)', 'color':'black'});
@@ -893,16 +891,16 @@ calculator.graphics.update.IG_contestSliderBackgroundColor = function() {
         }
 
         // tutorial showing two followers with different colors
-        if(calculator.globalVariable.tutorial.IGDifferentColor) {
+        if(calculator.globalVariable.tutorial.IG_IGDifferentColor) {
 
-            if(calculator.globalVariable.isIGA) {
+            if(calculator.globalVariable.IG_isIGA) {
 
                 $('.IG_bswLeft').css({'background-color':'rgb(60,60,60)', 'color':'white'});
                 $('.IG_bswRight').css({'background-color':'rgb(60,60,60)', 'color':'white'});
 
             }
 
-            if(calculator.globalVariable.isIGB) {
+            if(calculator.globalVariable.IG_isIGB) {
 
                 $('.IG_bswLeft').css({'background-color':'rgb(210,210,210)', 'color':'black'});
                 $('.IG_bswRight').css({'background-color':'rgb(210,210,210)', 'color':'black'});
@@ -913,11 +911,11 @@ calculator.graphics.update.IG_contestSliderBackgroundColor = function() {
 
     }
 
-    if(!calculator.globalVariable.tutorial.weAreInTutorial) {
+    if(!calculator.globalVariable.tutorial.IG_weAreInTutorial) {
 
-        if(calculator.globalVariable.isIGA) {
+        if(calculator.globalVariable.IG_isIGA) {
 
-            if(calculator.globalVariable.playerIndex === -1) {
+            if(calculator.globalVariable.IG_playerIndex === -1) {
 
                 $('.IG_bswLeft').css({'background-color':'rgb(60,60,60)', 'color':'white'});
                 $('.IG_bswRight').css({'background-color':'rgb(60,60,60)', 'color':'white'});
@@ -931,9 +929,9 @@ calculator.graphics.update.IG_contestSliderBackgroundColor = function() {
         }
 
         // In-group contest A, leader's point of view
-        if(calculator.globalVariable.isIGB) {
+        if(calculator.globalVariable.IG_isIGB) {
 
-            if(calculator.globalVariable.playerIndex === -1) {
+            if(calculator.globalVariable.IG_playerIndex === -1) {
 
                 $('.IG_bswLeft').css({'background-color':'rgb(210,210,210)', 'color':'black'});
                 $('.IG_bswRight').css({'background-color':'rgb(210,210,210)', 'color':'black'});
@@ -952,10 +950,9 @@ calculator.graphics.update.IG_contestSliderBackgroundColor = function() {
 }
 
 
-
-
 //-------------- DECISION SLIDER LEADER ----------------//123456789
 calculator.decisionSlider.leader.IG_effortBar = function(a, axisOn) {
+
 
         var y = a;
 
@@ -968,12 +965,12 @@ calculator.decisionSlider.leader.IG_effortBar = function(a, axisOn) {
         insideTextColor = ['white'];
 
 
-        if(calculator.globalVariable.isIGA || calculator.globalVariable.isIGB) {
+        if(calculator.globalVariable.IG_isIGA || calculator.globalVariable.IG_isIGB) {
 
-            upperBound = 231;
-            myTickVal = [0, 10, 25, 50, 75, 125, 175, 250];
-            myTickText = [0, 10, 25, 50, 75, 125, 175, 250];
-            myRange = [0, 250];
+            upperBound = 128;
+            myTickVal = [0, 5, 10, 20, 30, 50, 75, 100, 140];
+            myTickText = [0, 5, 10, 20, 30, 50, 75, 100, 140];
+            myRange = [0, 140];
 
         }
 
@@ -1152,27 +1149,27 @@ calculator.section.power.set.IG_barLegendText = function(show) {
         var textLeft = document.getElementById('IG_leader1Boxtext');
         var textRight = document.getElementById('IG_leader2Boxtext');
 
-        if(calculator.globalVariable.isIGA) {
+        if(calculator.globalVariable.IG_isIGA) {
 
-            if(calculator.globalVariable.playerView) {
+            if(calculator.globalVariable.IG_playerView) {
 
-                if(calculator.globalVariable.ourFollowersAreHetero) {
+                if(calculator.globalVariable.IG_ourFollowersAreHetero) {
 
-                    if(calculator.globalVariable.playerIndex === -1) {
+                    if(calculator.globalVariable.IG_playerIndex === -1) {
 
                         textLeft.innerHTML = 'Strong Follower\'s Relative Power';
                         textRight.innerHTML = 'Weak Follower\'s Relative Power';
 
                     }
 
-                    if(calculator.globalVariable.playerIndex === 0) {
+                    if(calculator.globalVariable.IG_playerIndex === 0) {
 
                         textLeft.innerHTML = 'Your Relative Power';
                         textRight.innerHTML = 'Weak Follower\'s Relative Power';
 
                     }
 
-                    if(calculator.globalVariable.playerIndex === 1) {
+                    if(calculator.globalVariable.IG_playerIndex === 1) {
 
                         textLeft.innerHTML = 'Your Relative Power';
                         textRight.innerHTML = 'Strong Follower\'s Relative Power';
@@ -1181,21 +1178,21 @@ calculator.section.power.set.IG_barLegendText = function(show) {
 
                 } else {
 
-                    if(calculator.globalVariable.playerIndex === -1) {
+                    if(calculator.globalVariable.IG_playerIndex === -1) {
 
                         textLeft.innerHTML = 'Follower A1\'s Relative Power';
                         textRight.innerHTML = 'Follower A2\'s Relative Power';
 
                     }
 
-                    if(calculator.globalVariable.playerIndex === 0) {
+                    if(calculator.globalVariable.IG_playerIndex === 0) {
 
                         textLeft.innerHTML = 'Your Relative Power';
                         textRight.innerHTML = 'Opposing Follower\'s Relative Power';
 
                     }
 
-                    if(calculator.globalVariable.playerIndex === 1) {
+                    if(calculator.globalVariable.IG_playerIndex === 1) {
 
                         textLeft.innerHTML = 'Your Relative Power';
                         textRight.innerHTML = 'Opposing Follower\'s Relative Power';
@@ -1206,9 +1203,9 @@ calculator.section.power.set.IG_barLegendText = function(show) {
 
             }
 
-            if(calculator.globalVariable.tutorial.weAreInTutorial) {
+            if(calculator.globalVariable.tutorial.IG_weAreInTutorial) {
 
-                if(calculator.globalVariable.ourFollowersAreHetero) {
+                if(calculator.globalVariable.IG_ourFollowersAreHetero) {
 
                     textLeft.innerHTML = 'Strong Follower\'s Relative Power';
                     textRight.innerHTML = 'Weak Follower\'s Relative Power';
@@ -1224,27 +1221,27 @@ calculator.section.power.set.IG_barLegendText = function(show) {
 
         }
 
-        if(calculator.globalVariable.isIGB) {
+        if(calculator.globalVariable.IG_isIGB) {
 
-            if(calculator.globalVariable.playerView) {
+            if(calculator.globalVariable.IG_playerView) {
 
-                if(calculator.globalVariable.theirFollowersAreHetero) {
+                if(calculator.globalVariable.IG_theirFollowersAreHetero) {
 
-                    if(calculator.globalVariable.playerIndex === -1) {
-
-                        textLeft.innerHTML = 'Strong Follower\'s Relative Power';
-                        textRight.innerHTML = 'Weak Follower\'s Relative Power';
-
-                    }
-
-                    if(calculator.globalVariable.playerIndex === 0) {
+                    if(calculator.globalVariable.IG_playerIndex === -1) {
 
                         textLeft.innerHTML = 'Strong Follower\'s Relative Power';
                         textRight.innerHTML = 'Weak Follower\'s Relative Power';
 
                     }
 
-                    if(calculator.globalVariable.playerIndex === 1) {
+                    if(calculator.globalVariable.IG_playerIndex === 0) {
+
+                        textLeft.innerHTML = 'Strong Follower\'s Relative Power';
+                        textRight.innerHTML = 'Weak Follower\'s Relative Power';
+
+                    }
+
+                    if(calculator.globalVariable.IG_playerIndex === 1) {
 
                         textLeft.innerHTML = 'Weak Follower\'s Relative Power';
                         textRight.innerHTML = 'Strong Follower\'s Relative Power';
@@ -1253,21 +1250,21 @@ calculator.section.power.set.IG_barLegendText = function(show) {
 
                 } else {
 
-                    if(calculator.globalVariable.playerIndex === -1) {
+                    if(calculator.globalVariable.IG_playerIndex === -1) {
 
                         textLeft.innerHTML = 'Follower B1\'s Relative Power';
                         textRight.innerHTML = 'Follower B2\'s Relative Power';
 
                     }
 
-                    if(calculator.globalVariable.playerIndex === 0) {
+                    if(calculator.globalVariable.IG_playerIndex === 0) {
 
                         textLeft.innerHTML = 'Follower B1\'s Relative Power';
                         textRight.innerHTML = 'Follower B2\'s Relative Power';
 
                     }
 
-                    if(calculator.globalVariable.playerIndex === 1) {
+                    if(calculator.globalVariable.IG_playerIndex === 1) {
 
                         textLeft.innerHTML = 'Follower B1\'s Relative Power';
                         textRight.innerHTML = 'Follower B2\'s Relative Power';
@@ -1276,9 +1273,9 @@ calculator.section.power.set.IG_barLegendText = function(show) {
 
                 }
 
-                if(calculator.globalVariable.tutorial.weAreInTutorial) {
+                if(calculator.globalVariable.tutorial.IG_weAreInTutorial) {
 
-                    if(calculator.globalVariable.theirFollowersAreHetero) {
+                    if(calculator.globalVariable.IG_theirFollowersAreHetero) {
 
                         textLeft.innerHTML = 'Strong Follower\'s Relative Power';
                         textRight.innerHTML = 'Weak Follower\'s Relative Power';
@@ -1350,7 +1347,7 @@ calculator.graphics.update.IG_efficiencyBar = function(efficiency1, efficiency2)
     }
 
 
-    val1 = logistic2(val1, 5);
+    val1 = IG_logistic2(val1, 5);
     val2 = 1 - val1;
 
     var gapSize = 0.06;
@@ -1366,31 +1363,31 @@ calculator.graphics.update.IG_efficiencyBar = function(efficiency1, efficiency2)
 
 
 
-    if(calculator.globalVariable.tutorial.weAreInTutorial) {
+    if(calculator.globalVariable.tutorial.IG_weAreInTutorial) {
 
-        if(calculator.globalVariable.tutorial.IGSameColor) {
+        if(calculator.globalVariable.tutorial.IG_IGSameColor) {
 
-            if(calculator.globalVariable.isIGA) {
+            if(calculator.globalVariable.IG_isIGA) {
                 fcolors = ['rgb(60,60,60)', 'rgb(60,60,60)'];
                 textColor = ['white', 'white'];
 
             }
 
-            if(calculator.globalVariable.isIGB) {
+            if(calculator.globalVariable.IG_isIGB) {
                 ofcolors = ['rgb(210,210,210)', 'rgb(210,210,210)'];
                 textColor = ['black', 'black'];
             }
 
         }
         // tutorial showing two followers with different colors
-        if(calculator.globalVariable.tutorial.IGDifferentColor) {
+        if(calculator.globalVariable.tutorial.IG_IGDifferentColor) {
 
-            if(calculator.globalVariable.isIGA) {
+            if(calculator.globalVariable.IG_isIGA) {
                 fcolors = ['rgb(60,60,60)', 'rgb(210,210,0)'];
                 textColor = ['white', 'black'];
             }
 
-            if(calculator.globalVariable.isIGB) {
+            if(calculator.globalVariable.IG_isIGB) {
                 ofcolors = ['rgb(210,210,210)', 'rgb(210,210,0)'];
                 textColor = ['black', 'black'];
             }
@@ -1398,11 +1395,11 @@ calculator.graphics.update.IG_efficiencyBar = function(efficiency1, efficiency2)
 
     }
 
-    if(!calculator.globalVariable.tutorial.weAreInTutorial) {
+    if(!calculator.globalVariable.tutorial.IG_weAreInTutorial) {
 
-        if(calculator.globalVariable.isIGA) {
+        if(calculator.globalVariable.IG_isIGA) {
 
-            if(calculator.globalVariable.playerIndex === -1) {
+            if(calculator.globalVariable.IG_playerIndex === -1) {
 
                 fcolors = ['rgb(60,60,60)', 'rgb(210,210,0)'];
                 textColor = ['white', 'black'];
@@ -1417,8 +1414,8 @@ calculator.graphics.update.IG_efficiencyBar = function(efficiency1, efficiency2)
         }
 
         // In-group contest A, leader's point of view
-        if(calculator.globalVariable.isIGB) {
-            if(calculator.globalVariable.playerIndex === -1) {
+        if(calculator.globalVariable.IG_isIGB) {
+            if(calculator.globalVariable.IG_playerIndex === -1) {
                 ofcolors = ['rgb(210,210,210)', 'rgb(210,210,0)'];
                 textColor = ['black', 'black'];
             } else {
@@ -1430,12 +1427,12 @@ calculator.graphics.update.IG_efficiencyBar = function(efficiency1, efficiency2)
 
     }
 
-    if(calculator.globalVariable.isIGA) {
+    if(calculator.globalVariable.IG_isIGA) {
         calculator.section.power.set.IG_barLegendColor(fcolors);
         cA = fcolors;
     }
 
-    if(calculator.globalVariable.isIGB) {
+    if(calculator.globalVariable.IG_isIGB) {
         calculator.section.power.set.IG_barLegendColor(fcolors);
         cA = ofcolors;
     }
@@ -1558,28 +1555,28 @@ calculator.graphics.update.IG_efficiencyBar = function(efficiency1, efficiency2)
 
 
 //-------------- GRID GRAPHICS ----------------//
-calculator.graphics.update.barLabelX = function(barId, show) {
+calculator.graphics.update.IG_barLabelX = function(barId, show) {
     var update = {
         'xaxis.showticklabels': show
     };
     Plotly.relayout(barId, update);
 }
 
-calculator.graphics.update.barGridX = function(barId, show) {
+calculator.graphics.update.IG_barGridX = function(barId, show) {
     var update = {
         'xaxis.showgrid': show
         };
     Plotly.relayout(barId, update);
 }
 
-calculator.graphics.update.barLabelY = function(barId, show) {
+calculator.graphics.update.IG_barLabelY = function(barId, show) {
     var update = {
         'yaxis.showticklabels': show
     };
     Plotly.relayout(barId, update);
 }
 
-calculator.graphics.update.barGridY = function(barId, show) {
+calculator.graphics.update.IG_barGridY = function(barId, show) {
     var update = {
         'yaxis.showgrid': show
         };
@@ -1608,28 +1605,28 @@ calculator.graphics.update.barGridY = function(barId, show) {
 //
 calculator.values.update.IG_efficiencies = function() {
 
-    if(calculator.globalVariable.isIGA) {
+    if(calculator.globalVariable.IG_isIGA) {
 
-        if(calculator.globalVariable.ourFollowersAreHetero) {
+        if(calculator.globalVariable.IG_ourFollowersAreHetero) {
 
-            if(calculator.globalVariable.playerIndex === -1) {
+            if(calculator.globalVariable.IG_playerIndex === -1) {
                 efi1 = 5;
                 efi2 = 1;
             }
 
-            if(calculator.globalVariable.playerIndex === 0) {
+            if(calculator.globalVariable.IG_playerIndex === 0) {
                 efi1 = 5;
                 efi2 = 1;
             }
 
-            if(calculator.globalVariable.playerIndex === 1) {
+            if(calculator.globalVariable.IG_playerIndex === 1) {
                 efi1 = 1;
                 efi2 = 5;
             }
 
         }
 
-        if(!calculator.globalVariable.ourFollowersAreHetero) {
+        if(!calculator.globalVariable.IG_ourFollowersAreHetero) {
 
             efi1 = 1;
             efi2 = 1;
@@ -1638,28 +1635,28 @@ calculator.values.update.IG_efficiencies = function() {
 
     }
 
-    if(calculator.globalVariable.isIGB) {
+    if(calculator.globalVariable.IG_isIGB) {
 
-        if(calculator.globalVariable.theirFollowersAreHetero) {
+        if(calculator.globalVariable.IG_theirFollowersAreHetero) {
 
-            if(calculator.globalVariable.playerIndex === -1) {
+            if(calculator.globalVariable.IG_playerIndex === -1) {
                 efi1 = 5;
                 efi2 = 1;
             }
 
-            if(calculator.globalVariable.playerIndex === 0) {
+            if(calculator.globalVariable.IG_playerIndex === 0) {
                 efi1 = 5;
                 efi2 = 1;
             }
 
-            if(calculator.globalVariable.playerIndex === 1) {
+            if(calculator.globalVariable.IG_playerIndex === 1) {
                 efi1 = 1;
                 efi2 = 5;
             }
 
         }
 
-        if(!calculator.globalVariable.theirFollowersAreHetero) {
+        if(!calculator.globalVariable.IG_theirFollowersAreHetero) {
 
             efi1 = 1;
             efi2 = 1;
@@ -1670,7 +1667,7 @@ calculator.values.update.IG_efficiencies = function() {
 
     calculator.graphics.update.IG_efficiencyBar(efi1, efi2);
     calculator.icons.update.IG_leaderSize();
-    calculator.icons.adjustPlacement();
+    calculator.icons.IG_adjustPlacement();
 
 }
 
@@ -1708,37 +1705,12 @@ calculator.values.update.IG_probability = function() {
 //////////////////// SLIDER /////////////////////
 //////////////////// SLIDER /////////////////////
 
-calculator.IG_setPayoffTextFollower = function(effort) {
-
-    var prize, cost, netWon, netLost, netWonColor, netLostColor;
-
-    cost = effort;
-
-    netWonColor = netLostColor = 'black';
-
-    netLost = -cost;
-    prize = 0;
-    netWon = prize - cost;
-
-
-
-
-    $('#IG_netPayoffValueLostDl').html(netLost);
-    $('#IG_netPayoffValueLostDl').css({'transition':'0.15s', 'color':netLostColor});
-
-    $('#IG_netPayoffValueWonDl').html(netWon);
-    $('#IG_netPayoffValueWonDl').css({'transition':'0.15s', 'color':netWonColor});
-
-}
-
 
 // Decision Sliders
 
 // EFFORT 123456789
 calculator.slider.playerDecision.IG_effort = document.getElementById('IG_dSliderL');
 calculator.slider.playerDecision.IG_effort.oninput = function() {
-
-    calculator.pointers.IG_dSwitch = false;
 
 
     calculator.wheel.IG_hide();
@@ -1755,9 +1727,6 @@ calculator.slider.playerDecision.IG_effort.oninput = function() {
     // slider sync
     $('#IG_lSlider1').prop('value', efo1);
     $('#IG_lSlider1').change();
-
-
-    calculator.IG_setPayoffTextFollower(efo1);
 
 
     // bar plot sync
@@ -1788,8 +1757,6 @@ calculator.slider.IG_l1.oninput = function() {
 
     efo1 = parseFloat(calculator.slider.IG_l1.value);
 
-    calculator.IG_setPayoffTextFollower(efo1);
-
     var ourSide, showAxis;
     ourSide = true;
     showAxis = true;
@@ -1798,7 +1765,7 @@ calculator.slider.IG_l1.oninput = function() {
 
     calculator.results.update.IG_allTextAndColors();
 
-    calculator.graphics.update.barLabelX('IG_barl1', true);
+    calculator.graphics.update.IG_barLabelX('IG_barl1', true);
 
     calculator.values.update.IG_probability();
 
@@ -1830,7 +1797,7 @@ calculator.slider.IG_l2.oninput = function() {
 
     calculator.values.update.IG_probability();
 
-    calculator.graphics.update.barLabelX('IG_barl2', true);
+    calculator.graphics.update.IG_barLabelX('IG_barl2', true);
 
     calculator.pointers.IG_switches[1] = false;
 
@@ -1855,6 +1822,7 @@ calculator.slider.IG_l2.oninput = function() {
 ////////////////////////// HOVER ///////////////////////////
 ////////////////////////// HOVER ///////////////////////////
 
+
 //------------------------------------------------//
 //------------------------------------------------//
 //------------ DECISION SLIDER SECTIONS ----------//
@@ -1866,7 +1834,7 @@ calculator.slider.IG_l2.oninput = function() {
 $('#IG_dSliderL').hover(
     function() {
 
-        setTimeout(()=>calculator.graphics.update.barLabelX('IG_bardl', true), 150);
+        setTimeout(()=>calculator.graphics.update.IG_barLabelX('IG_bardl', true), 150);
 
 
         calculator.globalVariable.IG_pieBorderLeft = true;
@@ -1884,8 +1852,8 @@ $('#IG_dSliderL').hover(
     },
     function() {
 
-        setTimeout(()=>calculator.graphics.update.barLabelX('IG_bardl', false), 150);
-        calculator.graphics.update.barGridX('IG_bardl', false);
+        setTimeout(()=>calculator.graphics.update.IG_barLabelX('IG_bardl', false), 150);
+        calculator.graphics.update.IG_barGridX('IG_bardl', false);
 
         calculator.globalVariable.IG_pieBorderLeft = false;
         calculator.graphics.update.IG_pie();
@@ -1902,30 +1870,24 @@ $('#IG_dSliderL').hover(
     }
 )
 
-calculator.activateDSlider = false;
-
 $('.IG_inputL').hover(
 
     function() {
 
-        if(calculator.activateDSlider) {
+        calculator.globalVariable.IG_enervate2LeaderLeft = true;
+        calculator.icons.enervate2.IG_leaderLeft(0);
 
-            calculator.globalVariable.IG_enervate2LeaderLeft = true;
-            calculator.icons.enervate2.IG_leaderLeft(0);
+        $('.IG_decisionWrapL').css({'transition':'0.7s', 'transform':'scale(1.1)'});
+        $('.IG_bswLeft').css({'transition':'0.7s', 'transform':'scale(1.1)'});
 
-            // $('.IG_decisionWrapL').css({'transition':'0.7s', 'transform':'scale(1.1)'});
-            $('.IG_bswLeft').css({'transition':'0.7s', 'transform':'scale(1.1)'});
+        calculator.button.display.IG_spinBottom(false);
 
-            calculator.button.display.IG_spinBottom(false);
+        calculator.decisionSlider.leader.IG_isFlashing = false;
 
-            calculator.decisionSlider.leader.IG_isFlashing = false;
+        if(calculator.globalVariable.IG_open) {
 
-            if(calculator.globalVariable.IG_open) {
-
-                calculator.results.hide.IG_leaderOutcomes();
-                $('.IG_generalMarginBox').css({'transition':'1.523456s', 'margin-top':'150px'});
-
-            }
+            calculator.results.hide.IG_leaderOutcomes();
+            $('.IG_generalMarginBox').css({'transition':'1.523456s', 'margin-top':'150px'});
 
         }
 
@@ -1933,38 +1895,36 @@ $('.IG_inputL').hover(
 
     function() {
 
-        if(calculator.activateDSlider) {
+        setTimeout(()=>{
 
-            setTimeout(()=>{
+            calculator.globalVariable.IG_enervate2LeaderLeft = false;
 
-                calculator.globalVariable.IG_enervate2LeaderLeft = false;
+            $('.IG_decisionWrapL').css({'transition':'0.7s', 'transform':'scale(1)'});
+            $('.IG_bswLeft').css({'transition':'0.7s', 'transform':'scale(1)'});
 
-                $('.IG_decisionWrapL').css({'transition':'0.7s', 'transform':'scale(1)'});
-                $('.IG_bswLeft').css({'transition':'0.7s', 'transform':'scale(1)'});
+            calculator.button.display.IG_spinBottom(true);
 
-                calculator.button.display.IG_spinBottom(true);
+            if(calculator.globalVariable.IG_open) {
 
-                if(calculator.globalVariable.IG_open) {
+                $('.IG_payoffWrap, .IG_imageWrap23').css({'transition':'1.523456s', 'transition-delay':'1s','opacity':'1'});
+                calculator.space.IG_contestResultsIsOpen = true;
 
-                    $('.IG_payoffWrap, .IG_imageWrap23').css({'transition':'1.523456s', 'transition-delay':'1s','opacity':'1'});
-                    // calculator.space.IG_contestResultsIsOpen = true;
+                calculator.space.update.IG_heights();
 
-                    calculator.space.update.IG_heights();
+                $('.IG_generalMarginBox').css({'transition':'1.523456s', 'transition-delay':'1s', 'margin-top':'0px'});
 
-                    $('.IG_generalMarginBox').css({'transition':'1.523456s', 'transition-delay':'1s', 'margin-top':'0px'});
-
-                }
+            }
 
 
-                if(!calculator.globalVariable.contestResultsExist) {
+            if(!calculator.globalVariable.IG_contestResultsExist) {
 
-                    $('.IG_payoffWrap').css({'transition':'0s', 'opacity':'0'});
+                $('.IG_payoffWrap').css({'transition':'0s', 'opacity':'0'});
 
-                }
+            }
 
-            }, 200)
+        }, 200)
 
-        }
+
 
 
 
@@ -1994,7 +1954,7 @@ $('#IG_lSlider1').hover(
         $('.activeFollowerLeft').css({'opacity':'1'});
         $('.passiveFollowerLeft').css({'opacity':'0'});
 
-        setTimeout(()=>calculator.graphics.update.barLabelX('IG_barl1', true), 150);
+        setTimeout(()=>calculator.graphics.update.IG_barLabelX('IG_barl1', true), 150);
         // calculator.questions.spin2.l1();
 
         },
@@ -2010,8 +1970,8 @@ $('#IG_lSlider1').hover(
         $('.activeFollowerLeft').css({'opacity':'0'});
         $('.passiveFollowerLeft').css({'opacity':'1'});
 
-        setTimeout(()=>calculator.graphics.update.barLabelX('IG_barl1', false), 400);
-        calculator.graphics.update.barGridX('IG_barl1', false);
+        setTimeout(()=>calculator.graphics.update.IG_barLabelX('IG_barl1', false), 400);
+        calculator.graphics.update.IG_barGridX('IG_barl1', false);
 
     }
 );
@@ -2023,7 +1983,7 @@ $('.IG_bswLeft').hover(
         calculator.icons.enervate2.IG_leaderLeft(0);
 
         $('.IG_l1vibrate').css({'transition':'0s', 'opacity':'0'});
-        // $('.IG_decisionWrapL').css({'transition':'0.7s', 'transform':'scale(1.1)'});
+        $('.IG_decisionWrapL').css({'transition':'0.7s', 'transform':'scale(1.1)'});
         $('.IG_bswLeft').css({'transition':'0.7s', 'transform':'scale(1.1)'});
         $('.IG_bswLeft').css({'transition':'0.7s', 'box-shadow':'0px 6px 6px 2px black'});
 
@@ -2075,7 +2035,7 @@ $('#IG_olSlider1').hover(
         $('.activeFollowerRight').css({'opacity':'1'});
         $('.passiveFollowerRight').css({'opacity':'0'});
 
-        setTimeout(()=>calculator.graphics.update.barLabelX('IG_barl2', true), 150);
+        setTimeout(()=>calculator.graphics.update.IG_barLabelX('IG_barl2', true), 150);
         // calculator.questions.spin2.l2();
 
     },
@@ -2091,8 +2051,8 @@ $('#IG_olSlider1').hover(
         $('.activeFollowerRight').css({'opacity':'0'});
         $('.passiveFollowerRight').css({'opacity':'1'});
 
-        setTimeout(()=>calculator.graphics.update.barLabelX('IG_barl2', false), 400);
-        calculator.graphics.update.barGridX('IG_barl2', false);
+        setTimeout(()=>calculator.graphics.update.IG_barLabelX('IG_barl2', false), 400);
+        calculator.graphics.update.IG_barGridX('IG_barl2', false);
 
     }
 );
@@ -2139,19 +2099,7 @@ $('.IG_bswRight').hover(
 
 );
 
-calculator.globalVariable.IG_hsWrapActive = false;
-$('.IG_hsWrap').hover(
-    function() {
-        if(calculator.globalVariable.IG_hsWrapActive) {
-            $('.lfpd, .rfpd').css({'transition':'0.75s', 'opacity':'1'});
-        }
-    },
-    function() {
-        if(calculator.globalVariable.IG_hsWrapActive) {
-            $('.lfpd, .rfpd').css({'transition':'0.75s', 'opacity':'0.1'});
-        }
-    }
-)
+
 //------------------------------------------------//
 //------------------------------------------------//
 //----------------- SPIN BUTTONS -----------------//
@@ -2181,6 +2129,7 @@ $('#IG_submitButtonBottom').hover(
     }
 
 )
+
 
 /////////////////// TITLE /////////////////////
 /////////////////// TITLE /////////////////////
@@ -2234,25 +2183,25 @@ calculator.titles.hs.ghost.IG_adjustHeight = function() {
 
     var marginTop;
 
-    if(calculator.globalVariable.isIGA) {
+    if(calculator.globalVariable.IG_isIGA) {
 
-    if(calculator.globalVariable.ourFollowersAreHetero) {
+    if(calculator.globalVariable.IG_ourFollowersAreHetero) {
         marginTop = '-8px';
     }
 
-    if(!calculator.globalVariable.ourFollowersAreHetero) {
+    if(!calculator.globalVariable.IG_ourFollowersAreHetero) {
         marginTop = '40px';
     }
 
 }
 
-if(calculator.globalVariable.isIGB) {
+if(calculator.globalVariable.IG_isIGB) {
 
-    if(calculator.globalVariable.theirFollowersAreHetero) {
+    if(calculator.globalVariable.IG_theirFollowersAreHetero) {
         marginTop = '-8px';
     }
 
-    if(!calculator.globalVariable.theirFollowersAreHetero) {
+    if(!calculator.globalVariable.IG_theirFollowersAreHetero) {
         marginTop = '40px';
     }
 
@@ -2293,12 +2242,12 @@ calculator.titles.hs.ghost.IG_text = function() {
     contestName1 = document.getElementById('IG_contestNameG1');
     contestName2 = document.getElementById('IG_contestNameG2');
 
-    if(calculator.globalVariable.isIGA) {
+    if(calculator.globalVariable.IG_isIGA) {
         contestName1.innerHTML = 'IN-GROUP CONTEST A';
         contestName2.innerHTML = 'FOLLOWERS\' COMPETITION';
     }
 
-    if(calculator.globalVariable.isIGB) {
+    if(calculator.globalVariable.IG_isIGB) {
         contestName1.innerHTML = 'IN-GROUP CONTEST B';
         contestName2.innerHTML = 'FOLLOWERS\' COMPETITION';
     }
@@ -2312,14 +2261,14 @@ calculator.titles.update.IG_textAndColor = function() {
     contestName21 = document.getElementById('IG_contestName21');
     contestName22 = document.getElementById('IG_contestName22');
 
-    if(calculator.globalVariable.isIGA) {
+    if(calculator.globalVariable.IG_isIGA) {
 
         contestName21.innerHTML = 'FOLLOWERS\' COMPETITION';
         contestName22.innerHTML = 'IN-GROUP CONTEST A';
 
-        if(calculator.globalVariable.tutorial.weAreInTutorial) {
+        if(calculator.globalVariable.tutorial.IG_weAreInTutorial) {
 
-            if(calculator.globalVariable.tutorial.IGSameColor) {
+            if(calculator.globalVariable.tutorial.IG_IGSameColor) {
 
                 $('.IG_contestTitle22, .IG_contestTitle1').css({'color':'white',
                 'background':'linear-gradient(90deg, rgb(60,60,60), rgb(60,60,60))'});
@@ -2333,9 +2282,9 @@ calculator.titles.update.IG_textAndColor = function() {
 
         }
 
-        if(!calculator.globalVariable.tutorial.weAreInTutorial) {
+        if(!calculator.globalVariable.tutorial.IG_weAreInTutorial) {
 
-            if(calculator.globalVariable.playerIndex === -1) {
+            if(calculator.globalVariable.IG_playerIndex === -1) {
 
                 $('.IG_contestTitle22, .IG_contestTitle1').css({'color':'white',
                 'background':'linear-gradient(90deg, rgb(60,60,60), rgb(210,210,0))'});
@@ -2351,14 +2300,14 @@ calculator.titles.update.IG_textAndColor = function() {
 
     }
 
-    if(calculator.globalVariable.isIGB) {
+    if(calculator.globalVariable.IG_isIGB) {
 
         contestName21.innerHTML = 'FOLLOWERS\' COMPETITION';
         contestName22.innerHTML = 'IN-GROUP CONTEST B';
 
-        if(calculator.globalVariable.tutorial.weAreInTutorial) {
+        if(calculator.globalVariable.tutorial.IG_weAreInTutorial) {
 
-            if(calculator.globalVariable.tutorial.IGSameColor) {
+            if(calculator.globalVariable.tutorial.IG_IGSameColor) {
 
                 $('.IG_contestTitle22, .IG_contestTitle1').css({'color':'white',
                 'background':'linear-gradient(90deg, rgb(210,210,210), rgb(210,210,210))'});
@@ -2372,9 +2321,9 @@ calculator.titles.update.IG_textAndColor = function() {
 
         }
 
-        if(!calculator.globalVariable.tutorial.weAreInTutorial) {
+        if(!calculator.globalVariable.tutorial.IG_weAreInTutorial) {
 
-            if(calculator.globalVariable.playerIndex === -1) {
+            if(calculator.globalVariable.IG_playerIndex === -1) {
 
                 $('.IG_contestTitle22, .IG_contestTitle1').css({'color':'white',
                 'background':'linear-gradient(90deg, rgb(210,210,210), rgb(210,210,0))'});
@@ -2414,23 +2363,41 @@ calculator.titles.update.IG_textAndColor = function() {
 //////////// ICON /////////////
 //////////// ICON /////////////
 
-//----- ADJUST ICON PLACEMENT GIVEN HETERO ----//
+//------- ADJUSTMENT FOR HETERO ICONS ------//
 
-calculator.icons.adjustPlacement = function() {
+calculator.icons.IG_adjustPlacement = function() {
 
-    if(calculator.globalVariable.ourFollowersAreHetero) {
+    if(calculator.globalVariable.IG_ourFollowersAreHetero && calculator.globalVariable.IG_isIGA) {
 
-        if(calculator.globalVariable.playerIndex === 0) {
+        if(calculator.globalVariable.IG_playerView) {
+
+            if(calculator.globalVariable.IG_playerIndex === 0 || calculator.globalVariable.IG_playerIndex === -1) {
+                $('.IG_wrapMid').css({'margin-left':'-12px'});
+                $('.IG_imgwrapfight').css({'margin-left':'47px'});
+                $('.rightFollowerIconMainWrap').css({'margin-top':'6px'});
+            }
+
+            if(calculator.globalVariable.IG_playerIndex === 1) {
+                $('.IG_wrapMid').css({'margin-right':'-12px'});
+                $('.IG_imgwrapfight').css({'margin-right':'47px'});
+                $('.leftFollowerIconMainWrap').css({'margin-top':'6px'});
+            }
+
+        }
+
+        if(calculator.globalVariable.tutorial.IG_weAreInTutorial) {
             $('.IG_wrapMid').css({'margin-left':'-12px'});
             $('.IG_imgwrapfight').css({'margin-left':'47px'});
             $('.rightFollowerIconMainWrap').css({'margin-top':'6px'});
         }
 
-        if(calculator.globalVariable.playerIndex === 1) {
-            $('.IG_wrapMid').css({'margin-right':'-12px'});
-            $('.IG_imgwrapfight').css({'margin-right':'47px'});
-            $('.leftFollowerIconMainWrap').css({'margin-top':'6px'});
-        }
+    }
+
+    if(calculator.globalVariable.IG_theirFollowersAreHetero && calculator.globalVariable.IG_isIGB) {
+
+        $('.IG_wrapMid').css({'margin-left':'-12px'});
+        $('.IG_imgwrapfight').css({'margin-left':'47px'});
+        $('.rightFollowerIconMainWrap').css({'margin-top':'6px'});
 
     }
 
@@ -2439,7 +2406,7 @@ calculator.icons.adjustPlacement = function() {
 
 //----- DISPLAY ICON DEPENDING ON INDEX AND ROLE ------//
 
-calculator.icons.setMe = function() {
+calculator.icons.IG_setMe = function() {
 
     $('.objectivef1').css({'display':'flex'});
     $('.objectivef2').css({'display':'flex'});
@@ -2451,9 +2418,9 @@ calculator.icons.setMe = function() {
     $('.subjectivel').css({'display':'none'});
     $('.subjectivef').css({'display':'none'})
 
-    if(calculator.globalVariable.playerView) {
+    if(calculator.globalVariable.IG_playerView) {
 
-        if(calculator.globalVariable.playerIndex === 0) {
+        if(calculator.globalVariable.IG_playerIndex === 0) {
             // OG
             $('.subjectivef1').css({'display':'flex'});
             $('.objectivef1').css({'display':'none'});
@@ -2465,7 +2432,7 @@ calculator.icons.setMe = function() {
 
         }
 
-        if(calculator.globalVariable.playerIndex === 1) {
+        if(calculator.globalVariable.IG_playerIndex === 1) {
 
             // OG
             $('.subjectivef2').css({'display':'flex'});
@@ -2477,7 +2444,7 @@ calculator.icons.setMe = function() {
 
         }
 
-        if(calculator.globalVariable.playerIndex === -1) {
+        if(calculator.globalVariable.IG_playerIndex === -1) {
             // OG
             $('.subjectivel').css({'display':'flex'});
             $('.objectivel').css({'display':'none'});
@@ -2488,32 +2455,32 @@ calculator.icons.setMe = function() {
 
 }
 
-calculator.icons.adjustForTreatment = function() {
+calculator.icons.IG_adjustForTreatment = function() {
 
-    $('.homoLeftFollowers, .homoRightFollowers, .homoLeftFollowers, .homoRightFollowers').css({'display':'flex'});
-    $('.heteroLeftFollowers, .heteroRightFollowers, .heteroLeftFollowers, .heteroRightFollowers').css({'display':'none'});
+    $('.IG_homoLeftFollowers, .IG_homoRightFollowers, .IG_homoLeftFollowers, .IG_homoRightFollowers').css({'display':'flex'});
+    $('.IG_heteroLeftFollowers, .heteroRightFollowers, .IG_heteroLeftFollowers, .heteroRightFollowers').css({'display':'none'});
 
-    if(calculator.globalVariable.ourFollowersAreHetero) {
+    if(calculator.globalVariable.IG_ourFollowersAreHetero) {
 
         // OG and IGA and IGB
-        $('.homoLeftFollowers, .homoLeftLeaders').css({'display':'none'});
-        $('.heteroLeftFollowers, .heteroLeftLeaders').css({'display':'flex'});
+        $('.IG_homoLeftFollowers').css({'display':'none'});
+        $('.IG_heteroLeftFollowers').css({'display':'flex'});
 
     }
 
-    if(calculator.globalVariable.theirFollowersAreHetero) {
+    if(calculator.globalVariable.IG_theirFollowersAreHetero) {
 
         // OG and IGA and IGB
-        $('.homoRightFollowers, .homoRightLeaders').css({'display':'none'});
+        $('.IG_homoRightFollowers, .homoRightLeaders').css({'display':'none'});
         $('.heteroRightFollowers, .heteroRightLeaders').css({'display':'flex'});
 
     }
 
 }
 
-calculator.icons.setIGA = function() {
+calculator.icons.IG_setIGA = function() {
 
-    if(calculator.globalVariable.playerIndex === -1) {
+    if(calculator.globalVariable.IG_playerIndex === -1) {
 
         // first follower is strong
         $('.strongFollower1').css({'display':'flex'});
@@ -2525,7 +2492,7 @@ calculator.icons.setIGA = function() {
 
     }
 
-        if(calculator.globalVariable.playerIndex === 0) {
+        if(calculator.globalVariable.IG_playerIndex === 0) {
 
             // first follower is strong
             $('.strongFollower1').css({'display':'flex'});
@@ -2537,7 +2504,7 @@ calculator.icons.setIGA = function() {
 
         }
 
-        if(calculator.globalVariable.playerIndex === 1) {
+        if(calculator.globalVariable.IG_playerIndex === 1) {
 
             // first follower is weak
             $('.weakFollower1').css({'display':'flex'});
@@ -2551,48 +2518,48 @@ calculator.icons.setIGA = function() {
 
     }
 
-calculator.icons.setAll = function() {
+calculator.icons.IG_setAll = function() {
 
     $('.wrapMidOGSetup, .wrapMidIGASetup, .wrapMidIGBSetup').css({'display':'none'})
 
-    if(calculator.globalVariable.isOG1) {
+    if(calculator.globalVariable.IG_isOG1) {
 
         $('.wrapMidOGSetup').css({'display':'flex'})
 
         calculator.icons.setOG1();
 
-        calculator.icons.setMe();
-        calculator.icons.adjustForTreatment();
+        calculator.icons.IG_setMe();
+        calculator.icons.IG_adjustForTreatment();
 
     }
 
-    if(calculator.globalVariable.isOG2) {
+    if(calculator.globalVariable.IG_isOG2) {
 
         $('.wrapMidOGSetup').css({'display':'flex'})
 
         calculator.icons.setOG2();
 
-        calculator.icons.setMe();
-        calculator.icons.adjustForTreatment();
+        calculator.icons.IG_setMe();
+        calculator.icons.IG_adjustForTreatment();
 
     }
 
-    if(calculator.globalVariable.isIGA) {
+    if(calculator.globalVariable.IG_isIGA) {
 
         $('.wrapMidIGASetup').css({'display':'flex'})
 
-        calculator.icons.setIGA();
+        calculator.icons.IG_setIGA();
 
-        calculator.icons.setMe();
-        calculator.icons.adjustForTreatment();
+        calculator.icons.IG_setMe();
+        calculator.icons.IG_adjustForTreatment();
 
     }
 
-    if(calculator.globalVariable.isIGB) {
+    if(calculator.globalVariable.IG_isIGB) {
 
         // no subjective view for displaying the other team
 
-        calculator.icons.adjustForTreatment();
+        calculator.icons.IG_adjustForTreatment();
 
         $('.wrapMidIGBSetup').css({'display':'flex'})
 
@@ -2603,7 +2570,7 @@ calculator.icons.setAll = function() {
 
 //-------- SET SIZE OF ICONS IN HS SECTION -------//
 
-calculator.icons.set.size = function(Id, h, w) {
+calculator.icons.set.IG_size = function(Id, h, w) {
 
     var myClass, myHeight, myWidth;
 
@@ -2631,25 +2598,25 @@ calculator.icons.update.IG_leaderSize = function() {
 
     var m1, m2;
 
-    if(calculator.globalVariable.isIGA) {
+    if(calculator.globalVariable.IG_isIGA) {
 
-        if(calculator.globalVariable.ourFollowersAreHetero) {
+        if(calculator.globalVariable.IG_ourFollowersAreHetero) {
 
-            if(calculator.globalVariable.playerIndex === -1) {
-
-                m1 = 1.8;
-                m2 = 0.7;
-
-            }
-
-            if(calculator.globalVariable.playerIndex === 0) {
+            if(calculator.globalVariable.IG_playerIndex === -1) {
 
                 m1 = 1.8;
                 m2 = 0.7;
 
             }
 
-            if(calculator.globalVariable.playerIndex === 1) {
+            if(calculator.globalVariable.IG_playerIndex === 0) {
+
+                m1 = 1.8;
+                m2 = 0.7;
+
+            }
+
+            if(calculator.globalVariable.IG_playerIndex === 1) {
 
                 m1 = 0.7;
                 m2 = 1.8;
@@ -2666,9 +2633,9 @@ calculator.icons.update.IG_leaderSize = function() {
 
     }
 
-    if(calculator.globalVariable.isIGB) {
+    if(calculator.globalVariable.IG_isIGB) {
 
-        if(calculator.globalVariable.theirFollowersAreHetero) {
+        if(calculator.globalVariable.IG_theirFollowersAreHetero) {
 
             m1 = 1.8;
             m2 = 0.7;
@@ -2683,8 +2650,8 @@ calculator.icons.update.IG_leaderSize = function() {
     }
 
 
-    calculator.icons.set.size('IG_splc1', 85 * m1, 55 * m1);
-    calculator.icons.set.size('IG_splc2', 85 * m2, 55 * m2)
+    calculator.icons.set.IG_size('IG_splc1', 85 * m1, 55 * m1);
+    calculator.icons.set.IG_size('IG_splc2', 85 * m2, 55 * m2)
 
 }
 
@@ -2694,10 +2661,10 @@ calculator.icons.update.IG_leaderSize = function() {
 calculator.icons.rescale.IG_leaderIconSize = function(scale) {
 
     var m1 = calculator.icons.calculate.size(th, ts) * scale;
-    calculator.icons.set.size('IG_rescaleL1', 85 * m1, 65 * m1);
+    calculator.icons.set.IG_size('IG_rescaleL1', 85 * m1, 65 * m1);
 
     var m2 = calculator.icons.calculate.size(toh, tos) * scale;
-    calculator.icons.set.size('IG_rescaleL2', 85 * m2, 65 * m2)
+    calculator.icons.set.IG_size('IG_rescaleL2', 85 * m2, 65 * m2)
 
 }
 
@@ -2709,9 +2676,10 @@ calculator.icons.hide.IG_hiddenContest = function() {
     $('.IG_OGCIcon2').css({'opacity':'0'});
 }
 
+
 //------------- ENERVATE ICONS -----------------//
 
-calculator.icons.enervate.delayTime = 200;
+calculator.icons.enervate.IG_delayTime = 200;
 
 //-- ENERVATE ACTIVE ICONS --//
 calculator.globalVariable.IG_enervateLeaderLeft = false;
@@ -2721,11 +2689,11 @@ calculator.icons.enervate.IG_leaderLeft = function(state) {
 
         if(state === 0) {
             $('.IG_splc1').css({'transition':'0.3521s', 'transform':'scale(1.1)'});
-            setTimeout(()=>calculator.icons.enervate.IG_leaderLeft(1), calculator.icons.enervate.delayTime);
+            setTimeout(()=>calculator.icons.enervate.IG_leaderLeft(1), calculator.icons.enervate.IG_delayTime);
         }
         if(state === 1) {
             $('.IG_splc1').css({'transition':'0.3521s', 'transform':'scale(1)'});
-            setTimeout(()=>calculator.icons.enervate.IG_leaderLeft(0), calculator.icons.enervate.delayTime);
+            setTimeout(()=>calculator.icons.enervate.IG_leaderLeft(0), calculator.icons.enervate.IG_delayTime);
         }
 
     } else {
@@ -2741,11 +2709,11 @@ calculator.icons.enervate.IG_leaderRight = function(state) {
 
         if(state === 0) {
             $('.IG_splc2').css({'transition':'0.3521s', 'transform':'scale(1.1)'});
-            setTimeout(()=>calculator.icons.enervate.IG_leaderRight(1), calculator.icons.enervate.delayTime);
+            setTimeout(()=>calculator.icons.enervate.IG_leaderRight(1), calculator.icons.enervate.IG_delayTime);
         }
         if(state === 1) {
             $('.IG_splc2').css({'transition':'0.3521s', 'transform':'scale(1)'});
-            setTimeout(()=>calculator.icons.enervate.IG_leaderRight(0), calculator.icons.enervate.delayTime);
+            setTimeout(()=>calculator.icons.enervate.IG_leaderRight(0), calculator.icons.enervate.IG_delayTime);
         }
 
     } else {
@@ -2753,8 +2721,6 @@ calculator.icons.enervate.IG_leaderRight = function(state) {
     }
 
 }
-
-
 
 
 //-- ENERVATE PASIVE ICONS --//
@@ -2765,11 +2731,11 @@ calculator.icons.enervate2.IG_leaderLeft = function(state) {
 
         if(state === 0) {
             $('.IG_lener1').css({'transition':'0.3521s', 'transform':'scale(1.1)'});
-            setTimeout(()=>calculator.icons.enervate2.IG_leaderLeft(1), calculator.icons.enervate.delayTime);
+            setTimeout(()=>calculator.icons.enervate2.IG_leaderLeft(1), calculator.icons.enervate.IG_delayTime);
         }
         if(state === 1) {
             $('.IG_lener1').css({'transition':'0.3521s', 'transform':'scale(1)'});
-            setTimeout(()=>calculator.icons.enervate2.IG_leaderLeft(0), calculator.icons.enervate.delayTime);
+            setTimeout(()=>calculator.icons.enervate2.IG_leaderLeft(0), calculator.icons.enervate.IG_delayTime);
         }
 
     } else {
@@ -2785,11 +2751,11 @@ calculator.icons.enervate2.IG_leaderRight = function(state) {
 
         if(state === 0) {
             $('.IG_lener2').css({'transition':'0.3521s', 'transform':'scale(1.1)'});
-            setTimeout(()=>calculator.icons.enervate2.IG_leaderRight(1), calculator.icons.enervate.delayTime);
+            setTimeout(()=>calculator.icons.enervate2.IG_leaderRight(1), calculator.icons.enervate.IG_delayTime);
         }
         if(state === 1) {
             $('.IG_lener2').css({'transition':'0.3521s', 'transform':'scale(1)'});
-            setTimeout(()=>calculator.icons.enervate2.IG_leaderRight(0), calculator.icons.enervate.delayTime);
+            setTimeout(()=>calculator.icons.enervate2.IG_leaderRight(0), calculator.icons.enervate.IG_delayTime);
         }
 
     } else {
@@ -2797,8 +2763,6 @@ calculator.icons.enervate2.IG_leaderRight = function(state) {
     }
 
 }
-
-
 
 
 ////////////////////////// LOCK ///////////////////////////
@@ -2880,7 +2844,6 @@ calculator.lock.vibrate.IG_l2 = function(state) {
 }
 
 
-
 calculator.lock.IG_activate = function(array) {
 
     calculator.lock.switch.IG_all = array;
@@ -2910,42 +2873,6 @@ calculator.lock.IG_activate = function(array) {
 ////////////////////// POINTER ///////////////////////////
 ////////////////////// POINTER ///////////////////////////
 
-
-calculator.pointers.IG_dSwitch = true;
-calculator.pointers.wiggle.IG_d= function(state) {
-
-    if(calculator.pointers.IG_dSwitch) {
-
-        if(state === 1) {
-
-            $('.redArrowImage3').css({'transition':'0.85s',
-            'margin-left':'-10px', 'margin-top':'-5px', 'opacity':'1', 'transform':'scale(1) rotate(-60deg)'});
-            setTimeout(()=>calculator.pointers.wiggle.IG_d(0), 750);
-
-        }
-
-        if(state === 0) {
-
-            $('.redArrowImage3').css({'transition':'0.85s',
-            'margin-left':'0px', 'margin-top':'0px'});
-            setTimeout(()=>calculator.pointers.wiggle.IG_d(1), 750);
-
-        }
-
-    } else {
-
-        $('.redArrowImage3').css({'margin-left':'0px', 'margin-top':'0px', 'opacity':'0', 'transform':'scale(0) rotate(-60deg)'});
-
-    }
-
-}
-
-calculator.pointers.wiggleD = function() {
-
-    calculator.pointers.IG_dSwitch = true;
-    calculator.pointers.wiggle.IG_d(0);
-
-}
 
 calculator.pointers.IG_switches = Array(2);
 
@@ -3004,7 +2931,6 @@ calculator.pointers.wiggle.IG_l2= function(state) {
 }
 
 
-
 calculator.pointers.IG_activate = function(array) {
 
     calculator.pointers.IG_switches = array;
@@ -3041,30 +2967,10 @@ calculator.pointers.IG_activate = function(array) {
 // need to stick to this order as the x coordinates are predefined accordingly
 // var textArray = ['GROUP A', 'YOU', 'FOLLOWER', 'STRONG', 'WEAK', 1000]
 calculator.IG_stopRolling = false;
-// calculator.roll.displayTime = 2250;
-calculator.roll.IG_displayTime = 8000;
-calculator.roll.IG_delayTime = 4000
-calculator.roll.IG_transitionTime = '2s';
-// slow time for opacity transition
-// calculator.roll.displayTime = 3000;
-calculator.roll.IG_counter = 0;
-calculator.roll.IG_steadyState = false;
-calculator.roll.IG_kill = true;
-
-calculator.roll.IG_transformFade = function(string1, string2) {
-
-    $(string2).css({'transition':calculator.roll.IG_transitionTime,'opacity':'0'});
-
-    setTimeout(()=>{
-        $(string1).css({'transition':calculator.roll.IG_transitionTime, 'opacity':'1'});
-    },calculator.roll.IG_delayTime)
-
-}
+calculator.roll.IG_displayTime = 4500;
 
 
-calculator.roll.IG_l1 = function(index, prevIndex, textArray, newRoll) {
-
-    newRoll === undefined ? false : newRoll;
+calculator.roll.IG_l1 = function(index, prevIndex, textArray) {
 
     var lSideText10 = document.getElementById('IG_lSideText10');
     var lSideText11 = document.getElementById('IG_lSideText11');
@@ -3087,11 +2993,9 @@ calculator.roll.IG_l1 = function(index, prevIndex, textArray, newRoll) {
         var str1 = '.IG_lSideText1' + index;
         var str2 = '.IG_lSideText1' + prevIndex;
 
-        calculator.roll.IG_transformFade(str1, str2);
-
-        // $(str1).css({'transition':'1.5s', 'transform':'rotate(0deg)'});
-        // $(str2).css({'transition':'1.5s', 'transform':'rotate(-60deg)'});
-        // setTimeout(()=>{$(str2).css({'transition':'0s', 'transform':'rotate(90deg)'});}, 1600);
+        $(str1).css({'transition':'1.5s', 'transform':'rotate(0deg)'});
+        $(str2).css({'transition':'1.5s', 'transform':'rotate(-60deg)'});
+        setTimeout(()=>{$(str2).css({'transition':'0s', 'transform':'rotate(90deg)'});}, 1600);
 
         var m = textArray.length;
         var nextIndex = index + 1;
@@ -3103,13 +3007,7 @@ calculator.roll.IG_l1 = function(index, prevIndex, textArray, newRoll) {
             nextIndex = nextIndex % m;
         }
 
-        setTimeout(()=> {
-
-            if(!calculator.roll.IG_kill || newRoll) {
-                calculator.roll.IG_l1(nextIndex, prevIndex, calculator.roll.IG_lArray)
-            }
-
-        }, calculator.roll.IG_displayTime);
+        setTimeout(()=>calculator.roll.IG_l1(nextIndex, prevIndex, textArray), calculator.roll.IG_displayTime);
 
     } else {
 
@@ -3120,17 +3018,15 @@ calculator.roll.IG_l1 = function(index, prevIndex, textArray, newRoll) {
         lSideText14.innerHTML = '';
         lSideText15.innerHTML = '';
 
-        $('.IG_lSideText10').css({'transition':'1.5s', 'opacity':'1'});
-        $('.IG_lSideText11, .IG_lSideText12, .IG_lSideText13, .IG_lSideText14, .IG_lSideText15').css({'transition':'1s', 'opacity':'0'});
+        $('.IG_lSideText10').css({'transition':'1.5s', 'transform':'rotate(0deg)'});
+        $('.IG_lSideText11, .IG_lSideText12, .IG_lSideText13, .IG_lSideText14, .IG_lSideText15').css({'transition':'0s', 'transform':'rotate(90deg)'});
 
     }
 
 
 }
 
-calculator.roll.IG_l2 = function(index, prevIndex, textArray, newRoll) {
-
-    newRoll === undefined ? false : newRoll;
+calculator.roll.IG_l2 = function(index, prevIndex, textArray) {
 
     var lSideText20 = document.getElementById('IG_lSideText20');
     var lSideText21 = document.getElementById('IG_lSideText21');
@@ -3153,11 +3049,9 @@ calculator.roll.IG_l2 = function(index, prevIndex, textArray, newRoll) {
         var str1 = '.IG_lSideText2' + index;
         var str2 = '.IG_lSideText2' + prevIndex;
 
-        calculator.roll.IG_transformFade(str1, str2);
-
-        // $(str1).css({'transition':'1.5s', 'transform':'rotate(0deg)'});
-        // $(str2).css({'transition':'1.5s', 'transform':'rotate(-60deg)'});
-        // setTimeout(()=>{$(str2).css({'transition':'0s', 'transform':'rotate(90deg)'});}, 1600);
+        $(str1).css({'transition':'1.5s', 'transform':'rotate(0deg)'});
+        $(str2).css({'transition':'1.5s', 'transform':'rotate(-60deg)'});
+        setTimeout(()=>{$(str2).css({'transition':'0s', 'transform':'rotate(90deg)'});}, 1600);
 
         var m = textArray.length;
         var nextIndex = index + 1;
@@ -3169,15 +3063,7 @@ calculator.roll.IG_l2 = function(index, prevIndex, textArray, newRoll) {
             nextIndex = nextIndex % m;
         }
 
-        setTimeout(()=> {
-
-            if(!calculator.roll.IG_kill || newRoll) {
-                calculator.roll.IG_l2(nextIndex, prevIndex, calculator.roll.IG_olArray)
-            }
-
-        }, calculator.roll.IG_displayTime);
-
-        // setTimeout(()=>calculator.roll.IG_l2(nextIndex, prevIndex, textArray), calculator.roll.displayTime);
+        setTimeout(()=>calculator.roll.IG_l2(nextIndex, prevIndex, textArray), calculator.roll.IG_displayTime);
 
     } else {
 
@@ -3188,17 +3074,16 @@ calculator.roll.IG_l2 = function(index, prevIndex, textArray, newRoll) {
         lSideText24.innerHTML = '';
         lSideText25.innerHTML = '';
 
-        $('.IG_lSideText20').css({'transition':'1.5s', 'opacity':'1'});
-        $('.IG_lSideText21, .IG_lSideText22, .IG_lSideText23, .IG_lSideText24, .IG_lSideText25').css({'transition':'1s', 'opacity':'0'});
+        $('.IG_lSideText20').css({'transition':'1.5s', 'transform':'rotate(0deg)'});
+        $('.IG_lSideText21, .IG_lSideText22, .IG_lSideText23, .IG_lSideText24, .IG_lSideText25').css({'transition':'0s', 'transform':'rotate(90deg)'});
 
     }
 
 
 }
 
-calculator.roll.IG_dsL = function(index, prevIndex, textArray, newRoll) {
 
-    newRoll === undefined ? false : newRoll;
+calculator.roll.IG_dsL = function(index, prevIndex, textArray) {
 
     var dLSideText0 = document.getElementById('IG_dLSideText0');
     var dLSideText1 = document.getElementById('IG_dLSideText1');
@@ -3208,6 +3093,7 @@ calculator.roll.IG_dsL = function(index, prevIndex, textArray, newRoll) {
     var dLSideText5 = document.getElementById('IG_dLSideText5');
 
     if(!calculator.IG_stopRolling) {
+
 
         dLSideText0.innerHTML = textArray[0];
         dLSideText1.innerHTML = textArray[1];
@@ -3219,11 +3105,9 @@ calculator.roll.IG_dsL = function(index, prevIndex, textArray, newRoll) {
         var str1 = '.IG_dLSideText' + index;
         var str2 = '.IG_dLSideText' + prevIndex;
 
-        calculator.roll.IG_transformFade(str1, str2);
-
-        // $(str1).css({'transition':'1.5s', 'transform':'rotate(0deg)'});
-        // $(str2).css({'transition':'1.5s', 'transform':'rotate(-60deg)'});
-        // setTimeout(()=>{$(str2).css({'transition':'0s', 'transform':'rotate(90deg)'});}, 1600);
+        $(str1).css({'transition':'1.5s', 'transform':'rotate(0deg)'});
+        $(str2).css({'transition':'1.5s', 'transform':'rotate(-60deg)'});
+        setTimeout(()=>{$(str2).css({'transition':'0s', 'transform':'rotate(90deg)'});}, 1600);
 
         var m = textArray.length;
         var nextIndex = index + 1;
@@ -3235,15 +3119,7 @@ calculator.roll.IG_dsL = function(index, prevIndex, textArray, newRoll) {
             nextIndex = nextIndex % m;
         }
 
-        setTimeout(()=> {
-
-            if(!calculator.roll.IG_kill || newRoll) {
-                calculator.roll.IG_dsL(nextIndex, prevIndex, calculator.roll.IG_dsLeader)
-            }
-
-        }, calculator.roll.IG_displayTime);
-
-        // setTimeout(()=>calculator.roll.IG_dsL(nextIndex, prevIndex, textArray), calculator.roll.displayTime);
+        setTimeout(()=>calculator.roll.IG_dsL(nextIndex, prevIndex, textArray), calculator.roll.IG_displayTime);
 
     } else {
 
@@ -3254,15 +3130,13 @@ calculator.roll.IG_dsL = function(index, prevIndex, textArray, newRoll) {
         dLSideText4.innerHTML = '';
         dLSideText5.innerHTML = '';
 
-        $('.IG_dLSideText0').css({'transition':'1.5s', 'opacity':'1'});
-        $('.IG_dLSideText1, .IG_dLSideText2, .IG_dLSideText3, .IG_dLSideText4, .IG_dLSideText5').css({'transition':'1s', 'opacity':'0'});
+        $('.IG_dLSideText0').css({'transition':'1.5s', 'transform':'rotate(0deg)'});
+        $('.IG_dLSideText1, .IG_dLSideText2, .IG_dLSideText3, .IG_dLSideText4, .IG_dLSideText5').css({'transition':'0s', 'transform':'rotate(90deg)'});
 
     }
 
 
 }
-
-
 
 
 // MICRO TO MACRO CONNECTION ARRAYS
@@ -3277,28 +3151,6 @@ calculator.roll.IG_dsLeader = Array(6);
 
 
 // MACRO ARRAY CONTROLLING METHODS
-
-calculator.roll.IG_hideAll = function() {
-
-    $('.IG_lSideText10, .IG_lSideText11, .IG_lSideText12, .IG_lSideText13, .IG_lSideText14, .IG_lSideText15').css({'transition':'0s', 'filter':'opacity(0)', 'opacity':'0'});
-
-    $('.IG_lSideText20, .IG_lSideText21, .IG_lSideText22, .IG_lSideText23, .IG_lSideText24, .IG_lSideText25').css({'transition':'0s', 'filter':'opacity(0)', 'opacity':'0'});
-
-    $('.IG_dLSideText0, .IG_dLSideText1, .IG_dLSideText2, .IG_dLSideText3, .IG_dLSideText4, .IG_dLSideText5').css({'transition':'0s', 'filter':'opacity(0)', 'opacity':'0'});
-
-
-}
-
-calculator.roll.IG_showAll = function() {
-
-    $('.IG_lSideText10, .IG_lSideText11, .IG_lSideText12, .IG_lSideText13, .IG_lSideText14, .IG_lSideText15').css({'transition':'0s', 'filter':'opacity(1)'});
-
-    $('.IG_lSideText20, .IG_lSideText21, .IG_lSideText22, .IG_lSideText23, .IG_lSideText24, .IG_lSideText25').css({'transition':'0s', 'filter':'opacity(1)'});
-
-    $('.IG_dLSideText0, .IG_dLSideText1, .IG_dLSideText2, .IG_dLSideText3, .IG_dLSideText4, .IG_dLSideText5').css({'transition':'0s', 'filter':'opacity(1)'});
-
-}
-
 calculator.roll.IG_emptyAll = function() {
 
     calculator.roll.IG_lArray = [-1, -1, -1, -1, -1, -1];
@@ -3308,25 +3160,12 @@ calculator.roll.IG_emptyAll = function() {
 
 }
 
-calculator.roll.miniGameSetup = function() {
-
-    $('#IG_lSideText12').html('YOU');
-    $('#IG_lSideText22').html('COMPUTER');
-
-    $('.IG_lSideText10, .IG_lSideText11, .IG_lSideText12, .IG_lSideText13, .IG_lSideText14, .IG_lSideText15').css({'transition':'0s', 'filter':'opacity(0)', 'opacity':'0'});
-    $('.IG_lSideText20, .IG_lSideText21, .IG_lSideText22, .IG_lSideText23, .IG_lSideText24, .IG_lSideText25').css({'transition':'0s', 'filter':'opacity(0)', 'opacity':'0'});
-
-    $('.IG_lSideText12, .IG_lSideText22').css({'transition':'1s', 'filter':'opacity(1)', 'opacity':'1'});
-    $('.IG_lSideText22').css({'fill':'white'});
-
-}
-
 // typeOfContest is about which type of contest is being played
 // in the experiment only 'l', 'f' and 'fhetero will be relevant'
 calculator.roll.IG_setRolesAndGroups = function() {
 
         // contest section related
-    if(calculator.globalVariable.isIGA) {
+    if(calculator.globalVariable.IG_isIGA) {
 
         calculator.roll.IG_dsLeader[0] = 'GROUP A';
         calculator.roll.IG_dsLeader[1] = 'FOLLOWER';
@@ -3344,9 +3183,9 @@ calculator.roll.IG_setRolesAndGroups = function() {
 
         // we are always represented by left side so left hetero implies our
         // group is hetero
-        if(calculator.globalVariable.ourFollowersAreHetero) {
+        if(calculator.globalVariable.IG_ourFollowersAreHetero) {
 
-            if(calculator.globalVariable.playerIndex === 0) {
+            if(calculator.globalVariable.IG_playerIndex === 0) {
 
                 calculator.roll.IG_lArray[3] = 'STRONG';
                 calculator.roll.IG_olArray[3] = 'WEAK';
@@ -3355,7 +3194,7 @@ calculator.roll.IG_setRolesAndGroups = function() {
 
             }
 
-            if(calculator.globalVariable.playerIndex === 1) {
+            if(calculator.globalVariable.IG_playerIndex === 1) {
 
                 calculator.roll.IG_lArray[3] = 'WEAK';
                 calculator.roll.IG_olArray[3] = 'STRONG';
@@ -3371,7 +3210,7 @@ calculator.roll.IG_setRolesAndGroups = function() {
     // contest section related
     // this section is only relevant for the tutorial
     // otherwise we reconstruct the data to make the subject's group group A
-    if(calculator.globalVariable.isIGB) {
+    if(calculator.globalVariable.IG_isIGB) {
 
         calculator.roll.IG_dsLeader[0] = 'GROUP B';
         calculator.roll.IG_dsLeader[1] = 'FOLLOWER';
@@ -3389,9 +3228,9 @@ calculator.roll.IG_setRolesAndGroups = function() {
 
         // we are always represented by left side so left hetero implies our
         // group is hetero
-        if(calculator.globalVariable.theirFollowersAreHetero) {
+        if(calculator.globalVariable.IG_theirFollowersAreHetero) {
 
-            if(calculator.globalVariable.playerIndex === 0) {
+            if(calculator.globalVariable.IG_playerIndex === 0) {
 
                 calculator.roll.IG_lArray[3] = 'STRONG';
                 calculator.roll.IG_olArray[3] = 'WEAK';
@@ -3400,7 +3239,7 @@ calculator.roll.IG_setRolesAndGroups = function() {
 
             }
 
-            if(calculator.globalVariable.playerIndex === 1) {
+            if(calculator.globalVariable.IG_playerIndex === 1) {
 
                 calculator.roll.IG_lArray[3] = 'WEAK';
                 calculator.roll.IG_olArray[3] = 'STRONG';
@@ -3417,9 +3256,9 @@ calculator.roll.IG_setRolesAndGroups = function() {
 
 calculator.roll.IG_setYouTag = function() {
 
-    if(calculator.globalVariable.playerView) {
+    if(calculator.globalVariable.IG_playerView) {
 
-        if(calculator.globalVariable.playerIndex === 0) {
+        if(calculator.globalVariable.IG_playerIndex === 0) {
 
             calculator.roll.IG_lArray[2] = 'YOU';
 
@@ -3430,7 +3269,7 @@ calculator.roll.IG_setYouTag = function() {
 
         }
 
-        if(calculator.globalVariable.playerIndex === 1) {
+        if(calculator.globalVariable.IG_playerIndex === 1) {
 
             calculator.roll.IG_lArray[2] = 'YOU';
 
@@ -3453,9 +3292,9 @@ calculator.roll.IG_adjustForTreatment = function() {
 
     // we are always represented by left side so left hetero implies our
     // group is hetero
-    if(calculator.globalVariable.ourFollowersAreHetero) {
+    if(calculator.globalVariable.IG_ourFollowersAreHetero) {
 
-        if(calculator.globalVariable.isIGA) {
+        if(calculator.globalVariable.IG_isIGA) {
 
             calculator.roll.IG_lArray[3] = 'STRONG';
             calculator.roll.IG_olArray[3] = 'WEAK';
@@ -3464,7 +3303,7 @@ calculator.roll.IG_adjustForTreatment = function() {
 
             // here we use subjectiveIndex as a way to determine left and right player rolls
             // we do not require subjectiveview that way we can also use this method during the tutorial
-            if(calculator.globalVariable.playerIndex === 0) {
+            if(calculator.globalVariable.IG_playerIndex === 0) {
 
                 calculator.roll.IG_lArray[3] = 'STRONG';
                 calculator.roll.IG_olArray[3] = 'WEAK';
@@ -3473,7 +3312,7 @@ calculator.roll.IG_adjustForTreatment = function() {
 
             }
 
-            if(calculator.globalVariable.playerIndex === 1) {
+            if(calculator.globalVariable.IG_playerIndex === 1) {
 
                 calculator.roll.IG_lArray[3] = 'WEAK';
                 calculator.roll.IG_olArray[3] = 'STRONG';
@@ -3486,9 +3325,9 @@ calculator.roll.IG_adjustForTreatment = function() {
 
     }
 
-    if(calculator.globalVariable.theirFollowersAreHetero) {
+    if(calculator.globalVariable.IG_theirFollowersAreHetero) {
 
-        if(calculator.globalVariable.isIGB) {
+        if(calculator.globalVariable.IG_isIGB) {
 
             calculator.roll.IG_lArray[3] = 'STRONG';
             calculator.roll.IG_olArray[3] = 'WEAK';
@@ -3497,7 +3336,7 @@ calculator.roll.IG_adjustForTreatment = function() {
 
             // here we use subjectiveIndex as a way to determine left and right player rolls
             // we do not require subjectiveview that way we can also use this method during the tutorial
-            if(calculator.globalVariable.playerIndex === 0) {
+            if(calculator.globalVariable.IG_playerIndex === 0) {
 
                 calculator.roll.IG_lArray[3] = 'STRONG';
                 calculator.roll.IG_olArray[3] = 'WEAK';
@@ -3506,7 +3345,7 @@ calculator.roll.IG_adjustForTreatment = function() {
 
             }
 
-            if(calculator.globalVariable.playerIndex === 1) {
+            if(calculator.globalVariable.IG_playerIndex === 1) {
 
                 calculator.roll.IG_lArray[3] = 'WEAK';
                 calculator.roll.IG_olArray[3] = 'STRONG';
@@ -3527,7 +3366,7 @@ calculator.roll.IG_animate = function() {
     calculator.roll.IG_l1(0, 6, calculator.roll.IG_lArray);
     calculator.roll.IG_l2(0, 6, calculator.roll.IG_olArray);
 
-    if(calculator.globalVariable.playerView) {
+    if(calculator.globalVariable.IG_playerView) {
 
         calculator.roll.IG_dsL(0, 6, calculator.roll.IG_dsLeader);
 
@@ -3555,9 +3394,8 @@ calculator.roll.IG_reset = function() {
 }
 
 
-
 calculator.roll.IG_adjustRollTextColor = function() {
-    if(calculator.globalVariable.isIGA) {
+    if(calculator.globalVariable.IG_isIGA) {
 
         $('.IG_lSideText10, .IG_lSideText11, .IG_lSideText12, .IG_lSideText13, .IG_lSideText14, .IG_lSideText15').css({'fill':'white'});
         $('.IG_lSideText12').css({'fill':'lime'});
@@ -3566,7 +3404,7 @@ calculator.roll.IG_adjustRollTextColor = function() {
 
     }
 
-    if(calculator.globalVariable.isIGB) {
+    if(calculator.globalVariable.IG_isIGB) {
 
         $('.IG_lSideText10, .IG_lSideText11, .IG_lSideText12, .IG_lSideText13, .IG_lSideText14, .IG_lSideText15').css({'fill':'black'});
         $('.IG_lSideText12').css({'fill':'lime'});
@@ -3576,52 +3414,6 @@ calculator.roll.IG_adjustRollTextColor = function() {
     }
 }
 
-
-calculator.roll.IG_updateRollArrays = function() {
-    calculator.roll.IG_hideAll();
-    calculator.roll.IG_emptyAll();
-    calculator.roll.IG_setRolesAndGroups();
-    calculator.roll.IG_setYouTag();
-    calculator.roll.IG_adjustForTreatment();
-    calculator.roll.IG_adjustRollTextColor();
-    calculator.roll.IG_counter = 0;
-    setTimeout(()=>{
-        calculator.roll.IG_hideAll();
-    }, 5000)
-    setTimeout(()=>{
-        calculator.roll.IG_showAll();
-    }, 10100)
-}
-
-// change the setup conditions then call this
-calculator.roll.IG_resetRoll = function() {
-
-    calculator.IG_stopRolling = true;
-    calculator.roll.IG_kill = true;
-    // calculator.roll.IG_updateRollArrays();
-
-    setTimeout(()=>{
-        calculator.roll.IG_updateRollArrays();
-
-        calculator.IG_stopRolling = false;
-
-
-        calculator.roll.IG_l1(0, 6, calculator.roll.IG_lArray, true);
-        calculator.roll.IG_l2(0, 6, calculator.roll.IG_olArray, true);
-
-        if(!calculator.globalVariable.weAreInFeedbackStage) {
-
-            calculator.roll.IG_dsL(0, 6, calculator.roll.IG_dsLeader, true);
-
-        }
-
-    }, 1000)
-
-    setTimeout(()=>{
-        calculator.roll.IG_kill = false;
-    }, 10000)
-
-}
 
 /////////////////////// QUESTIONS ////////////////////////
 /////////////////////// QUESTIONS ////////////////////////
@@ -3660,13 +3452,12 @@ calculator.questions.spin2.IG_l2 = function() {
 }
 
 
-
 calculator.questions.activate.IG_all = function(array) {
 
     $('.IG_sliderQuestion_l1').css({'opacity': array[0].toString()});
     $('.IG_sliderQuestion_l2').css({'opacity': array[1].toString()});
 
-    if(calculator.globalVariable.playerView) {
+    if(calculator.globalVariable.IG_playerView) {
 
         $('.IG_sliderQuestion_l1').css({'opacity': '0'});
 
@@ -3719,8 +3510,8 @@ calculator.wheel.IG_spin = function() {
 
     //---//
 
-    calculator.wheel.spinDuration = 1;
-    calculator.wheel.spinNumber = 3;
+    calculator.wheel.IG_spinDuration = 1;
+    calculator.wheel.IG_spinNumber = 3;
 
     calculator.wheel.IG_create(IG_pwin, 'IG_myWheel');
     calculator.wheel.IG_myWheelObj.stopAnimation(false);
@@ -3742,13 +3533,13 @@ calculator.wheel.IG_spin = function() {
     {
         calculator.results.update.IG_allTextAndColors(winner);
     },
-    calculator.wheel.spinDuration * 0.75 * 1000);
+    calculator.wheel.IG_spinDuration * 0.75 * 1000);
 
     setTimeout(()=>
     {
         calculator.results.show.IG_outcomes();
     },
-    calculator.wheel.spinDuration * 1000);
+    calculator.wheel.IG_spinDuration * 1000);
 
 }
 
@@ -3758,8 +3549,8 @@ calculator.wheel.IG_cruise = function() {
 
         calculator.wheel.IG_show();
 
-        calculator.wheel.spinDuration = 60;
-        calculator.wheel.spinNumber = 6;
+        calculator.wheel.IG_spinDuration = 60;
+        calculator.wheel.IG_spinNumber = 6;
 
         calculator.wheel.IG_create(IG_pwin, 'IG_myWheel');
         calculator.wheel.IG_myWheelObj.stopAnimation(false);
@@ -3893,10 +3684,10 @@ calculator.results.show.IG_outcomes = function() {
 
     if(calculator.globalVariable.display.IG_cResults) {
         calculator.results.show.IG_leaderOutcomes();
-        calculator.globalVariable.contestResultsExist = true;
+        calculator.globalVariable.IG_contestResultsExist = true;
     } else {
         calculator.results.hide.IG_leaderOutcomes()
-        calculator.globalVariable.contestResultsExist = false;
+        calculator.globalVariable.IG_contestResultsExist = false;
     }
 
     if(calculator.globalVariable.display.IG_cTitle) {
@@ -3922,7 +3713,7 @@ calculator.results.show.IG_outcomes = function() {
         // to always have only one leader icons set in the page
     }
 
-    if(calculator.globalVariable.weAreInFeedbackStage) {
+    if(calculator.globalVariable.IG_weAreInFeedbackStage) {
         $('.IG_pWrap').css({'transition':'0s', 'margin-top':'-22px'});
         $('.IG_generalMarginBox').css({'height':'345px'});
     }
@@ -4039,7 +3830,6 @@ calculator.results.leader.display.IG_role = function(show) {
 }
 
 
-
 calculator.results.show.IG_leaderOutcomes = function() {
 
 
@@ -4057,24 +3847,21 @@ calculator.results.hide.IG_leaderOutcomes = function() {
     calculator.space.IG_contestResultsIsOpen = false;
 
     // Do not hide the contest titles when the subjective view is the leader
-    if(calculator.globalVariable.playerIndex === -1 && calculator.globalVariable.playerView) {
-        // calculator.space.IG_contestResultsIsOpen = true;
+    if(calculator.globalVariable.IG_playerIndex === -1 && calculator.globalVariable.IG_playerView) {
+        calculator.space.IG_contestResultsIsOpen = true;
         $('.IG_imageWrap23').css({'transition' : '0.15s', 'opacity':'1'});
     }
 
     // do not hide the contest title when contest title hover is close.
     // If the title is hidden then it will never be opened by the hover since it is closed
     if(!calculator.globalVariable.hover.IG_cTitle) {
-        // calculator.space.IG_contestResultsIsOpen = true;
+        calculator.space.IG_contestResultsIsOpen = true;
         $('.IG_imageWrap23').css({'transition' : '0.15s', 'opacity':'1'});
     }
 
     calculator.space.update.IG_heights();
 
 }
-
-
-
 
 
 //---------- ALL ----------//
@@ -4088,7 +3875,7 @@ calculator.results.softHide.IG_allResults = function() {
 calculator.results.hide.IG_all = function() {
 
     calculator.results.hide.IG_leaderOutcomes();
-    calculator.globalVariable.dynamicDisplay = false;
+    calculator.globalVariable.IG_dynamicDisplay = false;
 
 }
 
@@ -4161,7 +3948,6 @@ calculator.results.update.IG_contestText = function(w) {
 
 }
 
-
 calculator.results.update.IG_outcomeColors = function(w) {
 
     w = w === undefined ? calculator.results.IG_lastWinner : w;
@@ -4218,7 +4004,7 @@ calculator.results.update.IG_allColors = function(w) {
         $('.IG_c2').css({'color':'black'});
     }
 
-    if(calculator.globalVariable.isIGA || calculator.globalVariable.isIGB) {
+    if(calculator.globalVariable.IG_isIGA || calculator.globalVariable.IG_isIGB) {
 
         $('.IG_p1, .IG_p2').css({'color':'black'});
 
@@ -4281,7 +4067,7 @@ calculator.IG_open = function() {
     $('.IG_contestSectionMinimize, .IG_contestSectionMinimize2').css({'transition':'0.3s', 'transform-origin':'bottom', 'transform':'scaleY(1)'});
     $('.IG_generalMarginBox').css({'margin-bottom':'0px'});
     calculator.space.IG_contestIsOpen = true;
-    // calculator.space.IG_contestResultsIsOpen = true;
+    calculator.space.IG_contestResultsIsOpen = true;
     calculator.space.update.IG_heights();
 
 }
@@ -4369,28 +4155,24 @@ calculator.button.enable.IG_spinBottom = function() {
 
 //------------- DISPLAY CALCULATOR ------------------//
 
-calculator.section.all.IG_opacity = function(opt, delay) {
+calculator.section.all.IG_opacity = function(opt) {
 
-    delay = delay === undefined ? 0.5 : delay;
-
-    delay = delay + 's';
-
-    $('.IG_generalMarginBox').css({'transition':delay, 'opacity' : opt.toString()});
+    $('.IG_generalMarginBox').css({'transition':'0.35s', 'opacity' : opt.toString()});
 
 }
 
 
 calculator.section.all.adjust.IG_decisionSliders = function() {
 
-    if(calculator.globalVariable.playerView) {
+    if(calculator.globalVariable.IG_playerView) {
 
-        if(calculator.globalVariable.playerIndex === -1) {
+        if(calculator.globalVariable.IG_playerIndex === -1) {
 
             calculator.decisionSlider.leader.IG_disable();
 
         }
 
-        if(calculator.globalVariable.playerIndex === 0 || calculator.globalVariable.playerIndex === 1) {
+        if(calculator.globalVariable.IG_playerIndex === 0 || calculator.globalVariable.IG_playerIndex === 1) {
 
             calculator.section.decision.leader.IG_opacity(1)
             calculator.decisionSlider.leader.IG_enable();
@@ -4403,7 +4185,7 @@ calculator.section.all.adjust.IG_decisionSliders = function() {
 
     }
 
-    if(calculator.globalVariable.weAreInFeedbackStage) {
+    if(calculator.globalVariable.IG_weAreInFeedbackStage) {
 
         calculator.decisionSlider.leader.IG_disable();
 
@@ -4414,13 +4196,9 @@ calculator.section.all.adjust.IG_decisionSliders = function() {
 
 //------------- DISPLAY PLAYER DECISION SLIDER -----------------//
 
-calculator.section.decision.leader.IG_opacity = function(opt, delay) {
+calculator.section.decision.leader.IG_opacity = function(opt) {
 
-    delay = delay === undefined ? 0.5 : delay;
-
-    delay = delay + 's';
-
-    $('.IG_decisionWrapL').css({'transition':delay, 'opacity' : opt.toString()});
+    $('.IG_decisionWrapL').css({'opacity' : opt.toString()});
 
 }
 
@@ -4455,12 +4233,6 @@ calculator.section.hs.opacity.IG_leaderIconsMain = function(o) {
 
         $('.IG_wrapMid').css({'transition':'0.3s', 'opacity': o.toString()});
 
-    }
-
-    if(o === 1) {
-        $('.IG_splc1, .IG_splc2').css({'filter':'drop-shadow(0px 7px 3px black)'});
-    } else {
-        $('.IG_splc1, .IG_splc2').css({'filter':'drop-shadow(0px 0px 0px transparent)'});
     }
 
 }
@@ -4498,14 +4270,14 @@ calculator.section.hs.set.IG_iconPosition = function(position) {
         $('.rightFollowerIconMainWrap').css({'transition':'0.7s','transform':'rotate(-10deg)'});
         $('.IG_fightIcon').css({'transition':'0.5s', 'transform':'rotate(1turn)'});
 
-        if(calculator.globalVariable.isIGA) {
-            if(!calculator.globalVariable.ourFollowersAreHetero) {
+        if(calculator.globalVariable.IG_isIGA) {
+            if(!calculator.globalVariable.IG_ourFollowersAreHetero) {
                 $('.IG_OGCIcon').css({'margin-top':'69px'});
             }
         }
 
-        if(calculator.globalVariable.isIGB) {
-            if(!calculator.globalVariable.theirFollowersAreHetero) {
+        if(calculator.globalVariable.IG_isIGB) {
+            if(!calculator.globalVariable.IG_theirFollowersAreHetero) {
                 $('.IG_OGCIcon').css({'margin-top':'69px'});
             }
         }
@@ -4591,8 +4363,6 @@ calculator.section.contest.display.IG_icons = function(show) {
 }
 
 
-
-
 ///////////// SET VALUES //////////
 ///////////// SET VALUES //////////
 ///////////// SET VALUES //////////
@@ -4645,12 +4415,12 @@ calculator.refresh.IG_sliders = function() {
     calculator.graphics.update.IG_effortBar(efo2, 'IG_barl2', !ourSide, !showAxis);
 
 
-    if(calculator.globalVariable.playerView) {
+    if(calculator.globalVariable.IG_playerView) {
 
         calculator.decisionSlider.leader.IG_effortBar(efo1, !showAxis);
         $('#IG_dSliderL').prop('value', efo1);
         $('#IG_dSliderL').change();
-        calculator.graphics.update.barLabelX('IG_bardl', true);
+        calculator.graphics.update.IG_barLabelX('IG_bardl', true);
 
     }
 
@@ -4683,9 +4453,9 @@ calculator.refresh.IG_barXAxis = function() {
 //////////////////////// SETUP METHODS //////////////////////////////////
 //////////////////////// SETUP METHODS //////////////////////////////////
 
-calculator.setup.ig_feedbackAdjustment = function() {
+calculator.setup.IG_feedbackAdjustment = function() {
 
-    if(calculator.globalVariable.weAreInFeedbackStage) {
+    if(calculator.globalVariable.IG_weAreInFeedbackStage) {
 
         $('.IG_pWrap').css({'margin-top':'-22px'});
         $('.IG_ctGhost, .IG_hsWrap, .IG_decisionWrapL').css({'display':'none'});
@@ -4701,15 +4471,213 @@ calculator.setup.ig_feedbackAdjustment = function() {
 
 }
 
+calculator.setup.ig = function() {
 
-//----------------------------------------------------------------------------//
-//-----------------------   DECISION SLIDER BUTTONS   ------------------------//
-//----------------------------------------------------------------------------//
+    // HOVERS ACTIVE
+    calculator.globalVariable.IG_aBitOfWaitingIsDone = true;
+
+    //------- SPACING OF CALCULATOR -----//
+    calculator.space.IG_hsIsOpen = true;
+    calculator.space.IG_powerBarIsOpen = true;
+    calculator.space.IG_contestIsOpen = true;
+    calculator.space.IG_contestResultsIsOpen = true;
+    calculator.globalVariable.IG_contestResultsExist = false;
+
+
+    //------- CALCULATOR SETUP -------//
+
+    calculator.globalVariable.IG_showDecisionSlider = 0;
+
+    calculator.globalVariable.IG_isOG1 = 0;
+    calculator.globalVariable.IG_isOG2 = 0;
+    calculator.globalVariable.IG_isIGA = 1;
+    calculator.globalVariable.IG_isIGB = 0;
+
+    //------- PLAYER SPECIFIC INFORMATION -------//
+
+    calculator.globalVariable.IG_ourFollowersAreHetero = 1;
+    calculator.globalVariable.IG_theirFollowersAreHetero = 1;
+
+    calculator.globalVariable.IG_playerView = 0;
+    calculator.globalVariable.IG_playerIndex = 0;
+
+    // leader view setup - gray/yellow
+    // calculator.globalVariable.IG_playerView = 1;
+    // calculator.globalVariable.IG_playerIndex = -1;
+    // calculator.globalVariable.playerGroup = 1;
+
+
+    //------- TUTORIAL SWITCHES FOR IN-GROUP CONTEST ------//
+
+    calculator.globalVariable.tutorial.IG_weAreInTutorial = 1;
+    calculator.globalVariable.tutorial.IG_IGSameColor = 0;
+    calculator.globalVariable.tutorial.IG_IGDifferentColor = 1 - calculator.globalVariable.tutorial.IG_IGSameColor;
+
+
+    //----- AFTER SPIN ACTION SWITCHES ----//
+
+    calculator.globalVariable.display.IG_hsIcons = 1;
+
+    calculator.globalVariable.display.IG_cResults = 1;
+    calculator.globalVariable.display.IG_cTitle = 1;
+    calculator.globalVariable.display.IG_cButton = 1;
+
+
+    //----- HOVER SWITCHES ------//
+
+    calculator.globalVariable.hover.IG_cTitle = 1;
+    calculator.globalVariable.hover.IG_cButton = 1;
+
+
+    //------ QUESTIONS -----//
+    calculator.questions.activate.IG_all([0,0])
+
+    //------ LOCKS -------//
+    calculator.lock.IG_activate([0,0]);
+
+    //----- ROLL ------//
+    calculator.roll.IG_initiate();
+
+    //----- ICONS -----//
+    calculator.icons.IG_setAll();
+    calculator.section.hs.set.IG_iconPosition('bottom');
+
+    //-- SETUP TEXT --//
+    calculator.titles.update.IG_textAndColor();
+    calculator.titles.hs.ghost.IG_text();
+
+    //----- DECISION SLIDERS -----//
+    // auto show hide the relevant slider based on globalVariable.subjective**
+    calculator.section.all.adjust.IG_decisionSliders();
+
+    //------ HIDE ALL / CLOSE ALL RESULTS------//
+    calculator.results.softHide.IG_allResults();
+    // calculator.space.close.all();
+
+
+    //----------------------------------------------------------//
+    //--------------- HELP AND SABOTAGE SETTINGS ---------------//
+    //----------------------------------------------------------//
+
+
+    //-------- TITLES -------//
+
+    calculator.titles.hs.ghost.IG_show();
+
+    //----- GENERAL DISPLAY SETTINGS ----//
+
+    calculator.globalVariable.IG_dynamicDisplay = false;
+    calculator.section.hs.opacity.IG_LiFi([1,1]);
+
+
+    //----------------------------------------------------------//
+    //------------------- POWER BAR SETTINGS -------------------//
+    //----------------------------------------------------------//
+
+    calculator.section.power.opacity.IG_bar(true);
+    calculator.section.power.display.IG_barText();
+
+
+    //----------------------------------------------------------//
+    //--------------------- CONTEST SECTION --------------------//
+    //----------------------------------------------------------//
+
+    //----- GENERAL SETTINGS -----//
+
+    // these display settins simply display none the specific section
+    // calculator.section.contest.display.all(true);
+    calculator.section.contest.display.IG_sliders(true);
+    calculator.section.contest.display.IG_title(true);
+    calculator.section.contest.display.IG_results(true);
+    calculator.section.contest.display.IG_icons(false);
+
+    //------- RESULTS DISPLAY SETTINGS ------//
+
+    calculator.results.leader.display.IG_investment(true);
+    calculator.results.leader.display.IG_prize(true);
+    calculator.results.leader.display.IG_netPayoff(true);
+    calculator.results.leader.display.IG_role(true);
+
+    //------- BUTTONS ------//
+
+    calculator.button.display.IG_spinBottom(true);
+    calculator.button.enable.IG_spinBottom();
+    calculator.globalVariable.IG_bottomSpinButtonIsEnabled = true;
+
+    //-------- TITLES -------//
+
+    // if the subjective index is leader then hiding the contest title will not work by construction
+    calculator.titles.contest.IG_show();
+    // calculator.titles.contest.hide();
+
+    //------ SLIDERS -------//
+
+    // changes the slider range based on globalVariable.is***
+    // calculator.graphics.update.IG_effortSliderRange();
+    // changes the leader slider text background color based on globalVariable.is***
+    calculator.graphics.update.IG_contestSliderBackgroundColor();
+
+
+    //------ REFRESH ------// -> NOT SURE WHEN IT IS NECESSARY TO USE THESE
+
+    calculator.refresh.IG_values();
+    // VALUES HAS REFRESH.SLIDER INSIDE IT
+    calculator.refresh.IG_sliders();
+
+
+    //------- FEEDBACK ARRANGEMENT -------//
+    calculator.globalVariable.IG_weAreInFeedbackStage = 0;
+    calculator.setup.IG_feedbackAdjustment();
+
+    //------ DISPLAY ------//
+    $('.IG_generalMarginBox').css({'transition':'0.7s', 'transform':'scale(1)', 'display':'grid'});
+
+    setTimeout(()=> {
+        calculator.section.all.IG_opacity(1);
+    }
+    , 1000);
+
+
+}
+
+calculator.IG_null = function() {
+
+    $('.IG_generalMarginBox').css({'transition':'0.3s', 'transform':'scale(0)', 'height':'0'})
+    setTimeout(()=>{$('.IG_generalMarginBox').css({'display':'none'})}, 300);
+
+}
+
+
+//-------------------------------------------------------------------------//
+//-------------------------------------------------------------------------//
+//-------------------------------------------------------------------------//
+//-------------------------------------------------------------------------//
+//-------------------------------------------------------------------------//
+//-------------------------------------------------------------------------//
+
+
+calculator.IG_initialize = function() {
+
+    calculator.pointers.IG_activate([0, 0]);
+    calculator.questions.activate.IG_all([0, 0]);
+    calculator.lock.IG_activate([0, 0])
+
+
+    calculator.values.set.IG_efforts([20,20]);
+    calculator.refresh.IG_sliders();
+    calculator.graphics.update.IG_pie();
+
+}
+
+calculator.IG_initialize();
+calculator.IG_null();
+calculator.setup.ig();
 
 
 
 var IG_calcButton = document.getElementById('IG_calcButtonBottom');
-calculator.globalVariable.IG_open = 0;
+calculator.globalVariable.IG_open = 1;
+
 IG_calcButton.onclick = function() {
 
     // close calculator
@@ -4739,10 +4707,10 @@ calculator.globalVariable.IG_bottomSpinButtonIsEnabled = true;
 IG_spin2.onclick = function() {
     if(calculator.globalVariable.IG_bottomSpinButtonIsEnabled) {
 
-        calculator.globalVariable.aBitOfWaitingIsDone = false;
+        calculator.globalVariable.IG_aBitOfWaitingIsDone = false;
 
         calculator.wheel.IG_spin();
-        calculator.globalVariable.dynamicDisplay = false;
+        calculator.globalVariable.IG_dynamicDisplay = false;
 
 
     }

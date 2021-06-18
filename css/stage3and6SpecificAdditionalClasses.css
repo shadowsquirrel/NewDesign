@@ -118,3 +118,40 @@
     border-style: inset;
     box-shadow: 0px 6px 8px 5px black;
 }
+/*------------*/
+/*--------------------*/
+.sliderArrowImageWrap_dL
+{
+    margin-left: 400px;
+    position: absolute;
+}
+.redArrowImage3
+{
+    opacity:0;
+    height: 100px;
+    width: 100px;
+    transform: rotate(-60deg);
+}
+/*--------------*/
+.sbextra
+{
+    margin-bottom: 7px;
+    margin-right: 16px;
+    margin-left: 1px;
+    padding: 0px;
+}
+.hrcextra
+{
+    box-shadow: 0px 4px 5px lime;
+    display:inline;
+    margin-left: 5px;
+    margin-right: -2px;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+}
+.myBold
+{
+    font-weight:500;
+}

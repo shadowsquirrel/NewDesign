@@ -509,3 +509,11 @@ img.playerRandomSortImageMini
     transform:scale(0);
     margin-left:609px;
 }
+/*-------------------*/
+.debugInfoBoxText
+{
+    position: absolute;
+    opacity: 1;
+    font-size: 25px;
+    margin-left: -1222px;
+}

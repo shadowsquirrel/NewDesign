@@ -7,7 +7,7 @@
 // -------------------------------------------------------------------------- //
 
 
-let tool = {
+tool = {
     active:{},
     set:{},
     info:{},
@@ -15,7 +15,18 @@ let tool = {
         show:{},
     },
     var:{},
+    debug:{},
+    adjust:{},
 }
+
+
+
+
+
+
+
+
+
 
 
 // -------------------------------------------------------------------------- //
@@ -25,6 +36,26 @@ let tool = {
 // -------------------------------------------------------------------------- //
 // -------------------------------------------------------------------------- //
 // -------------------------------------------------------------------------- //
+
+
+
+tool.debug.showMainData = function(myData) {
+
+    console.log('');
+    console.log('--------------------------------------------------');
+    console.log('');
+    console.log('sorted array: ' + myData.sortedArray);
+    console.log('count: ' + myData.myCount);
+    console.log('treatment: ' + myData.treatment);
+    console.log('myGroup: ' + myData.myGroup);
+    console.log('myOriginalGroup: ' + myData.myOriginalGroup);
+    console.log('original sorted array: ' + myData.originalSortedArray);
+    console.log('og1 won lost: ' + myData.s3[1]);
+    console.log('');
+    console.log('--------------------------------------------------');
+    console.log('')
+
+}
 
 // -------------------------------------------------------------------------- //
 // -------------- REARRANGE GROUP ORDER IN THE SHUFFLED ORDER --------------- //
@@ -92,6 +123,9 @@ tool.rearrangeMainData = function(myData) {
         tool.swapArrayElements(myData.s6[0], 0, 1);
         tool.swapArrayElements(myData.s6[1], 0, 1);
 
+
+
+
     }
 
 }
@@ -144,7 +178,8 @@ tool.calculateMyOriginalGroupIndex = function(myData) {
 
 }
 
-
+// COME BACK TO THIS AND RE CONFIG CONDITIONS WE ARE STILL NOT DECIDED ON
+// HOW TO UPDATE S*DONE VARIABLES IF WE DO 1 OR 0 THEN WE ARE FINE BELOW
 tool.tutorialSetup = function(myData, stage) {
 
     // skip tutorial overwrites quickTutorial so no worries for missing cases
@@ -174,14 +209,23 @@ tool.tutorialSetup = function(myData, stage) {
 
     }
 
+    if(stage === 's4') {
+
+        // you can be the follower who became the leader in the first round then
+        // assigned to the leader role in the second round (33% chance)
+        var skip = (mainData.myTutorial.s4Done > 2) ? 1 : 0;
+        calculator.skipTutorial = skip;
+
+        calculator.quickTutorial = (mainData.myTutorial.s4Done > 0) ? 1 : 0;
+
+        tool.var.submitTutorialLockActive = !skip;
+
+    }
+
 }
 
 tool.active.sparkle = true;
 tool.sparkle = function(buttonIndex) {
-
-    if(buttonIndex === 'D-12') {
-        // tool.sparkleSlider();
-    }
 
     var bS = '#btn-' + buttonIndex;
 
@@ -227,6 +271,18 @@ tool.sparkleSlider = function() {
 
 }
 
+
+tool.set.NORP = function(norp, np) {
+
+    np = np === undefined ? 6 : np;
+
+    $('#norp').html(norp);
+
+    updateLoad(norp, np)
+
+}
+
+
 // -------------------------------------------------------------------------- //
 // -------------------------------------------------------------------------- //
 // -------------------------------------------------------------------------- //
@@ -239,7 +295,7 @@ tool.sparkleSlider = function() {
 // set round number
 tool.set.roundNumber = function(myData) {
 
-    var number = myData.round;
+    var number = myData.myRound;
 
     $('#currentRound').html(number);
 
@@ -286,7 +342,7 @@ tool.info.skip = false;
 // skipping information boxes after some round
 tool.skipInfoBox = function(myData) {
 
-    var myR = myData.round;
+    var myR = myData.myRound;
 
     if(myR > tool.info.skipTutorialAfterRound) {
         tool.info.skip = true;
@@ -412,6 +468,7 @@ tool.enervatePayoffTitles = function(state) {
 
 }
 
+
 tool.enervatePayoffTitlesLeader = function(state) {
 
 
@@ -446,5 +503,124 @@ tool.graphics.show.decisionSliderButtons = function() {
     setTimeout(()=>{
         $('.submitButtonTop').css({'transform':'scale(1)'});
     }, 15000)
+
+}
+
+
+// -------------------------------------------------------------------------- //
+// -------------------------------------------------------------------------- //
+// -------------------------------------------------------------------------- //
+// ------------------------------ STAGE 4 RELATED --------------------------- //
+// -------------------------------------------------------------------------- //
+// -------------------------------------------------------------------------- //
+// -------------------------------------------------------------------------- //
+
+tool.set.pastHSDecisions = function(myData) {
+
+    var h1,s1,h2,s2;
+
+    var help = 0;
+    var sabo = 1;
+
+    if(calculator.globalVariable.isIGA) {
+
+        var ourGroup = 0;
+
+        if(calculator.globalVariable.playerIndex != -1) {
+
+            var myList = myData.sortedArray;
+            var myIndex = (myList.indexOf(myData.myCount) - 1);
+
+        } else {
+
+            var myIndex = 0;
+
+        }
+    } else {
+
+        var ourGroup = 1;
+        var myIndex = 0;
+
+    }
+
+    h1 = myData.s2[ourGroup][help][myIndex];
+    s1 = myData.s2[ourGroup][sabo][myIndex];
+
+    var myColor = 'gray';
+    if(h1 > 0) {
+        myColor = 'blue';
+    }
+    if(s1 > 0) {
+        myColor = 'red';
+    }
+
+    $('.lfpd').removeClass('leftFollowerPastDecisionBlue leftFollowerPastDecisionGray leftFollowerPastDecisionRed').addClass('leftFollowerPastDecisionGray');
+
+    $('#leftFollowerHSValue').html(0);
+
+    if(h1 > 0) {
+        $('#leftFollowerHSValue').html(h1);
+        $('#leftFollowerHSText').html('Help');
+        $('.lfpd').removeClass('leftFollowerPastDecisionBlue leftFollowerPastDecisionGray leftFollowerPastDecisionRed').addClass('leftFollowerPastDecisionBlue');
+    }
+    if(s1 > 0) {
+        $('#leftFollowerHSValue').html(s1);
+        $('#leftFollowerHSText').html('Sabotage');
+        $('.lfpd').removeClass('leftFollowerPastDecisionBlue leftFollowerPastDecisionGray leftFollowerPastDecisionRed').addClass('leftFollowerPastDecisionRed');
+    }
+
+    var hisIndex = 1- myIndex;
+
+    h2 = myData.s2[ourGroup][help][hisIndex];
+    s2 = myData.s2[ourGroup][sabo][hisIndex];
+
+    var hisColor = 'gray';
+    if(h2 > 0) {
+        hisColor = 'blue';
+    }
+    if(s2 > 0) {
+        hisColor = 'red';
+    }
+
+    $('.rightFollowerPastDecision').css({'background':hisColor});
+
+    $('#rightFollowerHSValue').html(0);
+    $('.rfpd').removeClass('rightFollowerPastDecisionBlue rightFollowerPastDecisionGray rightFollowerPastDecisionRed').addClass('rightFollowerPastDecisionGray');
+
+    if(h2 > 0) {
+        $('#rightFollowerHSValue').html(h2);
+        $('#rightFollowerHSText').html('Help');
+        $('.rfpd').removeClass('rightFollowerPastDecisionBlue rightFollowerPastDecisionGray rightFollowerPastDecisionRed').addClass('rightFollowerPastDecisionBlue');
+
+    }
+    if(s2 > 0) {
+        $('#rightFollowerHSValue').html(s2);
+        $('#rightFollowerHSText').html('Sabotage');
+        $('.rfpd').removeClass('rightFollowerPastDecisionBlue rightFollowerPastDecisionGray rightFollowerPastDecisionRed').addClass('rightFollowerPastDecisionRed');
+    }
+
+
+}
+
+
+
+tool.adjust.pastHSDecisions = function(myData) {
+
+    var homo;
+
+    if(calculator.globalVariable.isIGA) {
+
+        homo = (myData.treatment[0] === 0);
+
+    } else {
+        homo = (myData.treatment[1] === 0);
+    }
+
+    if(homo) {
+
+        $('.lfpd').css({'transform-origin':'right center', 'transform':'scale(0.7)'});
+        $('.rfpd').css({'transform-origin':'left center', 'transform':'scale(0.7)'});
+        $('.pastDecision, .pastDecision2').css({'font-weight':'600'});
+    }
 
 }

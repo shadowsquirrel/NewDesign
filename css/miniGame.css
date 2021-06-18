@@ -1,0 +1,127 @@
+.specialButton
+{
+    padding-top: 6px;
+    width: 413px;
+    height: 75px;
+    border-radius: 150px;
+    font-weight:500;
+}
+.destroyBox
+{
+    justify-content: center;
+    width:0px;
+    box-shadow:0px 0px transparent;
+    background-color: transparent;
+    transform-origin: center;
+    border: 0px solid transparent;
+}
+.specialBoxWrap
+{
+    margin-top:105px;
+}
+.specialBoxWrap2
+{
+    margin-top:85px;
+}
+.specialButton2
+{
+    padding-top: 6px;
+    width: 413px;
+    height: 75px;
+    border-radius: 150px;
+    font-weight:500;
+    background-color:rgb(6,72,72);
+}
+.specialButton3
+{
+    padding-top: 6px;
+    width: 150px;
+    height: 75px;
+    border-radius: 150px;
+    font-weight:500;
+    background-color:rgb(6,72,72);
+}
+.spinIcon
+{
+    padding: 5px;
+    border-collapse: separate;
+    border-spacing: 15px;
+    opacity: 1;
+    width: 33px;
+    height: 33px;
+    /* cursor: pointer; */
+    outline: none;
+    background-color: lime;
+    border: none;
+    border-radius: 30px;
+    /* box-shadow: 0 6px black; */
+    transition: 0.5s;
+}
+.miniGameScoreWrap
+{
+    position:absolute;
+    margin-top:342px;
+    opacity:0;
+    height:260px;
+    width:258px;
+    font-size:40px;
+    flex-direction: column;
+    padding-top:10px;
+    /* box-shadow: 0px 1px 4px 2px black; */
+}
+.totalScore
+{
+    font-size:25px;
+    transform-origin: top;
+    transform:scale(0.7);
+    filter:opacity(0);
+}
+.myMiniGameScore
+{
+    filter: drop-shadow(2px 4px 0px black);
+    font-size: 80px;
+    display: inline-block;
+    margin-top: -30px;
+    color:#289e99;
+}
+.currentScore
+{
+    font-size:27px;
+}
+.previousScore
+{
+    font-size: 25px;
+    transform-origin: top;
+    transform: scale(0.7);
+    display: flex;
+    position: absolute;
+    margin-top: -106px;
+    margin-left: -195px;
+}
+.myMiniGameScore2
+{
+    margin-top:-30px;
+    filter: drop-shadow(2px 4px 0px black);
+    font-size: 65px;
+    display: inline-block;
+    margin-top: -21px;
+    color:#8a8a8a;
+}
+.myMiniGameScore3
+{
+    margin-top:-30px;
+    filter: drop-shadow(2px 4px 0px black);
+    font-size: 65px;
+    display: inline-block;
+    margin-top: -21px;
+    color:#8a8a8a;
+}
+.rightInfoBox
+{
+    margin-left: 300px;
+    width: 693px;
+}
+.IG_bswLeft
+{
+    z-index:1;
+}

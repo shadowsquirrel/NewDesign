@@ -1,0 +1,10 @@
+.specialBoxWrap {
+    margin-top: 135px;
+}
+.bottomMapWrap
+{
+    transform:scale(0.7);
+    transition:1s;
+    margin-top:-97px;
+    opacity:0;
+}

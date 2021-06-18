@@ -456,7 +456,7 @@ let generateIcons = function(logicData) {
 
         for(var i = 1; i < 7; i++) {
             myString2 = '.iwIndex' + i;
-            $(myString2).css({'transition':'3s', 'opacity':'1'})
+            $(myString2).css({'transition':'2s', 'opacity':'1'})
         }
 
     }
@@ -466,7 +466,7 @@ let generateIcons = function(logicData) {
         var newArray = myData.sortedArray;
         var roleIndex = newArray.indexOf(myData.myCount);
         myString2 = '.iwIndex' + (roleIndex + 1);
-        $(myString2).css({'transition':'3s', 'opacity':'1'})
+        $(myString2).css({'transition':'1s', 'opacity':'1'})
 
         setTimeout
 
