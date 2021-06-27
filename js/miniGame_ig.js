@@ -5,6 +5,7 @@ window.onload = function() {
 
     // var node = parent.node;
 
+    adjustWindowSize();
 
     helper.highlightPB = function() {
 
@@ -20,7 +21,8 @@ window.onload = function() {
     // ------ debug data ------ //
     // ------------------------ //
     mainData = {
-        round: 1,
+
+        myRound: 1,
 
         myTutorial: {
             s1Done: 1,
@@ -32,14 +34,15 @@ window.onload = function() {
             fB1: 0,
             fB2: 0,
             fB3: 0,
-            miniGame: 1,
+            // no tuto variable for minigame
+            // first time it is done is in round one and every one experience itn in og 1
         },
 
 
+        myCount: 4,
 
         sortedArray: [0,2,5,4,1,3],
 
-        myCount: 2,
 
         myMiniGame: {
             totalScore: 1200,
@@ -122,6 +125,7 @@ window.onload = function() {
         // rearranges the sortedArray so that the left group is the subject's group
         tool.rearrangeGroupOrder(mainData);
 
+        tool.rearrangeMainData(mainData);
 
         // ---------------------------------------------------------------------- //
         // ------------ ACTION AFTER DATA IS REARRANGED / MANIPULATED ----------- //
@@ -139,19 +143,23 @@ window.onload = function() {
         // defined/assigned by setup.fundamentals
         setup.mg();
 
-        // uses map.setup() to pass calculator.globalVariables to map.globalVariables
-        // map.setup() -> adjust which icon sets to show given the treatment and group
-        //
-        // given the setup show the desired stage
-        //
-        // shows the map with focus action etc...
-        map.show.stage('og1_wait_l');
 
-        // setup the info text displays based on the treatment
-        setup.infoBoxText(mainData);
 
-        // setup the info text displays based on tutorial experience
-        tool.tutorialSetup(mainData, 's4');
+
+
+        // immediatly call the function
+        tool.determineS3Winner();
+
+        if(tool.ourGroupWonOG1) {
+            map.show.stage('ig_wait_winner');
+            $('.winnerGroup-InfoBox').css({'display':'flex'});
+            $('.lostLeader-InfoBox').css({'display':'none'});
+        } else {
+            map.show.stage('ig_wait_loser');
+            $('.lostLeader-InfoBox').css({'display':'flex'});
+            $('.winnerGroup-InfoBox').css({'display':'none'});
+        }
+
 
 
         helper.computerEffortList = [50, 125, 250, 500, 750];
@@ -297,20 +305,14 @@ window.onload = function() {
 
         helper.useMiniGameList = false;
 
-        helper.skipTuto = (mainData.myTutorial.miniGame > 0) ? true : false;
+
 
         // helper.useMiniGameList = skipTuto;
 
         helper.myIndex = (mainData.sortedArray.indexOf(mainData.myCount) - 1);
 
 
-        if(helper.myIndex != -1) {
-            // tool.set.NORP(4,2);
-            tool.set.NORP(4)
-        } else {
-            // tool.set.NORP(2, 4);
-            tool.set.NORP(2)
-        }
+        tool.set.NORP(4)
         setMetaNorp(168, -14, 0.3);
 
 
@@ -324,22 +326,14 @@ window.onload = function() {
 
             box.transition('', 'A-1', 1, 0, 1, 0);
 
-            if(helper.skipTuto) {
-
-                // // SEND READY SIGNAL TO CLIENT
-                // node.emit('HTML-ready')
-
-            }
-
-            setTimeout(()=>{
-                map.animate.YAH_og1();
-            }, 300)
+            // // SEND READY SIGNAL TO CLIENT
+            // node.emit('HTML-ready')
 
             setTimeout(()=>{
                 box.button.show('A-1');
             }, 2000)
 
-        }, 1500)
+        }, 4500)
 
 
         listener = {};
@@ -349,12 +343,56 @@ window.onload = function() {
 
             box.transition('A-1', 'A-2', 0, 0, 1, 750);
 
-            if(helper.myIndex != -1) {
-                map.focus.og1.leaders(0.75);
-            } else {
-                map.focus.og1.followers(0.75);
-            }
+            if(tool.ourGroupWonOG1) {
 
+                map.show.bottomTransition(true, 0.5);
+
+                map.opacity.topTransition(0.5);
+                map.opacity.main([1,1,0.5], 0.5);
+
+                setTimeout(()=>{
+
+                    $('.IGContests').css({'transition':'0.5s', 'opacity':'1'});
+                    $('.prizeCrownBlackBottom').css({'transition':'0.5s','opacity':'0'});
+
+                    $('.IGFI_Bottom, .IGFightIconLimeBottom, .prizeCrownLimeBottom').css({'transition':'0.5s', 'opacity':'1', 'filter':'opacity(1)'})
+
+                    $('.prizeCrownLimeBottom').css({'transition':'2s', 'margin-top':'-37px'});
+                    map.opacity.section([0.1,0.1,0.1], 0.5);
+
+                }, 250)
+
+            } else {
+
+                map.show.bottomTransition(true, 0.5);
+                map.show.topTransition(true, 0.5);
+                map.opacity.main([1,1,0.5], 1);
+                map.opacity.topTransition(1, 1);
+                map.opacity.bottomTransition(0.5, 1);
+                map.opacity.OG2Right(1);
+                map.opacity.OG2Left(1)
+                map.opacity.main([1,1,0.5], 0.5);
+
+
+                $('.IGFightIconLimeTop').css({'transition':'0.5s',
+                'opacity':'1'});
+
+                $('.prizeCrownLimeTop').css({'transition':'2s',
+                'margin-top':'-44px', 'opacity':'1', 'filter':'opacity(1)'})
+
+                setTimeout(()=>{
+
+                    $('.IGContests').css({'transition':'1s', 'opacity':'1'});
+                    $('.prizeCrownBlackBottom').css({'transition':'0.5s','opacity':'0'});
+
+                    $('.IGFI_Bottom, .IGFightIconLimeBottom, .prizeCrownLimeBottom').css({'transition':'0.5s', 'opacity':'1', 'filter':'opacity(1)'})
+
+                    $('.prizeCrownLimeBottom').css({'transition':'2s', 'margin-top':'-37px'});
+                    map.opacity.section([0.1,0.1,0.1], 0.5);
+
+                }, 250)
+
+            }
 
             setTimeout(()=>{
                 box.button.show('A-2');
@@ -362,52 +400,20 @@ window.onload = function() {
 
         });
 
+
         $('#btn-A-2').click(function() {
 
-            if(helper.skipTuto) {
-
-                box.transition('A-2', 'A-6', 0, 0, 1, 750);
-
-                setTimeout(()=>{
-                    box.transition('', 'A-7', 0, 0, 1, 750);
-                    box.button.show2('A-7');
-                    box.transition('', 'A-8', 0, 0, 1, 750);
-                    box.button.show2('A-8');
-                }, 1250)
-
-            } else {
-
-                box.transition('A-2', 'A-3', 0, 0, 1, 750);
-
-                setTimeout(()=>{
-                    box.button.show('A-3');
-                }, 2000)
-            }
-
-        });
-
-        $('#btn-A-3').click(function() {
-
-            box.transition('A-3', 'A-4', 0, 0, 1, 750);
-
-            setTimeout(()=>{
-                box.button.show('A-4');
-            }, 2000)
-
-        });
-
-        $('#btn-A-4').click(function() {
-
-            box.transition('A-4', 'A-5', 0, 0, 1, 750);
+            box.transition('A-2', 'A-6', 0, 0, 1, 750);
 
             setTimeout(()=>{
                 box.transition('', 'A-7', 0, 0, 1, 750);
                 box.button.show2('A-7');
-                // box.transition('', 'A-8', 0, 0, 1, 750);
-                // box.button.show2('A-8');
+                box.transition('', 'A-8', 0, 0, 1, 750);
+                box.button.show2('A-8');
             }, 1250)
 
         });
+
 
 
 
@@ -420,79 +426,69 @@ window.onload = function() {
             box.transition('A-7', '', 0, 0, 1, 0);
             box.transition('A-8', '', 0, 0, 1, 0);
             $('.sexplain').css({'transition':'0.5s', 'opacity':'0'});
-            setMetaNorp(168, -14, 0.3);
-            continueFlowing = false;
 
+            $('.metaNorp').css({'transition':'0.5s', 'opacity':'0'});
             setTimeout(()=>{
-                $('#boxbox-A').css({'display':'none'});
-                $('.initialMapDiv').css({'display':'none'});
-            }, 750)
 
-            if(!helper.skipTuto) {
+                $('.metaNorp').appendTo('.metaNorpWrapTop');
+                $('.metaNorp').css({'transition':'0s', 'margin-top':'0px',
+                 'margin-left':'0px', 'position':'absolute'});
 
-                setTimeout(()=>{
+                 setTimeout(()=>{
+                     $('.metaNorp').css({'transition':'0.5s', 'opacity':'1'});
+                 }, 100)
 
-                    calculator.section.all.IG_opacity(1,1);
+             }, 500)
 
-                    $('.IG_generalMarginBox').css({'transition':'1s',
-                    'transform':'scale(1)', 'margin-top':'50px'});
+             setMetaNorp(168, -14, 0.3);
 
-                    calculator.button.display.IG_spinBottom(false);
-                    calculator.globalVariable.IG_bottomSpinButtonIsEnabled = false;
+             continueFlowing = false;
 
-                }, 800)
+             setTimeout(()=>{
+                 $('#boxbox-A').css({'display':'none'});
+                 $('.initialMapDiv').css({'display':'none'});
+             }, 750)
 
-                setTimeout(()=>{
-                    box.transition('', 'B-1', 0, 0, 1, 0);
+             setTimeout(()=>{
 
-                    setTimeout(()=>{
-                        box.button.show('B-1');
-                    }, 2000)
+                 calculator.section.all.IG_opacity(1,1);
 
-                }, 1500)
+                 $('.IG_generalMarginBox').css({'transition':'1s',
+                 'transform':'scale(1)', 'margin-top':'50px'});
 
-            } else { // NO TUTORIAL
+                 calculator.button.display.IG_spinBottom(false);
+                 calculator.globalVariable.IG_bottomSpinButtonIsEnabled = false;
 
-                setTimeout(()=>{
+             }, 800)
 
-                    calculator.section.all.IG_opacity(1,1);
+             setTimeout(()=>{
 
-                    $('.IG_generalMarginBox').css({'transition':'1s',
-                    'transform':'scale(1)', 'margin-top':'50px'});
+                 calculator.button.display.IG_spinBottom(false);
+                 calculator.globalVariable.IG_bottomSpinButtonIsEnabled = false;
 
-                    calculator.button.display.IG_spinBottom(false);
-                    calculator.globalVariable.IG_bottomSpinButtonIsEnabled = false;
+                 calculator.pointers.IG_activate([1, 0]);
+                 helper.spinButtonActivator = true;
+                 $('#boxbox-C').css({'display':'flex',
+                 'margin-left':'500px', 'margin-top':'-235px'});
 
-                }, 800)
+                 $('.miniGameScoreWrap').css({'transition':'0s','margin-left':'373px', 'margin-top':'368px'});
+                 $('.previousScore').css({'display':'flex'});
+                 setTimeout(()=>{
+                     $('.miniGameScoreWrap').css({'transition':'1s', 'opacity':'1'});
+                     $('.totalScore').css({'transition':'1s', 'filter':'opacity(1)'});
+                 }, 100)
 
-                setTimeout(()=>{
+                 $('#myCurrentGameScore').html(helper.currentGameScore);
+                 $('#myMiniGameScore').html(helper.totalGameScore);
+                 $('#myPreviousGameScore').html(helper.previousGameScore);
 
-                    calculator.button.display.IG_spinBottom(false);
-                    calculator.globalVariable.IG_bottomSpinButtonIsEnabled = false;
+             }, 1500)
 
-                    calculator.pointers.IG_activate([1, 0]);
-                    helper.spinButtonActivator = true;
-                    $('#boxbox-C').css({'display':'flex',
-                    'margin-left':'500px', 'margin-top':'-235px'});
 
-                    $('.miniGameScoreWrap').css({'transition':'0s','margin-left':'373px', 'margin-top':'368px'});
-                    $('.previousScore').css({'display':'flex'});
-                    setTimeout(()=>{
-                        $('.miniGameScoreWrap').css({'transition':'1s', 'opacity':'1'});
-                        $('.totalScore').css({'transition':'1s', 'filter':'opacity(1)'});
-                    }, 100)
 
-                    $('#myCurrentGameScore').html(helper.currentGameScore);
-                    $('#myMiniGameScore').html(helper.totalGameScore);
-                    $('#myPreviousGameScore').html(helper.previousGameScore);
+         });
 
-                }, 1500)
-
-            }
-
-        });
-
-        // NO THANKS BUTTON
+        // -------- NO THANKS BUTTON ------- //
         $('#btn-A-8').click(function() {
 
             box.transition('A-5', '', 0, 0, 1, 0);
@@ -501,271 +497,25 @@ window.onload = function() {
 
 
             $('#box-A-7').css({'transform':'scale(0.7)', 'margin-left':'700px', 'margin-top':'-173px'});
-            metaMoveBottom();
-            // setMetaNorp(108, -18, 0.25);
 
-        });
-
-        $('#btn-B-1').click(function() {
-
-            box.transition('B-1', 'B-2', 0, 0, 1, 750);
-
-            setTimeout(()=>{
-                calculator.pointers.IG_activate([1, 0]);
-            }, 1000)
-
-            setTimeout(()=>{
-                box.button.show('B-2');
-            }, 2000)
-
-        });
-
-        $('#btn-B-2').click(function() {
-
-            calculator.pointers.IG_activate([0, 0]);
-
-            box.transition('B-2', 'B-3', 0, 0, 1, 750);
-
-            setTimeout(()=>{
-                calculator.pointers.IG_activate([0, 1]);
-            }, 1000)
-
-            setTimeout(()=>{
-                box.button.show('B-3');
-            }, 2000)
-
-        });
-
-        $('#btn-B-3').click(function() {
-
-            calculator.pointers.IG_activate([0, 0]);
-
-            box.transition('B-3', 'B-4', 0, 0, 1, 750);
-
-            setTimeout(()=>{
-                helper.highlightPB();
-            }, 2000)
-
-            setTimeout(()=>{
-                box.button.show('B-4');
-            }, 3000)
-
-        });
-
-        $('#btn-B-4').click(function() {
-
-            box.transition('B-4', 'B-5', 0, 0, 1, 750);
-
-            setTimeout(()=>{
-                box.button.show('B-5');
-            }, 2000)
-
-        });
-
-        $('#btn-B-5').click(function() {
-
-            box.transition('B-5', 'B-6', 0, 0, 1, 750);
-
-            setTimeout(()=>{
-                box.button.show('B-6');
-            }, 2000)
-
-        });
-
-        $('#btn-B-6').click(function() {
-
-            box.transition('B-6', 'B-7', 0, 0, 1, 750);
-
-            setTimeout(()=>{
-                box.button.show('B-7');
-            }, 2000)
-
-        });
-
-        listener.b9 = false;
-        $('#btn-B-7').click(function() {
-
-            listener.b9 = true;
-
-            box.transition('B-7', 'B-8', 0, 0, 1, 750);
-
-            calculator.pointers.IG_activate([1, 0]);
-
-            $('#boxbox-B').css({'transition':'1s', 'margin-top':'-76px'});
-
-            setTimeout(()=>{
-                calculator.globalVariable.IG_bottomSpinButtonIsEnabled = true;
-                calculator.button.display.IG_spinBottom(true);
-            }, 2000)
-
-        });
-
-        listener.b10 = false;
-        $('#btn-B-9').click(function() {
-
-            box.transition('B-9', 'B-10', 0, 0, 1, 750);
-
-            setTimeout(()=>{
-                box.transition('', 'B-11', 0, 0, 1, 750);
-                box.button.show2('B-11');
-            }, 2000)
-
-        });
-
-        // first next button
-        $('#btn-B-11').click(function() {
-
-            // listener.b11 = true;
-
-            box.transition('B-10', '', 0, 0, 1, 0);
-            box.transition('B-11', '', 0, 0, 1, 0);
-
-            setTimeout(()=>{
-                helper.resetContest();
-                setTimeout(()=>{
-                    calculator.pointers.IG_activate([0, 1]);
-                }, 6000)
-            }, 750)
-
-
+            $('.metaNorp').css({'transition':'0.5s', 'opacity':'0'});
             setTimeout(()=>{
 
-                box.transition('', 'B-12', 0, 0, 1, 0);
+                $('.metaNorp').appendTo('.norpBottomWrap');
+
+                $('.metaNorp').css({'transition':'0s','position':'static',
+                'margin-top':'150px', 'margin-left':'250px', 'transform':'scale(1)'});
 
                 setTimeout(()=>{
-                    box.button.show('B-12');
-                }, 2000)
+                    $('.metaNorp').css({'transition':'0.5s', 'opacity':'1'});
+                    flowLoad(1);
+                }, 100)
 
-            }, 4000)
-
-        });
-
-
-        listener.b13 = false;
-        $('#btn-B-12').click(function() {
-
-            listener.b13 = true;
-            listener.b11 = false;
-
-            box.transition('B-12', 'B-13', 0, 0, 1, 750);
-
-            calculator.pointers.IG_activate([1, 0]);
-
-            helper.spinButtonActivator = true;
-
-            // calculator.button.display.IG_spinBottom(true);
-            // calculator.globalVariable.IG_bottomSpinButtonIsEnabled = true;
+            }, 500)
 
         });
 
 
-        $('#btn-B-15').click(function() {
-
-            box.transition('B-15', 'B-1501', 0, 0, 1, 750);
-
-            setTimeout(()=>{
-                box.button.show('B-1501');
-            }, 2000)
-
-        });
-
-        $('#btn-B-1501').click(function() {
-
-            box.transition('B-1501', 'B-16', 0, 0, 1, 750);
-
-            setTimeout(()=>{
-                box.button.show('B-16');
-            }, 2000)
-
-        });
-
-        $('#btn-B-16').click(function() {
-
-            box.transition('B-16', 'B-17', 0, 0, 1, 750);
-
-            setTimeout(()=>{
-                box.button.show('B-17');
-            }, 2000)
-
-        });
-
-        $('#btn-B-17').click(function() {
-
-            box.transition('B-17', 'B-18', 0, 0, 1, 750);
-
-            $('.totalScore').css({'transition':'1', 'filter':'opacity(1)'});
-
-            setTimeout(()=>{
-                box.button.show('B-18');
-            }, 2000)
-
-        });
-
-        $('#btn-B-18').click(function() {
-
-            box.transition('B-18', 'B-19', 0, 0, 1, 750);
-
-            setTimeout(()=>{
-                box.button.show('B-19');
-            }, 2000)
-
-        });
-
-        $('#btn-B-19').click(function() {
-
-            box.transition('B-19', 'B-20', 0, 0, 1, 750);
-
-            setTimeout(()=>{
-                box.button.show('B-20');
-            }, 2000)
-
-        });
-
-        listener.b20 = false;
-        $('#btn-B-20').click(function() {
-
-            listener.b20 = true;
-
-            box.transition('B-20', 'B-21', 0, 0, 1, 750);
-
-            calculator.pointers.IG_activate([1, 0]);
-            calculator.lock.IG_activate([0,1]);
-
-            // calculator.button.display.IG_spinBottom(true);
-            // calculator.globalVariable.IG_bottomSpinButtonIsEnabled = true;
-
-            if(!helper.skipTuto) {
-
-                // // SEND READY SIGNAL TO CLIENT
-                // var stage = ''
-                // node.emit('HTML-ready')
-
-            }
-
-
-        });
-
-        listener.notuto = false;
-        $('#btn-C-1').click(function() {
-
-            listener.notuto = true;
-
-            helper.useMiniGameList = true;
-
-            box.transition('C-1', '', 0, 0, 1, 0);
-
-            setTimeout(()=>{
-                helper.resetContest();
-            }, 250)
-
-            // if(!helper.skipTuto){}
-
-            // setTimeout(()=>{
-            //     calculator.button.display.IG_spinBottom(true);
-            //     calculator.globalVariable.IG_bottomSpinButtonIsEnabled = true;
-            // }, 5000)
-
-        });
 
     }
 

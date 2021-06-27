@@ -15,38 +15,15 @@ let initialize = {};
 //----------------------------------------------------------//
 //
 //
-initialize.values = function(myData) {
+initialize.values = function() {
 
     calculator.pointers.activate([0, 0, 0, 0, 0, 0]);
     calculator.questions.activate.all([0, 0, 0, 0, 0, 0]);
     calculator.lock.activate([0, 0, 0, 0, 0, 0])
 
-    var s1, h1, s2, h2, os1, os2, oh1, oh2, efo1, efo2;
 
-    var myGroup = 0;
-    var theirGroup = 1;
-    var help = 0;
-    var sabo = 1;
-    var f1 = 0;
-    var f2 = 1;
-    var efforts = 0;
-
-    s1 = myData.s2[myGroup][sabo][f1];
-    s2 = myData.s2[myGroup][sabo][f2];
-    h1 = myData.s2[myGroup][help][f1];
-    h2 = myData.s2[myGroup][help][f2];
-
-    os1 = myData.s2[theirGroup][sabo][f1];
-    os2 = myData.s2[theirGroup][sabo][f2];
-    oh1 = myData.s2[theirGroup][help][f1];
-    oh2 = myData.s2[theirGroup][help][f2];
-
-    efo1 = myData.s3[efforts][myGroup];
-    efo2 = myData.s3[efforts][theirGroup];
-
-    calculator.values.set.helpSabo([s1, s2, h1, h2, os1, os2, oh1, oh2]);
-
-    calculator.values.set.efforts([efo1,efo2]);
+    calculator.values.set.helpSabo([0,0,0,0,0,0,0,0]);
+    calculator.values.set.efforts([100,100]);
     calculator.refresh.sliders();
     calculator.graphics.update.pie();
 
@@ -55,6 +32,79 @@ initialize.values = function(myData) {
 }
 
 
+//----------------------------------------------------------//
+//------------- EXPLANATION TEXT BASICS - SETTING ----------//
+//----------------------------------------------------------//
+//
+//
+setup.basicInfoText = function() {
+
+    var isT1, isT2, isT3
+
+    var h1 = calculator.globalVariable.ourFollowersAreHetero;
+    var h2 = calculator.globalVariable.theirFollowersAreHetero;
+
+    var fI = calculator.globalVariable.playerIndex;
+
+
+    isT1 = (!h1 && !h2) ? true : false;
+    isT2 = (h1 && h2) ? true : false;
+    isT3 = (!isT1 && !isT2) ? true : false;
+
+
+    $('.onlyT2, .onlyT3, .notT1').css({'display':'none'});
+
+
+    if(isT1) {
+        $('#infoTextFollowerType, #infoTextFollowerType2').html('a follower');
+    }
+
+
+    if(isT2) {
+
+        $('.onlyT2, .notT1').css({'display':'inline-block'});
+
+        if(fI === 0) {
+            $('#infoTextFollowerType, #infoTextFollowerType2').html('the <i style=\'font-weight:500\'>strong</i> follower of your group');
+        }
+
+        if(fI === 1) {
+            $('#infoTextFollowerType, #infoTextFollowerType2').html('the <i style=\'font-weight:500\'>weak</i> follower of your group');
+        }
+
+    }
+
+
+    if(isT3) {
+        $('.onlyT3, .notT1').css({'display':'inline-block'});
+
+        if(h1) {
+
+            $('.infoBoxYourGroupHetero').css({'display':'inline-block'});
+            $('.infoBoxTheirGroupHetero').css({'display':'none'});
+
+            if(fI === 0) {
+                $('#infoTextFollowerType, #infoTextFollowerType2').html('the <i style=\'font-weight:500\'>strong</i> follower of your group');
+            }
+
+            if(fI === 1) {
+                $('#infoTextFollowerType, #infoTextFollowerType2').html('the <i style=\'font-weight:500\'>weak</i> follower of your group');
+            }
+        }
+
+        if(h2) {
+
+            $('.infoBoxYourGroupHetero').css({'display':'none'});
+            $('.infoBoxTheirGroupHetero').css({'display':'inline-block'});
+
+            $('#infoTextFollowerType, #infoTextFollowerType2').html('a follower');
+
+        }
+
+    }
+
+
+}
 
 
 //----------------------------------------------------------//
@@ -69,8 +119,8 @@ initialize.values = function(myData) {
 setup.fundamentals = function(myData) {
 
     // setup the contest
-    calculator.globalVariable.isOG1 = 1;
-    calculator.globalVariable.isOG2 = 0;
+    calculator.globalVariable.isOG1 = 0;
+    calculator.globalVariable.isOG2 = 1;
     calculator.globalVariable.isIGA = 0;
     calculator.globalVariable.isIGB = 0;
 
@@ -79,8 +129,8 @@ setup.fundamentals = function(myData) {
     calculator.globalVariable.theirFollowersAreHetero = myData.treatment[1];
 
     // ONLY USED IN OG2 AND FEEDBACK 2
-    calculator.globalVariable.winnerLeaderIndex = 2;
-    calculator.globalVariable.winnerFollowerIndex = 1;
+    calculator.globalVariable.winnerLeaderIndex = map.winnerLeaderIndex;
+    calculator.globalVariable.winnerFollowerIndex = map.winnerFollowerIndex;
 
     // Always on unless it is a leader watching followers compete in IG
     calculator.globalVariable.playerView = 1;
@@ -88,7 +138,22 @@ setup.fundamentals = function(myData) {
     // setup the player role (leader/follower // strong/weak)
     myList = myData.sortedArray;
     myIndex = (myList.indexOf(myData.myCount) - 1);
-    calculator.globalVariable.playerIndex = myIndex;
+    // calculator.globalVariable.playerIndex = myIndex;
+
+    if(tool.ourGroupWonOG1) {
+        calculator.globalVariable.playerIndex = myIndex;
+    } else {
+
+        if(tool.winnerFollowerIndex === myIndex) { // if you are the new leader
+            calculator.globalVariable.playerIndex = -1;
+        } else if(myIndex === -1) { // if you are the lost leader your new index is the winner follower's old index
+            calculator.globalVariable.playerIndex = tool.winnerFollowerIndex;
+        } else { // if you are the lost follower your index is the one retreived from the sortedArray
+            calculator.globalVariable.playerIndex = myIndex;
+        }
+
+    }
+
     if(myIndex === -1) {
         console.log();
         console.log();
@@ -130,7 +195,7 @@ setup.hs = function() {
 
     calculator.globalVariable.hover.hsMinimize = 1;
     calculator.globalVariable.hover.hsIcons = 1;
-    calculator.globalVariable.hover.hsResults = 1;
+    calculator.globalVariable.hover.hsResults = 0;
     calculator.globalVariable.hover.hsMainTitle = 1;
     calculator.globalVariable.hover.hsGhostTitle = 1;
     calculator.globalVariable.hover.hsButton = 0;
@@ -186,17 +251,17 @@ setup.contest = function() {
 
     //----- AFTER SPIN ACTION SWITCHES ----//
 
-    calculator.globalVariable.display.cResults = 1;
+    calculator.globalVariable.display.cResults = 0;
     calculator.globalVariable.display.cTitle = 0;
     calculator.globalVariable.display.cButton = 0;
-    calculator.globalVariable.display.cMinimize = 0;
+    calculator.globalVariable.display.cMinimize = 1;
 
 
     //----- HOVER SWITCHES ------//
 
     calculator.globalVariable.hover.cMinimize = 1;
-    calculator.globalVariable.hover.cResults = 1;
-    calculator.globalVariable.hover.cTitle = 1;
+    calculator.globalVariable.hover.cResults = 0;
+    calculator.globalVariable.hover.cTitle = 0;
     calculator.globalVariable.hover.cButton = 0;
 
 
@@ -253,7 +318,7 @@ setup.contest = function() {
 //----------------------------------------------------------//
 //
 //
-setup.og_fb = function() {
+setup.og = function() {
 
     //-------- CALCULATOR SPACE --------//
     calculator.space.hsIsOpen = true;
@@ -263,10 +328,10 @@ setup.og_fb = function() {
 
 
     //------ QUESTIONS -----//
-    calculator.questions.activate.all([0,0,0,0,0,0])
+    calculator.questions.activate.all([1,1,1,1,1,1])
 
     //------ LOCKS -------//
-    calculator.lock.activate([1,1,1,1,1,1]);
+    calculator.lock.activate([0,0,0,0,0,0]);
 
     //----- ROLL ------//
     // calculator.roll.initiate();
@@ -336,59 +401,51 @@ setup.og_fb = function() {
     // ----------------- FURTHER ADJUSTMENTS ------------------ //
     // -------------------------------------------------------- //
 
-    calculator.minimize(1, 0.5);
+    calculator.minimize();
 
-}
+    //----------------------------------------------------------------------------//
+    //----------------------------- SUBMIT BUTTON --------------------------------//
+    //----------------------------------------------------------------------------//
+
+    $('#submitButtonBottom').click(function() {
+
+        if(!tool.var.submitTutorialLockActive) {
+
+            s2DoneUpdated = mainData.myTutorial.s5Done + 1;
+
+            if(calculator.globalVariable.playerIndex === 0) {
+                var msg = [h1, s1, s5DoneUpdated, ['big brother is watching']];
+            }
+
+            if(calculator.globalVariable.playerIndex === 1) {
+                var msg = [h2, s2, s5DoneUpdated, ['big brother is watching']];
+            }
 
 
-
-
-setup.og1WinnerGroupIndex = undefined;
-
-setup.og1Winner = function(myData) {
-
-    setup.og1WinnerGroupIndex = myData.s3[1].indexOf(true);
-
-}
-
-
-
-setup.infoBoxText = function() {
-
-    if(setup.og1WinnerGroupIndex === 0) {
-
-        $('.groupWon-infoBox').css({'display':'flex'});
-        $('.groupLost-infoBox-leader, .groupLost-infoBox-follower').css({'display':'none'});
-
-    } else {
-
-        $('.groupWon-infoBox').css({'display':'none'});
-
-        if(calculator.globalVariable.playerIndex != -1) {
-
-            $('.groupLost-infoBox-follower').css({'display':'flex'});
-            $('.groupLost-infoBox-leader').css({'display':'none'});
+            node.emit('s5_hs_decision', msg);
 
         } else {
 
-            $('.groupLost-infoBox-leader').css({'display':'flex'});
-            $('.groupLost-infoBox-follower').css({'display':'none'});
+            $('.cantSubmitWrap').css({'transform':'scale(1)',
+            'z-index':'100000000'})
+
+            $('.all').css({'filter':'grayscale(1)', 'opacity':'0.5'});
+
+            $('.majorBlocker').css({'display':'flex'});
 
         }
 
-    }
+    })
 
-}
+    $('#cantSubmitButton').click(function() {
 
+        $('.cantSubmitWrap').css({'transform':'scale(0)',
+        'z-index':'-100000000'})
 
-setup.fastFeedback = false;
+        $('.all').css({'filter':'grayscale(0)', 'opacity':'1'});
 
-setup.determineFastFeedback = function(myData) {
+        $('.majorBlocker').css({'display':'none'});
 
-    myRound = myData.myRound;
-
-    if(myRound > 2) {
-        setup.fastFeedback = true;
-    }
+    })
 
 }

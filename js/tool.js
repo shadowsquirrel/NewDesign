@@ -20,15 +20,6 @@ tool = {
 }
 
 
-
-
-
-
-
-
-
-
-
 // -------------------------------------------------------------------------- //
 // -------------------------------------------------------------------------- //
 // -------------------------------------------------------------------------- //
@@ -148,6 +139,49 @@ tool.swapArrayElements = function(arr, indexA, indexB) {
 
 }
 
+tool.determineS3Winner = function() {
+
+    var results = 1;
+
+    // since the data is rearranged to be from the subject's point of view
+    // subject's group will always be 0
+    var myGroup = 0;
+
+    var winnerGroupIndex = mainData.s3[results].indexOf(true);
+
+
+    tool.ourGroupWonOG1 = (winnerGroupIndex === myGroup);
+
+
+    // console.log('INSIDE DETERMINE S3 WINNER');
+    // console.log(tool.ourGroupWonOG1);
+
+    if(tool.ourGroupWonOG1) {
+        map.winnerLeaderIndex = 1;
+    } else {
+        map.winnerLeaderIndex = 2;
+    }
+
+}
+
+tool.determineS4Winner = function() {
+
+    var results = 1;
+
+    // since the data is rearranged to be from the subject's point of view
+    // subject's group will always be 0
+    var myGroup = 0;
+
+    var lostGroupIndex = mainData.s3[results].indexOf(false);
+
+    var winnerFollowerIndex = mainData.s4[lostGroupIndex][results].indexOf(true);
+
+    tool.winnerFollowerIndex = winnerFollowerIndex;
+    map.globalVariable.winnerFollowerIndex = winnerFollowerIndex;
+    map.winnerFollowerIndex = winnerFollowerIndex + 1;
+
+}
+
 // -------------------------------------------------------------------------- //
 // -------------------  DETERMINE / ASSIGN GROUP INDEX  --------------------- //
 // -------------------------------------------------------------------------- //
@@ -202,7 +236,7 @@ tool.tutorialSetup = function(myData, stage) {
 
         // you can be the follower who became the leader in the first round then
         // assigned to the leader role in the second round (33% chance)
-        var skip = (mainData.myTutorial.s3Done || mainData.myTutorial.s6Done) ? 1 : 0;
+        var skip = (mainData.myTutorial.s3Done || mainData.myTutorial.s4Done || mainData.myTutorial.s6Done) ? 1 : 0;
         calculator.skipTutorial = skip;
 
         tool.var.submitTutorialLockActive = !skip;
@@ -213,7 +247,7 @@ tool.tutorialSetup = function(myData, stage) {
 
         // you can be the follower who became the leader in the first round then
         // assigned to the leader role in the second round (33% chance)
-        var skip = (mainData.myTutorial.s4Done > 2) ? 1 : 0;
+        var skip = (mainData.myTutorial.s4Done === 1) ? 1 : 0;
         calculator.skipTutorial = skip;
 
         calculator.quickTutorial = (mainData.myTutorial.s4Done > 0) ? 1 : 0;

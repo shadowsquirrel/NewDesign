@@ -31,18 +31,18 @@ initialize.values = function(myData) {
     var f2 = 1;
     var efforts = 0;
 
-    s1 = myData.s2[myGroup][sabo][f1];
-    s2 = myData.s2[myGroup][sabo][f2];
-    h1 = myData.s2[myGroup][help][f1];
-    h2 = myData.s2[myGroup][help][f2];
+    s1 = myData.s5[myGroup][sabo][f1];
+    s2 = myData.s5[myGroup][sabo][f2];
+    h1 = myData.s5[myGroup][help][f1];
+    h2 = myData.s5[myGroup][help][f2];
 
-    os1 = myData.s2[theirGroup][sabo][f1];
-    os2 = myData.s2[theirGroup][sabo][f2];
-    oh1 = myData.s2[theirGroup][help][f1];
-    oh2 = myData.s2[theirGroup][help][f2];
+    os1 = myData.s5[theirGroup][sabo][f1];
+    os2 = myData.s5[theirGroup][sabo][f2];
+    oh1 = myData.s5[theirGroup][help][f1];
+    oh2 = myData.s5[theirGroup][help][f2];
 
-    efo1 = myData.s3[efforts][myGroup];
-    efo2 = myData.s3[efforts][theirGroup];
+    efo1 = myData.s6[efforts][myGroup];
+    efo2 = myData.s6[efforts][theirGroup];
 
     calculator.values.set.helpSabo([s1, s2, h1, h2, os1, os2, oh1, oh2]);
 
@@ -69,8 +69,8 @@ initialize.values = function(myData) {
 setup.fundamentals = function(myData) {
 
     // setup the contest
-    calculator.globalVariable.isOG1 = 1;
-    calculator.globalVariable.isOG2 = 0;
+    calculator.globalVariable.isOG1 = 0;
+    calculator.globalVariable.isOG2 = 1;
     calculator.globalVariable.isIGA = 0;
     calculator.globalVariable.isIGB = 0;
 
@@ -79,8 +79,8 @@ setup.fundamentals = function(myData) {
     calculator.globalVariable.theirFollowersAreHetero = myData.treatment[1];
 
     // ONLY USED IN OG2 AND FEEDBACK 2
-    calculator.globalVariable.winnerLeaderIndex = 2;
-    calculator.globalVariable.winnerFollowerIndex = 1;
+    calculator.globalVariable.winnerLeaderIndex = map.winnerLeaderIndex;
+    calculator.globalVariable.winnerFollowerIndex = map.winnerFollowerIndex;
 
     // Always on unless it is a leader watching followers compete in IG
     calculator.globalVariable.playerView = 1;
@@ -88,7 +88,22 @@ setup.fundamentals = function(myData) {
     // setup the player role (leader/follower // strong/weak)
     myList = myData.sortedArray;
     myIndex = (myList.indexOf(myData.myCount) - 1);
-    calculator.globalVariable.playerIndex = myIndex;
+    // calculator.globalVariable.playerIndex = myIndex;
+
+    if(tool.ourGroupWonOG1) {
+        calculator.globalVariable.playerIndex = myIndex;
+    } else {
+
+        if(tool.winnerFollowerIndex === myIndex) { // if you are the new leader
+            calculator.globalVariable.playerIndex = -1;
+        } else if(myIndex === -1) { // if you are the lost leader your new index is the winner follower's old index
+            calculator.globalVariable.playerIndex = tool.winnerFollowerIndex;
+        } else { // if you are the lost follower your index is the one retreived from the sortedArray
+            calculator.globalVariable.playerIndex = myIndex;
+        }
+
+    }
+
     if(myIndex === -1) {
         console.log();
         console.log();
@@ -156,6 +171,12 @@ setup.hs = function() {
     calculator.globalVariable.dynamicDisplay = false;
     calculator.section.hs.opacity.SFiALiFiS([1,1,1,1,0,0]);
 
+
+
+    $('.followerRoleText').css({'display':'none'});
+    $('.hsWrap').css({'margin-bottom':'-30px'});
+
+
 }
 
 
@@ -221,7 +242,7 @@ setup.contest = function() {
     calculator.results.leader.display.investment(true);
     calculator.results.leader.display.prize(true);
     calculator.results.leader.display.netPayoff(true);
-    calculator.results.leader.display.role(true);
+    calculator.results.leader.display.role(false);
 
 
     //------- BUTTONS ------//
@@ -242,6 +263,9 @@ setup.contest = function() {
     calculator.graphics.update.effortSliderRange();
     // changes the leader slider text background color based on globalVariable.is***
     calculator.graphics.update.contestSliderBackgroundColor();
+
+
+    $('.ctWrap2').css({'margin-top':'-23px', 'margin-bottom':'23px'});
 
 }
 
@@ -343,11 +367,11 @@ setup.og_fb = function() {
 
 
 
-setup.og1WinnerGroupIndex = undefined;
+setup.og2WinnerGroupIndex = undefined;
 
-setup.og1Winner = function(myData) {
+setup.og2Winner = function(myData) {
 
-    setup.og1WinnerGroupIndex = myData.s3[1].indexOf(true);
+    setup.og2WinnerGroupIndex = myData.s6[1].indexOf(true);
 
 }
 
@@ -355,26 +379,15 @@ setup.og1Winner = function(myData) {
 
 setup.infoBoxText = function() {
 
-    if(setup.og1WinnerGroupIndex === 0) {
+    if(setup.og2WinnerGroupIndex === 0) {
 
-        $('.groupWon-infoBox').css({'display':'flex'});
-        $('.groupLost-infoBox-leader, .groupLost-infoBox-follower').css({'display':'none'});
+        $('.groupWon-infoBox').css({'display':'block'});
+        $('.groupLost-infoBox').css({'display':'none'});
 
     } else {
 
         $('.groupWon-infoBox').css({'display':'none'});
-
-        if(calculator.globalVariable.playerIndex != -1) {
-
-            $('.groupLost-infoBox-follower').css({'display':'flex'});
-            $('.groupLost-infoBox-leader').css({'display':'none'});
-
-        } else {
-
-            $('.groupLost-infoBox-leader').css({'display':'flex'});
-            $('.groupLost-infoBox-follower').css({'display':'none'});
-
-        }
+        $('.groupLost-infoBox').css({'display':'block'});
 
     }
 
@@ -387,7 +400,7 @@ setup.determineFastFeedback = function(myData) {
 
     myRound = myData.myRound;
 
-    if(myRound > 2) {
+    if(myRound > 1) {
         setup.fastFeedback = true;
     }
 

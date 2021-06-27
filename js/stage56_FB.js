@@ -32,18 +32,19 @@ window.onload = function() {
             fB3: 0,
             miniGame: 0,
         },
-        myRound: 1,
+        myRound: 2,
 
-        myCount: 3,
+        myCount: 4,
         sortedArray: [0,2,5,4,1,3],
         treatment: [0,1],
         s2: [ [ [0,11], [31,0]], [ [0,20], [40,0] ] ],
         // s2: [ [[0,20], [10,0]], [[0,5], [10,0]] ],
-        // s3: [ [200, 100], [true, false] ],
-        s3: [ [200, 100], [false, true] ],
+        s3: [ [200, 100], [true, false] ],
+        // s3: [ [200, 100], [false, true] ],
         s4: [ [ [5, 1], [true, false], [50, 100] ], [ [5, 1], [false, true], [31, 131] ] ],
-        s5: [ [Array(6), Array(6)], [Array(6), Array(6)] ],
-        s6: [ Array(2), Array(2) ],
+        s5:  [ [ [0,2], [3,0]], [ [0,4], [5,0] ] ],
+        // s6: [ [222, 222], [true, false] ],
+        s6: [ [333, 2], [false, true] ],
 
     }
     // ------------------------ //
@@ -110,8 +111,11 @@ window.onload = function() {
         // rearrange all the data if the sortedArray is rearranged
         tool.rearrangeMainData(mainData);
 
-        // console.log('sorted array: ' + mainData.sortedArray);
-        // console.log('treatment: ' + mainData.treatment);
+
+        tool.determineS3Winner();
+
+        tool.determineS4Winner();
+
 
         // setup.value does nothing with the mainData so far we can pass on
         // previous graphical calculator values to here
@@ -120,7 +124,7 @@ window.onload = function() {
 
 
 
-        setup.og1Winner(mainData);
+        setup.og2Winner(mainData);
 
 
         // matches player's node data with the graphics
@@ -143,7 +147,15 @@ window.onload = function() {
         // given the setup show the desired stage
         //
         // shows the map with focus action etc...
-        map.show.stage('og1_fb');
+        if(tool.ourGroupWonOG1) {
+
+            map.show.stage('og2_og1Won_fb');
+
+        } else {
+
+            map.show.stage('og2_og1Lost_fb');
+
+        }
 
 
 
@@ -175,7 +187,7 @@ window.onload = function() {
                     box.button.show('A-1');
                 }, 2000)
 
-            }, 5000)
+            }, 8000)
 
         } else {
 
@@ -193,9 +205,12 @@ window.onload = function() {
 
                 box.transition('A-1', '', 0, 0, 1, 750);
 
-            }, 5000)
+            }, 8000)
 
         }
+
+
+
 
 
         $('#btn-A-1').click(function() {
@@ -246,12 +261,7 @@ window.onload = function() {
 
                 setTimeout(()=>{
 
-                    var winner;
-
-                    winner = 1 + setup.og1WinnerGroupIndex
-
-                    calculator.wheel.spin(winner);
-
+                    calculator.wheel.spin();
 
                     $('.metaNorp').css({'transition':'0.5s', 'opacity':'0'});
                     setTimeout(()=>{
@@ -338,7 +348,21 @@ window.onload = function() {
 
         $('#btn-A-4').click(function() {
 
-            box.transition('A-4', '', 0, 0, 1, 0);
+            box.transition('A-4', 'A-5', 0, 0, 1, 750);
+            setTimeout(()=>{
+                box.button.show2('A-5');
+            }, 100)
+
+
+            // ------------ NODE ACTION ---------------- //
+            // var stage = 'fb23-D';
+            // node.emit('HTML-ready', stage);
+
+        })
+
+        $('#btn-A-5').click(function() {
+
+            box.transition('A-5', '', 0, 0, 1, 0);
             calculator.wrapMinimize(1, 1, -305);
             setMetaNorp(168, -30, 0.4, 1);
 

@@ -1,0 +1,57 @@
+.sexplain
+{
+    position:absolute;
+}
+.generalMarginBox
+{
+    margin-top:-256px;
+}
+.calculator
+{
+    transform:scale(1);
+}
+.specialBoxWrap {
+    margin-top: -16px;
+    margin-bottom:142px;
+}
+.specialButton
+{
+    width:205px;
+    margin-top:35px;
+
+}
+.hoverInfoWrap
+{
+    opacity:0;
+    position:absolute;
+    color: white;
+    background-color: #272121;
+    font-weight: 100;
+    font-size: 18px;
+    border-radius: 83px;
+    padding-left: 20px;
+    width: 240px;
+    padding-right: 10px;
+    height: 130px;
+    padding-top: 27px;
+    margin-top: 300px;
+    margin-left: -1101px;
+}
+.hoverInfoWrap:before
+{
+    content: attr(data-before);
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    border-right: 25px solid transparent;
+    border-left: 45px solid #272121;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    bottom: 54px;
+    left: 220px;
+}
+.norpBottomWrap {
+    margin-left: -47px;
+    margin-top: 150px;
+    transform: scale(0.8);
+}

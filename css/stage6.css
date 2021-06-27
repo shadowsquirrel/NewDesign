@@ -1,0 +1,60 @@
+.roleChangeWrap
+{
+    filter:opacity(0);
+}
+.payoffInfoTextMicro3
+{
+    display:block;
+}
+.payoffInfoTextWrap
+{
+    margin-top: 26px;
+    display:flex;
+    flex-direction:row;
+    justify-content: space-evenly;
+    font-size: 23px;
+    font-weight: 100;
+}
+.myb
+{
+    font-style:italic;
+    font-weight:500;
+}
+.basicInfoText
+{
+    margin-top: 55px;
+    font-size: 25px;
+    font-weight: 100;
+}
+.payoffInfoTextMicro1
+{
+    display: block;
+    margin-top: 10px;
+}
+.payoffInfoTextMicro3
+{
+    margin-left: -4px;
+    width: 929px;
+    margin-top: 15px;
+    font-size: 24px;
+    font-weight: 100;
+}
+.tipsInfoText
+{
+    font-weight:100;
+    font-size:25px;
+}
+.pleaseWait
+{
+    position:absolute;
+    display:none;
+    opacity:0;
+    font-size:30px;
+    font-weight:100;
+    margin-top:-160px;
+    transform:scale(0.6);
+}
+.bswLeft
+{
+    z-index:1;
+}

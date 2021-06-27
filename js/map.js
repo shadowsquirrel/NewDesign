@@ -1630,6 +1630,58 @@ let generateMap = function() {
 
     }
 
+    map.focus.og2.followers = function(transitionTime) {
+
+        transitionTime2 = transitionTime === undefined ? 2 : (transitionTime * 2);
+        transitionTime = transitionTime === undefined ? '1s' : (transitionTime + 's');
+        transitionTime2 = transitionTime2 === undefined ? '2s' : (transitionTime2 + 's');
+
+        $('.OG2GroupSeparator').css({'transition':transitionTime2, 'opacity':'1',
+        'height':'119px'});
+        $('.OG2FightIcon, .OG2FightIconLime').css({'transition':transitionTime,
+        'opacity':'0'});
+
+        $('.s5ActiveFollower').css({'transition':transitionTime, 'opacity':'0.6'});
+        $('.s5PassiveFollower').css({'transition':transitionTime, 'opacity':'1'});
+
+        $('.arrowDashedLime2').css({'transition':transitionTime, 'opacity':'1'});
+
+        $('.OG2LeaderLeft, .OG2LeaderRight').css({'transition':transitionTime,
+        'opacity':'0.4'});
+        $('.OG2leaderKingLeft, .OG2leaderKingRight, .newLeaderKingRight, .newLeaderKingLeft').css({'transition':transitionTime,
+        'filter':'drop-shadow(0px 0px 0px transparent)'});
+
+    }
+
+    map.focus.og2.leaders = function(transitionTime) {
+
+        transitionTime2 = transitionTime === undefined ? 2 : (transitionTime * 2);
+        transitionTime = transitionTime === undefined ? '1s' : (transitionTime + 's');
+        transitionTime2 = transitionTime2 === undefined ? '2s' : (transitionTime2 + 's');
+
+        $('.OG2GroupSeparator').css({'transition':transitionTime2, 'opacity':'0',
+        'height':'0px'});
+        $('.OG2FightIcon').css({'transition':transitionTime, 'opacity':'0'});
+        $('.OG2FightIconLime').css({'transition':transitionTime, 'opacity':'1'});
+
+        $('.s5ActiveFollower').css({'transition':transitionTime, 'opacity':'0',
+        'filter':'drop-shadow(0px 0px 0px transparent)'});
+        $('.s5PassiveFollower').css({'transition':transitionTime, 'opacity':'0.2',
+        'filter':'drop-shadow(0px 0px 0px transparent)'});
+
+        $('.arrowDashedLime2').css({'transition':transitionTime, 'opacity':'0.6'});
+        $('.og2PassiveArrows').css({'transition':transitionTime, 'opacity':'0.6'});
+
+        $('.OG2LeaderLeft, .OG2LeaderRight').css({'transition':transitionTime,
+        'opacity':'1'});
+
+        $('.OG2leaderKingLeft, .OG2leaderKingRight').css({'transition':transitionTime,
+        'filter':'drop-shadow(0px 7px 3px black)'});
+
+        $('.subsubOG2L').css({'border-color':'lime', 'background-color':'#16ff0021'})
+
+    }
+
 
 
     map.move.insideDecisionSlider = function() {
@@ -1746,7 +1798,7 @@ let generateMap = function() {
 
         // ------------ GRAPHICAL INTRODUCTION ---------- //
 
-        if(state === 'og1_wait_l') {
+        if(state === 'og1_wait') {
 
             // do this as a first thing for graphical ease
             map.opacity.shadowOG2(1);
@@ -1844,6 +1896,249 @@ let generateMap = function() {
 
         }
 
+        if(state === 'og1_fb') {
+
+            // have the calculator open and ready to go
+            calculator.open();
+            // but hidden
+            calculator.section.all.opacity(0, 0);
+
+            // do this as a first thing for graphical ease
+            map.opacity.shadowOG2(1);
+            $('.IGFI_Top, .IGFI_Bottom').css({'filter':'opacity(0)'});
+
+            // DISPLAY THE MAP WITH SECTIONS ONLY
+            map.show.sections(0);
+
+            $('.sexplain').css({
+                'position':'absolute',
+                'transition':'0s',
+                'transform-origin':'center center',
+                'transform':'scale(1)'
+            });
+
+            setTimeout(()=>{
+                calculator.section.contest.minimize(false);
+                map.showMap(1);
+                setTimeout(()=>{
+                    map.zoom.og1(1);
+                    map.opacity.main([1,0.4,0.4], 1);
+                }, 250)
+            }, 500)
+
+            setTimeout(()=>{
+                map.opacity.section([0.1,1,1], 1);
+                map.opacity.inside([1,0,0], 1);
+            }, 1500)
+
+            setTimeout(()=>{
+                map.opacity.main([1,0,0], 1);
+            }, 2000)
+
+            setTimeout(()=>{
+                $('.sexplain').css({'transition':'1s','margin-left':'250px',
+                'margin-top':'66px', 'transform':'scale(1) scaleX(1.11)'});
+                setTimeout(()=>{
+                    calculator.section.all.opacity(1, 1);
+                    $('.contestTitle2').css({'transition':'0s', 'opacity':'0'});
+                    calculator.section.hs.opacity.SFiALiFiS([1,1,1,1,1,0], 1);
+                    setTimeout(()=>{
+                        $('.sexplain').css({'transition':'1s', 'opacity':'0'});
+                    }, 500)
+                }, 500)
+            }, 3000)
+
+
+        }
+
+        if(state === 'ig_wait_winner') {
+
+            // ------ STARTING SETUP ------------ //
+
+            map.setupAfterOG1(mainData, false, true);
+
+            map.opacity.main([0,0,0], 0);
+
+            // do this as a first thing for graphical ease
+            map.opacity.shadowOG2(1);
+
+            map.show.sections(0);
+
+            map.set.OG1ResultIcons2();
+            map.opacity.OG1Results(0,0)
+
+
+            // DISPLAY THE MAP WITH SECTIONS ONLY
+
+
+            // ------ SHOW STARTING SETUP ------- //
+
+            setTimeout(()=>{
+                $('.sexplain').css({
+                    'transition':'0.75s',
+                    'transform-origin':'center center',
+                    'transform':'scale(1)',
+                    'opacity':'1',
+                    'margin-left':'10px'
+                });
+
+                map.opacity.main([1,1,1], 0.75);
+
+            }, 10)
+
+            // ------ prep the map ------- //
+
+            setTimeout(()=>{
+                map.opacity.section([0.1,0.7,0.4], 0.75);
+                map.opacity.inside([1,0,0], 0.75);
+                map.opacity.main([1,0,0], 0.5);
+            }, 650)
+
+            setTimeout(()=>{
+                map.openSpace(0.75);
+            }, 1500)
+
+
+            // ---- show results ---- //
+
+            setTimeout(()=>{
+
+                $('.OG1FightIconWrap').css({'transition':'0.75s', 'opacity':'0'});
+                map.opacity.inside([0.6,1,0], 0.75);
+                map.opacity.main([1,1,0], 0.75);
+                $('.IGContests').css({'transition':'0.25s', 'opacity':'0'});
+                map.opacity.OG1Results(1,0.75)
+
+            }, 1750)
+
+            // draw arrow to og2 and prep og2
+            setTimeout(()=>{
+                map.opacity.IGContests(1, 0.5);
+                map.show.bottomTransition(false, 0.5);
+                $('.bottomBoxLeaderResult, .arrowToBottomIconResults').css({'transition':'0.5s', 'opacity':'1'});
+                map.set.OG2ResultingIcons2();
+            }, 2250)
+
+            // show frame of og2
+            setTimeout(()=>{
+                map.opacity.main([1,1,1], 0.5);
+            }, 2750)
+
+            setTimeout(()=>{
+                map.opacity.inside([0.6,1,1], 0.75);
+                map.opacity.shadowOG2(false, 0.75);
+                map.opacity.shadowOG2Right(true, 0.75);
+                map.opacity.section([0.1,0.7,0.1], 0.75);
+                map.opacity.OG2Right(0.4, 0.75);
+            }, 3250)
+
+            setTimeout(()=>{
+                map.animate.YAH_og2();
+            }, 3750)
+
+
+        }
+
+        if(state === 'ig_wait_loser') {
+
+            // ------ STARTING SETUP ------------ //
+
+            map.setupAfterOG1(mainData, false, true);
+
+            map.opacity.main([0,0,0], 0);
+
+            // do this as a first thing for graphical ease
+            map.opacity.shadowOG2(1);
+            $('.IGFI_Top, .IGFI_Bottom').css({'filter':'opacity(0)'});
+
+            map.show.sections(0);
+
+            map.set.OG1ResultIcons2();
+            map.opacity.OG1Results(0,0)
+
+
+            // DISPLAY THE MAP WITH SECTIONS ONLY
+
+
+            // ------ SHOW STARTING SETUP ------- //
+
+            setTimeout(()=>{
+
+                $('.sexplain').css({
+                    'transition':'0.75s',
+                    'transform-origin':'center center',
+                    'transform':'scale(1)',
+                    'opacity':'1',
+                    'margin-left':'10px'
+                });
+
+                map.opacity.main([1,1,1], 0.75);
+
+            }, 10)
+
+            // ------ prep the map ------- //
+
+            setTimeout(()=>{
+
+                map.opacity.section([0.1,0.7,0.4], 0.75);
+                map.opacity.inside([1,0,0], 0.75);
+                map.opacity.main([1,0,0], 0.5);
+
+            }, 650)
+
+            setTimeout(()=>{
+
+                map.openSpace(0);
+
+            }, 1500)
+
+
+            // ---- show results ---- //
+
+            setTimeout(()=>{
+
+                $('.OG1FightIconWrap').css({'transition':'0.75s', 'opacity':'0'});
+                map.opacity.inside([0.6,1,0], 0.75);
+                map.opacity.main([1,1,0], 0.75);
+                $('.IGContests').css({'transition':'0.25s', 'opacity':'0'});
+                map.opacity.OG1Results(1,0.75)
+
+            }, 1750)
+
+            setTimeout(()=>{
+
+                map.opacity.IGContests(1, 0.5);
+                map.show.topTransition(false, 0.5);
+                $('.topBoxLeaderResult, .arrowToTopIconResults').css({'transition':'0.5s', 'opacity':'1'});
+                map.set.OG2ResultingIcons2();
+
+            }, 2250)
+
+            setTimeout(()=>{
+
+                map.opacity.main([1,1,1], 0.5);
+
+            }, 2750)
+
+            setTimeout(()=>{
+
+                map.opacity.inside([0.6,1,1], 0.75);
+                map.opacity.shadowOG2(false, 0.75);
+                map.opacity.shadowOG2Left(true, 0.75);
+                map.opacity.section([0.1,0.7,0.1], 0.75);
+                map.opacity.OG2Left(0.4, 0.75);
+
+            }, 3250)
+
+            if(calculator.globalVariable.playerIndex === -1) {
+                setTimeout(()=>{
+                    map.animate.YAH_ig();
+                }, 3750)
+            }
+
+
+        }
+
         if(state === 'ig') {
 
             // ------ STARTING SETUP ------------ //
@@ -1891,6 +2186,7 @@ let generateMap = function() {
             // ---- prep for show results ---- //
 
             setTimeout(()=>{
+
                 map.opacity.main([1,1,0], 0.75);
                 map.openSpace(0.75);
 
@@ -1899,8 +2195,9 @@ let generateMap = function() {
             // ---- show results ---- //
 
             setTimeout(()=>{
+
                 $('.OG1FightIconWrap').css({'transition':'0.75s', 'opacity':'0'});
-                map.opacity.inside([0.4,0,0], 0.75);
+                map.opacity.inside([0.5,0,0], 0.75);
                 map.opacity.OG1Results(1,0.75)
                 map.opacity.IGContests(1, 0.5);
                 map.show.bottomTransition(false, 0.5);
@@ -1914,7 +2211,7 @@ let generateMap = function() {
             setTimeout(()=>{
                 $('.IGFightIconLimeTop').css({'transition':'0.75s', 'opacity':'1'});
                 map.opacity.section([0.1,0.1,0.4], 0.75);
-                map.opacity.inside([0.3,1,0], 0.75);
+                map.opacity.inside([0.5,1,0], 0.75);
                 $('.prizeCrownLimeTop').css({'transition':'4s', 'opacity':'1',
                 'margin-top':'-44px', 'margin-left':'0px'});
             }, 1500)
@@ -2081,6 +2378,1055 @@ let generateMap = function() {
 
             }
 
+
+        }
+
+        if(state === 'og2_wait_ig1Loser') {
+
+            // ------ STARTING SETUP ------------ //
+
+            map.setupAfterOG1(mainData, false, true);
+
+            map.opacity.main([0,0,0], 0);
+
+            // do this as a first thing for graphical ease
+            map.opacity.shadowOG2(1);
+            $('.IGFI_Top, .IGFI_Bottom').css({'filter':'opacity(0)'});
+
+            map.show.sections(0);
+
+            map.set.OG1ResultIcons2();
+            map.opacity.OG1Results(0,0)
+
+
+            // DISPLAY THE MAP WITH SECTIONS ONLY
+
+
+            // ------ SHOW STARTING SETUP ------- //
+
+            setTimeout(()=>{
+
+                $('.sexplain').css({
+                    'transition':'0.75s',
+                    'transform-origin':'center center',
+                    'transform':'scale(1)',
+                    'opacity':'1',
+                    'margin-left':'10px'
+                });
+
+                map.opacity.main([1,1,1], 0.75);
+
+            }, 10)
+
+            // ------ prep the map ------- //
+
+            setTimeout(()=>{
+
+                map.opacity.section([0.1,0.7,0.4], 0.75);
+                map.opacity.inside([1,0,0], 0.75);
+                map.opacity.main([1,0,0], 0.5);
+
+            }, 650)
+
+            setTimeout(()=>{
+
+                map.openSpace(0);
+
+            }, 1500)
+
+
+            // ---- show results ---- //
+
+            setTimeout(()=>{
+
+                $('.OG1FightIconWrap').css({'transition':'0.75s', 'opacity':'0'});
+                map.opacity.inside([0.6,1,0], 0.75);
+                map.opacity.main([1,1,0], 0.75);
+                $('.IGContests').css({'transition':'0.25s', 'opacity':'0'});
+                map.opacity.OG1Results(1,0.75)
+
+            }, 1750)
+
+            setTimeout(()=>{
+
+                map.opacity.IGContests(1, 0.5);
+                map.show.topTransition(false, 0.5);
+                $('.topBoxLeaderResult, .arrowToTopIconResults').css({'transition':'0.5s', 'opacity':'1'});
+                map.set.OG2ResultingIcons2();
+
+            }, 2250)
+
+            setTimeout(()=>{
+
+                map.opacity.main([1,1,1], 0.5);
+
+            }, 2750)
+
+            setTimeout(()=>{
+
+                map.opacity.inside([0.6,1,1], 0.75);
+                map.opacity.shadowOG2(false, 0.75);
+                map.opacity.shadowOG2Left(true, 0.75);
+                map.opacity.section([0.1,0.7,0.1], 0.75);
+                map.opacity.OG2Left(0.4, 0.75);
+
+            }, 3250)
+
+            setTimeout(()=>{
+
+                map.show.topTransition(true, 0.5);
+
+                setTimeout(()=>{
+
+                    $('.IGContests').css({'transition':'1s', 'opacity':'1'});
+
+                    $('.prizeCrownBlackBottom').css({'transition':'0.5s','opacity':'0'});
+
+                    $('.IGFightIconLimeTop').css({'transition':'0.5s',
+                    'opacity':'1'});
+
+                    $('.prizeCrownLimeTop').css({'transition':'0.5s',
+                    'margin-top':'-44px', 'opacity':'1', 'filter':'opacity(1)'})
+
+                    $('.IGFI_Bottom, .IGFightIconLimeBottom, .prizeCrownLimeBottom').css({'transition':'0.5s', 'opacity':'1', 'filter':'opacity(1)'})
+
+                    $('.prizeCrownLimeBottom').css({'transition':'2s', 'margin-top':'-37px'});
+
+                    map.opacity.section([0.1,0.1,0.1], 0.5);
+
+                }, 750)
+
+                setTimeout(()=>{
+
+                    $('.IGFightIconLimeTop').css({'transition':'0.5s',
+                    'opacity':'0'});
+
+                    if(tool.winnerFollowerIndex === 0) {
+                        $('.prizeCrownLimeTop').css({'transition':'0.5s',
+                        'margin-left':'-38px', 'margin-top':'-48px', 'z-index':'-1'});
+                    } else {
+                        $('.prizeCrownLimeTop').css({'transition':'0.5s',
+                        'margin-left':'37px', 'margin-top':'-48px', 'z-index':'-1'});
+                    }
+
+                }, 1500)
+
+                setTimeout(()=>{
+                    $('.arrowsToOG2, .arrowTopIGtoOG2').css({'transition':'0.5s', 'opacity':'1'});
+                }, 2250)
+
+                setTimeout(()=>{
+                    map.opacity.shadowOG2Left(false, 0.5);
+                    map.opacity.OG2Left(1, 0.5);
+                }, 3000)
+
+                setTimeout(()=>{
+                    map.animate.YAH_og2();
+                }, 3500)
+
+                setTimeout(()=>{
+                    $('.IG, .arrowsToOG2, .arrowsToOG1IconResults').css({'transition':'0.5s', 'opacity':'0.7'});
+                    $('.OG1, .IG, .arrowsToOG2, .arrowsToOG1IconResults').css({'transition':'1s',
+                    'transform-origin':'right', 'transform':'scale(0.7)'});
+                    $('.arrowsToOG1IconResults').css({'transition':'1s','margin-left':'-20px'});
+                    $('.IG').css({'transition':'1s','margin-left':'-70px'});
+                    $('.arrowsToOG2').css({'transition':'1s','margin-left':'15px', 'margin-top':'8px'});
+                    $('.OG2').css({'transition':'1s', 'transform-origin':'left', 'transform':'scale(1.4)'})
+                    $('.sexplain').css({'transition':'1s', 'margin-left':'-40px'});
+                }, 4500)
+
+            }, 3250)
+
+        }
+
+        if(state === 'og2_wait_ig1Winner') {
+
+            // ------ STARTING SETUP ------------ //
+
+            map.setupAfterOG1(mainData, false, true);
+
+            map.opacity.main([0,0,0], 0);
+
+            // do this as a first thing for graphical ease
+            map.opacity.shadowOG2(1);
+            $('.IGFI_Top, .IGFI_Bottom').css({'filter':'opacity(0)'});
+
+            map.show.sections(0);
+
+            map.set.OG1ResultIcons2();
+            map.opacity.OG1Results(0,0)
+
+
+            // DISPLAY THE MAP WITH SECTIONS ONLY
+
+
+            // ------ SHOW STARTING SETUP ------- //
+
+            setTimeout(()=>{
+
+                $('.sexplain').css({
+                    'transition':'0.75s',
+                    'transform-origin':'center center',
+                    'transform':'scale(1)',
+                    'opacity':'1',
+                    'margin-left':'10px'
+                });
+
+                map.opacity.main([1,1,1], 0.75);
+
+            }, 10)
+
+            // ------ prep the map ------- //
+
+            setTimeout(()=>{
+
+                map.opacity.section([0.1,0.7,0.4], 0.75);
+                map.opacity.inside([1,0,0], 0.75);
+                map.opacity.main([1,0,0], 0.5);
+
+            }, 650)
+
+            setTimeout(()=>{
+
+                map.openSpace(0);
+
+            }, 1500)
+
+
+            // ---- show results ---- //
+
+            setTimeout(()=>{
+
+                $('.OG1FightIconWrap').css({'transition':'0.75s', 'opacity':'0'});
+                map.opacity.inside([0.6,1,0], 0.75);
+                map.opacity.main([1,1,0], 0.75);
+                $('.IGContests').css({'transition':'0.25s', 'opacity':'0'});
+                map.opacity.OG1Results(1,0.75)
+
+            }, 1750)
+
+            setTimeout(()=>{
+
+                map.opacity.IGContests(1, 0.5);
+                map.show.bottomTransition(false, 0.5);
+                $('.bottomBoxLeaderResult, .arrowToBottomIconResults').css({'transition':'0.5s', 'opacity':'1'});
+                map.set.OG2ResultingIcons2();
+
+            }, 2250)
+
+            setTimeout(()=>{
+
+                map.opacity.main([1,1,1], 0.5);
+
+            }, 2750)
+
+            setTimeout(()=>{
+
+                map.opacity.inside([0.6,1,1], 0.75);
+                map.opacity.shadowOG2(false, 0.75);
+                map.opacity.shadowOG2Right(true, 0.75);
+                map.opacity.section([0.1,0.7,0.1], 0.75);
+                map.opacity.OG2Right(0.4, 0.75);
+
+            }, 3250)
+
+            setTimeout(()=>{
+
+                map.show.bottomTransition(true, 0.5);
+
+                setTimeout(()=>{
+
+                    $('.IGContests').css({'transition':'1s', 'opacity':'1'});
+
+                    $('.prizeCrownBlackBottom').css({'transition':'0.5s','opacity':'0'});
+
+                    $('.IGFightIconLimeBottom').css({'transition':'0.5s',
+                    'opacity':'1'});
+
+                    $('.prizeCrownLimeBottom').css({'transition':'0.5s',
+                    'margin-top':'-44px', 'opacity':'1', 'filter':'opacity(1)'})
+
+                    $('.IGFI_Bottom, .IGFightIconLimeBottom, .prizeCrownLimeBottom').css({'transition':'0.5s', 'opacity':'1', 'filter':'opacity(1)'})
+
+                    $('.prizeCrownLimeBottom').css({'transition':'0.5s', 'margin-top':'-37px'});
+
+                    map.opacity.section([0.1,0.1,0.1], 0.5);
+
+                }, 750)
+
+                setTimeout(()=>{
+
+                    $('.IGFI_Bottom, .IGFightIconLimeBottom').css({'transition':'0.5s',
+                    'opacity':'0'});
+
+                    if(tool.winnerFollowerIndex === 0) {
+                        $('.prizeCrownLimeBottom').css({'transition':'0.5s',
+                        'margin-left':'-38px', 'margin-top':'-48px', 'z-index':'-1'});
+                    } else {
+                        $('.prizeCrownLimeBottom').css({'transition':'0.5s',
+                        'margin-left':'37px', 'margin-top':'-48px', 'z-index':'-1'});
+                    }
+
+                }, 1500)
+
+                setTimeout(()=>{
+                    $('.arrowsToOG2, .arrowBottomIGtoOG2').css({'transition':'0.5s', 'opacity':'1'});
+                    $('.arrowTopIGtoOG2').css({'transition':'0s', 'opacity':'0'});
+                }, 2250)
+
+                setTimeout(()=>{
+                    map.opacity.shadowOG2Right(false, 0.5);
+                    map.opacity.OG2Right(1, 0.5);
+                }, 3000)
+
+                setTimeout(()=>{
+                    map.animate.YAH_og2();
+                }, 3500)
+
+                setTimeout(()=>{
+                    $('.IG, .arrowsToOG2, .arrowsToOG1IconResults').css({'transition':'0.5s', 'opacity':'0.7'});
+                    $('.OG1, .IG, .arrowsToOG2, .arrowsToOG1IconResults').css({'transition':'1s',
+                    'transform-origin':'right', 'transform':'scale(0.7)'});
+                    $('.arrowsToOG1IconResults').css({'transition':'1s','margin-left':'-20px'});
+                    $('.IG').css({'transition':'1s','margin-left':'-70px'});
+                    $('.arrowsToOG2').css({'transition':'1s','margin-left':'15px', 'margin-top':'8px'});
+                    $('.OG2').css({'transition':'1s', 'transform-origin':'left', 'transform':'scale(1.4)'})
+                    $('.sexplain').css({'transition':'1s', 'margin-left':'-40px'});
+                }, 4500)
+
+            }, 3250)
+
+        }
+
+        if(state === 'og2_og1Won') {
+
+            // ------ STARTING SETUP ------------ //
+
+            map.setupAfterOG1(mainData, false, true);
+
+            map.opacity.main([0,0,0], 0);
+
+            // do this as a first thing for graphical ease
+            map.opacity.shadowOG2(1);
+            $('.IGFI_Top, .IGFI_Bottom').css({'filter':'opacity(0)'});
+
+            map.show.sections(0);
+
+            map.set.OG1ResultIcons2();
+            map.opacity.OG1Results(0,0)
+
+
+            // DISPLAY THE MAP WITH SECTIONS ONLY
+
+
+            // ------ SHOW STARTING SETUP ------- //
+
+            setTimeout(()=>{
+
+                $('.sexplain').css({
+                    'transition':'0.75s',
+                    'transform-origin':'center center',
+                    'transform':'scale(1)',
+                    'opacity':'1',
+                    'margin-left':'10px'
+                });
+
+                map.opacity.main([1,1,1], 0.75);
+
+            }, 10)
+
+            // ------ prep the map ------- //
+
+            setTimeout(()=>{
+
+                map.opacity.section([0.1,0.7,0.4], 0.75);
+                map.opacity.inside([1,0,0], 0.75);
+                map.opacity.main([1,0,0], 0.5);
+
+            }, 650)
+
+            setTimeout(()=>{
+
+                map.openSpace(0);
+
+            }, 1500)
+
+
+            // ---- show results ---- //
+
+            setTimeout(()=>{
+
+                $('.OG1FightIconWrap').css({'transition':'0.75s', 'opacity':'0'});
+                map.opacity.inside([0.6,1,0], 0.75);
+                map.opacity.main([1,1,0], 0.75);
+                $('.IGContests').css({'transition':'0.25s', 'opacity':'0'});
+                map.opacity.OG1Results(1,0.75)
+
+            }, 1750)
+
+            setTimeout(()=>{
+
+                map.opacity.IGContests(1, 0.75);
+                map.show.bottomTransition(false, 0.75);
+                $('.bottomBoxLeaderResult, .arrowToBottomIconResults').css({'transition':'0.75s', 'opacity':'1'});
+                map.set.OG2ResultingIcons2();
+                map.opacity.shadowOG2(false, 0);
+
+            }, 2250)
+
+            setTimeout(()=>{
+
+                map.opacity.main([1,1,1], 0.75);
+
+            }, 2750)
+
+            setTimeout(()=>{
+
+                map.opacity.inside([0.6,1,1], 0.75);
+                map.opacity.shadowOG2(false, 0.75);
+                // map.opacity.shadowOG2Right(true, 0.75);
+                map.opacity.section([0.1,0.7,0.1], 0.75);
+                map.opacity.OG2Right(0, 0);
+                map.opacity.topTransition(0.6, 0.75);
+
+                $('.prizeCrownBlackTop').css({'transition':'0s', 'opacity':'0'})
+
+            }, 3250)
+
+            setTimeout(()=>{
+
+                map.show.bottomTransition(true, 0.75);
+
+                setTimeout(()=>{
+
+                    $('.IGContests').css({'transition':'1s', 'opacity':'1'});
+
+                    $('.prizeCrownBlackBottom').css({'transition':'0.75s','opacity':'0'});
+
+                    $('.IGFightIconLimeBottom').css({'transition':'0.75s',
+                    'opacity':'1'});
+
+                    $('.prizeCrownLimeBottom').css({'transition':'0.75s',
+                    'margin-top':'-44px', 'opacity':'1', 'filter':'opacity(1)'})
+
+                    $('.IGFI_Bottom, .IGFightIconLimeBottom, .prizeCrownLimeBottom').css({'transition':'0.75s',
+                    'opacity':'1', 'filter':'opacity(1)'})
+
+                    $('.prizeCrownLimeBottom').css({'transition':'0.75s', 'margin-top':'-37px'});
+
+                    map.opacity.section([0.1,0.1,0.1], 0.75);
+
+                }, 250)
+
+                setTimeout(()=>{
+
+                    $('.IGFI_Bottom, .IGFightIconLimeBottom').css({'transition':'0.5s',
+                    'opacity':'0'});
+
+                    if(tool.winnerFollowerIndex === 0) {
+                        $('.prizeCrownLimeBottom').css({'transition':'0.75s',
+                        'margin-left':'-38px', 'margin-top':'-48px', 'z-index':'-1'});
+                    } else {
+                        $('.prizeCrownLimeBottom').css({'transition':'0.75s',
+                        'margin-left':'37px', 'margin-top':'-48px', 'z-index':'-1'});
+                    }
+
+                }, 1000)
+
+                setTimeout(()=>{
+                    $('.arrowsToOG2, .arrowBottomIGtoOG2').css({'transition':'0.75s', 'opacity':'1'});
+                    $('.arrowTopIGtoOG2').css({'transition':'0s', 'opacity':'0'});
+                }, 1750)
+
+                setTimeout(()=>{
+                    map.opacity.shadowOG2Right(false, 0.75);
+                    map.opacity.OG2Right(1, 1);
+                }, 2000)
+
+                setTimeout(()=>{
+                    map.animate.YAH_og2();
+                }, 2500)
+
+                setTimeout(()=>{
+
+                    $('.IG, .arrowsToOG2, .arrowsToOG1IconResults').css({'transition':'0.75s', 'opacity':'0.7'});
+                    $('.OG1, .IG, .arrowsToOG2, .arrowsToOG1IconResults').css({'transition':'1s',
+                    'transform-origin':'right', 'transform':'scale(0.7)'});
+                    $('.arrowsToOG1IconResults').css({'transition':'1s','margin-left':'-20px'});
+                    $('.IG').css({'transition':'1s','margin-left':'-70px'});
+                    $('.arrowsToOG2').css({'transition':'1s','margin-left':'15px', 'margin-top':'8px'});
+                    $('.OG2').css({'transition':'1s', 'transform-origin':'left', 'transform':'scale(1.4)'})
+                    $('.sexplain').css({'transition':'1s', 'margin-left':'-40px'});
+                    map.opacity.bottomTransition(1, 0.75);
+                    map.opacity.topTransition(1, 0.75);
+
+                    setTimeout(()=>{
+                        $('.OG2FightIcon').css({'transition':'1s', 'opacity':'0'});
+                        $('.OG2FightIconLime').css({'transition':'1s', 'opacity':'1'});
+                    }, 250)
+
+                }, 2500)
+
+            }, 3750)
+
+        }
+
+        if(state === 'og2_og1Lost') {
+
+            // ------ STARTING SETUP ------------ //
+
+            map.setupAfterOG1(mainData, false, true);
+
+            map.opacity.main([0,0,0], 0);
+
+            // do this as a first thing for graphical ease
+            map.opacity.shadowOG2(1);
+            $('.IGFI_Top, .IGFI_Bottom').css({'filter':'opacity(0)'});
+
+            map.show.sections(0);
+
+            map.set.OG1ResultIcons2();
+            map.opacity.OG1Results(0,0)
+
+
+            // DISPLAY THE MAP WITH SECTIONS ONLY
+
+
+            // ------ SHOW STARTING SETUP ------- //
+
+            setTimeout(()=>{
+
+                $('.sexplain').css({
+                    'transition':'0.75s',
+                    'transform-origin':'center center',
+                    'transform':'scale(1)',
+                    'opacity':'1',
+                    'margin-left':'10px'
+                });
+
+                map.opacity.main([1,1,1], 0.5);
+
+            }, 10)
+
+            // ------ prep the map ------- //
+
+            setTimeout(()=>{
+
+                map.opacity.section([0.1,0.7,0.4], 0.5);
+                map.opacity.inside([1,0,0], 0.5);
+                map.opacity.main([1,0,0], 0.5);
+
+            }, 650)
+
+            setTimeout(()=>{
+
+                map.openSpace(0);
+
+            }, 1500)
+
+
+            // ---- show results ---- //
+
+            /// aldskjaldkajslkdjalskdjalksj
+
+            setTimeout(()=>{
+
+                $('.OG1FightIconWrap').css({'transition':'0.75s', 'opacity':'0'});
+                map.opacity.inside([0.6,1,0], 0.75);
+                map.opacity.main([1,1,0], 0.75);
+                $('.IGContests').css({'transition':'0.15s', 'opacity':'0'});
+                map.opacity.OG1Results(1,0.75)
+
+            }, 1750)
+
+            setTimeout(()=>{
+
+                map.opacity.IGContests(1, 0.75);
+                map.show.topTransition(false, 0.75);
+                $('.topBoxLeaderResult, .arrowToTopIconResults').css({'transition':'0.75s', 'opacity':'1'});
+                map.set.OG2ResultingIcons2();
+                map.opacity.shadowOG2(false, 0);
+
+            }, 2250)
+
+            setTimeout(()=>{
+
+                map.opacity.main([1,1,1], 0.75);
+
+
+            }, 2750)
+
+            setTimeout(()=>{
+
+                map.opacity.inside([0.6,1,1], 1.5);
+                map.opacity.inside([0.6,1,1], 0.75);
+                map.opacity.OG2Left(0, 0);
+                // map.opacity.shadowOG2Left(false, 0);
+                map.opacity.section([0.1,0.7,0.1], 1);
+                map.opacity.OG2Left(0, 0);
+                map.opacity.bottomTransition(0.6, 0.75);
+
+                $('.prizeCrownBlackTop').css({'transition':'0s', 'opacity':'0'})
+
+            }, 3000)
+
+            setTimeout(()=>{
+
+                map.show.topTransition(true, 0.75);
+
+                setTimeout(()=>{
+
+                    $('.IGContests').css({'transition':'1s', 'opacity':'1'});
+
+                    $('.prizeCrownBlackBottom').css({'transition':'0.5s','opacity':'0'});
+
+                    $('.IGFightIconLimeTop').css({'transition':'0.5s',
+                    'opacity':'1'});
+
+                    $('.prizeCrownLimeTop').css({'transition':'0.5s',
+                    'margin-top':'-44px', 'opacity':'1', 'filter':'opacity(1)'})
+
+                    $('.IGFI_Bottom, .IGFightIconLimeBottom, .prizeCrownLimeBottom').css({'transition':'0.5s', 'opacity':'1', 'filter':'opacity(1)'})
+
+                    $('.prizeCrownLimeBottom').css({'transition':'1s', 'margin-top':'-37px'});
+
+                    map.opacity.section([0.1,0.1,0.1], 0.75);
+
+                }, 250)
+
+                setTimeout(()=>{
+
+
+                    $('.IGFightIconLimeTop').css({'transition':'0.5s',
+                    'opacity':'0'});
+
+                    if(tool.winnerFollowerIndex === 0) {
+                        $('.prizeCrownLimeTop').css({'transition':'0.75s',
+                        'margin-left':'-38px', 'margin-top':'-48px', 'z-index':'-1'});
+                    } else {
+                        $('.prizeCrownLimeTop').css({'transition':'0.75s',
+                        'margin-left':'37px', 'margin-top':'-48px', 'z-index':'-1'});
+                    }
+
+                }, 1000)
+
+                setTimeout(()=>{
+                    $('.arrowsToOG2, .arrowTopIGtoOG2').css({'transition':'0.75s', 'opacity':'1'});
+                }, 1750)
+
+                setTimeout(()=>{
+                    map.opacity.topTransition(0.6, 0.75);
+                    map.opacity.OG2Left(1, 1);
+                }, 2000)
+
+                setTimeout(()=>{
+                    map.animate.YAH_og2();
+                }, 2500)
+
+                setTimeout(()=>{
+                    $('.IG, .arrowsToOG2, .arrowsToOG1IconResults').css({'transition':'0.75s', 'opacity':'0.7'});
+                    $('.OG1, .IG, .arrowsToOG2, .arrowsToOG1IconResults').css({'transition':'1s',
+                    'transform-origin':'right', 'transform':'scale(0.7)'});
+                    $('.arrowsToOG1IconResults').css({'transition':'1s','margin-left':'-20px'});
+                    $('.IG').css({'transition':'1s','margin-left':'-70px'});
+                    $('.arrowsToOG2').css({'transition':'1s','margin-left':'15px', 'margin-top':'8px'});
+                    $('.OG2').css({'transition':'1s', 'transform-origin':'left', 'transform':'scale(1.4)'})
+                    $('.sexplain').css({'transition':'1s', 'margin-left':'-40px'});
+                    map.opacity.bottomTransition(1, 0.75);
+                    map.opacity.topTransition(1, 0.75);
+
+                    setTimeout(()=>{
+                        $('.OG2FightIcon').css({'transition':'1s', 'opacity':'0'});
+                        $('.OG2FightIconLime').css({'transition':'1s', 'opacity':'1'});
+                    }, 250)
+
+                }, 2500)
+
+            }, 3750)
+
+        }
+
+        if(state === 'og2_og1Won_fb') {
+
+            // ------ STARTING SETUP ------------ //
+
+            map.setupAfterOG1(mainData, false, true);
+
+            map.opacity.main([0,0,0], 0);
+
+            // do this as a first thing for graphical ease
+            map.opacity.shadowOG2(1);
+            $('.IGFI_Top, .IGFI_Bottom').css({'filter':'opacity(0)'});
+
+            map.show.sections(0);
+
+            map.set.OG1ResultIcons2();
+            map.opacity.OG1Results(0,0)
+
+
+            // DISPLAY THE MAP WITH SECTIONS ONLY
+
+
+            // ------ SHOW STARTING SETUP ------- //
+
+            setTimeout(()=>{
+
+                $('.sexplain').css({
+                    'transition':'0.75s',
+                    'transform-origin':'center center',
+                    'transform':'scale(1)',
+                    'opacity':'1',
+                    'margin-left':'10px'
+                });
+
+                map.opacity.main([1,1,1], 0.75);
+
+            }, 10)
+
+            // ------ prep the map ------- //
+
+            setTimeout(()=>{
+
+                map.opacity.section([0.1,0.7,0.4], 0.75);
+                map.opacity.inside([1,0,0], 0.75);
+                map.opacity.main([1,0,0], 0.5);
+
+            }, 650)
+
+            setTimeout(()=>{
+
+                map.openSpace(0);
+
+            }, 1500)
+
+
+            // ---- show results ---- //
+
+            setTimeout(()=>{
+
+                $('.OG1FightIconWrap').css({'transition':'0.75s', 'opacity':'0'});
+                map.opacity.inside([0.6,1,0], 0.75);
+                map.opacity.main([1,1,0], 0.75);
+                $('.IGContests').css({'transition':'0.25s', 'opacity':'0'});
+                map.opacity.OG1Results(1,0.75)
+
+            }, 1750)
+
+            setTimeout(()=>{
+
+                map.opacity.IGContests(1, 0.75);
+                map.show.bottomTransition(false, 0.75);
+                $('.bottomBoxLeaderResult, .arrowToBottomIconResults').css({'transition':'0.75s', 'opacity':'1'});
+                map.set.OG2ResultingIcons2();
+                map.opacity.shadowOG2(false, 0);
+
+            }, 2250)
+
+            setTimeout(()=>{
+
+                map.opacity.main([1,1,1], 0.75);
+
+            }, 2750)
+
+            setTimeout(()=>{
+
+                map.opacity.inside([0.6,1,1], 0.75);
+                map.opacity.shadowOG2(false, 0.75);
+                // map.opacity.shadowOG2Right(true, 0.75);
+                map.opacity.section([0.1,0.7,0.1], 0.75);
+                map.opacity.OG2Right(0, 0);
+                map.opacity.topTransition(0.6, 0.75);
+
+                $('.prizeCrownBlackTop').css({'transition':'0s', 'opacity':'0'})
+
+            }, 3250)
+
+            setTimeout(()=>{
+
+                map.show.bottomTransition(true, 0.75);
+
+                setTimeout(()=>{
+
+                    $('.IGContests').css({'transition':'1s', 'opacity':'1'});
+
+                    $('.prizeCrownBlackBottom').css({'transition':'0.75s','opacity':'0'});
+
+                    $('.IGFightIconLimeBottom').css({'transition':'0.75s',
+                    'opacity':'1'});
+
+                    $('.prizeCrownLimeBottom').css({'transition':'0.75s',
+                    'margin-top':'-44px', 'opacity':'1', 'filter':'opacity(1)'})
+
+                    $('.IGFI_Bottom, .IGFightIconLimeBottom, .prizeCrownLimeBottom').css({'transition':'0.75s',
+                    'opacity':'1', 'filter':'opacity(1)'})
+
+                    $('.prizeCrownLimeBottom').css({'transition':'0.75s', 'margin-top':'-37px'});
+
+                    map.opacity.section([0.1,0.1,0.1], 0.75);
+
+                }, 250)
+
+                setTimeout(()=>{
+
+                    $('.IGFI_Bottom, .IGFightIconLimeBottom').css({'transition':'0.5s',
+                    'opacity':'0'});
+
+                    if(tool.winnerFollowerIndex === 0) {
+                        $('.prizeCrownLimeBottom').css({'transition':'0.75s',
+                        'margin-left':'-38px', 'margin-top':'-48px', 'z-index':'-1'});
+                    } else {
+                        $('.prizeCrownLimeBottom').css({'transition':'0.75s',
+                        'margin-left':'37px', 'margin-top':'-48px', 'z-index':'-1'});
+                    }
+
+                }, 1000)
+
+                setTimeout(()=>{
+                    $('.arrowsToOG2, .arrowBottomIGtoOG2').css({'transition':'0.75s', 'opacity':'1'});
+                    $('.arrowTopIGtoOG2').css({'transition':'0s', 'opacity':'0'});
+                }, 1750)
+
+                setTimeout(()=>{
+                    map.opacity.shadowOG2Right(false, 0.75);
+                    map.opacity.OG2Right(1, 1);
+                }, 2000)
+
+                setTimeout(()=>{
+                    map.animate.YAH_og2();
+                }, 2500)
+
+                setTimeout(()=>{
+
+                    $('.IG, .arrowsToOG2, .arrowsToOG1IconResults').css({'transition':'0.75s', 'opacity':'0.7'});
+                    $('.OG1, .IG, .arrowsToOG2, .arrowsToOG1IconResults').css({'transition':'1s',
+                    'transform-origin':'right', 'transform':'scale(0.7)'});
+                    $('.arrowsToOG1IconResults').css({'transition':'1s','margin-left':'-20px'});
+                    $('.IG').css({'transition':'1s','margin-left':'-70px'});
+                    $('.arrowsToOG2').css({'transition':'1s','margin-left':'15px', 'margin-top':'8px'});
+                    $('.OG2').css({'transition':'1s', 'transform-origin':'left', 'transform':'scale(1.4)'})
+                    $('.sexplain').css({'transition':'1s', 'margin-left':'-40px'});
+                    map.opacity.bottomTransition(1, 0.75);
+                    map.opacity.topTransition(1, 0.75);
+
+                    setTimeout(()=>{
+                        $('.OG2FightIcon').css({'transition':'1s', 'opacity':'0'});
+                        $('.OG2FightIconLime').css({'transition':'1s', 'opacity':'1'});
+                    }, 250)
+
+                }, 2500)
+
+                setTimeout(()=>{
+                    map.opacity.main([0,0,1], 1);
+                    $('.arrowsToOG1IconResults, .arrowsToOG2').css({'transition':'0.5s',
+                    'opacity':'0'})
+                    calculator.section.contest.minimize(false);
+                    $('.sexplain').css({'transition':'1s','margin-left':'-312px',
+                    'margin-top':'66px', 'transform':'scale(1) scaleX(1.11)'});
+                }, 3250)
+
+                setTimeout(()=>{
+                    calculator.section.all.opacity(1, 1);
+                    $('.contestTitle2').css({'transition':'0s', 'opacity':'0'});
+                    calculator.section.hs.opacity.SFiALiFiS([1,1,1,1,1,0], 1);
+                    setTimeout(()=>{
+                        $('.sexplain').css({'transition':'1s', 'opacity':'0'});
+                    }, 500)
+                }, 3750)
+
+            }, 3750)
+
+        }
+
+        if(state === 'og2_og1Lost_fb') {
+
+            // ------ STARTING SETUP ------------ //
+
+            map.setupAfterOG1(mainData, false, true);
+
+            map.opacity.main([0,0,0], 0);
+
+            // do this as a first thing for graphical ease
+            map.opacity.shadowOG2(1);
+            $('.IGFI_Top, .IGFI_Bottom').css({'filter':'opacity(0)'});
+
+            map.show.sections(0);
+
+            map.set.OG1ResultIcons2();
+            map.opacity.OG1Results(0,0)
+
+
+            // DISPLAY THE MAP WITH SECTIONS ONLY
+
+
+            // ------ SHOW STARTING SETUP ------- //
+
+            setTimeout(()=>{
+
+                $('.sexplain').css({
+                    'transition':'0.75s',
+                    'transform-origin':'center center',
+                    'transform':'scale(1)',
+                    'opacity':'1',
+                    'margin-left':'10px'
+                });
+
+                map.opacity.main([1,1,1], 0.5);
+
+            }, 10)
+
+            // ------ prep the map ------- //
+
+            setTimeout(()=>{
+
+                map.opacity.section([0.1,0.7,0.4], 0.5);
+                map.opacity.inside([1,0,0], 0.5);
+                map.opacity.main([1,0,0], 0.5);
+
+            }, 650)
+
+            setTimeout(()=>{
+
+                map.openSpace(0);
+
+            }, 1500)
+
+
+            // ---- show results ---- //
+
+            /// aldskjaldkajslkdjalskdjalksj
+
+            setTimeout(()=>{
+
+                $('.OG1FightIconWrap').css({'transition':'0.75s', 'opacity':'0'});
+                map.opacity.inside([0.6,1,0], 0.75);
+                map.opacity.main([1,1,0], 0.75);
+                $('.IGContests').css({'transition':'0.15s', 'opacity':'0'});
+                map.opacity.OG1Results(1,0.75)
+
+            }, 1750)
+
+            setTimeout(()=>{
+
+                map.opacity.IGContests(1, 0.75);
+                map.show.topTransition(false, 0.75);
+                $('.topBoxLeaderResult, .arrowToTopIconResults').css({'transition':'0.75s', 'opacity':'1'});
+                map.set.OG2ResultingIcons2();
+                map.opacity.shadowOG2(false, 0);
+
+            }, 2250)
+
+            setTimeout(()=>{
+
+                map.opacity.main([1,1,1], 0.75);
+
+
+            }, 2750)
+
+            setTimeout(()=>{
+
+                map.opacity.inside([0.6,1,1], 1.5);
+                map.opacity.inside([0.6,1,1], 0.75);
+                map.opacity.OG2Left(0, 0);
+                // map.opacity.shadowOG2Left(false, 0);
+                map.opacity.section([0.1,0.7,0.1], 1);
+                map.opacity.OG2Left(0, 0);
+                map.opacity.bottomTransition(0.6, 0.75);
+
+                $('.prizeCrownBlackTop').css({'transition':'0s', 'opacity':'0'})
+
+            }, 3000)
+
+            setTimeout(()=>{
+
+                map.show.topTransition(true, 0.75);
+
+                setTimeout(()=>{
+
+                    $('.IGContests').css({'transition':'1s', 'opacity':'1'});
+
+                    $('.prizeCrownBlackBottom').css({'transition':'0.5s','opacity':'0'});
+
+                    $('.IGFightIconLimeTop').css({'transition':'0.5s',
+                    'opacity':'1'});
+
+                    $('.prizeCrownLimeTop').css({'transition':'0.5s',
+                    'margin-top':'-44px', 'opacity':'1', 'filter':'opacity(1)'})
+
+                    $('.IGFI_Bottom, .IGFightIconLimeBottom, .prizeCrownLimeBottom').css({'transition':'0.5s', 'opacity':'1', 'filter':'opacity(1)'})
+
+                    $('.prizeCrownLimeBottom').css({'transition':'1s', 'margin-top':'-37px'});
+
+                    map.opacity.section([0.1,0.1,0.1], 0.75);
+
+                }, 250)
+
+                setTimeout(()=>{
+
+
+                    $('.IGFightIconLimeTop').css({'transition':'0.5s',
+                    'opacity':'0'});
+
+                    if(tool.winnerFollowerIndex === 0) {
+                        $('.prizeCrownLimeTop').css({'transition':'0.75s',
+                        'margin-left':'-38px', 'margin-top':'-48px', 'z-index':'-1'});
+                    } else {
+                        $('.prizeCrownLimeTop').css({'transition':'0.75s',
+                        'margin-left':'37px', 'margin-top':'-48px', 'z-index':'-1'});
+                    }
+
+                }, 1000)
+
+                setTimeout(()=>{
+                    $('.arrowsToOG2, .arrowTopIGtoOG2').css({'transition':'0.75s', 'opacity':'1'});
+                }, 1750)
+
+                setTimeout(()=>{
+                    map.opacity.topTransition(0.6, 0.75);
+                    map.opacity.OG2Left(1, 1);
+                }, 2000)
+
+                setTimeout(()=>{
+                    map.animate.YAH_og2();
+                }, 2500)
+
+                setTimeout(()=>{
+                    $('.IG, .arrowsToOG2, .arrowsToOG1IconResults').css({'transition':'0.75s', 'opacity':'0.7'});
+                    $('.OG1, .IG, .arrowsToOG2, .arrowsToOG1IconResults').css({'transition':'1s',
+                    'transform-origin':'right', 'transform':'scale(0.7)'});
+                    $('.arrowsToOG1IconResults').css({'transition':'1s','margin-left':'-20px'});
+                    $('.IG').css({'transition':'1s','margin-left':'-70px'});
+                    $('.arrowsToOG2').css({'transition':'1s','margin-left':'15px', 'margin-top':'8px'});
+                    $('.OG2').css({'transition':'1s', 'transform-origin':'left', 'transform':'scale(1.4)'})
+                    $('.sexplain').css({'transition':'1s', 'margin-left':'-40px'});
+                    map.opacity.bottomTransition(1, 0.75);
+                    map.opacity.topTransition(1, 0.75);
+
+                    setTimeout(()=>{
+                        $('.OG2FightIcon').css({'transition':'1s', 'opacity':'0'});
+                        $('.OG2FightIconLime').css({'transition':'1s', 'opacity':'1'});
+                    }, 250)
+
+                }, 2500)
+
+                setTimeout(()=>{
+                    map.opacity.main([0,0,1], 1);
+                    $('.arrowsToOG1IconResults, .arrowsToOG2').css({'transition':'0.5s',
+                    'opacity':'0'})
+                    calculator.section.contest.minimize(false);
+                    $('.sexplain').css({'transition':'1s','margin-left':'-312px',
+                    'margin-top':'66px', 'transform':'scale(1) scaleX(1.11)'});
+                }, 3250)
+
+                setTimeout(()=>{
+                    calculator.section.all.opacity(1, 1);
+                    $('.contestTitle2').css({'transition':'0s', 'opacity':'0'});
+                    calculator.section.hs.opacity.SFiALiFiS([1,1,1,1,1,0], 1);
+                    setTimeout(()=>{
+                        $('.sexplain').css({'transition':'1s', 'opacity':'0'});
+                    }, 500)
+                }, 3750)
+
+            }, 3750)
 
         }
 

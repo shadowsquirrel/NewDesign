@@ -1,0 +1,42 @@
+.OG2f1YAH {
+    opacity: 0;
+    margin-top: 38px;
+    margin-left: 19px;
+    height: 115px;
+    width: 85px;
+    position: absolute;
+    transform: rotate(-200deg);
+}
+.OG2f1YAHT {
+    opacity: 0;
+    font-weight: 800;
+    font-family: cursive;
+    font-size: 18px;
+    margin-top: 83px;
+    margin-left: -57px;
+    position: absolute;
+}
+.roleChangeRightArrow
+{
+    filter:opacity(0);
+}
+.roleChangeLeftArrow
+{
+    filter:opacity(0);
+}
+.roleChangeWrap
+{
+    filter:opacity(0);
+}
+.roleChangeIndicatorTextRight
+{
+    filter:opacity(0);
+}
+.roleChangeIndicatorTextLeft
+{
+    filter:opacity(0);
+}
+.outcomeWrap
+{
+    margin-bottom:-95px;
+}

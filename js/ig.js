@@ -1773,7 +1773,7 @@ calculator.slider.playerDecision.IG_effort.oninput = function() {
     calculator.results.update.IG_allTextAndColors();
 
 
-    //WILL ADD AN ACTIVE WIGGLE SWITCH OFF HERE
+    bb.data.followerContest.dynamic()
 
 
 }
@@ -1810,6 +1810,8 @@ calculator.slider.IG_l1.oninput = function() {
 
     calculator.decisionSlider.leader.IG_effortBar(efo1, true);
 
+    bb.listen.followerContest();
+
 }
 
 //Player 2 123456789
@@ -1833,6 +1835,8 @@ calculator.slider.IG_l2.oninput = function() {
     calculator.graphics.update.barLabelX('IG_barl2', true);
 
     calculator.pointers.IG_switches[1] = false;
+
+    bb.listen.followerContest();
 
 }
 

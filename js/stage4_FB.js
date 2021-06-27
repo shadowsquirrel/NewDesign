@@ -11,6 +11,8 @@ let mainData = {};
 
 window.onload = function() {
 
+    adjustWindowSize();
+
     // var node = parent.node;
 
 
@@ -39,8 +41,8 @@ window.onload = function() {
         treatment: [0,1],
         s2: [ [ [0,11], [11,0]], [ [0,40], [40,0] ] ],
         // s2: [ [[0,20], [10,0]], [[0,5], [10,0]] ],
-        // s3: [ [200, 100], [true, false] ],
-        s3: [ [200, 100], [false, true] ],
+        s3: [ [200, 100], [true, false] ],
+        // s3: [ [200, 100], [false, true] ],
         s4: [ [ [5, 1], [true, false], [50, 100] ], [ [5, 1], [false, true], [31, 131] ] ],
         s5: [ [Array(6), Array(6)], [Array(6), Array(6)] ],
         s6: [ Array(2), Array(2) ],
@@ -220,7 +222,7 @@ window.onload = function() {
 
             setTimeout(()=>{
 
-                var someDelay = 250;
+                var someDelay = 750;
                 if(calculator.globalVariable.isIGB) {
                     someDelay = 750;
                 }
@@ -244,6 +246,7 @@ window.onload = function() {
                         $('.prizeCrownLimeBottom').css({'transition':'2s', 'margin-top':'-37px'});
                         map.opacity.section([0.1,0.1,0.1], 0.5);
 
+
                     }, 250)
 
                 }, someDelay)
@@ -253,7 +256,7 @@ window.onload = function() {
                     map.animate.YAH_ig();
 
                     map.show.topTransition(true, 0.5);
-                    map.opacity.bottomTransition(0.5)
+                    map.opacity.bottomTransition(0.5, 0.5);
                     map.opacity.OG2Right(1);
                     map.opacity.OG2Left(1)
                     map.opacity.main([1,1,0.5], 0.5);
@@ -263,6 +266,10 @@ window.onload = function() {
 
                     $('.prizeCrownLimeTop').css({'transition':'2s',
                     'margin-top':'-44px', 'opacity':'1', 'filter':'opacity(1)'})
+
+                    setTimeout(()=>{
+                        map.opacity.bottomTransition(0.5, 0.5);
+                    }, 755)
 
                 }
 

@@ -1,3 +1,23 @@
+var showNorp = function(delay) {
+
+    delay = delay === undefined ? 0.7 : delay;
+
+    delay = delay + 's';
+
+    $('.metaNorp').css({'transition':delay, 'opacity':'1'})
+
+}
+
+var hideNorp = function(delay) {
+
+    delay = delay === undefined ? 0.7 : delay;
+
+    delay = delay + 's';
+
+    $('.metaNorp').css({'transition':delay, 'opacity':'0'})
+
+}
+
 
 var metaMoveBottom = function(top, left, scale) {
 
@@ -25,13 +45,16 @@ var metaMoveBottom = function(top, left, scale) {
 
 }
 
-var setMetaNorp = function(top, left, scale) {
+var setMetaNorp = function(top, left, scale, transition) {
+
+    transition = transition === undefined ? 0 : transition;
+    transition = transition + 's';
 
     top = top + 'px';
     left = left + 'px';
     scale = 'scale(' + scale + ')';
 
-    $('.metaNorp').css({'transition':'0s',
+    $('.metaNorp').css({'transition': transition,
     'top':top, 'left':left , 'transform':scale});
 
 }

@@ -40,8 +40,9 @@
     <link rel="stylesheet" href="css/generalInfo.css">
 
     <link rel="stylesheet" href="css/stage2and5SpecificAdditionalClasses.css">
+    <link rel="stylesheet" href="css/miniGame.css">
     <link rel="stylesheet" href="css/norp.css">
-
+    <link rel="stylesheet" href="css/og_fb.css">
 
     <script src='js/Winwheel.js'></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
@@ -50,9 +51,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
 
 
-    <title>F - OUT-group Contest 1 - Followers' Help & Sabotage</title>
+    <title>FB-OUT 1</title>
 </head>
-<body>
+<body style='overflow:hidden;'>
     <div id=start></div>
 
 
@@ -66,42 +67,51 @@
             </p>
         </div>
 
-        <div class=metaNorp>
-            <div class=norp>
-                <div class='wrapLoad'>
+        <div class=metaNorpWrapTop>
+            <div class=metaNorp>
+                <div class=norp>
+                    <div class='wrapLoad'>
 
-                    <div class='imgWrapLoad l-1'>
-                        <img class='load r-1' src="images/h0me.png" alt="V" />
+                        <div class='imgWrapLoad l-1'>
+                            <img class='load r-1' src="images/h0me.png" alt="V" />
+                        </div>
+
+                        <div class='imgWrapLoad l-2'>
+                            <img class='load r-2' src="images/h0me.png" alt="V" />
+                        </div>
+
+                        <div class='imgWrapLoad l-3'>
+                            <img class='load r-3' src="images/h0me.png" alt="V" />
+                        </div>
+
+                        <div class='imgWrapLoad l-4'>
+                            <img class='load r-4' src="images/h0me.png" alt="V" />
+                        </div>
+
+                        <div class='imgWrapLoad l-5'>
+                            <img class='load r-5' src="images/h0me.png" alt="V" />
+                        </div>
+
+                        <div class='imgWrapLoad l-6'>
+                            <img class='load r-6' src="images/h0me.png" alt="V" />
+                        </div>
+
                     </div>
 
-                    <div class='imgWrapLoad l-2'>
-                        <img class='load r-2' src="images/h0me.png" alt="V" />
+                    <div class=norpTextWrap>
+                        <p>
+                            Waiting for <span id=noap></span>
+                        </p>
                     </div>
-
-                    <div class='imgWrapLoad l-3'>
-                        <img class='load r-3' src="images/h0me.png" alt="V" />
-                    </div>
-
-                    <div class='imgWrapLoad l-4'>
-                        <img class='load r-4' src="images/h0me.png" alt="V" />
-                    </div>
-
-                    <div class='imgWrapLoad l-5'>
-                        <img class='load r-5' src="images/h0me.png" alt="V" />
-                    </div>
-
-                    <div class='imgWrapLoad l-6'>
-                        <img class='load r-6' src="images/h0me.png" alt="V" />
-                    </div>
-
-                </div>
-
-                <div class=norpTextWrap>
-                    <p>
-                        Waiting for <span id=noap></span>
-                    </p>
                 </div>
             </div>
+        </div>
+
+        <div class=hoverInfoWrap>
+            <p>
+                Move your mouse over the results to focus on the
+                respective part.
+            </p>
         </div>
 
         <div class = 'all'>
@@ -131,7 +141,7 @@
 
             <div class='initialMapDiv'>
 
-                <div class='sexplain noselect'>
+                <div class='sexplain noselect' style='position:absolute;'>
 
 
                     <div class=allboxwrap>
@@ -1392,9 +1402,6 @@
             </div>
 
 
-            <div class='boxbox' id='boxbox-A'></div>
-
-
             <div class=generalMarginBox>
 
                 <div class = 'calculator  noselect' id='calculator'>
@@ -2338,6 +2345,9 @@
             </div>
 
 
+            <div class='boxbox' id='boxbox-A'></div>
+
+
             <div class='decisionWrapL'>
 
                 <img id="calcButtonBottom" class='calculatorBottomSetup' src="images/calc.png" alt="V" />
@@ -2394,9 +2404,15 @@
             </div>
 
 
+            <div class='norpBottomWrap'>
+
+            </div>
+
         </div>
 
     </div>
+
+
 
     <div id=end></div>
 
@@ -2411,7 +2427,7 @@
                 <div class=text>
 
                     <p>
-
+                        OUT-group contest I decisions of the players are as above.
                     </p>
 
                 </div>
@@ -2428,11 +2444,89 @@
 
         </div>
 
+        <div class=boxwrap id='boxwrap-A-2'>
+
+            <div class='box' id='box-A-2'>
+
+                <div class=text>
+
+                    <p>
+                        Click the READY button to spin the wheel and see the results.
+                    </p>
+
+                </div>
+
+                <div class=buttonWrap>
+                    <div class=button id='btn-A-2'>
+                        <p>
+                            OK
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class='boxwrap specialBoxWrap' id='boxwrap-A-3'>
+
+            <div class='box destroyBox' id='box-A-3'>
+
+                <div class='buttonWrap'>
+                    <div class='button specialButton' id='btn-A-3'>
+                        <p>
+                            READY
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class=boxwrap id='boxwrap-A-4'>
+
+            <div class='box' id='box-A-4'>
+
+                <div class=text>
+
+                    <p class=groupWon-infoBox style='font-size:24px;'>
+                        Your group won and proceeds to the OUT-group contest
+                        II with the same roles.
+                    </p>
+
+                    <p class=groupLost-infoBox-leader>
+                        Your group lost. You lost your leadership position. Your
+                        followers proceed to IN-group contes to determine the new leader.
+                    </p>
+
+                    <p class=groupLost-infoBox-follower>
+                        Your group lost. Your leader lost its leadership position.
+                        You and other follower proceed to the IN-group contes to
+                        determine the new leader.
+                    </p>
+
+                </div>
+
+                <div class=buttonWrap>
+                    <div class=button id='btn-A-4'>
+                        <p>
+                            OK
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
 
 
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="js/mediaQ.js"></script>
     <script src="js/load.js"></script>
     <script src="js/box.js"></script>
     <script src="js/tool.js"></script>

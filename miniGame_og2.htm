@@ -42,18 +42,21 @@
     <link rel="stylesheet" href="css/generalArrangement.css">
 
 
-    <link rel="stylesheet" href="css/stage2and5SpecificAdditionalClasses.css">
     <link rel="stylesheet" href="css/stage4SpecificClasses.css">
+    <link rel="stylesheet" href="css/stage2and5SpecificAdditionalClasses.css">
+    <link rel="stylesheet" href="css/miniGame.css">
     <link rel="stylesheet" href="css/norp.css">
+    <link rel="stylesheet" href="css/miniGame_og2.css">
 
 
-
+    <script src='js/Winwheel.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
 
 
-    <title>IN-group Contest</title>
+    <title>MINI GAME</title>
 </head>
 <body style='overflow:hidden;'>
     <div id=start></div>
@@ -66,43 +69,47 @@
             </p>
         </div>
 
-        <div class=metaNorp>
-            <div class=norp>
-                <div class='wrapLoad'>
+        <div class=metaNorpWrapTop>
+            <div class=metaNorp>
+                <div class=norp>
+                    <div class='wrapLoad'>
 
-                    <div class='imgWrapLoad l-1'>
-                        <img class='load r-1' src="images/h0me.png" alt="V" />
+                        <div class='imgWrapLoad l-1'>
+                            <img class='load r-1' src="images/h0me.png" alt="V" />
+                        </div>
+
+                        <div class='imgWrapLoad l-2'>
+                            <img class='load r-2' src="images/h0me.png" alt="V" />
+                        </div>
+
+                        <div class='imgWrapLoad l-3'>
+                            <img class='load r-3' src="images/h0me.png" alt="V" />
+                        </div>
+
+                        <div class='imgWrapLoad l-4'>
+                            <img class='load r-4' src="images/h0me.png" alt="V" />
+                        </div>
+
+                        <div class='imgWrapLoad l-5'>
+                            <img class='load r-5' src="images/h0me.png" alt="V" />
+                        </div>
+
+                        <div class='imgWrapLoad l-6'>
+                            <img class='load r-6' src="images/h0me.png" alt="V" />
+                        </div>
+
                     </div>
 
-                    <div class='imgWrapLoad l-2'>
-                        <img class='load r-2' src="images/h0me.png" alt="V" />
+                    <div class=norpTextWrap>
+                        <p>
+                            Waiting for <span id=noap></span>
+                        </p>
                     </div>
-
-                    <div class='imgWrapLoad l-3'>
-                        <img class='load r-3' src="images/h0me.png" alt="V" />
-                    </div>
-
-                    <div class='imgWrapLoad l-4'>
-                        <img class='load r-4' src="images/h0me.png" alt="V" />
-                    </div>
-
-                    <div class='imgWrapLoad l-5'>
-                        <img class='load r-5' src="images/h0me.png" alt="V" />
-                    </div>
-
-                    <div class='imgWrapLoad l-6'>
-                        <img class='load r-6' src="images/h0me.png" alt="V" />
-                    </div>
-
-                </div>
-
-                <div class=norpTextWrap>
-                    <p>
-                        Waiting for <span id=noap></span>
-                    </p>
                 </div>
             </div>
         </div>
+
+
 
         <div class = 'all'>
 
@@ -131,7 +138,7 @@
 
             <div class='initialMapDiv'>
 
-                <div class='sexplain noselect'>
+                <div class='sexplain noselect' style='position:absolute;'>
 
 
                     <div class=allboxwrap>
@@ -1159,7 +1166,7 @@
 
                                     <div class='leftFollowerPastDecisionBlue lfpd'>
                                         <p class='pastDecision'>
-                                            OUT-GROUP CONTEST I DECISION
+                                            PAST DECISION
                                         </p>
                                         <p>
                                             <span id=leftFollowerHSValue></span> <br />
@@ -1168,11 +1175,10 @@
                                     </div>
 
                                     <div class='rightFollowerPastDecisionBlue rfpd'>
-
-                                        <p class='pastDecision2'>
-                                            OUT-GROUP CONTEST I DECISION
-                                        </p>
                                         <p>
+                                            <p class='pastDecision2'>
+                                                PAST DECISION
+                                            </p>
                                             <span id=rightFollowerHSValue></span> <br />
                                             <span id=rightFollowerHSText></span>
                                         </p>
@@ -1615,7 +1621,7 @@
                                 </svg>
 
                                 <div class = 'sliderBarL IG_sbLeft'>
-                                    <input type='range' min = '0' max = '250' class = 'IG_pSlider' value = '0' id = 'IG_lSlider1' />
+                                    <input type='range' min = '0' max = '1000' class = 'IG_pSlider' value = '0' id = 'IG_lSlider1' />
                                     <div id = 'IG_barl1' class = 'IG_pbar'></div>
                                 </div>
 
@@ -1679,7 +1685,7 @@
                                 </svg>
 
                                 <div class = 'sliderBarL IG_sbRight'>
-                                    <input type='range' min = '0' max = '250' class = 'IG_pSlider' value = '0' id = 'IG_olSlider1' />
+                                    <input type='range' min = '0' max = '1000' class = 'IG_pSlider' value = '0' id = 'IG_olSlider1' />
                                     <div id = 'IG_barl2' class = 'IG_pbar'></div>
                                 </div>
 
@@ -1849,100 +1855,66 @@
             </div>
 
 
-            <div class='boxbox' id='boxbox-B' style='margin-top:-23px;'></div>
+            <div class='boxbox' id='boxbox-B' style='margin-top:-145px;'></div>
+
+            <div class='boxbox' id='boxbox-C' style='margin-top:-145px;display:none;'></div>
 
 
-            <div class='outcomeWrap' style='display:none;'>
+            <div class='miniGameScoreWrap'>
 
-                <!-- ARROWS AND TEXT FOR ROLE CHANGE LEFT -->
-                <img class='roleChangeLeftArrow outcomeHelper' src="images/rarrow.png" alt="V" />
-                <svg height=100 width=200 class='roleChangeIndicatorTextLeft outcomeHelper'>
-                    <text x="42" y="68" fill="red" transform="rotate(0)">
-                        Role
-                    </text>
-                </svg>
-
-                <div class='groupLostWrap'>
-
-                    <div class='lostTextWrap'>
-                        <p>
-                            IF YOU LOSE
-                        </p>
-                    </div>
-
-                    <div class='netPayoffWrap'>
-                        <img class='netPayoffIndicatorCicrle' src="images/redcircle2.png" alt="V" />
-                        <p>
-                            <span id='IG_netPayoffValueLostDl'></span>
-                        </p>
-                    </div>
-
-                    <div class='roleChangeWrap'>
-                        <p>
-                            Continue as a follower
-                        </p>
-                    </div>
-
+                <div class=currentScore>
+                    <p>
+                        CURRENT SCORE <br />
+                        <span id='myCurrentGameScore' style='' class='myMiniGameScore'></span>
+                    </p>
                 </div>
 
-                <!-- ARROWS AND TEXT FOR NETPAYOFFS -->
-                <img class='netPayoffLeftArrow outcomeHelper' src="images/rarrow.png" alt="V" />
-                <img class='netPayoffRightArrow outcomeHelper' src="images/rarrow.png" alt="V" />
-                <svg height=100 width=200 class='netPayoffIndicatorText outcomeHelper'>
-                    <text x="42" y="68" fill="red" transform="rotate(0)">
-                        Net
-                    </text>
-                    <text x="25" y="90" fill="red" transform="rotate(0)">
-                        Payoffs
-                    </text>
-                </svg>
-
-                <div class='groupWonWrap'>
-
-                    <div class='wonTextWrap'>
-                        <p>
-                            IF YOU WIN
-                        </p>
-                    </div>
-
-                    <div class='netPayoffWrap'>
-                        <img class='netPayoffIndicatorCicrle' src="images/redcircle2.png" alt="V" />
-                        <p>
-                            <span id='IG_netPayoffValueWonDl'></span>
-                        </p>
-                    </div>
-
-                    <div class='roleChangeWrap'>
-                        <p>
-                            Become the new leader
-                        </p>
-                    </div>
-
+                <div class=previousScore style='display:none;'>
+                    <p>
+                        PREVIOUS SCORE <br />
+                        <span id='myPreviousGameScore' style='' class='myMiniGameScore3'></span>
+                    </p>
                 </div>
 
-                <!-- ARROWS AND TEXT FOR ROLE CHANGE RIGHT -->
-                <img class='roleChangeRightArrow outcomeHelper' src="images/rarrow.png" alt="V" />
-                <svg height=100 width=200 class='roleChangeIndicatorTextRight outcomeHelper'>
-                    <text x="42" y="68" fill="red" transform="rotate(0)">
-                        Role
-                    </text>
-                </svg>
+                <div class=totalScore>
+                    <p>
+                        TOTAL SCORE <br />
+                        <span id='myMiniGameScore' style='' class='myMiniGameScore2'></span>
+                    </p>
+                </div>
 
             </div>
 
-            <div class=pleaseWait></div>
+
+            <div class='norpBottomWrap'>
+
+            </div>
+
 
             <div class=boxStorage style='display:none;'>
 
-                <div class=boxwrap id='boxwrap-A-1'>
+                <div class=boxwrap id='boxwrap-A-1' style='margin-top:63px;'>
 
                     <div class='box' id='box-A-1'>
 
                         <div class=text>
 
-                            <p>
-                                You are <span id=infoBox-a-1></span>
-                                in the <span style='font-weight:500;'>IN</span>-group contest <span style='font-weight:500;'>A</span>.
+                            <p class='winnerGroup-follower-InfoBox'>
+                                You are the leader of your group in the OUT-group contest II.
+                            </p>
+
+                            <p class='winnerGroup-leader-InfoBox'>
+                                You are the leader of your group in the OUT-group contest II.
+                            </p>
+
+                            <p class='lostGroup-leader-InfoBox'>
+                                Your group lost the OUT-group contest I and
+                                you lost your leadership position.
+                            </p>
+
+                            <p class='lostGroup-follower-InfoBox'>
+                                Your group lost the OUT-group contest I and
+                                you lost your leadership position.
                             </p>
 
                         </div>
@@ -1963,219 +1935,32 @@
 
                     <div class='box' id='box-A-2'>
 
-                        <div class=text style='font-size:24px;'>
+                        <div class=text>
 
-                            <p class='info-a-2-tuto'>
-                                You compete against the other follower in
-                                <i style='font-weight:500;'>your</i> group.
+                            <p class='winnerGroup-follower-InfoBox'>
+                                You are in OUT-group contest II. <br />
+                                You are waiting for the leaders to make their decision.
                             </p>
 
-                            <p class='info-a-2-notuto'>
-                                You compete against the other follower in
-                                <i style='font-weight:500;'>your</i> group
-                                to become the <i style='font-weight:500;'>new</i> leader.
+                            <p class='winnerGroup-leader-InfoBox'>
+                                You are in OUT-group contest II. <br />
+                                You are waiting for the followers to make their decision.
+                            </p>
+
+                            <p class='lostGroup-leader-InfoBox'>
+                                You are in OUT-group contest II. <br />
+                                You are waiting for the followers to make their decision.
+                            </p>
+
+                            <p class='lostGroup-follower-InfoBox'>
+                                You are in OUT-group contest II. <br />
+                                You are waiting for the leaders to make their decision.
                             </p>
 
                         </div>
 
-                        <div class=buttonWrap style='margin-left:-23px;margin-right:-61px;'>
+                        <div class=buttonWrap>
                             <div class=button id='btn-A-2'>
-                                <p>
-                                    OK
-                                </p>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class=boxwrap id='boxwrap-A-201' style='margin-top:22px;'>
-
-                    <div class='box' id='box-A-201'>
-
-                        <div class=text style='font-size:24px;'>
-
-                            <p>
-                                The <i style='font-weight:500;'>victorious</i> follower will become the
-                                <i style='font-weight:500;'>new leader</i> of your group
-                                <br /> in the
-                                <span style='font-weight:500;'>OUT</span>-group
-                                contest <span style='font-weight:500;'>II</span>.
-                            </p>
-
-                        </div>
-
-                        <div class=buttonWrap style='margin-left:-23px;margin-right:-61px;'>
-                            <div class=button id='btn-A-201'>
-                                <p>
-                                    OK
-                                </p>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class=boxwrap id='boxwrap-A-202' style='margin-top:2px;'>
-
-                    <div class='box' id='box-A-202'>
-
-                        <div class=text style='font-size:24px;'>
-
-                            <p id='infoBox-a-202-hetero' style='display:none;'>
-                                <i class=myBold>Power difference</i> between <i>you</i> and the <i>other follower</i>
-                                is graphically displayed by the
-                                <i class=myBold>size</i> of your respective
-                                icons and by the <i class=myBold>power ratio</i>
-                                above.
-                                <span style='display:block;margin-top:30px;font-style:italic;font-size:22px;'>
-                                    <span id='infoBox-a-202-strong'></span>
-                                    <span id='infoBox-a-202-weak'></span>
-                                </span>
-                            </p>
-
-                            <p id='infoBox-a-202-homo' style='display:none;'>
-                                <i class=myBold>Neither</i> follower has an advantage over the other.
-                                <span style='display:block;margin-top:15px;font-style:italic;font-size:19px;'>
-                                    The <i class=myBold>power ratio</i> between you and
-                                    the other follower is <span class=myBold>1 : 1</span>
-                                </span>
-                            </p>
-
-                        </div>
-
-                        <div class=buttonWrap style='margin-left:-23px;margin-right:-61px;'>
-                            <div class=button id='btn-A-202'>
-                                <p>
-                                    OK
-                                </p>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class=boxwrap id='boxwrap-A-3'>
-
-                    <div class='box' id='box-A-3'>
-
-                        <div class=text style='font-size:24px;'>
-
-                            <p id=info-a-3-tuto style='display:none;'>
-                                <!-- Move your mouse over the icons to observe
-                                the followers' <i style='font-weight:500;'>previous</i>
-                                help / sabotage decisions to their leaders
-                                in the <span style='font-weight:500;'>OUT</span>-group contest
-                                <span style='font-weight:500;'>I</span>. -->
-
-                                Yours and the other follower's <i style='font-weight:500;'>previous</i>
-                                help / sabotage decision to <i>your</i> leader is
-                                displayed on the bubbles next to your icons.
-                            </p>
-
-                            <p id=info-a-3-notuto style='display:none;'>
-                                <!-- Followers' <i style='font-weight:500;'>previous</i>
-                                help / sabotage decisions
-                                from the <span style='font-weight:500;'>OUT</span>-group contest
-                                <span style='font-weight:500;'>I</span> are displayed as above. -->
-                                Yours and the other follower's <i style='font-weight:500;'>previous</i>
-                                help / sabotage decision to <i>your</i> leader is
-                                <!-- in the <span style='font-weight:500;'>OUT</span>-group contest
-                                <span style='font-weight:500;'>I</span> is -->
-                                displayed on the bubbles next to your icons.
-
-                                <!-- Move your mouse over the icons to observe
-                                followers' <i style='font-weight:500;'>previous</i>
-                                help / sabotage decisions to their leaders
-                                in the <span style='font-weight:500;'>OUT</span>-group contest
-                                <span style='font-weight:500;'>I</span>. -->
-                            </p>
-
-                        </div>
-
-                        <div class=buttonWrap style='margin-left:-23px;margin-right:-61px;'>
-                            <div class=button id='btn-A-3' style=''>
-                                <p>
-                                    OK
-                                </p>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class=boxwrap id='boxwrap-A-301' style='margin-top:40px;'>
-
-                    <div class='box' id='box-A-301'>
-
-                        <div class=text style='font-size:24px;'>
-
-                            <p>
-                                <i style='font-weight:500;'>Previously</i> made
-                                help / sabotage decisions have <span style='font-weight:500;'>no</span>
-                                effect on <br /> the <i style='font-weight:500;'>current</i> IN-group contest.
-                                <span style='display:block;margin-top:15px;font-size:19px;font-style:italic;'>
-                                    They are displayed simply to remind you of the previous decisions and intentions of the followers.
-                                </span>
-
-                            </p>
-
-                        </div>
-
-                        <div class=buttonWrap style='margin-left:-23px;margin-right:-61px;'>
-                            <div class=button id='btn-A-301' style=''>
-                                <p>
-                                    OK
-                                </p>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class=boxwrap id='boxwrap-A-4' style='margin-top:-63px;'>
-
-                    <div class='box' id='box-A-4'>
-
-                        <div class=text>
-
-                            <p>
-                                The slider <i style='font-weight:500;'>below</i> represents <i style='font-weight:500;'>your</i> investment decision.
-                            </p>
-
-                        </div>
-
-                        <div class=buttonWrap>
-                            <div class=button id='btn-A-4'>
-                                <p>
-                                    OK
-                                </p>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class=boxwrap id='boxwrap-A-5'>
-
-                    <div class='box' id='box-A-5'>
-
-                        <div class=text>
-
-                            <p>
-                                Drag your slider <i style='font-weight:500;'>right</i> to invest <i style='font-weight:500;'>more</i> tokens.
-                            </p>
-
-                        </div>
-
-                        <div class=buttonWrap>
-                            <div class=button id='btn-A-5'>
                                 <p>
                                     OK
                                 </p>
@@ -2190,26 +1975,29 @@
 
                     <div class='box' id='box-A-6'>
 
-                        <div class=text>
-
-                            <!-- <p>
-                                Notice that the <i style='font-weight:500'>victorious</i>
-                                follower will <i>also</i> <span style='font-weight:500;'>not</span>
-                                receive any payment.
-                            </p> -->
+                        <div class=text style='text-align:center; font-size:40px; font-weight:100;'>
 
                             <p>
-                                Notice that <i>even</i> if you <i style='font-weight:500'>win</i>,
-                                you will <span style='font-weight:500;'>not</span>
-                                receive any payment.
+                                While you wait,
+                                you can play the mini game.
                             </p>
 
                         </div>
 
-                        <div class=buttonWrap>
-                            <div class=button id='btn-A-6'>
+
+                    </div>
+
+                </div>
+
+
+                <div class='boxwrap specialBoxWrap' id='boxwrap-A-7' >
+
+                    <div class='box destroyBox' id='box-A-7'>
+
+                        <div class='buttonWrap'>
+                            <div class='button specialButton' id='btn-A-7'>
                                 <p>
-                                    OK
+                                    MINI GAME
                                 </p>
                             </div>
                         </div>
@@ -2218,24 +2006,14 @@
 
                 </div>
 
+                <div class='boxwrap specialBoxWrap2' id='boxwrap-A-8' >
 
-                <div class=boxwrap id='boxwrap-B-7'>
+                    <div class='box destroyBox' id='box-A-8'>
 
-                    <div class='box' id='box-B-7'>
-
-                        <div class=text>
-
-                            <p>
-                                A <i>graphical calculator</i> is provided <i >above</i>
-                                your decision slider
-                            </p>
-
-                        </div>
-
-                        <div class=buttonWrap>
-                            <div class=button id='btn-B-7'>
+                        <div class='buttonWrap'>
+                            <div class='button specialButton2' id='btn-A-8'>
                                 <p>
-                                    OK
+                                    NO, THANKS
                                 </p>
                             </div>
                         </div>
@@ -2243,110 +2021,6 @@
                     </div>
 
                 </div>
-
-
-                <div class=boxwrap id='boxwrap-B-8'>
-
-                    <div class='box' id='box-B-8'>
-
-                        <div class=text>
-
-                            <p>
-                                You can use the calculator to consider possible
-                                <i>hypothetical</i>
-                                (<span style='color:red;font-weight:500;'>?</span>)
-                                investment decisions for the <i>opposing</i> follower.
-                            </p>
-
-                        </div>
-
-                        <div class=buttonWrap>
-                            <div class=button id='btn-B-8'>
-                                <p>
-                                    OK
-                                </p>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class=boxwrap id='boxwrap-B-9' style='margin-top:-263px;'>
-
-                    <div class='box' id='box-B-9'>
-
-                        <div class=text style='font-size: 40px;font-weight: 100; text-align: center;'>
-
-                            <p>
-                                Please make an investment decision
-                            </p>
-
-                        </div>
-
-                        <div class=buttonWrap>
-                            <div class=button id='btn-B-9'>
-                                <p>
-                                    OK
-                                </p>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class=boxwrap id='boxwrap-B-10'>
-
-                    <div class='box' id='box-B-10'>
-
-                        <div class=text style='font-size: 35px;font-weight: 100; text-align: center;'>
-
-                            <p>
-                                <span class=myBold>Submit</span> your decision (<span class='halfRedCircle'>
-                                    <img class='submitButtonInfo' src="images/submit.png" alt="V" /></span>
-                                ) before the time expires.
-                            </p>
-
-                        </div>
-
-                        <div class=buttonWrap>
-                            <div class=button id='btn-B-10'>
-                                <p>
-                                    OK
-                                </p>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class=boxwrap id='boxwrap-A-007'>
-
-                    <div class='box' id='box-A-007'>
-
-                        <div class=text>
-
-                            <p>
-                                Please make an investment decision.
-                            </p>
-
-                        </div>
-
-                        <div class=buttonWrap>
-                            <div class=button id='btn-A-007'>
-                                <p>
-                                    OK
-                                </p>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-
-
 
 
             </div>
@@ -2358,15 +2032,14 @@
     <div id=end></div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script src="js/mediaQ_leader.js"></script>
+    <script src="js/mediaQ.js"></script>
     <script src="js/load.js"></script>
     <script src="js/box.js"></script>
     <script src="js/tool.js"></script>
     <script src="js/map.js"></script>
-    <script src="js/ig.js"></script>
-    <script src="js/s4Setup.js"></script>
-    <script src="js/bigBrother.js"></script>
-    <script src="js/stage4.js"></script>
+    <script src="js/mg.js"></script>
+    <script src="js/mgSetup.js"></script>
+    <script src="js/miniGame_og2.js"></script>
 
 </body>
 </html>

@@ -1,6 +1,12 @@
 .specialBoxWrap {
     margin-top: 135px;
 }
+.specialButton
+{
+    width:205px;
+    margin-top:35px;
+
+}
 .bottomMapWrap
 {
     transform:scale(0.7);
