@@ -720,6 +720,10 @@ let generateOG = function(myData) {
             textposition: mytextpos,
         }];
 
+        console.log(barId);
+        console.log();
+        console.log(data);
+
         var ticktextcolors = ['black', 'white'];
         var tindex = 1;
 
@@ -1329,6 +1333,8 @@ let generateOG = function(myData) {
 
         var somecolor = 'black';
 
+
+
         if(y > upperBound) {
 
             mytextpos = 'inside';
@@ -1358,6 +1364,9 @@ let generateOG = function(myData) {
             // textanchor: 'right',
             textposition: mytextpos,
         }];
+
+        console.log('YO YO YO');
+        console.log(data);
 
 
         var ticktextcolors = ['white'];
@@ -2888,23 +2897,6 @@ let generateOG = function(myData) {
 
             $('#barf1').css({'transition':'0.7s', 'transform':'scale(1)'});
 
-            if(calculator.globalVariable.dynamicDisplay && calculator.globalVariable.aBitOfWaitingIsDone) {
-
-                if(calculator.globalVariable.hover.hsResults){
-                    calculator.results.show.followerOutcomesBottom();
-                }
-
-            }
-
-            if(calculator.globalVariable.hover.hsButton){
-                calculator.button.display.spinTop(true);
-            }
-
-            // if(calculator.space.hsResultsTopIsOpen){
-            //     calculator.button.display.minTop(true);
-            //     calculator.button.enable.minTop();
-            // }
-
             calculator.questions.spin2.f1();
 
             calculator.lock.switch.f1 = false;
@@ -3003,21 +2995,6 @@ let generateOG = function(myData) {
 
             $('#barf2').css({'transition':'0.7s', 'transform':'scale(1)'});
 
-            if(calculator.globalVariable.dynamicDisplay && calculator.globalVariable.aBitOfWaitingIsDone) {
-                if(calculator.globalVariable.hover.hsResults){
-                    calculator.results.show.followerOutcomesBottom();
-                }
-            }
-
-            if(calculator.globalVariable.hover.hsButton){
-                calculator.button.display.spinTop(true);
-            }
-
-            // if(calculator.space.hsResultsTopIsOpen){
-            //     calculator.button.display.minTop(true);
-            //     calculator.button.enable.minTop();
-            // }
-
             calculator.questions.spin2.f2();
 
             calculator.lock.switch.f2 = false;
@@ -3115,23 +3092,6 @@ let generateOG = function(myData) {
 
             $('#obarf1').css({'transition':'0.7s', 'transform':'scale(1)'});
 
-            if(calculator.globalVariable.dynamicDisplay && calculator.globalVariable.aBitOfWaitingIsDone) {
-
-                if(calculator.globalVariable.hover.hsResults){
-                    calculator.results.show.followerOutcomesBottom();
-                }
-
-            }
-
-            if(calculator.globalVariable.hover.hsButton){
-                calculator.button.display.spinTop(true);
-            }
-
-            // if(calculator.space.hsResultsTopIsOpen){
-            //     calculator.button.display.minTop(true);
-            //     calculator.button.enable.minTop();
-            // }
-
             calculator.questions.spin2.of1();
 
             calculator.lock.switch.of1 = false;
@@ -3227,21 +3187,6 @@ let generateOG = function(myData) {
             calculator.globalVariable.enervate2FollowerOF2 = false;
 
             $('#obarf2').css({'transition':'0.7s', 'transform':'scale(1)'});
-
-            if(calculator.globalVariable.dynamicDisplay && calculator.globalVariable.aBitOfWaitingIsDone) {
-                if(calculator.globalVariable.hover.hsResults){
-                    calculator.results.show.followerOutcomesBottom();
-                }
-            }
-
-            if(calculator.globalVariable.hover.hsButton){
-                calculator.button.display.spinTop(true);
-            }
-
-            // if(calculator.space.hsResultsTopIsOpen){
-            //     calculator.button.display.minTop(true);
-            //     calculator.button.enable.minTop();
-            // }
 
             calculator.questions.spin2.of2();
 
@@ -3465,6 +3410,11 @@ let generateOG = function(myData) {
 
                 $('.payoffWrap').css({'transition-delay':'0s', 'transition':'0.5s'});
                 calculator.globalVariable.contestVisisted = false;
+
+                if(calculator.globalVariable.playerIndex === - 1) {
+                    $('.generalMarginBox').css({'transition':'1s', 'height':'650px'});
+                }
+
 
             }
 
@@ -6839,15 +6789,15 @@ let generateOG = function(myData) {
 
         total = total + 'px';
 
-        // console.log('********************');
-        // console.log('power bar: ' + pb);
-        // console.log('contest: ' + c);
-        // console.log('contestResult: ' + cr);
-        // console.log('hs: ' + hs);
-        // console.log('hs Top: ' + hsT);
-        // console.log('hs Bottom: ' + hsB);
-        // console.log('total: ' + total);
-        // console.log('********************');
+        console.log('********************');
+        console.log('power bar: ' + pb);
+        console.log('contest: ' + c);
+        console.log('contestResult: ' + cr);
+        console.log('hs: ' + hs);
+        console.log('hs Top: ' + hsT);
+        console.log('hs Bottom: ' + hsB);
+        console.log('total: ' + total);
+        console.log('********************');
 
 
 

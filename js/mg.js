@@ -1706,26 +1706,8 @@ calculator.slider.playerDecision.IG_effort.oninput = function() {
     calculator.values.update.IG_probability();
     calculator.results.update.IG_allTextAndColors();
 
-
-    //WILL ADD AN ACTIVE WIGGLE SWITCH OFF HERE
-
-
 }
 
-// Effort Section
-
-$('#IG_lSlider1').change(function() {
-
-    if(helper.spinButtonActivator) {
-
-        setTimeout(()=>{
-            calculator.button.display.IG_spinBottom(true);
-            calculator.globalVariable.IG_bottomSpinButtonIsEnabled = true;
-        }, 1000)
-
-    }
-
-})
 
 //Player 1 123456789
 calculator.slider.IG_l1= document.getElementById('IG_lSlider1');
@@ -1734,8 +1716,6 @@ calculator.slider.IG_l1.oninput = function() {
     if(helper.hideResultsOnSliderUse) {
         calculator.results.softHide.IG_allResults();
     }
-
-
 
     calculator.wheel.IG_hide();
 
@@ -1762,6 +1742,8 @@ calculator.slider.IG_l1.oninput = function() {
     $('#IG_dSliderL').change();
 
     calculator.decisionSlider.leader.IG_effortBar(efo1, true);
+
+    helper.bbStateListener();
 
 }
 
@@ -3686,6 +3668,14 @@ calculator.wheel.IG_spin = function() {
     var winner = (IG_pwin > Math.random()) ? 1 : 2;
 
 
+    // ------------------------------------------------------- //
+    // ----------------- MINI GAME RECORDER ------------------ //
+    // ------------------------------------------------------- //
+    //
+    helper.recordMiniGame(winner);
+
+
+
     var stopAt = calculator.wheel.IG_myWheelObj.getRandomForSegment(winner);
     calculator.wheel.IG_myWheelObj.animation.stopAngle = stopAt;
     calculator.wheel.IG_myWheelObj.startAnimation();
@@ -3713,14 +3703,6 @@ calculator.wheel.IG_spin = function() {
 
         helper.currentGameScore = helper.currentGameScore + myNetPayoff;
         mainData.myMiniGame.totalScore = mainData.myMiniGame.totalScore + myNetPayoff;
-
-        var msg = {
-            currentScore: helper.currentGameScore,
-            totalScore: mainData.myMiniGame.totalScore
-        }
-
-        calculator.updateLogic(msg);
-
 
         $('#myCurrentGameScore').html(helper.currentGameScore);
         $('#myMiniGameScore').html(helper.totalGameScore);
@@ -4780,7 +4762,9 @@ calculator.setup.ig_feedbackAdjustment = function() {
 
 var IG_spin2 = document.getElementById('IG_spinImage23');
 calculator.globalVariable.IG_bottomSpinButtonIsEnabled = true;
+
 IG_spin2.onclick = function() {
+
     if(calculator.globalVariable.IG_bottomSpinButtonIsEnabled) {
 
         calculator.globalVariable.aBitOfWaitingIsDone = false;

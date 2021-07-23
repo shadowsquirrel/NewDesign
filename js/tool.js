@@ -107,15 +107,16 @@ tool.rearrangeMainData = function(myData) {
     if(tool.areGroupsRearranged) {
 
         tool.swapArrayElements(myData.s2, 0, 1);
+
         tool.swapArrayElements(myData.s3[0], 0, 1);
         tool.swapArrayElements(myData.s3[1], 0, 1);
+
         tool.swapArrayElements(myData.s4, 0, 1);
+
         tool.swapArrayElements(myData.s5, 0, 1);
+
         tool.swapArrayElements(myData.s6[0], 0, 1);
         tool.swapArrayElements(myData.s6[1], 0, 1);
-
-
-
 
     }
 

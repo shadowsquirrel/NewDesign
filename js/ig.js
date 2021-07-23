@@ -1912,6 +1912,11 @@ $('.IG_inputL').hover(
 
     function() {
 
+        $('.lfpd, .rfpd').css({'transition':'0.75s', 'opacity':'0'});
+
+        $('.IG_pWrap').css({'transition':'1s', 'transform-origin':'bottom', 'transform':'scale(1.2)'});
+        $('.wpWrap').css({'transition':'1s', 'transform-origin':'center', 'transform':'scale(1.2)'});
+
         if(calculator.activateDSlider) {
 
             calculator.globalVariable.IG_enervate2LeaderLeft = true;
@@ -2023,6 +2028,11 @@ $('#IG_lSlider1').hover(
 $('.IG_bswLeft').hover(
     function() {
 
+        $('.IG_pWrap').css({'transition':'1s', 'transform-origin':'bottom', 'transform':'scale(1)'});
+        $('.wpWrap').css({'transition':'1s', 'transform-origin':'center', 'transform':'scale(1)'});
+
+        $('.lfpd, .rfpd').css({'transition':'0.75s', 'opacity':'0.4'});
+
         calculator.globalVariable.IG_enervate2LeaderLeft = true;
         calculator.icons.enervate2.IG_leaderLeft(0);
 
@@ -2105,6 +2115,11 @@ $('.IG_bswRight').hover(
 
     function() {
 
+        $('.lfpd, .rfpd').css({'transition':'0.75s', 'opacity':'0.4'});
+
+        $('.IG_pWrap').css({'transition':'1s', 'transform-origin':'bottom', 'transform':'scale(1)'});
+        $('.wpWrap').css({'transition':'1s', 'transform-origin':'center', 'transform':'scale(1)'});
+
         calculator.globalVariable.IG_enervate2LeaderRight = true;
         calculator.icons.enervate2.IG_leaderRight(0);
 
@@ -2147,12 +2162,20 @@ calculator.globalVariable.IG_hsWrapActive = false;
 $('.IG_hsWrap').hover(
     function() {
         if(calculator.globalVariable.IG_hsWrapActive) {
+
+            $('.lfpd, .rfpd').css({'transition':'0.75s', 'opacity':'0.4'});
+
+            $('.IG_pWrap').css({'transition':'1s', 'transform-origin':'bottom', 'transform':'scale(1)'});
+            $('.wpWrap').css({'transition':'1s', 'transform-origin':'center', 'transform':'scale(1)'});
+
             $('.lfpd, .rfpd').css({'transition':'0.75s', 'opacity':'1'});
         }
     },
     function() {
         if(calculator.globalVariable.IG_hsWrapActive) {
+
             $('.lfpd, .rfpd').css({'transition':'0.75s', 'opacity':'0.1'});
+
         }
     }
 )

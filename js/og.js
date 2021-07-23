@@ -2068,6 +2068,11 @@ let generateOG = function(myData) {
     calculator.slider.f1= document.getElementById('vSlider1');
     calculator.slider.f1.oninput = function() {
 
+        $('.follower1Circle').css({'transition':'1s', 'opacity':'0'});
+        setTimeout(()=>{
+            $('.follower1Circle').css({'transition':'1s', 'transform':'scale(0)'});
+        }, 1000)
+
         calculator.graphics.update.barLabelY('barf1', true);
         calculator.wheel.hide();
 
@@ -2115,6 +2120,11 @@ let generateOG = function(myData) {
     // Follower 2
     calculator.slider.f2= document.getElementById('vSlider2');
     calculator.slider.f2.oninput = function() {
+
+        $('.follower2Circle').css({'transition':'1s', 'opacity':'0'});
+        setTimeout(()=>{
+            $('.follower2Circle').css({'transition':'1s', 'transform':'scale(0)'});
+        }, 1000)
 
         calculator.graphics.update.barLabelY('barf2', true);
         calculator.wheel.hide();
@@ -2273,9 +2283,13 @@ let generateOG = function(myData) {
 
             $('.bswLeft').css({'box-shadow':'0px 0px 1px 4px lime'});
 
+            // calculator.section.hs.set.iconPosition('deep');
+
 
         },
         function() {
+
+            // calculator.section.hs.set.iconPosition('bottom');
 
             setTimeout(()=>calculator.graphics.update.barLabelX('bardl', false), 150);
             calculator.graphics.update.barGridX('bardl', false);
@@ -2300,6 +2314,17 @@ let generateOG = function(myData) {
         function() {
 
             if(!calculator.globalVariable.leaderHoverBlock) {
+
+
+
+                $('.generalMarginBox').css({'transition':'1s',
+                'margin-top':'-70px'});
+
+                $('.pWrap').css({'transition':'1s', 'transform-origin':'bottom', 'transform':'scale(1.2)'});
+
+                $('.hsWrap').css({'transition':'1s', 'transform-origin':'bottom', 'transform':'scale(1.3)'});
+
+                $('.wpWrap').css({'transition':'1s', 'transform-origin':'center', 'transform':'scale(1.3)'});
 
                 // even the follower results are not shown make sure to display the ghost title for contest on top of leader icons
                 if(!calculator.space.hsResultsTopIsOpen && !calculator.space.hsResultsBottomIsOpen) {
@@ -2353,7 +2378,7 @@ let generateOG = function(myData) {
                 calculator.icons.enervate2.leaderLeft(0);
 
                 // $('.decisionWrapL').css({'transition':'0.7s', 'transform':'scale(1.1)'});
-                $('.bswLeft').css({'transition':'0.7s', 'transform':'scale(1.1)'});
+                // $('.bswLeft').css({'transition':'0.7s', 'transform':'scale(1.1)'});
                 // if(calculator.globalVariable.infoIsOpen) {
                 //     $('.generalInfoWrap').css({'transition':'0.7s',
                 //     'transform':'scale(0.74) rotateX(1turn)', 'margin-top':'-396px'})
@@ -2383,6 +2408,8 @@ let generateOG = function(myData) {
                     calculator.section.hs.minimize(true);
                 }
 
+                calculator.section.hs.set.iconPosition('deep');
+
             }
 
 
@@ -2391,6 +2418,8 @@ let generateOG = function(myData) {
 
             if(!calculator.globalVariable.leaderHoverBlock) {
 
+                // calculator.section.hs.set.iconPosition('bottom');
+
                 if(calculator.globalVariable.infoIsOpen) {
                     $('.generalInfoWrap').css({'transition':'0.7s',
                     'transform':'scale(0.813) rotateX(1turn)', 'margin-top':'-418px'})
@@ -2398,9 +2427,9 @@ let generateOG = function(myData) {
 
                 // hs icon
                 if(calculator.globalVariable.hover.leaderHidesFicons){
-                    calculator.section.hs.opacity.SFiALiFiS([0.6,0.2,1,1,1,0]);
-                    calculator.section.hs.opacity.SFiALiFiS([0.6,0.4,1,1,1,0]);
-                    calculator.section.hs.set.iconPosition('bottom');
+                    // calculator.section.hs.opacity.SFiALiFiS([0.6,0.2,1,1,1,0]);
+                    // calculator.section.hs.opacity.SFiALiFiS([0.6,0.4,1,1,1,0]);
+                    // calculator.section.hs.set.iconPosition('bottom');
                 }
 
                 calculator.globalVariable.enervate2LeaderLeft = false;
@@ -2548,13 +2577,30 @@ let generateOG = function(myData) {
 
             if(calculator.globalVariable.aBitOfWaitingIsDone) {
 
-                calculator.section.hs.minimize(false);
-                calculator.section.contest.minimize(true);
+                // calculator.section.hs.minimize(false);
+                // calculator.section.contest.minimize(true);
 
-                calculator.section.hs.opacity.SFiALiFiS([1,1,1,0.5,0,1]);
-                calculator.section.hs.set.iconPosition('center');
+                calculator.section.hs.minimize(true);
+                calculator.section.contest.minimize(false);
+
+                $('.followersLeft').css({'transform-origin':'bottom right',
+                'transform':'scale(1.3)'})
+
+                $('.followersRight').css({'transform-origin':'bottom left',
+                'transform':'scale(1.3)'})
+
+                $('.generalMarginBox').css({'transition':'1s',
+                'margin-top':'-70px'});
+
+                $('.calculator').css({'transition':'1s', 'margin-top':'0px'});
+
+
+                 $('.follower1Circle, .follower2Circle').css({'transition':'1s', 'margin-left':'-460px'});
+
+                calculator.section.hs.opacity.SFiALiFiS([1,1,1,1,1,0]);
+                calculator.section.hs.set.iconPosition('middle');
                 calculator.titles.hs.ghost.hide();
-                calculator.titles.hs.show();
+                calculator.titles.hs.hide();
                 calculator.titles.update.position();
 
                 if(calculator.space.hsResultsTopIsOpen){
@@ -2575,6 +2621,12 @@ let generateOG = function(myData) {
 
         },
         function() {
+
+            // $('.followersLeft, .followersRight').css({'transform-origin':'bottom right',
+            // 'transform':'scale(1)'})
+            //
+            // $('.generalMarginBox').css({'transition':'1s',
+            // 'margin-top':'0px'});
 
             // $('.outcomeWrap').css({'opacity':'0.7'});
 
@@ -2635,8 +2687,12 @@ let generateOG = function(myData) {
                 calculator.section.hs.opacity.SFiALiFiS([0,0,1,1,1,0]);
             }
 
+            // calculator.section.hs.set.iconPosition('halfdeep');
+
         },
         function() {
+
+            // calculator.section.hs.set.iconPosition('bottom');
 
             calculator.globalVariable.pieBorderLeft = false;
             calculator.graphics.update.pie();
@@ -2667,6 +2723,8 @@ let generateOG = function(myData) {
 
             if(!calculator.globalVariable.leaderHoverBlock) {
 
+                calculator.section.hs.set.iconPosition('halfdeep');
+
                 calculator.globalVariable.enervate2LeaderLeft = true;
                 calculator.icons.enervate2.leaderLeft(0);
 
@@ -2691,6 +2749,8 @@ let generateOG = function(myData) {
 
         },
         function() {
+
+            calculator.section.hs.set.iconPosition('bottom');
 
             calculator.globalVariable.enervate2LeaderLeft = false;
 
@@ -2736,8 +2796,12 @@ let generateOG = function(myData) {
                 calculator.section.hs.opacity.SFiALiFiS([0,0,1,1,1,0]);
             }
 
+            // calculator.section.hs.set.iconPosition('halfdeep');
+
         },
         function() {
+
+            // calculator.section.hs.set.iconPosition('bottom');
 
             calculator.globalVariable.pieBorderRight = false;
             calculator.graphics.update.pie();
@@ -2767,6 +2831,8 @@ let generateOG = function(myData) {
 
         function() {
 
+            calculator.section.hs.set.iconPosition('halfdeep');
+
             calculator.globalVariable.enervate2LeaderRight = true;
             calculator.icons.enervate2.leaderRight(0);
 
@@ -2788,6 +2854,8 @@ let generateOG = function(myData) {
 
         },
         function() {
+
+            calculator.section.hs.set.iconPosition('bottom');
 
             calculator.globalVariable.enervate2LeaderRight = false
 
@@ -3292,6 +3360,15 @@ let generateOG = function(myData) {
 
             if(calculator.globalVariable.aBitOfWaitingIsDone) {
 
+                $('.followersLeft, .followersRight').css({'transform-origin':'bottom right',
+                'transform':'scale(1)'})
+
+                if(calculator.globalVariable.playerIndex != -1) {
+                    $('.generalMarginBox').css({'transition':'1s',
+                    'margin-top':'0px'});
+                }
+
+                $('.follower1Circle, .follower2Circle').css({'transition':'1s', 'margin-left':'-395px'});
 
                 // contes hide title
                 if(calculator.globalVariable.hover.cTitle) {
@@ -3419,11 +3496,34 @@ let generateOG = function(myData) {
 
     //------ CONTEST SECTION ------//
 
+    $('.pWrap, .calculator').hover(
+        function() {
+
+            if(calculator.globalVariable.playerIndex === -1) {
+                $('.pWrap, .hsWrap, .wpWrap').css({'transition':'1s', 'transform':'scale(1)'});
+            }
+
+
+        }
+    )
+
     $('.contestSection').hover(
 
         function() {
 
             if(calculator.globalVariable.aBitOfWaitingIsDone) {
+
+                $('.followersLeft, .followersRight').css({'transform-origin':'bottom right',
+                'transform':'scale(1)'})
+
+                if(calculator.globalVariable.playerIndex != -1) {
+                    $('.generalMarginBox').css({'transition':'1s',
+                    'margin-top':'0px'});
+                }
+
+                $('.pWrap, .hsWrap').css({'transition':'1s', 'transform':'scale(1)'});
+
+                $('.follower1Circle, .follower2Circle').css({'transition':'1s', 'margin-left':'-461px'});
 
                 // contest show button
                 if(calculator.globalVariable.hover.cButton){
@@ -4883,6 +4983,41 @@ let generateOG = function(myData) {
                 $('.lockedCover_f2').css({'z-index' : '-1'});
             }
         }
+
+    }
+
+
+    calculator.lock.activate2 = function(array) {
+
+        calculator.lock.switch.all = array;
+
+        var l1, l2, f1, f2, of1, of2;
+        var o1, o2;
+        l1 = array[0] ? '2' : '-1';
+        l2 = array[1] ? '2' : '-1';
+        o1 = array[0] ? '1' : '0';
+        o2 = array[1] ? '1' : '0';
+
+        f1 = array[2] ? '2' : '-1';
+        f2 = array[3] ? '2' : '-1';
+        of1 = array[4] ? '2' : '-1';
+        of2 = array[5] ? '2' : '-1';
+
+        $('.lockedCover_l1').css({'z-index' : l1, 'opacity' : o1});
+        $('.lockedCover_l2').css({'z-index' : l2, 'opacity' : o2});
+        $('.lockedCover_f1').css({'z-index' : f1});
+        $('.lockedCover_f2').css({'z-index' : f2});
+        $('.lockedCover_of1').css({'z-index' : of1});
+        $('.lockedCover_of2').css({'z-index' : of2});
+
+
+        // readjust the question marks to not be displayed if it is locked
+        $('.sliderQuestion_l1').css({'opacity': (1 - array[0]).toString()});
+        $('.sliderQuestion_f1').css({'opacity': (1 - array[1]).toString()});
+        $('.sliderQuestion_f2').css({'opacity': (1 - array[2]).toString()});
+        $('.sliderQuestion_l2').css({'opacity': (1 - array[3]).toString()});
+        $('.sliderQuestion_of1').css({'opacity': (1 - array[4]).toString()});
+        $('.sliderQuestion_of2').css({'opacity': (1 - array[5]).toString()});
 
     }
 
@@ -7937,9 +8072,45 @@ let generateOG = function(myData) {
 
         }
 
-        if(position == 'bottom') {
+        if(position === 'bottom') {
 
             $('.OGCIcon').css({'margin-top':'39px'});
+            $('.imgwrapfight').css({'transition':'1.023456s','margin-left':'35px', 'margin-right':'35px', 'margin-top':'10px'});
+            $('.leftLeaderIconMainWrap').css({'transition':'1.023456s','transform':'rotate(10deg)'});
+            $('.rightLeaderIconMainWrap').css({'transition':'1.023456s','transform':'rotate(-10deg)'});
+            $('.fightIcon').css({'transition':'1.023456s', 'transform':'rotate(1turn)'});
+
+            calculator.icons.update.leaderMargins(false);
+
+        }
+
+        if(position === 'middle') {
+
+            $('.OGCIcon').css({'margin-top':'9px'});
+            $('.imgwrapfight').css({'transition':'1.023456s','margin-left':'35px', 'margin-right':'35px', 'margin-top':'10px'});
+            $('.leftLeaderIconMainWrap').css({'transition':'1.023456s','transform':'rotate(10deg)'});
+            $('.rightLeaderIconMainWrap').css({'transition':'1.023456s','transform':'rotate(-10deg)'});
+            $('.fightIcon').css({'transition':'1.023456s', 'transform':'rotate(1turn)'});
+
+            calculator.icons.update.leaderMargins(false);
+
+        }
+
+        if(position === 'deep') {
+
+            $('.OGCIcon').css({'margin-top':'65px'});
+            $('.imgwrapfight').css({'transition':'1.023456s','margin-left':'35px', 'margin-right':'35px', 'margin-top':'10px'});
+            $('.leftLeaderIconMainWrap').css({'transition':'1.023456s','transform':'rotate(10deg)'});
+            $('.rightLeaderIconMainWrap').css({'transition':'1.023456s','transform':'rotate(-10deg)'});
+            $('.fightIcon').css({'transition':'1.023456s', 'transform':'rotate(1turn)'});
+
+            calculator.icons.update.leaderMargins(false);
+
+        }
+
+        if(position === 'halfdeep') {
+
+            $('.OGCIcon').css({'margin-top':'42px'});
             $('.imgwrapfight').css({'transition':'1.023456s','margin-left':'35px', 'margin-right':'35px', 'margin-top':'10px'});
             $('.leftLeaderIconMainWrap').css({'transition':'1.023456s','transform':'rotate(10deg)'});
             $('.rightLeaderIconMainWrap').css({'transition':'1.023456s','transform':'rotate(-10deg)'});

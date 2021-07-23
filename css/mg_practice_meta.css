@@ -1,0 +1,56 @@
+.mgMainWrap
+{
+    opacity:1;
+    display:block;
+}
+.practiceMainWrap
+{
+    transition:1s;
+    transform:scale(0);
+    display:none;
+    /* display:block; */
+}
+.clearImageButtonWrap
+{
+    cursor: pointer;
+    z-index: 10;
+    width: 1000px;
+    position: absolute;
+    margin-top: 28px;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    margin-left: -64px;
+}
+.clearImageButtonSubWrap
+{
+    display:none;
+    transition:0.1s;
+    background-color:#c3c3c3;
+    border-radius:100px;
+    box-shadow: 0 5px black;
+    transform:scale(0);
+    opacity:0;
+}
+.clearImageButton
+{
+    filter: invert(1);
+    height: 60px;
+    width: 60px;
+    padding: 12px;
+}
+
+.clearImageButtonSubWrap:hover
+{
+    filter: invert(0);
+    background-color:#fce216;
+}
+.clearImageButtonSubWrap:active
+{
+    transform: translateY(2px);
+    box-shadow: 0 2px black;
+}
+.heightControl
+{
+
+}

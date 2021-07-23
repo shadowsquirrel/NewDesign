@@ -17,6 +17,8 @@ let map = {
     show: {},
     hide: {},
     opacity: {},
+    enlarge: {},
+    normalSize: {},
     active: {},
     reset: {},
     animate: {},
@@ -33,6 +35,9 @@ let map = {
         og1:{},
         ig:{},
         og2:{},
+    },
+    tutorial:{
+        result:{},
     },
 
 };
@@ -1698,6 +1703,31 @@ let generateMap = function() {
         'opacity':'1', 'transform':'scale(1)', 'margin-top':'50px', 'position':'static'});
     }
 
+    map.move.insideDecisionSlider3 = function() {
+
+        // move the map to its new div
+        $('.sexplain').appendTo($('.mapInfoWrap2'));
+        $('.sexplain').css({'margin-left':'0px',
+        'opacity':'1', 'transform':'scale(1)', 'margin-top':'50px', 'position':'static'});
+
+        setTimeout(()=>{
+            $('.IG').css({'transition':'0s', 'transform':'scale(1)',
+            'margin-top':'0px', 'margin-left':'0px'});
+            $('.arrowTopIconToIG').css({'transition':'0s', 'opacity':'1'});
+            map.show.stage('ig');
+            $('.allboxwrap').css({'margin-left':'275px', 'margin-top':'50px',
+            'margin-bottom':'-38px', 'transform':'scale(1.5)'})
+            setTimeout(()=>{
+                map.opacity.inside([0.5,1,0], 0.75);
+                $('.OG1').css({'transform':'scale(0.7)', 'margin-right':'-62px',
+                'margin-left':'-63px'});
+            }, 1750)
+            map.wiggle.active = true;
+            map.animate.YAH_ig()
+        }, 1000)
+
+    }
+
     //----------------------------------------------------------//
     //---- SETUP -----------------------------------------------//
     //----------------------------------------------------------//
@@ -1776,9 +1806,6 @@ let generateMap = function() {
         map.opacity.section([0.1,0.1,0.1], 0)
 
     }
-
-
-
 
 
     //----------------------------------------------------------//
@@ -1923,6 +1950,9 @@ let generateMap = function() {
                 setTimeout(()=>{
                     map.zoom.og1(1);
                     map.opacity.main([1,0.4,0.4], 1);
+                    setTimeout(()=>{
+                        map.animate.YAH_og1();
+                    }, 250)
                 }, 250)
             }, 500)
 
@@ -1944,6 +1974,7 @@ let generateMap = function() {
                     calculator.section.hs.opacity.SFiALiFiS([1,1,1,1,1,0], 1);
                     setTimeout(()=>{
                         $('.sexplain').css({'transition':'1s', 'opacity':'0'});
+                        map.showCirclesInsideCalculator();
                     }, 500)
                 }, 500)
             }, 3000)
@@ -1996,6 +2027,7 @@ let generateMap = function() {
 
             setTimeout(()=>{
                 map.openSpace(0.75);
+                $('.IGContests').css({'transition':'0.25s', 'opacity':'0'});
             }, 1500)
 
 
@@ -2089,6 +2121,7 @@ let generateMap = function() {
             setTimeout(()=>{
 
                 map.openSpace(0);
+                $('.IGContests').css({'transition':'0.25s', 'opacity':'0'});
 
             }, 1500)
 
@@ -2189,6 +2222,7 @@ let generateMap = function() {
 
                 map.opacity.main([1,1,0], 0.75);
                 map.openSpace(0.75);
+                // $('.IGContests').css({'transition':'0.25s', 'opacity':'0'});
 
             }, 650)
 
@@ -2301,7 +2335,7 @@ let generateMap = function() {
                 $('.OG1FightIconWrap').css({'transition':'0.75s', 'opacity':'0'});
                 map.opacity.inside([0.6,1,0], 0.75);
                 map.opacity.main([1,1,0], 0.75);
-                $('.IGContests').css({'transition':'0.25s', 'opacity':'0'});
+                $('.IGContests').css({'transition':'0s', 'opacity':'0'});
                 map.opacity.OG1Results(1,0.75)
 
             }, 1750)
@@ -2349,7 +2383,7 @@ let generateMap = function() {
                     map.opacity.shadowOG2(false, 0.75);
                     map.opacity.shadowOG2Left(true, 0.75);
                     map.opacity.section([0.1,0.7,0.1], 0.75);
-                    map.opacity.OG2Left(0.4, 0.75);
+                    map.opacity.OG2Left(0.3, 0.5);
                 }, 3250)
 
 
@@ -2431,6 +2465,7 @@ let generateMap = function() {
             setTimeout(()=>{
 
                 map.openSpace(0);
+                $('.IGContests').css({'transition':'0.25s', 'opacity':'0'});
 
             }, 1500)
 
@@ -2589,6 +2624,7 @@ let generateMap = function() {
             setTimeout(()=>{
 
                 map.openSpace(0);
+                $('.IGContests').css({'transition':'0.25s', 'opacity':'0'});
 
             }, 1500)
 
@@ -2748,6 +2784,7 @@ let generateMap = function() {
             setTimeout(()=>{
 
                 map.openSpace(0);
+                $('.IGContests').css({'transition':'0.25s', 'opacity':'0'});
 
             }, 1500)
 
@@ -2921,6 +2958,7 @@ let generateMap = function() {
             setTimeout(()=>{
 
                 map.openSpace(0);
+                $('.IGContests').css({'transition':'0.25s', 'opacity':'0'});
 
             }, 1500)
 
@@ -3096,6 +3134,7 @@ let generateMap = function() {
             setTimeout(()=>{
 
                 map.openSpace(0);
+                $('.IGContests').css({'transition':'0.25s', 'opacity':'0'});
 
             }, 1500)
 
@@ -3204,7 +3243,7 @@ let generateMap = function() {
                     $('.IG').css({'transition':'1s','margin-left':'-70px'});
                     $('.arrowsToOG2').css({'transition':'1s','margin-left':'15px', 'margin-top':'8px'});
                     $('.OG2').css({'transition':'1s', 'transform-origin':'left', 'transform':'scale(1.4)'})
-                    $('.sexplain').css({'transition':'1s', 'margin-left':'-40px'});
+
                     map.opacity.bottomTransition(1, 0.75);
                     map.opacity.topTransition(1, 0.75);
 
@@ -3287,13 +3326,12 @@ let generateMap = function() {
             setTimeout(()=>{
 
                 map.openSpace(0);
+                $('.IGContests').css({'transition':'0.25s', 'opacity':'0'});
 
             }, 1500)
 
 
             // ---- show results ---- //
-
-            /// aldskjaldkajslkdjalskdjalksj
 
             setTimeout(()=>{
 
@@ -3318,7 +3356,6 @@ let generateMap = function() {
             setTimeout(()=>{
 
                 map.opacity.main([1,1,1], 0.75);
-
 
             }, 2750)
 
@@ -3362,7 +3399,6 @@ let generateMap = function() {
 
                 setTimeout(()=>{
 
-
                     $('.IGFightIconLimeTop').css({'transition':'0.5s',
                     'opacity':'0'});
 
@@ -3390,6 +3426,7 @@ let generateMap = function() {
                 }, 2500)
 
                 setTimeout(()=>{
+
                     $('.IG, .arrowsToOG2, .arrowsToOG1IconResults').css({'transition':'0.75s', 'opacity':'0.7'});
                     $('.OG1, .IG, .arrowsToOG2, .arrowsToOG1IconResults').css({'transition':'1s',
                     'transform-origin':'right', 'transform':'scale(0.7)'});
@@ -3397,7 +3434,7 @@ let generateMap = function() {
                     $('.IG').css({'transition':'1s','margin-left':'-70px'});
                     $('.arrowsToOG2').css({'transition':'1s','margin-left':'15px', 'margin-top':'8px'});
                     $('.OG2').css({'transition':'1s', 'transform-origin':'left', 'transform':'scale(1.4)'})
-                    $('.sexplain').css({'transition':'1s', 'margin-left':'-40px'});
+
                     map.opacity.bottomTransition(1, 0.75);
                     map.opacity.topTransition(1, 0.75);
 
@@ -3409,12 +3446,14 @@ let generateMap = function() {
                 }, 2500)
 
                 setTimeout(()=>{
+
                     map.opacity.main([0,0,1], 1);
                     $('.arrowsToOG1IconResults, .arrowsToOG2').css({'transition':'0.5s',
                     'opacity':'0'})
                     calculator.section.contest.minimize(false);
                     $('.sexplain').css({'transition':'1s','margin-left':'-312px',
                     'margin-top':'66px', 'transform':'scale(1) scaleX(1.11)'});
+
                 }, 3250)
 
                 setTimeout(()=>{
@@ -3431,6 +3470,31 @@ let generateMap = function() {
         }
 
     }
+
+    // circles will appear as the map is replaced by the calculator icons.
+    // this transition occurs inside map.show.stage big function sub condition
+    // circles will dissappear when the wheel starts spinning
+    // killing function is inside calculator.wheel.spin()
+    // so far we are only using it in stage23 feedback
+    map.showCirclesInsideCalculator = function() {
+
+        if(calculator.globalVariable.playerIndex === -1) {
+            $('.leaderRedCircle').css({'transition':'5s', 'opacity':'1'});
+        }
+
+        if(calculator.globalVariable.playerIndex === 0) {
+            $('.follower1RedCircle').css({'transition':'5s', 'opacity':'1'});
+        }
+
+        if(calculator.globalVariable.playerIndex === 1) {
+            $('.follower2RedCircle').css({'transition':'5s', 'opacity':'1'});
+        }
+
+    }
+
+
+
+
 
 }
 

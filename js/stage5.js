@@ -10,6 +10,12 @@ let mainData = {};
 
 window.onload = function() {
 
+    adjustWindowSize();
+
+    tool.set.NORP(2)
+    setMetaNorp(168, -14, 0.3);
+    hideNorp(0);
+
     // var node = parent.node;
 
     // -------------------------------------------- //
@@ -33,7 +39,7 @@ window.onload = function() {
     //     console.log('-------                               --------');
     //     console.log('----------------------------------------------');
     //
-    //     generateStage2();
+    //     generateStage5();
     //
     // });
     //
@@ -52,6 +58,7 @@ window.onload = function() {
     //     console.log('----------------------------------------------');
     //
     //     tool.set.NORP(msg);
+    //     // not sure if we will have this
     //     setMetaNorp(108, -18, 0.25);
     //
     // })
@@ -66,15 +73,23 @@ window.onload = function() {
     //         console.log('CLIENT FAILED TO SUBMIT IN TIME');
     //         console.log('AUTO SENDING READY MESSAGE TO CLIENT');
     //
-    //         // we are counting it twice I will omit this one and keep the update
-    //         // done in the logic side
-    //         s2DoneUpdated = mainData.myTutorial.s2Done + 1;
+    //         decisionSubmitted = true;
+    //
+    //         s5DoneUpdated = 1;
     //
     //         if(calculator.globalVariable.playerIndex === 0) {
     //
     //             var msg = {
-    //                 decision: [h1, s1, s2DoneUpdated, ['big brother is watching']],
-    //                 stage: 2,
+    //
+    //                 decision: [h1, s1],
+    //                 stage: 5,
+    //                 tutoDone: s5DoneUpdated,
+    //                 bb: {
+    //                     stage: 5,
+    //                     dynamic: bb.data.followerHelpSabo.dynamic,
+    //                     static: bb.data.followerHelpSabo.static
+    //                 }
+    //
     //             }
     //
     //         }
@@ -82,8 +97,16 @@ window.onload = function() {
     //         if(calculator.globalVariable.playerIndex === 1) {
     //
     //             var msg = {
-    //                 decision: [h2, s2, s2DoneUpdated, ['big brother is watching']],
-    //                 stage: 2,
+    //
+    //                 decision: [h2, s2],
+    //                 stage: 5,
+    //                 tutoDone: s5DoneUpdated,
+    //                 bb: {
+    //                     stage: 5,
+    //                     dynamic: bb.data.followerHelpSabo.dynamic,
+    //                     static: bb.data.followerHelpSabo.static
+    //                 }
+    //
     //             }
     //
     //         }
@@ -93,8 +116,7 @@ window.onload = function() {
     //     }, 3000)
     //
     // })
-    //
-    //
+
     // node.on('orangeLight', function() {
     //
     //     calculator.warn15();
@@ -107,12 +129,57 @@ window.onload = function() {
     //
     // })
 
+    var decisionSubmitted = false;
+
+    // node.on('orangeLight', function() {
+    //
+    //     if(!decisionSubmitted) {
+    //         calculator.warn15();
+    //     }
+    //
+    // })
+
+    // node.on('redLight', function() {
+    //
+    //     if(!decisionSubmitted) {
+    //         calculator.warn5();
+    //     }
+    //
+    // })
+
+
+    var countDownTime = undefined;
+
+    var determineTime = function() {
+
+        var myRound = mainData.myRound;
+
+        // round 1,2,3 -> 60seconds
+        if(myRound < 4) {
+
+            countDownTime = 60000;
+
+            // round 4,5,6,7 -> 45 seconds
+        } else if(myRound < 8) {
+
+            countDownTime = 45000;
+
+            // round 8,9,10 -> 30 seconds
+        } else {
+
+            countDownTime = 30000;
+
+        }
+
+    }
+
 
     // ------------------------ //
     // ------ debug data ------ //
     // ------------------------ //
     mainData = {
         myRound: 1,
+
         myTutorial: {
             s1Done: 1,
             s2Done: 1,
@@ -125,6 +192,7 @@ window.onload = function() {
             fB3: 0,
             miniGame: 0,
         },
+
         myCount: 2,
 
         sortedArray: [0,2,5,4,1,3],
@@ -142,32 +210,6 @@ window.onload = function() {
     // ------------------------ //
     // ------------------------ //
     // ------------------------ //
-
-
-
-
-
-    var countDownTime = undefined;
-
-    var determineTime = function() {
-
-        var myRound = mainData.myRound;
-
-        if(myRound < 4) {
-
-            countDownTime = 60000;
-
-        } else if(myRound < 8) {
-
-            countDownTime = 45000;
-
-        } else {
-
-            countDownTime = 30000;
-
-        }
-
-    }
 
 
 
@@ -227,6 +269,24 @@ window.onload = function() {
 
         }
 
+        var determineCalculatorFollowerCircle = function() {
+
+            if(map.globalVariable.playerIndex === 0) {
+
+                $('.follower1Circle').css({'transition':'0.5s', 'opacity':'1'});
+
+            }
+
+            if(map.globalVariable.playerIndex === 1) {
+
+                $('.follower2Circle').css({'transition':'0.5s', 'opacity':'1'});
+
+            }
+
+        }
+
+        determineCalculatorFollowerCircle();
+
         $('#boxwrap-A-1').css({'margin-top':'20px'});
         $('#boxwrap-A-2').css({'margin-top':'-32px'});
 
@@ -235,6 +295,143 @@ window.onload = function() {
         //----------------------- INFO BOX BUTTON ACTION --------------------------//
         //-------------------------------------------------------------------------//
         //-------------------------------------------------------------------------//
+
+        var prepare4Decision = function() {
+
+            // causes trouble let's kill it initially
+            $('.outcomeWrap').css({'transition':'0s', 'filter':'opacity(0)'});
+            setTimeout(()=>{
+                $('.outcomeWrap').css({'transition':'1s'});
+            }, 1000)
+
+            // id1, id2, transform, addSpaceBetween, hideButton, delay
+            box.transition('A-1', '', 0, 0, 1, 0);
+
+            // no button setup for follower calculator
+            $('.infoButtonTop, .mapButtonTop, .submitButtonTop, .calcButtonTop').css({ 'transform-origin':'bottom',
+            'transform':'scale(0)'});
+
+            // free sexplain from its initial div by making it absolute
+            $('.sexplain').css({'transition':'0s',
+            'position':'absolute', 'margin-left':'-10px'});
+
+            // kill/hide the arrow YOH animation
+            map.wiggle.active = false
+
+            // activate follower decision slider but don't show it yet
+            setTimeout(()=>{
+                calculator.decisionSlider.follower.enable();
+                calculator.setPayoffTextFollower(0,0);
+            }, 250)
+
+            // isoalte og1 display
+            map.opacity.main([0,0,1],0.5);
+            $('.arrowsToOG1IconResults, .arrowsToOG2').css({'transition':'0.5s',
+            'opacity':'0'})
+
+            // move the map
+            setTimeout(()=>{
+
+                $('.sexplain').css({'transition':'0.7s',
+                'margin-top':'242px', 'margin-left':'-275px'});
+                // kill the space of initial map div
+                // map position is absolute so we can move it
+                $('.initialMapDiv').css({'transition':'0s', 'margin-bottom':'-275px'});
+                $('#boxbox-A').css({'margin-top':'-11px'});
+
+                setTimeout(()=>{
+
+                    // show calculator
+                    calculator.open();
+                    calculator.section.all.opacity(1);
+                    calculator.set.height();
+
+                    // hide the map
+                    map.hideMap(1)
+
+                    setTimeout(()=>{
+                        map.move.insideDecisionSlider();
+                        $('.sexplain').css({'position':'relative', 'margin-left':'-50px'});
+                        map.opacity.main([0.6,0.6,1], 0.75);
+                        $('.arrowsToOG1IconResults, .arrowsToOG2').css({'transition':'0.5s',
+                        'opacity':'0.6'})
+                    }, 1000)
+
+                }, 600)
+
+            }, 260)
+
+            setTimeout(()=>{
+
+                $('#boxbox-B').css({'z-index':'200'});
+                box.transition('', 'B-1', 0, 0, 1, 0);
+
+            }, 1000)
+
+            setTimeout(()=>{
+
+                // id1, id2, transform, addSpaceBetween, hideButton, delay
+                box.transition('B-1', 'B-2', 0, 0, 1, 750);
+
+                $('.infoButtonTop, .mapButtonTop, .submitButtonTop, .calcButtonTop').css({ 'transform-origin':'bottom',
+                'transform':'scale(0)'});
+
+                calculator.section.decision.follower.opacity(0)
+
+            }, 5000)
+
+            setTimeout(()=>{
+
+                // id1, id2, transform, addSpaceBetween, hideButton, delay
+                box.transition('B-2', '', 0, 0, 1, 0);
+
+                // ---- NODE GAME COUNT DOWN EMITTER HERE ---- //
+                // node.emit('countDown', countDownTime);
+                console.log('node.emit countdown');
+
+                bb.activators.followerHelpSabo = true;
+
+                setTimeout(()=>{
+                    calculator.section.decision.follower.opacity(1)
+                }, 500)
+
+
+                setTimeout(()=>{
+                    $('.infoButtonTop, .mapButtonTop, .calcButtonTop').css({ 'transform-origin':'bottom',
+                    'transform':'scale(1)'});
+                }, 1500)
+
+                setTimeout(()=>{
+                    $('.submitButtonTop').css({ 'transform-origin':'bottom',
+                    'transform':'scale(1)'});
+                }, 10500)
+
+
+                setTimeout(()=>{
+                    $('#boxbox-B').css({'z-index':'-200'});
+                }, 750)
+
+                setTimeout(()=>{
+                    calculator.pointers.activateDf(true);
+                    $('.outcomeWrap').css({'transition':'1s', 'filter':'opacity(1)', 'opacity':'1'});
+                }, 1500)
+
+                setTimeout(()=>{
+
+                    // dealing with the nuissance
+
+                    // show calculator utility buttons
+                    tool.graphics.show.decisionSliderButtons();
+
+                    // $('.follower1Circle, .follower2Circle').css({'transition':'0.5s', 'opacity':'0'});
+
+
+                }, 3000)
+
+            }, 9000)
+
+
+        };
 
 
         // --------------- NODE ACTION -------------- //
@@ -340,57 +537,7 @@ window.onload = function() {
                 // ---------- REGULAR SETUP --------- //
                 // ---------------------------------- //
 
-                // isoalte og1 display
-                map.opacity.main([0,0,1],0.5)
-                $('.arrowsToOG1IconResults, .arrowsToOG2').css({'transition':'0.5s',
-                'opacity':'0'})
-
-                setTimeout(()=>{
-
-                    $('#boxbox-B').css({'z-index':'200'});
-                    box.transition('', 'B-1', 0, 0, 1, 0);
-
-                    setTimeout(()=>{
-                        box.button.show('B-1');
-                    }, 1000)
-
-                }, 1000)
-
-                // move the map
-                setTimeout(()=>{
-
-                    // move map below and focus on og1
-                    $('.sexplain').css({'transition':'0.7s',
-                    'margin-top':'245px', 'margin-left':'-275px'});
-
-                    // kill the space of initial map div
-                    // map position is absolute so we can move it
-                    $('.initialMapDiv').css({'transition':'0s', 'margin-bottom':'-275px'});
-                    $('#boxbox-A').css({'margin-top':'-11px'});
-
-                    setTimeout(()=>{
-
-                        // show calculator
-                        calculator.open();
-                        calculator.section.all.opacity(1);
-                        calculator.set.height();
-
-                        // hide the map
-                        map.hideMap(1)
-
-                        setTimeout(()=>{
-                            $('.sexplain').appendTo($('.mapInfoWrap'));
-                            $('.sexplain').css({'margin-left':'-54px',
-                            'opacity':'1', 'transform':'scale(1)', 'margin-top':'50px', 'position':'static'});
-                            $('.arrowsToOG1IconResults, .arrowsToOG2').css({'transition':'0.5s',
-                            'opacity':'0.7'})
-                            map.opacity.inside([1,1,1])
-                            map.opacity.main([0.7,0.7,1]);
-                        }, 1000)
-
-                    }, 600)
-
-                }, 260)
+                prepare4Decision();
 
             }
 
@@ -447,43 +594,45 @@ window.onload = function() {
 
             // START THE TIMER
             // node.emit('countDown', countDownTime);
+            console.log('node.emit countdown');
 
 
             // id1, id2, transform, addSpaceBetween, hideButton, delay
-            box.transition('A-501', 'A-15', 0, 0, 1, 750);
+            box.transition('A-501', '', 0, 0, 1, 0);
+
+            $('#boxbox-A').css({'margin-bottom':'-20px', 'transition':'0.7s'})
+            $('#boxbox-B').css({'z-index':'200'});
+            $('#boxwrap-B-1').css({'margin-top':'18px', 'transition':'0.7s'});
+            box.transition('', 'B-1', 0, 0, 1, 500);
+            $('.infoButtonTop, .mapButtonTop, .submitButtonTop, .calcButtonTop').css({ 'transform-origin':'bottom',
+            'transform':'scale(0)'});
+
+            calculator.section.decision.follower.opacity(0)
+
+            setTimeout(()=>{
+                box.button.show('B-1');
+            }, 1000)
 
             // dealing with the nuissance
             $('.outcomeWrap').css({'transition':'1s', 'filter':'opacity(1)'});
 
-            // show calculator utility buttons
-            tool.graphics.show.decisionSliderButtons();
-
-            setTimeout(()=>{
-                box.button.show('A-15');
-            }, 2000)
+            // setTimeout(()=>{
+            //     box.button.show('A-15');
+            // }, 2000)
 
 
         })
 
 
-        // END OF TUTORIAL PLEASE MAKE AN H/S DECISION
-        $('#btn-A-15').click(function() {
-
-            // id1, id2, transform, addSpaceBetween, hideButton, delay
-            box.transition('A-15', '', 0, 0, 1, 0);
-            $('#boxbox-A').css({'margin-top':'-20px'});
-
-            setTimeout(()=>{
-                $('#boxbox-A').css({'display':'none'})
-            }, 750)
-
-        })
 
 
         $('#btn-B-1').click(function() {
 
             // id1, id2, transform, addSpaceBetween, hideButton, delay
             box.transition('B-1', 'B-2', 0, 0, 1, 750);
+
+            $('.infoButtonTop, .mapButtonTop, .submitButtonTop, .calcButtonTop').css({ 'transform-origin':'bottom',
+            'transform':'scale(0)'});
 
             calculator.section.decision.follower.opacity(0)
 
@@ -500,11 +649,27 @@ window.onload = function() {
             // id1, id2, transform, addSpaceBetween, hideButton, delay
             box.transition('B-2', '', 0, 0, 1, 0);
 
+            // ---- NODE GAME COUNT DOWN EMITTER HERE ---- //
             // node.emit('countDown', countDownTime);
+            console.log('node.emit countdown');
+
+            bb.activators.followerHelpSabo = true;
+
+            // $('.follower1Circle, .follower2Circle').css({'transition':'0.5s', 'opacity':'0'});
 
             setTimeout(()=>{
                 calculator.section.decision.follower.opacity(1)
             }, 500)
+
+            setTimeout(()=>{
+                $('.infoButtonTop, .mapButtonTop, .calcButtonTop').css({ 'transform-origin':'bottom',
+                'transform':'scale(1)'});
+            }, 1500)
+
+            setTimeout(()=>{
+                $('.submitButtonTop').css({ 'transform-origin':'bottom',
+                'transform':'scale(1)'});
+            }, 10500)
 
 
             setTimeout(()=>{
@@ -524,8 +689,6 @@ window.onload = function() {
                 tool.graphics.show.decisionSliderButtons();
 
             }, 3000)
-
-            // ---- NODE GAME COUNT DOWN EMITTER HERE ---- //
 
         })
 
@@ -575,13 +738,23 @@ window.onload = function() {
 
             if(!tool.var.submitTutorialLockActive) {
 
-                s2DoneUpdated = mainData.myTutorial.s2Done + 1;
+                decisionSubmitted = true;
+
+                s5DoneUpdated = 1;
 
                 if(calculator.globalVariable.playerIndex === 0) {
 
                     var msg = {
-                        decision: [h1, s1, s2DoneUpdated, ['big brother is watching']],
-                        stage: 2,
+
+                        decision: [h1, s1],
+                        stage: 5,
+                        tutoDone: s5DoneUpdated,
+                        bb: {
+                            stage: 5,
+                            dynamic: bb.data.followerHelpSabo.dynamic,
+                            static: bb.data.followerHelpSabo.static
+                        }
+
                     }
 
                 }
@@ -589,13 +762,103 @@ window.onload = function() {
                 if(calculator.globalVariable.playerIndex === 1) {
 
                     var msg = {
-                        decision: [h2, s2, s2DoneUpdated, ['big brother is watching']],
-                        stage: 2,
+
+                        decision: [h2, s2],
+                        stage: 5,
+                        tutoDone: s5DoneUpdated,
+                        bb: {
+                            stage: 5,
+                            dynamic: bb.data.followerHelpSabo.dynamic,
+                            static: bb.data.followerHelpSabo.static
+                        }
+
                     }
 
                 }
 
-                node.emit('HTML-decision', msg);
+                // node.emit('HTML-decision', msg);
+                console.log('node.emit(html-decision)');
+                console.log(msg);
+
+                // ---------------------------------------- //
+                // ---------------------------------------- //
+                // -------------   STAGE 5 ---------------- //
+                // ------------ WAITING SETUP ------------- //
+                // ---------------------------------------- //
+                // ---------------------------------------- //
+
+                if(calculator.globalVariable.playerIndex === 0) {
+
+                    calculator.lock.activate2([0, 0, 1, 0, 0, 0]);
+                    $('.sliderQuestion_f1').css({'opacity': '0'});
+                    $('.sliderQuestion_f2').css({'opacity': '1'});
+
+                }
+
+                if(calculator.globalVariable.playerIndex === 1) {
+
+                    calculator.lock.activate2([0, 0, 0, 1, 0, 0]);
+                    $('.sliderQuestion_f2').css({'opacity': '0'});
+                    $('.sliderQuestion_f1').css({'opacity': '1'});
+
+                }
+
+                calculator.section.decision.follower.opacity(0);
+
+                $('.outcomeWrap').css({'transition':'0s', 'opacity':'0'});
+
+                $('.calculator').css({'transition':'0.5s', 'transform':'scale(1)'});
+
+                $('.norp').css({'transition':'0s', 'filter':'opacity(0)'});
+
+                $('.generalMarginBox').css({'transition':'0.5s',
+                'margin-top':'103px'});
+
+                $('.outcomeWrap').css({'transition':'0.5s', 'flex-direction':'row-reverse',
+                'transform':'scale(1.25)', 'justify-content':'space-around',
+                'margin-bottom':'-75px'});
+
+                $('.decisionWrapF').css({'transition':'0.5s',
+                'margin-bottom':'-194px'});
+
+                if(map.globalVariable.playerIndex === 0) {
+
+                    $('.follower1Circle').css({'transition':'0.5s', 'opacity':'1',
+                    'transform':'scale(1)'});
+
+                }
+
+                if(map.globalVariable.playerIndex === 1) {
+
+                    $('.follower2Circle').css({'transition':'0.5s', 'opacity':'1',
+                    'transform':'scale(1)'});
+
+                }
+
+                setTimeout(()=>{
+
+                    calculator.decisionSlider.follower.disable();
+
+                    $('.pleaseWait').css({'display':'block', 'position':'static'});
+
+                    $('.norp').appendTo('.pleaseWait');
+
+                    $('.norp').css({'position':'static'});
+
+                    $('.outcomeWrap').css({'transition':'0.5s', 'opacity':'1'});
+
+                    setTimeout(()=>{
+
+                        $('.pleaseWait').css({'transition':'0.5s', 'opacity':'1'});
+
+                        $('.norp').css({'transition':'0.5s', 'filter':'opacity(1)',
+                        'opacity':'1'});
+
+                        flowLoad(1);
+
+                    }, 100)
+
+                }, 500)
 
             } else {
 

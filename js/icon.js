@@ -468,18 +468,1234 @@ let generateIcons = function(logicData) {
         myString2 = '.iwIndex' + (roleIndex + 1);
         $(myString2).css({'transition':'1s', 'opacity':'1'})
 
-        setTimeout
+    }
+
+
+    // -------- OTHER FEEDBACK STAGES RELATED FUNCTIONS --------- //
+
+    // ------------------------------------------------------------------ //
+    // ------------------------------------------------------------------ //
+    // ----------------------- OG1 & OG2 SETTER ------------------------- //
+    // ------------------------------------------------------------------ //
+    // ------------------------------------------------------------------ //
+    //
+    //
+    icon.adjustForStage = function(stage) {
+
+        if(stage === 'og1') {
+
+            icon.currentStage = stage;
+            icon.holderMove_og1();
+            icon.setDeniedCrown();
+            icon.assignNetPayoffs();
+
+        }
+
+        if(stage === 'og2') {
+
+            icon.currentStage = stage;
+            icon.holderMove_og2();
+            icon.adjustCrowns();
+            icon.assignNetPayoffs();
+
+        }
+
+        if(stage === 'ig') {
+
+            icon.currentStage = stage;
+            icon.holderMove_ig();
+            icon.assignNetPayoffs();
+            icon.adjustCrowns();
+            icon.assignDetailedResults(stage);
+            icon.pumpCrown(0);
+
+        }
 
     }
 
 
+    // ---------------------------------------------------------------- //
+    // ---------------------------------------------------------------- //
+    // -------------------- HOLDER WRAP TO HOLDERS -------------------- //
+    // ---------------------------------------------------------------- //
+    // ---------------------------------------------------------------- //
+
+    icon.holderMove_og1 = function() {
+
+        $('.wrap2').css({'display':'flex'});
+        $('.igResultIconWrap').css({'display':'none'});
+
+        $('.holder-l1-a').appendTo('.holderWrap-l1-a');
+        $('.holder-f1-a').appendTo('.holderWrap-f1-a');
+        $('.holder-f2-a').appendTo('.holderWrap-f2-a');
+        $('.holder-l1-b').appendTo('.holderWrap-l1-b');
+        $('.holder-f1-b').appendTo('.holderWrap-f1-b');
+        $('.holder-f2-b').appendTo('.holderWrap-f2-b');
+
+    }
+
+    icon.holderMove_og2 = function() {
+
+        $('.wrap2').css({'display':'flex'});
+        $('.igResultIconWrap').css({'display':'none'});
+
+        // group a leader lost leadership
+        if(final.globalVariable.llx === 0) {
+
+            // follower 1 is the new leader
+            if(final.globalVariable.wfx === 0) {
+
+                $('.holder-f1-a').appendTo('.holderWrap-l1-a');
+                $('.holder-l1-a').appendTo('.holderWrap-f1-a');
+
+                $('.holder-f2-a').appendTo('.holderWrap-f2-a');
+
+            }
+
+            // follower 2 is the new leader
+            if(final.globalVariable.wfx === 1) {
+
+                $('.holder-f2-a').appendTo('.holderWrap-l1-a');
+                $('.holder-l1-a').appendTo('.holderWrap-f2-a');
+
+                $('.holder-f1-a').appendTo('.holderWrap-f1-a');
+
+            }
+
+            $('.holder-l1-b').appendTo('.holderWrap-l1-b');
+            $('.holder-f1-b').appendTo('.holderWrap-f1-b');
+            $('.holder-f2-b').appendTo('.holderWrap-f2-b');
+
+        }
+
+        // group b leader lost leadership
+        if(final.globalVariable.llx === 1) {
+
+            // follower 1 is the new leader
+            if(final.globalVariable.wfx === 0) {
+
+                $('.holder-f1-b').appendTo('.holderWrap-l1-b');
+                $('.holder-l1-b').appendTo('.holderWrap-f1-b');
+
+                $('.holder-f2-b').appendTo('.holderWrap-f2-b');
+
+            }
+
+            // follower 2 is the new leader
+            if(final.globalVariable.wfx === 1) {
+
+                $('.holder-f2-b').appendTo('.holderWrap-l1-b');
+                $('.holder-l1-b').appendTo('.holderWrap-f2-b');
+
+                $('.holder-f1-b').appendTo('.holderWrap-f1-b');
+
+            }
+
+            $('.holder-l1-a').appendTo('.holderWrap-l1-a');
+            $('.holder-f1-a').appendTo('.holderWrap-f1-a');
+            $('.holder-f2-a').appendTo('.holderWrap-f2-a');
+
+        }
 
 
-    //-------------------------------------------//
+    }
+
+    icon.holderMove_ig = function() {
+
+        $('.wrap2').css({'display':'none'});
+
+        $('.igResultIconWrap').css({'display':'flex'});
+
+        $('.leaderYou, .f1you, .f2you').css({'margin-top':'155px', 'margin-left':'-68px'});
+
+        // --------- IG A / OUR GROUP --------- //
+
+        // group a leader lost leadership
+        if(final.globalVariable.llx === 0) {
+
+            // GROUP A POINT OF VIEW
+
+            // LEADER A OR FOLLOWER 1 A POINT OF VIEW -> F1-A VS F2-A
+            if(final.globalVariable.me === 0 || final.globalVariable.me === 1) {
+
+                $('.holder-f1-a').appendTo('.holderWrap-f1-ig');
+
+                $('.holder-f2-a').appendTo('.holderWrap-f2-ig');
+
+            }
+
+            // FOLLOWER 2 B POINT OF VIEW -> F2-A VS F1-A
+            if(final.globalVariable.me === 2) {
+
+                $('.holder-f1-a').appendTo('.holderWrap-f2-ig');
+
+                $('.holder-f2-a').appendTo('.holderWrap-f1-ig');
+
+            }
+
+        }
+
+        // --------- IG B / OPPOSING GROUP --------- //
+
+        // group b leader lost leadership
+        if(final.globalVariable.llx === 1) {
+
+            // GROUP B POINT OF VIEW IS ALWAYS THE SAME
+
+            // OPPOSING GROUP POINT OF VIEW -> F1-B VS F2-B
+
+            $('.holder-f1-b').appendTo('.holderWrap-f1-ig');
+
+            $('.holder-f2-b').appendTo('.holderWrap-f2-ig');
 
 
-    // icon.set.stage1();
-    // icon.display.stage1(true);
+        }
+
+
+
+    }
+
+    icon.setDeniedCrown = function() {
+
+        // group a leader lost leadership
+        if(final.globalVariable.llx === 0) {
+
+            $('.cr1').css({'opacity':'0'});
+            $('.dcr1').css({'opacity':'1'});
+
+        }
+
+        // group a leader lost leadership
+        if(final.globalVariable.llx === 1) {
+
+            $('.cr4').css({'opacity':'0'});
+            $('.dcr4').css({'opacity':'1'});
+
+        }
+
+    }
+
+
+    // ------------------------------------------------------------------ //
+    // ------------------------------------------------------------------ //
+    // ------------------- OG1 & OG2 DETAILED RESULTS ------------------- //
+    // ------------------------------------------------------------------ //
+    // ------------------------------------------------------------------ //
+    //
+    // Used inside hovers
+    //
+    icon.assignDetailedResults = function(role) {
+
+        // this one is straight forward
+        if(icon.currentStage === 'og1') {
+
+            lWonRole = 'Continue as a Leader';
+            lLostRole = 'Become a Follower';
+
+            fWonRole = 'Continue as a Follower';
+            fLostRole = 'Chance to become <br> the new leader';
+
+            if(role === 'l-a') {
+
+                var cost, pay, role;
+
+                cost = -mainData.s3[0][0];
+                cost = cost + ' investment';
+
+                pay = (mainData.s3[1][0] ? 1000 : 0);
+                pay = pay + ' payment';
+
+                role = (mainData.s3[1][0] ? lWonRole : lLostRole);
+
+                $('#cost-icon').html(cost);
+
+                $('#pay-icon').html(pay);
+
+                $('#role-icon').html(role);
+
+            }
+
+            if(role === 'f1-a') {
+
+                var help = 0;
+                var sabo = 1;
+
+                var cost, costType, pay, role;
+
+                cost = -mainData.s2[0][help][0] - mainData.s2[0][sabo][0] ;
+
+                if(mainData.s2[0][help][0] > 0) {
+                    costType = ' help';
+                } else if(mainData.s2[0][sabo][0] > 0) {
+                    costType = ' sabotage';
+                } else {
+                    costType = ' help/sabotage';
+                }
+
+                cost = cost  + costType;
+
+                role = (mainData.s3[1][0] ? fWonRole : fLostRole);
+
+                pay = (mainData.s3[1][0] ? 100 : 0);
+                pay = pay + ' payment';
+
+                $('#cost-icon').html(cost);
+
+                $('#pay-icon').html(pay);
+
+                $('#role-icon').html(role);
+
+            }
+
+            if(role === 'f2-a') {
+
+                var help = 0;
+                var sabo = 1;
+
+                var cost, costType, pay, role;
+
+                cost = -mainData.s2[0][help][1] - mainData.s2[0][sabo][1] ;
+
+                if(mainData.s2[0][help][1] > 0) {
+                    costType = ' help';
+                } else if(mainData.s2[0][sabo][1] > 0) {
+                    costType = ' sabotage';
+                } else {
+                    costType = ' help/sabotage';
+                }
+
+                cost = cost  + costType;
+
+                role = (mainData.s3[1][0] ? fWonRole : fLostRole);
+
+                pay = (mainData.s3[1][0] ? 100 : 0);
+                pay = pay + ' payment';
+
+                $('#cost-icon').html(cost);
+
+                $('#pay-icon').html(pay);
+
+                $('#role-icon').html(role);
+
+            }
+
+
+            if(role === 'l-b') {
+
+                var cost, pay, role;
+
+                cost = -mainData.s3[0][1];
+                cost = cost + ' investment';
+
+                pay = (mainData.s3[1][1] ? 1000 : 0);
+                pay = pay + ' payment';
+
+                role = (mainData.s3[1][1] ? lWonRole : lLostRole);
+
+                $('#cost2-icon').html(cost);
+
+                $('#pay2-icon').html(pay);
+
+                $('#role2-icon').html(role);
+
+            }
+
+            if(role === 'f1-b') {
+
+                var help = 0;
+                var sabo = 1;
+
+                var cost, costType, pay, role;
+
+                cost = -mainData.s2[1][help][0] - mainData.s2[1][sabo][0] ;
+
+                if(mainData.s2[1][help][0] > 0) {
+                    costType = ' help';
+                } else if(mainData.s2[1][sabo][0] > 0) {
+                    costType = ' sabotage';
+                } else {
+                    costType = ' help/sabotage';
+                }
+
+                cost = cost  + costType;
+
+                role = (mainData.s3[1][1] ? fWonRole : fLostRole);
+
+                pay = (mainData.s3[1][1] ? 100 : 0);
+                pay = pay + ' payment';
+
+                $('#cost2-icon').html(cost);
+
+                $('#pay2-icon').html(pay);
+
+                $('#role2-icon').html(role);
+
+            }
+
+            if(role === 'f2-b') {
+
+                var help = 0;
+                var sabo = 1;
+
+                var cost, costType, pay, role;
+
+                cost = -mainData.s2[1][help][1] - mainData.s2[1][sabo][1] ;
+
+                if(mainData.s2[1][help][1] > 0) {
+                    costType = ' help';
+                } else if(mainData.s2[1][sabo][1] > 0) {
+                    costType = ' sabotage';
+                } else {
+                    costType = ' help/sabotage';
+                }
+
+                cost = cost  + costType;
+
+                role = (mainData.s3[1][1] ? fWonRole : fLostRole);
+
+                pay = (mainData.s3[1][1] ? 100 : 0);
+                pay = pay + ' payment';
+
+                $('#cost2-icon').html(cost);
+
+                $('#pay2-icon').html(pay);
+
+                $('#role2-icon').html(role);
+
+            }
+
+        }
+
+        if(icon.currentStage === 'og2') {
+
+            lWonRole = '';
+            lLostRole = '';
+
+            fWonRole = '';
+            fLostRole = '';
+
+            if(role === 'l-a') {
+
+                var cost, pay, role;
+
+                cost = -mainData.s6[0][0];
+                cost = cost + ' investment';
+
+                pay = (mainData.s6[1][0] ? 1000 : 0);
+                pay = pay + ' payment';
+
+                role = (mainData.s6[1][0] ? lWonRole : lLostRole);
+
+                $('#cost-icon').html(cost);
+
+                $('#pay-icon').html(pay);
+
+                $('#role-icon').html(role);
+
+            }
+
+            if(role === 'f1-a') {
+
+                var help = 0;
+                var sabo = 1;
+
+                var cost, costType, pay, role;
+
+                cost = -mainData.s5[0][help][0] - mainData.s5[0][sabo][0] ;
+
+                if(mainData.s5[0][help][0] > 0) {
+                    costType = ' help';
+                } else if(mainData.s5[0][sabo][0] > 0) {
+                    costType = ' sabotage';
+                } else {
+                    costType = ' help/sabotage';
+                }
+
+                cost = cost  + costType;
+
+                role = (mainData.s6[1][0] ? fWonRole : fLostRole);
+
+                pay = (mainData.s6[1][0] ? 100 : 0);
+                pay = pay + ' payment';
+
+                $('#cost-icon').html(cost);
+
+                $('#pay-icon').html(pay);
+
+                $('#role-icon').html(role);
+
+            }
+
+            if(role === 'f2-a') {
+
+                var help = 0;
+                var sabo = 1;
+
+                var cost, costType, pay, role;
+
+                cost = -mainData.s5[0][help][1] - mainData.s5[0][sabo][1] ;
+
+                if(mainData.s5[0][help][1] > 0) {
+                    costType = ' help';
+                } else if(mainData.s5[0][sabo][1] > 0) {
+                    costType = ' sabotage';
+                } else {
+                    costType = ' help/sabotage';
+                }
+
+                cost = cost  + costType;
+
+                role = (mainData.s6[1][0] ? fWonRole : fLostRole);
+
+                pay = (mainData.s6[1][0] ? 100 : 0);
+                pay = pay + ' payment';
+
+                $('#cost-icon').html(cost);
+
+                $('#pay-icon').html(pay);
+
+                $('#role-icon').html(role);
+
+            }
+
+
+            if(role === 'l-b') {
+
+                var cost, pay, role;
+
+                cost = -mainData.s6[0][1];
+                cost = cost + ' investment';
+
+                pay = (mainData.s6[1][1] ? 1000 : 0);
+                pay = pay + ' payment';
+
+                role = (mainData.s6[1][1] ? lWonRole : lLostRole);
+
+                $('#cost2-icon').html(cost);
+
+                $('#pay2-icon').html(pay);
+
+                $('#role2-icon').html(role);
+
+            }
+
+            if(role === 'f1-b') {
+
+                var help = 0;
+                var sabo = 1;
+
+                var cost, costType, pay, role;
+
+                cost = -mainData.s5[1][help][0] - mainData.s5[1][sabo][0] ;
+
+                if(mainData.s5[1][help][0] > 0) {
+                    costType = ' help';
+                } else if(mainData.s5[1][sabo][0] > 0) {
+                    costType = ' sabotage';
+                } else {
+                    costType = ' help/sabotage';
+                }
+
+                cost = cost  + costType;
+
+                role = (mainData.s6[1][1] ? fWonRole : fLostRole);
+
+                pay = (mainData.s6[1][1] ? 100 : 0);
+                pay = pay + ' payment';
+
+                $('#cost2-icon').html(cost);
+
+                $('#pay2-icon').html(pay);
+
+                $('#role2-icon').html(role);
+
+            }
+
+            if(role === 'f2-b') {
+
+                var help = 0;
+                var sabo = 1;
+
+                var cost, costType, pay, role;
+
+                cost = -mainData.s5[1][help][1] - mainData.s5[1][sabo][1] ;
+
+                if(mainData.s5[1][help][1] > 0) {
+                    costType = ' help';
+                } else if(mainData.s5[1][sabo][1] > 0) {
+                    costType = ' sabotage';
+                } else {
+                    costType = ' help/sabotage';
+                }
+
+                cost = cost  + costType;
+
+                role = (mainData.s6[1][1] ? fWonRole : fLostRole);
+
+                pay = (mainData.s6[1][1] ? 100 : 0);
+                pay = pay + ' payment';
+
+                $('#cost2-icon').html(cost);
+
+                $('#pay2-icon').html(pay);
+
+                $('#role2-icon').html(role);
+
+            }
+
+        }
+
+        if(icon.currentStage === 'ig') {
+
+            var cost, role;
+
+            var fwon = 'New Leader';
+            var flost = 'Continues as a Follower';
+
+            // --------- IG A / OUR GROUP --------- //
+
+            // group a leader lost leadership
+            if(final.globalVariable.llx === 0) {
+
+                // GROUP A POINT OF VIEW
+
+                // LEADER A OR FOLLOWER 1 A POINT OF VIEW -> F1-A VS F2-A
+                if(final.globalVariable.me === 0 || final.globalVariable.me === 1) {
+
+                    cost = -mainData.s4[0][2][0];
+
+                    $('#a2').html(cost);
+
+                    cost = cost + ' investment';
+
+                    $('#cost-icon-ig1').html(cost);
+
+                    cost = -mainData.s4[0][2][1];
+
+                    $('#a3').html(cost);
+
+                    cost = cost + ' investment';
+
+                    $('#cost-icon-ig2').html(cost);
+
+                    role = (mainData.s4[0][1][0] ? fwon : flost);
+
+                    $('#role-icon-ig1').html(role);
+
+                    role = (mainData.s4[0][1][1] ? fwon : flost);
+
+                    $('#role-icon-ig2').html(role);
+
+                }
+
+                // FOLLOWER 2 B POINT OF VIEW -> F2-A VS F1-A
+                if(final.globalVariable.me === 2) {
+
+                    cost = -mainData.s4[0][2][1];
+
+                    $('#a3').html(cost);
+
+                    cost = cost + ' investment';
+
+                    $('#cost-icon-ig1').html(cost);
+
+                    cost = -mainData.s4[0][2][0];
+
+                    $('#a2').html(cost);
+
+                    cost = cost + ' investment';
+
+                    $('#cost-icon-ig2').html(cost);
+
+                    role = (mainData.s4[0][1][1] ? fwon : flost);
+
+                    $('#role-icon-ig1').html(role);
+
+                    role = (mainData.s4[0][1][0] ? fwon : flost);
+
+                    $('#role-icon-ig2').html(role);
+
+                }
+
+            }
+
+            // --------- IG B / OPPOSING GROUP --------- //
+
+            // group b leader lost leadership
+            if(final.globalVariable.llx === 1) {
+
+                cost = -mainData.s4[1][2][0];
+
+                $('#a5').html(cost);
+
+                cost = cost + ' investment';
+
+                $('#cost-icon-ig1').html(cost);
+
+                cost = -mainData.s4[1][2][1];
+
+                $('#a6').html(cost);
+
+                cost = cost + ' investment';
+
+                $('#cost-icon-ig2').html(cost);
+
+                role = (mainData.s4[1][1][0] ? fwon : flost);
+
+                $('#role-icon-ig1').html(role);
+
+                role = (mainData.s4[1][1][1] ? fwon : flost);
+
+                $('#role-icon-ig2').html(role);
+
+
+            }
+
+        }
+
+    }
+
+
+    // ------------------------------------------------------------------ //
+    // ------------------------------------------------------------------ //
+    // ------------------- OG1 & OG2 DETAILED RESULTS ------------------- //
+    // ------------------------------------------------------------------ //
+    // ------------------------------------------------------------------ //
+    //
+    // Used inside hovers
+    //
+    icon.assignNetPayoffs = function() {
+
+        var cost, pay, np;
+
+        // for notational eas
+        var help = 0;
+        var sabo = 1;
+
+        // this one is straight forward
+        if(icon.currentStage === 'og1') {
+
+            // -------------------------- //
+            // -------- LEADER A -------- //
+            // -------------------------- //
+
+            cost = -mainData.s3[0][0];
+
+            pay = (mainData.s3[1][0] ? 1000 : 0);
+
+            np = pay + cost;
+
+            $('#a1').html(np);
+
+
+            // -------------------------- //
+            // ------ FOLLOWER 1 A ------ //
+            // -------------------------- //
+
+            cost = -mainData.s2[0][help][0] - mainData.s2[0][sabo][0];
+
+            pay = (mainData.s3[1][0] ? 100 : 0);
+
+            np = pay + cost;
+
+            $('#a2').html(np);
+
+
+            // -------------------------- //
+            // ------ FOLLOWER 2 A ------ //
+            // -------------------------- //
+
+            cost = -mainData.s2[0][help][1] - mainData.s2[0][sabo][1];
+
+            pay = (mainData.s3[1][0] ? 100 : 0);
+
+            np = pay + cost;
+
+            $('#a3').html(np);
+
+
+            // -------------------------- //
+            // -------- LEADER B -------- //
+            // -------------------------- //
+
+            cost = -mainData.s3[0][1];
+
+            pay = (mainData.s3[1][1] ? 1000 : 0);
+
+            np = pay + cost;
+
+            $('#a4').html(np);
+
+
+            // -------------------------- //
+            // ------ FOLLOWER 1 B ------ //
+            // -------------------------- //
+
+            cost = -mainData.s2[1][help][0] - mainData.s2[1][sabo][0];
+
+            pay = (mainData.s3[1][1] ? 100 : 0);
+
+            np = pay + cost;
+
+            $('#a5').html(np);
+
+
+            // -------------------------- //
+            // ------ FOLLOWER 2 B ------ //
+            // -------------------------- //
+
+            cost = -mainData.s2[1][help][1] - mainData.s2[1][sabo][1];
+
+            pay = (mainData.s3[1][1] ? 100 : 0);
+
+            np = pay + cost;
+
+            $('#a6').html(np);
+
+
+        }
+
+        if(icon.currentStage === 'og2') {
+
+            // GROUP A WON
+            if(mainData.s3[1][0]) {
+
+                // ------------------------------------------------------- //
+                // ---------------------- GROUP A ------------------------ //
+                // ------------------------------------------------------- //
+
+                // -------------------------- //
+                // -------- LEADER A -------- //
+                // -------------------------- //
+
+                cost = -mainData.s6[0][0];
+
+                pay = (mainData.s6[1][0] ? 1000 : 0);
+
+                np = pay + cost;
+
+                $('#a1').html(np);
+
+
+                // -------------------------- //
+                // ------ FOLLOWER 1 A ------ //
+                // -------------------------- //
+
+                cost = -mainData.s5[0][help][0] - mainData.s5[0][sabo][0];
+
+                pay = (mainData.s6[1][0] ? 100 : 0);
+
+                np = pay + cost;
+
+                $('#a2').html(np);
+
+
+                // -------------------------- //
+                // ------ FOLLOWER 2 A ------ //
+                // -------------------------- //
+
+                cost = -mainData.s5[0][help][1] - mainData.s5[0][sabo][1];
+
+                pay = (mainData.s6[1][0] ? 100 : 0);
+
+                np = pay + cost;
+
+                $('#a3').html(np);
+
+
+                // ------------------------------------------------------- //
+                // ---------------------- GROUP B ------------------------ //
+                // ------------------------------------------------------- //
+
+                var wfx;
+
+                wfx = final.globalVariable.wfx;
+
+                // ------------------------------------------------------ //
+                // ----------- FOLLOWER 1 B IS THE NEW LEADER ----------- //
+                // ------------------------------------------------------ //
+
+                if(wfx === 0) {
+
+                    // -------------------------------------------- //
+                    // ----- NEW LEADER B -> OLD FOLLOWER 1 B ----- //
+                    // -------------------------------------------- //
+
+                    cost = -mainData.s6[0][1];
+
+                    pay = (mainData.s6[1][1] ? 1000 : 0);
+
+                    np = pay + cost;
+
+                    $('#a5').html(np);
+
+
+                    // -------------------------------------------- //
+                    // ------ NEW FOLLOWER 1 B -> OLD LEADER ------ //
+                    // -------------------------------------------- //
+
+                    // OLD LEADER GETS THE COST OF FOLLOWER 1 HELP SABO
+                    cost = -mainData.s5[1][help][0] - mainData.s5[1][sabo][0];
+
+                    pay = (mainData.s6[1][1] ? 100 : 0);
+
+                    np = pay + cost;
+
+                    // a4 is the old leader's index
+                    $('#a4').html(np);
+
+
+                    // ------------------------------- //
+                    // ------ SAME FOLLOWER 2 B ------ //
+                    // ------------------------------- //
+
+                    cost = -mainData.s5[1][help][1] - mainData.s5[1][sabo][1];
+
+                    pay = (mainData.s6[1][1] ? 100 : 0);
+
+                    np = pay + cost;
+
+                    $('#a6').html(np);
+
+
+                }
+
+                // ------------------------------------------------------ //
+                // ----------- FOLLOWER 2 B IS THE NEW LEADER ----------- //
+                // ------------------------------------------------------ //
+
+                if(wfx === 1) {
+
+                    // -------------------------------------------- //
+                    // ----- NEW LEADER B -> OLD FOLLOWER 2 B ----- //
+                    // -------------------------------------------- //
+
+                    cost = -mainData.s6[0][1];
+
+                    pay = (mainData.s6[1][1] ? 1000 : 0);
+
+                    np = pay + cost;
+
+                    $('#a6').html(np);
+
+
+                    // -------------------------------------------- //
+                    // ------ NEW FOLLOWER 2 B -> OLD LEADER ------ //
+                    // -------------------------------------------- //
+
+                    // OLD LEADER GETS THE COST OF FOLLOWER 1 HELP SABO
+                    cost = -mainData.s5[1][help][1] - mainData.s5[1][sabo][1];
+
+                    pay = (mainData.s6[1][1] ? 100 : 0);
+
+                    np = pay + cost;
+
+                    // a4 is the old leader's index
+                    $('#a4').html(np);
+
+
+                    // ------------------------------- //
+                    // ------ SAME FOLLOWER 1 B ------ //
+                    // ------------------------------- //
+
+                    cost = -mainData.s5[1][help][0] - mainData.s5[1][sabo][0];
+
+                    pay = (mainData.s6[1][1] ? 100 : 0);
+
+                    np = pay + cost;
+
+                    $('#a5').html(np);
+
+                }
+
+
+            }
+
+
+            // GROUP B WON
+            if(mainData.s3[1][1]) {
+
+                // ------------------------------------------------------- //
+                // ---------------------- GROUP A ------------------------ //
+                // ------------------------------------------------------- //
+
+                var wfx;
+
+                wfx = final.globalVariable.wfx;
+
+                // ------------------------------------------------------ //
+                // ----------- FOLLOWER 1 A IS THE NEW LEADER ----------- //
+                // ------------------------------------------------------ //
+
+                if(wfx === 0) {
+
+                    // -------------------------------------------- //
+                    // ----- NEW LEADER A -> OLD FOLLOWER 1 A ----- //
+                    // -------------------------------------------- //
+
+                    cost = -mainData.s6[0][0];
+
+                    pay = (mainData.s6[1][0] ? 1000 : 0);
+
+                    np = pay + cost;
+
+                    $('#a2').html(np);
+
+
+                    // -------------------------------------------- //
+                    // ------ NEW FOLLOWER 1 A -> OLD LEADER ------ //
+                    // -------------------------------------------- //
+
+                    // OLD LEADER GETS THE COST OF FOLLOWER 1 HELP SABO
+                    cost = -mainData.s5[0][help][0] - mainData.s5[0][sabo][0];
+
+                    pay = (mainData.s6[1][0] ? 100 : 0);
+
+                    np = pay + cost;
+
+                    // a4 is the old leader's index
+                    $('#a1').html(np);
+
+
+                    // ------------------------------- //
+                    // ------ SAME FOLLOWER 2 A ------ //
+                    // ------------------------------- //
+
+                    cost = -mainData.s5[0][help][1] - mainData.s5[0][sabo][1];
+
+                    pay = (mainData.s6[1][0] ? 100 : 0);
+
+                    np = pay + cost;
+
+                    $('#a3').html(np);
+
+
+                }
+
+                // ------------------------------------------------------ //
+                // ----------- FOLLOWER 2 A IS THE NEW LEADER ----------- //
+                // ------------------------------------------------------ //
+
+                if(wfx === 1) {
+
+                    // -------------------------------------------- //
+                    // ----- NEW LEADER A -> OLD FOLLOWER 2 A ----- //
+                    // -------------------------------------------- //
+
+                    cost = -mainData.s6[0][0];
+
+                    pay = (mainData.s6[1][0] ? 1000 : 0);
+
+                    np = pay + cost;
+
+                    $('#a3').html(np);
+
+
+                    // -------------------------------------------- //
+                    // ------ NEW FOLLOWER 2 A -> OLD LEADER ------ //
+                    // -------------------------------------------- //
+
+                    // OLD LEADER GETS THE COST OF FOLLOWER 2 HELP SABO
+                    cost = -mainData.s5[0][help][1] - mainData.s5[0][sabo][1];
+
+                    pay = (mainData.s6[1][0] ? 100 : 0);
+
+                    np = pay + cost;
+
+                    // a4 is the old leader's index
+                    $('#a1').html(np);
+
+
+                    // ------------------------------- //
+                    // ------ SAME FOLLOWER 1 A ------ //
+                    // ------------------------------- //
+
+                    cost = -mainData.s5[0][help][0] - mainData.s5[0][sabo][0];
+
+                    pay = (mainData.s6[1][0] ? 100 : 0);
+
+                    np = pay + cost;
+
+                    $('#a2').html(np);
+
+                }
+
+
+
+
+                // ------------------------------------------------------- //
+                // ---------------------- GROUP B ------------------------ //
+                // ------------------------------------------------------- //
+
+                // -------------------------- //
+                // -------- LEADER B -------- //
+                // -------------------------- //
+
+                cost = -mainData.s6[0][1];
+
+                pay = (mainData.s6[1][1] ? 1000 : 0);
+
+                np = pay + cost;
+
+                $('#a4').html(np);
+
+
+                // -------------------------- //
+                // ------ FOLLOWER 1 B ------ //
+                // -------------------------- //
+
+                cost = -mainData.s5[1][help][0] - mainData.s5[1][sabo][0];
+
+                pay = (mainData.s6[1][1] ? 100 : 0);
+
+                np = pay + cost;
+
+                $('#a5').html(np);
+
+
+                // -------------------------- //
+                // ------ FOLLOWER 2 B ------ //
+                // -------------------------- //
+
+                cost = -mainData.s5[1][help][1] - mainData.s5[1][sabo][1];
+
+                pay = (mainData.s6[1][1] ? 100 : 0);
+
+                np = pay + cost;
+
+                $('#a6').html(np);
+
+
+            }
+
+        }
+
+
+    }
+
+
+    // ------------------------------------------------------------------ //
+    // ------------------------------------------------------------------ //
+    // ---------------------- ARRANGE THE CROWNS ------------------------ //
+    // ------------------------------------------------------------------ //
+    // ------------------------------------------------------------------ //
+    //
+    //
+    //
+    // call it after rearranging groups
+    //
+    // we only call it for og2. After og1 we still do not know the new leader
+    // that is why it is not called
+    //
+    icon.adjustCrowns = function() {
+
+        var lostGroupIndex =mainData.s3[1].indexOf(false);
+        console.log('lostGroupIndex: ' + lostGroupIndex);
+
+        var crNewI = lostGroupIndex === 0 ? 2 : 5;
+
+        var crOldI = crNewI - 1;
+
+        var crNewI = crNewI + mainData.s4[lostGroupIndex][1].indexOf(true);
+
+        var crStringOld = '.cr' + crOldI;
+        var crStringNew = '.cr' + crNewI;
+
+        console.log(crStringOld);
+        console.log(crStringNew);
+
+        $(crStringOld).css({'opacity':'0'});
+        $(crStringNew).css({'opacity':'1'});
+
+
+    }
+
+    icon.pumpCrownActive = true;
+    icon.pumpCrown = function(state) {
+
+        if(icon.pumpCrownActive) {
+
+            if(state === 0) {
+
+                $('.crown').css({'transition':'0.75s', 'transform':'scale(1.2)'});
+
+                setTimeout(()=>{
+                    icon.pumpCrown(1);
+                }, 600)
+
+            }
+
+            if(state === 1) {
+
+                $('.crown').css({'transition':'0.75s', 'transform':'scale(1)'});
+
+                setTimeout(()=>{
+                    icon.pumpCrown(0);
+                }, 600)
+
+            }
+
+        } else {
+
+            $('.crown').css({'transition':'0.75s', 'transform':'scale(1)'});
+
+        }
+
+    }
+
+    // ------------------------------------------------------------------ //
+    // ------------------------------------------------------------------ //
+    // ----------------- SET INDEX GIVEN REARRANGED DATA ---------------- //
+    // ------------------------------------------------------------------ //
+    // ------------------------------------------------------------------ //
+    //
+    //
+    icon.set.index = function() {
+
+        final.globalVariable.wlx = mainData.s3[1].indexOf(true);
+        final.globalVariable.llx = 1 - final.globalVariable.wlx;
+        final.globalVariable.wfx = mainData.s4[final.globalVariable.llx][1].indexOf(true);
+        final.globalVariable.me = mainData.sortedArray.indexOf(mainData.myCount);
+
+    }
+
+
+    // ------------------------------------------------------------------ //
+    // ------------------------------------------------------------------ //
+    // ----------------- SET INDEX GIVEN REARRANGED DATA ---------------- //
+    // ------------------------------------------------------------------ //
+    // ------------------------------------------------------------------ //
+    //
+    //
+    icon.adjustYouIcon = function(dt) {
+
+        var dt = dt === undefined ? 0.5 : dt;
+
+        dt = dt + 's';
+
+        var me = mainData.myCount;
+
+        final.globalVariable.myIndex = mainData.sortedArray.indexOf(me);
+
+        $('.leaderYou').css({'transition':'0s', 'opacity':'0'});
+
+        if(final.globalVariable.myIndex === 0) {
+            $('.l1you').css({'transition': dt, 'opacity':'1'});
+            $('.f1you, .f2you').css({'display':'none'});
+        }
+
+        if(final.globalVariable.myIndex === 1) {
+            $('.f1you').css({'transition': dt, 'opacity':'1'});
+            $('.l1you, .f2you').css({'display':'none'});
+        }
+
+        if(final.globalVariable.myIndex === 2) {
+            $('.f2you').css({'transition': dt, 'opacity':'1'});
+            $('.f1you, .l1you').css({'display':'none'});
+        }
+
+    }
+
 
 
 }

@@ -125,3 +125,61 @@
 {
     z-index:1;
 }
+.sunTzuWrap
+{
+    opacity:0;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+.speechBubble
+{
+    display: flex;
+    height: 165px;
+    width: 360px;
+    position: absolute;
+    right: 170px;
+    bottom: 90px;
+    border: 1px solid black;
+    border-radius: 100px;
+    flex-direction: column;
+    justify-content: center;
+}
+.speechBubble:before
+{
+    content: attr(data-before);
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    border-left: 19px solid transparent;
+    border-bottom: 26px solid black;
+    right: -17px;
+    bottom: 34px;
+    transform: rotate(109deg);
+}
+.speechBubble:after
+{
+    content: attr(data-before);
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    border-left: 19px solid transparent;
+    border-bottom: 27px solid white;
+    right: -15px;
+    bottom: 35px;
+    transform: rotate(109deg);
+}
+.quoteText
+{
+    width: 357px;
+    display: block;
+    font-size: 27px;
+    font-weight: 100;
+    padding: 20px;
+    margin-top: 10px;
+}
+.sunTzu
+{
+    height:200px;
+    width:160px;
+}

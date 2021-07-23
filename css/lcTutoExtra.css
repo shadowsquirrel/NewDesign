@@ -1,0 +1,76 @@
+.onlyButton
+{
+    transition:1s;
+    font-size:30px;
+    padding-top: 12px;
+    width: 665px;
+    height: 75px;
+    border-radius: 150px;
+    font-weight:500;
+}
+.rightArrowTuto
+{
+    height:80px;
+}
+.myStep1
+{
+    width: 32px;
+    font-size: 22px;
+    color: white;
+    font-weight: 500;
+    background-color: rgb(38 78 46);
+    display: inline-block;
+    border-radius: 23px;
+    padding-left: 11px;
+}
+.myStep2
+{
+    width: 32px;
+    font-size: 22px;
+    color: white;
+    font-weight: 500;
+    background-color: rgb(38 78 46);
+    display: inline-block;
+    border-radius: 23px;
+    padding-left: 11px;
+}
+.myBallLeft
+{
+    display: inline-block;
+    height: 15px;
+    width: 8px;
+    border-top-left-radius: 75px;
+    border-bottom-left-radius: 75px;
+    background-color: #3c3c3c;
+}
+.myBallRight
+{
+    display: inline-block;
+    height: 15px;
+    width: 8px;
+    border-top-right-radius: 75px;
+    border-bottom-right-radius: 75px;
+    background-color: #d2d2d2;
+}
+.b
+{
+    font-weight:500;
+}
+.practiceText
+{
+    position: absolute;
+    font-size: 32px;
+    width: 165px;
+    background: #532d7d;
+    color: white;
+    padding-left: 14px;
+    border-radius: 50px;
+    right: 21px;
+    height: 57px;
+    padding-top: 5px;
+    top: 41px;
+}
+.rememberText
+{
+    transition: 1s;
+}

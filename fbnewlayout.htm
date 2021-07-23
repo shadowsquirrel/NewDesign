@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="css/frame.css">
+    <link rel="stylesheet" href="css/sexplain.css">
+
+    <!-- MAP CLASSES -->
+
+    <link rel="stylesheet" href="css/oldMapClasses.css">
+    <link rel="stylesheet" href="css/mapArrows.css">
+    <link rel="stylesheet" href="css/OGclass.css">
+    <link rel="stylesheet" href="css/OGtoIG.css">
+    <link rel="stylesheet" href="css/IGclass.css">
+    <link rel="stylesheet" href="css/IGtoOG2.css">
+    <link rel="stylesheet" href="css/OG2.css">
+    <link rel="stylesheet" href="css/netPayoffClass.css">
+    <link rel="stylesheet" href="css/CirclesAndArrows.css">
+    <link rel="stylesheet" href="css/meIcons.css">
+
+    <link rel="stylesheet" href="css/explanationBox.css">
+
+    <link rel="stylesheet" href="css/calculatorIcons.css">
+    <link rel="stylesheet" href="css/stage1SpecificAdditionalClasses.css">
+
+    <link rel="stylesheet" href="css/generalArrangement.css">
+
+    <link rel="stylesheet" href="css/norp.css">
+
+    <link rel="stylesheet" href="css/fbnewlayout.css">
+
+
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+    <title>Final Payoff</title>
+</head>
+<body>
+    <div id=start></div>
+
+    <div class = 'wrap  noselect'>
+
+        <div class = 'all'>
+
+
+
+
+            <div class=s1Icon>
+
+                <!-- for og1 and og2 feedbacks -->
+                <div class='wrap2'>
+
+                    <!-- YOUR GROUP -->
+                    <div class=grouptitlewrap>
+
+                        <!-- TITLE -->
+                        <div class=grouptitleA>
+                            <p>
+                                YOUR GROUP
+                            </p>
+                        </div>
+
+                        <!-- ICONS -->
+                        <div class=groupAwrap>
+
+                            <!-- ACTUAL WRAPS FOR THE CORRECT ORDERING  OG1 AND OG2-->
+
+                            <div class=holderWrap-l1-a>
+
+                            </div>
+
+
+                            <div class=spaceBetween>
+
+                            </div>
+
+
+                            <div class=holderWrap-f1-a>
+
+                            </div>
+
+
+                            <div class=spaceBetween>
+
+                            </div>
+
+
+                            <div class=holderWrap-f2-a>
+
+                            </div>
+
+
+                            <!-- HOLDERS -->
+
+                            <!-- HOLDER LEADER -->
+
+                            <div class=holder-l1-a>
+
+                                <div class='leaderYou l1you'>
+                                    <div class=leaderYouArrow>
+                                        <img class='Larrow' src="images/redarrow3.png" alt="V" />
+                                    </div>
+                                    <div class=leaderYouText>
+                                        <p>
+                                            YOU
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class='imgwrap2 iwIndex1' style='opacity:0;'>
+
+                                    <div class='objective1'>
+
+                                        <img class='crown cr1' src="images/leader.png" alt="V" />
+                                        <img class='pl1 a10' src="images/L1.png" alt="V" />
+
+                                        <img class='deniedCrown dcr1' src="images/leaderdenied.png" alt="V" />
+
+                                    </div>
+
+                                    <div class='subjective1'>
+
+                                        <img class='crown cr1' src="images/leader.png" alt="V" />
+                                        <img class='pl1 a10' src="images/L1me.png" alt="V" />
+
+                                        <img class='deniedCrown dcr1' src="images/leaderdenied.png" alt="V" />
+
+                                    </div>
+
+                                    <p class='imgbottomtext'>
+                                        <span id=a1></span>
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <!-- HOLDER FOLLOWER 1 -->
+
+                            <div class=holder-f1-a>
+
+                                <div class='leaderYou f1you'>
+                                    <div class=leaderYouArrow>
+                                        <img class='Larrow' src="images/redarrow3.png" alt="V" />
+                                    </div>
+                                    <div class=leaderYouText>
+                                        <p>
+                                            YOU
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class='imgwrap2 iwIndex2' style='opacity:0;'>
+
+                                    <div class='objective2'>
+
+                                        <img class='crown cr2' src="images/fcrownLime.png" alt="V" />
+                                        <img class='pl1 a20' src="images/L1.png" alt="V" />
+
+                                        <img class='pf1 a21 homoA' src="images/F1.png" alt="V" />
+
+                                        <img class='pf1 a21 heteroA strong2' src="images/F1S.png" alt="V" />
+                                        <img class='pf1 a21 heteroA weak2' src="images/F1W.png" alt="V" />
+
+                                    </div>
+
+                                    <div class='subjective2'>
+
+                                        <img class='crown cr2' src="images/fcrownLime.png" alt="V" />
+                                        <img class='pl1 a20' src="images/L1me.png" alt="V" />
+
+                                        <img class='pf1 a21 homoA' src="images/F1me.png" alt="V" />
+
+                                        <img class='pf1 a21 heteroA strong2' src="images/F1meS.png" alt="V" />
+                                        <img class='pf1 a21 heteroA weak2' src="images/F1meW.png" alt="V" />
+
+                                    </div>
+
+                                    <p class='imgbottomtext'>
+                                        <span id=a2></span>
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <!-- HOLDER FOLLOWER 2 -->
+
+                            <div class=holder-f2-a>
+
+                                <div class='leaderYou f2you'>
+                                    <div class=leaderYouArrow>
+                                        <img class='Larrow' src="images/redarrow3.png" alt="V" />
+                                    </div>
+                                    <div class=leaderYouText>
+                                        <p>
+                                            YOU
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class='imgwrap2 iwIndex3' style='opacity:0;'>
+
+                                    <div class='objective3'>
+
+                                        <img class='crown cr3' src="images/fcrownLime.png" alt="V" />
+                                        <img class='pl1 a30' src="images/L1.png" alt="V" />
+
+
+                                        <img class='pf1 a31 homoA' src="images/F1.png" alt="V" />
+
+                                        <img class='pf1 a31 heteroA strong3' src="images/F1S.png" alt="V" />
+                                        <img class='pf1 a31 heteroA weak3' src="images/F1W.png" alt="V" />
+
+                                    </div>
+
+                                    <div class='subjective3'>
+
+                                        <img class='crown cr3' src="images/fcrownLime.png" alt="V" />
+                                        <img class='pl1 a30' src="images/L1me.png" alt="V" />
+
+                                        <img class='pf1 a31 homoA' src="images/F1me.png" alt="V" />
+
+                                        <img class='pf1 a31 heteroA strong3' src="images/F1meS.png" alt="V" />
+                                        <img class='pf1 a31 heteroA weak3' src="images/F1meW.png" alt="V" />
+
+                                    </div>
+
+                                    <p class='imgbottomtext'>
+                                        <span id=a3></span>
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+
+                        </div>
+
+                        <!-- OUTCOMES -->
+                        <div class=outcomeAwrapWrap-icon>
+
+                            <div class='outcomeAwrap-icon'>
+
+                                <div class=costWrap-icon>
+                                    <span id=cost-icon>-500 investment</span>
+                                </div>
+
+                                <div class=payWrap-icon>
+                                    <span id=pay-icon>1000 payment</span>
+                                </div>
+
+                                <div class=roleWrap-icon>
+                                    <span id=role-icon>Continue as a Leader</span>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class=bigSpaceBetween>
+
+                    </div>
+
+                    <!-- OPPOSING GROUP -->
+                    <div class=grouptitlewrap>
+
+                        <!-- TITLE -->
+                        <div class=grouptitleB>
+                            <p>
+                                OPPOSING GROUP
+                            </p>
+                        </div>
+
+                        <!-- ICONS -->
+                        <div class=groupBwrap>
+
+                            <!-- ACTUAL WRAPS FOR THE CORRECT ORDERING OG1 AND OG2-->
+
+                            <div class=holderWrap-l1-b>
+
+                            </div>
+
+
+                            <div class=spaceBetween>
+
+                            </div>
+
+
+                            <div class=holderWrap-f1-b>
+
+                            </div>
+
+
+                            <div class=spaceBetween>
+
+                            </div>
+
+
+                            <div class=holderWrap-f2-b>
+
+                            </div>
+
+
+                            <!-- HOLDERS -->
+
+                            <!-- HOLDER LEADER -->
+
+                            <div class=holder-l1-b>
+
+                                <div class='imgwrap2 iwIndex4' style='opacity:0;'>
+
+                                    <img class='crown cr4' src="images/leader.png" alt="V" />
+                                    <img class='pl1 a40' src="images/L2.png" alt="V" />
+
+                                    <img class='deniedCrown dcr4' src="images/leaderdenied.png" alt="V" />
+
+                                    <p class='imgbottomtext'>
+                                        <span id=a4></span>
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <!-- HOLDER FOLLOWER 1 -->
+
+                            <div class=holder-f1-b>
+
+                                <div class='imgwrap2 iwIndex5' style='opacity:0;'>
+
+                                    <img class='crown cr5' src="images/fcrownLime.png" alt="V" />
+
+                                    <img class='pl1 a50' src="images/L2.png" alt="V" />
+
+                                    <img class='pf1 a51 homoB' src="images/F2.png" alt="V" />
+
+                                    <img class='pf1 a51 heteroB strong5' src="images/F2S.png" alt="V" />
+                                    <img class='pf1 a51 heteroB weak5' src="images/F2W.png" alt="V" />
+
+                                    <p class='imgbottomtext'>
+                                        <span id=a5></span>
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <!-- HOLDER FOLLOWER 2 -->
+
+                            <div class=holder-f2-b>
+
+                                <div class='imgwrap2 iwIndex6' style='opacity:0;'>
+
+                                    <img class='crown cr6' src="images/fcrownLime.png" alt="V" />
+
+                                    <img class='pl1 a60' src="images/L2.png" alt="V" />
+
+                                    <img class='pf1 a61 homoB' src="images/F2.png" alt="V" />
+
+                                    <img class='pf1 a61 heteroB strong6' src="images/F2S.png" alt="V" />
+                                    <img class='pf1 a61 heteroB weak6' src="images/F2W.png" alt="V" />
+
+                                    <p class='imgbottomtext'>
+                                        <span id=a6></span>
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                        <!-- OUTCOMES -->
+                        <div class=outcomeBwrapWrap-icon>
+
+                            <div class=outcomeBwrap-icon>
+
+                                <div class=costWrap-icon>
+                                    <span id=cost2-icon>-500 investment</span>
+                                </div>
+
+                                <div class=payWrap-icon>
+                                    <span id=pay2-icon>1000 payment</span>
+                                </div>
+
+                                <div class=roleWrap-icon>
+                                    <span id=role2-icon>Continue as a Leader</span>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+
+
+
+                <!-- fpr ig feedback -->
+                <div class='wrap2 igResultIconWrap'>
+
+                    <div class=leftWrap>
+
+                        <div class=holderWrap-f1-ig>
+
+                        </div>
+
+                        <!-- OUTCOMES -->
+                        <div class=outcomeLeftwrapWrap-icon>
+
+                            <div class='outcomeLeftwrap-icon  igBubblePointer-1'>
+
+                                <div class=costWrap-icon>
+                                    <span id=cost-icon-ig1>-250 investment</span>
+                                </div>
+
+                                <div class=payWrap-icon>
+                                    <span id=pay-icon>0 payment</span>
+                                </div>
+
+                                <div class=roleWrap-icon>
+                                    <span id=role-icon-ig1>New Leader</span>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class=spaceBetween-ig>
+
+                    </div>
+
+                    <div class=rightWrap>
+
+                        <div class=holderWrap-f2-ig>
+
+                        </div>
+
+                        <!-- OUTCOMES -->
+                        <div class=outcomeRightwrapWrap-icon>
+
+                            <div class='outcomeRightwrap-icon igBubblePointer-2'>
+
+                                <div class=costWrap-icon>
+                                    <span id=cost-icon-ig2>-100 investment</span>
+                                </div>
+
+                                <div class=payWrap-icon>
+                                    <span id=pay-icon>0 payment</span>
+                                </div>
+
+                                <div class=roleWrap-icon>
+                                    <span id=role-icon-ig2>Continue as a Follower</span>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+
+                <!--  -->
+
+
+
+            </div>
+
+
+
+
+
+        </div>
+
+    </div>
+
+</div>
+
+<div id=end></div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="js/tool.js"></script>
+<script src="js/icon.js"></script>
+<script src="js/fbnewlayout.js"></script>
+
+</body>
+</html>

@@ -57,6 +57,7 @@ setup.basicInfoText = function() {
 
     if(isT1) {
         $('#infoTextFollowerType, #infoTextFollowerType2').html('a follower');
+        $('.basicInfoText, #basicInfoButton').css({'display':'none'});
     }
 
 

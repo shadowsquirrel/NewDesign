@@ -471,3 +471,15 @@ img.doneWithRound:active
 {
     display:none;
 }
+/*-------------------------*/
+.someCircleClass
+{
+    opacity:0;
+    z-index: -1;
+    position: absolute;
+    height: 230px;
+    width: 261px;
+    margin-top: -32px;
+    margin-left: -77px;
+    transform: rotate(6deg);
+}

@@ -323,6 +323,8 @@ setup.mg = function() {
     // calculator.IG_close();
     calculator.IG_open();
 
+
+
     setup.miniGame();
 
 

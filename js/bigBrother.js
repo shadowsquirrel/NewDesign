@@ -120,7 +120,7 @@ var generateBB = function() {
                 }
 
                 // 0 for even followers
-                var strenght = 0;
+                var strength = 0;
 
                 if(map.globalVariable.ourSideIsHetero) {
 

@@ -140,6 +140,7 @@
 
         <div class = 'all'>
 
+            <div class=pleaseWait></div>
 
             <svg height="0" width="0">
 
@@ -1269,7 +1270,7 @@
 
                     <div class='generalInfoButtonWrap'>
 
-                        <div class='button generalInfoButtonExtraSetup' id='basicInfoButton'>
+                        <div class='button generalInfoButtonExtraSetup' id='basicInfoButton' style='filter:grayscale(1);display:none;'>
                             <p>
                                 BASICS
                             </p>
@@ -1283,7 +1284,7 @@
 
                         <div class='button generalInfoButtonExtraSetup' id='strategyInfoButton'>
                             <p>
-                                STRATEGY
+                                ROLES
                             </p>
                         </div>
 
@@ -1301,7 +1302,8 @@
 
                             <p style='font-size:25px;'>
                                 You are <span id=infoTextFollowerType></span>
-                                in OUT-group contest <span style='font-weight:500;'>I</span>.
+                                in the  <span style='font-weight:500;'>OUT</span>-group
+                                contest <span style='font-weight:500;'>II</span>.
                             </p>
 
                             <p style='font-size:25px;display:inline-block;margin-top:10px;'>
@@ -1329,7 +1331,7 @@
 
                         </div>
 
-                        <div class='basicInfoText infoTextGeneral'>
+                        <div class='basicInfoText infoTextGeneral' style='font-weight:100;font-size:23px;display:none;'>
 
                             <p class='onlyT2'>
                                 In <i class=bbb>both</i> groups, 1 follower is
@@ -1373,60 +1375,46 @@
 
                         <div class='payoffInfoText infoTextGeneral'>
 
-                            <p class=payoffInfoTextMicro1>
-                                NET PAYOFF = PAYMENT - YOUR HELP/SABOTAGE COST
+                            <p class=payoffInfoTextMicro1 style='margin-left:-55px;'>
+                                NET PAYOFF = PAYMENT - HELP/SABOTAGE COST
                             </p>
 
-                            <p class=payoffInfoTextMicro2 style='margin-top:0px;'>
+                            <p class=payoffInfoTextMicro2 style='margin-top:0px;
+                            margin-left:165px; margin-right:126px;'>
                                 <span style='border-bottom:1px solid black;font-weight:500;'>
-                                    if your group loses the OUT-group Contest I
+                                    IF YOUR GROUP LOSES
                                 </span>
-                                <span style='display:block'>
-                                    You receive 0 tokens.
-                                    <br />
-                                    You get the chance to become the new leader.
+                                <span style='display:block; font-weight:100;margin-left:-7px;font-size:26px;'>
+                                    You receive 0 tokens
                                 </span>
                             </p>
 
                             <p class=payoffInfoTextMicro2>
                                 <span style='border-bottom:1px solid black;font-weight:500;'>
-                                    if your group wins the OUT-group Contest I
+                                    IF YOUR GROUP WINS
                                 </span>
-                                <span style='display:block'>
-                                    You receive 100 tokens.
-                                    <br />
-                                    You continue as a follower.
+                                <span style='display:block;font-weight:100;font-size:26px;margin-left:-22px;'>
+                                    You receive 100 tokens
                                 </span>
                             </p>
 
                             <p class=payoffInfoTextMicro3>
                                 When a group wins,
-                                its leader receives 10 times more payment (1000 tokens)
+                                <br />
+                                its leader receives 10 times more (1000 tokens)
                                 than each of its followers (100 tokens).
                             </p>
 
                         </div>
 
-                        <div class='strategyInfoText infoTextGeneral'>
+                        <div class='strategyInfoText infoTextGeneral' style='font-size:35px;'>
 
-                            <p class='strategyInfoTextMicro'>
-                                As a follower by making help/sabotage decision
-                                you can affect the outcome of the OUT-group contest I.
+                            <p class='strategyInfoTextMicro' style='margin-left:60px;margin-top:50px;'>
+                                OUT-group contest II is the final stage of the game.
                             </p>
 
-                            <p class='strategyInfoTextMicro'>
-                                If your goal is to be the new leader for
-                                OUT-group contest II to compete for 1000 tokens,
-                                you should sabotage to detrone your leader
-                                so that you can try to replace him
-                            </p>
-
-                            <p class='strategyInfoTextMicro'>
-                                If your goal is to get 100 tokens from OUT-group
-                                contest I and potentially another 100 tokens
-                                from OUT-group contest II,
-                                you should support your leader in OUT-group
-                                contests by helping.
+                            <p class='strategyInfoTextMicro' style='margin-left:60px;margin-top:30px;'>
+                                Possible role changes are irrelevant.
                             </p>
 
                         </div>
@@ -1438,15 +1426,16 @@
                             </p>
 
                             <p class='tipsInfoTextMicro2'>
-                                1. What the other follower in your group is likely going to do.
+                                1. What the other follower in your group may do.
                             </p>
 
-                            <p class='tipsInfoTextMicro2'>
-                                2. What the followers in the opposing group are likely going to do.
+                            <p class='tipsInfoTextMicro2' style='display:block;margin-bottom:17px;margin-top:10px;'>
+                                2. What the followers in the opposing group may do.
                             </p>
 
-                            <p class='tipsInfoTextMicro2'>
-                                3. What you should do given what you think the others are likely to do.
+                            <p class='tipsInfoTextMicro2' style='margin-left:0px;'>
+                                Use the graphical calculator to make these considerations
+                                then make your decision accordingly.
                             </p>
 
                         </div>
@@ -1460,6 +1449,7 @@
                 <img id="infoButtonTop" class='infoButtonTop' src="images/infoicon.png" alt="V" />
 
                 <div class = 'decisionWrapWrap'>
+
                     <div class = 'inputF'>
 
                         <svg height="30" width="400" class=dFTextWrap>
@@ -1494,6 +1484,7 @@
                         </div>
 
                     </div>
+
                 </div>
 
                 <div id='submitButtonTop' class='submitButtonTop'>
@@ -1673,6 +1664,9 @@
                             </div>
 
                             <div class=OGCIcon>
+
+                                <img class='follower1Circle' src="images/redcircle2.png" alt="V" />
+                                <img class='follower2Circle' src="images/redcircle2.png" alt="V" />
 
                                 <!-- homo -->
                                 <div class='wrapLeft homoLeftFollowers'>
@@ -2746,6 +2740,7 @@
     <script src="js/map.js"></script>
     <script src="js/og.js"></script>
     <script src="js/s5Setup.js"></script>
+    <script src="js/bigBrother.js"></script>
     <script src="js/stage5.js"></script>
 
 

@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="css/generalArrangement.css">
 
     <link rel="stylesheet" href="css/norp.css">
-    <link rel="stylesheet" href="css/curtain.css">
 
 
 
@@ -26,48 +25,52 @@
 
     <div class = 'wrap  noselect'>
 
-        <div class=curtain>
-
+        <div class='debugInfoBoxText'>
+            <p>
+                <span id=debugInfoBoxText></span>
+            </p>
+            <!-- <p>
+                <span id=norp></span> / 6 players are ready
+            </p> -->
         </div>
 
         <div class=metaNorp>
             <div class=norp>
-            <div class='wrapLoad'>
+                <div class='wrapLoad'>
 
-                <div class='imgWrapLoad l-1'>
-                    <img class='load r-1' src="images/h0me.png" alt="V" />
+                    <div class='imgWrapLoad l-1'>
+                        <img class='load r-1' src="images/h0me.png" alt="V" />
+                    </div>
+
+                    <div class='imgWrapLoad l-2'>
+                        <img class='load r-2' src="images/h0me.png" alt="V" />
+                    </div>
+
+                    <div class='imgWrapLoad l-3'>
+                        <img class='load r-3' src="images/h0me.png" alt="V" />
+                    </div>
+
+                    <div class='imgWrapLoad l-4'>
+                        <img class='load r-4' src="images/h0me.png" alt="V" />
+                    </div>
+
+                    <div class='imgWrapLoad l-5'>
+                        <img class='load r-5' src="images/h0me.png" alt="V" />
+                    </div>
+
+                    <div class='imgWrapLoad l-6'>
+                        <img class='load r-6' src="images/h0me.png" alt="V" />
+                    </div>
+
                 </div>
 
-                <div class='imgWrapLoad l-2'>
-                    <img class='load r-2' src="images/h0me.png" alt="V" />
+                <div class=norpTextWrap>
+                    <p>
+                        Waiting for <span id=noap></span>
+                    </p>
                 </div>
-
-                <div class='imgWrapLoad l-3'>
-                    <img class='load r-3' src="images/h0me.png" alt="V" />
-                </div>
-
-                <div class='imgWrapLoad l-4'>
-                    <img class='load r-4' src="images/h0me.png" alt="V" />
-                </div>
-
-                <div class='imgWrapLoad l-5'>
-                    <img class='load r-5' src="images/h0me.png" alt="V" />
-                </div>
-
-                <div class='imgWrapLoad l-6'>
-                    <img class='load r-6' src="images/h0me.png" alt="V" />
-                </div>
-
-            </div>
-
-            <div class=norpTextWrap>
-                <p>
-                    Waiting for <span id=noap></span>
-                </p>
             </div>
         </div>
-        </div>
-
 
         <div class = 'all'>
 
@@ -453,9 +456,13 @@
                     <div class='boxbox' id='boxbox-C'></div>
 
 
-
                 </div>
 
+
+            </div>
+
+
+            <div class=pleaseWait>
 
             </div>
 
@@ -465,6 +472,7 @@
     </div>
 
 </div>
+
 
 <div class=boxStorage style='display:none;'>
 
@@ -515,6 +523,7 @@
                 <p>
                     <span id='text2'></span>
                 </p>
+
             </div>
 
             <div class=buttonWrap>
@@ -545,11 +554,15 @@
 
     </div>
 
+
+
 </div>
+
 
 <div id=end></div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="js/mediaQ.js"></script>
 <script src="js/load.js"></script>
 <script src="js/box.js"></script>
 <script src="js/tool.js"></script>

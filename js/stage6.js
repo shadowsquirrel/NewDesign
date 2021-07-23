@@ -152,9 +152,6 @@ window.onload = function() {
             s4Done: 0,
             s5Done: 0,
             s6Done: 0,
-            fB1: 0,
-            fB2: 0,
-            fB3: 0,
             miniGame: 0,
         },
 
@@ -165,7 +162,7 @@ window.onload = function() {
 
         s2: [ [ [10,0], [0,10]], [ [15,0], [0,5] ] ],
         // s2: [ [[0,20], [10,0]], [[0,5], [10,0]] ],
-        s3: [ [200, 100], [true, false] ],
+        s3: [ [800, 800], [true, false] ],
         // s3: [ [200, 100], [false, true] ],
         // s4: [ [ [5, 1], [true, false], [50, 100] ], [ [5, 1], [false, true], [51, 101] ] ],
         s4: [ [ [5, 1], [false, true], [50, 100] ], [ [5, 1], [true, false], [51, 101] ] ],

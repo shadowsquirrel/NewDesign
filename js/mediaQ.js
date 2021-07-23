@@ -9,7 +9,7 @@ var adjustWindowSize = function() {
 
     console.log('height: ' + h);
 
-    var topMargin = (h - 629) * 0.42 + 'px';
+    var topMargin = (h - 612) * 0.42 + 'px';
 
     console.log('difference: ' + (h - 629));
     console.log(topMargin);

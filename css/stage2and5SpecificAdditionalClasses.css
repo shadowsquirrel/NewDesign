@@ -414,3 +414,67 @@ img.infoButtonTop2
 {
     font-weight:500;
 }
+.follower1Circle
+{
+    opacity:0;
+    height: 114px;
+    width: 147px;
+    position:absolute;
+    margin-left: -395px;
+    z-index:-10;
+}
+.follower2Circle
+{
+    opacity:0;
+    height: 114px;
+    width: 147px;
+    position: absolute;
+    margin-left: -395px;
+    margin-top: 89px;
+    z-index:-10;
+}
+.pleaseWait
+{
+    position:absolute;
+    display:none;
+    opacity:0;
+    font-size:30px;
+    font-weight:100;
+    font-size: 30px;
+    font-weight: 100;
+    margin-top: -94px;
+    transform: scale(0.5);
+    margin-bottom: -236px;
+}
+.payoffInfoTextMicro3
+{
+    border: 1px black dashed;
+    font-size: 23px;
+    width: 945px;
+    display: inline-block;
+    margin-left: -17px;
+    background-color: aliceblue;
+    margin-top: 13px;
+    font-weight: 100;
+    padding-left: 32px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.payoffInfoTextMicro1
+{
+    text-align: center;
+    font-weight: 100;
+    font-size: 26px;
+    margin-bottom: 30px;
+}
+.strategyInfoText
+{
+    font-weight: 100;
+    font-size: 30px;
+    margin-top: 47px;
+}
+.tipsInfoText
+{
+    font-weight: 100;
+    font-size: 23px;
+}

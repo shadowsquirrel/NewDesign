@@ -13,6 +13,10 @@ window.onload = function() {
 
     adjustWindowSize();
 
+    tool.set.NORP(0)
+    setMetaNorp(168, -14, 0.3);
+    hideNorp(0);
+
     // var node = parent.node;
 
 
@@ -20,6 +24,7 @@ window.onload = function() {
     // ------ debug data ------ //
     // ------------------------ //
     mainData = {
+
         myTutorial: {
             s1Done: 1,
             s2Done: 0,
@@ -32,15 +37,20 @@ window.onload = function() {
             fB3: 0,
             miniGame: 0,
         },
-        myRound: 1,
 
-        myCount: 3,
+        myRound: 5,
+
+        myCount: 1,
         sortedArray: [0,2,5,4,1,3],
+
         treatment: [0,1],
+
         s2: [ [ [0,11], [31,0]], [ [0,20], [40,0] ] ],
         // s2: [ [[0,20], [10,0]], [[0,5], [10,0]] ],
+
         // s3: [ [200, 100], [true, false] ],
-        s3: [ [200, 100], [false, true] ],
+        s3: [ [799, 800], [false, true] ],
+
         s4: [ [ [5, 1], [true, false], [50, 100] ], [ [5, 1], [false, true], [31, 131] ] ],
         s5: [ [Array(6), Array(6)], [Array(6), Array(6)] ],
         s6: [ Array(2), Array(2) ],
@@ -66,12 +76,22 @@ window.onload = function() {
     //     console.log('-------                               --------');
     //     console.log('----------------------------------------------');
     //
-    //     generateStage2();
+    //     generateStage23Feedback();
     //
     // });
 
 
     // ADD A NORP LISTENER HERE
+
+    // we have all ready to spin switch on initially
+    // when NORP = 6 (i.e. all players are ready)
+    // then spinTheWheel function is executed
+    // This function is active only if allReadyToSpin is true
+    // once it is activated it turns the allReadyToSpin switch off
+    // this way next time (after results are displayed and subjects are
+    // asked to proceed again) all players are ready the function is not activated
+    var allReadyToSpin = true;
+
     // node.on('HTML-NORP', function(msg) {
     //
     //     console.log('----------------------------------------------');
@@ -87,16 +107,91 @@ window.onload = function() {
     //     console.log('----------------------------------------------');
     //
     //     tool.set.NORP(msg);
-    //     // setMetaNorp(108, -18, 0.25);
-    // if(helper.myIndex != -1) {
-    //     // tool.set.NORP(4,2);
-    //     tool.set.NORP(4)
-    // } else {
-    //     // tool.set.NORP(2, 4);
-    //     tool.set.NORP(2)
-    // }
+    //
+    //     // if all are ready
+    //     if(msg === 6) {
+    //
+    //         spinTheWheel();
+    //
+    //     }
     //
     // })
+
+    // called by the NORP listener above
+    var spinTheWheel = function() {
+
+        if(allReadyToSpin) {
+
+            setTimeout(()=>{
+
+                // kill the spin activator switch on NORP listener
+                allReadyToSpin = false;
+
+                // hide NORP
+                $('.metaNorp').css({'transition':'0.5s', 'opacity':'0'});
+
+                // kill the norp animation
+                // we don't want the spin wheel to be affected by the waiting animation
+                // compuational load
+                continueFlowing = false;
+
+                var winner;
+
+                // set winner index
+                // for wheel object index starts from 1
+                // it is either 1 or 2
+                winner = 1 + setup.og1WinnerGroupIndex
+
+                // debug
+                console.log('setup.og1WinnerGroupIndex: ' + setup.og1WinnerGroupIndex);
+                console.log('winner index for wheel: ' + winner);
+
+                // spin the wheel
+                calculator.wheel.spin(winner);
+
+                // --- after wheel stops --- //
+
+                // after the wheel stops (5 seconds of spin)
+                setTimeout(()=>{
+
+                    // move the NORP animation back to the left side of the screen
+                    setMetaNorp(168, -14, 0.3);
+
+                    // turn the animation back on again
+                    continueFlowing = true;
+                    flowLoad(1);
+
+                    setTimeout(()=>{
+
+                        // move norp animation to top
+                        $('.metaNorp').appendTo('.metaNorpWrapTop');
+
+                        $('.metaNorp').css({'transition':'0s', 'margin-top':'0px',
+                        'margin-left':'0px', 'position':'absolute'});
+
+                        // show norp animation
+                        setTimeout(()=>{
+                            $('.metaNorp').css({'transition':'0.5s', 'opacity':'1'});
+                        }, 100)
+
+                    }, 500)
+
+                }, 5000)
+
+                setTimeout(()=>{
+
+                    // open just before the spin end the finish stage activation
+                    // inside norp listener
+                    allReadyToEnd = true;
+
+                }, 4000)
+
+            }, 1000)
+
+        }
+
+
+    }
 
 
     var generateStage23Feedback = function() {
@@ -118,23 +213,19 @@ window.onload = function() {
         // also for og1-lc we will pass on h/s data etc..
         initialize.values(mainData);
 
-
-
         setup.og1Winner(mainData);
-
 
         // matches player's node data with the graphics
         setup.fundamentals(mainData);
-
 
         // calls all the different setup function using the parameters
         // defined/assigned by setup.fundamentals
         setup.og_fb();
 
-
         setup.infoBoxText();
 
-
+        // fastfeedback is determined by the round number
+        // currently given the round number is more 3 we have the fast feedback
         setup.determineFastFeedback(mainData);
 
         // uses map.setup() to pass calculator.globalVariables to map.globalVariables
@@ -146,29 +237,30 @@ window.onload = function() {
         map.show.stage('og1_fb');
 
 
-
-
-
         //-------------------------------------------------------------------------//
         //-------------------------------------------------------------------------//
         //----------------------- INFO BOX BUTTON ACTION --------------------------//
         //-------------------------------------------------------------------------//
         //-------------------------------------------------------------------------//
 
-
+        // ------------------------------------------ //
         // --------------- NODE ACTION -------------- //
-        // move to the top of the div
-
+        // ------------------------------------------ //
+        //
+        // node.emit('goup');
+        console.log('node.emit(goup)');
 
 
         listener = {};
         activator = {};
+
 
         if(!setup.fastFeedback) {
 
             setTimeout(()=>{
 
                 box.transition('', 'A-1', 0, 0, 1, 0);
+
                 calculator.wrapMinimize(0.9, 1, -42)
 
                 setTimeout(()=>{
@@ -184,11 +276,14 @@ window.onload = function() {
                 calculator.wrapMinimize(1, 1, -10)
 
                 setTimeout(()=>{
+
                     tool.set.NORP(0);
                     setMetaNorp(168, -14, 0.3);
+
                 }, 1750)
 
                 box.transition('', 'A-3', 0, 0, 1, 750);
+
                 box.button.show2('A-3');
 
                 box.transition('A-1', '', 0, 0, 1, 750);
@@ -208,26 +303,58 @@ window.onload = function() {
             }, 1750)
 
             box.transition('', 'A-3', 0, 0, 1, 750);
+
             box.button.show2('A-3');
 
             box.transition('A-1', 'A-2', 0, 0, 1, 750);
 
         })
 
-        // ----------- always exists ----------- //
 
+        // ------------------------------------------------------------------ //
+        // ------------------------------------------------------------------ //
+        // -----------               always exists                ----------- //
+        // ------------------------------------------------------------------ //
+        // ------------------------------------------------------------------ //
+
+
+
+        // ------------------------------------------------------------------ //
+        // ------------                                          ------------ //
+        // ------------          READY to SPIN BUTTON            ------------ //
+        // ------------                                          ------------ //
+        // ------------------------------------------------------------------ //
+        //
+        // ------------------------------------------------------------------ //
+        // ------    FIRST NODE.EMIT('HTML-READY', stage = fb23-S)    ------- //
+        // ------------------------------------------------------------------ //
+        //
+        //
         $('#btn-A-3').click(function() {
+
+
+            // ----------------------------------------- //
+            // ------------ NODE ACTION ---------------- //
+            // ----------------------------------------- //
+            //
+            // var stage = 'fb23-S';
+            // node.emit('HTML-ready', stage);
+            console.log('node.emit(HTML-ready), stage = fb23-S');
+
 
             if(!setup.fastFeedback) {
 
                 box.transition('A-3', '', 0, 0, 1, 0);
                 box.transition('A-2', '', 0, 0, 1, 0);
+
                 calculator.wheel.cruise();
 
-                $('.wpWrap').css({'transition':'1s', 'margin-top':'113px', 'transform':'scale(1.5)'})
-                $('.bottomMapWrap').css({'transition':'0.5s', 'opacity':'0'});
+                $('.wpWrap').css({'transition':'1s', 'margin-top':'113px', 'transform':'scale(1.5)'});
 
-                $('.metaNorp').css({'transition':'0.5s', 'opacity':'0'});
+                $('.bottomMapWrap').css({'transition':'0.25s', 'opacity':'0'});
+
+                $('.metaNorp').css({'transition':'0.25s', 'opacity':'0'});
+
                 setTimeout(()=>{
 
                     $('.metaNorp').appendTo('.norpBottomWrap');
@@ -236,56 +363,43 @@ window.onload = function() {
                     'margin-top':'150px', 'margin-left':'250px', 'transform':'scale(1)'});
 
                     setTimeout(()=>{
+
                         $('.metaNorp').css({'transition':'0.5s', 'opacity':'1'});
                         flowLoad(1);
+
                     }, 100)
 
-                }, 500)
+                }, 250)
 
-                // debug
-
+                // ------------------------------- //
+                // ------------ DEBUG ------------ //
+                // ------------------------------- //
+                //
+                // in the nodegame instead we will have spinTheWheel be activated
+                // by the NORP listener when all players are ready
+                // i.e. when msg === 6
                 setTimeout(()=>{
 
-                    var winner;
+                    spinTheWheel();
 
-                    winner = 1 + setup.og1WinnerGroupIndex
-
-                    calculator.wheel.spin(winner);
-
-
-                    $('.metaNorp').css({'transition':'0.5s', 'opacity':'0'});
-                    setTimeout(()=>{
-
-                        setMetaNorp(168, -14, 0.3);
-
-                        continueFlowing = false;
-
-                        setTimeout(()=>{
-
-                            $('.metaNorp').appendTo('.metaNorpWrapTop');
-                            $('.metaNorp').css({'transition':'0s', 'margin-top':'0px',
-                             'margin-left':'0px', 'position':'absolute'});
-
-                             setTimeout(()=>{
-                                 $('.metaNorp').css({'transition':'0.5s', 'opacity':'1'});
-                             }, 100)
-
-                         }, 500)
-                    }, 5000)
-
-                }, 5000)
+                    // some random wait time for debug purpose
+                }, 1)
 
             } else {
 
                 box.transition('A-3', '', 0, 0, 1, 0);
                 box.transition('A-2', '', 0, 0, 1, 0);
+
                 calculator.wrapMinimize(0.7, 1, -160);
+
                 calculator.wheel.cruise();
 
-                $('.wpWrap').css({'transition':'1s', 'margin-top':'113px', 'transform':'scale(1.5)'})
+                $('.wpWrap').css({'transition':'1s', 'margin-top':'113px', 'transform':'scale(1.5)'});
+
                 $('.bottomMapWrap').css({'transition':'0.5s', 'opacity':'0'});
 
                 $('.metaNorp').css({'transition':'0.5s', 'opacity':'0'});
+
                 setTimeout(()=>{
 
                     $('.metaNorp').appendTo('.norpBottomWrap');
@@ -294,57 +408,57 @@ window.onload = function() {
                     'margin-top':'150px', 'margin-left':'250px', 'transform':'scale(1)'});
 
                     setTimeout(()=>{
+
                         $('.metaNorp').css({'transition':'0.5s', 'opacity':'1'});
                         flowLoad(1);
+
                     }, 100)
 
                 }, 500)
 
-                // debug
-
+                // ------------------------------- //
+                // ------------ DEBUG ------------ //
+                // ------------------------------- //
+                //
+                // in the nodegame instead we will have spinTheWheel be activated
+                // by the NORP listener when all players are ready
+                // i.e. when msg === 6
                 setTimeout(()=>{
 
-                    var winner;
+                    spinTheWheel();
 
-                    winner = 1 + setup.og1WinnerGroupIndex
-
-                    calculator.wheel.spin(winner);
-
-                    $('.metaNorp').css({'transition':'0.5s', 'opacity':'0'});
-                    setTimeout(()=>{
-
-                        setMetaNorp(168, -14, 0.3);
-
-                        continueFlowing = false;
-
-                        setTimeout(()=>{
-
-                            $('.metaNorp').appendTo('.metaNorpWrapTop');
-                            $('.metaNorp').css({'transition':'0s', 'margin-top':'0px',
-                             'margin-left':'0px', 'position':'absolute'});
-
-                             setTimeout(()=>{
-                                 $('.metaNorp').css({'transition':'0.5s', 'opacity':'1'});
-                             }, 100)
-
-                         }, 500)
-                    }, 5000)
-
-                }, 5000)
+                    // some random wait time for debug purpose
+                }, 4321)
 
             }
 
         })
 
+
+        // ------------------------------------------------------------------ //
+        // ------    FINAL NODE.EMIT('HTML-READY', stage = fb23-D)    ------- //
+        // ------------------------------------------------------------------ //
+        //
+        // final info box after wheel is spun and the results are shown
+        // when clicked ok the subject sends a ready signal for a second time.
+        //
         $('#btn-A-4').click(function() {
+
+            $('.hoverInfoWrap').css({'transition':'1s', 'opacity':'0.5',
+            'transform-origin':'left', 'margin-left':'-1112px',
+            'transform':'scale(0.7)'});
 
             box.transition('A-4', '', 0, 0, 1, 0);
             calculator.wrapMinimize(1, 1, -305);
             setMetaNorp(168, -30, 0.4, 1);
 
+            // ----------------------------------------- //
             // ------------ NODE ACTION ---------------- //
+            // ----------------------------------------- //
+            //
             // var stage = 'fb23-D';
             // node.emit('HTML-ready', stage);
+            console.log('node.emit(HTML-ready, stage = fb23-D)');
 
         })
 

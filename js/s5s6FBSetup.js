@@ -400,7 +400,7 @@ setup.determineFastFeedback = function(myData) {
 
     myRound = myData.myRound;
 
-    if(myRound > 1) {
+    if(myRound > 3) {
         setup.fastFeedback = true;
     }
 

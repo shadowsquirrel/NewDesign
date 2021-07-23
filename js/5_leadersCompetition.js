@@ -18103,27 +18103,6 @@ $('#btn-LC2-1601').click(function() {
 
 })
 
-/*
-// $('#btn-LC2-17').click(function() {
-//
-//     if(box.global.symmetricHeteroTreatment || box.global.asymmetricHeteroTreatment) {
-//         calculator.values.set.helpSabo([24,0,0,7,4,0,0,7]);
-//         calculator.refresh.sliders();
-//     }
-//
-//     if(!box.global.symmetricHeteroTreatment && !box.global.asymmetricHeteroTreatment) {
-//         calculator.values.set.helpSabo([3,0,0,11,0,0,5,9]);
-//         calculator.refresh.sliders();
-//     }
-//
-//     box.transition('LC2-17', 'LC2-17B', 0, 0, 1, 1000);
-//
-//     setTimeout(()=>{
-//         box.button.show('LC2-17B');
-//     }, 3000)
-//
-// })
-*/
 
 $('#btn-LC2-17B').click(function() {
 

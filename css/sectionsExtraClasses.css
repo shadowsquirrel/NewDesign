@@ -1,0 +1,126 @@
+.groupA-SE-n13
+{
+    height: 55px;
+    width: 33px;
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
+.groupB-SE-n13
+{
+    height: 55px;
+    width: 33px;
+    margin-left: 3px;
+    margin-right: 3px;
+}
+.bb
+{
+    font-weight:700;
+}
+.it
+{
+    font-style:italic;
+}
+.icon-SE-n1802
+{
+    height: 55px;
+    width: 33px;
+    margin-left: -3px;
+    margin-right: -2px;
+}
+.icon-SE-n1803
+{
+    height: 55px;
+    width: 33px;
+    margin-left: -3px;
+    margin-right: -2px;
+}
+.imbalanceIcon
+{
+    height:50px;
+    width:50px;
+    background-color: black;
+    border-radius: 36px;
+    padding: 6px;
+    position: absolute;
+    right: 38px;
+    top: 16px;
+}
+.imbalanceIcon2
+{
+    height: 45px;
+    width: 45px;
+    background-color: black;
+    border-radius: 36px;
+    padding: 6px;
+    position: absolute;
+    right: 38px;
+    top: 8px;
+}
+.step1Number
+{
+    width:38px;
+    margin-left:63px;
+    padding-left:11px;
+    display:block;
+    border-radius:30px;
+    color:white;
+    background-color:#264e2e;
+}
+.se-8-text
+{
+    display:block;
+    margin-top:1px;
+    margin-left:251px;
+    margin-bottom:24px;
+}
+.specialButton
+{
+    width: 722px;
+    border-radius: 100px;
+    margin-top: 35px;
+    margin-left: 153px;
+    font-weight:100;
+}
+.destroyBox
+{
+    background-color: transparent;
+    border-color: transparent;
+    box-shadow: 0 0 transparent;
+}
+.icon-SE-n14
+{
+    height: 50px;
+    width: 30px;
+    margin-left: 3px;
+    margin-right: 1px;
+}
+.icon-SE-n16
+{
+    height: 50px;
+    width: 30px;
+    margin-left: 3px;
+    margin-right: 1px;
+}
+.icon-IG-n1803
+{
+    height: 55px;
+    width: 35px;
+}
+.imbalanceIcon3
+{
+    height: 35px;
+    width: 35px;
+    background-color: black;
+    border-radius: 36px;
+    padding: 5px;
+}
+.icon-IG-n1804
+{
+    height: 55px;
+    width: 35px;
+}
+.b
+{
+    font-weight:500;
+}

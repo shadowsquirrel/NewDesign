@@ -17,7 +17,7 @@
 
 
 
-    <link rel="stylesheet" href="css/payoffAll.css">
+    <!-- <link rel="stylesheet" href="css/payoffAll.css">
 
     <link rel="stylesheet" href="css/calculatorContest.css">
     <link rel="stylesheet" href="css/calculatorIcons.css">
@@ -34,7 +34,7 @@
     <link rel="stylesheet" href="css/IG_calculatorContest.css">
     <link rel="stylesheet" href="css/IG_calculatorPowerBar.css">
     <link rel="stylesheet" href="css/IG_sliderContest.css">
-    <link rel="stylesheet" href="css/IG_payoffAll.css">
+    <link rel="stylesheet" href="css/IG_payoffAll.css"> -->
 
 
     <link rel="stylesheet" href="css/mapicons.css">
@@ -46,6 +46,9 @@
 
     <link rel="stylesheet" href="css/tutorialSpecific.css">
     <link rel="stylesheet" href="css/checkMark.css">
+
+    <link rel="stylesheet" href="css/sectionsExtraClasses.css">
+
 
 
     <script src='js/Winwheel.js'></script>
@@ -426,7 +429,7 @@
                                 <div class='topLeaderLost'>
 
                                     <div class='stageboxtextlong'>
-                                        <p>
+                                        <p style='filter:opacity(0);'>
                                             Leader
                                         </p>
                                         <div class='lostLeaderIconWrap'>
@@ -445,7 +448,7 @@
                                 <div  class='topLeaderWon'>
 
                                     <div class='stageboxtextlong'>
-                                        <p>
+                                        <p style='filter:opacity(0);'>
                                             Leader
                                         </p>
                                         <div class='lostLeaderIconWrap'>
@@ -471,7 +474,7 @@
                                 <div class='bottomLeaderWon'>
 
                                     <div class='stageboxtextlong'>
-                                        <p>
+                                        <p style='filter:opacity(0);'>
                                             Leader
                                         </p>
                                         <div class='wonLeaderIconWrap'>
@@ -488,7 +491,7 @@
                                 <div class='bottomLeaderLost'>
 
                                     <div class='stageboxtextlong'>
-                                        <p>
+                                        <p style='filter:opacity(0);'>
                                             Leader
                                         </p>
                                         <div class='lostLeaderIconWrap'>
@@ -1298,7 +1301,7 @@
     <!-- SE SECTION - SECTIONS EXPLAINED IN DETAIL -->
     <div class='boxStorage'>
 
-        <div class=boxwrap id='boxwrap-SE-1'>
+        <!-- <div class=boxwrap id='boxwrap-SE-1'>
 
             <div class='box' id='box-SE-1'>
 
@@ -1313,6 +1316,53 @@
 
                 <div class=buttonWrap>
                     <div class=button id='btn-SE-1'>
+                        <p>
+                            OK
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div> -->
+
+        <div class=boxwrap id='boxwrap-SE-1'>
+
+            <div class='box' id='box-SE-1'>
+
+                <div class=text>
+                    <p>
+                        The round <b>begins</b> with
+                        section <b style='color:red;'>1</b> and <b>ends</b> at
+                        section <b style='color:red;'>3</b>.
+                    </p>
+                </div>
+
+                <div class=buttonWrap>
+                    <div class=button id='btn-SE-1'>
+                        <p>
+                            OK
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class=boxwrap id='boxwrap-SE-101'>
+
+            <div class='box' id='box-SE-101'>
+
+                <div class=text>
+                    <p>
+                    <i>Only the defeated group </i> 
+                    plays section <b style='color:red;'>2</b> in between.
+                    </p>
+                </div>
+
+                <div class=buttonWrap>
+                    <div class=button id='btn-SE-101'>
                         <p>
                             OK
                         </p>
@@ -1401,19 +1451,51 @@
 
                 <div class=text>
                     <p>
-                        In the OUT-group contests,
-                        <br />
-                        <br />
-                        <div style=margin-left:267px;margin-top:-31px;opacity:0; class='someTinyTinyClass2'>
+                        In the <span class=bb>OUT</span>-group contests,
+
+                        <div style='margin-left:267px;margin-top:6px;opacity:0;display:block;margin-bottom:27px;'
+                        class='someTinyTinyClass2'>
                             groups compete <strong>via their leaders</strong>.
                         </div>
 
                     </p>
-                    <br />
+
                 </div>
 
                 <div class=buttonWrap>
                     <div class=button id='btn-SE-5'>
+                        <p>
+                            OK
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class=boxwrap id='boxwrap-SE-501'>
+
+            <div class='box' id='box-SE-501'>
+
+                <div class=text>
+                    <!-- <p>
+                        When a <span class=bb>leader loses</span> against the opposing leader,
+
+                        <span style='display:block;margin-top:25px;margin-left:71px;margin-bottom:22px;'>
+                            the <i>defeated leader's </i><span class=bb>group loses</span>
+                            the <span class=bb>OUT</span>-group contest.
+                        </span>
+                    </p> -->
+                    <p>
+                        A <i>group loses</i> the the <span class=bb>OUT</span>-group
+                        contest when its <i>leader is defeated</i>.
+                    </p>
+
+                </div>
+
+                <div class=buttonWrap>
+                    <div class=button id='btn-SE-501'>
                         <p>
                             OK
                         </p>
@@ -1433,7 +1515,7 @@
 
                 <div class=text style='padding:0px; padding-top:20px;padding-left:20px;'>
                     <p>
-                        Followers <i>indirectly</i> participate in the OUT-group contest
+                        <span class=bb>Followers</span> <i>indirectly</i> participate in the OUT-group contest
                         <br />
                         <span style='margin-left:218px;'>
                             by <span style='color:blue; opacity:0.7;'>helping</span> or
@@ -1500,37 +1582,9 @@
 
                 <div class=text style='font-size:23px;'>
 
-                    <!-- <p>
-                        The <i class=mBold>group</i> with a <i>relatively</i>
-                        <span style='display:inline;margin-left:2px;margin-right:171px;'>
-                            <span style='color:red;transition:1s;position:absolute;opacity:0;' id=saboT>disadvantaged</span>
-                            <span style='color:blue;transition:1s;position:absolute;opacity:0;margin-left:15px;' id=helpT>advantaged</span>
-                        </span>
-
-                        leader is
-
-                        <span style='display:inline;margin-left:5px;margin-right:67px;'>
-                            <span style='font-weight:500;transition:1.5s;position:absolute;opacity:0;margin-left:9px;' id=saboT2>less</span>
-                            <span style='font-weight:500;transition:1.5s;position:absolute;opacity:0;' id=helpT2>more</span>
-                        </span>
-                        <span class=mBold>likely to win</span> <br />
-                        the OUT-group contest.
-                    </p> -->
-
-                    <!-- <p>
-                        The <i class=mBold>group</i> with a <span style='color:red;' class=mBold>disadvantaged</span> leader is
-                        <i><span class=mBold>less</span> likely to win</i> the OUT-group contest.
-
-                        <span style='display:block;margin-top:15px;'>
-                            The <i class=mBold>group</i> with an <span style='color:blue;' class=mBold>advantaged</span> leader is
-                            <i><span class=mBold>more</span> likely to win</i> the OUT-group contest.
-                        </span>
-                    </p> -->
-
                     <p>
-                        <span class=bColor>Advantage</span> or <span class=rColor>disadvantage</span>
-                        of a leader significantly affects <i class=mBold>its group</i>'s chance <br />
-                        to win the OUT-group contest.
+                        A leader's <span class=bColor>advantage</span> or <span class=rColor>disadvantage</span>
+                         <i>significantly</i> affects their <span class=bb>chance to win</span>.
                     </p>
 
                 </div>
@@ -1556,7 +1610,8 @@
 
                 <div class=text>
                     <p>
-                        The OUT-group contest is played in <span style='font-size:35px; color:darkgreen; font-weight:600;'>2</span> <i style='font-size:28px;'>consecutive</i> steps.
+                        The <span class=bb>OUT</span>-group contest is
+                        played in <span style='font-size:35px; color:darkgreen; font-weight:600;'>2</span> <i style='font-size:28px;'>consecutive</i> steps.
                     </p>
                 </div>
 
@@ -1586,10 +1641,10 @@
                     <p>
                         <strong>Step</strong>
                         <br />
-                        <span style='margin-left:50px'>
+                        <span style='margin-left:50px' class=se-8-text>
                             <!-- each follower decides whether to  <span style='color:blue;opacity:0.7;'>help</span> or
                             <span style='color:red;opacity:0.7;'>sabotage</span> <i>their</i> leader. -->
-                            followers <span style='color:blue;opacity:0.7;'>help</span> or
+                            Followers <span style='color:blue;opacity:0.7;'>help</span> or
                             <span style='color:red;opacity:0.7;'>sabotage</span> <i>their</i> leader.
                         </span>
                     </p>
@@ -1613,7 +1668,13 @@
 
                 <div class=text>
                     <p>
-                        Followers' decisions are declared to the leaders.
+                        <!-- Followers' decisions are declared to the leaders.
+                        <br /> -->
+                        <span class=it>Accordingly</span>, leaders'
+                        <span style='color:blue;opacity:0.7;'>advantage</span>
+                        or <span style='color:red;opacity:0.7;'>disadvantage</span>
+                        are  determined <br />
+                        and declared to the leaders.
                     </p>
                 </div>
 
@@ -1631,7 +1692,7 @@
 
         <div class=boxwrap id='boxwrap-SE-11'>
 
-            <div class='box' id='box-SE-11'>
+            <div class='box' id='box-SE-11' style='margin-top:13px;'>
 
                 <div class='middleStep2Text-infoBox additionalStep2Class-infoBox'>
                     <p>
@@ -1644,8 +1705,8 @@
                         <strong>Step</strong>
                         <br />
                         <br />
-                        <div style='margin-left:50px; margin-top:-41px;'>
-                            leaders compete (
+                        <div style='margin-left:325px; margin-top:-72px;margin-bottom:8px;'>
+                            Leaders compete (
                             <img class='fightLime-SE-13' src="images/fightlime.png" alt="V" />
                             ).
                         </div>
@@ -1665,393 +1726,24 @@
         </div>
 
 
-        <!-- introduce in-group contest -->
+        <div class=boxwrap id='boxwrap-SE-n12'>
 
-        <div class=boxwrap id='boxwrap-SE-12'>
-
-            <div class='box' id='box-SE-12'>
+            <div class='box' id='box-SE-n12' style='margin-top:45px;'>
 
                 <div class=text>
                     <p>
-                        <i>While</i> the leaders compete in the OUT-group contest <strong>I</strong> (<span style='color:red;font-weight:700;font-size:29px;'>1</span>),
-                        <br />
-                        <br />
-                        <div style='margin-left:299px;margin-top:-19px;margin-bottom:32px;opacity:0' id='anotherIdToCall2'>
-                            Followers proceed to section <span style='color:red;font-weight:700;font-size:29px;'>2</span>.
-                        </div>
-                    </p>
-                </div>
-
-                <div class=buttonWrap>
-                    <div class=button id='btn-SE-12'>
-                        <p>
-                            OK
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class=boxwrap id='boxwrap-SE-13'>
-
-            <div class='box' id='box-SE-13' style='margin-top:10px;'>
-
-                <div class=text>
-                    <p>
-                        In section <span style='color:red;font-weight:500;font-size:29px;'>2</span>,
-                        <br />
-                        <br />
-                        <div style='margin-left:137px;margin-top:-61px;margin-bottom:3px;' id='someInfoBoxId'>
-                            <i>each</i> group's followers compete for the <i>right</i> to become the <i>new leader</i> (
-                            <div class=someWrapForKingIcons>
-                                <img class='anotherKingIcon1' src="images/fcrownLime.png" alt="V" />
-                                <img class='anotherKingIcon2' src="images/leader.png" alt="V" />
-                            </div>
-                            <span style='margin-left:45px;'>
-                                ) of their group.
-                            </span>
-                        </div>
-                    </p>
-                </div>
-
-                <div class=buttonWrap>
-                    <div class=button id='btn-SE-13'>
-                        <p>
-                            OK
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class=boxwrap id='boxwrap-SE-14'>
-
-            <div class='box' id='box-SE-14' style='margin-top:15px;'>
-
-                <div class=text>
-                    <p>
-                        These competitions are called
-                        <br />
-                        <br />
-                        <div style='margin-left:301px;margin-top:-28px;margin-bottom:12px;opacity:0;' id='anotherIdToCall'>
-                            <strong>IN - group contest A</strong> and <strong>B</strong>
-                        </div>
-                    </p>
-                </div>>
-
-                <div class=buttonWrap>
-                    <div class=button id='btn-SE-14'>
-                        <p>
-                            OK
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-
-        <!-- treatment variation info on in-group contests -->
-
-        <div class=boxwrap id='boxwrap-SE-15'>
-
-            <div class='box' id='box-SE-15' style='margin-top:15px;'>
-
-                <div class=text>
-                    <p>
-                        In these IN-group contests, followers do <strong>not</strong> have
-                        <br />
-                        <br />
-                        <div style='margin-left:267px;margin-top:-35px;margin-bottom:11px;'>
-                            any advantage or disadvantage over each other <span style='font-size:19px;font-style:italic'>(followers have equal power)</span>.
-                        </div>
-                    </p>
-
-                    <div class=followerComparison11>
-                        <img class='infoBoxFollowerIcon1' src="images/F1.png" alt="V" /> <div class=equalitySign>=</div> <img class='infoBoxFollowerIcon1' src="images/F1.png" alt="V" />
-                    </div>
-                    <div class=followerComparison12>
-                        <img class='infoBoxFollowerIcon1' src="images/F2.png" alt="V" /> <div class=equalitySign>=</div> <img class='infoBoxFollowerIcon1' src="images/F2.png" alt="V" />
-                    </div>
-                </div>>
-
-                <div class=buttonWrap>
-                    <div class=button id='btn-SE-15'>
-                        <p>
-                            OK
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class=boxwrap id='boxwrap-SE-15A'>
-
-            <div class='box' id='box-SE-15A' style='margin-top:15px;'>
-
-                <div class=text>
-
-                    <p>
-                        In these IN-group contests,
-                        <div style='margin-left:196px;margin-top:-5px;margin-bottom:-11px;'>
-                            the <i>strong</i> follower is <i>more likely to win</i> (
-                            <div class=someWrapForKingIcons style='margin-left:272px;'>
-                                <img class='anotherKingIcon1' src="images/fcrownLime.png" alt="V" />
-                                <img class='anotherKingIcon2' src="images/leader.png" alt="V" />
-                            </div>
-                            <span style='margin-left:45px;'>
-                                ).
-                            </span>
-                        </div>
-                    </p>
-
-                    <div style='display:flex;flex-direction:row;justify-content:space-around;margin-top:13px;opacity:0' id='anotherIdToCall3'>
-                        <div class=followerComparison11>
-                            <img class='infoBoxFollowerIcon2' src="images/F1S.png" alt="V" />
-                            <div class=inequalitySign>></div>
-                            <img class='infoBoxFollowerIcon3' src="images/F1W.png" alt="V" />
-                        </div>
-                        <div class=followerComparison12>
-                            <img class='infoBoxFollowerIcon2' src="images/F2S.png" alt="V" />
-                            <div class=inequalitySign>></div>
-                            <img class='infoBoxFollowerIcon3' src="images/F2W.png" alt="V" />
-                        </div>
-                    </div>
-
-
-                </div>>
-
-                <div class=buttonWrap>
-                    <div class=button id='btn-SE-15A'>
-                        <p>
-                            OK
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class=boxwrap id='boxwrap-SE-15B1'>
-
-            <div class='box' id='box-SE-15B1' style='margin-top:15px;'>
-
-                <div class=text>
-
-                    <p>
-                        In the IN-group contests for the <strong>uneven</strong> group,
-                        <div style='margin-left:196px;margin-top:-5px;margin-bottom:-11px;'>
-                            the <i>strong</i> follower is <i>more likely to win</i> (
-                            <div class=someWrapForKingIcons style='margin-left:272px;'>
-                                <img class='anotherKingIcon1' src="images/fcrownLime.png" alt="V" />
-                                <img class='anotherKingIcon2' src="images/leader.png" alt="V" />
-                            </div>
-                            <span style='margin-left:45px;'>
-                                ).
-                            </span>
-                        </div>
-                    </p>
-
-                    <div style='display:flex;flex-direction:row;justify-content:space-around;margin-top:13px;opacity:0' id='anotherIdToCall3'>
-
-                        <div class='followerComparison11 equalityAdjustment1'>
-                            <div class=treatmentInfoBoxLeftHomo>
-                                <img class='infoBoxFollowerIcon1' src="images/F2.png" alt="V" />
-                                <div class=equalitySign>=</div>
-                                <img class='infoBoxFollowerIcon1' src="images/F2.png" alt="V" />
-                            </div>
-                            <div class=treatmentInfoBoxLeftHetero>
-                                <img class='infoBoxFollowerIcon2' src="images/F1S.png" alt="V" />
-                                <div class=inequalitySign>></div>
-                                <img class='infoBoxFollowerIcon3' src="images/F1W.png" alt="V" />
-                            </div>
-                        </div>
-
-                        <div class='followerComparison12 equalityAdjustment2'>
-                            <div class=treatmentInfoBoxRightHomo>
-                                <img class='infoBoxFollowerIcon1' src="images/F2.png" alt="V" />
-                                <div class=equalitySign>=</div>
-                                <img class='infoBoxFollowerIcon1' src="images/F2.png" alt="V" />
-                            </div>
-                            <div class=treatmentInfoBoxRightHetero>
-                                <img class='infoBoxFollowerIcon2' src="images/F2S.png" alt="V" />
-                                <div class=inequalitySign>></div>
-                                <img class='infoBoxFollowerIcon3' src="images/F2W.png" alt="V" />
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>>
-
-                <div class=buttonWrap>
-                    <div class=button id='btn-SE-15B1'>
-                        <p>
-                            OK
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class=boxwrap id='boxwrap-SE-15B2'>
-
-            <div class='box' id='box-SE-15B2' style='margin-top:15px;'>
-
-                <div class=text>
-                    <p>
-                        In the IN-group contests for the <strong>even</strong> group,
-                        <div style='margin-left:74px;margin-top:-2px;margin-bottom:-24px;'>
-                            followers do <strong>not</strong> have any advantage or disadvantage over each other.
-                        </div>
-                    </p>
-
-                    <div style='display:flex;flex-direction:row;justify-content:space-around;margin-top:18px;opacity:0' id='anotherIdToCall4'>
-
-                        <div class='followerComparison11 equalityAdjustment1'>
-                            <div class=treatmentInfoBoxLeftHomo>
-                                <img class='infoBoxFollowerIcon1' src="images/F1.png" alt="V" />
-                                <div class=equalitySign>=</div>
-                                <img class='infoBoxFollowerIcon1' src="images/F1.png" alt="V" />
-                            </div>
-                            <div class=treatmentInfoBoxLeftHetero>
-                                <img class='infoBoxFollowerIcon2' src="images/F1S.png" alt="V" />
-                                <div class=inequalitySign>></div>
-                                <img class='infoBoxFollowerIcon3' src="images/F1W.png" alt="V" />
-                            </div>
-                        </div>
-
-                        <div class='followerComparison12 equalityAdjustment2'>
-                            <div class=treatmentInfoBoxRightHomo>
-                                <img class='infoBoxFollowerIcon1' src="images/F2.png" alt="V" />
-                                <div class=equalitySign>=</div>
-                                <img class='infoBoxFollowerIcon1' src="images/F2.png" alt="V" />
-                            </div>
-                            <div class=treatmentInfoBoxRightHetero>
-                                <img class='infoBoxFollowerIcon2' src="images/F2S.png" alt="V" />
-                                <div class=inequalitySign>></div>
-                                <img class='infoBoxFollowerIcon3' src="images/F2W.png" alt="V" />
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>>
-
-                <div class=buttonWrap>
-                    <div class=button id='btn-SE-15B2' style='margin-left:-3px;'>
-                        <p>
-                            OK
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-
-        <!-- end of treatment variations -->
-
-
-        <div class=boxwrap id='boxwrap-SE-16'>
-
-            <div class='box' id='box-SE-16' style='margin-top:15px;'>
-
-                <div class=text>
-                <!-- <div class=text style='text-align:center;font-size:31px;'> -->
-                    <!-- <p>
-                        <i>Followers</i>' IN-group contests
-                    </p>
-                    <div style='margin-top:-13px;margin-bottom:-14px;'>
-                        <p>
-                            and
-                        </p>
-                    </div>
-                    <div>
-                        <p>
-                            <i>Leader's competition</i> in the OUT-group contest <strong>I</strong>
-                        </p>
-                    </div>
-                    <div style='margin-top:15px; margin-bottom:18px;'>
-                        <p>
-                            occur <strong>at the same time</strong>
-                        </p>
-                    </div> -->
-
-                    <p>
-                        <i>Followers</i>' <span class=mBold>IN</span>-group contests and
-                        <i>leaders' competition</i> in the <span class=mBold>OUT</span>-group contest <strong>I</strong>
-                        occur <strong>at the same time</strong>.
-                    </p>
-
-                </div>>
-
-                <div class=buttonWrap>
-                    <div class=button id='btn-SE-16'>
-                        <p>
-                            OK
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-
-        <!-- SKIPPED -->
-        <div class=boxwrap id='boxwrap-SE-1601'>
-
-            <div class='box' id='box-SE-1601' style='margin-top:15px;'>
-
-                <div class=text>
-
-                    <p>
-                        Players do <strong>not</strong> know
-                        (<span style='color:red;font-weight:500;'>?</span>)
-                        the results of the <i class=mBold>other</i> contests
-                        while competing in <i class=mBold>their</i> <i>respective</i> contests.
-                    </p>
-
-                </div>
-
-                <div class=buttonWrap>
-                    <div class=button id='btn-SE-1601'>
-                        <p>
-                            OK
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class=boxwrap id='boxwrap-SE-17'>
-
-            <div class='box' id='box-SE-17' style='margin-top:15px;'>
-
-                <div class=text>
-                    <p>
-                        <i>After</i> all the decisions are submitted,
+                        <i>After</i> the leaders submit their decisions,
                         <div style='opacity:0; margin-top:10px;margin-left:209px;margin-bottom:16px;' id='anotherIdToCall6'>
-                            <div style='margin-left:28px; margin-bottom:20px;margin-top:6px;'>
-                                the <span class=mBold>OUT</span>-group contest results are declared.
+                            <div style='margin-left:-210px; margin-bottom:-15px;margin-top:-7px;'>
+                                the <span class=bb>OUT</span>-group contest results are
+                                determined and declared to <i>all</i> players.
                             </div>
                         </div>
                     </p>
                 </div>
 
                 <div class=buttonWrap>
-                    <div class=button id='btn-SE-17'>
+                    <div class=button id='btn-SE-n12'>
                         <p>
                             OK
                         </p>
@@ -2062,86 +1754,23 @@
 
         </div>
 
-        <div class=boxwrap id='boxwrap-SE-17A1'>
+        <div class=boxwrap id='boxwrap-SE-n13'>
 
-            <div class='box' id='box-SE-17A1' style='margin-top:15px;'>
-
-                <div class=text style='padding-right:0px;width:1000px;padding-left:20px;'>
-
-                    <p style='padding-left:12px;'>
-                        Assume <strong>leader A lost</strong> the <i>leaders' competition</i> of the the OUT-group contest <strong>I</strong>.
-                    </p>
-
-                    <div class='lostLeaderIconWrap' style='transform:scale(2);margin-top:18px;margin-bottom:40px;margin-left:-555px;opacity:0' id=anotherIdToCall11>
-                        <img class='lostLeaderIcon' src="images/L1.png" alt="V" />
-                        <img class='lostCrown' src="images/leaderdenied.png" alt="V" />
-                    </div>
-
-                    <p style='display:inline-block;margin-top:-55px;margin-left:305px;opacity:0;' id='box17A1SecondText'>
-                        And as a result, Group <strong>A</strong>
-                        (<img class='groupA-SE-17A1' src="images/h1.png" alt="V" />) is <i class=mBold>defeated</i>.
-                    </p>
-
-                </div>
-
-                <div class=buttonWrap>
-                    <div class=button id='btn-SE-17A1' style='margin-right:15px; margin-bottom:15px; margin-left:2px;'>
-                        <p>
-                            OK
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class=boxwrap id='boxwrap-SE-18'>
-
-            <div class='box' id='box-SE-18' style='margin-top:15px;'>
+            <div class='box' id='box-SE-n13' style='margin-top:45px;'>
 
                 <div class=text>
+
                     <p>
-                        In the <strong>defeated</strong> group,
-                        <div style='opacity:0; margin-top:10px;margin-left:199px;margin-bottom:16px;' id='anotherIdToCall7'>
-                            <span class=mBold>none</span> of the group players receive any tokens.
-                        </div>
+                        Assume group <span class=bb>B</span> (<img class='groupA-SE-n13' src="images/h2.png" alt="V" />)
+                        <span class=bb>won</span> and
+                        group <span class=bb>A</span>
+                        (<img class='groupA-SE-n13' src="images/h1.png" alt="V" />) <span class=bb>lost</span> .
                     </p>
-
-                    <div style='display:flex;flex-direction:row;justify-content:space-around;margin-top:13px;opacity:0;font-weight:700;font-size:30px;' id='anotherIdToCall5'>
-
-                        <div class='blackGroup1'>
-                            <div class=noTokenLeftHomo>
-                                <img class='infoBoxFollowerIcon1 iconAdjustmentInfoBox' src="images/L1.png" alt="V" /> : 0 token
-                                <img class='infoBoxFollowerIcon1 iconAdjustmentInfoBox' src="images/F1.png" alt="V" /> : 0 token
-                                <img class='infoBoxFollowerIcon1 iconAdjustmentInfoBox' src="images/F1.png" alt="V" /> : 0 token
-                            </div>
-                            <div class=noTokenLeftHetero>
-                                <img class='infoBoxFollowerIcon1 iconAdjustmentInfoBox' src="images/L1.png" alt="V" /> : 0 token
-                                <img class='infoBoxFollowerIcon1 iconAdjustmentInfoBox' src="images/F1S.png" alt="V" /> : 0 token
-                                <img class='infoBoxFollowerIcon1 iconAdjustmentInfoBox' src="images/F1W.png" alt="V" /> : 0 token
-                            </div>
-                        </div>
-
-                        <div class='whiteGroup1'>
-                            <div class=noTokenRightHomo>
-                                <img class='infoBoxFollowerIcon1 iconAdjustmentInfoBox' src="images/L2.png" alt="V" /> : 0 token
-                                <img class='infoBoxFollowerIcon1 iconAdjustmentInfoBox' src="images/F2.png" alt="V" /> : 0 token
-                                <img class='infoBoxFollowerIcon1 iconAdjustmentInfoBox' src="images/F2.png" alt="V" /> : 0 token
-                            </div>
-                            <div class=noTokenRightHetero>
-                                <img class='infoBoxFollowerIcon1 iconAdjustmentInfoBox' src="images/L2.png" alt="V" /> : 0 token
-                                <img class='infoBoxFollowerIcon1 iconAdjustmentInfoBox' src="images/F2S.png" alt="V" /> : 0 token
-                                <img class='infoBoxFollowerIcon1 iconAdjustmentInfoBox' src="images/F2W.png" alt="V" /> : 0 token
-                            </div>
-                        </div>
-
-                    </div>
 
                 </div>
 
                 <div class=buttonWrap>
-                    <div class=button id='btn-SE-18'>
+                    <div class=button id='btn-SE-n13'>
                         <p>
                             OK
                         </p>
@@ -2152,25 +1781,26 @@
 
         </div>
 
-        <div class=boxwrap id='boxwrap-SE-19'>
+        <div class=boxwrap id='boxwrap-SE-n14'>
 
-            <div class='box' id='box-SE-19'>
+            <div class='box' id='box-SE-n14' style='margin-top:15px;'>
 
                 <div class=text>
+
                     <p>
-                        <strong>Defeated</strong> group's leader is demoted
-                        (<img class='infoBoxLeaderDemoted' src="images/leaderdenied.png" alt="V" style='margin-left:0px;' />)
-                        to a follower,
-                        <div style='margin-top:-15px; margin-left:190px;opacity:0' id=anotherIdToCall8>
-                            and
+                        In the <span class=bb>Victorious Group</span>,
+                        <span style='margin-top:25px;display:block;'>
+                            <span class=bb>Leader</span> receives <span class=bb>1000</span> tokens
                             <br />
-                            proceeds to OUT-group contest <strong>II</strong> (<span style='color:red;font-weight:700;font-size:28px;'>3</span>) as a follower.
-                        </div>
+                            and proceeds to <span class=bb>OUT</span>-group
+                            contest <span class=bb>II</span> <span class=it>again as the leader</span>.
+                        </span>
                     </p>
+
                 </div>
 
                 <div class=buttonWrap>
-                    <div class=button id='btn-SE-19'>
+                    <div class=button id='btn-SE-n14'>
                         <p>
                             OK
                         </p>
@@ -2181,338 +1811,23 @@
 
         </div>
 
-        <div class=boxwrap id='boxwrap-SE-20'>
+        <div class=boxwrap id='boxwrap-SE-n15'>
 
-            <div class='box' id='box-SE-20'>
-
-                <div class=text>
-                    <!-- <p>
-                        In the <strong>defeated</strong> group,
-                        <div style='margin-top:-3px;margin-left:108px;padding-right:55px;'>
-                            the IN-group contest decisions are used to determine <br />
-                            a <i>new</i> leader  (<img class='infoBoxNewLeader' src="images/fcrownlime.png" alt="V" />) for the OUT-group contest <strong>II</strong>.
-                        </div>
-                    </p> -->
-
-                    <p>
-                        In the <strong>defeated</strong> group,
-                        <div style='margin-top:-3px;margin-left:108px;padding-right:55px;'>
-                            <i>Followers</i>' IN-group contest results are declared. <br />
-                            <i class=mBold>Victorious</i> <i>follower</i> becomes the <i class=mBold>new</i> <i>leader</i>
-                            (<img class='anotherKingIcon1' style='position:static;transform:scale(0.7);margin-left:-8px;margin-top:-5px;margin-right:-8px;opacity:1;' src="images/fcrownLime.png" alt="V" />).
-                        </div>
-                    </p>
-
-
-
-                    <br />
-                    <p id='infoBoxSE20Hetero' style='display:none;font-size:20px;font-style:italic;margin-left:111px;margin-top:-35px;'>
-                        Assume the <strong>strong</strong> follower won the IN-group contest.
-                    </p>
-                    <p id='infoBoxSE20Homo' style='display:none;font-size:20px;font-style:italic;margin-left:111px;margin-top:-35px;'>
-                        Assume the follower on the left won the IN-group contest.
-                    </p>
-                </div>
-
-                <div class=buttonWrap>
-                    <div class=button id='btn-SE-20'>
-                        <p>
-                            OK
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class=boxwrap id='boxwrap-SE-21'>
-
-            <div class='box' id='box-SE-21'>
-
-                <div class=text>
-
-                    <p style='padding-right:71px;padding-left:20px;display:none;' id=heteroTreatmentInfo21>
-                        <i>Victorious</i> follower (<img class='seInfoBox21IconHetero1' src="images/F1S.png" alt="V" />)
-                        enters the OUT-group contest <strong>II</strong> <br /> as the <i>new</i> leader
-                        (<img class='seInfoBox21IconHetero2' src="images/F1CS.png" alt="V" />)  of their group.
-                    </p>
-
-                    <p style='padding-right:71px;padding-left:20px;display:none;' id=homoTreatmentInfo21>
-                        <i>Victorious</i> follower (<img class='seInfoBox21IconHomo1' src="images/F1.png" alt="V" />)
-                        enters the OUT-group contest <strong>II</strong> <br /> as the <i>new</i> leader of their group
-                        (<img class='seInfoBox21IconHomo2' src="images/F1C.png" alt="V" />).
-                    </p>
-
-                </div>
-
-                <div class=buttonWrap>
-                    <div class=button id='btn-SE-21'>
-                        <p>
-                            OK
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class=boxwrap id='boxwrap-SE-22'>
-
-            <div class='box' id='box-SE-22'>
-
-                <div class=text>
-                    <p>
-                        <i>Defeated</i> follower
-                        enters the OUT-group contest <strong>II</strong> <i>again</i> as a follower.
-                    </p>
-                </div>
-
-                <div class=buttonWrap>
-                    <div class=button id='btn-SE-22'>
-                        <p>
-                            OK
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class=boxwrap id='boxwrap-SE-23'>
-
-            <div class='box' id='box-SE-23'>
-
-                <div class=text>
-
-                    <p style='padding-left:25px;padding-right:80px;'>
-                        <!-- In the <strong>victorious</strong> group, -->
-                        In the <i class=mBold>opposing</i> group,
-                        since they <i class=mBold>won</i>
-                        the <span class=mBold>OUT</span>-group contest <strong>I</strong>,
-                        <div style='margin-top:20px;margin-bottom:-20px;margin-left:26px;opacity:0;' id='anotherIdToCall9'>
-                            the <span style='font-weight:500px;'>leader</span>
-                            receives <strong>1000</strong> tokens and
-                            <i>each</i> <span style='font-weight:500;'>follower</span> receives <strong>100</strong> tokens.
-                        </div>
-                    </p>
-
-                    <div style='margin-left:-51px;font-weight:700;font-size:30px;display:flex;justify-content:space-around;margin-top:13px;opacity:0' id='anotherIdToCall10'>
-
-                        <div class=noTokenRightHomo2 style='flex-direction:column;'>
-                            <div style='margin-top:20px;margin-bottom:50px;display:flex;justify-content:center;'>
-                                <img class='infoBoxFollowerIcon4 iconAdjustmentInfoBox2' src="images/L2C.png" alt="V" /> : 1000 tokens
-                            </div>
-                            <div>
-                                <img class='infoBoxFollowerIcon1 iconAdjustmentInfoBox2' src="images/F2.png" alt="V" /> : 100 tokens
-                                <img class='infoBoxFollowerIcon1 iconAdjustmentInfoBox2' src="images/F2.png" alt="V" /> : 100 tokens
-                            </div>
-                        </div>
-
-                        <div class=noTokenRightHetero2 style='flex-direction:column;'>
-                            <div style='margin-top:20px;margin-bottom:25px;display:flex;justify-content:center;'>
-                                <img class='infoBoxFollowerIcon4 iconAdjustmentInfoBox2' src="images/L2C.png" alt="V" /> : 1000 tokens
-                            </div>
-                            <div>
-                                <img class='infoBoxFollowerIcon1 iconAdjustmentInfoBox2' src="images/F2S.png" alt="V" /> : 100 tokens
-                                <img class='infoBoxFollowerIcon1 iconAdjustmentInfoBox2' src="images/F2W.png" alt="V" /> : 100 tokens
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class=buttonWrap>
-                    <div class=button id='btn-SE-23'>
-                        <p>
-                            OK
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class=boxwrap id='boxwrap-SE-24'>
-
-            <div class='box' id='box-SE-24' style='margin-top:20px;'>
+            <div class='box' id='box-SE-n15' style='margin-top:15px;'>
 
                 <div class=text>
 
                     <p>
-                        Since the <i>victorious</i> group's <span style='font-weight:500;'>leader</span>
-                        <i>continues</i> as the leader,
-                        <div style='margin-left:109px;margin-top:5px;margin-bottom:10px;opacity:0' id=anotherIdToCall12>
-                            <!-- followers' IN-group contest is <strong>not</strong> used and <strong>discarded</strong> -->
-                            followers' IN-group contest is <strong>discarded</strong>
-                            (<span style='font-weight:800;color:red;font-size:24px;'>X</span>).
-                        </div>
-                    </p>
-
-                </div>
-
-                <div class=buttonWrap>
-                    <div class=button id='btn-SE-24'>
-                        <p>
-                            OK
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class=boxwrap id='boxwrap-SE-25'>
-
-            <div class='box' id='box-SE-25' style='margin-top:20px;'>
-
-                <div class=text>
-
-                    <p>
-                        <i class=mBold>Victorious</i> group's <i class=mBold>leader</i> enters the OUT-group contest <strong>II</strong> <i>again</i> as the leader.
-                    </p>
-
-                </div>
-
-                <div class=buttonWrap>
-                    <div class=button id='btn-SE-25' style='margin-left:3px;margin-right:5px;'>
-                        <p>
-                            OK
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class=boxwrap id='boxwrap-SE-26' style='margin-top:20px;'>
-
-            <div class='box' id='box-SE-26'>
-
-                <div class=text>
-
-                    <p>
-                        <i class=mBold>Victorious</i> group's <i class=mBold>followers</i> enter the OUT-group
-                        contest <strong>II</strong> <i>again</i> as followers.
-                    </p>
-
-                </div>
-
-                <div class=buttonWrap>
-                    <div class=button id='btn-SE-26' style='margin-left:3px;margin-right:5px;'>
-                        <p>
-                            OK
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class=boxwrap id='boxwrap-SE-27' style='margin-top:20px;'>
-
-            <div class='box' id='box-SE-27'>
-
-                <div class=text>
-
-                    <p>
-                        The OUT-group contest <strong>II</strong> is played as
-                        <i>exactly</i> as the first one.
-                    </p>
-
-                </div>
-
-                <div class=buttonWrap>
-                    <div class=button id='btn-SE-27'>
-                        <p>
-                            OK
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class=boxwrap id='boxwrap-SE-28' style='margin-top:-20px;'>
-
-            <div class='box' id='box-SE-28'>
-
-                <div class=text>
-
-                    <p>
-                        First,
-                        <div style='margin-top:-7px;margin-left:41px;opacity:0;' id=anotherIdToCall13>
-                            the followers make their help or sabotage decisions.
-                        </div>
-                    </p>
-
-                </div>
-
-                <div class=buttonWrap>
-                    <div class=button id='btn-SE-28'>
-                        <p>
-                            OK
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class=boxwrap id='boxwrap-SE-29' style='margin-top:20px;'>
-
-            <div class='box' id='box-SE-29'>
-
-                <div class=text>
-
-                    <p>
-                        Second,
-                        <div style='margin-top:-7px;margin-left:41px;opacity:0;' id=anotherIdToCall14>
-                            leaders compete given their advantage or disadvantage.
-                        </div>
-                    </p>
-
-                </div>
-
-                <div class=buttonWrap>
-                    <div class=button id='btn-SE-29'>
-                        <p>
-                            OK
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class=boxwrap id='boxwrap-SE-30' style='margin-top:-40px;'>
-
-            <div class='box' id='box-SE-30'>
-
-                <div class=text>
-
-                    <p>
-                        The <i>victorious</i> group's <span style=font-weight:500;>leader</span> receives
-                        <strong>1000</strong> tokens
+                        <span class=bb>Each follower</span> receives <span class=bb>100</span> tokens
                         <br />
-                        and <i>each</i> of its
-                        <span style='font-weight:500;'>followers</span> receives <strong>100</strong> tokens.
+                        and proceeds to <span class=bb>OUT</span>-group
+                        contest <span class=bb>II</span> <span class=it>again as a follower</span>.
                     </p>
 
                 </div>
 
                 <div class=buttonWrap>
-                    <div class=button id='btn-SE-30'>
+                    <div class=button id='btn-SE-n15'>
                         <p>
                             OK
                         </p>
@@ -2523,20 +1838,27 @@
 
         </div>
 
-        <div class=boxwrap id='boxwrap-SE-31'>
+        <div class=boxwrap id='boxwrap-SE-n16' style='margin-top:-70px;'>
 
-            <div class='box' id='box-SE-31'>
+            <div class='box' id='box-SE-n16'>
 
                 <div class=text>
 
                     <p>
-                        <i>Defeated</i> group players receive <span style='font-weight:500;'>nothing</span>.
+                        In the <span class=bb>Defeated Group</span>,
+                        <span style='margin-top:25px;display:block;'>
+                            <span class=bb>Leader</span> <span class=bb>loses its leader role</span>,
+                            receives <span class=bb>0</span> token
+                            <br />
+                            and proceeds to <span class=bb>OUT</span>-group
+                            contest <span class=bb>II</span> <span class=it>as a follower</span>.
+                        </span>
                     </p>
 
                 </div>
 
                 <div class=buttonWrap>
-                    <div class=button id='btn-SE-31'>
+                    <div class=button id='btn-SE-n16'>
                         <p>
                             OK
                         </p>
@@ -2547,20 +1869,23 @@
 
         </div>
 
-        <div class=boxwrap id='boxwrap-SE-32'>
+        <div class=boxwrap id='boxwrap-SE-n17'>
 
-            <div class='box' id='box-SE-32'>
+            <div class='box' id='box-SE-n17' style='margin-top:15px;'>
 
                 <div class=text>
 
                     <p>
-                        The <strong>round ends</strong> after the OUT-group contest <strong>II</strong> (section <span style='font-weight:500;color:red;'>3</span>).
+                        <span class=bb>Each follower</span> receives <span class=bb>0</span> token
+                        <br />
+                        and proceeds to <i>their</i> group's <span class=bb>IN</span>-group
+                        contest (section <span style='color:red;font-weight:700'>2</span>).
                     </p>
 
                 </div>
 
                 <div class=buttonWrap>
-                    <div class=button id='btn-SE-32'>
+                    <div class=button id='btn-SE-n17'>
                         <p>
                             OK
                         </p>
@@ -2570,6 +1895,245 @@
             </div>
 
         </div>
+
+        <div class=boxwrap id='boxwrap-SE-n18'>
+
+            <div class='box' id='box-SE-n18' style='margin-top:-95px;'>
+
+                <div class=text>
+
+                    <p>
+                        In the <span class=bb>IN</span>-group
+                        contest,
+                        <br />
+                        the two followers compete to become the <span class=bb>new leader</span>.
+                    </p>
+
+                </div>
+
+                <div class=buttonWrap>
+                    <div class=button id='btn-SE-n18'>
+                        <p>
+                            OK
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- symm hetero fork -->
+        <div class=boxwrap id='boxwrap-SE-n1801'>
+
+            <div class='box' id='box-SE-n1801' style='margin-top:145px;'>
+
+                <div class=text>
+
+                    <img class='imbalanceIcon2' src="images/uneven2.png" alt="V" />
+
+                    <p>
+                        The <span class=bb>strong follower</span> (
+                        <img class='icon-SE-n1802' src="images/F1S.png" alt="V" />
+                        ) is <i>always</i>
+                        <span class=bb>advantaged</span> in
+                        the <span class=bb>IN-group</span> contest
+                        <br />
+                        and is <span class=bb>more likely</span> to win and
+                        become the <span class=bb>new leader</span>.
+                    </p>
+
+                </div>
+
+                <div class=buttonWrap>
+                    <div class=button id='btn-SE-n1801'>
+                        <p>
+                            OK
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- asymm hetero fork -->
+        <div class=boxwrap id='boxwrap-SE-n1802'>
+
+            <div class='box' id='box-SE-n1802' style='margin-top:145px;'>
+
+                <div class=text>
+
+                    <img class='imbalanceIcon' src="images/uneven2.png" alt="V" />
+
+                    <p>
+                        If there is an <span class=bb>imbalance of power</span> among the followers,
+                        <span style=display:block;margin-top:25px;>
+                            The <span class=bb>strong follower</span> (
+                            <img class='icon-SE-n1802' src="images/F1S.png" alt="V" />
+                            ) is <i>always</i>
+                            <span class=bb>advantaged</span> in
+                            the <span class=bb>IN-group</span> Contest
+                            <br />
+                            and is <span class=bb>more likely</span> to win and
+                            become the <span class=bb>new leader</span>.
+                        </span>
+                    </p>
+
+                </div>
+
+                <div class=buttonWrap>
+                    <div class=button id='btn-SE-n1802'>
+                        <p>
+                            OK
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class=boxwrap id='boxwrap-SE-n1803'>
+
+            <div class='box' id='box-SE-n1803' style='margin-top:145px;'>
+
+                <div class=text>
+
+                    <p>
+                        If there is <span class=bb>no</span> <i>imbalance of power</i>,
+                        <span style=display:block;margin-top:25px;>
+                            <span class=bb>Neither</span> follower (
+                            <img class='icon-SE-n1803' src="images/F1.png" alt="V" />
+                            ) has an advantage
+                            <br />
+                            Both are <span class=bb>equally likely to win</span>
+                            and become the <span class=bb>new</span> leader.
+                        </span>
+                    </p>
+
+                </div>
+
+                <div class=buttonWrap>
+                    <div class=button id='btn-SE-n1803'>
+                        <p>
+                            OK
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- convergence of the treatments -->
+
+        <div class=boxwrap id='boxwrap-SE-n19'>
+
+            <div class='box' id='box-SE-n19' style='margin-top:145px;'>
+
+                <div class=text>
+
+                    <p>
+                        <span class=bb>Victorious follower</span> proceeds to
+                        <span class=bb>OUT</span>-group
+                        contest <span class=bb>II</span> as the
+                        <span class=bb>new leader</span>.
+                    </p>
+
+                </div>
+
+                <div class=buttonWrap>
+                    <div class=button id='btn-SE-n19'>
+                        <p>
+                            OK
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class=boxwrap id='boxwrap-SE-n20'>
+
+            <div class='box' id='box-SE-n20' style='margin-top:145px;'>
+
+                <div class=text>
+
+                    <p>
+                        <span class=bb>Defeated follower</span> proceeds to
+                        <span class=bb>OUT</span>-group
+                        contest <span class=bb>II</span> again as a
+                        <span class=bb>follower</span>.
+                    </p>
+
+                </div>
+
+                <div class=buttonWrap>
+                    <div class=button id='btn-SE-n20'>
+                        <p>
+                            OK
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class=boxwrap id='boxwrap-SE-n21'>
+
+            <div class='box' id='box-SE-n21' style='margin-top:145px;'>
+
+                <div class=text>
+
+                    <p>
+                        <span class=bb>OUT</span>-group
+                        contest <span class=bb>II</span> is played in <i>exactly the same way</i>
+                        as the first one.
+                    </p>
+
+                </div>
+
+                <div class=buttonWrap>
+                    <div class=button id='btn-SE-n21'>
+                        <p>
+                            OK
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class=boxwrap id='boxwrap-SE-n22'>
+
+            <div class='box' id='box-SE-n22' style='margin-top:145px;'>
+
+                <div class=text>
+
+                    <p>
+                        The <span class=bb>round ends</span> with
+                        the <span class=bb>OUT</span>-group
+                        contest <span class=bb>II</span>.
+                    </p>
+
+                </div>
+
+                <div class=buttonWrap>
+                    <div class=button id='btn-SE-n22'>
+                        <p>
+                            OK
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
 
     </div>
 
@@ -2579,7 +2143,12 @@
     <div id=end></div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script src="js/3_sections.js"></script>
+    <script src="js/box.js"></script>
+    <script src="js/boxTutoExtras.js"></script>
+    <script src="js/map.js"></script>
+    <script src="js/mapTutoExtras.js"></script>
+    <script src="js/title.js"></script>
+    <script src="js/3_sections(v2).js"></script>
 
 </body>
 </html>

@@ -160,7 +160,8 @@ img.unevenLeft2
 /*------ CROWN ANIMATION -------*/
 .crownSwitchAnimationWrap
 {
-    margin-bottom:-190px;
+    margin-top:-175px;
+    margin-bottom:151px;
     display:none;
     flex-direction:row;
     justify-content: space-evenly;
@@ -199,9 +200,10 @@ img.unevenLeft2
 
 .leaderLosing
 {
+    margin-left:-181px;
     height:150px;
     width:90px;
-    position:relative;
+    position:absolute;
 }
 .leaderLosing2
 {
@@ -212,10 +214,11 @@ img.unevenLeft2
 }
 .followerWinning
 {
+    margin-left:183px;
     opacity:0;
     height:150px;
     width:90px;
-    position:relative;
+    position:absolute;
 }
 .followerWinning2
 {
@@ -1259,13 +1262,13 @@ img.infoBoxFightIcon2
 }
 .experimentalText
 {
-    filter: drop-shadow(0px 5px 3px black);
+    /* filter: drop-shadow(0px 5px 3px black); */
     position: absolute;
     margin-top: -245px;
     font-size: 44px;
-    font-weight: 100;
+    font-weight: 400;
     margin-left: 307px;
-    width: 510px;
+    width: 520px;
 }
 .goodEnoughText
 {

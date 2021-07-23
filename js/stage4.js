@@ -158,9 +158,9 @@ window.onload = function() {
         },
         myCount: 3,
 
-        round: 1,
+        round: 4,
         sortedArray: [0,2,5,4,1,3],
-        treatment: [0,0],
+        treatment: [0,1],
         s2: [ [ [10,0], [0,10]], [ [15,0], [0,5] ] ],
         // s2: [ [[0,20], [10,0]], [[0,5], [10,0]] ],
         s3: [ [200, 100], [true, false] ],

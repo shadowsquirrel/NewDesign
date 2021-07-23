@@ -11506,7 +11506,7 @@ debug.start.IG = function(treatment) {
 //----------------------------------------------------------------------------//
 
 
-debug.start.IG(0);
+debug.start.IG(2);
 
 var listener = {};
 
@@ -11772,7 +11772,6 @@ $('#btn-IG-2').click(function() {
 
         if(!box.global.symmetricHeteroTreatment && !box.global.asymmetricHeteroTreatment) {
             $('.IG_generalMarginBox').css({'transition':'0.3s', 'margin-top':'-308px'});
-
         }
 
         $('.sexplain').css({'transition':'1s', 'opacity':'0'})

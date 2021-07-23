@@ -146,9 +146,9 @@ window.onload = function() {
         myRound: 1,
         myTutorial: {
             s1Done: 1,
-            s2Done: 1,
+            s2Done: 0,
             s3Done: 1,
-            s4Done: 0,
+            s4Done: 1,
             s5Done: 0,
             s6Done: 0,
             fB1: 0,

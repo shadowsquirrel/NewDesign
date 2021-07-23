@@ -387,7 +387,7 @@ setup.determineFastFeedback = function(myData) {
 
     myRound = myData.myRound;
 
-    if(myRound > 2) {
+    if(myRound > 3) {
         setup.fastFeedback = true;
     }
 
