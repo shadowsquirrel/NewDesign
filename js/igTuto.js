@@ -1,132 +1,132 @@
-var calculator = {
-
-    globalVariable: {
-        frame: {},
-        tutorial: {},
-        display: {},
-        hover: {},
-    },
-    space: {
-        update:{},
-        open: {},
-        close:{},
-    },
-    icons: {
-        calculate: {},
-        update: {},
-        set: {},
-        rescale: {},
-        show: {},
-        hide: {},
-        enervate:{},
-        enervate2:{},
-    },
-    values: {
-        update: {},
-        set: {},
-    },
-    graphics: {
-        update: {},
-        activate: {},
-    },
-    decisionSlider: {
-        leader:{},
-        follower:{},
-    },
-    results: {
-        opacity:{},
-        softHide:{},
-        display:{},
-        update:{},
-        show:{},
-        hide:{},
-        disable:{},
-        leader:{
-            update:{},
-            display:{},
-        },
-    },
-    titles: {
-        hs: {
-            ghost:{},
-        },
-        contest: {},
-        set:{},
-        update:{},
-        opacity:{},
-    },
-    slider : {
-        followerDecision: {},
-        playerDecision: {},
-    },
-    questions: {
-        activate:{},
-        spin1:{},
-        spin2:{},
-    },
-    lock: {
-        switch: {},
-        vibrate: {},
-        activate:{},
-    },
-    button: {
-        enable: {},
-        disable: {},
-        display: {},
-    },
-    pointers: {
-        wiggle: {},
-        activate: {},
-    },
-    section: {
-        example:{
-            vertical:{},
-            horizontal: {},
-        },
-        all:{
-            adjust: {},
-        },
-        hs: {
-            opacity:{},
-            display:{},
-            set:{},
-            show:{},
-            hide:{}
-        },
-        contest: {
-            show:{},
-            hide:{},
-            display:{},
-        },
-        power: {
-            set:{},
-            opacity:{},
-            display:{},
-            adjust:{},
-        },
-        decision: {
-            leader: {},
-            follower: {},
-            player: {},
-        },
-    },
-    refresh: {},
-    wheel: {},
-    setup: {},
-    roll: {
-        manual:{},
-    },
-    show: {},
-    hide: {},
-    introduce: {},
-    animate: {
-        global: {},
-        change: {},
-    },
-    change: {},
-    tutorial: {}
-
-};
+// var calculator = {
+//
+//     globalVariable: {
+//         frame: {},
+//         tutorial: {},
+//         display: {},
+//         hover: {},
+//     },
+//     space: {
+//         update:{},
+//         open: {},
+//         close:{},
+//     },
+//     icons: {
+//         calculate: {},
+//         update: {},
+//         set: {},
+//         rescale: {},
+//         show: {},
+//         hide: {},
+//         enervate:{},
+//         enervate2:{},
+//     },
+//     values: {
+//         update: {},
+//         set: {},
+//     },
+//     graphics: {
+//         update: {},
+//         activate: {},
+//     },
+//     decisionSlider: {
+//         leader:{},
+//         follower:{},
+//     },
+//     results: {
+//         opacity:{},
+//         softHide:{},
+//         display:{},
+//         update:{},
+//         show:{},
+//         hide:{},
+//         disable:{},
+//         leader:{
+//             update:{},
+//             display:{},
+//         },
+//     },
+//     titles: {
+//         hs: {
+//             ghost:{},
+//         },
+//         contest: {},
+//         set:{},
+//         update:{},
+//         opacity:{},
+//     },
+//     slider : {
+//         followerDecision: {},
+//         playerDecision: {},
+//     },
+//     questions: {
+//         activate:{},
+//         spin1:{},
+//         spin2:{},
+//     },
+//     lock: {
+//         switch: {},
+//         vibrate: {},
+//         activate:{},
+//     },
+//     button: {
+//         enable: {},
+//         disable: {},
+//         display: {},
+//     },
+//     pointers: {
+//         wiggle: {},
+//         activate: {},
+//     },
+//     section: {
+//         example:{
+//             vertical:{},
+//             horizontal: {},
+//         },
+//         all:{
+//             adjust: {},
+//         },
+//         hs: {
+//             opacity:{},
+//             display:{},
+//             set:{},
+//             show:{},
+//             hide:{}
+//         },
+//         contest: {
+//             show:{},
+//             hide:{},
+//             display:{},
+//         },
+//         power: {
+//             set:{},
+//             opacity:{},
+//             display:{},
+//             adjust:{},
+//         },
+//         decision: {
+//             leader: {},
+//             follower: {},
+//             player: {},
+//         },
+//     },
+//     refresh: {},
+//     wheel: {},
+//     setup: {},
+//     roll: {
+//         manual:{},
+//     },
+//     show: {},
+//     hide: {},
+//     introduce: {},
+//     animate: {
+//         global: {},
+//         change: {},
+//     },
+//     change: {},
+//     tutorial: {}
+//
+// };
 
 var efo1, efo2, efi1, efi2, efefo1, efefo2, IG_pwin;
 
@@ -3665,6 +3665,56 @@ calculator.wheel.IG_spin = function(spinDuration) {
         calculator.results.show.IG_outcomes();
         calculator.tutorial.forcedWinnerFollower = undefined;
     }, calculator.wheel.IG_spinDuration * 1000);
+
+}
+
+calculator.wheel.IG_simpleSpin = function(spinDuration, weAreHetero, forcedWinner) {
+
+    calculator.lock.IG_activate([1,1]);
+
+    weAreHetero = weAreHetero === undefined ? false : weAreHetero;
+
+    spinDuration = spinDuration === undefined ? 1 : spinDuration;
+
+    var delay = spinDuration * 1000;
+
+    var spinTurn;
+    spinTurn = spinDuration * 3;
+
+
+    //---//
+
+    calculator.wheel.IG_spinDuration = spinDuration;
+    calculator.wheel.IG_spinNumber = spinTurn;
+
+    calculator.wheel.IG_create(IG_pwin, 'IG_myWheel');
+    calculator.wheel.IG_myWheelObj.stopAnimation(false);
+    calculator.wheel.IG_myWheelObj.rotationAngle = 0;
+
+    calculator.wheel.IG_show();
+
+    //---//
+
+    var winner = (IG_pwin > Math.random()) ? 1 : 2;
+
+    if(forcedWinner != undefined) {
+        winner = forcedWinner;
+    }
+
+    calculator.tutorial.globalWinner = winner;
+
+    var stopAt = calculator.wheel.IG_myWheelObj.getRandomForSegment(winner);
+    calculator.wheel.IG_myWheelObj.animation.stopAngle = stopAt;
+    calculator.wheel.IG_myWheelObj.startAnimation();
+
+    setTimeout(()=>{
+
+        crown.crownTheNewLeader((winner - 1), weAreHetero);
+        calculator.lock.IG_activate([0,0]);
+
+    }, delay)
+
+
 
 }
 

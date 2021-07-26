@@ -32,7 +32,7 @@ map.globalVariable.theirSideIsHetero = undefined;
 
 map.globalVariable.playerIndex = undefined; //-1,0,1
 
-map.winnerFollowerIndex = 2;
+map.winnerFollowerIndex = 1;
 map.winnerLeaderIndex = 1;
 map.induceRoundNumbers = false;
 map.globalVariable.showButtonBCP10 = false;

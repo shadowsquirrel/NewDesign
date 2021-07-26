@@ -32,7 +32,7 @@
     border-right: 25px solid transparent;
     border-top: 25px solid black;
     border-bottom: 25px solid transparent;
-    right: 55px;
+    right: 35px;
     bottom: -52px;
 }
 .t6:after
@@ -45,7 +45,7 @@
     border-right: 20px solid transparent;
     border-top: 20px solid white;
     border-bottom: 20px solid transparent;
-    right: 60px;
+    right: 39px;
     bottom: -39px;
 }
 .t5:before
@@ -212,13 +212,19 @@
 }
 .iwIndex5
 {
-    margin-left:35px;
-    margin-right:35px;
+    /* margin-left:35px;
+    margin-right:35px; */
 }
 .iwIndex2
 {
-    margin-left:35px;
-    margin-right:35px;
+    /* margin-left:35px;
+    margin-right:35px; */
+}
+.someSpace
+{
+    width:70px;
+    display:flex;
+    z-index:2;
 }
 .groupAwrap
 {

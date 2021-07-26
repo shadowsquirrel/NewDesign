@@ -22,16 +22,27 @@ tuto.start.SE = function(treatment) {
 
     //------------------------------------------------------------------//
 
+    $('.heteroInfoBoxOG2, .homoInfoBoxOG2').css({'display':'none'});
 
     if(treatment === 0) {
+
+        $('.heteroInfoBoxOG2').css({'display':'none'});
+        $('.homoInfoBoxOG2').css({'display':'block'});
+
         box.set.treatment_tuto(0,0);
     }
 
     if(treatment === 1) {
+        $('.homoInfoBoxOG2').css({'display':'none'});
+        $('.heteroInfoBoxOG2').css({'display':'block'});
+
         box.set.treatment_tuto(1,0);
     }
 
     if(treatment === 2) {
+        $('.homoInfoBoxOG2').css({'display':'none'});
+        $('.heteroInfoBoxOG2').css({'display':'block'});
+
         box.set.treatment_tuto(0,1);
     }
 
@@ -101,6 +112,8 @@ tuto.start.SE = function(treatment) {
 //----------------------------------------------------------------------------//
 
 
+calculator.hide.checkMark();
+
 tuto.start.SE(2);
 
 
@@ -109,6 +122,8 @@ tuto.start.SE(2);
 //--------------------------- SECTIONS OVERVIEW ------------------------------//
 //----------------------------------------------------------------------------//
 
+var listener = {};
+var activator = {};
 
 
 $('#btn-SE-n13').click(function() {
@@ -315,9 +330,14 @@ $('#btn-IG-n18').click(function() {
         setTimeout(()=>{
             box.transition('', 'IG-n1802', 0, 0, 1, 0);
         }, 1750)
+        setTimeout(()=>{
+            calculator.wheel.IG_cruise();
+            crown.resetCrowning();
+        }, 1000)
 
-        $('.IG_superWrap').css({'transition':'0s', 'margin-top':'-50px',
+        $('.IG_superWrap').css({'transition':'0s', 'margin-top':'0px',
         'margin-bottom':'-35px'});
+
 
         calculator.tutorial.IG('A', false, 0, false, true);
         calculator.tutorial.IGextras();
@@ -338,7 +358,10 @@ $('#btn-IG-n18').click(function() {
         setTimeout(()=>{
             box.transition('', 'IG-n1802', 0, 0, 1, 0);
         }, 1750)
-
+        setTimeout(()=>{
+            calculator.wheel.IG_cruise();
+            crown.resetCrowning();
+        }, 1000)
 
 
         if(box.global.symmetricHeteroTreatment) {
@@ -375,8 +398,13 @@ $('#btn-IG-n1802').click(function() {
 
     if(box.global.asymmetricHeteroTreatment) {
 
-        box.transition('IG-n1802', 'IG-n1803_T2', 0, 0, 1, 750);
-    
+        $('.IG_superWrap').css({'transition':'1s', 'margin-top':'-50px',
+        'margin-bottom':'-35px'});
+
+
+        box.transition('IG-n1802', 'IG-n1803_T2', 0, 0, 1, 2750);
+        calculator.wheel.IG_simpleSpin(2,1,1);
+
         setTimeout(()=>{
             box.button.show('IG-n1803_T2');
         }, 4000)
@@ -385,7 +413,11 @@ $('#btn-IG-n1802').click(function() {
 
     if(box.global.symmetricHeteroTreatment) {
 
-        box.transition('IG-n1802', 'IG-n1803_T1', 0, 0, 1, 750);
+        $('.IG_superWrap').css({'transition':'1s', 'margin-top':'-30px',
+        'margin-bottom':'-35px'});
+
+        box.transition('IG-n1802', 'IG-n1803_T1', 0, 0, 1, 2750);
+        calculator.wheel.IG_simpleSpin(2,1,1);
 
         setTimeout(()=>{
             box.button.show('IG-n1803_T1');
@@ -395,7 +427,8 @@ $('#btn-IG-n1802').click(function() {
 
     if(!box.global.symmetricHeteroTreatment && !box.global.asymmetricHeteroTreatment) {
 
-        box.transition('IG-n1802', 'IG-n1803_T0', 0, 0, 1, 750);
+        box.transition('IG-n1802', 'IG-n1803_T0', 0, 0, 1, 2750);
+        calculator.wheel.IG_simpleSpin(2,0);
 
         // $('#box-IG-n1803_T0').css({'margin-top':'-2px'})
 
@@ -410,7 +443,7 @@ $('#btn-IG-n1802').click(function() {
 
 $('#btn-IG-n1803_T2').click(function() {
 
-        box.transition('IG-n1803_T2', 'IG-n1804_T2', 0, 0, 1, 2250);
+        box.transition('IG-n1803_T2', 'IG-n1804_T2', 0, 0, 1, 5750);
 
         $('.IG_superWrap').css({'transition':'0.5s', 'opacity':'0'});
 
@@ -421,12 +454,26 @@ $('#btn-IG-n1803_T2').click(function() {
         }, 550)
 
         setTimeout(()=>{
+            calculator.wheel.IG_cruise();
+            calculator.lock.IG_activate([1,1]);
+            calculator.values.set.IG_efforts([20,20]);
+            calculator.refresh.IG_values();
+            crown.resetCrowning();
+            $('.risingCrown').css({'transition':'0s', 'margin-top':'-106px',
+            'height':'65px', 'width':'65px', 'margin-left':'-8px', 'opacity':'1'});
+        }, 750)
+
+        setTimeout(()=>{
             $('.IG_superWrap').css({'transition':'1s', 'opacity':'1'});
         }, 1000)
 
         setTimeout(()=>{
+            calculator.wheel.IG_simpleSpin(2,0);
+        }, 3000)
+
+        setTimeout(()=>{
             box.button.show('IG-n1804_T2');
-        }, 3750)
+        }, 7000)
 
 })
 
@@ -584,10 +631,6 @@ $('#btn-IG-n1803_T0').click(function() {
 })
 
 
-
-
-
-
 $('#btn-SE-n18').click(function() {
 
     if(!box.global.symmetricHeteroTreatment && !box.global.asymmetricHeteroTreatment) {
@@ -714,7 +757,8 @@ $('#btn-SE-n19').click(function() {
     map.globalVariable.stopTutorialCrownLoop = true;
 
     map.hide.og2_leftLeaderCAT();
-    $('.OG1TopFollower').css({'transition':'0.5s', 'opacity':'0.5'});
+    $('.OG1TopFollower, .OG2LeaderLeft').css({'transition':'0.5s', 'opacity':'0.5'});
+
 
     setTimeout(()=>{
         map.show.og2_leftFollower2();
@@ -752,6 +796,7 @@ $('#btn-SE-n20').click(function() {
         $('.sexplain').css({'transition':'1s', 'margin-left':'-75px'});
         map.opacity.bottomTransition(1, 0.75);
         map.opacity.topTransition(1, 0.75);
+        $('.OG2LeaderLeft, .longArrowBottomIconToOG2').css({'transition':'0.5s', 'opacity':'1'});
 
     }, 1000)
 
@@ -763,16 +808,238 @@ $('#btn-SE-n20').click(function() {
 
 $('#btn-SE-n21').click(function() {
 
-    box.transition('SE-n21', 'SE-n22', 0, 0, 1, 750);
+    s1 = s2 = h1 = h2 = os1 = os2 = oh1 = oh2 = 0;
+    efo = oefo = 200;
+
+    box.transition('SE-n21', '', 0, 0, 1, 0);
 
     setTimeout(()=>{
-        box.button.show('SE-n22');
-    }, 2000)
+
+        $('.sexplain').css({'margin-top':'-84px', 'margin-left':'375px'});
+        map.opacity.main([0,0,1], 0.5);
+        map.opacity.mainArrowSections([0,0,0], 0.5);
+
+        calculator.section.hs.minimize(0);
+        $('.generalMarginBox').css({'transition':'0s', 'display':'block',
+        'transform':'scale(1)', 'filter':'opacity(0)','margin-top':'-93px'});
+        $('.OG2').css({'transition':'1s', 'transform':'scale(1.5)', 'margin-top':'209px', 'margin-left':'-675px'});
+
+        $('.contestSection, .payoffWrap, .imageWrap23').css({'display':'none'});
+
+        setTimeout(()=>{
+            // calculator.setup.hsAndPowerRatioTutorialOG2();
+            $('.OG2').css({'transition':'0.75s', 'filter':'opacity(0)'});
+            $('.hsWrap').css({'transition':'0.75s', 'filter':'opacity(1)'});
+            $('.generalMarginBox').css({'transition':'0.75s', 'opacity':'1', 'filter':'opacity(1)'});
+            setTimeout(()=>{
+                $('.sexplain').css({'display':'none'});
+            }, 750)
+        }, 1000)
+
+
+        // $('.winnerLeaderArrowLeft, .winnerLeaderTextLeft, .OG2CircleArrowLeft_f1, .OG2CircleArrowTextLeft_f1').css({'transition':'1s',  'opacity':'0'});
+
+
+        setTimeout(()=>{
+            $('#boxbox-OG2Intro').css({'display':'none'});
+            $('#boxbox-OG2').css({'display':'block'});
+        }, 750)
+
+        setTimeout(()=>{
+            map.opacity.section([0,0,0.15])
+            $('.OG2FollowersWrapLeft, .OG2FollowersWrapRight').css({'transition':'1s', 'opacity': '1'});
+            $('.OG2FollowerArrowsLeft, .OG2FollowerArrowsRight').css({'transition':'1s', 'opacity': '1'});
+            $('.arrowDashedLime2').css({'transition':'1s', 'opacity':'0'});
+            $('.og2BlackArrow').css({'transition':'1s','opacity':'1'});
+            $('.s5PassiveFollower').css({'transition':'1s','opacity':'1'});
+            $('.s5ActiveFollower').css({'transition':'1s','opacity':'0'});
+            $('.OG2GroupSeparator').css({'transition':'2s', 'opacity':'1', 'height':'119px'});
+            $('.OG2FightIcon, .OG2FightIconLime').css({'transition':'1s', 'opacity':'0'});
+            $('.OG2LeaderRight, .OG2LeaderLeft').css({'transition':'1s', 'opacity':'0.8'});
+            calculator.setup.hsAndPowerRatioTutorialOG2();
+        }, 250)
+
+
+
+        setTimeout(()=>{
+
+            box.transition('', 'OG2-1', 0, 0, 1, 0);
+
+            calculator.roll.resetRoll();
+
+            setTimeout(()=>{
+                calculator.values.set.helpSabo([0,0,0,12,0,0,4,7]);
+                calculator.values.set.efforts([200,200]);
+                calculator.refresh.sliders();
+                calculator.graphics.update.pie();
+                calculator.refresh.values();
+                calculator.lock.activate([0, 0, 1, 1, 1, 1]);
+            }, 2000)
+
+            setTimeout(()=>{
+                box.button.show('OG2-1');
+            }, 3000)
+
+        }, 1000)
+
+    }, 250)
+
+})
+
+listener.og2_f1 = false;
+activator.og2_f1 = false;
+$('#btn-OG2-1').click(function() {
+
+    box.transition('OG2-1', 'OG2-2', 0, 0, 1, 750);
+
+    setTimeout(()=>{
+        calculator.values.set.helpSabo([0,0,0,12,0,0,4,7]);
+        calculator.values.set.efforts([200,200]);
+        calculator.refresh.sliders();
+        calculator.graphics.update.pie();
+        calculator.refresh.values();
+        calculator.lock.activate([0, 0, 0, 1, 1, 1]);
+        calculator.pointers.activate([0,0, 1,0, 0,0]);
+
+        listener.og2_f1 = true;
+    }, 1000)
+
+})
+
+$('#btn-OG2-201').click(function() {
+
+    box.transition('OG2-201', 'OG2-3', 0, 0, 1, 750);
+
+
+    calculator.globalVariable.enervate2FollowerF1 = false;
+    // s1,s2,h1,h2,os1,os2,oh1,oh2
+    calculator.values.set.helpSabo([0,0,11,12,0,0,4,7]);
+    calculator.refresh.sliders();
+    calculator.hide.checkMark();
+
+    calculator.lock.activate([0, 0, 1, 1, 1, 1]);
+
+    setTimeout(()=>{
+        box.button.show('OG2-3');
+    }, 3000)
+
+})
+
+$('#btn-OG2-3').click(function() {
+
+    box.transition('OG2-3', '', 0, 0, 1, 0);
+    $('#boxbox-OG2').css({'margin-top':'-15px'});
+
+    calculator.setup.ogTutorialOG2();
+    calculator.section.hs.opacity.SFiALiFiS([0.6,0.2,1,1,1,0]);
+    calculator.section.hs.set.iconPosition('bottom');
+    calculator.titles.hs.hide();
+    calculator.titles.hs.ghost.text();
+    calculator.titles.hs.ghost.show();
+    calculator.section.hs.minimize(true);
+    calculator.section.contest.minimize(false);
+
+    $('.contestSection, .imageWrap23, .payoffWrap').css({'transition':'0s', 'filter':'opacity(0)', 'transform':'scale(0)'});
+    $('.generalMarginBox').css({'margin-top':'-200px'});
+
+    calculator.lock.activate([0, 0, 1, 1, 1, 1]);
+
+    setTimeout(()=>{
+        $('#boxbox-OG2').css({'margin-top':'20px', 'margin-bottom':'10px'});
+        box.transition('', 'OG2-5', 0, 0, 1, 0);
+
+        setTimeout(()=>{
+            calculator.button.enable.spinBottom();
+            calculator.lock.activate([0, 0, 1, 1, 1, 1]);
+            setTimeout(()=>{
+                $('.contestSection, .imageWrap23, .payoffWrap').css({'transition':'1s', 'filter':'opacity(1)', 'transform':'scale(1)'});
+            }, 1000)
+        })
+
+    }, 750)
+
+    setTimeout(()=>{
+        box.button.show('OG2-5');
+    }, 3000)
+
+})
+
+activator.og2_6_l1 = false;
+listener.og2_6_l1 = false;
+$('#btn-OG2-5').click(function() {
+
+    box.transition('OG2-5', 'OG2-6', 0, 0, 1, 750);
+
+    setTimeout(()=>{
+        listener.og2_6_l1 = true;
+        calculator.lock.activate([0, 1, 1, 1, 1, 1]);
+        calculator.values.set.efforts([200,200]);
+        calculator.refresh.sliders();
+        calculator.pointers.activate([1,0,0,0,0,0]);
+    }, 1250)
+
+})
+
+$('#btn-OG2-6').click(function() {
+
+    calculator.pointers.activate([0,0,0,0,0,0]);
+
+    box.transition('OG2-6', '', 0, 0, 1, 0);
+    calculator.lock.activate([1, 1, 1, 1, 1, 1]);
+    $('.generalMarginBox').css({'transition':'0.5s','opacity':'0'});
+    setTimeout(()=>{
+        $('.generalMarginBox').css({'transition':'0s', 'transform':'scale(0)'});
+    }, 600)
+
+
+
+    $('.OG2GroupSeparator').css({'transition':'0s', 'opacity':'0', 'height':'0px'});
+    $('.OG2FightIconWrap').css({'transition':'0s', 'opacity':'1'});
+    $('.OG2FightIcon').css({'transition':'0s', 'opacity':'1'});
+    $('.OG2LeaderRight, .OG2LeaderLeft').css({'transition':'0s', 'opacity':'1'});
+    $('.OG2LeftFollower1, .OG2FollowerArrowsRight, .OG2FollowersWrapRight, .OG2LeaderRight').css({'opacity':'1'});
+    $('.IG, .arrowsToOG2, .arrowsToOG1IconResults').css({'transition':'0s', 'opacity':'0.7'});
+    $('.OG1, .IG, .arrowsToOG2, .arrowsToOG1IconResults').css({'transition':'0s',
+    'transform-origin':'right', 'transform':'scale(0.7)'});
+    $('.arrowsToOG1IconResults').css({'transition':'0s','margin-left':'-20px'});
+    $('.IG').css({'transition':'0s','margin-left':'-70px'});
+    $('.arrowsToOG2').css({'transition':'0s','margin-left':'15px', 'margin-top':'8px'});
+    $('.OG2').css({'transition':'0s', 'transform-origin':'left', 'transform':'scale(1.4)'})
+    $('.sexplain').css({'transition':'0s', 'margin-left':'-75px'});
+    map.opacity.bottomTransition(1, 0.75);
+    map.opacity.topTransition(1, 0.75);
+    $('.OG2LeaderLeft, .arrowsFromIconResultsToIG, .longArrowBottomIconToOG2').css({'transition':'0s', 'opacity':'1'});
+    $('.OG1LeftFollower1').css({'opacity':'0.5'})
+    $('.arrowsFromIconResultsToIG').css({'transition':'0s', 'opacity':'0.7'});
+    $('.longArrowBottomIconToOG2').css({'transition':'0s', 'opacity':'1'});
+    $('.wonLostBoxes').css({'opacity':'0.7'});
+
+
+    $('.sexplain').css({'transition':'0s', 'opacity':'0', 'display':'flex'})
+    map.opacity.main([1,1,1], 0);
+    $('.OG2').css({'transition':'0s', 'filter':'opacity(1)', 'margin-top':'41px', 'margin-left':'0px'});
+    $('.sexplain').css({'margin-left':'-59px', 'margin-top':'54px', 'margin-bottom':'30px'});
+    setTimeout(()=>{
+        $('.sexplain').css({'transition':'1s', 'opacity':'1'})
+    }, 610)
+
+    setTimeout(()=>{
+        box.transition('', 'SE-n22', 0, 0, 1, 0);
+
+        setTimeout(()=>{
+            box.button.show('SE-n22');
+        }, 2000)
+    }, 610)
+
 
 })
 
 $('#btn-SE-n22').click(function() {
 
-    $('.all').css({'display':'none'})
+    box.transition('SE-n22', 'SE-n23', 0, 0, 1, 750);
+
+    setTimeout(()=>{
+        box.button.show('SE-n23');
+    }, 2000)
 
 })

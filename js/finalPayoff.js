@@ -326,6 +326,8 @@ window.onload = function() {
 
         //-----------------  HOVERS  ------------------ //
 
+        $('.someCircleClass').css({'display':'none'});
+
 
         // ------ DONE BUTTON HOVER ----- //
 
@@ -347,6 +349,11 @@ window.onload = function() {
 
         $('.iwIndex1').hover(
             function() {
+
+                $('.someCircleClass').css({'transition':'0.1s', 'transform':'scale(0)'});
+                setTimeout(()=>{
+                    $('.someCircleClass').css({'display':'none'});
+                }, 100)
 
                 $(this).css({'cursor':'default'});
 
@@ -413,6 +420,11 @@ window.onload = function() {
 
                 if(final.globalVariable.blockerList[0]) {
 
+                    $('.someCircleClass').css({'transition':'0.1s', 'transform':'scale(0)'});
+                    setTimeout(()=>{
+                        $('.someCircleClass').css({'display':'none'});
+                    }, 100)
+
                     $('.doneWithRound').css({'transition-delay':'0.5s', 'transition':'1.5s', 'opacity':'1'});
 
                     if(final.globalVariable.me === 0) {
@@ -446,6 +458,11 @@ window.onload = function() {
                 $(this).css({'cursor':'default'});
 
                 if(final.globalVariable.blockerList[1]) {
+
+                    $('.someCircleClass').css({'transition':'0.1s', 'transform':'scale(0)'});
+                    setTimeout(()=>{
+                        $('.someCircleClass').css({'display':'none'});
+                    }, 100)
 
                     $('.doneWithRound').css({'transition-delay':'0s', 'transition':'0.5s', 'opacity':'0'});
 
@@ -521,6 +538,11 @@ window.onload = function() {
 
                 if(final.globalVariable.blockerList[1]) {
 
+                    $('.someCircleClass').css({'transition':'0.1s', 'transform':'scale(0)'});
+                    setTimeout(()=>{
+                        $('.someCircleClass').css({'display':'none'});
+                    }, 100)
+
                     $('.doneWithRound').css({'transition-delay':'0.5s', 'transition':'1.5s', 'opacity':'1'});
 
                     if(final.globalVariable.me === 1) {
@@ -553,6 +575,11 @@ window.onload = function() {
                 $(this).css({'cursor':'default'});
 
                 if(final.globalVariable.blockerList[2]) {
+
+                    $('.someCircleClass').css({'transition':'0.1s', 'transform':'scale(0)'});
+                    setTimeout(()=>{
+                        $('.someCircleClass').css({'display':'none'});
+                    }, 100)
 
                     $('.doneWithRound').css({'transition-delay':'0s', 'transition':'0.5s', 'opacity':'0'});
 
@@ -627,6 +654,11 @@ window.onload = function() {
 
                 if(final.globalVariable.blockerList[2]) {
 
+                    $('.someCircleClass').css({'transition':'0.1s', 'transform':'scale(0)'});
+                    setTimeout(()=>{
+                        $('.someCircleClass').css({'display':'none'});
+                    }, 100)
+
                     $('.doneWithRound').css({'transition-delay':'0.5s', 'transition':'1.5s', 'opacity':'1'});
 
                     if(final.globalVariable.me === 2) {
@@ -654,6 +686,11 @@ window.onload = function() {
                 $(this).css({'cursor':'default'});
 
                 if(final.globalVariable.blockerList[3]) {
+
+                    $('.someCircleClass').css({'transition':'0.1s', 'transform':'scale(0)'});
+                    setTimeout(()=>{
+                        $('.someCircleClass').css({'display':'none'});
+                    }, 100)
 
                     $('.doneWithRound').css({'transition-delay':'0s', 'transition':'0.5s', 'opacity':'0'});
 
@@ -731,6 +768,11 @@ window.onload = function() {
 
                 if(final.globalVariable.blockerList[4]) {
 
+                    $('.someCircleClass').css({'transition':'0.1s', 'transform':'scale(0)'});
+                    setTimeout(()=>{
+                        $('.someCircleClass').css({'display':'none'});
+                    }, 100)
+
                     $('.doneWithRound').css({'transition-delay':'0s', 'transition':'0.5s', 'opacity':'0'});
 
                     $(this).css({'cursor':'pointer'});
@@ -798,6 +840,11 @@ window.onload = function() {
 
                 if(final.globalVariable.blockerList[4]) {
 
+                    $('.someCircleClass').css({'transition':'0.1s', 'transform':'scale(0)'});
+                    setTimeout(()=>{
+                        $('.someCircleClass').css({'display':'none'});
+                    }, 100)
+
                     $('.doneWithRound').css({'transition-delay':'0.5s', 'transition':'1.5s', 'opacity':'1'});
 
                     $('.sexplain').css({'transition':'0.5s', 'opacity':'0'})
@@ -819,6 +866,11 @@ window.onload = function() {
                 $(this).css({'cursor':'default'});
 
                 if(final.globalVariable.blockerList[5]) {
+
+                    $('.someCircleClass').css({'transition':'0.1s', 'transform':'scale(0)'});
+                    setTimeout(()=>{
+                        $('.someCircleClass').css({'display':'none'});
+                    }, 100)
 
                     $('.doneWithRound').css({'transition-delay':'0s', 'transition':'0.5s', 'opacity':'0'});
 
@@ -888,6 +940,11 @@ window.onload = function() {
             function() {
 
                 if(final.globalVariable.blockerList[5]) {
+
+                    $('.someCircleClass').css({'transition':'0.1s', 'transform':'scale(0)'});
+                    setTimeout(()=>{
+                        $('.someCircleClass').css({'display':'none'});
+                    }, 100)
 
                     $('.doneWithRound').css({'transition-delay':'0.5s', 'transition':'1.5s', 'opacity':'1'});
 
@@ -1015,7 +1072,12 @@ window.onload = function() {
 
                 if(!final.globalVariable.payoffsHidden) {
 
-                    $('.playerCircle-1').css({'transition':'0.2s', 'opacity':'1'});
+                    $('.someCircleClass').css({'transition':'0s', 'transform':'scale(1)'});
+                    $('.someCircleClass').css({'display':'flex', 'opacity':'0'});
+                    setTimeout(()=>{
+                        $('.playerCircle-1').css({'transition':'0.2s', 'opacity':'1'});
+                    }, 100)
+
 
                     $('.og1NetPayoff, .igNetPayoff, .og2NetPayoff').css({'transition':'0.4s', 'opacity':'0'});
 
@@ -1034,7 +1096,10 @@ window.onload = function() {
 
                 } else {
 
-                    $('.playerCircle-1').css({'transition':'0.2s', 'opacity':'0'});
+                    $('.someCircleClass').css({'transition':'0.1s', 'transform':'scale(0)', 'opacity':'0'});
+                    setTimeout(()=>{
+                        $('.someCircleClass').css({'display':'none'});
+                    }, 100)
 
                     $('.og1NetPayoff, .igNetPayoff, .og2NetPayoff').css({'transition':'0.4s', 'opacity':'1'});
 
@@ -1054,7 +1119,12 @@ window.onload = function() {
 
                 if(!final.globalVariable.payoffsHidden) {
 
-                    $('.playerCircle-2').css({'transition':'0.2s', 'opacity':'1'});
+                    $('.someCircleClass').css({'transition':'0s', 'transform':'scale(1)'});
+                    $('.someCircleClass').css({'display':'flex', 'opacity':'0'});
+                    setTimeout(()=>{
+                        $('.playerCircle-2').css({'transition':'0.2s', 'opacity':'1'});
+                    }, 100)
+
 
                     $('.og1NetPayoff, .igNetPayoff, .og2NetPayoff').css({'transition':'0.4s', 'opacity':'0'});
 
@@ -1076,7 +1146,10 @@ window.onload = function() {
 
                 } else {
 
-                    $('.playerCircle-2').css({'transition':'0.2s', 'opacity':'0'});
+                    $('.someCircleClass').css({'transition':'0.1s', 'transform':'scale(0)', 'opacity':'0'});
+                    setTimeout(()=>{
+                        $('.someCircleClass').css({'display':'none'});
+                    }, 100)
 
                     $('.og1NetPayoff, .igNetPayoff, .og2NetPayoff').css({'transition':'0.4s', 'opacity':'1'});
 
@@ -1096,7 +1169,11 @@ window.onload = function() {
 
                 if(!final.globalVariable.payoffsHidden) {
 
-                    $('.playerCircle-3').css({'transition':'0.2s', 'opacity':'1'});
+                    $('.someCircleClass').css({'transition':'0s', 'transform':'scale(1)'});
+                    $('.someCircleClass').css({'display':'flex', 'opacity':'0'});
+                    setTimeout(()=>{
+                        $('.playerCircle-3').css({'transition':'0.2s', 'opacity':'1'});
+                    }, 100)
 
                     $('.og1NetPayoff, .igNetPayoff, .og2NetPayoff').css({'transition':'0.4s', 'opacity':'0'});
 
@@ -1118,7 +1195,11 @@ window.onload = function() {
 
                 } else {
 
-                    $('.playerCircle-3').css({'transition':'0.2s', 'opacity':'0'});
+                    $('.someCircleClass').css({'transition':'0.1s', 'transform':'scale(0)', 'opacity':'0'});
+                    setTimeout(()=>{
+                        $('.someCircleClass').css({'display':'none'});
+                    }, 100)
+
 
                     $('.og1NetPayoff, .igNetPayoff, .og2NetPayoff').css({'transition':'0.4s', 'opacity':'1'});
 
@@ -1138,7 +1219,11 @@ window.onload = function() {
 
                 if(!final.globalVariable.payoffsHidden) {
 
-                    $('.playerCircle-4').css({'transition':'0.2s', 'opacity':'1'});
+                    $('.someCircleClass').css({'transition':'0s', 'transform':'scale(1)'});
+                    $('.someCircleClass').css({'display':'flex', 'opacity':'0'});
+                    setTimeout(()=>{
+                        $('.playerCircle-4').css({'transition':'0.2s', 'opacity':'1'});
+                    }, 100)
 
                     $('.og1NetPayoff, .igNetPayoff, .og2NetPayoff').css({'transition':'0.4s', 'opacity':'0'});
 
@@ -1157,7 +1242,11 @@ window.onload = function() {
 
                 } else {
 
-                    $('.playerCircle-4').css({'transition':'0.2s', 'opacity':'0'});
+                    $('.someCircleClass').css({'transition':'0.1s', 'transform':'scale(0)', 'opacity':'0'});
+                    setTimeout(()=>{
+                        $('.someCircleClass').css({'display':'none'});
+                    }, 100)
+
 
                     $('.og1NetPayoff, .igNetPayoff, .og2NetPayoff').css({'transition':'0.4s', 'opacity':'1'});
 
@@ -1177,7 +1266,11 @@ window.onload = function() {
 
                 if(!final.globalVariable.payoffsHidden) {
 
-                    $('.playerCircle-5').css({'transition':'0.2s', 'opacity':'1'});
+                    $('.someCircleClass').css({'transition':'0s', 'transform':'scale(1)'});
+                    $('.someCircleClass').css({'display':'flex', 'opacity':'0'});
+                    setTimeout(()=>{
+                        $('.playerCircle-5').css({'transition':'0.2s', 'opacity':'1'});
+                    }, 100)
 
                     $('.og1NetPayoff, .igNetPayoff, .og2NetPayoff').css({'transition':'0.4s', 'opacity':'0'});
 
@@ -1199,7 +1292,11 @@ window.onload = function() {
 
                 } else {
 
-                    $('.playerCircle-5').css({'transition':'0.2s', 'opacity':'0'});
+                    $('.someCircleClass').css({'transition':'0.1s', 'transform':'scale(0)', 'opacity':'0'});
+                    setTimeout(()=>{
+                        $('.someCircleClass').css({'display':'none'});
+                    }, 100)
+
 
                     $('.og1NetPayoff, .igNetPayoff, .og2NetPayoff').css({'transition':'0.4s', 'opacity':'1'});
 
@@ -1219,7 +1316,11 @@ window.onload = function() {
 
                 if(!final.globalVariable.payoffsHidden) {
 
-                    $('.playerCircle-6').css({'transition':'0.2s', 'opacity':'1'});
+                    $('.someCircleClass').css({'transition':'0s', 'transform':'scale(1)'});
+                    $('.someCircleClass').css({'display':'flex', 'opacity':'0'});
+                    setTimeout(()=>{
+                        $('.playerCircle-6').css({'transition':'0.2s', 'opacity':'1'});
+                    }, 100)
 
                     $('.og1NetPayoff, .igNetPayoff, .og2NetPayoff').css({'transition':'0.4s', 'opacity':'0'});
 
@@ -1241,7 +1342,11 @@ window.onload = function() {
 
                 } else {
 
-                    $('.playerCircle-6').css({'transition':'0.2s', 'opacity':'0'});
+                    $('.someCircleClass').css({'transition':'0.1s', 'transform':'scale(0)', 'opacity':'0'});
+                    setTimeout(()=>{
+                        $('.someCircleClass').css({'display':'none'});
+                    }, 100)
+
 
                     $('.og1NetPayoff, .igNetPayoff, .og2NetPayoff').css({'transition':'0.4s', 'opacity':'1'});
 

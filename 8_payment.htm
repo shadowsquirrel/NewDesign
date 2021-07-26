@@ -1284,122 +1284,7 @@
 
             </div>
 
-            <!-- ################ BUDGET/CURRENCY/PAYMENT ################## -->
-
-            <div class='currencyRelatedWrap'>
-                <img class='bankIcon' src="images/bank.png" alt="V" />
-            </div>
-
-
-            <div class=netPayoffTextAndWheel>
-
-                <img class='wheelOfFortuneArrow' src="images/garrow.png" alt="V" />
-                <svg height=500 width=500 class='wheelOfFortuneText'>
-                    <text x="142" y="200" fill="gray" transform="rotate(0)">
-                        Wheel of Fortune
-                    </text>
-                </svg>
-
-                <div class='netPayoffTextAndWheel2'>
-
-                    <div class=netPayoffTableLeft>
-                        <div class='netPayoffTableLeftTitles'>
-                            <p class='netPayoffTitleRow nptr1'>
-                                ROUND 1:
-                            </p>
-                            <p class='netPayoffTitleRow nptr2'>
-                                ROUND 2:
-                            </p>
-                            <p class='netPayoffTitleRow nptr3'>
-                                ROUND 3:
-                            </p>
-                            <p class='netPayoffTitleRow nptr4'>
-                                ROUND 4:
-                            </p>
-                            <p class='netPayoffTitleRow nptr5'>
-                                ROUND 5:
-                            </p>
-                        </div>
-                        <div class='netPayoffTableLeftResults'>
-                            <p class='netPayoffResultRow nptr1'>
-                                <span id=netPayoffResultRound1></span>
-                            </p>
-                            <p class='netPayoffResultRow nptr2'>
-                                <span id=netPayoffResultRound2></span>
-                            </p>
-                            <p class='netPayoffResultRow nptr3'>
-                            <span id=netPayoffResultRound3></span>
-                            </p>
-                            <p class='netPayoffResultRow nptr4'>
-                            <span id=netPayoffResultRound4></span>
-                            </p>
-                            <p class='netPayoffResultRow nptr5'>
-                                <span id=netPayoffResultRound5></span>
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class='netPayoffWheelWrap'>
-                        <img id="arrow" class='npWheelArrow' src="images/limearrow.png" alt="V" />
-                        <div class='netPayoffWheelWrapWrap'>
-                            <canvas id='myNetPayoffWheel' class='npWheel' width='400' height='400'>
-                                Canvas not supported, use another browser.
-                            </canvas>
-                        </div>
-                    </div>
-
-                    <div class=netPayoffTableRight>
-                        <div class='netPayoffTableRightTitles'>
-                            <p class='netPayoffTitleRow nptr6'>
-                                ROUND 6:
-                            </p>
-                            <p class='netPayoffTitleRow nptr7'>
-                                ROUND 7:
-                            </p>
-                            <p class='netPayoffTitleRow nptr8'>
-                                ROUND 8:
-                            </p>
-                            <p class='netPayoffTitleRow nptr9'>
-                                ROUND 9:
-                            </p>
-                            <p class='netPayoffTitleRow nptr10'>
-                                ROUND 10:
-                            </p>
-                        </div>
-                        <div class='netPayoffTableRightResults'>
-                            <p class='netPayoffResultRow nptr6'>
-                                <span id=netPayoffResultRound6></span>
-                            </p>
-                            <p class='netPayoffResultRow nptr7'>
-                                <span id=netPayoffResultRound7></span>
-                            </p>
-                            <p class='netPayoffResultRow nptr8'>
-                                <span id=netPayoffResultRound8></span>
-                            </p>
-                            <p class='netPayoffResultRow nptr9'>
-                                <span id=netPayoffResultRound9></span>
-                            </p>
-                            <p class='netPayoffResultRow nptr10'>
-                                <span id=netPayoffResultRound10></span>
-                            </p>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class='netPayoffWheelPickedResult'>
-                    <p>
-                        Round <span id=roundWheelResult></span> is picked.
-                    </p>
-                    <p>
-                        You will be paid <span id=finalNetPayoffEuro></span> Euros (<span id=finalNetPayoffToken></span> tokens).
-                    </p>
-
-                </div>
-
-            </div>
-
-            <!-- ################### PAYMENT INFO BOXES #################### -->
+                <!-- ################### PAYMENT INFO BOXES #################### -->
 
             <div class='boxbox' id='boxbox-P' style='display:none;'></div>
 
@@ -1583,9 +1468,6 @@
 
                     <p>
                         Every round you re-start the game with a <i>new budget</i> of 1000 tokens.
-                    <!-- <span style='display:block;margin-top:10px;'>
-                        Your final net payoff from a round does <strong>not</strong> carry over to the next.
-                    </span> -->
                     </p>
 
                 </div>
@@ -1757,6 +1639,8 @@
     <div id=end></div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="js/title.js"></script>
+    <script src="js/box.js"></script>
     <script src="js/8_payment.js"></script>
 
 </body>

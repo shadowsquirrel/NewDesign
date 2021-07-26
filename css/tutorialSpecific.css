@@ -1316,3 +1316,17 @@ img.infoBoxFightIcon2
     margin-left: -5px;
     margin-right: -3px;
 }
+.gorunmezBox
+{
+    background-color: transparent;
+    justify-content: center;
+    border-color: transparent;
+    box-shadow: 0 0 transparent;
+    margin-top: 20px;
+}
+.sonButton
+{
+    border-radius: 50px;
+    width: 364px;
+    font-weight: 400;
+}

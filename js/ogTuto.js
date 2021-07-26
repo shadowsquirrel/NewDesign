@@ -6724,6 +6724,53 @@ calculator.wheel.spin = function(duration, turn) {
 
 }
 
+calculator.wheel.simpleSpin = function(spinDuration, forcedWinner) {
+
+    calculator.lock.activate([1,1]);
+
+    spinDuration = spinDuration === undefined ? 1 : spinDuration;
+
+    var delay = spinDuration * 1000;
+
+    var spinTurn;
+    spinTurn = spinDuration * 3;
+
+
+    //---//
+
+    calculator.wheel.spinDuration = spinDuration;
+    calculator.wheel.spinNumber = spinTurn;
+
+    calculator.wheel.create(pwin, 'myWheel');
+    calculator.wheel.myWheelObj.stopAnimation(false);
+    calculator.wheel.myWheelObj.rotationAngle = 0;
+
+    calculator.wheel.show();
+
+    //---//
+
+    var winner = (pwin > Math.random()) ? 1 : 2;
+
+    if(forcedWinner != undefined) {
+        winner = forcedWinner;
+    }
+
+    calculator.tutorial.globalWinner = winner;
+
+    var stopAt = calculator.wheel.myWheelObj.getRandomForSegment(winner);
+    calculator.wheel.myWheelObj.animation.stopAngle = stopAt;
+    calculator.wheel.myWheelObj.startAnimation();
+
+    setTimeout(()=>{
+
+        calculator.lock.activate([0,0]);
+
+    }, delay)
+
+
+}
+
+
 calculator.wheel.cruise = function() {
 
     if(!calculator.wheel.isSpinning) {

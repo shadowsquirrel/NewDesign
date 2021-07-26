@@ -1,357 +1,206 @@
-/*------------------------------------------------------------------------*/
-/*------------------------------------------------------------------------*/
-/*------------------------------------------------------------------------*/
+s1 = s2 = h1 = h2 = os1 = os2 = oh1 = oh2 = 0;
+efo = oefo = 200;
 
+box.transition('OG2Intro-5', '', 0, 0, 1, 0);
 
-//----------------------------------------//
-//----- HS2-3 SLIDER VALUE LISTENER -----//
-//---------------------------------------//
-
-if(listener.hs2_3_f1 && h1 === 20) {
-    activator.hs2_3_f1 = true;
-    listener.hs2_3_f1 = false;
-}
-
-if(activator.hs2_3_f1) {
-
-    calculator.show.checkMark();
-
-    setTimeout(()=>{
-        box.button.show('HS2-3');
-    }, 1000)
-
-    activator.hs2_3_f1 = false;
-
-}
-
-
-/*------------------------------------------------------------------------*/
-/*------------------------------------------------------------------------*/
-/*------------------------------------------------------------------------*/
-
-
-var minimizeFunction = function() {
-
-    calculator.globalVariable.aBitOfWaitingIsDone = false;
-    calculator.tutorial.specialHoverSetupActive = true;
-    calculator.section.hs.opacity.SFiALiFiS([1,1,1,1,0,1]);
-    $('.verticalSection1').css({'margin-left':'273px'});
-    $('.verticalSeparator').css({'height':'133px', 'margin-top':'31px'});
-    calculator.section.hs.set.iconPosition('bottom');
-    calculator.titles.hs.hide();
-    calculator.section.hs.minimize(true);
-    calculator.titles.hs.ghost.text();
-    calculator.titles.hs.ghost.modifyText('FOLLOWERS\' HELP & SABOTAGE');
-    calculator.titles.hs.ghost.show();
-    $('.generalMarginBox').css({'margin-top':'-111px'});
-    $('.rightLeaderIconMainWrap').css({'transition':'0.5s', 'margin-top':'8px'});
-
-}
-
-var maximizeFunction = function() {
-
-    calculator.tutorial.specialHoverSetupActive = false;
-    $('.generalMarginBox').css({'margin-top':'-77px'});
-    calculator.section.hs.minimize(false);
-    calculator.titles.hs.ghost.hide();
-    calculator.titles.hs.show();
-    calculator.section.hs.set.iconPosition('center');
-    // reverse vertical section position
-    $('.verticalSection1').css({'margin-left':'201px'});
-    $('.verticalSeparator').css({'height':'166px', 'margin-top':'0px'});
-    $('.rightLeaderIconMainWrap').css({'transition':'0.5s', 'margin-top':'0px'});
-
-}
-
-
-/*------------------------------------------------------------------------*/
-/*------------------------------------------------------------------------*/
-/*------------------------------------------------------------------------*/
-// FOLLOWER 1 POINT OF VIEW
-
-//change the layout of the calculator switch to subjectiveview to 1 or 2 (i.e. one of the followers)
-calculator.globalVariable.playerView = 1;
-calculator.globalVariable.playerIndex = 0;
-//updated the icons accordingly
-calculator.icons.setAll();
-// update slider
-calculator.refresh.values();
-// change ghost title color to green white
-$('.contestTitle1, .contestTitle22, .ghostTitleColor').css({'background':'linear-gradient(90deg, rgb(35, 79, 30), rgb(210,210,210))'});
-//update the rolls accordingly
-calculator.roll.resetRoll();
-$('.wrapRight, .iaf2, .lbf2').css({'display':'none'});
-
-
-/*------------------------------------------------------------------------*/
-/*------------------------------------------------------------------------*/
-/*------------------------------------------------------------------------*/
-// LEADER POINT OF VIEW
-
-calculator.globalVariable.playerView = 1;
-calculator.globalVariable.playerIndex = -1;
-//updated the icons accordingly
-calculator.icons.setAll();
-// update slider
-calculator.refresh.values();
-$('.contestTitle1, .contestTitle22, .ghostTitleColor').css({'background':'linear-gradient(90deg, rgb(35, 79, 30), rgb(210,210,210))'});
-// calculator.wheel.hide();
-calculator.graphics.update.contestSliderBackgroundColor();
-calculator.roll.resetRoll();
-
-
-/*------------------------------------------------------------------------*/
-/*------------------------------------------------------------------------*/
-/*------------------------------------------------------------------------*/
-
-
-// set the help sabotage value
-// s1,s2,h1,h2,os1,os2,oh1,oh2
-calculator.values.set.helpSabo([15,0,0,5,0,0,7,8]);
-calculator.refresh.sliders();
-
-
-/*------------------------------------------------------------------------*/
-/*------------------------------------------------------------------------*/
-/*------------------------------------------------------------------------*/
-
-// close the box
-box.transition('SE-10', 'SE-11', 1, 0, 1);
-
-$('#box-SE-8').css({'margin-bottom':'20px'});
-
-map.globalVariable.activeHelpFollowerAnimation = false;
-
-$('.arrowDashed').css({'transition':'1s', 'opacity':'0'});
 setTimeout(()=>{
-    $('.OG1GroupSeparator').css({'transition':'1.25s', 'height':'0px', 'opacity':'0'});
+
+    title.update.size(false);
+    $('.sexplain').css({'margin-top':'73px', 'margin-left':'-282px'});
+    map.opacity.main([0,0,1], 0.75);
+    map.opacity.mainArrowSections([0,0,0], 0.75);
+
+    calculator.section.hs.minimize(0);
+    $('.generalMarginBox').css({'transition':'0s', 'margin-top':'-245px', 'display':'block'});
+    $('.generalMarginBox').css({'transition':'0s', 'transform':'scale(1)', 'filter':'opacity(0)'});
+    $('.generalMarginBox').css({'transition':'0s', 'margin-top':'-8px'});
+    $('.generalMarginBox').css({'transition':'0s', 'padding-top':'35px'});
+    $('.contestSection, .payoffWrap, .imageWrap23').css({'display':'none'});
+
+    // $('.winnerLeaderArrowLeft, .winnerLeaderTextLeft, .OG2CircleArrowLeft_f1, .OG2CircleArrowTextLeft_f1').css({'transition':'1s',  'opacity':'0'});
+
+
     setTimeout(()=>{
-        $('.OG1FightIconLime').css({'transition':'0.5s', 'opacity':'0'});
-        $('.OG1FightIcon').css({'transition':'1s', 'opacity':'1'});
+        $('#boxbox-OG2Intro').css({'display':'none'});
+        $('#boxbox-OG2').css({'display':'block'});
+
+        $('.OG2').css({'transition':'1s', 'transform':'scale(2)', 'margin-top':'209px', 'margin-left':'-675px'});
+    }, 750)
+
+    setTimeout(()=>{
+        map.opacity.section([0,0,0.15])
+        $('.OG2FollowersWrapLeft, .OG2FollowersWrapRight').css({'transition':'1s', 'opacity': '1'});
+        $('.OG2FollowerArrowsLeft, .OG2FollowerArrowsRight').css({'transition':'1s', 'opacity': '1'});
+        $('.arrowDashedLime2').css({'transition':'1s', 'opacity':'0'});
+        $('.og2BlackArrow').css({'transition':'1s','opacity':'1'});
+        $('.s5PassiveFollower').css({'transition':'1s','opacity':'1'});
+        $('.s5ActiveFollower').css({'transition':'1s','opacity':'0'});
+        $('.OG2GroupSeparator').css({'transition':'2s', 'opacity':'1', 'height':'119px'});
+        $('.OG2FightIcon, .OG2FightIconLime').css({'transition':'1s', 'opacity':'0'});
+        $('.OG2LeaderRight, .OG2LeaderLeft').css({'transition':'1s', 'opacity':'0.8'});
+        calculator.setup.hsAndPowerRatioTutorialOG2();
+    }, 1500)
+
+
+
+    setTimeout(()=>{
+
+        $('.OG2').css({'transition':'1s', 'transform':'scale(1.5)'});
         setTimeout(()=>{
-            $('.OG1FightIconLime').css({'transition':'1s', 'opacity':'1'});
-            $('.OG1FightIcon').css({'transition':'1s', 'opacity':'0'});
+            // calculator.setup.hsAndPowerRatioTutorialOG2();
+            $('.OG2').css({'transition':'0.75s', 'filter':'opacity(0)'});
+            $('.hsWrap').css({'transition':'0.75s', 'filter':'opacity(1)'});
+            $('.generalMarginBox').css({'transition':'0.75s', 'opacity':'1', 'filter':'opacity(1)'});
             setTimeout(()=>{
-                $('.IGFightIcon, .IGFightIconLimeBottom, .IGFightIconLimeTop, .OG1FightIcon, .OG1FightIconLime').css({'transition':'2s', 'transform':'rotate3d(3,2,1, 1800deg)'});
-            }, 1000)
-        }, 1000)
-    }, 1000)
-})
+                $('.sexplain').css({'transition':'0.75s', 'margin-top':'-10px'});
+                setTimeout(()=>{
+                    $('.sexplain').css({'display':'none'});
+                }, 750)
+            }, 750)
+        }, 500)
 
 
-setTimeout(()=>{
-    box.button.show('SE-11');
-},3000)
+    }, 2000)
 
+    setTimeout(()=>{
 
-$('.OG1FollowersWrapLeft, .OG1FollowersWrapRight').css({'transition':'1s', 'opacity':'0'});
-$('.OG1LeadersIcon, .OG1LeaderRight, .OG1LeaderLeft').css({'transition':'1s', 'opacity':'1'});
-$('.leaderKingLeft, .leaderKingRight').css({'transition':'1s', 'filter':'drop-shadow(0px 3px 2px black)', 'opacity':'1'});
-
-
-
-
-
-calculator.section.hs.opacity.SFiALiFiS([0.6,0.2,1,1,1,0]);
-calculator.section.hs.set.iconPosition('bottom');
-calculator.globalVariable.hover.hsIcons = false;
-
-calculator.titles.hs.ghost.text();
-calculator.titles.hs.ghost.show();
-calculator.globalVariable.hover.hsGhostTitle = false;
-
-calculator.titles.hs.hide();
-calculator.globalVariable.hover.hsMainTitle = false
-
-calculator.section.hs.minimize(true)
-calculator.globalVariable.hover.hsMinimize = false;
-
-calculator.globalVariable.hover.cMinimize = false;
-
-$('.generalMarginBox').css({'margin-top':'-82px', 'padding-top':'10px'});
-
-
-
-
-
-
-
-
-
-    // hide title
-    $('.ctBottom').css({'transition':'1s',
-    'transition-delay':'0s', 'transform' : 'rotate3d(1, 0, 0, 0.5turn)'});
-    $('.ctBottom').css({ 'opacity':'0'});
-
-    calculator.space.close.cResults();
-
-    calculator.section.hs.opacity.SFiALiFiS([1,1,1,0.4,0,1]);
-    calculator.section.hs.set.iconPosition('center');
-    calculator.titles.hs.show();
-    calculator.section.hs.minimize(false);
-    calculator.section.contest.minimize(false);
-    calculator.titles.update.position();
-    calculator.results.hide.leaderOutcomes();
-    calculator.titles.hs.ghost.text();
-    calculator.titles.hs.ghost.hide();
-
-    $('.generalMarginBox').css({'margin-top':'10px'});
-    $('.contestSection').css({'margin-top':'-28px'});
-
-    calculator.wheel.enervate(0);
-
-
-
-
-
-    if(activator.ls2_902_f1) {
-
-        activator.ls2_902_f1 = false;
+        box.transition('', 'OG2-1', 0, 0, 1, 0);
 
         setTimeout(()=>{
-            calculator.section.hs.opacity.SFiALiFiS([0.6,0.2,1,1,1,0]);
-            calculator.section.hs.set.iconPosition('bottom');
-            calculator.globalVariable.hover.hsIcons = false;
+            box.button.show('OG2-1');
+        }, 3000)
 
-            calculator.titles.hs.ghost.text();
-            calculator.titles.hs.ghost.show();
-            calculator.globalVariable.hover.hsGhostTitle = false;
+    }, 4000)
 
-            calculator.titles.hs.hide();
-            calculator.globalVariable.hover.hsMainTitle = false
-
-            calculator.section.hs.minimize(true)
-            calculator.globalVariable.hover.hsMinimize = false;
-
-            calculator.globalVariable.hover.cMinimize = false;
-
-            $('.generalMarginBox').css({'margin-top':'-82px', 'padding-top':'10px'});
-        }, 1000)
-
-        setTimeout(()=>{
-            calculator.hide.checkMark();
-            calculator.lock.activate([1,1,1,1,1,1]);
-            box.transition('LC2-902', 'LC2-9021', 0, 0, 1, 500);
-        }, 1000)
-
-        setTimeout(()=>{
-
-            calculator.values.set.efforts([200, 200]);
-
-            if(box.global.symmetricHeteroTreatment) {
-                calculator.values.set.helpSabo([0,0,0,7,4,0,0,7]);
-                calculator.refresh.sliders();
-            }
-
-            if(box.global.asymmetricHeteroTreatment) {
-                calculator.values.set.helpSabo([0,0,10,14,0,0,2,2]);
-                calculator.refresh.sliders();
-            }
-
-            if(!box.global.symmetricHeteroTreatment && !box.global.asymmetricHeteroTreatment) {
-                calculator.values.set.helpSabo([1,0,0,1,0,0,1,3]);
-                calculator.refresh.sliders();
-            }
-
-        }, 1250)
-
-        setTimeout(()=>{
-            calculator.lock.activate([0,1,1,1,1,1]);
-            calculator.pointers.activate([1,0,0,0,0,0]);
-            listener.ls2_9021_f1 = true;
-        }, 1750)
-
-
-    }
-
-
-
-/*------------------------------------------------------------*/
-
-// map.closeSpace()
-// map.opacity.mainArrowSections([0,0,0]);
-// isolate group A and enlarge it
-setTimeout(()=>{
-    $('.IGBottomContestWrap').css({'transition':'1s', 'filter':'opacity(0)'});
-    $('.IGTopContestWrap').css({'transition':'1s', 'transform':'scale(2)', 'margin-top':'124px'});
-    map.opacity.main([0, 1, 0], 1);
 }, 750)
 
 
-/*----*/
 
-// hide the map
-setTimeout(()=>{
-    $('.IG_generalMarginBox').css({'transition':'0s', 'margin-top':'-251px'});
+map.tutorial.result.BWonALost = function(delay, fWI) {
 
-    if(!box.global.symmetricHeteroTreatment && !box.global.asymmetricHeteroTreatment) {
-        $('.IG_generalMarginBox').css({'transition':'0.3s', 'margin-top':'-308px'});
-    }
+    map.tutorial.result.reset();
 
-    $('.sexplain').css({'transition':'1s', 'opacity':'0'})
-    $('.IG_generalMarginBox').css({'transition':'0s', 'filter':'opacity(0)'});
+    delay = delay === undefined ? 1000 : delay;
+    fWI = fWI === undefined ? 1 : fWI;
+
+    $('.resultsUnknown').css({'transition':'0.5s', 'opacity': '0'});
+    $('.wonLostBoxes').css({'opacity':'1'});
+
     setTimeout(()=>{
-        $('.IG_generalMarginBox').css({'transition':'0.5s', 'filter':'opacity(1)'});
-    }, 500)
-},1000)
+        $('.OG1FollowersWrapLeft, .OG1FollowersWrapRight').css({'transition':'0.5s', 'opacity': '1'});
+        $('.OG1FollowerArrowsLeft, .OG1FollowerArrowsRight').css({'transition':'0.5s', 'opacity': '1'});
+        $('.arrowToTopIconResults, .arrowToBottomIconResults').css({'transition':'0.5s', 'opacity':'1'});
+        $('.OG1LeaderLeft, .OG1LeaderRight, .OG1FightIconWrap').css({'transition':'0.5s', 'opacity':'0'});
+        $('.topBoxLeaderResult, .bottomBoxLeaderResult').css({'transition':'0.5s', 'opacity':'1'});
+        map.winnerLeaderIndex = 2;
+        map.set.OG1ResultIcons();
+        map.opacity.main([1,1,1], 0.5);
+        $('.IGBottomContestWrap').css({'transition':'0.5s', 'opacity':'0'});
+    }, 1 * delay)
+
+    setTimeout(()=>{
+        map.opacity.arrowsFromResultIcons([1, 0], [0, -1])
+    }, 2 * delay)
+
+    setTimeout(()=>{
+        map.opacity.section([0.05,0.05,0.05], 1);
+        $('.prizeCrownLimeTop').css({'transition':'0.5s', 'opacity':'1', 'margin-top':'-40px'});
+        $('.IGFI_Top').css({'transition':'0.5s', 'opacity':'1'});
+        $('.prizeCrownBlackTop, .IGFightIconLimeTop').css({'transition':'0.5s', 'opacity':'0'});
+        $('.OG1LeftFollower1, .OG1LeftFollower2').css({'transition':'0.5s', 'opacity':'0'});
+        $('.igalltop').css({'transition':'0.5s', 'opacity':'1'})
+    }, 3 * delay)
+
+    setTimeout(()=>{
+
+        if(fWI === 1) {
+            $('.prizeCrownLimeTop').css({'transition':'0.5s', 'margin-top':'-51px', 'margin-left': '-40px', 'height':'27px', 'width':'29px', 'z-index':'0'});
+        }
+
+        if(fWI === 2) {
+            $('.prizeCrownLimeTop').css({'transition':'0.5s', 'margin-top':'-51px', 'margin-left': '35px', 'height':'27px', 'width':'29px', 'z-index':'0'});
+        }
+
+        $('.IGFI_Top').css({'transition':'0.5s', 'opacity':'0'});
+
+    }, 4 * delay)
+
+    setTimeout(()=>{
+        map.opacity.arrowsFromResultIcons([1,0], [0, 1]);
 
 
 
-calculator.tutorial.IG('A', false, 1000, true);
-calculator.roll.IG_resetRoll();
-$('.IG_generalMarginBox').css({'margin-top':'38px'})
+        map.opacity.arrowsFromIG([1,0]);
+        $('.arrowsToOG2').css({'transition':'0.5s', 'opacity' : '1'});
+        setTimeout(()=>{
+            $('.groupADescription, .groupBDescription, .fightDescription').css({'transition':'0.5s','opacity':'0'})
+            map.winnerLeaderIndex = 2;
+            map.winnerFollowerIndex = fWI;
+            map.set.OG2ResultingIcons();
+        }, 500)
+    }, 5 * delay);
 
+    setTimeout(()=>{
 
-$('.rightFollowerIconMainWrap').css({'filter':'drop-shadow(5px 5px 3px transparent)'});
-$('.IG_generalMarginBox').css({'transition':'0.5s', 'padding-top':'10px'});
-if(!box.global.symmetricHeteroTreatment && !box.global.asymmetricHeteroTreatment) {
-    $('.rightFollowerIconMainWrap').css({'margin-top':'0px'});
-    $('.IG_generalMarginBox').css({'transition':'0.5s', 'padding-top':'0px'});
-}
+        $('.OG2LeaderRight, .OG2LeaderLeft, .OG2LeadersIcon').css({'transition':'0.5s',  'opacity':'1'});
+        $('.OG2FightIconWrap').css({'transition':'0s',  'opacity':'0'});
 
-setTimeout(()=>{
-    calculator.titles.contest.IG_hide();
-    calculator.results.hide.IG_leaderOutcomes()
-    calculator.globalVariable.IG_contestResultsExist = false;
-    calculator.space.update.IG_heights();
-}, 100)
-setTimeout(()=>{
-    calculator.titles.contest.IG_hide();
-    calculator.results.hide.IG_leaderOutcomes()
-    calculator.globalVariable.IG_contestResultsExist = false;
-    calculator.space.update.IG_heights();
-}, 1100)
-setTimeout(()=>{
-    calculator.results.hide.IG_leaderOutcomes()
-    calculator.space.update.IG_heights();
-    calculator.button.display.IG_spinBottom(0);
-    $('.IG_decisionWrapL').css({'display':'none'});
-}, 2000)
-setTimeout(()=>{
-    calculator.results.hide.IG_leaderOutcomes()
-    calculator.space.update.IG_heights();
-    calculator.button.display.IG_spinBottom(0);
-    $('.IG_decisionWrapL').css({'display':'none'});
-}, 3000)
+        if(fWI === 1) {
+            $('.IGLeftFollower1, .prizeCrownLimeTop').css({'transition':'0.5s', 'opacity':'0.3'})
+        }
 
+        if(fWI === 2) {
+            $('.IGLeftFollower2, .prizeCrownLimeTop').css({'transition':'0.5s', 'opacity':'0.3'})
+        }
 
-// FIRST STEP
-map.IGHighlightAnimationOn = false;
-map.opacity.main([0,1,0], 0.5)
-$('.IGFI_Top').css({'transition':'0.5s', 'opacity':'1'});
-$('.arrowsToOG1IconResults').css({'transition':'0.5s', 'opacity':'0'})
-$('.IG').css({'transform-origin':'top', 'transform':'scale(2)',
-'margin-top':'43px', 'margin-left':'-183px'});
+        $('.arrowToBottomIconResults, .bottomBoxLeaderResult').css({'opacity':'0.4'});
 
-// PREP CALCULATOR
-calculator.tutorial.IG('A', false, 1000, true);
-calculator.roll.IG_resetRoll();
-$('.IG_generalMarginBox').css({'margin-top':'38px'})
-$('.IG_superWrap').css({'transition':'0s', 'opacity':'0'});
+    }, 6.5 * delay)
 
-$('.rightFollowerIconMainWrap').css({'filter':'drop-shadow(5px 5px 3px transparent)'});
-$('.IG_generalMarginBox').css({'transition':'0.5s', 'padding-top':'10px'});
-if(!box.global.symmetricHeteroTreatment && !box.global.asymmetricHeteroTreatment) {
-    $('.rightFollowerIconMainWrap').css({'margin-top':'0px'});
-    $('.IG_generalMarginBox').css({'transition':'0.5s', 'padding-top':'0px'});
+    setTimeout(()=>{
+
+        $('.topBoxLeaderResult').css({'transition':'0.5s', 'opacity':'0.3'});
+        $('.arrowToTopIconResults').css({'transition':'0.5s', 'opacity':'0.3'});
+
+        $('.arrowsToOG2').css({'transition':'0.5s', 'opacity' : '0.3'});
+        $('.topBoxLeaderResult').css({'transition':'0.5s', 'opacity':'0.3'});
+        $('.arrowToTopIconResults').css({'transition':'0.5s', 'opacity':'0.3'});
+
+        if(fWI === 1) {
+            $('.IGLeftFollower2').css({'transition':'0.5s', 'opacity':'0.3'})
+        }
+
+        if(fWI === 2) {
+            $('.IGLeftFollower1').css({'transition':'0.5s', 'opacity':'0.3'})
+        }
+
+        map.opacity.arrowsFromResultIcons([0.3, 0], [0, 0.3])
+        $('.og2BlackArrow, .OG2FollowerArrowsLeft, .OG2FollowersWrapLeft').css({'transition':'0.5s', 'opacity':'1'});
+
+        $('.OG2FollowerArrowsRight, .OG2FollowersWrapRight').css({'transition':'1s', 'opacity':'1'});
+        $('.OG2FightIconWrap').css({'opacity':'1'});
+    }, 8 * delay)
+
+    setTimeout(()=>{
+        // show the initial setup for comparison
+        $('.OG1FollowersWrapRight, .OG1FollowerArrowsRight').css({'transition':'0.5s', 'opacity': '0.5'});
+        $('.OG1LeaderLeft').css({'transition':'0.5s', 'opacity':'0.4'});
+        $('.s2PassiveFollower').css({'transition':'0.5s', 'opacity':'1'});
+        $('.OG1LeftFollower1, .OG1LeftFollower2').css({'transition':'0.5s', 'opacity':'0.4'});
+        $('.subsubOG1L').css({'border-color':'gray'});
+
+        // show the initial setup for comparison
+        $('.OG1FollowersWrapRight, .OG1FollowerArrowsRight').css({'transition':'0.5s', 'opacity': '0.5'});
+        $('.OG1LeaderRight').css({'transition':'0.5s', 'opacity':'0.4'});
+        $('.s2PassiveFollower').css({'transition':'0.5s', 'opacity':'1'});
+        $('.subsubOG1L').css({'border-color':'gray'});
+
+        $('.OG1FightIconWrap').css({'transition':'0.5s', 'opacity':'0.4'});
+        $('.OG1FightIcon').css({'transition':'0.5s', 'opacity':'1'});
+        $('.OG1FightIconLime').css({'transition':'0s', 'opacity':'0'});
+
+        map.opacity.main([0.5,1,1], 0.5);
+        map.opacity.inside([0,1,1], 0.5)
+    }, 9 * delay)
+
 }

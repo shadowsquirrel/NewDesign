@@ -515,3 +515,68 @@
 
         }
         //----------------------------------------------//
+
+
+        crown.var.s4WinnerIndex = undefined;
+        crown.var.ourSideIsHetero = undefined;
+
+
+        crown.resetCrowning = function() {
+
+            $('.risingCrown').css({'transition':'2s', 'margin-top':'-106px',
+            'height':'65px', 'width':'65px', 'margin-left':'-8px', 'opacity':'1'});
+            $('.IG_fightIcon').css({'transition':'2s', 'opacity':'1'});
+            $('.leftFollowerIconMainWrap').css({'transition':'0.5s', 'transform':'rotate(10deg)'});
+            $('.rightFollowerIconMainWrap').css({'transition':'0.5s', 'transform':'rotate(-10deg)'});
+
+        }
+
+        // crowning animation after the results are declared
+        crown.crownTheNewLeader = function(winnerFollower, weAreHetero) {
+
+            crown.var.ourSideIsHetero = weAreHetero;
+            crown.var.s4WinnerIndex = winnerFollower;
+
+            $('.leftFollowerIconMainWrap, .rightFollowerIconMainWrap').css({'transition':'1s', 'transform':'rotate(0deg)'});
+            $('.IG_fightIcon').css({'transition':'1s', 'opacity':'0'});
+
+
+            if(crown.var.ourSideIsHetero === 1) { // our group is hetero and left side is strong and I am the strong follower
+
+                if(winnerFollower === 0) { // strong follower on the left side won -> I won
+
+                    // left strong follower won
+                    $('.risingCrown').css({'transition':'1s', 'margin-left':'-139px',
+                    'margin-top':'-184px', 'z-index':'-1', 'height':'70px', 'width':'80px'});
+
+                } else { //
+
+                    // right weak follower won
+                    $('.risingCrown').css({'transition':'1s', 'margin-left':'117px',
+                    'margin-top':'-77px', 'z-index':'-1', 'height':'45px', 'width':'35px'});
+
+                }
+
+            } else { // homo
+
+
+                if(winnerFollower === 0) { // f1 won
+
+                    // left homo follower won
+                    $('.risingCrown').css({'transition':'1s', 'margin-left':'-111px',
+                    'margin-top':'-110px', 'z-index':'-1', 'height':'50px', 'width':'50px'});
+
+                } else {
+
+                    // right homo follower won
+                    $('.rightFollowerIconMainWrap').css({'margin-top':'0px'})
+                    $('.risingCrown').css({'transition':'1s', 'margin-left':'109px',
+                    'margin-top':'-110px', 'height':'50px', 'width':'50px'});
+
+                }
+
+            }
+
+
+
+        }
